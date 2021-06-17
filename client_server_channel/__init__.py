@@ -1,11 +1,5 @@
 from flask import Flask
-
-from .clients import clients
-from .core import core
-from .employees import employees
-from .products import products
-from .error_pages import error_pages
-
+from .views import clients, core, employees, products, error_pages
 
 
 app = Flask(__name__)
