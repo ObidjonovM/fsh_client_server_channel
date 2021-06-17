@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from os.path import join
+from .. import view_utils as utls
 
 
 employees = Blueprint('employees', __name__, url_prefix='/employees')
@@ -7,7 +7,7 @@ employees = Blueprint('employees', __name__, url_prefix='/employees')
 
 @employees.route('/login')
 def login():
-	return render_template(join('employees', 'login.html'))
+	return render_template(utls.url_join(['employees', 'login.html']))
 
 
 @employees.route('/logout')
@@ -17,9 +17,9 @@ def logout():
 
 @employees.route('/account')
 def account():
-	return render_template(join('employees','account.html'))
+	return render_template(utls.url_join(['employees','account.html']))
 
 
 @employees.route('/admin')
 def admin():
-	return render_template(join('employees','admin.html'))
+	return render_template(utls.url_join(['employees','admin.html']))
