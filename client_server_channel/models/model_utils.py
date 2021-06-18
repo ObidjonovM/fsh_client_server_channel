@@ -35,4 +35,25 @@ def keyval_tuples2dict(keys_tuple, vals_tuple):
     return dict(zip(keys_tuple, vals_tuple))
 
 
+def list_tuples2tuple_lists(list_tuples):
+    """
+    INPUT: list_tuples - list of tuples where the length of each tuple should be greater than 1.
+    RETURNS: It returns tuple where each element of it is a list which contains elements of tuples at the input.
+    EXAMPLE:
+	input: [(1, 'Azamat', 'Tuychiev', 'programmer'), (2, 'Ganisher', 'Ganiev', 'analitik'), (3, 'Barak', 'Obama', 'stajor')]
+        output: ([1,2,3], ['Azamat','Ganisher','Barak'], ['Tuychiev','Ganiev','Obama'], ['programmer','analitik','stajor']) 
+    """
+    list_of_lists = []
+    tuple_len = len(list_tuples[0])
+    for _ in range(tuple_len):
+        list_of_lists.append([])
+    
+    for tup in list_tuples:
+        for i in range(tuple_len):
+            list_of_lists[i].append(tup[i])
+
+    return tuple(list_of_lists)
+
+    
+
  
