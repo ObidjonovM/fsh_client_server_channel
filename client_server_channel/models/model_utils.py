@@ -54,6 +54,39 @@ def list_tuples2tuple_lists(list_tuples):
 
     return tuple(list_of_lists)
 
+
+def execute_query(query_params):
+    conn = None
+    cur = None
+    success = False
+    results = None
+
+    try:
+        conn = pg2.connect(query_params['conn_info'])
+        cur = conn.cursor()
+        cur.execute(query_params['sql'], query_params['sql_params'])
+        if query_params['fetchable']:
+            results = cur.fetchall()
+        else:
+            conn.commit()
+        success = True
+
+    except pg.Error as e:
+        if not query_params['fetchable']:
+            conn.rollback()
+        print(e)
+        # TODO: the error needs to be saved to log table
+
+    finally:
+        if cur:
+            cur.close()
+        if conn:
+            conn.close()
+
+    if query_params['fetchable']:
+        return results
+
+    return success
     
 
  
