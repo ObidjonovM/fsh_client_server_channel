@@ -174,6 +174,18 @@ CREATE TABLE IF NOT EXISTS products (
 ''')
 
 
+#creating error_logs table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS error_logs (
+	log_id SERIAL PRIMARY KEY,
+        call_path TEXT NOT NULL,
+        function_name VARCHAR(50) NOT NULL,
+        line_number INT NOT NULL CHECK (line_number > 0),
+        error_name VARCHAR(50) NOT NULL,
+        description TEXT NOT NULL);
+''')
+
+
 conn.commit()
 
 cur.close()
