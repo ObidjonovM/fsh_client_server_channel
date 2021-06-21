@@ -130,6 +130,19 @@ CREATE TABLE IF NOT EXISTS clients (
 ''')
 
 
+#creating firmwares table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS firmwares (
+	fw_id SERIAL PRIMARY KEY,
+	name VARCHAR(30) NOT NULL,
+        model VARCHAR(10) NOT NULL,
+        version VARCHAR(10) NOT NULL,
+        description VARCHAR(200),
+        date_added TIMESTAMP NOT NULL,
+	date_modified TIMESTAMP NOT NULL);
+''')
+
+
 #creating products table 
 cur.execute('''
 CREATE TABLE IF NOT EXISTS products (
@@ -143,6 +156,7 @@ CREATE TABLE IF NOT EXISTS products (
 	dealer_id INT CHECK (dealer_id > 0),
 	client_id INT CHECK (client_id > 0),
 	manufactured_date DATE NOT NULL,
+        firmware_id INT NOT NULL CHECK (firmware_id > 0),
 	resp_emp_id INT NOT NULL CHECK (resp_emp_id > 0),
 	date_added TIMESTAMP NOT NULL,
 	date_modified TIMESTAMP NOT NULL,
@@ -153,6 +167,8 @@ CREATE TABLE IF NOT EXISTS products (
 	REFERENCES dealers(dealer_id),
 	FOREIGN KEY(client_id)
 	REFERENCES clients(client_id),
+        FOREIGN KEY(firmware_id)
+	REFERENCES firmwares(fw_id),
 	FOREIGN KEY(resp_emp_id)
 	REFERENCES employees(emp_id)); 
 ''')
