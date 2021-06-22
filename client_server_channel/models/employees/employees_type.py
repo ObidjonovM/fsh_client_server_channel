@@ -7,7 +7,7 @@ import model_utils as utls
 class EmployeesTypeTable:
 
     @staticmethod
-    def insert_type(conn_info, type_info):
+    def insert_type(type_info):
         sql = '''
 		INSERT INTO employee_type 
                 (emp_type_name, description, date_added, date_modified)
@@ -15,7 +15,6 @@ class EmployeesTypeTable:
               '''
 
         query_params = {
-            'conn_info' : conn_info,
             'sql' : sql,
             'sql_params' : type_info,
             'fetchable' : False
@@ -25,12 +24,11 @@ class EmployeesTypeTable:
 
 
     @staticmethod
-    def get_type_info(conn_info, type_id):
-        col_names = utls.get_column_names(conn_info, 'employee_type')
+    def get_type_info(type_id):
+        col_names = utls.get_column_names('employee_type')
         sql = '''SELECT * FROM employee_type WHERE emp_type_id=%s'''
 
         query_params = {
-            'conn_info' : conn_info,
             'sql' : sql,
             'sql_params' : str(type_id),
             'fetchable' : True
@@ -44,12 +42,11 @@ class EmployeesTypeTable:
 
 
     @staticmethod
-    def get_type_info_all(conn_info):
-        col_names = utls.get_column_names(conn_info, 'employee_type')
+    def get_type_info_all():
+        col_names = utls.get_column_names('employee_type')
         sql = '''SELECT * FROM employee_type'''
 
         query_params = {
-            'conn_info' : conn_info,
             'sql' : sql,
             'sql_params' : None,
             'fetchable' : True
@@ -64,7 +61,7 @@ class EmployeesTypeTable:
 
 
     @staticmethod
-    def update_type_info(conn_info, type_info):
+    def update_type_info(type_info):
         sql = '''
 		UPDATE employee_type SET
 			emp_type_name = %(emp_type_name)s,
@@ -74,7 +71,6 @@ class EmployeesTypeTable:
               '''
 
         query_params = {
-            'conn_info' : conn_info,
             'sql' : sql,
             'sql_params' : type_info,
             'fetchable' : False
@@ -84,13 +80,12 @@ class EmployeesTypeTable:
 
 
     @staticmethod
-    def delete_type(conn_info, type_id):
+    def delete_type(type_id):
         sql = '''
                 DELETE FROM employee_type WHERE emp_type_id = %s 
               '''
 
         query_params = {
-            'conn_info' : conn_info,
             'sql' : sql,
             'sql_params' : str(type_id),
             'fetchable' : False

@@ -1,15 +1,19 @@
 import psycopg2 as pg2
-from sys import exc_info
+from sys import exc_info, path
+from os.path import join
+path.append(join('..','..','..'))
 
+from config import DB_CONNECT
+ 
 
-def get_column_names(conn_info, table_name):
+def get_column_names(table_name):
     conn = None
     cur = None
     names_list = None
     names = None
 
     try:
-        conn = pg2.connect(conn_info)
+        conn = pg2.connect(DB_CONNECT)
         cur = conn.cursor()
         cur.execute('''
                 SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS
@@ -67,7 +71,7 @@ def execute_query(query_params):
     error_line_num = 0
 
     try:
-        conn = pg2.connect(query_params['conn_info'])
+        conn = pg2.connect(DB_CONNECT)
         cur = conn.cursor()
         cur.execute(query_params['sql'], query_params['sql_params'])
         if query_params['fetchable']:

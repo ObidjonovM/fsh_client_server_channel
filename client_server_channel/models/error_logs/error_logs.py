@@ -7,7 +7,7 @@ class ErrorLogsTable:
 
 
     @staticmethod
-    def insert_log(conn_info, log_info):
+    def insert_log(log_info):
         sql = '''
 		INSERT INTO error_logs
                 (call_path, function_name, line_number, error_name, description, date_added)
@@ -15,7 +15,6 @@ class ErrorLogsTable:
               '''
 
         query_params = {
-		'conn_info' : conn_info,
 		'sql' : sql,
 		'sql_params' : log_info,
 		'fetchable' : False
@@ -26,17 +25,16 @@ class ErrorLogsTable:
 
 
     @staticmethod
-    def get_log_info(conn_info, log_id):
+    def get_log_info(log_id):
         pass
 
 
     @staticmethod
-    def get_log_info_all(conn_info):
-        col_names = utls.get_column_names(conn_info, 'error_logs')
+    def get_log_info_all():
+        col_names = utls.get_column_names('error_logs')
         sql = '''SELECT * FROM error_logs'''
 
         query_params = {
-            'conn_info' : conn_info,
             'sql' : sql,
             'sql_params' : None,
             'fetchable' : True
@@ -51,10 +49,10 @@ class ErrorLogsTable:
 
 
     @staticmethod
-    def update_log_info(conn_info, log_info):
+    def update_log_info(log_info):
         pass
 
 
     @staticmethod
-    def delete_log(conn_info, log_id):
+    def delete_log(log_id):
         pass
