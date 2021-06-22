@@ -1,4 +1,6 @@
 import psycopg2 as pg2
+from sys import exc_info
+
 
 def get_column_names(conn_info, table_name):
     conn = None
@@ -59,23 +61,28 @@ def execute_query(query_params):
     conn = None
     cur = None
     success = False
-    results = None
+    data = dict()
+    error_name = ''
+    error_desc = ''
+    error_line_num = 0
 
     try:
         conn = pg2.connect(query_params['conn_info'])
         cur = conn.cursor()
         cur.execute(query_params['sql'], query_params['sql_params'])
         if query_params['fetchable']:
-            results = cur.fetchall()
+            data = cur.fetchall()
         else:
             conn.commit()
         success = True
 
-    except pg.Error as e:
+    except:
         if not query_params['fetchable']:
             conn.rollback()
-        print(e)
-        # TODO: the error needs to be saved to log table
+        exc_class, exc_value, exc_traceback = exc_info()
+        error_name = str(exc_class)
+        error_desc = str(exc_value) + ' :: ' + create_func_input(**query_params)
+        error_line_num = exc_traceback.tb_lineno 
 
     finally:
         if cur:
@@ -83,10 +90,25 @@ def execute_query(query_params):
         if conn:
             conn.close()
 
-    if query_params['fetchable']:
-        return results
-
-    return success
+    return {
+	'success' : success,
+	'data' : data,
+	'error_name' : error_name,
+	'error_desc' : error_desc,
+        'error_line_num' : error_line_num
+    }
     
+
+def create_func_input(**kwargs):
+    desc = 'INPUTS :'
+    for k,v in kwargs.items():
+        desc += f' {k} = {str(v)};'
+
+    return desc
+
+
+
+
+
 
  

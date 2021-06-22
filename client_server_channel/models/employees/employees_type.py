@@ -37,8 +37,10 @@ class EmployeesTypeTable:
         }
 
         result = utls.execute_query(query_params)
-        if result:
-            return utls.keyval_tuples2dict(col_names, result[0])    
+        if result['success']:
+            result['data'] =  utls.keyval_tuples2dict(col_names, result['data'][0]) 
+
+        return result   
 
 
     @staticmethod
@@ -54,9 +56,11 @@ class EmployeesTypeTable:
         }
 
         result = utls.execute_query(query_params)
-        if result:
-            result = utls.list_tuples2tuple_lists(result)
-            return utls.keyval_tuples2dict(col_names, result)
+        if result['success']:
+            result['data'] = utls.list_tuples2tuple_lists(result['data'])
+            result['data'] =  utls.keyval_tuples2dict(col_names, result['data'])
+
+        return result
 
 
     @staticmethod
@@ -93,4 +97,3 @@ class EmployeesTypeTable:
         }
 
         return utls.execute_query(query_params)
-
