@@ -49,6 +49,9 @@ def list_tuples2tuple_lists(list_tuples):
 	input: [(1, 'Azamat', 'Tuychiev', 'programmer'), (2, 'Ganisher', 'Ganiev', 'analitik'), (3, 'Barak', 'Obama', 'stajor')]
         output: ([1,2,3], ['Azamat','Ganisher','Barak'], ['Tuychiev','Ganiev','Obama'], ['programmer','analitik','stajor']) 
     """
+    if list_tuples == []:
+        return tuple()
+
     list_of_lists = []
     tuple_len = len(list_tuples[0])
     for _ in range(tuple_len):
@@ -81,7 +84,7 @@ def execute_query(query_params):
         success = True
 
     except:
-        if not query_params['fetchable']:
+        if not query_params['fetchable'] and conn:
             conn.rollback()
         exc_class, exc_value, exc_traceback = exc_info()
         error_name = str(exc_class)

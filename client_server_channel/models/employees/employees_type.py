@@ -26,16 +26,16 @@ class EmployeesTypeTable:
     @staticmethod
     def get_type_info(type_id):
         col_names = utls.get_column_names('employee_type')
-        sql = '''SELECT * FROM employee_type WHERE emp_type_id=%s'''
+        sql = '''SELECT * FROM employee_type WHERE emp_type_id=%(type_id)s'''
 
         query_params = {
             'sql' : sql,
-            'sql_params' : str(type_id),
+            'sql_params' : {'type_id' : type_id},
             'fetchable' : True
         }
 
         result = utls.execute_query(query_params)
-        if result['success']:
+        if result['success'] and len(result['data']) > 0:
             result['data'] =  utls.keyval_tuples2dict(col_names, result['data'][0]) 
 
         return result   
@@ -82,12 +82,12 @@ class EmployeesTypeTable:
     @staticmethod
     def delete_type(type_id):
         sql = '''
-                DELETE FROM employee_type WHERE emp_type_id = %s 
+                DELETE FROM employee_type WHERE emp_type_id = %(type_id)s 
               '''
 
         query_params = {
             'sql' : sql,
-            'sql_params' : str(type_id),
+            'sql_params' : {'type_id' : type_id},
             'fetchable' : False
         }
 
