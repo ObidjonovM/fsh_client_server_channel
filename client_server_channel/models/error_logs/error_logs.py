@@ -1,7 +1,4 @@
-import sys
-sys.path.append('..')
-import model_utils as utls
-
+from .. import model_utils as utls
 
 class ErrorLogsTable:
 

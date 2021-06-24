@@ -1,10 +1,5 @@
-import sys
-import os
-sys.path.append(os.path.join('..','..','models'))
-sys.path.append('..')
-
-from employees import EmployeesTypeTable
-import control_utils as utls
+from client_server_channel.models import EmployeesTypeTable
+from .. import control_utils as utls
 from datetime import datetime
 
 

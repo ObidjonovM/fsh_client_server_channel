@@ -1,6 +1,6 @@
 from flask import Flask
 from .views import clients, core, employees, products, error_pages
-
+from . import config
 
 app = Flask(__name__)
 

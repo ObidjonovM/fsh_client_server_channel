@@ -1,16 +1,13 @@
 import logging
 import os
 from datetime import datetime
-from os.path import join
-import sys
-sys.path.append(join('..','..'))
-from config import LOGS_PATH
-from models.error_logs import ErrorLogsTable
+from client_server_channel import config
+from client_server_channel.models import ErrorLogsTable
 
 
 def get_logger(name, log_file):
     formatter = logging.Formatter('%(asctime)s - %(filename)s - %(funcName)s - %(message)s')
-    handler = logging.FileHandler(join(LOGS_PATH, log_file))
+    handler = logging.FileHandler(os.path.join(config.LOGS_PATH, log_file))
     handler.setFormatter(formatter)
     logger = logging.getLogger(name)
     logger.setLevel(logging.ERROR)
