@@ -9,11 +9,11 @@ class EmployeesTable:
             INSERT INTO employees 
             (emp_type_id, first_name, middle_name, last_name, 
             birth_date, address_1, address_2, city, country, 
-            zipcode, phone, email, last_sign_in, date_added, date_modified)
+            zipcode, phone, email, date_added, date_modified)
             VALUES 
             (%(emp_type_id)s, %(first_name)s, %(middle_name)s, %(last_name)s,
             %(birth_date)s, %(address_1)s, %(address_2)s, %(city)s, %(country)s,
-            %(zipcode)s, %(phone)s, %(email)s, %(last_sign_in)s, %(date_added)s, %(date_modified)s)
+            %(zipcode)s, %(phone)s, %(email)s, %(date_added)s, %(date_modified)s)
             '''
 
         query_params = {
