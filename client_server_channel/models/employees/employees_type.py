@@ -34,7 +34,7 @@ class EmployeesTypeTable:
         result = utls.execute_query(query_params)
         if result['success'] and len(result['data']) > 0:
             result['data'] =  utls.keyval_tuples2dict(col_names, result['data'][0]) 
-
+             
         return result   
 
 
@@ -61,7 +61,6 @@ class EmployeesTypeTable:
     def update_type_info(type_info):
         sql = '''
 		UPDATE employee_type SET
-			emp_type_name = %(emp_type_name)s,
                         description = %(description)s,
                         date_modified = %(date_modified)s
                 WHERE emp_type_id = %(emp_type_id)s 

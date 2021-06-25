@@ -45,13 +45,22 @@ class EmployeeTypeC:
 
     @staticmethod
     def update(type_info):
-        type_info['date_modified'] = datetime.now()
-        update_result = EmployeesTypeTable.update_type_info(type_info)
-        
-        return {
-            'success' : update_result['success'],
-            'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
-        }
+        get_result = EmployeesTypeTable.get_type_info(type_info['emp_type_id'])
+        log_code = utls.record_log(get_result, 'update', 'crud_logs')
+        if get_result['data'] != []:
+            type_info['date_modified'] = datetime.now()
+            update_result = EmployeesTypeTable.update_type_info(type_info)     
+            return {
+                'success' : update_result['success'],
+                'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
+            }
+
+        else:
+            return {
+                'success' : False,
+                'log_code' : log_code,
+                'comment' : 'DOES NOT EXIST'
+            }
 
 
     @staticmethod

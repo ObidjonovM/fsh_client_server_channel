@@ -1,0 +1,25 @@
+<!DOCCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/css/employees/add_type.css">
+<title>Add Employee Type</title>
+</head>
+<body>
+
+<h1>Add Employee Type</h1>
+<p>This is a paragraph.</p>
+
+<form action="{{url_for('employees.add_type')}}" method="POST">
+	<label for="type_name">Name</label>
+        <input type="text" name="type_name" required />
+        <label for="desc">Description</label>
+        <textarea name="desc"></textarea>
+        <input type="submit" value="Add" />
+</form>
+
+<script src="/static/js/employees/add_type.js"></script>
+</body>
+</html> 
+
+
+
