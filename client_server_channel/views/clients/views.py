@@ -1,14 +1,13 @@
 from flask import Blueprint, render_template
-from os.path import join
-
+from .. import view_utils as utls
 
 clients = Blueprint('clients', __name__)
 
 
 @clients.route('/login')
 def login():
-	return render_template(join('clients','login.html'))
-
+        return render_template(utls.url_join(['clients', 'login.html']))
+ 
 
 @clients.route('/logout')
 def logout():
@@ -17,9 +16,9 @@ def logout():
 
 @clients.route('/register')
 def register():
-	return render_template(join('clients','register.html'))
+	return render_template(utls.url_join(['clients','register.html']))
 
 
 @clients.route('/account')
 def account():
-	return render_template(join('clients','account.html'))
+	return render_template(utls.url_join(['clients','account.html']))

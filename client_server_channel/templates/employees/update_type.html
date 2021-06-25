@@ -1,0 +1,24 @@
+<!DOCCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/css/employees/update_type.css">
+<title>Update Employee Type</title>
+</head>
+<body>
+
+<h1>Update Employee Type</h1>
+
+<form action="{{ url_for('employees.update_type', type_id=type_info['emp_type_id']) }}" method="POST">
+        <label for="type_name">Name</label>
+        <input type="text" name="type_name" readonly value="{{type_info['emp_type_name']}}"/>
+        <label for="desc">Description</label>
+        <textarea name="desc">{{type_info['description']}}</textarea>
+        <input type="submit" value="Update" />
+</form>
+
+<script src="/static/js/employees/update_type.js"></script>
+</body>
+</html> 
+
+
+

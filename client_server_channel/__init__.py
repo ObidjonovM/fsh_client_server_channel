@@ -1,12 +1,6 @@
 from flask import Flask
-
-from .clients import clients
-from .core import core
-from .employees import employees
-from .products import products
-from .error_pages import error_pages
-
-
+from .views import clients, core, employees, products, error_pages
+from . import config
 
 app = Flask(__name__)
 
@@ -17,3 +11,4 @@ app.register_blueprint(core)
 app.register_blueprint(employees)
 app.register_blueprint(products)
 app.register_blueprint(error_pages)
+
