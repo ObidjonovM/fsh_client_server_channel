@@ -78,7 +78,6 @@ class EmployeesTable:
                         zipcode = %(zipcode)s,
                         phone = %(phone)s,
                         email = %(email)s,
-                        last_sign_in = %(last_sign_in)s,
                         date_modified = %(date_modified)s
                 WHERE emp_id = %(emp_id)s
             '''
