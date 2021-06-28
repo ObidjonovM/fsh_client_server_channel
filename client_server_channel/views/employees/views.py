@@ -85,7 +85,10 @@ def delete_type(type_id):
 def add():
 
     if request.method == 'GET':
-        return render_template(utls.url_join(['employees','add.html']))
+        return render_template(
+                utls.url_join(['employees','add.html']),
+                names_ids = EmployeeTypeC.get_ids_names()
+        )
 
     if request.method == 'POST':
         params = request.form

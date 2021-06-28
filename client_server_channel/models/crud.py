@@ -38,6 +38,17 @@ def get_all(table_name):
 	return result
 
 
+def get_ids_names(table_name, id_col, name_col):
+    sql = f'SELECT {id_col}, {name_col} FROM {table_name}'
+    result = utls.send_to_db(sql, None, True)
+    
+    if result['success']:
+        result['data'] = utls.list_tuples2tuple_lists(result['data'])
+        result['data'] = utls.keyval_tuples2dict((id_col, name_col), result['data'])
+
+    return result
+
+
 def update(table_name, info, prim_col):
 	sql = f'UPDATE {table_name} SET '
 	for key in info.keys():

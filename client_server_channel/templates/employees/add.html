@@ -9,7 +9,7 @@
 
 {% block body %}
 {{super()}}
-
+{{names_ids}}
 <form action="{{url_for('employees.add')}}" method="POST">
 	    <label for="emp_type_id">emp_type_id</label>
         <input type="text" name="emp_type_id" required />
