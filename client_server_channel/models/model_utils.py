@@ -112,7 +112,12 @@ def create_func_input(**kwargs):
     return desc
 
 
-
+def send_to_db(sql, info, fetchable):
+    return execute_query({
+	'sql' : sql,
+	'sql_params' : info,
+	'fetchable' : fetchable
+    })
 
 
 
