@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>products page</title>
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
 <link rel="stylesheet" href="static/css/products/products.css">
-</head>
-<body>
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
 
 <h1>products page</h1>
 
 <script scr="static/js/products/products.js"></script>
-</body>
-</html>
 
+{% endblock %}

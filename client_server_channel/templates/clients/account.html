@@ -1,11 +1,17 @@
- <!DOCTYPE html>
-<html>
-<title>HTML Tutorial</title>
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
 <link rel="stylesheet" href="static/css/clients/account.css">
-<body>
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
 
 <h1>Accout Page</h1>
-<p>This is a paragraph.</p>
+
 <script src="static/js/clients/account.js"></script>
-</body>
-</html> 
+
+{% endblock %}

@@ -1,13 +1,14 @@
-<!DOCCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" href="/static/css/employees/add_type.css">
-<title>Add Employee Type</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>Add Employee Type</h1>
-<p>This is a paragraph.</p>
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/add_type.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
 
 <form action="{{url_for('employees.add_type')}}" method="POST">
 	<label for="type_name">Name</label>
@@ -18,8 +19,7 @@
 </form>
 
 <script src="/static/js/employees/add_type.js"></script>
-</body>
-</html> 
 
+{% endblock %}
 
 

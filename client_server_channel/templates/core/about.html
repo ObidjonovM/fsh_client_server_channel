@@ -1,10 +1,15 @@
- <!DOCTYPE html>
-<html>
-<title>about page</title>
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
 <link rel="stylesheet" href="static/css/core/about.css">
-<body>
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
 
 <h1>About page</h1>
 <script src="static/js/core/about.js"></script>
-</body>
-</html> 
+
+{% endblock %}
