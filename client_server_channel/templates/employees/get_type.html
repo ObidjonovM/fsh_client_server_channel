@@ -1,38 +1,24 @@
-<!DOCCTYPE html>
-<html>
-<head>
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
 <link rel="stylesheet" href="/static/css/employees/get_type.css">
-<title>Employee Type Info</title>
-</head>
-<body>
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
 
 <h1>Employee Type Info</h1>
 
-{{ type_info }}
-
+{{type_info}}
+<br />
 <input id="emp_id" type="hidden" value="{{type_info['data']['emp_type_id']}}"/>
 <button onclick="deleteType()">Delete Type</button>
 
-
 <script src="/static/js/employees/get_type.js"></script>
-<script>
-function deleteType() {
-    const emp_id = document.getElementById("emp_id")
-    let xhttp = new XMLHttpRequest();
-    xhttp.open('DELETE', '/employees/delete_type/' + emp_id.value, true)
-    xhttp.send()
 
-    xhttp.onreadystatechange = () => {
-       if (this.readyState == 4 && this.status == 200) {
-	   console.log(this.responseText);
-       } 
-    }
-
-}
-
-</script>
-</body>
-</html> 
-
+{% endblock %}
 
 

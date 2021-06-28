@@ -1,20 +1,21 @@
-<!DOCCTYPE html>
-<html>
-<head>
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
 <link rel="stylesheet" href="/static/css/employees/get_types.css">
-<title>Employee Types</title>
-</head>
-<body>
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
 
 <h1>Employee Types</h1>
 
 {{ types }}
 
-
-
 <script src="/static/js/employees/get_types.js"></script>
-</body>
-</html> 
 
+{% endblock %}
 
 
