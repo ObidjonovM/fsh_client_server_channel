@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/update.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<form action="{{ url_for('employees.update', emp_id=emp_info['emp_id']) }}" method="POST">
+        <label for="emp_type_id">emp_type_id</label>
+        <input type="text" name="emp_type_id" required value="{{emp_info['emp_type_id']}}"/>
+        <label for="first_name">first_name</label>
+        <input type="text" name="first_name" required value="{{emp_info['first_name']}}"/>
+        <label for="middle_name">middle_name</label>
+        <input type="text" name="middle_name" required value="{{emp_info['middle_name']}}"/>
+        <label for="last_name">last_name</label>
+        <input type="text" name="last_name" required value="{{emp_info['last_name']}}"/>
+        <label for="birth_date">birth_date</label>
+        <input type="date" name="birth_date" required value="{{emp_info['birth_date']}}"/>
+        <label for="address_1">address_1</label>
+        <input type="text" name="address_1" required value="{{emp_info['address_1']}}"/>
+        <label for="address_2">address_2</label>
+        <input type="text" name="address_2" required value="{{emp_info['address_2']}}"/>
+        <label for="city">city</label>
+        <input type="text" name="city" required value="{{emp_info['city']}}"/>
+        <label for="country">country</label>
+        <input type="text" name="country" required value="{{emp_info['country']}}"/>
+        <label for="zipcode">zipcode</label>
+        <input type="text" name="zipcode" required value="{{emp_info['zipcode']}}"/>
+        <label for="phone">phone</label>
+        <input type="text" name="phone" required value="{{emp_info['phone']}}"/>
+        <label for="email">email</label>
+        <input type="text" name="email" required value="{{emp_info['email']}}"/>
+        <input type="submit" value="Update" />
+</form>
+
+<script src="/static/js/employees/update.js"></script>
+
+{% endblock %}

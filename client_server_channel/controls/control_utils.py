@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 from datetime import datetime
 from client_server_channel import config
 from client_server_channel.models import ErrorLogsTable

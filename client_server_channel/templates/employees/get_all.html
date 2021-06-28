@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/get_all.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+{{ employees }}
+
+
+
+<script src="/static/js/employees/get_all.js"></script>
+</body>
+</html> 
+
+{% endblock %}
+
