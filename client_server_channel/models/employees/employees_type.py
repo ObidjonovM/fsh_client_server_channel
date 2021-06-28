@@ -19,6 +19,11 @@ class EmployeesTypeTable:
 
 
     @staticmethod
+    def get_ids_names():
+        return crud.get_ids_names('employee_type', 'emp_type_id', 'emp_type_name')
+
+
+    @staticmethod
     def update_type_info(type_info):
         return crud.update('employee_type', type_info, 'emp_type_id')
 
