@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+{{ emp_info }}
+
+<input id="emp_id" type="hidden" value="{{emp_info['data']['emp_id']}}"/>
+<button onclick="deleteType()">Delete Type</button>
+
+
+<script src="/static/js/employees/get.js"></script>
+
+
+{% endblock %}
+
