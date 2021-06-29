@@ -5,7 +5,7 @@ class ErrorLogsTable:
 
     @staticmethod
     def insert_log(log_info):
-        return crud.insert('error_log', log_info)
+        return crud.insert('error_logs', log_info)
 
 
     @staticmethod
@@ -15,7 +15,7 @@ class ErrorLogsTable:
 
     @staticmethod
     def get_log_info_all():
-        return crud.get_all('error_log')
+        return crud.get_all('error_logs')
 
 
     @staticmethod

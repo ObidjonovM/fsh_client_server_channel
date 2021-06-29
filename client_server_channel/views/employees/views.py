@@ -34,24 +34,25 @@ def add_type():
 
     if request.method == 'POST':
         result = EmployeeTypeC.add(request.form['type_name'], request.form['desc'])
+        if result['success']:
+            return redirect(url_for('employees.get_types'))
+        
         return result
 
 
 @employees.route('/get_type/<int:type_id>')
 def get_type(type_id):
-    type_info = EmployeeTypeC.get(type_id)
     return render_template(
         utls.url_join(['employees','get_type.html']), 
-        type_info=type_info
+        type_info=EmployeeTypeC.get(type_id)
     )
 
 
 @employees.route('/get_types')
 def get_types():
-    types = EmployeeTypeC.get_all()
     return render_template(
         utls.url_join(['employees','get_types.html']), 
-        types=types
+        types=EmployeeTypeC.get_all()
     )
 
 
@@ -64,14 +65,17 @@ def update_type(type_id):
                 utls.url_join(['employees','update_type.html']), 
                 type_info=type_info['data']
             )
-        else:
-            return(redirect(url_for('employees.get_types')))
+        
+        return redirect(url_for('employees.get_types'))
 
     if request.method == 'POST':
         result = EmployeeTypeC.update({
 				    'description' : request.form['desc'],
 				    'emp_type_id' : type_id
 				     })
+        if result['success']:
+            return redirect(url_for('employees.get_types'))
+        
         return result
 
 
@@ -83,11 +87,10 @@ def delete_type(type_id):
         
 @employees.route('/add', methods=['GET', 'POST'])
 def add():
-
     if request.method == 'GET':
         return render_template(
-                utls.url_join(['employees','add.html']),
-                names_ids = EmployeeTypeC.get_ids_names()
+            utls.url_join(['employees','add.html']),
+            names_ids = EmployeeTypeC.get_ids_names()
         )
 
     if request.method == 'POST':
@@ -106,24 +109,25 @@ def add():
                     'phone' : params['phone'],
                     'email' : params['email'],
         })
+        if result['success']:
+            return redirect(url_for('employees.get_all'))
+        
         return result
 
 
 @employees.route('/get/<int:emp_id>')
 def get(emp_id):
-    emp_info = EmployeeC.get(emp_id)
     return render_template(
         utls.url_join(['employees','get.html']), 
-        emp_info=emp_info
+        emp_info=EmployeeC.get(emp_id)
     )
 
 
 @employees.route('/get_all')
 def get_all():
-    employees = EmployeeC.get_all()
     return render_template(
         utls.url_join(['employees','get_all.html']), 
-        employees=employees
+        employees=EmployeeC.get_all()
     )
 
 
@@ -136,8 +140,8 @@ def update(emp_id):
                 utls.url_join(['employees','update.html']), 
                 emp_info=emp_info['data']
             )
-        else:
-            return(redirect(url_for('employees.get_all')))
+        
+        return redirect(url_for('employees.get_all'))
 
     if request.method == 'POST':
         params = request.form
@@ -155,7 +159,10 @@ def update(emp_id):
                     'phone' : params['phone'],
                     'email' : params['email'],
 				    'emp_id' : emp_id
-				     })
+		})
+        if result['success']:
+            return redirect(url_for('employees.get_all'))
+
         return result
 
 
