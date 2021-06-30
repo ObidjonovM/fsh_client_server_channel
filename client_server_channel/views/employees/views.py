@@ -83,6 +83,18 @@ def update_type(type_id):
 def delete_type(type_id):
     if request.method == 'DELETE':
         return EmployeeTypeC.delete(type_id)
+
+
+@employees.route('/type_exists', methods=['POST'])
+def type_exists():
+    try:
+        return EmployeeTypeC.type_exists(
+            request.form['name']
+        )
+    except:
+        return {
+            'error' : 'Invalid input'
+        }
         
         
 @employees.route('/add', methods=['GET', 'POST'])

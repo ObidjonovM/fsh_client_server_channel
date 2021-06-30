@@ -55,6 +55,13 @@ class EmployeeTypeC:
 
 
     @staticmethod
+    def type_exists(name):
+        return {
+            'type_exists' : EmployeesTypeTable.type_exists(name)
+        }
+
+
+    @staticmethod
     def update(type_info):
         get_result = EmployeesTypeTable.get_type_info(type_info['emp_type_id'])
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
