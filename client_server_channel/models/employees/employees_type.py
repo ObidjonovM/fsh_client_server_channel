@@ -19,6 +19,11 @@ class EmployeesTypeTable:
 
 
     @staticmethod
+    def type_exists(name):
+        return crud.record_exists('employee_type', {'emp_type_name' : name})
+
+
+    @staticmethod
     def get_ids_names():
         return crud.get_ids_names('employee_type', 'emp_type_id', 'emp_type_name')
 

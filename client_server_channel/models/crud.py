@@ -49,6 +49,19 @@ def get_ids_names(table_name, id_col, name_col):
     return result
 
 
+def record_exists(table_name, record):
+    sql = f'SELECT * FROM {table_name} WHERE '
+    for col in record.keys():
+        sql += f'{col} = %({col})s AND '
+    
+    result = utls.send_to_db(sql[:-5], record, True)
+    
+    if result['success'] and len(result['data']) > 0:
+        return True
+
+    return False
+
+
 def update(table_name, info, prim_col):
 	sql = f'UPDATE {table_name} SET '
 	for key in info.keys():
