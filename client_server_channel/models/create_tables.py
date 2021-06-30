@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS employees (
 	emp_id SERIAL PRIMARY KEY,
 	emp_type_id INT NOT NULL, 
 	first_name VARCHAR(50) NOT NULL,
-	middle_name VARCHAR(50),
+	middle_name VARCHAR(50) NOT NULL,
 	last_name VARCHAR(50) NOT NULL,
 	birth_date DATE NOT NULL,
 	address_1 VARCHAR(50) NOT NULL,
@@ -29,12 +29,16 @@ CREATE TABLE IF NOT EXISTS employees (
 	city VARCHAR(50) NOT NULL,
 	country VARCHAR(50) NOT NULL,
 	zipcode VARCHAR(20) NOT NULL,
-	phone VARCHAR(20) NOT NULL,
-	email VARCHAR(50),
+	phone VARCHAR(20) UNIQUE NOT NULL,
+        home_phone VARCHAR(20),
+	email VARCHAR(50) UNIQUE,
+	username VARCHAR(50) UNIQUE NOT NULL,
+	password VARCHAR(50) NOT NULL,
 	last_sign_in TIMESTAMP,
 	date_added TIMESTAMP NOT NULL,
 	date_modified TIMESTAMP NOT NULL,
 
+        UNIQUE (first_name, middle_name, last_name, birth_date),
 	FOREIGN KEY(emp_type_id)
 	REFERENCES employee_type(emp_type_id));
 ''')
@@ -119,7 +123,10 @@ CREATE TABLE IF NOT EXISTS clients (
 	country VARCHAR(50) NOT NULL,
 	zipcode VARCHAR(20) NOT NULL,
 	phone VARCHAR(20) NOT NULL,
+        home_phone VARCHAR(20),
 	email VARCHAR(50),
+	username VARCHAR(50) NOT NULL UNIQUE,
+	password VARCHAR(50) NOT NULL,
 	subs_id INT NOT NULL CHECK (subs_id > 0),
 	last_signin TIMESTAMP,
 	date_added TIMESTAMP NOT NULL,
@@ -138,8 +145,12 @@ CREATE TABLE IF NOT EXISTS firmwares (
         model VARCHAR(10) NOT NULL,
         version VARCHAR(10) NOT NULL,
         description VARCHAR(200),
+        author_id INT CHECK (author_id > 0) NOT NULL,
         date_added TIMESTAMP NOT NULL,
-	date_modified TIMESTAMP NOT NULL);
+	date_modified TIMESTAMP NOT NULL,
+
+        FOREIGN KEY(author_id)
+        REFERENCES employees(emp_id));
 ''')
 
 
