@@ -15,11 +15,22 @@ CREATE TABLE IF NOT EXISTS employee_type (
 ''')
 
 
+#creating employee_status table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS employee_status (
+	status_id SERIAL PRIMARY KEY,
+        status VARCHAR(30) UNIQUE NOT NULL,
+        description VARCHAR(200),
+        date_added TIMESTAMP NOT NULL,
+        date_modified TIMESTAMP NOT NULL);
+''')
+
+
 #creating employees table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS employees (
 	emp_id SERIAL PRIMARY KEY,
-	emp_type_id INT NOT NULL, 
+	emp_type_id INT NOT NULL CHECK(emp_type_id > 0), 
 	first_name VARCHAR(50) NOT NULL,
 	middle_name VARCHAR(50) NOT NULL,
 	last_name VARCHAR(50) NOT NULL,
@@ -34,13 +45,16 @@ CREATE TABLE IF NOT EXISTS employees (
 	email VARCHAR(50) UNIQUE,
 	username VARCHAR(50) UNIQUE NOT NULL,
 	password VARCHAR(50) NOT NULL,
+        emp_status_id INT NOT NULL CHECK(emp_status_id > 0),
 	last_sign_in TIMESTAMP,
 	date_added TIMESTAMP NOT NULL,
 	date_modified TIMESTAMP NOT NULL,
 
         UNIQUE (first_name, middle_name, last_name, birth_date),
 	FOREIGN KEY(emp_type_id)
-	REFERENCES employee_type(emp_type_id));
+	REFERENCES employee_type(emp_type_id),
+        FOREIGN KEY(emp_status_id)
+	REFERENCES employee_status(status_id));
 ''')
 
 
