@@ -358,14 +358,44 @@ CREATE TABLE IF NOT EXISTS shipping_types (
         min_delivery_days INT CHECK (min_delivery_days > 0) NOT NULL,
         max_delivery_days INT CHECK (min_delivery_days <= max_delivery_days) NOT NULL,
         carrier_id INT CHECK (carrier_id > 0) NOT NULL,
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
 
 	FOREIGN KEY (curr_id)
 	REFERENCES currencies(curr_id),
 	FOREIGN KEY (unit_id)
 	REFERENCES units(unit_id),
 	FOREIGN KEY (carrier_id)
-	REFERENCES carriers(carrier_id));
+	REFERENCES carriers(carrier_id),
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+
 ''')
+
+
+cur.execute('''
+CREATE TABLE IF NOT EXISTS tracking_statuses (
+	track_id SERIAL PRIMARY KEY,
+	status VARCHAR(30) NOT NULL,
+	carrier_id INT CHECK (carrier_id > 0) NOT NULL,
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	UNIQUE(status, carrier_id),
+	FOREIGN KEY (carrier_id)
+	REFERENCES carriers(carrier_id),
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
 
 #creating sp_types table
 cur.execute('''
