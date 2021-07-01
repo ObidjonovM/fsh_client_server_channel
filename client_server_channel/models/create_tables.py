@@ -347,7 +347,27 @@ CREATE TABLE IF NOT EXISTS carriers (
 ''')
 
 
-#creating sp_types
+#creating shipping_types table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS shipping_types (
+        shipping_type_id SERIAL PRIMARY KEY,
+        name VARCHAR(50) NOT NULL,
+        price NUMERIC(12,2) NOT NULL,
+        curr_id INT CHECK (curr_id > 0) NOT NULL,
+        unit_id INT CHECK (unit_id > 0) NOT NULL,
+        min_delivery_days INT CHECK (min_delivery_days > 0) NOT NULL,
+        max_delivery_days INT CHECK (min_delivery_days <= max_delivery_days) NOT NULL,
+        carrier_id INT CHECK (carrier_id > 0) NOT NULL,
+
+	FOREIGN KEY (curr_id)
+	REFERENCES currencies(curr_id),
+	FOREIGN KEY (unit_id)
+	REFERENCES units(unit_id),
+	FOREIGN KEY (carrier_id)
+	REFERENCES carriers(carrier_id));
+''')
+
+#creating sp_types table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS sp_types (
 	sp_type_id SERIAL PRIMARY KEY,
