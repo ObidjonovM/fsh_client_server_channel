@@ -30,16 +30,19 @@ def record_log(result, func_name, logger_name):
     })
 
     if log_result['success']:
-        return -1          # recorded to error logs table
+        if result['error_name'] == 'UniqueViolation':
+            return -1          # recorded to error logs table
+        
+        return -2         # recorded to error logs table
 
     try:
         logger = get_logger(logger_name, f'{logger_name}.log')
         logger.error(log_result['error_desc'])
-        return -2             # recorded to logs file
+        return -3             # recorded to logs file
 
     except:
         print('Error could not be logged')
         t, v, _ = sys.exc_info()
         print(f'{t} - {v}')
 
-    return -3       # could not record logs anywhere
+    return -4       # could not record logs anywhere
