@@ -505,6 +505,36 @@ CREATE TABLE IF NOT EXISTS sp_orders (
 ''')
 
 
+#creating sp_order_details table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS sp_order_details (
+	detail_id SERIAL PRIMARY KEY,
+	type_id INT NOT NULL CHECK (type_id > 0),
+	price_per_unit NUMERIC(12,2) NOT NULL CHECK(price_per_unit > 0),
+	curr_id INT NOT NULL CHECK (curr_id > 0),
+	amount NUMERIC(12,2) NOT NULL,
+	unit_id INT NOT NULL CHECK (unit_id > 0),
+	order_id INT NOT NULL CHECK (order_id > 0),
+	date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	FOREIGN KEY (type_id)
+	REFERENCES sp_types(sp_type_id),
+	FOREIGN KEY (curr_id)
+	REFERENCES currencies(curr_id),
+	FOREIGN KEY (unit_id)
+	REFERENCES units(unit_id),
+	FOREIGN KEY (order_id)
+	REFERENCES sp_orders(sp_order_id),
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
 #creating error_logs table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS error_logs (
