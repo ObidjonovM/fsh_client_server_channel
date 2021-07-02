@@ -10,8 +10,23 @@ CREATE TABLE IF NOT EXISTS employee_type (
 	emp_type_id SERIAL PRIMARY KEY,
 	emp_type_name VARCHAR(50) UNIQUE NOT NULL,
 	description VARCHAR(200),
-	date_added TIMESTAMP NOT NULL,
-	date_modified TIMESTAMP NOT NULL);
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0));
+''')
+
+
+#creating employee_status table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS employee_status (
+	status_id SERIAL PRIMARY KEY,
+        status VARCHAR(30) UNIQUE NOT NULL,
+        description VARCHAR(200),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0));
 ''')
 
 
@@ -19,9 +34,9 @@ CREATE TABLE IF NOT EXISTS employee_type (
 cur.execute('''
 CREATE TABLE IF NOT EXISTS employees (
 	emp_id SERIAL PRIMARY KEY,
-	emp_type_id INT NOT NULL, 
+	emp_type_id INT NOT NULL CHECK(emp_type_id > 0), 
 	first_name VARCHAR(50) NOT NULL,
-	middle_name VARCHAR(50),
+	middle_name VARCHAR(50) NOT NULL,
 	last_name VARCHAR(50) NOT NULL,
 	birth_date DATE NOT NULL,
 	address_1 VARCHAR(50) NOT NULL,
@@ -29,14 +44,23 @@ CREATE TABLE IF NOT EXISTS employees (
 	city VARCHAR(50) NOT NULL,
 	country VARCHAR(50) NOT NULL,
 	zipcode VARCHAR(20) NOT NULL,
-	phone VARCHAR(20) NOT NULL,
-	email VARCHAR(50),
+	phone VARCHAR(20) UNIQUE NOT NULL,
+        home_phone VARCHAR(20),
+	email VARCHAR(50) UNIQUE,
+	username VARCHAR(50) UNIQUE NOT NULL,
+	password VARCHAR(50) NOT NULL,
+        emp_status_id INT NOT NULL CHECK(emp_status_id > 0),
 	last_sign_in TIMESTAMP,
-	date_added TIMESTAMP NOT NULL,
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
 
+        UNIQUE (first_name, middle_name, last_name, birth_date),
 	FOREIGN KEY(emp_type_id)
-	REFERENCES employee_type(emp_type_id));
+	REFERENCES employee_type(emp_type_id),
+        FOREIGN KEY(emp_status_id)
+	REFERENCES employee_status(status_id));
 ''')
 
 
@@ -56,7 +80,8 @@ CREATE TABLE IF NOT EXISTS categories (
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
 	FOREIGN KEY (modify_emp_id)
-	REFERENCES employees(emp_id)); ''')
+	REFERENCES employees(emp_id)); 
+''')
 
 
 #creating product_info table
@@ -66,11 +91,17 @@ CREATE TABLE IF NOT EXISTS product_info (
 	name VARCHAR(50) UNIQUE NOT NULL,
 	model VARCHAR(50) NOT NULL,
 	category_id INT NOT NULL CHECK(category_id > 0),
-	date_added TIMESTAMP NOT NULL,
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
 
 	FOREIGN KEY(category_id)
-	REFERENCES categories(category_id));
+	REFERENCES categories(category_id),
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
 ''')
 
 
@@ -88,8 +119,16 @@ CREATE TABLE IF NOT EXISTS dealers (
 	email VARCHAR(50),
 	website VARCHAR(50),
 	geo_location VARCHAR(50),
-	date_added TIMESTAMP NOT NULL,
-	date_modified TIMESTAMP NOT NULL);
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+
 ''')
 
 
@@ -100,8 +139,15 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 	name VARCHAR(50) UNIQUE NOT NULL,
 	description VARCHAR(200),
 	monthly_fee NUMERIC(12,2) NOT NULL CHECK(monthly_fee >= 0),
-	date_added TIMESTAMP NOT NULL,
-	date_modified TIMESTAMP NOT NULL);
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
 ''')
 
 
@@ -119,7 +165,10 @@ CREATE TABLE IF NOT EXISTS clients (
 	country VARCHAR(50) NOT NULL,
 	zipcode VARCHAR(20) NOT NULL,
 	phone VARCHAR(20) NOT NULL,
+        home_phone VARCHAR(20),
 	email VARCHAR(50),
+	username VARCHAR(50) NOT NULL UNIQUE,
+	password VARCHAR(50) NOT NULL,
 	subs_id INT NOT NULL CHECK (subs_id > 0),
 	last_signin TIMESTAMP,
 	date_added TIMESTAMP NOT NULL,
@@ -138,8 +187,37 @@ CREATE TABLE IF NOT EXISTS firmwares (
         model VARCHAR(10) NOT NULL,
         version VARCHAR(10) NOT NULL,
         description VARCHAR(200),
+        author_id INT CHECK (author_id > 0) NOT NULL,
         date_added TIMESTAMP NOT NULL,
-	date_modified TIMESTAMP NOT NULL);
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	UNIQUE(name, model, version),        
+        FOREIGN KEY(author_id)
+        REFERENCES employees(emp_id),
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
+#creating product_status table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS product_status (
+	status_id SERIAL PRIMARY KEY,
+        status VARCHAR(30) UNIQUE,
+        description VARCHAR(200),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+        
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
 ''')
 
 
@@ -158,8 +236,11 @@ CREATE TABLE IF NOT EXISTS products (
 	manufactured_date DATE NOT NULL,
         firmware_id INT NOT NULL CHECK (firmware_id > 0),
 	resp_emp_id INT NOT NULL CHECK (resp_emp_id > 0),
-	date_added TIMESTAMP NOT NULL,
+        status_id INT NOT NULL CHECK (status_id > 0),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
 
 	FOREIGN KEY(product_id)
 	REFERENCES product_info(product_id),
@@ -170,9 +251,142 @@ CREATE TABLE IF NOT EXISTS products (
         FOREIGN KEY(firmware_id)
 	REFERENCES firmwares(fw_id),
 	FOREIGN KEY(resp_emp_id)
-	REFERENCES employees(emp_id)); 
+	REFERENCES employees(emp_id),
+        FOREIGN KEY (status_id)
+        REFERENCES product_status(status_id), 
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
 ''')
 
+
+#creating currency table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS currencies (
+	curr_id SERIAL PRIMARY KEY,
+	currency VARCHAR(20) UNIQUE NOT NULL,
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
+#creating units table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS units (
+	unit_id SERIAL PRIMARY KEY,
+        unit VARCHAR(30) NOT NULL UNIQUE,
+        description VARCHAR(200),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
+#creating suppliers table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS suppliers (
+	supplier_id SERIAL PRIMARY KEY,
+	name VARCHAR(50) UNIQUE NOT NULL,
+	address_1 VARCHAR(50) NOT NULL,
+	address_2 VARCHAR(50),
+	city VARCHAR(50) NOT NULL,
+	country VARCHAR(50) NOT NULL,
+	zipcode VARCHAR(20) NOT NULL,
+	phone VARCHAR(20) NOT NULL,
+	email VARCHAR(50),
+	website VARCHAR(50),
+	geo_location VARCHAR(50),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
+#creating carriers table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS carriers (
+	carrier_id SERIAL PRIMARY KEY,
+	name VARCHAR(50) UNIQUE NOT NULL,
+	address_1 VARCHAR(50) NOT NULL,
+	address_2 VARCHAR(50),
+	city VARCHAR(50) NOT NULL,
+	country VARCHAR(50) NOT NULL,
+	zipcode VARCHAR(20) NOT NULL,
+	phone VARCHAR(20) NOT NULL,
+	email VARCHAR(50),
+	website VARCHAR(50),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
+#creating shipping_types table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS shipping_types (
+        shipping_type_id SERIAL PRIMARY KEY,
+        name VARCHAR(50) NOT NULL,
+        price NUMERIC(12,2) NOT NULL,
+        curr_id INT CHECK (curr_id > 0) NOT NULL,
+        unit_id INT CHECK (unit_id > 0) NOT NULL,
+        min_delivery_days INT CHECK (min_delivery_days > 0) NOT NULL,
+        max_delivery_days INT CHECK (min_delivery_days <= max_delivery_days) NOT NULL,
+        carrier_id INT CHECK (carrier_id > 0) NOT NULL,
+
+	FOREIGN KEY (curr_id)
+	REFERENCES currencies(curr_id),
+	FOREIGN KEY (unit_id)
+	REFERENCES units(unit_id),
+	FOREIGN KEY (carrier_id)
+	REFERENCES carriers(carrier_id));
+''')
+
+#creating sp_types table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS sp_types (
+	sp_type_id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	brand VARCHAR(50),
+	model VARCHAR(50),
+	version VARCHAR(50),
+	description VARCHAR(200),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	UNIQUE(name, brand, model, version),
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
 
 #creating error_logs table
 cur.execute('''

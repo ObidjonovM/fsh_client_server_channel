@@ -42,10 +42,16 @@ def add_type():
 
 @employees.route('/get_type/<int:type_id>')
 def get_type(type_id):
-    return render_template(
-        utls.url_join(['employees','get_type.html']), 
         type_info=EmployeeTypeC.get(type_id)
-    )
+        if type_info['data'] == []:
+            return redirect(
+                url_for('employees.get_types')
+            )
+
+        return render_template(
+            utls.url_join(['employees','get_type.html']),
+            type_info=type_info
+        )
 
 
 @employees.route('/get_types')
@@ -89,7 +95,7 @@ def delete_type(type_id):
 def type_exists():
     try:
         return EmployeeTypeC.type_exists(
-            request.form['name']
+            request.form['type_name']
         )
     except:
         return {

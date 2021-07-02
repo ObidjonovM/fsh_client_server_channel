@@ -85,7 +85,7 @@ def execute_query(query_params):
         if not query_params['fetchable'] and conn:
             conn.rollback()
         exc_class, exc_value, exc_traceback = exc_info()
-        error_name = str(exc_class)
+        error_name = exc_class.__name__
         error_desc = str(exc_value) + ' :: ' + create_func_input(**query_params)
         error_line_num = exc_traceback.tb_lineno 
 
