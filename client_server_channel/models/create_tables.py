@@ -454,6 +454,57 @@ CREATE TABLE IF NOT EXISTS sp_logistics (
 ''')
 
 
+cur.execute('''
+CREATE TABLE IF NOT EXISTS sp_order_statuses (
+	status_id SERIAL PRIMARY KEY,
+	name VARCHAR(50) UNIQUE NOT NULL,
+	description VARCHAR(200),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
+cur.execute('''
+CREATE TABLE IF NOT EXISTS sp_orders (
+	sp_order_id SERIAL PRIMARY KEY,
+	issued_order_id VARCHAR(50) NOT NULL UNIQUE,
+	total_cost NUMBERIC (12,2) NOT NULL CHECK (total_cost > 0),
+	curr_id INT NOT NULL CHECK (curr_id > 0),
+	supplier_id INT	NOT NULL CHECK (supplier_id > 0),
+	exp_dispatch_date DATE NOT NULL,
+	order_status_id INT NOT NULL CHECK (order_status_id > 0),
+	shipment_id INT NOT NULL CHECK (shipment_id > 0),
+	order_date DATE NOT NULL,
+	ord_emp_id INT NOT NULL CHECK (ord_emp_id > 0),
+	date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	
+	FOREIGN KEY (curr_id)
+	REFERENCES currencies(curr_id),
+	FOREIGN KEY (supplier_id)
+	REFERENCES suppliers(supplier_id),
+	FOREIGN KEY (order_status_id)
+	REFERENCES sp_order_statuses(status_id),
+	FOREIGN KEY (shipment_id)
+	REFERENCES sp_logistics(shipment_id),
+	FOREIGN KEY (ord_emp_if)
+	REFERENCES employees(ord_emp_if),  
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
 #creating error_logs table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS error_logs (
