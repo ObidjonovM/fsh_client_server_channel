@@ -553,6 +553,34 @@ CREATE TABLE IF NOT EXISTS sp_statuses (
 ''')
 
 
+#creating sp_warehouse
+cur.execute('''
+CREATE TABLE IF NOT EXISTS sp_warehouse (
+	sp_id SERIAL PRIMARY KEY,
+	type_id INT NOT NULL CHECK (type_id > 0),
+	order_id INT NOT NULL CHECK (order_id > 0),
+	status_id INT NOT NULL CHECK (status_id > 0),
+	date_accepted TIMESTAMP NOT NULL,
+	acc_emp_id INT NOT NULL CHECK (acc_emp_id > 0),
+	date_used TIMESTAMP,
+	used_emp_id INT CHECK (used_emp_id > 0),
+	pr_serial_num VARCHAR(12) UNIQUE,
+
+	FOREIGN KEY (type_id)
+	REFERENCES sp_types(sp_type_id),
+	FOREIGN KEY (order_id)
+	REFERENCES sp_orders(sp_order_id),
+	FOREIGN KEY (status_id)
+	REFERENCES sp_statuses(status_id),
+	FOREIGN KEY (acc_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (used_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (pr_serial_num)
+	REFERENCES products(serial_num));
+''')
+
+
 #creating error_logs table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS error_logs (
