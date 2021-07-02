@@ -535,6 +535,24 @@ CREATE TABLE IF NOT EXISTS sp_order_details (
 ''')
 
 
+#creatomg sp_statuses table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS sp_statuses (
+	status_id SERIAL PRIMARY KEY,
+	status VARCHAR(30) NOT NULL UNIQUE,
+	description VARCHAR(200),
+	date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
 #creating error_logs table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS error_logs (
