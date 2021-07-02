@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/add_status.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<form action="{{url_for('employees.add_status')}}" method="POST">
+	<label for="status_name">Status</label>
+        <input type="text" name="status" required />
+        <label for="desc">Description</label>
+        <textarea name="desc"></textarea>
+        <input type="submit" value="Add" />
+</form>
+
+<script src="/static/js/employees/add_status.js"></script>
+
+{% endblock %}
+
+

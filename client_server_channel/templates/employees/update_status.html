@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/update_status.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<h1>Update Employee Type</h1>
+<form action="{{ url_for('employees.update_status', status_id=status_info['status_id']) }}" method="POST">
+        <label for="status_name">Name</label>
+        <input type="text" readonly value="{{status_info['status']}}"/>
+        <label for="desc">Description</label>
+        <textarea name="desc">{{status_info['description']}}</textarea>
+        <input type="submit" value="Update" />
+</form>
+
+<script src="/static/js/employees/update_status.js"></script>
+
+{% endblock %}
+
+

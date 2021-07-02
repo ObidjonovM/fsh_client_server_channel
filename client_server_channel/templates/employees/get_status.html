@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/get_status.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<h1>Status Info</h1>
+
+{{status_info}}
+<br />
+<input id="status_id" type="hidden" value="{{status_info['data']['status_id']}}"/>
+<button onclick="deleteType()">Delete Type</button>
+
+<script src="/static/js/employees/get_status.js"></script>
+
+{% endblock %}
+
+
