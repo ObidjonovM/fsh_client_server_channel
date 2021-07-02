@@ -475,7 +475,7 @@ cur.execute('''
 CREATE TABLE IF NOT EXISTS sp_orders (
 	sp_order_id SERIAL PRIMARY KEY,
 	issued_order_id VARCHAR(50) NOT NULL UNIQUE,
-	total_cost NUMBERIC (12,2) NOT NULL CHECK (total_cost > 0),
+	total_cost NUMERIC (12,2) NOT NULL CHECK (total_cost > 0),
 	curr_id INT NOT NULL CHECK (curr_id > 0),
 	supplier_id INT	NOT NULL CHECK (supplier_id > 0),
 	exp_dispatch_date DATE NOT NULL,
@@ -496,8 +496,8 @@ CREATE TABLE IF NOT EXISTS sp_orders (
 	REFERENCES sp_order_statuses(status_id),
 	FOREIGN KEY (shipment_id)
 	REFERENCES sp_logistics(shipment_id),
-	FOREIGN KEY (ord_emp_if)
-	REFERENCES employees(ord_emp_if),  
+	FOREIGN KEY (ord_emp_id)
+	REFERENCES employees(emp_id),  
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
 	FOREIGN KEY (modify_emp_id)
