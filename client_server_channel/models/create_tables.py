@@ -379,7 +379,7 @@ CREATE TABLE IF NOT EXISTS shipping_types (
 
 cur.execute('''
 CREATE TABLE IF NOT EXISTS tracking_statuses (
-	track_id SERIAL PRIMARY KEY,
+	status_id SERIAL PRIMARY KEY,
 	status VARCHAR(30) NOT NULL,
 	carrier_id INT CHECK (carrier_id > 0) NOT NULL,
         date_added TIMESTAMP NOT NULL,
@@ -417,6 +417,42 @@ CREATE TABLE IF NOT EXISTS sp_types (
 	FOREIGN KEY (modify_emp_id)
 	REFERENCES employees(emp_id));
 ''')
+
+
+#creating sp_logistics
+cur.execute('''
+CREATE TABLE IF NOT EXISTS sp_logistics (
+	shipment_id SERIAL PRIMARY KEY,
+	carrier_id INT NOT NULL CHECK (carrier_id > 0),
+	total_cost NUMERIC(12,2) NOT NULL CHECK (total_cost > 0),
+	curr_id INT NOT NULL CHECK (curr_id > 0),
+	shipping_type_id INT NOT NULL CHECK (shipping_type_id > 0),
+	tr_number VARCHAR(50) NOT NULL,
+	tr_status_id INT NOT NULL CHECK (tr_status_id > 0),
+	tr_status_change_date DATE NOT NULL,
+	shipped_date DATE NOT NULL,
+	delivered_date DATE NOT NULL,
+	comment VARCHAR(200),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+
+	UNIQUE(tr_number, shipped_date),
+	FOREIGN KEY (carrier_id)
+	REFERENCES carriers(carrier_id),
+	FOREIGN KEY (curr_id)
+        REFERENCES currencies(curr_id),
+        FOREIGN KEY (shipping_type_id)
+	REFERENCES shipping_types(shipping_type_id),
+	FOREIGN KEY (tr_status_id)
+	REFERENCES tracking_statuses(status_id),
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
 
 #creating error_logs table
 cur.execute('''
