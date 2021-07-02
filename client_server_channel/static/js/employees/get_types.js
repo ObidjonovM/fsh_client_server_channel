@@ -1,11 +1,12 @@
-const emp_id = document.getElementById("emp_id");
 
-function deleteType() {
+
+function deleteType(e) {
+    let emp_type_id = e.parentNode.parentNode.children[0].innerHTML;
     let xhttp = new XMLHttpRequest();
     var result = confirm("Удалить ?");
 
     if (result){
-        xhttp.open('DELETE', '/employees/delete_type/' + emp_id.value, true);
+        xhttp.open('DELETE', '/employees/delete_type/' + emp_type_id, true);
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
         xhttp.send();
         xhttp.onreadystatechange = () => {
@@ -18,17 +19,18 @@ function deleteType() {
                 }
             }
         }
-    }
+
+    }else {
+        return false;
     }
 
-
-function updateType() {
-    location.href = "http://127.0.0.1:5000/employees/update_type/" + emp_id.value;
-    console.log(window.location.href);
 }
 
+document.getElementById("addClick").onclick = function () {
+    location.href = "http://127.0.0.1:5000/employees/add_type";
+};
 
-
-function otmenFunction (){
-    location.href = "http://127.0.0.1:5000/employees/get_types"
+function getType(e) {
+    location.href = "http://127.0.0.1:5000/employees/get_type/" + e.children[0].innerHTML;
 }
+
