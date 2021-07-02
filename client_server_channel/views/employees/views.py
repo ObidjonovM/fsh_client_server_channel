@@ -145,7 +145,8 @@ def get(emp_id):
 def get_all():
     return render_template(
         utls.url_join(['employees','get_all.html']), 
-        employees=EmployeeC.get_all()
+        employees=EmployeeC.get_all(),
+        names_ids = EmployeeTypeC.get_ids_names()
     )
 
 
