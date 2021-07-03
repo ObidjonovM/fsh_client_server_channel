@@ -30,6 +30,19 @@ CREATE TABLE IF NOT EXISTS employee_status (
 ''')
 
 
+#creating departments table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS departments (
+	dept_id SERIAL PRIMARY KEY,
+	name VARCHAR(100) NOT NULL UNIQUE,
+	description VARCHAR(200),
+        date_added TIMESTAMP NOT NULL,
+        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0));
+''')
+
+
 #creating employees table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS employees (
