@@ -607,6 +607,36 @@ CREATE TABLE IF NOT EXISTS error_logs (
 ''')
 
 
+#creating tables_info table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS tables_info (
+        table_id SERIAL PRIMARY KEY,
+        name VARCHAR(50) NOT NULL UNIQUE,
+        description VARCHAR(200),
+	date_added TIMESTAMP NOT NULL,
+	date_modified TIMESTAMP NOT NULL);
+''')
+
+
+#creating access_rights table
+cur.execute('''
+CREATE TABLE IF NOT EXISTS access_rights (
+	rec_id SERIAL PRIMARY KEY,
+	table_id INT NOT NULL CHECK (table_id > 0),
+	dept_id INT NOT NULL CHECK (dept_id > 0),
+	emp_type_id INT NOT NULL CHECK (emp_type_id > 0),
+	date_added TIMESTAMP NOT NULL,
+	date_modified TIMESTAMP NOT NULL,
+
+	FOREIGN KEY (table_id)
+	REFERENCES tables_info(table_id),
+	FOREIGN KEY (dept_id)
+	REFERENCES departments(dept_id),
+	FOREIGN KEY (emp_type_id)
+	REFERENCES employee_type);
+''')
+
+
 conn.commit()
 
 cur.close()
