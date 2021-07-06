@@ -19,6 +19,26 @@ class EmployeesTable:
 
 
     @staticmethod
+    def get_fullnames(emp_ids):
+        result = crud.get_columns_by_ids(
+            'employees', 
+            ['emp_id', 'first_name', 'middle_name', 'last_name'], 
+            'emp_id', emp_ids
+        )
+
+        if result['data'] != []:
+            names_ids = {}
+            data = result['data']
+            data_len = len(data['emp_id'])
+            for i in range(data_len):
+                names_ids[data['emp_id'][i]] = f"{data['last_name'][i]} {data['first_name'][i]} {data['middle_name'][i]}"
+
+            result['data'] = names_ids
+        
+        return result
+
+
+    @staticmethod
     def update(emp_info):
         return crud.update('employees', emp_info, 'emp_id')
 

@@ -41,6 +41,18 @@ class EmployeeC:
 
 
     @staticmethod
+    def get_names_by_ids(emp_ids):
+        name_ids = EmployeesTable.get_fullnames(emp_ids)
+
+        return {
+            'success' : name_ids['success'],
+            'data' : name_ids['data'],
+            'log_code' : utls.record_log(name_ids, 'get_names_by_ids', 'crud_logs')
+        }
+
+
+
+    @staticmethod
     def update(type_info):
         get_result = EmployeesTable.get(type_info['emp_id'])
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
