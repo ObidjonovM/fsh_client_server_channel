@@ -9,10 +9,30 @@
 
 {% block body %}
 {{super()}}
+<button class="add-button" id="addClick">Добавить</button>
 
-<h1>Status</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th class="hidden">Номер должности</th>
+        <th>№</th>
+        <th>Названия должности</th>
+        <th colspan="2">Действия</th>
+    </tr>
+    </thead>
 
-{{ status_all }}
+    <tbody id="tBody">
+    {% for i in range(status_all['data']['status_id']|length) %}
+    <tr ondblclick="getType(this)">
+        <td class="hidden">{{status_all['data']['status_id'][i]}}</td>
+        <td>{{i+1}}</td>
+        <td>{{status_all['data']['status'][i]}}</td>
+        <td><button onclick="deleteStatus(this)">Удалить</button></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
 
 <script src="/static/js/employees/get_status_all.js"></script>
 

@@ -1,15 +1,34 @@
 
+function deleteStatus() {
+const status_id = document.getElementById("status_id");
 
-
-function deleteType() {
-    const status_id = document.getElementById("status_id")
     let xhttp = new XMLHttpRequest();
-    xhttp.open('DELETE', '/employees/delete_status/' + status_id.value, true)
-    xhttp.send()
+    var result = confirm("Удалить ?");
 
-    xhttp.onreadystatechange = () => {
-       if (this.readyState == 4 && this.status == 200) {
-           console.log(this.responseText);
-       }
+    if (result){
+        xhttp.open('DELETE', '/employees/delete_status/' + status_id.value, true);
+        xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+        xhttp.send();
+        xhttp.onreadystatechange = () => {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                const resp = JSON.parse(xhttp.responseText);
+                if (resp['success']) {
+                    window.open('/employees/get_status_all', '_self')
+                } else {
+                    alert('Не удалось удалить тип сотрудника!');
+                }
+            }
+        }
     }
-} 
+}
+
+
+function updateStatus() {
+    location.href = "http://127.0.0.1:5000/employees/update_status/" + status_id.value;
+}
+
+
+
+function otmenFunction (){
+    location.href = "http://127.0.0.1:5000/employees/get_status_all"
+}

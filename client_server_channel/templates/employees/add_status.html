@@ -10,13 +10,25 @@
 {% block body %}
 {{super()}}
 
-<form action="{{url_for('employees.add_status')}}" method="POST">
-	<label for="status_name">Status</label>
-        <input type="text" name="status" required />
-        <label for="desc">Description</label>
-        <textarea name="desc"></textarea>
-        <input type="submit" value="Add" />
+<div class="container">
+<div class="header">
+    <h2>Новая должность</h2>
+</div>
+<form action="{{url_for('employees.add_status')}}" id="myForm" class="form" method="POST">
+    <div class="form-control">
+    <label for="status_name">Status</label>
+    <input type="text" name="status" id="status_name" required/>
+    </div>
+
+    <div class="form-control">
+    <label for="desc">Description</label>
+    <textarea name="desc" id="desc"></textarea>
+    </div>
+
+    <input type="submit" value="Add" class="add-type-submit"/>
+    <input type="button" onclick="otmenFunction()" class="add-type-submit" value="Отмена"/>
 </form>
+</div>
 
 <script src="/static/js/employees/add_status.js"></script>
 
