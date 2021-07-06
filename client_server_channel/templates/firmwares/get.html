@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/firmwares/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+{{ fw_info }}
+
+<input id="fw_id" type="hidden" value="{{fw_info['data']['fw_id']}}"/>
+<button onclick="deleteType()">Delete Type</button>
+
+
+<script src="/static/js/firmwares/get.js"></script>
+
+
+{% endblock %}
+

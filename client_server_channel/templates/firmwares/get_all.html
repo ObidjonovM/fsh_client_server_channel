@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/firmwares/get_all.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+
+<table border=1>
+    <tr>
+        <th>fw_id</th>
+        <th>name</th>
+        <th>model</th>
+        <th>version</th>
+        <th>description</th>
+        <th>author</th>
+    </tr>
+    {% for i in range(firmwares['data']['fw_id']|length) %}
+        <tr>
+            <td>{{firmwares['data']['fw_id'][i]}}</td>
+            <td>{{firmwares['data']['name'][i]}}</td>
+            <td>{{firmwares['data']['model'][i]}}</td>
+            <td>{{firmwares['data']['version'][i]}}</td>
+            <td>{{firmwares['data']['description'][i]}}</td>
+            <td>
+                {{
+                    names_by_ids[
+                        firmwares['data']['author_id'][i]
+                    ]
+                }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<script src="/static/js/firmwares/get_all.js"></script>
+
+
+{% endblock %}
+
