@@ -32,12 +32,15 @@ def add():
 @firmwares.route('/get/<int:fw_id>')
 def get(fw_id):
     fw_info = FirmwaresC.get(fw_id)
+    id_name = EmployeeC.get(fw_info['data']['author_id'])['data']
+    fullname = f"{id_name['last_name']} {id_name['first_name']} {id_name['middle_name']}"
     
     if fw_info['data'] != []:
         
         return render_template(
             utls.url_join(['firmwares', 'get.html']),
-            fw_info=fw_info
+            fw_info=fw_info,
+            fullname = fullname
         )
 
     return redirect(url_for('firmwares.get_all'))
