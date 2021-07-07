@@ -10,7 +10,28 @@
 {% block body %}
 {{super()}}
 
-{{ employees }}
+<table border=1>
+    <tr>
+        <th>id</th>
+        <th>type</th>
+        <th>last_name</th>
+        <th>first_name</th>
+        <th>middle_name</th>
+        <th>birth_date</th>
+        <th>status</th>
+    </tr>
+    {%for i in range(employees['data']['emp_id']|length)%}
+    <tr>
+        <td>{{employees['data']['emp_id'][i]}}</td>
+        <td>{{names_ids_type['data'][employees['data']['emp_type_id'][i]]}}</td>
+        <td>{{employees['data']['last_name'][i]}}</td>
+        <td>{{employees['data']['first_name'][i]}}</td>
+        <td>{{employees['data']['middle_name'][i]}}</td>
+        <td>{{employees['data']['birth_date'][i]}}</td>
+        <td>{{names_ids_status['data'][employees['data']['emp_status_id'][i]]}}</td>
+    </tr>
+    {%endfor%}
+</table>
 
 
 

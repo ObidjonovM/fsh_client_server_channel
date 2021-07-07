@@ -9,10 +9,16 @@
 
 {% block body %}
 {{super()}}
-
-{{ emp_info }}
-
+{{emp_info}}
 <input id="emp_id" type="hidden" value="{{emp_info['data']['emp_id']}}"/>
+<label for="">type</label>
+<input type="text" value="{{name_id_type['data']['emp_type_name']}}">
+<label for="">last_name</label>
+<input type="text" value="{{emp_info['data']['last_name']}}">
+<label for="">first_name</label>
+<input type="text" value="{{emp_info['data']['first_name']}}">
+<label for="">status</label>
+<input type="text" value="{{name_id_status['data']['status']}}">
 <button onclick="deleteType()">Delete Type</button>
 
 

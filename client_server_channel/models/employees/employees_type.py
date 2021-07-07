@@ -29,6 +29,27 @@ class EmployeesTypeTable:
 
 
     @staticmethod
+    def get_names_by_ids(type_ids):
+        result = crud.get_columns_by_ids(
+            'employee_type',
+            ['emp_type_id', 'emp_type_name'],
+            'emp_type_id',
+            type_ids
+        )
+
+        if result['data'] != []:
+            names_ids={}
+            data = result['data']
+            data_len = len(data['emp_type_id'])
+            for i in range(data_len):
+                names_ids[data['emp_type_id'][i]] = data['emp_type_name'][i]
+
+            result['data'] = names_ids
+
+        return result
+
+
+    @staticmethod
     def update_type_info(type_info):
         return crud.update('employee_type', type_info, 'emp_type_id')
 

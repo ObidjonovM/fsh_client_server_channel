@@ -9,10 +9,15 @@
 
 {% block body %}
 {{super()}}
+{{names_ids_type}}
+{{names_ids_status}}
 
 <form action="{{ url_for('employees.update', emp_id=emp_info['emp_id']) }}" method="POST">
-        <label for="emp_type_id">emp_type_id</label>
-        <input type="text" name="emp_type_id" required value="{{emp_info['emp_type_id']}}"/>
+        <select name="type_id" id="">
+                {% for i in range(names_ids_type['emp_type_id']|length)%}
+                        <option value="{{names_ids_type['emp_type_id'][i]}}">{{names_ids_type['emp_type_name'][i]}}</option>
+                {%endfor%}
+        </select>
         <label for="first_name">first_name</label>
         <input type="text" name="first_name" required value="{{emp_info['first_name']}}"/>
         <label for="middle_name">middle_name</label>
@@ -33,8 +38,19 @@
         <input type="text" name="zipcode" required value="{{emp_info['zipcode']}}"/>
         <label for="phone">phone</label>
         <input type="text" name="phone" required value="{{emp_info['phone']}}"/>
+        <label for="home_phone">home_phone</label>
+        <input type="text" name="home_phone" required value="{{emp_info['home_phone']}}"/>
         <label for="email">email</label>
         <input type="text" name="email" required value="{{emp_info['email']}}"/>
+        <label for="username">username</label>
+        <input type="text" name="username" required value="{{emp_info['username']}}"/>
+        <label for="password">password</label>
+        <input type="text" name="password" required value="{{emp_info['password']}}"/>
+        <select name="status_id" id="">
+                {% for i in range(names_ids_status['status_id']|length)%}
+                <option value="{{names_ids_status['status_id'][i]}}">{{names_ids_status['status'][i]}}</option>
+                {%endfor%}
+        </select>
         <input type="submit" value="Update" />
 </form>
 

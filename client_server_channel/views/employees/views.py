@@ -68,7 +68,7 @@ def update_type(type_id):
         type_info = EmployeeTypeC.get(type_id)
         if len(type_info['data']) > 0:
             return render_template(
-                utls.url_join(['employees','update_type.html']), 
+                utls.url_join(['employees','update_type.html']),
                 type_info=type_info['data']
             )
         
@@ -108,13 +108,14 @@ def add():
     if request.method == 'GET':
         return render_template(
             utls.url_join(['employees','add.html']),
-            names_ids = EmployeeTypeC.get_ids_names()
+            names_ids_type = EmployeeTypeC.get_ids_names()['data'],
+            names_ids_status = EmployeeStatusC.get_ids_names()['data']
         )
 
     if request.method == 'POST':
         params = request.form
         result = EmployeeC.add({
-                    'emp_type_id' : params['emp_type_id'],
+                    'emp_type_id' : params['type_id'],
                     'first_name' : params['first_name'],
                     'middle_name' : params['middle_name'],
                     'last_name' : params['last_name'],
@@ -125,7 +126,11 @@ def add():
                     'country' : params['country'],
                     'zipcode' : params['zipcode'],
                     'phone' : params['phone'],
+                    'home_phone' : params['home_phone'],
                     'email' : params['email'],
+                    'username' : params['username'],
+                    'password' : params['password'],
+                    'emp_status_id' : params['status_id']
         })
         if result['success']:
             return redirect(url_for('employees.get_all'))
@@ -135,18 +140,33 @@ def add():
 
 @employees.route('/get/<int:emp_id>')
 def get(emp_id):
-    return render_template(
-        utls.url_join(['employees','get.html']), 
-        emp_info=EmployeeC.get(emp_id)
-    )
+    emp_info=EmployeeC.get(emp_id)
+    if len(emp_info['data']) > 0:
+        return render_template(
+            utls.url_join(['employees','get.html']),
+            emp_info=emp_info,
+            name_id_type = EmployeeTypeC.get(
+                emp_info['data']['emp_type_id']
+            ),
+            name_id_status = EmployeeStatusC.get(
+                emp_info['data']['emp_status_id']
+            )
+        )
+    
+    return redirect(url_for('employees.get_all'))
 
 
 @employees.route('/get_all')
 def get_all():
+    employees=EmployeeC.get_all()
+
     return render_template(
-        utls.url_join(['employees','get_all.html']), 
-        employees=EmployeeC.get_all(),
-        names_ids = EmployeeTypeC.get_ids_names()
+        utls.url_join(['employees','get_all.html']),
+        employees=employees,
+        names_ids_type = EmployeeTypeC.get_names_by_ids(
+            employees['data']['emp_type_id']),
+        names_ids_status = EmployeeStatusC.get_names_by_ids(
+            employees['data']['emp_status_id'])
     )
 
 
@@ -157,7 +177,9 @@ def update(emp_id):
         if len(emp_info['data']) > 0:
             return render_template(
                 utls.url_join(['employees','update.html']), 
-                emp_info=emp_info['data']
+                emp_info=emp_info['data'],
+                names_ids_type = EmployeeTypeC.get_ids_names()['data'],
+                names_ids_status = EmployeeStatusC.get_ids_names()['data']
             )
         
         return redirect(url_for('employees.get_all'))
@@ -165,7 +187,7 @@ def update(emp_id):
     if request.method == 'POST':
         params = request.form
         result = EmployeeC.update({
-				    'emp_type_id' : params['emp_type_id'],
+				    'emp_type_id' : params['type_id'],
                     'first_name' : params['first_name'],
                     'middle_name' : params['middle_name'],
                     'last_name' : params['last_name'],
@@ -176,7 +198,11 @@ def update(emp_id):
                     'country' : params['country'],
                     'zipcode' : params['zipcode'],
                     'phone' : params['phone'],
+                    'home_phone' : params['home_phone'],
                     'email' : params['email'],
+                    'username' : params['username'],
+                    'password' : params['password'],
+                    'emp_status_id' : params['status_id'],
 				    'emp_id' : emp_id
 		})
         if result['success']:

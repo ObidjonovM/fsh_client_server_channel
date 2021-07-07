@@ -55,6 +55,17 @@ class EmployeeStatusC:
 
 
     @staticmethod
+    def get_names_by_ids(status_ids):
+        names_ids = EmployeeStatusTable.get_names_by_ids(status_ids)
+
+        return {
+            'success' : names_ids['success'],
+            'data' : names_ids['data'],
+            'log_code' : utls.record_log(names_ids, 'get_names_by_ids', 'crud_logs')
+        }
+
+
+    @staticmethod
     def update(status_info):
         get_result = EmployeeStatusTable.get(status_info['status_id'])
         log_code = utls.record_log(get_result, 'update', 'crud_logs')

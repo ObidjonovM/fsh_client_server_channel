@@ -24,6 +24,27 @@ class EmployeeStatusTable:
 
 
     @staticmethod
+    def get_names_by_ids(status_ids):
+        result = crud.get_columns_by_ids(
+            'employee_status',
+            ['status_id', 'status'],
+            'status_id',
+            status_ids
+        )
+
+        if result['data'] != []:
+            names_ids = {}
+            data = result['data']
+            data_len = len(data['status_id'])
+            for i in range(data_len):
+                names_ids[data['status_id'][i]] = data['status'][i]
+
+            result['data'] = names_ids
+
+        return result
+
+
+    @staticmethod
     def update(status_info):
         return crud.update('employee_status', status_info, 'status_id')
 

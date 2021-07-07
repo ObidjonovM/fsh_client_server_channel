@@ -55,6 +55,17 @@ class EmployeeTypeC:
 
 
     @staticmethod
+    def get_names_by_ids(types_ids):
+        names_ids = EmployeesTypeTable.get_names_by_ids(types_ids)
+        
+        return {
+            'success' : names_ids['success'],
+            'data' : names_ids['data'],
+            'log_code' : utls.record_log(names_ids, 'get_names_by_ids', 'crud_logs')
+        }
+
+
+    @staticmethod
     def type_exists(name):
         return {
             'type_exists' : EmployeesTypeTable.type_exists(name)
