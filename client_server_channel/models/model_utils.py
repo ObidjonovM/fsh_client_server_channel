@@ -15,7 +15,7 @@ def get_column_names(table_name):
         cur = conn.cursor()
         cur.execute('''
                 SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS
-                WHERE TABLE_NAME=%(table_name)s''',
+                WHERE TABLE_NAME=%(table_name)s ORDER BY ORDINAL_POSITION''',
                 {'table_name' : table_name})
         names_list = cur.fetchall()
 
