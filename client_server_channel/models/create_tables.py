@@ -1,5 +1,9 @@
 import psycopg2
+from datetime import datetime, date
+from werkzeug.security import generate_password_hash
 
+
+super_user_password = 'FidoBiznes402'
 conn = psycopg2.connect('dbname=timur_dev user=timur_dev password=Fido402')
 
 cur = conn.cursor()
@@ -17,6 +21,31 @@ CREATE TABLE IF NOT EXISTS employee_type (
 ''')
 
 
+#adding SUPERUSER type to employee_type table
+now = datetime.now()
+cur.execute('''
+DO
+$do$
+
+BEGIN
+    IF NOT EXISTS (SELECT emp_type_id FROM employee_type) THEN
+	INSERT INTO employee_type(
+		emp_type_id, emp_type_name, description, 
+		date_added, add_emp_id, date_modified, modify_emp_id
+	)
+	VALUES (
+		1, 'SUPERUSER', 
+		'SUPERUSER type created at the DB initialization', 
+		%s, 1, %s, 1
+	);
+    END IF;
+END;
+
+$do$
+''', (now, now))
+
+
+
 #creating employee_status table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS employee_status (
@@ -30,6 +59,30 @@ CREATE TABLE IF NOT EXISTS employee_status (
 ''')
 
 
+#adding SUPERUSER status to employee_status table
+now = datetime.now()
+cur.execute('''
+DO
+$do$
+
+BEGIN
+    IF NOT EXISTS (SELECT status_id FROM employee_status) THEN
+        INSERT INTO employee_status(
+                status_id, status, description,
+                date_added, add_emp_id, date_modified, modify_emp_id
+        )
+        VALUES (
+                1, 'SUPERUSER',
+                'SUPERUSER status created at the DB initialization',
+                %s, 1, %s, 1
+        );
+    END IF;
+END;
+
+$do$
+''', (now, now))
+
+
 #creating departments table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS departments (
@@ -41,6 +94,31 @@ CREATE TABLE IF NOT EXISTS departments (
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0));
 ''')
+
+
+#adding SUPERUSER type to departments table
+now = datetime.now()
+cur.execute('''
+DO
+$do$
+
+BEGIN
+    IF NOT EXISTS (SELECT dept_id FROM departments) THEN
+        INSERT INTO departments(
+                dept_id, name, description,
+                date_added, add_emp_id, date_modified, modify_emp_id
+        )
+        VALUES (
+                1, 'SUPERUSER',
+                'SUPERUSER department created at the DB initialization',
+                %s, 1, %s, 1
+        );
+    END IF;
+END;
+
+$do$
+''', (now, now))
+
 
 
 #creating employees table
@@ -62,7 +140,7 @@ CREATE TABLE IF NOT EXISTS employees (
         home_phone VARCHAR(20),
 	email VARCHAR(50) UNIQUE,
 	username VARCHAR(50) UNIQUE NOT NULL,
-	password VARCHAR(50) NOT NULL,
+	password VARCHAR NOT NULL,
         emp_status_id INT NOT NULL CHECK (emp_status_id > 0),
 	last_sign_in TIMESTAMP,
         date_added TIMESTAMP NOT NULL,
@@ -78,6 +156,38 @@ CREATE TABLE IF NOT EXISTS employees (
         FOREIGN KEY(emp_status_id)
 	REFERENCES employee_status(status_id));
 ''')
+
+
+# adding SUPERUSER to employees table
+now = datetime.now()
+today = date.today()
+pwd_hash = generate_password_hash(super_user_password)
+cur.execute('''
+DO
+$do$
+
+BEGIN
+	IF NOT EXISTS (SELECT emp_id FROM employees) THEN
+	    INSERT INTO employees(
+		emp_id, dept_id, emp_type_id, 
+		first_name, middle_name, last_name,
+		birth_date, address_1, city, 
+		country, phone, username, 
+		password, emp_status_id, date_added, 
+		add_emp_id, date_modified, modify_emp_id
+	    )
+	    VALUES (
+		1, 1, 1,
+		'SUPERUSER', 'SUPERUSER', 'SUPERUSER',
+		%s, '8/2 Bunyodkor Avenue', 'Tashkent',
+		'Uzbekistan', '+998712779886', 'superuser',
+		%s, 1, %s,
+		1, %s, 1
+	    );
+	END IF;
+END;
+$do$
+''', (today, pwd_hash, now, now))
 
 
 # creating category table
