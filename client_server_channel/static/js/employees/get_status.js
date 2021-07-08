@@ -24,11 +24,11 @@ const status_id = document.getElementById("status_id");
 
 
 function updateStatus() {
-    location.href = "http://127.0.0.1:5000/employees/update_status/" + status_id.value;
+    window.open('/employees/update_status/' + status_id.value, '_self');
 }
 
 
 
 function otmenFunction (){
-    location.href = "http://127.0.0.1:5000/employees/get_status_all"
+    window.open('/employees/get_status_all', '_self');
 }
