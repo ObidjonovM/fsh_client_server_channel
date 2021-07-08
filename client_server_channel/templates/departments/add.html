@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/add.css">
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+
+                <form action="{{url_for('departments.add')}}" method="POST">
+                
+                                <label for="dept_name">Имя</label>
+                                <input type="text" name="name" placeholder="Введите имя..." id="dept_name" required/>
+                        
+                                <label for="desc">Описание</label>
+                                <textarea type="text" name="desc" id="desc" placeholder="Введите описание..." > </textarea>
+                    
+                        <input type="submit" value="Сохранить"/>
+                        
+                </form>
+    
+<script src="/static/js/employees/add.js"></script>
+
+{% endblock %}
+
+
