@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS departments (
 cur.execute('''
 CREATE TABLE IF NOT EXISTS employees (
 	emp_id SERIAL PRIMARY KEY,
-	emp_type_id INT NOT NULL CHECK(emp_type_id > 0), 
+	dept_id INT NOT NULL CHECK (dept_id > 0),
+        emp_type_id INT NOT NULL CHECK (emp_type_id > 0), 
 	first_name VARCHAR(50) NOT NULL,
 	middle_name VARCHAR(50) NOT NULL,
 	last_name VARCHAR(50) NOT NULL,
@@ -56,20 +57,22 @@ CREATE TABLE IF NOT EXISTS employees (
 	address_2 VARCHAR(50),
 	city VARCHAR(50) NOT NULL,
 	country VARCHAR(50) NOT NULL,
-	zipcode VARCHAR(20) NOT NULL,
+	zipcode VARCHAR(20),
 	phone VARCHAR(20) UNIQUE NOT NULL,
         home_phone VARCHAR(20),
 	email VARCHAR(50) UNIQUE,
 	username VARCHAR(50) UNIQUE NOT NULL,
 	password VARCHAR(50) NOT NULL,
-        emp_status_id INT NOT NULL CHECK(emp_status_id > 0),
+        emp_status_id INT NOT NULL CHECK (emp_status_id > 0),
 	last_sign_in TIMESTAMP,
         date_added TIMESTAMP NOT NULL,
-        add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+        add_emp_id INT NOT NULL CHECK (add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
-	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	modify_emp_id INT NOT NULL CHECK (modify_emp_id > 0),
 
-        UNIQUE (first_name, middle_name, last_name, birth_date),
+        UNIQUE (first_name, middle_name, last_name, birth_date, address_1),
+        FOREIGN KEY (dept_id)
+	REFERENCES departments(dept_id),
 	FOREIGN KEY(emp_type_id)
 	REFERENCES employee_type(emp_type_id),
         FOREIGN KEY(emp_status_id)
