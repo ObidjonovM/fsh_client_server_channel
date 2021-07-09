@@ -1,6 +1,7 @@
 function otmenFunction(){
-    var url = window.location.href;
-    var value = url.substr(url.lastIndexOf('/')+1);
-    console.log(value);
-    location.href = "http://127.0.0.1:5000/employees/get_status/"+ value;
+    const value = location.href.substr(
+    		    location.href.lastIndexOf('/') + 1
+		  );
+    
+    window.open('/employees/get_status/' + value, '_self');
 }

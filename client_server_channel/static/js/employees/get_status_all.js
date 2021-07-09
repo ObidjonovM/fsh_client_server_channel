@@ -25,10 +25,10 @@ function deleteStatus(e) {
 
 // dobavit uchun js code
 document.getElementById("addClick").onclick = function () {
-    location.href = "http://127.0.0.1:5000/employees/add_status";
+    window.open('/employees/add_status', '_self');
 };
 
 // get_types dagi malumotlarni get_type ga olib boradi tr ni ikki marta click qilganda
 function getType(e) {
-    location.href = "http://127.0.0.1:5000/employees/get_status/" + e.children[0].innerHTML;
+    window.open('/employees/get_status/' + e.children[0].innerHTML, '_self');
 }
