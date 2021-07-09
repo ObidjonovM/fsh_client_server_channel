@@ -3,18 +3,42 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/get_all.css">
+<link rel="stylesheet" href="/static/css/departments/get_all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{departments}}
+<button class="add-button" id="addClick">Добавить</button>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th class="hidden">Номер должности</th>
+        <th>№</th>
+        <th>Названия должности</th>
+        <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody id="tBody">
+    {% for i in range(departments['data']['dept_id']|length) %}
+    <tr ondblclick="getType(this)">
+        <td class="hidden">{{departments['data']['dept_id'][i]}}</td>
+        <td>{{i+1}}</td>
+        <td>{{departments['data']['name'][i]}}</td>
+        <td>
+            <button onclick="deleteType(this)">Удалить</button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
 
 
 
-
-<script src="/static/js/employees/get_all.js"></script>
+<script src="/static/js/departments/get_all.js"></script>
 
 {% endblock %}
 

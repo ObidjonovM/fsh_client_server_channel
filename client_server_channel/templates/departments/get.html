@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/get.css">
+<link rel="stylesheet" href="/static/css/departments/get.css">
 
 {% endblock %}
 
@@ -22,7 +22,7 @@
 
         <div class="form-control">
             <label for="type_name">Имя</label>
-            <input type="text" name="type_name" placeholder="Введите имя..."
+            <input type="text" name="type_name"
                    value="{{dept_info['data']['name']}}" id="type_name" readonly/>
         </div>
 
@@ -35,11 +35,11 @@
             Изменить
         </button>
 
-        <button onclick="deleteDept()" class="add-type-submit">
+        <button onclick="deleteDept()" class="add-type-submit2">
             Удалить
         </button>
 
-        <button onclick="otmenFunction()" class="add-type-submit">
+        <button onclick="otmenFunction()" class="add-type-submit3">
            Назад
         </button>
     </div>

@@ -3,31 +3,34 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/add.css">
-<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-
-
+<link rel="stylesheet" href="/static/css/departments/add.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
+<div class="container">
+    <div class="header">
+        <h2>Новая должность</h2>
+    </div>
+    <form action="{{url_for('departments.add')}}" id="myForm" class="form" method="POST">
+        <div class="form-control">
+            <label for="dept_name">Имя</label>
+            <input type="text" name="name" placeholder="Введите имя..." id="dept_name" required/>
+        </div>
 
-                <form action="{{url_for('departments.add')}}" method="POST">
-                
-                                <label for="dept_name">Имя</label>
-                                <input type="text" name="name" placeholder="Введите имя..." id="dept_name" required/>
-                        
-                                <label for="desc">Описание</label>
-                                <textarea type="text" name="desc" id="desc" placeholder="Введите описание..." > </textarea>
-                    
-                        <input type="submit" value="Сохранить"/>
-                        
-                </form>
-    
-<script src="/static/js/employees/add.js"></script>
+        <div class="form-control">
+            <label for="desc">Описание</label>
+            <textarea type="text" name="desc" id="desc" placeholder="Введите описание..."></textarea>
+        </div>
+        <input type="submit" class="add-type-submit" value="Сохранить"/>
+        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
 
-{% endblock %}
+    </form>
+
+    <script src="/static/js/departments/add.js"></script>
+
+    {% endblock %}
 
 
