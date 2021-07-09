@@ -210,6 +210,28 @@ CREATE TABLE IF NOT EXISTS categories (
 ''')
 
 
+now = datetime.now()
+cur.execute('''
+DO
+$do$
+
+BEGIN
+    IF NOT EXISTS (SELECT category_id FROM categories) THEN
+        INSERT INTO categories(
+            category_id, name, description, parent_cat_id, leaf_cat, 
+            date_added, add_emp_id, date_modified, modify_emp_id
+        )
+        VALUES (
+            1, 'root', '\"root\" category created during DB initialization',
+            1, FALSE, %s, 1, %s, 1
+        );
+    END IF;
+END;
+
+$do$
+''', (now, now))
+
+
 #creating product_info table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS product_info (
