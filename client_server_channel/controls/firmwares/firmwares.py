@@ -9,7 +9,9 @@ class FirmwaresC:
     def add(firm_info):
         now = datetime.now()
         firm_info['date_added'] = now
+        firm_info['add_emp_id'] = 1
         firm_info['date_modified'] = now
+        firm_info['modify_emp_id'] = 1
         add_result = FirmwaresTable.insert(firm_info)
 
         return {
@@ -58,6 +60,7 @@ class FirmwaresC:
         
         if get_result['data'] != []:
             firm_info['date_modified'] = datetime.now()
+            firm_info['modify_emp_id'] = 1
             update_result = FirmwaresTable.update(firm_info)
             
             return {
