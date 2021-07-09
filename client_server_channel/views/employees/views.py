@@ -147,11 +147,11 @@ def get(emp_id):
             utls.url_join(['employees','get.html']),
             emp_info=emp_info,
             name_id_type = EmployeeTypeC.get(
-                emp_info['data']['emp_type_id']
-            ),
+                emp_info['data']['emp_type_id']),
             name_id_status = EmployeeStatusC.get(
-                emp_info['data']['emp_status_id']
-            )
+                emp_info['data']['emp_status_id']),
+            name_id_departments = DepartmentsC.get(
+                emp_info['data']['dept_id'])
         )
     
     return redirect(url_for('employees.get_all'))
@@ -167,7 +167,9 @@ def get_all():
         names_ids_type = EmployeeTypeC.get_names_by_ids(
             employees['data']['emp_type_id']),
         names_ids_status = EmployeeStatusC.get_names_by_ids(
-            employees['data']['emp_status_id'])
+            employees['data']['emp_status_id']),
+        names_ids_departments = DepartmentsC.get_names_by_ids(
+            employees['data']['dept_id'])
     )
 
 
