@@ -16,19 +16,18 @@ function deleteType() {
                 } else {
                     alert('Не удалось удалить тип сотрудника!');
                 }
-            }
-        }
+             }
+         }
     }
-    }
+}
 
 
 function updateType() {
-    location.href = "http://127.0.0.1:5000/employees/update_type/" + emp_id.value;
-    console.log(window.location.href);
+    window.open('/employees/update_type/' + emp_id.value, '_self');
 }
 
 
 
-function otmenFunction (){
-    location.href = "http://127.0.0.1:5000/employees/get_types"
+function otmenFunction () {
+    window.open('/employees/get_types', '_self');
 }

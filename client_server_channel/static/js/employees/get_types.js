@@ -19,18 +19,17 @@ function deleteType(e) {
                 }
             }
         }
-
-    }else {
+    }
+    else {
         return false;
     }
-
 }
 
-document.getElementById("addClick").onclick = function () {
-    location.href = "http://127.0.0.1:5000/employees/add_type";
+document.getElementById("addClick").onclick = () => {
+    window.open('/employees/add_type', '_self');
 };
 
 function getType(e) {
-    location.href = "http://127.0.0.1:5000/employees/get_type/" + e.children[0].innerHTML;
+    window.open('/employees/get_type/' + e.children[0].innerHTML, '_self');
 }
 

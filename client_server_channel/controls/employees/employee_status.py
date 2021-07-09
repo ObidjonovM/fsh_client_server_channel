@@ -12,7 +12,9 @@ class EmployeeStatusC:
             'status' : name,
             'description' : desc,
             'date_added' : now,
-            'date_modified' : now
+            'add_emp_id' : 1,
+            'date_modified' : now,
+            'modify_emp_id' : 1
         })
 
         return {
@@ -71,6 +73,7 @@ class EmployeeStatusC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             status_info['date_modified'] = datetime.now()
+            status_info['modify_emp_id'] = 1
             update_result = EmployeeStatusTable.update(status_info)
             return {
                 'success' : update_result['success'],

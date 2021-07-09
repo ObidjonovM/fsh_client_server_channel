@@ -1,6 +1,8 @@
+from client_server_channel.models.crud import get
 from client_server_channel.models import EmployeesTable
 from .. import control_utils as utls
 from datetime import datetime
+from werkzeug.security import generate_password_hash
 
 
 class EmployeeC:
@@ -8,8 +10,12 @@ class EmployeeC:
     @staticmethod
     def add(emp_info):
         now = datetime.now()
+        emp_info['username'] = f"{emp_info['first_name'].lower()}.{emp_info['last_name'].lower()}"
+        emp_info['password'] = generate_password_hash('123')
         emp_info['date_added'] = now
+        emp_info['add_emp_id'] = 1
         emp_info['date_modified'] = now
+        emp_info['modify_emp_id'] = 1
         add_result = EmployeesTable.insert(emp_info)
 
         return {
@@ -21,6 +27,8 @@ class EmployeeC:
     @staticmethod
     def get(emp_id):
         get_result = EmployeesTable.get(emp_id)
+        del get_result['data']['username']
+        del get_result['data']['password']
 
         return {
             'success' : get_result['success'],
@@ -32,6 +40,8 @@ class EmployeeC:
     @staticmethod
     def get_all():
         get_all_result = EmployeesTable.get_all()
+        del get_all_result['data']['username']
+        del get_all_result['data']['password']
 
         return {
             'success' : get_all_result['success'],
@@ -58,6 +68,7 @@ class EmployeeC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             type_info['date_modified'] = datetime.now()
+            type_info['modify_emp_id'] = 1
             update_result = EmployeesTable.update(type_info)
             return {
                 'success' : update_result['success'],

@@ -35,7 +35,7 @@ window.addEventListener( "load", function () {
 } );
 
 
-function otmenFunction (){
-    location.href = "http://127.0.0.1:5000/employees/get_status_all"
+function otmenFunction () {
+    window.open('/employees/get_status_all', '_self'); 
 }
 
