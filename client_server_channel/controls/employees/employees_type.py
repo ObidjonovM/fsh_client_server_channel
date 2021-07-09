@@ -12,7 +12,9 @@ class EmployeeTypeC:
 		'emp_type_name' : name,
 		'description' : desc,
 		'date_added' : now,
-		'date_modified' : now
+        'add_emp_id' : 1,
+		'date_modified' : now,
+        'modify_emp_id' : 1
 	})
 
         return {
@@ -78,6 +80,7 @@ class EmployeeTypeC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             type_info['date_modified'] = datetime.now()
+            type_info['modify_emp_id'] = 1
             update_result = EmployeesTypeTable.update_type_info(type_info)     
             return {
                 'success' : update_result['success'],

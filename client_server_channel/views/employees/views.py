@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from client_server_channel.controls import EmployeeTypeC, EmployeeC, EmployeeStatusC
+from client_server_channel.controls import (EmployeeTypeC, EmployeeC, DepartmentsC,
+                                            EmployeeStatusC, DepartmentsC)
 from .. import view_utils as utls
 
 
@@ -109,12 +110,14 @@ def add():
         return render_template(
             utls.url_join(['employees','add.html']),
             names_ids_type = EmployeeTypeC.get_ids_names()['data'],
-            names_ids_status = EmployeeStatusC.get_ids_names()['data']
+            names_ids_status = EmployeeStatusC.get_ids_names()['data'],
+            names_ids_departments = DepartmentsC.get_ids_names()['data']
         )
 
     if request.method == 'POST':
         params = request.form
         result = EmployeeC.add({
+                    'dept_id' : params['dept_id'],
                     'emp_type_id' : params['type_id'],
                     'first_name' : params['first_name'],
                     'middle_name' : params['middle_name'],
@@ -128,8 +131,6 @@ def add():
                     'phone' : params['phone'],
                     'home_phone' : params['home_phone'],
                     'email' : params['email'],
-                    'username' : params['username'],
-                    'password' : params['password'],
                     'emp_status_id' : params['status_id']
         })
         if result['success']:
@@ -179,7 +180,8 @@ def update(emp_id):
                 utls.url_join(['employees','update.html']), 
                 emp_info=emp_info['data'],
                 names_ids_type = EmployeeTypeC.get_ids_names()['data'],
-                names_ids_status = EmployeeStatusC.get_ids_names()['data']
+                names_ids_status = EmployeeStatusC.get_ids_names()['data'],
+                names_ids_departments = DepartmentsC.get_ids_names()['data']
             )
         
         return redirect(url_for('employees.get_all'))
@@ -187,6 +189,7 @@ def update(emp_id):
     if request.method == 'POST':
         params = request.form
         result = EmployeeC.update({
+                    'dept_id' : params['dept_id'],
 				    'emp_type_id' : params['type_id'],
                     'first_name' : params['first_name'],
                     'middle_name' : params['middle_name'],
@@ -200,8 +203,6 @@ def update(emp_id):
                     'phone' : params['phone'],
                     'home_phone' : params['home_phone'],
                     'email' : params['email'],
-                    'username' : params['username'],
-                    'password' : params['password'],
                     'emp_status_id' : params['status_id'],
 				    'emp_id' : emp_id
 		})
