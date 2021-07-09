@@ -1,0 +1,49 @@
+.container {
+    margin-top: 10px;
+}
+
+.form {
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.form-control select {
+    width: 100%;
+    height: 41px;
+    border-radius: 4px;
+    border: 2px solid #f0f0f0;
+    font-family: inherit;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.form .firmwares-add-submit, .firmwares-add-submit1, .firmwares-add-submit2 {
+    background-color: #006666;
+    border: 2px solid #006666;
+    border-radius: 4px;
+    color: #d5e2ff;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 30%;
+    cursor: pointer;
+}
+
+.firmwares-add-submit:hover {
+    background-color: #044f66;
+}
+
+.firmwares-add-submit1:hover {
+    background-color: #044f66;
+}
+
+.firmwares-add-submit2:hover {
+    background-color: #044f66;
+}
