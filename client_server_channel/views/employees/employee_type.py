@@ -9,7 +9,7 @@ employee_type = Blueprint('employee_type', __name__)
 def add_type():
 
     if request.method == 'GET':
-        return render_template(utls.url_join(['employees','add_type.html']))
+        return render_template(utls.url_join(['employees','employee_type','add_type.html']))
 
     if request.method == 'POST':
         result = EmployeeTypeC.add(request.form['type_name'], request.form['desc'])
@@ -28,7 +28,7 @@ def get_type(type_id):
             )
 
         return render_template(
-            utls.url_join(['employees','get_type.html']),
+            utls.url_join(['employees','employee_type','get_type.html']),
             type_info=type_info
         )
 
@@ -36,7 +36,7 @@ def get_type(type_id):
 @employee_type.route('/get_types')
 def get_types():
     return render_template(
-        utls.url_join(['employees','get_types.html']), 
+        utls.url_join(['employees','employee_type','get_types.html']), 
         types=EmployeeTypeC.get_all()
     )
 
@@ -47,7 +47,7 @@ def update_type(type_id):
         type_info = EmployeeTypeC.get(type_id)
         if len(type_info['data']) > 0:
             return render_template(
-                utls.url_join(['employees','update_type.html']),
+                utls.url_join(['employees','employee_type','update_type.html']),
                 type_info=type_info['data']
             )
         
