@@ -1,12 +1,13 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from client_server_channel.controls import (EmployeeC, DepartmentsC,
-                                            EmployeeStatusC, DepartmentsC)
+from client_server_channel.controls import EmployeeC, DepartmentsC
 from .. import view_utils as utls
 from .employee_type import employee_type
+from .employee_status import employee_status
 
 
 employees = Blueprint('employees', __name__, url_prefix='/employees')
 employees.register_blueprint(employee_type)
+employees.register_blueprint(employee_status)
 
 
 @employees.route('/login')
@@ -143,67 +144,3 @@ def update(emp_id):
 def delete(emp_id):
     if request.method == 'DELETE':
         return EmployeeC.delete(emp_id)
-
-
-@employees.route('/add_status', methods=['GET', 'POST'])
-def add_status():
-    if request.method == 'GET':
-        return render_template(utls.url_join(['employees','add_status.html']))
-
-    if request.method == 'POST':
-        result = EmployeeStatusC.add(request.form['status'], request.form['desc'])
-        if result['success']:
-            return redirect(url_for('employees.get_status_all'))
-
-        return result
-
-
-@employees.route('get_status/<int:status_id>')
-def get_status(status_id):
-    status_info=EmployeeStatusC.get(status_id)
-    if status_info['data'] == []:
-        return redirect(
-            url_for('employees.get_status_all')
-        )
-
-    return render_template(
-        utls.url_join(['employees', 'get_status.html']),
-        status_info = status_info
-    )
-
-
-@employees.route('/get_status_all')
-def get_status_all():
-    return render_template(
-        utls.url_join(['employees', 'get_status_all.html']),
-        status_all = EmployeeStatusC.get_all()
-    )
-
-
-@employees.route('/update_status/<int:status_id>', methods=['GET', 'POST'])
-def update_status(status_id):
-    if request.method == 'GET':
-        status_info = EmployeeStatusC.get(status_id)
-        if len(status_info['data']) > 0:
-            return render_template(
-                utls.url_join(['employees', 'update_status.html']),
-                status_info = status_info['data']
-            )
-
-        return redirect(url_for('employees.get_status_all'))
-
-    if request.method == 'POST':
-        result = EmployeeStatusC.update({
-            'description' : request.form['desc'],
-            'status_id' : status_id
-        })
-        if result['success']:
-            return redirect(url_for('employees.get_status_all'))
-
-        return result
-
-
-@employees.route('/delete_status/<int:status_id>', methods=['DELETE'])
-def delete_status(status_id):
-    if request.method == 'DELETE':
-        return EmployeeStatusC.delete(status_id)  
