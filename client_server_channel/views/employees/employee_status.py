@@ -9,7 +9,7 @@ employee_status = Blueprint('employee_status', __name__)
 @employee_status.route('/add_status', methods=['GET', 'POST'])
 def add_status():
     if request.method == 'GET':
-        return render_template(utls.url_join(['employees','add_status.html']))
+        return render_template(utls.url_join(['employees','employee_status','add_status.html']))
 
     if request.method == 'POST':
         result = EmployeeStatusC.add(request.form['status'], request.form['desc'])
@@ -28,7 +28,7 @@ def get_status(status_id):
         )
 
     return render_template(
-        utls.url_join(['employees', 'get_status.html']),
+        utls.url_join(['employees', 'employee_status', 'get_status.html']),
         status_info = status_info
     )
 
@@ -36,7 +36,7 @@ def get_status(status_id):
 @employee_status.route('/get_status_all')
 def get_status_all():
     return render_template(
-        utls.url_join(['employees', 'get_status_all.html']),
+        utls.url_join(['employees', 'employee_status', 'get_status_all.html']),
         status_all = EmployeeStatusC.get_all()
     )
 
@@ -47,7 +47,7 @@ def update_status(status_id):
         status_info = EmployeeStatusC.get(status_id)
         if len(status_info['data']) > 0:
             return render_template(
-                utls.url_join(['employees', 'update_status.html']),
+                utls.url_join(['employees', 'employee_status', 'update_status.html']),
                 status_info = status_info['data']
             )
 
