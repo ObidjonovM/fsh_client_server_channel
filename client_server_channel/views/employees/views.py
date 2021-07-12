@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from client_server_channel.controls import EmployeeC, DepartmentsC
+from client_server_channel.controls import (EmployeeC, EmployeeTypeC, 
+                                    EmployeeStatusC, DepartmentsC)
 from .. import view_utils as utls
 from .employee_type import employee_type
 from .employee_status import employee_status
