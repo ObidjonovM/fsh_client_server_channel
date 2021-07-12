@@ -5,14 +5,14 @@ function deleteStatus(e) {
     var result = confirm("Удалить ?");
 
     if (result) {
-        xhttp.open('DELETE', '/employees/delete_status/' + status_id, true);
+        xhttp.open('DELETE', '/employees/status/delete/' + status_id, true);
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
         xhttp.send();
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
                 const resp = JSON.parse(xhttp.responseText);
                 if (resp['success']) {
-                    window.open('/employees/get_status_all', '_self')
+                    window.open('/employees/status/all', '_self')
                 } else {
                     alert('Не удалось удалить тип сотрудника!');
                 }
@@ -25,10 +25,10 @@ function deleteStatus(e) {
 
 // dobavit uchun js code
 document.getElementById("addClick").onclick = function () {
-    window.open('/employees/add_status', '_self');
+    window.open('/employees/status/add', '_self');
 };
 
 // get_types dagi malumotlarni get_type ga olib boradi tr ni ikki marta click qilganda
 function getType(e) {
-    window.open('/employees/get_status/' + e.children[0].innerHTML, '_self');
+    window.open('/employees/status/get/' + e.children[0].innerHTML, '_self');
 }

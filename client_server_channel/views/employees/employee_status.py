@@ -3,55 +3,55 @@ from client_server_channel.controls import EmployeeStatusC
 from .. import view_utils as utls
 
 
-employee_status = Blueprint('employee_status', __name__)
+employee_status = Blueprint('employee_status', __name__, url_prefix='/status')
 
 
-@employee_status.route('/add_status', methods=['GET', 'POST'])
-def add_status():
+@employee_status.route('/add', methods=['GET', 'POST'])
+def add():
     if request.method == 'GET':
-        return render_template(utls.url_join(['employees','employee_status','add_status.html']))
+        return render_template(utls.url_join(['employees','employee_status','add.html']))
 
     if request.method == 'POST':
         result = EmployeeStatusC.add(request.form['status'], request.form['desc'])
         if result['success']:
-            return redirect(url_for('employees.employee_status.get_status_all'))
+            return redirect(url_for('employees.employee_status.all'))
 
         return result
 
 
-@employee_status.route('get_status/<int:status_id>')
-def get_status(status_id):
+@employee_status.route('get/<int:status_id>')
+def get(status_id):
     status_info=EmployeeStatusC.get(status_id)
     if status_info['data'] == []:
         return redirect(
-            url_for('employees.employee_status.get_status_all')
+            url_for('employees.employee_status.all')
         )
 
     return render_template(
-        utls.url_join(['employees', 'employee_status', 'get_status.html']),
+        utls.url_join(['employees', 'employee_status', 'get.html']),
         status_info = status_info
     )
 
 
-@employee_status.route('/get_status_all')
-def get_status_all():
+@employee_status.route('/all')
+def all():
     return render_template(
-        utls.url_join(['employees', 'employee_status', 'get_status_all.html']),
+        utls.url_join(['employees', 'employee_status', 'all.html']),
         status_all = EmployeeStatusC.get_all()
     )
 
 
-@employee_status.route('/update_status/<int:status_id>', methods=['GET', 'POST'])
-def update_status(status_id):
+@employee_status.route('/update/<int:status_id>', methods=['GET', 'POST'])
+def update(status_id):
     if request.method == 'GET':
         status_info = EmployeeStatusC.get(status_id)
         if len(status_info['data']) > 0:
             return render_template(
-                utls.url_join(['employees', 'employee_status', 'update_status.html']),
+                utls.url_join(['employees', 'employee_status', 'update.html']),
                 status_info = status_info['data']
             )
 
-        return redirect(url_for('employees.employee_status.get_status_all'))
+        return redirect(url_for('employees.employee_status.all'))
 
     if request.method == 'POST':
         result = EmployeeStatusC.update({
@@ -59,12 +59,12 @@ def update_status(status_id):
             'status_id' : status_id
         })
         if result['success']:
-            return redirect(url_for('employees.employee_status.get_status_all'))
+            return redirect(url_for('employees.employee_status.all'))
 
         return result
 
 
-@employee_status.route('/delete_status/<int:status_id>', methods=['DELETE'])
-def delete_status(status_id):
+@employee_status.route('/delete/<int:status_id>', methods=['DELETE'])
+def delete(status_id):
     if request.method == 'DELETE':
         return EmployeeStatusC.delete(status_id)  

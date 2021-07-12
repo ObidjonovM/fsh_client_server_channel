@@ -20,7 +20,7 @@ window.addEventListener( "load", function () {
             alert( 'Error' );
         } );
 
-        XHR.open( "POST", "/employees/add_status" );
+        XHR.open( "POST", "/employees/status/add" );
 
         XHR.send( FD );
     }
@@ -36,6 +36,6 @@ window.addEventListener( "load", function () {
 
 
 function otmenFunction () {
-    window.open('/employees/get_status_all', '_self'); 
+    window.open('/employees/status/all', '_self'); 
 }
 
