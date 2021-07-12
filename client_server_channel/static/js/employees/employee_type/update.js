@@ -3,7 +3,7 @@ function otmenFunction(){
 			location.href.lastIndexOf('/')+1
 		  );
     
-    window.open('/employees/get_type/' + value, '_self')
+    window.open('/employees/type/get/' + value, '_self')
 }
 
 

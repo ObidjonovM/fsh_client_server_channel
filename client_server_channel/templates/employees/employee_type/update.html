@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/employee_type/update_type.css">
+<link rel="stylesheet" href="/static/css/employees/employee_type/update.css">
 
 {% endblock %}
 
@@ -15,7 +15,7 @@
                 <h2>Названия должности</h2>
         </div>
 <form class="form"
-      action="{{ url_for('employees.employee_type.update_type', type_id=type_info['emp_type_id']) }}"
+      action="{{ url_for('employees.employee_type.update', type_id=type_info['emp_type_id']) }}"
       method="POST">
 
         <div class="form-control">
@@ -39,7 +39,7 @@
 
 </div>
 
-<script src="/static/js/employees/employee_type/update_type.js"></script>
+<script src="/static/js/employees/employee_type/update.js"></script>
 
 {% endblock %}
 

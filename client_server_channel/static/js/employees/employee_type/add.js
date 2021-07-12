@@ -20,7 +20,7 @@ window.addEventListener( "load", function () {
             alert( 'Error' );
         } );
 
-        XHR.open( "POST", "/employees/add_type" );
+        XHR.open( "POST", "/employees/type/add" );
 
         XHR.send( FD );
     }
@@ -36,6 +36,6 @@ window.addEventListener( "load", function () {
 
 
 function otmenFunction (){
-    window.open('/employees/get_types', '_self');
+    window.open('/employees/type/get_all', '_self');
 }
 
