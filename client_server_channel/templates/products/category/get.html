@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/get_type.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{cat_info}}
+
+{{id_name}}
+
+<input id="cat_id" type="text" value="{{cat_info['data']['category_id']}}">
+
+
+        <button onclick="deleteCat()" class="add-type-submit">
+            Удалить
+        </button>
+
+    
+
+<script src="/static/js/category/get.js"></script>
+
+{% endblock %}
+
+
