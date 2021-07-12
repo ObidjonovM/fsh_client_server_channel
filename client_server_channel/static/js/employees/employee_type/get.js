@@ -12,7 +12,7 @@ function deleteType() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
                 const resp = JSON.parse(xhttp.responseText);
                 if (resp['success']) {
-                    window.open('/employees/type/get_all', '_self')
+                    window.open('/employees/type/all', '_self')
                 } else {
                     alert('Не удалось удалить тип сотрудника!');
                 }
@@ -29,5 +29,5 @@ function updateType() {
 
 
 function otmenFunction () {
-    window.open('/employees/type/get_all', '_self');
+    window.open('/employees/type/all', '_self');
 }

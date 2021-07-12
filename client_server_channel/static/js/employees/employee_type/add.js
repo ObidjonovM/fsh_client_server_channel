@@ -36,6 +36,6 @@ window.addEventListener( "load", function () {
 
 
 function otmenFunction (){
-    window.open('/employees/type/get_all', '_self');
+    window.open('/employees/type/all', '_self');
 }
 

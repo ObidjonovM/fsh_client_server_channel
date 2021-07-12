@@ -14,7 +14,7 @@ def add():
     if request.method == 'POST':
         result = EmployeeTypeC.add(request.form['type_name'], request.form['desc'])
         if result['success']:
-            return redirect(url_for('employees.employee_type.get_all'))
+            return redirect(url_for('employees.employee_type.all'))
         
         return result
 
@@ -24,7 +24,7 @@ def get(type_id):
         type_info=EmployeeTypeC.get(type_id)
         if type_info['data'] == []:
             return redirect(
-                url_for('employees.employee_type.get_all')
+                url_for('employees.employee_type.all')
             )
 
         return render_template(
@@ -33,10 +33,10 @@ def get(type_id):
         )
 
 
-@employee_type.route('/get_all')
-def get_all():
+@employee_type.route('/all')
+def all():
     return render_template(
-        utls.url_join(['employees','employee_type','get_all.html']), 
+        utls.url_join(['employees','employee_type','all.html']), 
         types=EmployeeTypeC.get_all()
     )
 
@@ -59,7 +59,7 @@ def update(type_id):
 				    'emp_type_id' : type_id
 				     })
         if result['success']:
-            return redirect(url_for('employees.employee_type.get_all'))
+            return redirect(url_for('employees.employee_type.all'))
         
         return result
 

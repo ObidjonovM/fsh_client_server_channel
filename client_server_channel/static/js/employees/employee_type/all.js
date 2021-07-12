@@ -13,7 +13,7 @@ function deleteType(e) {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
                 const resp = JSON.parse(xhttp.responseText);
                 if (resp['success']) {
-                    window.open('/employees/type/get_all', '_self')
+                    window.open('/employees/type/all', '_self')
                 } else {
                     alert('Не удалось удалить тип сотрудника!');
                 }
@@ -26,7 +26,7 @@ function deleteType(e) {
 }
 
 document.getElementById("addClick").onclick = () => {
-    window.open('/employees/type/get_all', '_self');
+    window.open('/employees/type/add', '_self');
 };
 
 function getType(e) {
