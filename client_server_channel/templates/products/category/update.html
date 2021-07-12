@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/update_type.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+
+<div class="container">
+        <div class="header">
+                <h2>Названия должности</h2>
+        </div>
+<form class="form"
+      action="{{ url_for('products.category.update', cat_id=cat_info['data']['category_id']) }}"
+      method="POST">
+
+        <div class="form-control">
+        <label for="type_name">Имя</label>
+        <input type="text" id="type_name"
+                value="{{cat_info['data']['name']}}" readonly/>
+        </div>
+
+        <div class="form-control">
+        <label for="desc">Описание</label>
+        <textarea name="desc" id="desc">{{cat_info['data']['description']}}</textarea>
+        </div>
+
+        <div class="form-control">
+                <label for="parent_id">parent</label>
+                <select name="parent_id" id="">
+                        {% for i in range(ids_names['data']['category_id']|length)%}
+                        <option value="{{ids_names['data']['category_id'][i]}}">{{ids_names['data']['name'][i]}}</option>
+                        {%endfor%}
+                </select>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <button type="button" onclick="otmenFunction()"
+                class="add-type-submit" value="Отмена" >
+                Отмена
+        </button>
+
+</form>
+
+</div>
+
+<script src="/static/js/employees/update_type.js"></script>
+
+{% endblock %}
+
+
