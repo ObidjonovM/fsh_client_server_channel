@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/add_type.css">
+<link rel="stylesheet" href="/static/css/products/product_info/add.css">
 
 
 {% endblock %}
@@ -16,31 +16,34 @@
                         <h2>Новая должность</h2>
                 </div>
 
-                <form action="{{url_for('products.product_info.add')}}" method="POST">
+                <form id="myForm" class="form">
                         <div class="form-control">
                                 <label for="name">Имя</label>
                                 <input type="text" name="name" placeholder="Введите имя..." id="name" required/>
                         </div>
 
                         <div class="form-control">
-                                <label for="model">Model</label>
-                                <input type="text" name="model" id="model" placeholder="Введите описание..." />
+                                <label for="model">Модель</label>
+                                <input type="text" name="model" id="model" placeholder="Введите описание..." required/>
                         </div>
                         <div class="form-control">
-                                <label for="cat_id">category_id</label>
-                                <select name="cat_id" id="cat_id">
+                                <label for="cat_id">Категория</label>
+                                <select name="cat_id" id="cat_id" required>
+                                        <option hidden value="" selected disabled>--Выбрать--</option>
                                         {% for i in range(ids_names['data']['category_id']|length)%}
                                         <option value="{{ids_names['data']['category_id'][i]}}">{{ids_names['data']['name'][i]}}</option>
                                         {%endfor%}
                                 </select>
                         </div>
+
+
                         <input type="submit" class="add-type-submit" value="Сохранить"/>
-                        <input onclick="otmenFunction()" class="add-type-submit" value="Отмена"/>
+                        <input type="button" onclick="otmenFunction()" class="add-type-submit2" value="Отмена"/>
                 </form>
         </div>
 
 
-<script src="/static/js/employees/add_type.js"></script>
+<script src="/static/js/products/product_info/add.js"></script>
 
 {% endblock %}
 
