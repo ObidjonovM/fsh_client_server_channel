@@ -3,26 +3,60 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/get_type.css">
+<link rel="stylesheet" href="/static/css/products/category/get.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{cat_info}}
-
-{{id_name}}
-
-<input id="cat_id" type="text" value="{{cat_info['data']['category_id']}}">
 
 
-        <button onclick="deleteCat()" class="add-type-submit">
+<div class="container">
+
+    <div class="header">
+        <h2>Названия должности</h2>
+    </div>
+
+    <div class="form">
+
+        <div class="form-control">
+            <input id="cat_id" type="hidden" value="{{cat_info['data']['category_id']}}"/>
+        </div>
+
+        <div class="form-control">
+            <label for="name">Имя</label>
+            <input type="text" name="name"
+                   value="{{cat_info['data']['name']}}" id="name" readonly/>
+        </div>
+
+        <div class="form-control">
+            <label for="desc">Описание</label>
+            <textarea name="desc" id="desc" readonly>{{cat_info['data']['description']}}</textarea>
+        </div>
+
+        <div class="form-control">
+            <label for="parent_id">Родительская категория</label>
+            <input type="text" name="parent_id"
+                   value="{{id_name['data']['name']}}" id="parent_id" readonly/>
+        </div>
+
+        <button onclick="updateType()" class="add-type-submit">
+            Изменить
+        </button>
+
+        <button onclick="deleteCat()" class="add-type-submit2">
             Удалить
         </button>
 
-    
+        <button onclick="otmenFunction()" class="add-type-submit3">
+            Назад
+        </button>
 
-<script src="/static/js/category/get.js"></script>
+    </div>
+
+</div>
+
+<script src="/static/js/products/category/get.js"></script>
 
 {% endblock %}
 

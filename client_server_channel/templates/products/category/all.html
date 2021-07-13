@@ -3,19 +3,42 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/get_types.css">
+<link rel="stylesheet" href="/static/css/products/category/all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-{{cats_info}}
+<button class="add-button" id="addClick">Добавить</button>
 
-{{names_by_ids}}
+<table class="table">
+    <thead>
+    <tr>
+        <th class="hidden">Номер должности</th>
+        <th>№</th>
+        <th>Названия должности</th>
+        <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody id="tBody">
+    {% for i in range(cats_info['data']['category_id']|length) %}
+    <tr ondblclick="getType(this)">
+        <td class="hidden">{{cats_info['data']['category_id'][i]}}</td>
+        <td>{{i+1}}</td>
+        <td>{{cats_info['data']['name'][i]}}</td>
+        <td>
+            <button onclick="deleteType(this)">Удалить</button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
 
 
-<script src="/static/js/employees/get_types.js"></script>
+<script src="/static/js/products/category/all.js"></script>
 
 {% endblock %}
 
