@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/get_type.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{dealer_info}}
+
+
+<input id="dealer_id" type="text" value="{{dealer_info['data']['dealer_id']}}">
+
+
+        <button onclick="deleteDealer()" class="add-type-submit">
+            Удалить
+        </button>
+
+    
+
+<script src="/static/js/products/dealer/get.js"></script>
+
+{% endblock %}
+
+
