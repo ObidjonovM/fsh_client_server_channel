@@ -49,6 +49,18 @@ def get_ids_names(table_name, id_col, name_col):
     return result
 
 
+def get_other_pairs(table_name, id_col, name_col, id):
+    sql = f'SELECT {id_col}, {name_col} FROM {table_name}'
+    sql += f' WHERE {id_col} != {id}'
+    result = utls.send_to_db(sql, None, True)
+
+    if result['success']:
+        result['data'] = utls.list_tuples2tuple_lists(result['data'])
+        result['data'] = utls.keyval_tuples2dict((id_col, name_col), result['data'])
+
+    return result
+
+
 def get_columns_by_ids(table_name, cols, id_name, ids):
     sql = 'SELECT '
     for col in cols:

@@ -55,6 +55,17 @@ class CategoriesC:
 
 
     @staticmethod
+    def get_other_pairs(cat_id):
+        ids_names = CategoriesTable.get_other_pairs(cat_id)
+
+        return {
+            'success' : ids_names['success'],
+            'data' : ids_names['data'],
+            'log_code' : utls.record_log(ids_names, 'get_ids_names', 'crud_logs')
+        }
+
+
+    @staticmethod
     def get_names_by_ids(cats_ids):
         names_ids = CategoriesTable.get_names_by_ids(cats_ids)
 

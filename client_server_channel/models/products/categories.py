@@ -24,6 +24,12 @@ class CategoriesTable:
 
 
     @staticmethod
+    def get_other_pairs(cat_id):
+        return crud.get_other_pairs(
+            'categories', 'category_id', 'name', cat_id)
+
+
+    @staticmethod
     def get_names_by_ids(cats_ids):
         result = crud.get_columns_by_ids(
             'categories',

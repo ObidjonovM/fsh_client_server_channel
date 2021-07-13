@@ -59,12 +59,13 @@ def all():
 def update(cat_id):
 	if request.method == 'GET':
 		cat_info = CategoriesC.get(cat_id)
-	
+
 		if len(cat_info['data']) > 0:
 			return render_template(
 				utls.url_join(['products', 'category', 'update.html']),
 				cat_info = cat_info,
-				ids_names = CategoriesC.get_ids_names()
+				ids_names = CategoriesC.get_other_pairs(
+					cat_info['data']['category_id'])
 			)
 
 		return redirect(url_for('products.category.all'))
