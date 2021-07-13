@@ -4,3 +4,4 @@ from .employees import EmployeeC
 from .firmwares import FirmwaresC
 from .departments import DepartmentsC
 from .products import CategoriesC
+from .products import ProductInfoC

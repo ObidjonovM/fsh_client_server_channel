@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 from .. import view_utils as utls
 from .category import category
+from .product_info import product_info
 
 
 products = Blueprint('products', __name__, url_prefix='/products')
 products.register_blueprint(category)
+products.register_blueprint(product_info)
 
 
 @products.route('/products')

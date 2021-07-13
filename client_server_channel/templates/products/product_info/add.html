@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/add_type.css">
+
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+        <div class="container">
+                <div class="header">
+                        <h2>Новая должность</h2>
+                </div>
+
+                <form action="{{url_for('products.product_info.add')}}" method="POST">
+                        <div class="form-control">
+                                <label for="name">Имя</label>
+                                <input type="text" name="name" placeholder="Введите имя..." id="name" required/>
+                        </div>
+
+                        <div class="form-control">
+                                <label for="model">Model</label>
+                                <input type="text" name="model" id="model" placeholder="Введите описание..." />
+                        </div>
+                        <div class="form-control">
+                                <label for="cat_id">category_id</label>
+                                <select name="cat_id" id="cat_id">
+                                        {% for i in range(ids_names['data']['category_id']|length)%}
+                                        <option value="{{ids_names['data']['category_id'][i]}}">{{ids_names['data']['name'][i]}}</option>
+                                        {%endfor%}
+                                </select>
+                        </div>
+                        <input type="submit" class="add-type-submit" value="Сохранить"/>
+                        <input onclick="otmenFunction()" class="add-type-submit" value="Отмена"/>
+                </form>
+        </div>
+
+
+<script src="/static/js/employees/add_type.js"></script>
+
+{% endblock %}
+
+
