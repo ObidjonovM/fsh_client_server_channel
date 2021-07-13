@@ -10,34 +10,55 @@
 {% block body %}
 {{super()}}
 
-<table border=1>
+<button class="add-button" id="addClick">Добавить</button>
+
+<table class="table">
+
+    <thead>
     <tr>
-        <th>id</th>
-        <th>type</th>
-        <th>last_name</th>
-        <th>first_name</th>
-        <th>middle_name</th>
-        <th>birth_date</th>
-        <th>status</th>
+        <th class="hidden"></th>
+
+        <th>№</th>
+
+        <th>F.I.O</th>
+
+        <th>Отделение</th>
+
+        <th>Статус</th>
+
+        <th>Действия</th>
+
     </tr>
+    </thead>
+
+    <tbody id="tbody">
     {%for i in range(employees['data']['emp_id']|length)%}
-    <tr>
-        <td>{{employees['data']['emp_id'][i]}}</td>
-        <td>{{names_ids_type['data'][employees['data']['emp_type_id'][i]]}}</td>
-        <td>{{employees['data']['last_name'][i]}}</td>
-        <td>{{employees['data']['first_name'][i]}}</td>
-        <td>{{employees['data']['middle_name'][i]}}</td>
-        <td>{{employees['data']['birth_date'][i]}}</td>
+    <tr ondblclick="getType(this)">
+
+        <td class="hidden">{{employees['data']['emp_id'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>
+            {{employees['data']['last_name'][i]}}
+            {{employees['data']['first_name'][i]}}
+            {{employees['data']['middle_name'][i]}}
+        </td>
+
+        <td>{{names_ids_departments['data'][employees['data']['dept_id'][i]]}}</td>
+
         <td>{{names_ids_status['data'][employees['data']['emp_status_id'][i]]}}</td>
+
+        <td><button onclick="deleteEmp(this)">Удалить</button></td>
+
     </tr>
     {%endfor%}
+    </tbody>
+
 </table>
 
 
-
 <script src="/static/js/employees/get_all.js"></script>
-</body>
-</html> 
 
 {% endblock %}
 

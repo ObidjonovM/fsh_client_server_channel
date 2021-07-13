@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from client_server_channel.controls import (EmployeeC, EmployeeTypeC, 
+from client_server_channel.controls import (EmployeeC, EmployeeTypeC,
                                     EmployeeStatusC, DepartmentsC)
 from .. import view_utils as utls
 from .employee_type import employee_type
@@ -62,7 +62,7 @@ def add():
         })
         if result['success']:
             return redirect(url_for('employees.get_all'))
-        
+
         return result
 
 
@@ -80,7 +80,7 @@ def get(emp_id):
             name_id_departments = DepartmentsC.get(
                 emp_info['data']['dept_id'])
         )
-    
+
     return redirect(url_for('employees.get_all'))
 
 
@@ -106,13 +106,13 @@ def update(emp_id):
         emp_info = EmployeeC.get(emp_id)
         if len(emp_info['data']) > 0:
             return render_template(
-                utls.url_join(['employees','update.html']), 
+                utls.url_join(['employees','update.html']),
                 emp_info=emp_info['data'],
                 names_ids_type = EmployeeTypeC.get_ids_names()['data'],
                 names_ids_status = EmployeeStatusC.get_ids_names()['data'],
                 names_ids_departments = DepartmentsC.get_ids_names()['data']
             )
-        
+
         return redirect(url_for('employees.get_all'))
 
     if request.method == 'POST':
