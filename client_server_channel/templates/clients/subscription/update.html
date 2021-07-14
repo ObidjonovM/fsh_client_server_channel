@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/update_type.css">
+<link rel="stylesheet" href="/static/css/clients/subscription/update.css">
 
 {% endblock %}
 
@@ -15,9 +15,15 @@
         <div class="header">
                 <h2>Названия должности</h2>
         </div>
+
 <form class="form"
       action="{{ url_for('clients.subscription.update', subs_id=subs_info['data']['subs_id']) }}"
       method="POST">
+
+        <div class="form-control">
+                <label for="name">Имя</label>
+                <input type="text" name="name" value="{{subs_info['data']['name']}}" id="name" readonly required/>
+        </div>
 
         <div class="form-control">
                 <label for="desc">Description</label>
@@ -25,13 +31,13 @@
         </div>
 
         <div class="form-control">
-                <label for="monthly_fee">monthly_fee</label>
+                <label for="monthly_fee">Ежемесячная плата</label>
                 <input type="text" name="monthly_fee" value="{{subs_info['data']['monthly_fee']}}" id="monthly_fee" required/>
         </div>
 
         <input type="submit" class="add-type-submit" value="Сохранить" />
         <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
+                class="add-type-submit2" value="Отмена" >
                 Отмена
         </button>
 
@@ -39,7 +45,7 @@
 
 </div>
 
-<script src="/static/js/employees/update_type.js"></script>
+<script src="/static/js/clients/subscription/update.js"></script>
 
 {% endblock %}
 

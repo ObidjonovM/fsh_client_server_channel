@@ -1,6 +1,5 @@
-const subs_id = document.getElementById("subs_id");
-
-function deleteSubs() {
+function deleteType(e) {
+    let subs_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
@@ -8,7 +7,7 @@ function deleteSubs() {
 
     if (result){
 
-        xhttp.open('DELETE', '/clients/subscription/delete/' + subs_id.value, true);
+        xhttp.open('DELETE', '/clients/subscription/delete/' + subs_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -27,16 +26,17 @@ function deleteSubs() {
         }
 
     }
+    else {
+        return false;
+    }
 
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/clients/subscription/add', '_self');
+};
 
-
-function updateSubs() {
-    window.open('/clients/subscription/update/' + subs_id.value, '_self');
+function getType(e) {
+    window.open('/clients/subscription/get/' + e.children[0].innerHTML, '_self');
 }
 
-
-function otmenFunction () {
-    window.open('/clients/subscription/all', '_self');
-}

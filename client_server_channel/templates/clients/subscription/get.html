@@ -3,23 +3,55 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/get_type.css">
+<link rel="stylesheet" href="/static/css/clients/subscription/get_type.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{subs_info}}
 
+<div class="container">
 
-<input id="subs_id" type="text" value="{{subs_info['data']['subs_id']}}">
+    <div class="header">
+        <h2>Названия должности</h2>
+    </div>
 
+    <div class="form">
 
-        <button onclick="deleteSubs()" class="add-type-submit">
+        <input id="subs_id" type="hidden" value="{{subs_info['data']['subs_id']}}">
+
+        <div class="form-control">
+            <label for="name">Имя</label>
+            <input type="text" name="name" id="name" value="{{subs_info['data']['name']}}" readonly/>
+        </div>
+
+        <div class="form-control">
+            <label for="desc">Описание</label>
+            <input type="text" name="desc" id="desc" value="{{subs_info['data']['description']}}" readonly/>
+        </div>
+
+        <div class="form-control">
+            <label for="monthly_fee">Ежемесячная плата</label>
+            <input type="number" name="monthly_fee" id="monthly_fee" value="{{subs_info['data']['monthly_fee']}}" readonly/>
+        </div>
+
+        <button onclick="updateSubs()" class="add-type-submit">
+            Изменить
+        </button>
+
+        <button onclick="deleteSubs()" class="add-type-submit2">
             Удалить
         </button>
 
-    
+        <button onclick="otmenFunction()" class="add-type-submit3">
+            Назад
+        </button>
+
+    </div>
+
+</div>
+
+
 
 <script src="/static/js/clients/subscription/get.js"></script>
 
