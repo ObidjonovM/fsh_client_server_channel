@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/products/product_info/add.css">
+
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+        <div class="container">
+                <div class="header">
+                        <h2>Новая должность</h2>
+                </div>
+
+                <form action="{{url_for('products.status.add')}}" method="POST">
+                        <div class="form-control">
+                                <label for="status">Status</label>
+                                <input type="text" name="status" placeholder="Введите имя..." id="status" required/>
+                        </div>
+
+                        <div class="form-control">
+                                <label for="desc">Description</label>
+                                <input type="text" name="desc" id="desc" placeholder="Введите описание..." required/>
+                        </div>
+
+
+                        <input type="submit" class="add-type-submit" value="Сохранить"/>
+                        <input type="button" onclick="otmenFunction()" class="add-type-submit2" value="Отмена"/>
+                </form>
+        </div>
+
+
+<script src="/static/js/products/product_info/add.js"></script>
+
+{% endblock %}
+
+

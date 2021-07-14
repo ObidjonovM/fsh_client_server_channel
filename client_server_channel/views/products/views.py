@@ -3,12 +3,14 @@ from .. import view_utils as utls
 from .category import category
 from .product_info import product_info
 from .dealer import dealer
+from .status import status
 
 
 products = Blueprint('products', __name__, url_prefix='/products')
 products.register_blueprint(category)
 products.register_blueprint(product_info)
 products.register_blueprint(dealer)
+products.register_blueprint(status)
 
 
 @products.route('/products')
