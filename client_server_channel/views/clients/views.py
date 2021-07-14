@@ -1,7 +1,9 @@
 from flask import Blueprint, render_template
 from .. import view_utils as utls
+from .subscription import subscription
 
-clients = Blueprint('clients', __name__)
+clients = Blueprint('clients', __name__, url_prefix='/clients')
+clients.register_blueprint(subscription)
 
 
 @clients.route('/login')

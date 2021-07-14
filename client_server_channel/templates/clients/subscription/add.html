@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/add_type.css">
+
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+        <div class="container">
+                <div class="header">
+                        <h2>Новая должность</h2>
+                </div>
+
+                <form action="{{url_for('clients.subscription.add')}}" method="POST">
+                        <div class="form-control">
+                                <label for="name">Имя</label>
+                                <input type="text" name="name" placeholder="Введите имя..." id="name" required/>
+                        </div>
+                        
+                        <div class="form-control">
+                                <label for="desc">Description</label>
+                                <input type="text" name="desc" placeholder="Введите адресс..." id="desc" required/>
+                        </div>
+
+                        <div class="form-control">
+                                <label for="monthly_fee">monthly_fee</label>
+                                <input type="text" name="monthly_fee" placeholder="Введите адресс..." id="monthly_fee" required/>
+                        </div>
+                        
+                        <input type="submit" class="add-type-submit" value="Сохранить"/>
+                        <input onclick="otmenFunction()" class="add-type-submit" value="Отмена"/>
+                </form>
+        </div>
+
+
+<script src="/static/js/employees/add_type.js"></script>
+
+{% endblock %}
+
+

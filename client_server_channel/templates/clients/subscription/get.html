@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/get_type.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{subs_info}}
+
+
+<input id="subs_id" type="text" value="{{subs_info['data']['subs_id']}}">
+
+
+        <button onclick="deleteSubs()" class="add-type-submit">
+            Удалить
+        </button>
+
+    
+
+<script src="/static/js/clients/subscription/get.js"></script>
+
+{% endblock %}
+
+
