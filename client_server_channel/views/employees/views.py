@@ -60,16 +60,25 @@ def logout():
 
 @employees.route('/account')
 def account():
-	return render_template(utls.url_join(['employees','account.html']))
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+	
+    return render_template(utls.url_join(['employees','account.html']))
 
 
 @employees.route('/admin')
 def admin():
-	return render_template(utls.url_join(['employees','admin.html']))
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+	
+    return render_template(utls.url_join(['employees','admin.html']))
 
 
 @employees.route('/add', methods=['GET', 'POST'])
 def add():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
     if request.method == 'GET':
         return render_template(
             utls.url_join(['employees','add.html']),
@@ -105,6 +114,9 @@ def add():
 
 @employees.route('/get/<int:emp_id>')
 def get(emp_id):
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
     emp_info=EmployeeC.get(emp_id)
     if len(emp_info['data']) > 0:
         return render_template(
@@ -123,6 +135,9 @@ def get(emp_id):
 
 @employees.route('/get_all')
 def get_all():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+    
     employees=EmployeeC.get_all()
 
     return render_template(
@@ -139,6 +154,9 @@ def get_all():
 
 @employees.route('/update/<int:emp_id>', methods=['GET', 'POST'])
 def update(emp_id):
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
     if request.method == 'GET':
         emp_info = EmployeeC.get(emp_id)
         if len(emp_info['data']) > 0:
@@ -180,5 +198,8 @@ def update(emp_id):
 
 @employees.route('/delete/<int:emp_id>', methods=['DELETE'])
 def delete(emp_id):
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
     if request.method == 'DELETE':
         return EmployeeC.delete(emp_id)

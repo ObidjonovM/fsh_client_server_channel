@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import EmployeeTypeC
 from .. import view_utils as utls
 
@@ -7,6 +7,8 @@ employee_type = Blueprint('employee_type', __name__, url_prefix = '/type')
 
 @employee_type.route('/add', methods=['GET','POST'])
 def add():
+    if not 'username' in session:
+         return redirect(url_for('employees.login'))
 
     if request.method == 'GET':
         return render_template(utls.url_join(['employees','employee_type','add.html']))
@@ -21,20 +23,26 @@ def add():
 
 @employee_type.route('/get/<int:type_id>')
 def get(type_id):
-        type_info=EmployeeTypeC.get(type_id)
-        if type_info['data'] == []:
-            return redirect(
-                url_for('employees.employee_type.all')
-            )
+    if not 'username' in session:
+         return redirect(url_for('employees.login'))
 
-        return render_template(
-            utls.url_join(['employees','employee_type','get.html']),
-            type_info=type_info
+    type_info=EmployeeTypeC.get(type_id)
+    if type_info['data'] == []:
+        return redirect(
+            url_for('employees.employee_type.all')
         )
+
+    return render_template(
+        utls.url_join(['employees','employee_type','get.html']),
+        type_info=type_info
+    )
 
 
 @employee_type.route('/all')
 def all():
+    if not 'username' in session:
+         return redirect(url_for('employees.login'))
+    
     return render_template(
         utls.url_join(['employees','employee_type','all.html']), 
         types=EmployeeTypeC.get_all()
@@ -43,6 +51,9 @@ def all():
 
 @employee_type.route('/update/<int:type_id>', methods=['GET', 'POST'])
 def update(type_id):
+    if not 'username' in session:
+         return redirect(url_for('employees.login'))
+
     if request.method == 'GET':
         type_info = EmployeeTypeC.get(type_id)
         if len(type_info['data']) > 0:
@@ -66,12 +77,18 @@ def update(type_id):
 
 @employee_type.route('/delete/<int:type_id>', methods=['DELETE'])
 def delete(type_id):
+    if not 'username' in session:
+         return redirect(url_for('employees.login'))
+    
     if request.method == 'DELETE':
         return EmployeeTypeC.delete(type_id)
 
 
 @employee_type.route('/type_exists', methods=['POST'])
 def type_exists():
+    if not 'username' in session:
+         return redirect(url_for('employees.login'))
+    
     try:
         return EmployeeTypeC.type_exists(
             request.form['type_name']
