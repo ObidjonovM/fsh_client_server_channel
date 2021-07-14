@@ -2,7 +2,7 @@ from client_server_channel.models.crud import get
 from client_server_channel.models import EmployeesTable
 from .. import control_utils as utls
 from datetime import datetime
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class EmployeeC:
@@ -98,5 +98,37 @@ class EmployeeC:
             'success' : False,
             'log_code' : log_code,
             'comment' : 'DOES NOT EXIST'
+		}
+
+
+    @staticmethod
+    def login(username, password):
+
+        login_result = EmployeesTable.login(username, password)
+        result = {
+			'success' : login_result['success'],
+			'log_code' : utls.record_log(login_result, 'employee_login', 'crud_logs')
         }
+
+        if login_result['success']:
+            result['user_exists'] = login_result['data'] != []
+            result['wrong_password'] = False             # assume password was entered correctly
+            
+            if result['user_exists']:
+                result['wrong_password'] = not check_password_hash(
+					login_result['data']['password'],
+					password
+                )
+
+                if not result['wrong_password']:
+                    EmployeesTable.update_lastsignin(login_result['data'], datetime.now())
+                    result['wrong_password'] = False
+                    result['emp_id'] = login_result['data']['emp_id']
+                    result['dept_id'] = login_result['data']['dept_id']
+                    result['emp_type_id'] = login_result['data']['emp_type_id']
+                    result['emp_status_id'] = login_result['data']['emp_status_id']        
+        
+        return result
+
+
 

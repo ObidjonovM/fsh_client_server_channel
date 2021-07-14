@@ -48,3 +48,12 @@ class EmployeesTable:
         return crud.delete('employees', {'emp_id' : emp_id})
 
 
+    @staticmethod
+    def login(username, password):
+        return crud.get_records('employees', {'username' : username})
+
+
+    @staticmethod
+    def update_lastsignin(emp_info, signin_time):
+        emp_info['last_sign_in'] = signin_time
+        return crud.update('employees', emp_info, 'emp_id')        

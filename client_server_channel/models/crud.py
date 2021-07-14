@@ -85,6 +85,22 @@ def record_exists(table_name, record):
     return False
 
 
+def get_records(table_name, record, unique=True):
+    col_names = utls.get_column_names(table_name)
+    k, v = record.popitem()
+    sql = f'SELECT * FROM {table_name} WHERE {k} = %({k})s'
+    result = utls.send_to_db(sql, {k : v}, True)
+
+    if result['success'] and len(result['data']) > 0:
+        if unique:
+            result['data'] = utls.keyval_tuples2dict(col_names, result['data'][0])
+        else:
+            result['data'] = utls.list_tuples2tuple_lists(result['data'])
+            result['data'] = utls.keyval_tuples2dict(col_names, result['data'])
+    
+    return result
+
+
 def update(table_name, info, prim_col):
 	sql = f'UPDATE {table_name} SET '
 	for key in info.keys():

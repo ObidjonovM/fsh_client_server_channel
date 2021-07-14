@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request, redirect, url_for
-from client_server_channel.controls import (EmployeeC, EmployeeTypeC,
+from flask import Blueprint, render_template, request, redirect, url_for, session
+from client_server_channel.controls import (EmployeeC, EmployeeTypeC, 
                                     EmployeeStatusC, DepartmentsC)
 from .. import view_utils as utls
 from .employee_type import employee_type
@@ -11,9 +11,42 @@ employees.register_blueprint(employee_type)
 employees.register_blueprint(employee_status)
 
 
-@employees.route('/login')
+@employees.route('/login', methods=['GET','POST'])
 def login():
-	return render_template(utls.url_join(['employees', 'login.html']))
+    if 'username' in session:
+        return redirect(url_for('core.index'))
+
+    if request.method == 'GET':
+        return render_template(
+            utls.url_join(['employees', 'login.html']), 
+            user_exists = True, 
+            wrong_password = False
+        )
+
+    if request.method == 'POST':
+        result = EmployeeC.login(
+            request.form['username'],
+            request.form['password']
+        )
+
+        if not result['success']:
+            return redirect(url_for('core.index'))
+
+        if result['user_exists'] and not result['wrong_password']:
+            session['username'] = request.form['username']
+            session['employee'] = {}
+            session['employee']['id'] = result['emp_id']
+            session['employee']['dept_id'] = result['dept_id']
+            session['employee']['type_id'] = result['emp_type_id']
+            session['employee']['status_id'] = result['emp_status_id']
+        
+            return redirect(url_for('employees.account'))
+        
+        return render_template(
+            utls.url_join(['employees', 'login.html']),
+			user_exists = result['user_exists'],
+			wrong_password = result['wrong_password']
+        )
 
 
 @employees.route('/logout')
