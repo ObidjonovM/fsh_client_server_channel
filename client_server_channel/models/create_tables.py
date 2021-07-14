@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 
 
 super_user_password = 'FidoBiznes402'
-conn = psycopg2.connect('dbname=timur_dev user=timur_dev password=Fido402')
+conn = psycopg2.connect('dbname=your_db user=your_login password=your_password')
 
 cur = conn.cursor()
 
@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS clients (
         home_phone VARCHAR(20),
 	email VARCHAR(50),
 	username VARCHAR(50) NOT NULL UNIQUE,
-	password VARCHAR(50) NOT NULL,
+	password VARCHAR NOT NULL,
 	subs_id INT NOT NULL CHECK (subs_id > 0),
 	last_signin TIMESTAMP,
 	date_added TIMESTAMP NOT NULL,
