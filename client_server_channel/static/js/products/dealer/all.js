@@ -1,6 +1,5 @@
-const dealer_id = document.getElementById("dealer_id");
-
-function deleteDealer() {
+function deleteType(e) {
+    let dealer_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
@@ -8,7 +7,7 @@ function deleteDealer() {
 
     if (result){
 
-        xhttp.open('DELETE', '/products/dealer/delete/' + dealer_id.value, true);
+        xhttp.open('DELETE', '/products/dealer/delete/' + dealer_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -27,15 +26,17 @@ function deleteDealer() {
         }
 
     }
+    else {
+        return false;
+    }
 
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/products/dealer/add', '_self');
+};
 
-function updateType() {
-    window.open('/products/dealer/update/' + dealer_id.value, '_self');
+function getType(e) {
+    window.open('/products/dealer/get/' + e.children[0].innerHTML, '_self');
 }
 
-
-function otmenFunction () {
-    window.open('/products/dealer/all', '_self');
-}

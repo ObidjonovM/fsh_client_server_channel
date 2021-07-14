@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/add_type.css">
+<link rel="stylesheet" href="/static/css/products/dealer/add.css">
 
 
 {% endblock %}
@@ -11,69 +11,73 @@
 {% block body %}
 {{super()}}
 
-        <div class="container">
-                <div class="header">
+        <div class="add-container">
+                <div class="add-header">
                         <h2>Новая должность</h2>
                 </div>
 
-                <form action="{{url_for('products.dealer.add')}}" method="POST">
+                <form id="myForm" class="add-form">
+
                         <div class="form-control">
                                 <label for="name">Имя</label>
                                 <input type="text" name="name" placeholder="Введите имя..." id="name" required/>
-                        </div>
-                        
-                        <div class="form-control">
+
+
+
                                 <label for="address_1">Адрес</label>
                                 <input type="text" name="address_1" placeholder="Введите адресс..." id="address_1" required/>
-                        </div>
 
-                        <div class="form-control">
+
+
                                 <label for="address_2">Адрес 2</label>
-                                <input type="text" name="address_2" placeholder="Введите адресс..." id="address_2" required/>
+                                <input type="text" name="address_2" placeholder="Введите адресс..." id="address_2"/>
+
+
+
+                                <label for="city">Город</label>
+                                <input type="text" name="city" placeholder="Введите город..." id="city" required/>
+
+
+
+                                <label for="country">Страна</label>
+                                <input type="text" name="country" placeholder="Введите страна..." id="country" required/>
                         </div>
 
-                        <div class="form-control">
-                                <label for="city">city</label>
-                                <input type="text" name="city" placeholder="Введите адресс..." id="city" required/>
-                        </div>
+
 
                         <div class="form-control">
-                                <label for="country">country</label>
-                                <input type="text" name="country" placeholder="Введите адресс..." id="country" required/>
+                                <label for="zipcode">Индекс</label>
+                                <input type="text" name="zipcode" placeholder="Введите индекс..." id="zipcode" required/>
+
+
+
+                                <label for="phone">Телефон</label>
+                                <input type="text" name="phone" placeholder="Введите телефон..." id="phone" required/>
+
+
+
+                                <label for="email">Электронная почта</label>
+                                <input type="email" name="email" placeholder="Введите электронная почта..." id="email"/>
+
+
+
+                                <label for="website">Веб сайт</label>
+                                <input type="text" name="website" placeholder="Введите веб сайт..." id="website"/>
+
+
+
+                                <label for="geo_location">Местоположение</label>
+                                <input type="text" name="geo_location" placeholder="Введите местоположение..." id="geo_location"/>
                         </div>
 
-                        <div class="form-control">
-                                <label for="zipcode">zipcode</label>
-                                <input type="text" name="zipcode" placeholder="Введите адресс..." id="zipcode" required/>
-                        </div>
 
-                        <div class="form-control">
-                                <label for="phone">phone</label>
-                                <input type="text" name="phone" placeholder="Введите адресс..." id="phone" required/>
-                        </div>
-
-                        <div class="form-control">
-                                <label for="email">email</label>
-                                <input type="text" name="email" placeholder="Введите адресс..." id="email" required/>
-                        </div>
-
-                        <div class="form-control">
-                                <label for="website">website</label>
-                                <input type="text" name="website" placeholder="Введите адресс..." id="website" required/>
-                        </div>
-
-                        <div class="form-control">
-                                <label for="geo_location">geo_location</label>
-                                <input type="text" name="geo_location" placeholder="Введите адресс..." id="geo_location" required/>
-                        </div>
-                        
-                        <input type="submit" class="add-type-submit" value="Сохранить"/>
-                        <input onclick="otmenFunction()" class="add-type-submit" value="Отмена"/>
+                        <input type="submit" class="add-submit" value="Сохранить"/><br>
+                        <button type="button" onclick="otmenFunction()" class="add-submit2" value="Отмена"> Отмена </button>
                 </form>
         </div>
 
 
-<script src="/static/js/employees/add_type.js"></script>
+<script src="/static/js/products/dealer/add.js"></script>
 
 {% endblock %}
 

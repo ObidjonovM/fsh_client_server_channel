@@ -3,17 +3,42 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/get_types.css">
+<link rel="stylesheet" href="/static/css/products/dealer/all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-{{dealers_info}}
+<button class="add-button" id="addClick">Добавить</button>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th class="hidden">Номер должности</th>
+        <th>№</th>
+        <th>Имя</th>
+        <th colspan="2">Действия</th>
+    </tr>
+    </thead>
 
 
-<script src="/static/js/employees/get_types.js"></script>
+    <tbody id="tBody">
+    {% for i in range(dealers_info['data']['dealer_id']|length) %}
+    <tr ondblclick="getType(this)">
+        <td class="hidden">{{dealers_info['data']['dealer_id'][i]}}</td>
+        <td>{{i+1}}</td>
+        <td>{{dealers_info['data']['name'][i]}}</td>
+        <td>
+            <button onclick="deleteType(this)">Удалить</button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+<script src="/static/js/products/dealer/all.js"></script>
 
 {% endblock %}
 
