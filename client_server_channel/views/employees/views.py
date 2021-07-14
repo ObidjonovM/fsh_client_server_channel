@@ -51,7 +51,11 @@ def login():
 
 @employees.route('/logout')
 def logout():
-	return 'employee log out page'
+    if 'username' in session:
+        session.pop('username')
+        session.pop('employee')
+
+    return redirect(url_for('core.index'))
 
 
 @employees.route('/account')
