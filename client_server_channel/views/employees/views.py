@@ -107,7 +107,7 @@ def add():
                     'emp_status_id' : params['status_id']
         })
         if result['success']:
-            return redirect(url_for('employees.get_all'))
+            return redirect(url_for('employees.all'))
 
         return result
 
@@ -130,18 +130,18 @@ def get(emp_id):
                 emp_info['data']['dept_id'])
         )
 
-    return redirect(url_for('employees.get_all'))
+    return redirect(url_for('employees.all'))
 
 
-@employees.route('/get_all')
-def get_all():
+@employees.route('/all')
+def all():
     if not 'username' in session:
         return redirect(url_for('employees.login'))
     
     employees=EmployeeC.get_all()
 
     return render_template(
-        utls.url_join(['employees','get_all.html']),
+        utls.url_join(['employees','all.html']),
         employees=employees,
         names_ids_type = EmployeeTypeC.get_names_by_ids(
             employees['data']['emp_type_id']),
@@ -168,7 +168,7 @@ def update(emp_id):
                 names_ids_departments = DepartmentsC.get_ids_names()['data']
             )
 
-        return redirect(url_for('employees.get_all'))
+        return redirect(url_for('employees.all'))
 
     if request.method == 'POST':
         params = request.form
@@ -191,7 +191,7 @@ def update(emp_id):
 				    'emp_id' : emp_id
 		})
         if result['success']:
-            return redirect(url_for('employees.get_all'))
+            return redirect(url_for('employees.all'))
 
         return result
 
