@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{client_info}}
+{{name_id}}
+
+<input id="client_id" type="hidden" value="{{client_info['data']['client_id']}}"/>
+
+<button onclick="deleteClient()">Delete</button>
+
+
+<script src="/static/js/clients/get.js"></script>
+
+
+{% endblock %}
+
