@@ -1,5 +1,7 @@
 function glavniyStranisa(){
-    location.href = location.protocol + '//'
-        + location.hostname + ':'
-        + location.port + '/employees/get_types';
+    window.open('/employees/get_types', '_self');
+}
+
+function Viyti() {
+    window.open('/employees/logout', '_self');
 }
