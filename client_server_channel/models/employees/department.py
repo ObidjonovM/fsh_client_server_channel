@@ -1,7 +1,7 @@
 from .. import crud
 
 
-class DepartmentsTable:
+class DepartmentTable:
 
     @staticmethod
     def insert(dept_info):

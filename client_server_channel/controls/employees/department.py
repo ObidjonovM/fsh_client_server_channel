@@ -1,14 +1,14 @@
-from client_server_channel.models import DepartmentsTable
+from client_server_channel.models import DepartmentTable
 from .. import control_utils as utls
 from datetime import datetime
 
 
-class DepartmentsC:
+class DepartmentC:
 
     @staticmethod
     def add(name, desc):
         now = datetime.now()
-        add_result = DepartmentsTable.insert({
+        add_result = DepartmentTable.insert({
             'name' : name,
             'description' : desc,
             'date_added' : now,
@@ -25,7 +25,7 @@ class DepartmentsC:
 
     @staticmethod
     def get(dept_id):
-        get_result = DepartmentsTable.get(dept_id)
+        get_result = DepartmentTable.get(dept_id)
 
         return {
             'success' : get_result['success'],
@@ -36,7 +36,7 @@ class DepartmentsC:
 
     @staticmethod
     def get_all():
-        get_all_result = DepartmentsTable.get_all()
+        get_all_result = DepartmentTable.get_all()
 
         return {
             'success' : get_all_result['success'],
@@ -47,7 +47,7 @@ class DepartmentsC:
 
     @staticmethod
     def get_ids_names():
-        ids_names = DepartmentsTable.get_ids_names()
+        ids_names = DepartmentTable.get_ids_names()
 
         return {
             'success' : ids_names['success'],
@@ -58,7 +58,7 @@ class DepartmentsC:
 
     @staticmethod
     def get_names_by_ids(depts_ids):
-        names_ids = DepartmentsTable.get_names_by_ids(depts_ids)
+        names_ids = DepartmentTable.get_names_by_ids(depts_ids)
 
         return {
             'success' : names_ids['success'],
@@ -69,12 +69,12 @@ class DepartmentsC:
 
     @staticmethod
     def update(dept_info):
-        get_result = DepartmentsTable.get(dept_info['dept_id'])
+        get_result = DepartmentTable.get(dept_info['dept_id'])
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             dept_info['date_modified'] = datetime.now()
             dept_info['modify_emp_id'] = 1
-            update_result = DepartmentsTable.update(dept_info)
+            update_result = DepartmentTable.update(dept_info)
             return {
                 'success' : update_result['success'],
                 'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
@@ -89,10 +89,10 @@ class DepartmentsC:
 
     @staticmethod
     def delete(dept_id):
-        get_result = DepartmentsTable.get(dept_id)
+        get_result = DepartmentTable.get(dept_id)
         log_code = utls.record_log(get_result, 'delete', 'crud_logs')
         if get_result['data'] != []:
-            delete_result = DepartmentsTable.delete(dept_id)
+            delete_result = DepartmentTable.delete(dept_id)
             return {
                 'success' : delete_result['success'],
                 'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')

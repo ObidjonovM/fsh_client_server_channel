@@ -1,14 +1,16 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import (EmployeeC, EmployeeTypeC, 
-                                    EmployeeStatusC, DepartmentsC)
+                                    EmployeeStatusC, DepartmentC)
 from .. import view_utils as utls
 from .employee_type import employee_type
 from .employee_status import employee_status
+from .department import department
 
 
 employees = Blueprint('employees', __name__, url_prefix='/employees')
 employees.register_blueprint(employee_type)
 employees.register_blueprint(employee_status)
+employees.register_blueprint(department)
 
 
 @employees.route('/login', methods=['GET','POST'])
@@ -84,7 +86,7 @@ def add():
             utls.url_join(['employees','add.html']),
             names_ids_type = EmployeeTypeC.get_ids_names()['data'],
             names_ids_status = EmployeeStatusC.get_ids_names()['data'],
-            names_ids_departments = DepartmentsC.get_ids_names()['data']
+            names_ids_departments = DepartmentC.get_ids_names()['data']
         )
 
     if request.method == 'POST':
@@ -126,7 +128,7 @@ def get(emp_id):
                 emp_info['data']['emp_type_id']),
             name_id_status = EmployeeStatusC.get(
                 emp_info['data']['emp_status_id']),
-            name_id_departments = DepartmentsC.get(
+            name_id_departments = DepartmentC.get(
                 emp_info['data']['dept_id'])
         )
 
@@ -147,7 +149,7 @@ def all():
             employees['data']['emp_type_id']),
         names_ids_status = EmployeeStatusC.get_names_by_ids(
             employees['data']['emp_status_id']),
-        names_ids_departments = DepartmentsC.get_names_by_ids(
+        names_ids_departments = DepartmentC.get_names_by_ids(
             employees['data']['dept_id'])
     )
 
@@ -165,7 +167,7 @@ def update(emp_id):
                 emp_info=emp_info['data'],
                 names_ids_type = EmployeeTypeC.get_ids_names()['data'],
                 names_ids_status = EmployeeStatusC.get_ids_names()['data'],
-                names_ids_departments = DepartmentsC.get_ids_names()['data']
+                names_ids_departments = DepartmentC.get_ids_names()['data']
             )
 
         return redirect(url_for('employees.all'))
