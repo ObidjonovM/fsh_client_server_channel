@@ -101,7 +101,7 @@ class EmployeeC:
 
 
     @staticmethod
-    def login(username, password):
+    def login(username, password, new_password):
 
         login_result = EmployeesTable.login(username, password)
         result = {
@@ -120,6 +120,9 @@ class EmployeeC:
                 )
 
                 if not result['wrong_password']:
+                    if new_password:
+                        EmployeesTable.change_password(login_result['data'], generate_password_hash(new_password))
+                    
                     EmployeesTable.update_lastsignin(login_result['data'], datetime.now())
                     result['wrong_password'] = False
                     result['emp_id'] = login_result['data']['emp_id']

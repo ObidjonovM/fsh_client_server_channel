@@ -57,3 +57,9 @@ class EmployeesTable:
     def update_lastsignin(emp_info, signin_time):
         emp_info['last_sign_in'] = signin_time
         return crud.update('employees', emp_info, 'emp_id')        
+
+
+    @staticmethod
+    def change_password(emp_info, new_password):
+        emp_info['password'] = new_password
+        return crud.update('employees', emp_info, 'emp_id')

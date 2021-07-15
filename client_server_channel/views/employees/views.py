@@ -28,7 +28,8 @@ def login():
     if request.method == 'POST':
         result = EmployeeC.login(
             request.form['username'],
-            request.form['password']
+            request.form['password'],
+            None
         )
 
         if not result['success']:
@@ -47,6 +48,35 @@ def login():
         return render_template(
             utls.url_join(['employees', 'login.html']),
 			user_exists = result['user_exists'],
+			wrong_password = result['wrong_password']
+        )
+
+
+@employees.route('/change_password', methods=['GET', 'POST'])
+def change_password():
+    if request.method == 'GET':
+        return render_template(
+            utls.url_join(['employees', 'change_password.html']),
+            user_exists = True, 
+            wrong_password = False
+        )
+
+    if request.method == 'POST':
+        result = EmployeeC.login(
+            request.form['username'],
+            request.form['password'],
+            request.form['new_password']
+        )
+
+        if not result['success']:
+            return redirect(url_for('core.index'))
+        
+        if result['user_exists'] and not result['wrong_password']:
+            return redirect(url_for('employees.logout'))
+
+        return render_template(
+            utls.url_join(['employees', 'change_password.html']),
+            user_exists = result['user_exists'],
 			wrong_password = result['wrong_password']
         )
 
