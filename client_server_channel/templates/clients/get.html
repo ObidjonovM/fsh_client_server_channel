@@ -3,18 +3,107 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/get.css">
+<link rel="stylesheet" href="/static/css/clients/get.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{client_info}}
-{{name_id}}
 
-<input id="client_id" type="hidden" value="{{client_info['data']['client_id']}}"/>
 
-<button onclick="deleteClient()">Delete</button>
+<div class="add-container">
+
+    <div class="add-header">
+        <h2>Новая должность</h2>
+    </div>
+
+    <form action="{{url_for('clients.add')}}" method="POST" id="myForm" class="add-form">
+
+        <input id="client_id" type="hidden" value="{{client_info['data']['client_id']}}"/>
+
+
+        <div class="form-control">
+
+            <label for="subs_id">Подписка</label>
+            <input type="text" name="subs_id" id="subs_id"
+                   value="{{name_id['data']['name']}}" readonly/>
+
+
+            <label for="first_name">Имя</label>
+            <input type="text" name="first_name" id="first_name"
+                   value="{{client_info['data']['first_name']}}" readonly/>
+
+            <label for="last_name">Фамилия</label>
+            <input type="text" name="last_name" id="last_name"
+                   value="{{client_info['data']['last_name']}}" readonly/>
+
+            <label for="middle_name">Отчество</label>
+            <input type="text" name="middle_name" id="middle_name"
+                   value="{{client_info['data']['middle_name']}}" readonly/>
+
+            <label for="birth_date">Дата рождения</label>
+            <input type="date" name="birth_date" id="birth_date"
+                  value="{{client_info['data']['birth_date']}}" readonly/>
+
+        </div>
+
+
+        <div class="form-control">
+
+            <label for="address_1">Адрес 1</label>
+            <input type="text" name="address_1" id="address_1"
+                   value="{{client_info['data']['address_1']}}" readonly/>
+
+            <label for="address_2">Адрес 2</label>
+            <input type="text" name="address_2" id="address_2"
+                   value="{{client_info['data']['address_2']}}" readonly/>
+
+            <label for="city">Город</label>
+            <input type="text" name="city" id="city"
+                   value="{{client_info['data']['city']}}" readonly/>
+
+            <label for="country">Страна</label>
+            <input type="text" name="country" id="country"
+                   value="{{client_info['data']['country']}}" readonly/>
+
+            <label for="zipcode">Индекс</label>
+            <input type="text" name="zipcode" id="zipcode"
+                   value="{{client_info['data']['zipcode']}}" readonly/>
+
+        </div>
+
+
+        <div class="form-control">
+
+            <label for="phone">Телефон</label>
+            <input type="text" name="phone" id="phone"
+                   value="{{client_info['data']['phone']}}" readonly/>
+
+            <label for="home_phone">Домашний телефон</label>
+            <input type="text" name="home_phone" id="home_phone"
+                   value="{{client_info['data']['home_phone']}}" readonly/>
+
+            <label for="email">Электронная почта</label>
+            <input type="email" name="email" id="email"
+                   value="{{client_info['data']['email']}}" readonly/>
+
+        </div>
+
+        <button type="button" onclick="updateClient()" class="add-submit">
+            Изменить
+        </button>
+
+        <button type="button" onclick="deleteClient()" class="add-submit2">
+            Удалить
+        </button>
+
+        <button type="button" onclick="otmenFunction()" class="add-submit3">
+            Назад
+        </button>
+
+    </form>
+
+</div>
 
 
 <script src="/static/js/clients/get.js"></script>

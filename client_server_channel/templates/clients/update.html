@@ -3,46 +3,101 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/update.css">
+<link rel="stylesheet" href="/static/css/clients/update.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<form action="{{ url_for('clients.update', client_id=client_info['data']['client_id']) }}" method="POST">
-        <select name="subs_id" id="">
-                {% for i in range(names_ids['data']['subs_id']|length)%}
-                        <option value="{{names_ids['data']['subs_id'][i]}}">{{names_ids['data']['name'][i]}}</option>
-                {%endfor%}
-        </select>
-        <label for="first_name">first_name</label>
-        <input type="text" name="first_name" required value="{{client_info['data']['first_name']}}"/>
-        <label for="middle_name">middle_name</label>
-        <input type="text" name="middle_name" required value="{{client_info['data']['middle_name']}}"/>
-        <label for="last_name">last_name</label>
-        <input type="text" name="last_name" required value="{{client_info['data']['last_name']}}"/>
-        <label for="birth_date">birth_date</label>
-        <input type="date" name="birth_date" required value="{{client_info['data']['birth_date']}}"/>
-        <label for="address_1">address_1</label>
-        <input type="text" name="address_1" required value="{{client_info['data']['address_1']}}"/>
-        <label for="address_2">address_2</label>
-        <input type="text" name="address_2" required value="{{client_info['data']['address_2']}}"/>
-        <label for="city">city</label>
-        <input type="text" name="city" required value="{{client_info['data']['city']}}"/>
-        <label for="country">country</label>
-        <input type="text" name="country" required value="{{client_info['data']['country']}}"/>
-        <label for="zipcode">zipcode</label>
-        <input type="text" name="zipcode" required value="{{client_info['data']['zipcode']}}"/>
-        <label for="phone">phone</label>
-        <input type="text" name="phone" required value="{{client_info['data']['phone']}}"/>
-        <label for="home_phone">home_phone</label>
-        <input type="text" name="home_phone" required value="{{client_info['data']['home_phone']}}"/>
-        <label for="email">email</label>
-        <input type="text" name="email" required value="{{client_info['data']['email']}}"/>
-        <input type="submit" value="Update" />
-</form>
+<div class="add-container">
 
-<script src="/static/js/employees/update.js"></script>
+    <div class="add-header">
+        <h2>Новая должность</h2>
+    </div>
+        
+    <form action="{{ url_for('clients.update', client_id=client_info['data']['client_id']) }}" method="POST" id="myForm"
+          class="add-form">
+
+        <div class="form-control">
+
+            <label for="subs_id">Подписка</label>
+            <select name="subs_id" id="subs_id">
+                {% for i in range(names_ids['data']['subs_id']|length)%}
+                {%if client_info['data']['subs_id'] == names_ids['data']['subs_id'][i]%}
+                <option selected value="{{names_ids['data']['subs_id'][i]}}">
+                    {{names_ids['data']['name'][i]}}
+                </option>
+                {%else%}
+                <option value="{{names_ids['data']['subs_id'][i]}}">
+                    {{names_ids['data']['name'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
+
+            <label for="first_name">Имя</label>
+            <input type="text" name="first_name" id="first_name" required
+                   value="{{client_info['data']['first_name']}}"/>
+
+            <label for="last_name">Фамилия</label>
+            <input type="text" name="last_name" id="last_name" required value="{{client_info['data']['last_name']}}"/>
+
+
+            <label for="middle_name">Отчество</label>
+            <input type="text" name="middle_name" id="middle_name" value="{{client_info['data']['middle_name']}}"/>
+
+
+            <label for="birth_date">Дата рождения</label>
+            <input type="date" name="birth_date" id="birth_date" required
+                   value="{{client_info['data']['birth_date']}}"/>
+
+        </div>
+
+
+        <div class="form-control">
+
+            <label for="address_1">Адрес 1</label>
+            <input type="text" name="address_1" id="address_1" required value="{{client_info['data']['address_1']}}"/>
+
+            <label for="address_2">Адрес 2</label>
+            <input type="text" name="address_2" id="address_2" value="{{client_info['data']['address_2']}}"/>
+
+            <label for="city">Город</label>
+            <input type="text" name="city" id="city" required value="{{client_info['data']['city']}}"/>
+
+            <label for="country">Страна</label>
+            <input type="text" name="country" id="country" required value="{{client_info['data']['country']}}"/>
+
+            <label for="zipcode">Индекс</label>
+            <input type="text" name="zipcode" id="zipcode" required value="{{client_info['data']['zipcode']}}"/>
+
+        </div>
+
+
+        <div class="form-control">
+
+            <label for="phone">Телефон</label>
+            <input type="text" name="phone" id="phone" required value="{{client_info['data']['phone']}}"/>
+
+            <label for="home_phone">Домашний телефон</label>
+            <input type="text" name="home_phone" id="home_phone" value="{{client_info['data']['home_phone']}}"/>
+
+            <label for="email">Электронная почта</label>
+            <input type="email" name="email" id="email" value="{{client_info['data']['email']}}"/>
+
+        </div>
+
+        <input type="submit" class="add-submit" value="Сохранить"/>
+
+        <button type="button" onclick="otmenFunction()" class="add-submit2" value="Add">
+            Отмена
+        </button>
+
+    </form>
+
+</div>
+
+<script src="/static/js/clients/update.js"></script>
 
 {% endblock %}

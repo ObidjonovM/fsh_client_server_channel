@@ -3,46 +3,87 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/add.css">
+<link rel="stylesheet" href="/static/css/clients/add.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<form action="{{url_for('clients.add')}}" method="POST">
-        <label for="first_name">first_name</label>
-        <input type="text" name="first_name" required />
-        <label for="middle_name">middle_name</label>
-        <input type="text" name="middle_name" required />
-        <label for="last_name">last_name</label>
-        <input type="text" name="last_name" required />
-        <label for="birth_date">birth_date</label>
-        <input type="date" name="birth_date" required />
-        <label for="address_1">address_1</label>
-        <input type="text" name="address_1" required />
-        <label for="address_2">address_2</label>
-        <input type="text" name="address_2" required />
-        <label for="city">city</label>
-        <input type="text" name="city" required />
-        <label for="country">country</label>
-        <input type="text" name="country" required />
-        <label for="zipcode">zipcode</label>
-        <input type="text" name="zipcode" required />
-        <label for="phone">phone</label>
-        <input type="text" name="phone" required />
-        <label for="home_phone">home_phone</label>
-        <input type="text" name="home_phone" required />
-        <label for="email">email</label>
-        <input type="text" name="email" required />
-        <label for="subs_id">subscription</label>
-        <select name="subs_id" id="subs_id">
-                {% for i in range(names_ids['data']['subs_id']|length)%}
-                        <option value="{{names_ids['data']['subs_id'][i]}}">{{names_ids['data']['name'][i]}}</option>
-                {%endfor%}
-        </select>
-        <input type="submit" value="Add" />
-</form>
+<div class="add-container">
 
+    <div class="add-header">
+        <h2>Новая должность</h2>
+    </div>
+
+    <form action="{{url_for('clients.add')}}" method="POST" id="myForm" class="add-form">
+
+        <div class="form-control">
+
+            <label for="subs_id">Подписка</label>
+            <select name="subs_id" id="subs_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(names_ids['data']['subs_id']|length)%}
+                <option value="{{names_ids['data']['subs_id'][i]}}">{{names_ids['data']['name'][i]}}</option>
+                {%endfor%}
+            </select>
+
+            <label for="first_name">Имя</label>
+            <input type="text" name="first_name" id="first_name" placeholder="Введите имя ..." required/>
+
+            <label for="last_name">Фамилия</label>
+            <input type="text" name="last_name" id="last_name" placeholder="Введите фамилия " required/>
+
+            <label for="middle_name">Отчество</label>
+            <input type="text" name="middle_name" id="middle_name" placeholder="Введите отчество "/>
+
+            <label for="birth_date">Дата рождения</label>
+            <input type="date" name="birth_date" id="birth_date" placeholder="Введите Дата рождения ..." required/>
+
+        </div>
+
+
+        <div class="form-control">
+
+            <label for="address_1">Адрес 1</label>
+            <input type="text" name="address_1" id="address_1" placeholder="Введите Адрес ..." required/>
+
+            <label for="address_2">Адрес 2</label>
+            <input type="text" name="address_2" id="address_2" placeholder="Введите Адрес ..." />
+
+            <label for="city">Город</label>
+            <input type="text" name="city" id="city" placeholder="Введите Город ..." required/>
+
+            <label for="country">Страна</label>
+            <input type="text" name="country" id="country" placeholder="Введите Страна ..." required/>
+
+            <label for="zipcode">Индекс</label>
+            <input type="text" name="zipcode" id="zipcode" placeholder="Введите Индекс ..." required/>
+
+        </div>
+
+
+        <div class="form-control">
+
+            <label for="phone">Телефон</label>
+            <input type="text" name="phone" id="phone" placeholder="Введите Телефон ..." required/>
+
+            <label for="home_phone">Домашний телефон</label>
+            <input type="text" name="home_phone" id="home_phone" placeholder="Введите Домашний телефон ..." />
+
+            <label for="email">Электронная почта</label>
+            <input type="email" name="email" id="email" placeholder="Введите Электронная почта ..." />
+
+        </div>
+
+        <input type="submit" class="add-submit" value="Add"/>
+        <input type="button" onclick="otmenFunction()" class="add-submit2" value="Отмена"/>
+
+    </form>
+
+</div>
+
+
+<script src="/static/js/clients/add.js"></script>
 
 {% endblock %}

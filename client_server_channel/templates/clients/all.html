@@ -3,21 +3,60 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/get_all.css">
+<link rel="stylesheet" href="/static/css/clients/all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-{{clients_info}}
-{{names_by_ids}}
 
+<button class="add-button" id="addClick">Добавить</button>
 
+<table class="table">
+    <thead>
+    <tr>
 
-<script src="/static/js/employees/get_all.js"></script>
-</body>
-</html> 
+        <th class="hidden">Номер должности</th>
+
+        <th>№</th>
+
+        <th>F.I.O</th>
+
+        <th>Подписка</th>
+
+        <th colspan="2">Действия</th>
+
+    </tr>
+    </thead>
+
+    <tbody id="tBody">
+    {% for i in range(clients_info['data']['client_id']|length) %}
+    <tr ondblclick="getClient(this)">
+
+        <td class="hidden">{{clients_info['data']['client_id'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>
+            {{clients_info['data']['first_name'][i]}}
+            {{clients_info['data']['last_name'][i]}}
+            {{clients_info['data']['middle_name'][i]}}
+        </td>
+
+        <td>{{names_by_ids['data'][clients_info['data']['subs_id'][i]]}}</td>
+
+        <td>
+            <button onclick="deleteClient(this)">Удалить</button>
+        </td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+<script src="/static/js/clients/all.js"></script>
 
 {% endblock %}
 
