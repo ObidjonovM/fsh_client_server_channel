@@ -1,5 +1,5 @@
 function glavniyStranisa(){
-    window.open('/employees/get_types', '_self');
+    window.open('/', '_self');
 }
 
 function Viyti() {
