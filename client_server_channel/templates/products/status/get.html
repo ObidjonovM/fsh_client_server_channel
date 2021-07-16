@@ -3,20 +3,53 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/products/product_info/get.css">
+<link rel="stylesheet" href="/static/css/products/status/get.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{status_info}}
+
+<div class="container">
+
+    <div class="header">
+        <h2>Названия должности</h2>
+    </div>
+
+    <div class="form">
 
         <input id="status_id" type="hidden" value="{{status_info['data']['status_id']}}">
+
+
+        <div class="form-control">
+            <label for="status">Статус</label>
+            <input type="text" name="status"
+                   value="{{status_info['data']['status']}}" id="status" readonly/>
+        </div>
+
+        <div class="form-control">
+            <label for="desc">Описание</label>
+            <input name="desc" id="desc"
+                   readonly value="{{status_info['data']['description']}}"/>
+        </div>
+
+
+        <button onclick="updateStatus()" class="add-type-submit">
+            Изменить
+        </button>
 
         <button onclick="deleteStatus()" class="add-type-submit2">
             Удалить
         </button>
 
+        <button onclick="otmenFunction()" class="add-type-submit3">
+            Назад
+        </button>
+
+    </div>
+
+
+</div>
 
 
 <script src="/static/js/products/status_info/get.js"></script>

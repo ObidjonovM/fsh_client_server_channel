@@ -1,14 +1,13 @@
-const status_id = document.getElementById("status_id");
-
-function deleteStatus() {
+function deleteType(e) {
+    let status_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
     var result = confirm("Удалить ?");
 
-    if (result) {
+    if (result){
 
-        xhttp.open('DELETE', '/products/status/delete/' + status_id.value, true);
+        xhttp.open('DELETE', '/products/status/delete/' + status_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -27,13 +26,17 @@ function deleteStatus() {
         }
 
     }
+    else {
+        return false;
+    }
+
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/products/status/add', '_self');
+};
 
-function updateStatus() {
-    window.open('/products/status/update/' + status_id.value, '_self');
+function getType(e) {
+    window.open('/products/status/get/' + e.children[0].innerHTML, '_self');
 }
 
-function otmenFunction() {
-    window.open('/products/status/all', '_self');
-}

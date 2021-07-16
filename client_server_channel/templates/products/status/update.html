@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/update_status.css">
+<link rel="stylesheet" href="/static/css/products/status/update.css">
 
 {% endblock %}
 
@@ -11,27 +11,32 @@
 {{super()}}
 
 <div class="container">
-        <div class="header">
-                <h2>Названия должности</h2>
-        </div>
-<form action="{{ url_for('products.status.update', status_id=status_info['data']['status_id']) }}" class="form" method="POST">
+    <div class="header">
+        <h2>Названия должности</h2>
+    </div>
+    <form action="{{ url_for('products.status.update', status_id=status_info['data']['status_id']) }}"
+          class="form"
+          method="POST">
+
         <div class="form-control">
-        <label for="status">Name</label>
-        <input type="text" name="status" id="status" readonly value="{{status_info['data']['status']}}"/>
+            <label for="status">Статус</label>
+            <input type="text" name="status" id="status" readonly value="{{status_info['data']['status']}}"/>
         </div>
 
         <div class="form-control">
-        <label for="desc">Description</label>
-        <textarea name="desc" id="desc">{{status_info['data']['description']}}</textarea>
+            <label for="desc">Описание</label>
+            <textarea name="desc" id="desc">{{status_info['data']['description']}}</textarea>
         </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <input type="submit" class="add-type-submit" value="Сохранить"/>
+
         <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
-                Отмена
-        </button></form>
+                class="add-type-submit2" value="Отмена">
+            Отмена
+        </button>
+    </form>
 </div>
-<script src="/static/js/employees/update_status.js"></script>
+<script src="/static/js/products/status/update.js"></script>
 
 {% endblock %}
 

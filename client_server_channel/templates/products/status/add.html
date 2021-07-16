@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/products/product_info/add.css">
+<link rel="stylesheet" href="/static/css/products/status/add.css">
 
 
 {% endblock %}
@@ -16,14 +16,14 @@
                         <h2>Новая должность</h2>
                 </div>
 
-                <form action="{{url_for('products.status.add')}}" method="POST">
+                <form id="myForm" class="form">
                         <div class="form-control">
-                                <label for="status">Status</label>
-                                <input type="text" name="status" placeholder="Введите имя..." id="status" required/>
+                                <label for="status">Статус</label>
+                                <input type="text" name="status" placeholder="Введите статус..." id="status" required/>
                         </div>
 
                         <div class="form-control">
-                                <label for="desc">Description</label>
+                                <label for="desc">Описание</label>
                                 <input type="text" name="desc" id="desc" placeholder="Введите описание..." required/>
                         </div>
 
@@ -34,7 +34,7 @@
         </div>
 
 
-<script src="/static/js/products/product_info/add.js"></script>
+<script src="/static/js/products/status_info/add.js"></script>
 
 {% endblock %}
 

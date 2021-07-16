@@ -3,17 +3,57 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/products/product_info/all.css">
+<link rel="stylesheet" href="/static/css/products/status/all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-{{status_info}}
+
+<button class="add-button" id="addClick">Добавить</button>
+
+<table class="table">
+    <thead>
+
+    <tr>
+
+        <th class="hidden">Номер должности</th>
+
+        <th>№</th>
+
+        <th>Статус</th>
+
+        <th colspan="2">Действия</th>
+
+    </tr>
+
+    </thead>
 
 
-<script src="/static/js/products/product_info/all.js"></script>
+    <tbody id="tBody">
+
+    {% for i in range(status_info['data']['status_id']|length) %}
+    <tr ondblclick="getType(this)">
+
+        <td class="hidden">{{status_info['data']['status_id'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>{{status_info['data']['status'][i]}}</td>
+
+        <td>
+            <button onclick="deleteType(this)">Удалить</button>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+<script src="/static/js/products/status_info/all.js"></script>
 
 {% endblock %}
 
