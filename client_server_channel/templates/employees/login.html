@@ -17,7 +17,7 @@
     </div>
 
 
-    <form class="form" method="POST">
+    <form class="form" action="{{url_for('employees.login')}}" method="POST">
 
         <div class="form-control">
             <label for="username">Пользователь</label>
@@ -36,6 +36,7 @@
         </div>
 
         <input type="submit" class="add-type-submit" value="Войти">
+
     </form>
 
 </div>
