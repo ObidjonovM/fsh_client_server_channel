@@ -1,16 +1,26 @@
 from . import model_utils as utls
 
 
+def __last_pk_value(table_name):
+	col_names = utls.get_column_names(table_name)
+	pk_col = col_names[0]
+	sql = f'SELECT COUNT({pk_col}) FROM {table_name}'
+	result = utls.send_to_db(sql, None, True)
+	if not result['success']:
+		return {pk_col : -1}
+	
+	return {pk_col : result['data'][0][0]}
+
 
 def insert(table_name, info):
-    sql = f'INSERT INTO {table_name} ('
-    values = 'VALUES ('
+    pk, val = __last_pk_value(table_name).popitem()       # getting the last value of PK column
+    sql = f'INSERT INTO {table_name} ({pk}, '
+    values = f'VALUES ({val + 1}, '
     for key in info.keys():
         sql += key + ', '
         values += f'%({key})s, '
 
     sql = sql[:-2] + ') ' + values[:-2] + ')'
-
     return utls.send_to_db(sql, info, False)
 
 

@@ -11,7 +11,7 @@ cur = conn.cursor()
 #creating employee_type table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS employee_type (
-	emp_type_id SERIAL PRIMARY KEY,
+	emp_type_id INT PRIMARY KEY CHECK (emp_type_id > 0),
 	emp_type_name VARCHAR(50) UNIQUE NOT NULL,
 	description VARCHAR(200),
         date_added TIMESTAMP NOT NULL,
@@ -49,7 +49,7 @@ $do$
 #creating employee_status table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS employee_status (
-	status_id SERIAL PRIMARY KEY,
+	status_id INT PRIMARY KEY CHECK (status_id > 0),
         status VARCHAR(30) UNIQUE NOT NULL,
         description VARCHAR(200),
         date_added TIMESTAMP NOT NULL,
@@ -86,7 +86,7 @@ $do$
 #creating departments table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS departments (
-	dept_id SERIAL PRIMARY KEY,
+	dept_id INT PRIMARY KEY CHECK (dept_id > 0),
 	name VARCHAR(100) NOT NULL UNIQUE,
 	description VARCHAR(200),
         date_added TIMESTAMP NOT NULL,
@@ -124,7 +124,7 @@ $do$
 #creating employees table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS employees (
-	emp_id SERIAL PRIMARY KEY,
+	emp_id INT PRIMARY KEY CHECK (emp_id > 0),
 	dept_id INT NOT NULL CHECK (dept_id > 0),
         emp_type_id INT NOT NULL CHECK (emp_type_id > 0), 
 	first_name VARCHAR(50) NOT NULL,
@@ -193,7 +193,7 @@ $do$
 # creating category table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS categories (
-	category_id SERIAL PRIMARY KEY,
+	category_id INT PRIMARY KEY CHECK (category_id > 0),
         name VARCHAR(50) UNIQUE NOT NULL,
         description VARCHAR(200),
         parent_cat_id INT NOT NULL CHECK(parent_cat_id >= 0),
@@ -213,7 +213,7 @@ CREATE TABLE IF NOT EXISTS categories (
 #creating product_info table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS product_info (
-	product_id SERIAL PRIMARY KEY,
+	product_id INT PRIMARY KEY CHECK (product_id > 0),
 	name VARCHAR(50) UNIQUE NOT NULL,
 	model VARCHAR(50) NOT NULL,
 	category_id INT NOT NULL CHECK(category_id > 0),
@@ -234,7 +234,7 @@ CREATE TABLE IF NOT EXISTS product_info (
 #creating dealers table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS dealers (
-	dealer_id SERIAL PRIMARY KEY,
+	dealer_id INT PRIMARY KEY CHECK (dealer_id > 0),
 	name VARCHAR(50) UNIQUE NOT NULL,
 	address_1 VARCHAR(50) NOT NULL,
 	address_2 VARCHAR(50),
@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS dealers (
 # creating subscriptions table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS subscriptions (
-	subs_id SERIAL PRIMARY KEY,
+	subs_id INT PRIMARY KEY CHECK (subs_id > 0),
 	name VARCHAR(50) UNIQUE NOT NULL,
 	description VARCHAR(200),
 	monthly_fee NUMERIC(12,2) NOT NULL CHECK(monthly_fee >= 0),
@@ -280,7 +280,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 #creating clients table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS clients (
-	client_id SERIAL PRIMARY KEY,
+	client_id INT PRIMARY KEY CHECK (client_id > 0),
 	first_name VARCHAR(50) NOT NULL,
 	middle_name VARCHAR(50),
 	last_name VARCHAR(50) NOT NULL,
@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS clients (
 #creating firmwares table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS firmwares (
-	fw_id SERIAL PRIMARY KEY,
+	fw_id INT PRIMARY KEY CHECK (fw_id > 0),
 	name VARCHAR(30) NOT NULL,
         model VARCHAR(10) NOT NULL,
         version VARCHAR(10) NOT NULL,
@@ -332,7 +332,7 @@ CREATE TABLE IF NOT EXISTS firmwares (
 #creating product_status table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS product_status (
-	status_id SERIAL PRIMARY KEY,
+	status_id INT PRIMARY KEY CHECK (status_id > 0),
         status VARCHAR(30) UNIQUE,
         description VARCHAR(200),
         date_added TIMESTAMP NOT NULL,
@@ -390,7 +390,7 @@ CREATE TABLE IF NOT EXISTS products (
 #creating currency table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS currencies (
-	curr_id SERIAL PRIMARY KEY,
+	curr_id INT PRIMARY KEY CHECK (curr_id > 0),
 	currency VARCHAR(20) UNIQUE NOT NULL,
         date_added TIMESTAMP NOT NULL,
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
@@ -407,7 +407,7 @@ CREATE TABLE IF NOT EXISTS currencies (
 #creating units table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS units (
-	unit_id SERIAL PRIMARY KEY,
+	unit_id INT PRIMARY KEY CHECK (unit_id > 0),
         unit VARCHAR(30) NOT NULL UNIQUE,
         description VARCHAR(200),
         date_added TIMESTAMP NOT NULL,
@@ -425,7 +425,7 @@ CREATE TABLE IF NOT EXISTS units (
 #creating suppliers table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS suppliers (
-	supplier_id SERIAL PRIMARY KEY,
+	supplier_id INT PRIMARY KEY CHECK (supplier_id > 0),
 	name VARCHAR(50) UNIQUE NOT NULL,
 	address_1 VARCHAR(50) NOT NULL,
 	address_2 VARCHAR(50),
@@ -451,7 +451,7 @@ CREATE TABLE IF NOT EXISTS suppliers (
 #creating carriers table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS carriers (
-	carrier_id SERIAL PRIMARY KEY,
+	carrier_id INT PRIMARY KEY CHECK (carrier_id > 0),
 	name VARCHAR(50) UNIQUE NOT NULL,
 	address_1 VARCHAR(50) NOT NULL,
 	address_2 VARCHAR(50),
@@ -476,7 +476,7 @@ CREATE TABLE IF NOT EXISTS carriers (
 #creating shipping_types table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS shipping_types (
-        shipping_type_id SERIAL PRIMARY KEY,
+        shipping_type_id INT PRIMARY KEY CHECK (shipping_type_id > 0),
         name VARCHAR(50) NOT NULL,
         price NUMERIC(12,2) NOT NULL,
         curr_id INT CHECK (curr_id > 0) NOT NULL,
@@ -505,7 +505,7 @@ CREATE TABLE IF NOT EXISTS shipping_types (
 
 cur.execute('''
 CREATE TABLE IF NOT EXISTS tracking_statuses (
-	status_id SERIAL PRIMARY KEY,
+	status_id INT PRIMARY KEY CHECK (status_id > 0),
 	status VARCHAR(30) NOT NULL,
 	carrier_id INT CHECK (carrier_id > 0) NOT NULL,
         date_added TIMESTAMP NOT NULL,
@@ -526,7 +526,7 @@ CREATE TABLE IF NOT EXISTS tracking_statuses (
 #creating sp_types table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS sp_types (
-	sp_type_id SERIAL PRIMARY KEY,
+	sp_type_id INT PRIMARY KEY CHECK (sp_type_id > 0),
 	name VARCHAR(50) NOT NULL,
 	brand VARCHAR(50),
 	model VARCHAR(50),
@@ -548,7 +548,7 @@ CREATE TABLE IF NOT EXISTS sp_types (
 #creating sp_logistics
 cur.execute('''
 CREATE TABLE IF NOT EXISTS sp_logistics (
-	shipment_id SERIAL PRIMARY KEY,
+	shipment_id INT PRIMARY KEY CHECK (shipment_id > 0),
 	carrier_id INT NOT NULL CHECK (carrier_id > 0),
 	total_cost NUMERIC(12,2) NOT NULL CHECK (total_cost > 0),
 	curr_id INT NOT NULL CHECK (curr_id > 0),
@@ -582,7 +582,7 @@ CREATE TABLE IF NOT EXISTS sp_logistics (
 
 cur.execute('''
 CREATE TABLE IF NOT EXISTS sp_order_statuses (
-	status_id SERIAL PRIMARY KEY,
+	status_id INT PRIMARY KEY CHECK (status_id > 0),
 	name VARCHAR(50) UNIQUE NOT NULL,
 	description VARCHAR(200),
         date_added TIMESTAMP NOT NULL,
@@ -599,7 +599,7 @@ CREATE TABLE IF NOT EXISTS sp_order_statuses (
 
 cur.execute('''
 CREATE TABLE IF NOT EXISTS sp_orders (
-	sp_order_id SERIAL PRIMARY KEY,
+	sp_order_id INT PRIMARY KEY CHECK (sp_order_id > 0),
 	issued_order_id VARCHAR(50) NOT NULL UNIQUE,
 	total_cost NUMERIC (12,2) NOT NULL CHECK (total_cost > 0),
 	curr_id INT NOT NULL CHECK (curr_id > 0),
@@ -634,7 +634,7 @@ CREATE TABLE IF NOT EXISTS sp_orders (
 #creating sp_order_details table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS sp_order_details (
-	detail_id SERIAL PRIMARY KEY,
+	detail_id INT PRIMARY KEY CHECK (detail_id > 0),
 	type_id INT NOT NULL CHECK (type_id > 0),
 	price_per_unit NUMERIC(12,2) NOT NULL CHECK(price_per_unit > 0),
 	curr_id INT NOT NULL CHECK (curr_id > 0),
@@ -664,7 +664,7 @@ CREATE TABLE IF NOT EXISTS sp_order_details (
 #creatomg sp_statuses table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS sp_statuses (
-	status_id SERIAL PRIMARY KEY,
+	status_id INT PRIMARY KEY CHECK (status_id > 0),
 	status VARCHAR(30) NOT NULL UNIQUE,
 	description VARCHAR(200),
 	date_added TIMESTAMP NOT NULL,
@@ -682,7 +682,7 @@ CREATE TABLE IF NOT EXISTS sp_statuses (
 #creating sp_warehouse
 cur.execute('''
 CREATE TABLE IF NOT EXISTS sp_warehouse (
-	sp_id SERIAL PRIMARY KEY,
+	sp_id INT PRIMARY KEY CHECK (sp_id > 0),
 	type_id INT NOT NULL CHECK (type_id > 0),
 	order_id INT NOT NULL CHECK (order_id > 0),
 	status_id INT NOT NULL CHECK (status_id > 0),
@@ -710,7 +710,7 @@ CREATE TABLE IF NOT EXISTS sp_warehouse (
 #creating error_logs table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS error_logs (
-	log_id SERIAL PRIMARY KEY,
+	log_id INT PRIMARY KEY CHECK (log_id > 0),
         call_path TEXT NOT NULL,
         function_name VARCHAR(50) NOT NULL,
         line_number INT NOT NULL CHECK (line_number > 0),
@@ -723,7 +723,7 @@ CREATE TABLE IF NOT EXISTS error_logs (
 #creating tables_info table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS tables_info (
-        table_id SERIAL PRIMARY KEY,
+        table_id INT PRIMARY KEY CHECK (table_id > 0),
         name VARCHAR(50) NOT NULL UNIQUE,
         description VARCHAR(200),
 	date_added TIMESTAMP NOT NULL,
@@ -734,7 +734,7 @@ CREATE TABLE IF NOT EXISTS tables_info (
 #creating access_rights table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS access_rights (
-	rec_id SERIAL PRIMARY KEY,
+	rec_id INT PRIMARY KEY CHECK (rec_id > 0),
 	table_id INT NOT NULL CHECK (table_id > 0),
 	dept_id INT NOT NULL CHECK (dept_id > 0),
 	emp_type_id INT NOT NULL CHECK (emp_type_id > 0),
