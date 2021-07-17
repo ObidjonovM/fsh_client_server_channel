@@ -9,7 +9,9 @@ class FirmwaresC:
     def add(firm_info):
         now = datetime.now()
         firm_info['date_added'] = now
+        firm_info['add_emp_id'] = 1
         firm_info['date_modified'] = now
+        firm_info['modify_emp_id'] = 1
         add_result = FirmwaresTable.insert(firm_info)
 
         return {
@@ -48,6 +50,17 @@ class FirmwaresC:
             'success' : ids_names['success'],
             'data' : ids_names['data'],
             'log_code' : utls.record_log(ids_names, 'get_ids_names', 'crud_logs')
+        }
+
+
+    @staticmethod
+    def get_names_by_ids(fws_ids):
+        names_ids = FirmwaresTable.get_names_by_ids(fws_ids)
+
+        return {
+            'success' : names_ids['success'],
+            'data' : names_ids['data'],
+            'log_code' : utls.record_log(names_ids, 'get_names_by_ids', 'crud_logs')
         }
 
 

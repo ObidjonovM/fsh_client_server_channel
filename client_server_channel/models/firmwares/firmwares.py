@@ -24,6 +24,26 @@ class FirmwaresTable:
 
 
     @staticmethod
+    def get_names_by_ids(fws_ids):
+        result = crud.get_columns_by_ids(
+            'firmwares',
+            ['fw_id', 'name'],
+            'fw_id',
+            fws_ids
+        )
+
+        if result['data'] != []:
+            names_ids = {}
+            data = result['data']
+            data_len = len(data['fw_id'])
+            for i in range(data_len):
+                names_ids[data['fw_id'][i]] = data['name'][i]
+
+            result['data'] = names_ids
+
+        return result
+
+    @staticmethod
     def update(firm_info):
         return crud.update('firmwares', firm_info, 'fw_id')
 
