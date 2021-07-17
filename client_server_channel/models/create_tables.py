@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS employee_type (
         date_added TIMESTAMP NOT NULL,
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
-	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0));
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+    active BOOLEAN NOT NULL);
 ''')
 
 
@@ -31,12 +32,13 @@ BEGIN
     IF NOT EXISTS (SELECT emp_type_id FROM employee_type) THEN
 	INSERT INTO employee_type(
 		emp_type_id, emp_type_name, description, 
-		date_added, add_emp_id, date_modified, modify_emp_id
+		date_added, add_emp_id, date_modified, 
+        modify_emp_id, active
 	)
 	VALUES (
 		1, 'SUPERUSER', 
 		'SUPERUSER type created at the DB initialization', 
-		%s, 1, %s, 1
+		%s, 1, %s, 1, TRUE
 	);
     END IF;
 END;
@@ -55,7 +57,8 @@ CREATE TABLE IF NOT EXISTS employee_status (
         date_added TIMESTAMP NOT NULL,
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
-	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0));
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+    active BOOLEAN NOT NULL);
 ''')
 
 
@@ -69,12 +72,13 @@ BEGIN
     IF NOT EXISTS (SELECT status_id FROM employee_status) THEN
         INSERT INTO employee_status(
                 status_id, status, description,
-                date_added, add_emp_id, date_modified, modify_emp_id
+                date_added, add_emp_id, date_modified, 
+                modify_emp_id, active
         )
         VALUES (
                 1, 'SUPERUSER',
                 'SUPERUSER status created at the DB initialization',
-                %s, 1, %s, 1
+                %s, 1, %s, 1, TRUE
         );
     END IF;
 END;
@@ -92,7 +96,8 @@ CREATE TABLE IF NOT EXISTS departments (
         date_added TIMESTAMP NOT NULL,
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
-	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0));
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+    active BOOLEAN NOT NULL);
 ''')
 
 
@@ -106,12 +111,13 @@ BEGIN
     IF NOT EXISTS (SELECT dept_id FROM departments) THEN
         INSERT INTO departments(
                 dept_id, name, description,
-                date_added, add_emp_id, date_modified, modify_emp_id
+                date_added, add_emp_id, date_modified, 
+                modify_emp_id, active
         )
         VALUES (
                 1, 'SUPERUSER',
                 'SUPERUSER department created at the DB initialization',
-                %s, 1, %s, 1
+                %s, 1, %s, 1, TRUE
         );
     END IF;
 END;
@@ -147,6 +153,7 @@ CREATE TABLE IF NOT EXISTS employees (
         add_emp_id INT NOT NULL CHECK (add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK (modify_emp_id > 0),
+	active BOOLEAN NOT NULL,	
 
         UNIQUE (first_name, middle_name, last_name, birth_date, address_1),
         FOREIGN KEY (dept_id)
@@ -174,7 +181,8 @@ BEGIN
 		birth_date, address_1, city, 
 		country, phone, username, 
 		password, emp_status_id, date_added, 
-		add_emp_id, date_modified, modify_emp_id
+		add_emp_id, date_modified, 
+		modify_emp_id, active
 	    )
 	    VALUES (
 		1, 1, 1,
@@ -182,7 +190,7 @@ BEGIN
 		%s, '8/2 Bunyodkor Avenue', 'Tashkent',
 		'Uzbekistan', '+998712779886', 'superuser',
 		%s, 1, %s,
-		1, %s, 1
+		1, %s, 1, TRUE
 	    );
 	END IF;
 END;
@@ -202,6 +210,7 @@ CREATE TABLE IF NOT EXISTS categories (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
 
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
@@ -219,11 +228,12 @@ BEGIN
     IF NOT EXISTS (SELECT category_id FROM categories) THEN
         INSERT INTO categories(
             category_id, name, description, parent_cat_id, leaf_cat, 
-            date_added, add_emp_id, date_modified, modify_emp_id
+            date_added, add_emp_id, date_modified, 
+			modify_emp_id, active
         )
         VALUES (
             1, 'root', '\"root\" category created during DB initialization',
-            1, FALSE, %s, 1, %s, 1
+            1, FALSE, %s, 1, %s, 1, TRUE
         );
     END IF;
 END;
@@ -243,6 +253,7 @@ CREATE TABLE IF NOT EXISTS product_info (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
 
 	FOREIGN KEY(category_id)
 	REFERENCES categories(category_id),
@@ -271,6 +282,7 @@ CREATE TABLE IF NOT EXISTS dealers (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
 
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
@@ -291,6 +303,7 @@ CREATE TABLE IF NOT EXISTS subscriptions (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
@@ -321,6 +334,7 @@ CREATE TABLE IF NOT EXISTS clients (
 	last_signin TIMESTAMP,
 	date_added TIMESTAMP NOT NULL,
 	date_modified TIMESTAMP NOT NULL,
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY(subs_id)
 	REFERENCES subscriptions(subs_id));
@@ -340,6 +354,7 @@ CREATE TABLE IF NOT EXISTS firmwares (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,	
 
 	UNIQUE(name, model, version),        
         FOREIGN KEY(author_id)
@@ -361,7 +376,8 @@ CREATE TABLE IF NOT EXISTS product_status (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
-        
+    active BOOLEAN NOT NULL,
+     
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
 	FOREIGN KEY (modify_emp_id)
@@ -389,6 +405,7 @@ CREATE TABLE IF NOT EXISTS products (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY(product_id)
 	REFERENCES product_info(product_id),
@@ -418,6 +435,7 @@ CREATE TABLE IF NOT EXISTS currencies (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
@@ -436,6 +454,7 @@ CREATE TABLE IF NOT EXISTS units (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
@@ -462,6 +481,7 @@ CREATE TABLE IF NOT EXISTS suppliers (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
 
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
@@ -487,6 +507,7 @@ CREATE TABLE IF NOT EXISTS carriers (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
 
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
@@ -510,6 +531,7 @@ CREATE TABLE IF NOT EXISTS shipping_types (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
 
 	FOREIGN KEY (curr_id)
 	REFERENCES currencies(curr_id),
@@ -534,6 +556,7 @@ CREATE TABLE IF NOT EXISTS tracking_statuses (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
 
 	UNIQUE(status, carrier_id),
 	FOREIGN KEY (carrier_id)
@@ -558,6 +581,7 @@ CREATE TABLE IF NOT EXISTS sp_types (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
 
 	UNIQUE(name, brand, model, version),
 	FOREIGN KEY (add_emp_id)
@@ -585,6 +609,7 @@ CREATE TABLE IF NOT EXISTS sp_logistics (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
 
 	UNIQUE(tr_number, shipped_date),
 	FOREIGN KEY (carrier_id)
@@ -611,6 +636,7 @@ CREATE TABLE IF NOT EXISTS sp_order_statuses (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
@@ -635,7 +661,8 @@ CREATE TABLE IF NOT EXISTS sp_orders (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
-	
+	active BOOLEAN NOT NULL,	
+
 	FOREIGN KEY (curr_id)
 	REFERENCES currencies(curr_id),
 	FOREIGN KEY (supplier_id)
@@ -667,6 +694,7 @@ CREATE TABLE IF NOT EXISTS sp_order_details (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY (type_id)
 	REFERENCES sp_types(sp_type_id),
@@ -693,6 +721,7 @@ CREATE TABLE IF NOT EXISTS sp_statuses (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
@@ -713,6 +742,7 @@ CREATE TABLE IF NOT EXISTS sp_warehouse (
 	date_used TIMESTAMP,
 	used_emp_id INT CHECK (used_emp_id > 0),
 	pr_serial_num VARCHAR(12) UNIQUE,
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY (type_id)
 	REFERENCES sp_types(sp_type_id),
@@ -738,7 +768,8 @@ CREATE TABLE IF NOT EXISTS error_logs (
         line_number INT NOT NULL CHECK (line_number > 0),
         error_name VARCHAR(50) NOT NULL,
         description TEXT NOT NULL,
-        date_added TIMESTAMP NOT NULL);
+        date_added TIMESTAMP NOT NULL,
+		active BOOLEAN NOT NULL);
 ''')
 
 
@@ -749,7 +780,8 @@ CREATE TABLE IF NOT EXISTS tables_info (
         name VARCHAR(50) NOT NULL UNIQUE,
         description VARCHAR(200),
 	date_added TIMESTAMP NOT NULL,
-	date_modified TIMESTAMP NOT NULL);
+	date_modified TIMESTAMP NOT NULL,
+	active BOOLEAN NOT NULL);
 ''')
 
 
@@ -762,6 +794,7 @@ CREATE TABLE IF NOT EXISTS access_rights (
 	emp_type_id INT NOT NULL CHECK (emp_type_id > 0),
 	date_added TIMESTAMP NOT NULL,
 	date_modified TIMESTAMP NOT NULL,
+	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY (table_id)
 	REFERENCES tables_info(table_id),

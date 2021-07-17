@@ -20,36 +20,42 @@ def insert(table_name, info):
         sql += key + ', '
         values += f'%({key})s, '
 
-    sql = sql[:-2] + ') ' + values[:-2] + ')'
+    sql += 'active) '
+    values += 'TRUE)'
+    sql = sql + values
     return utls.send_to_db(sql, info, False)
 
 
 def get(table_name, rec_dict):
     col_names = utls.get_column_names(table_name)
     k, v = rec_dict.popitem()
-    sql = f'SELECT * FROM {table_name} WHERE {k} = %({k})s'
+    sql = f'SELECT * FROM {table_name} WHERE {k} = %({k})s AND active = TRUE'
     result = utls.send_to_db(sql, {k : v}, True)
 
     if result['success'] and len(result['data']) > 0:
         result['data'] = utls.keyval_tuples2dict(col_names, result['data'][0])
+        if 'active' in result['data']:
+            del result['data']['active']
 
     return result
 
 
 def get_all(table_name):
 	col_names = utls.get_column_names(table_name)
-	sql = f'SELECT * FROM {table_name}'
+	sql = f'SELECT * FROM {table_name} WHERE active = TRUE ORDER BY {col_names[0]}'
 	result = utls.send_to_db(sql, None, True)
 
 	if result['success']:
 		result['data'] = utls.list_tuples2tuple_lists(result['data'])
 		result['data'] = utls.keyval_tuples2dict(col_names, result['data'])
-
+		if 'active' in result['data']:
+			del result['data']['active']
+	
 	return result
 
 
 def get_ids_names(table_name, id_col, name_col):
-    sql = f'SELECT {id_col}, {name_col} FROM {table_name}'
+    sql = f'SELECT {id_col}, {name_col} FROM {table_name} WHERE active = TRUE'
     result = utls.send_to_db(sql, None, True)
     
     if result['success']:
@@ -64,7 +70,7 @@ def get_ids_fullnames(table_name, name_cols):
     for name_col in name_cols:
         sql += str(name_col) + ', '
 
-    sql = sql[:-2] + f' FROM {table_name}'
+    sql = sql[:-2] + f' FROM {table_name} WHERE active = TRUE'
     print(sql)
     result = utls.send_to_db(sql, None, True)
     print(result)
@@ -78,7 +84,7 @@ def get_ids_fullnames(table_name, name_cols):
 
 def get_other_pairs(table_name, id_col, name_col, id):
     sql = f'SELECT {id_col}, {name_col} FROM {table_name}'
-    sql += f' WHERE {id_col} != {id}'
+    sql += f' WHERE {id_col} != {id} AND active = TRUE'
     result = utls.send_to_db(sql, None, True)
 
     if result['success']:
@@ -93,12 +99,12 @@ def get_columns_by_ids(table_name, cols, id_name, ids):
     for col in cols:
         sql += str(col) + ', '
 
-    sql = sql[:-2] + f' FROM {str(table_name)} WHERE '
+    sql = sql[:-2] + f' FROM {str(table_name)} WHERE active = TRUE AND ('
 
     for id in ids:
         sql += f'{str(id_name)} = {str(id)} OR '
 
-    sql = sql[:-4] + f' ORDER BY {id_name}'
+    sql = sql[:-4] + f') ORDER BY {id_name}'
 
     result = utls.send_to_db(sql, None, True)
 
@@ -109,13 +115,12 @@ def get_columns_by_ids(table_name, cols, id_name, ids):
     return result
 
 
-
-
 def record_exists(table_name, record):
     sql = f'SELECT * FROM {table_name} WHERE '
     for col in record.keys():
         sql += f'{col} = %({col})s AND '
     
+    sql += 'active = TRUE '
     result = utls.send_to_db(sql[:-5], record, True)
     
     if result['success'] and len(result['data']) > 0:
@@ -127,7 +132,7 @@ def record_exists(table_name, record):
 def get_records(table_name, record, unique=True):
     col_names = utls.get_column_names(table_name)
     k, v = record.popitem()
-    sql = f'SELECT * FROM {table_name} WHERE {k} = %({k})s'
+    sql = f'SELECT * FROM {table_name} WHERE {k} = %({k})s AND active = TRUE'
     result = utls.send_to_db(sql, {k : v}, True)
 
     if result['success'] and len(result['data']) > 0:
@@ -146,15 +151,14 @@ def update(table_name, info, prim_col):
 		if key != prim_col:
 			sql += f'{key} = %({key})s, '
 
-	sql = sql[:-2] + f' WHERE {prim_col} = %({prim_col})s'
+	sql = sql[:-2] + f' WHERE {prim_col} = %({prim_col})s AND active =  TRUE'
 
 	return utls.send_to_db(sql, info, False)
 
 
 def delete(table_name, rec_dict):
 	k, v = rec_dict.popitem()
-	sql = f'DELETE FROM {table_name} WHERE {k} = %({k})s'
-
+	sql = f'UPDATE {table_name} SET active = FALSE WHERE {k} = %({k})s'
 	return utls.send_to_db(sql, {k : v}, False)
 
 
