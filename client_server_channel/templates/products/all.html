@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/products/dealer/all.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+{{products_info}}
+{{products_by_ids}}
+{{dealers_by_ids}}
+{{clients_by_ids}}
+{{firmwares_by_ids}}
+{{status_by_ids}}
+
+<script src="/static/js/products/dealer/all.js"></script>
+
+{% endblock %}
+
+

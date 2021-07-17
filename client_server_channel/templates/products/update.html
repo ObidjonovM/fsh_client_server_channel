@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/products/dealer/update.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+
+<div class="add-container">
+        <div class="add-header">
+                <h2>Названия должности</h2>
+        </div>
+
+<form class="add-form"
+      action="{{ url_for('products.update', serial_num=product_info['data']['serial_num']) }}"
+      method="POST">
+{{product_info}}
+{{dealers_ids}}
+{{status_ids}}
+{{product_name}}
+{{clients_ids}}
+{{firmwares_ids}}
+        <div class="form-control">
+                <label for="dealer_id">dealer_id</label>
+                <input type="text" name="dealer_id">
+                <label for="emp_id">emp_id</label>
+                <input type="text" name="emp_id">
+                <label for="status_id">status_id</label>
+                <input type="text" name="status_id">
+        </div>
+
+
+
+        <input type="submit" class="add-submit" value="Сохранить" />
+
+        <button type="button" onclick="otmenFunction()"
+                class="add-submit2" value="Отмена" >
+                Отмена
+        </button>
+
+</form>
+
+</div>
+
+<script src="/static/js/products/dealer/update.js"></script>
+
+{% endblock %}
+
+

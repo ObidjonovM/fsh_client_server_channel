@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/products/dealer/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+
+{{product_info}}
+{{product_name}}
+{{dealer_name}}
+{{client_name}}
+{{firmware_name}}
+{{status_name}}
+<input type="text" id="product_id" value="{{product_info['data']['serial_num']}}">
+
+
+        <button onclick="deleteProduct()" class="add-submit2">
+            Удалить
+        </button>
+
+
+
+
+<script src="/static/js/products/get.js"></script>
+
+{% endblock %}
+
+

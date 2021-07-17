@@ -7,5 +7,6 @@ from .products import CategoriesC
 from .products import ProductInfoC
 from .products import DealerC
 from .products import ProductStatusC
+from .products import ProductC
 from .clients import SubscriptionC
 from .clients import ClientC
