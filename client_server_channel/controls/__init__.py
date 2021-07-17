@@ -1,7 +1,6 @@
 from .employees import EmployeeTypeC
 from .employees import EmployeeStatusC
 from .employees import EmployeeC
-from .departments import DepartmentsC
 from .products import FirmwareC
 from .products import CategoriesC
 from .products import ProductInfoC
@@ -10,3 +9,4 @@ from .products import ProductStatusC
 from .products import ProductC
 from .clients import SubscriptionC
 from .clients import ClientC
+from .employees import DepartmentC

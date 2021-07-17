@@ -3,4 +3,3 @@ from .core import core
 from .employees import employees
 from .products import products
 from .error_pages import error_pages
-from .departments import departments

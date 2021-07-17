@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/employee_status/add.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div class="container">
+<div class="header">
+    <h2>Новая должность</h2>
+</div>
+<form action="{{url_for('employees.employee_status.add')}}" id="myForm" class="form" method="POST">
+    <div class="form-control">
+    <label for="status_name">Status</label>
+    <input type="text" name="status" id="status_name" required/>
+    </div>
+
+    <div class="form-control">
+    <label for="desc">Description</label>
+    <textarea name="desc" id="desc"></textarea>
+    </div>
+
+    <input type="submit" value="Add" class="add-type-submit"/>
+    <input type="button" onclick="otmenFunction()" class="add-type-submit" value="Отмена"/>
+</form>
+</div>
+
+<script src="/static/js/employees/employee_status/add.js"></script>
+
+{% endblock %}
+
+

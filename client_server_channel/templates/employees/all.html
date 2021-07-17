@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/all.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<button class="add-button" id="addClick">Добавить</button>
+
+<table class="table">
+
+    <thead>
+    <tr>
+        <th class="hidden"></th>
+
+        <th>№</th>
+
+        <th>F.I.O</th>
+
+        <th>Отделение</th>
+
+        <th>Статус</th>
+
+        <th>Действия</th>
+
+    </tr>
+    </thead>
+
+    <tbody id="tbody">
+    {%for i in range(employees['data']['emp_id']|length)%}
+    <tr ondblclick="getType(this)">
+
+        <td class="hidden">{{employees['data']['emp_id'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>
+            {{employees['data']['last_name'][i]}}
+            {{employees['data']['first_name'][i]}}
+            {{employees['data']['middle_name'][i]}}
+        </td>
+
+        <td>{{names_ids_departments['data'][employees['data']['dept_id'][i]]}}</td>
+
+        <td>{{names_ids_status['data'][employees['data']['emp_status_id'][i]]}}</td>
+
+        <td><button onclick="deleteEmp(this)">Удалить</button></td>
+
+    </tr>
+    {%endfor%}
+    </tbody>
+
+</table>
+
+
+<script src="/static/js/employees/all.js"></script>
+
+{% endblock %}
+

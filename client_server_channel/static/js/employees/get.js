@@ -1,15 +1,40 @@
+const emp_id = document.getElementById("emp_id");
 
 function deleteType() {
-    const emp_id = document.getElementById("emp_id")
-    let xhttp = new XMLHttpRequest();
-    xhttp.open('DELETE', '/employees/delete/' + emp_id.value, true)
-    xhttp.send()
 
-    xhttp.onreadystatechange = () => {
-       if (this.readyState == 4 && this.status == 200) {
-	   console.log(this.responseText);
-       } 
+    let xhttp = new XMLHttpRequest();
+
+    var result = confirm("Удалить ?");
+
+    if (result){
+
+        xhttp.open('DELETE', '/employees/delete/' + emp_id.value, true);
+
+        xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+
+        xhttp.send();
+
+        xhttp.onreadystatechange = () => {
+
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                const resp = JSON.parse(xhttp.responseText);
+                if (resp['success']) {
+                    window.open('/employees/all', '_self')
+                } else {
+                    alert('Не удалось удалить тип сотрудника!');
+                }
+            }
+
+        }
+
     }
 
 }
 
+function updateType() {
+    window.open('/employees/update/' + emp_id.value, '_self');
+}
+
+function otmenFunction (){
+    window.open('/employees/all', '_self');
+}

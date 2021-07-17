@@ -10,12 +10,67 @@
 {% block body %}
 {{super()}}
 
-{{ fw_info }}
-{{fullname}}
+<div class="container">
 
 <input id="fw_id" type="text" value="{{fw_info['data']['fw_id']}}"/>
 <button onclick="deleteType()">Delete Type</button>
+    <div class="header">
+        <h2>Новая должность</h2>
+    </div>
 
+    <form id="myForm" class="form">
+        <input id="fw_id" type="hidden"
+               value="{{fw_info['data']['fw_id']}}"/>
+
+        <div class="form-control">
+            <label for="name">Имя</label><br/>
+            <input type="text" id="name" name="name"
+                   value="{{fw_info['data']['name']}}"
+                   readonly required>
+        </div>
+
+        <div class="form-control">
+            <label for="model">Модель</label>
+            <input type="text" id="model" name="model"
+                   value="{{fw_info['data']['model']}}"
+                   readonly required>
+        </div>
+
+        <div class="form-control">
+            <label for="version">Версия</label>
+            <input type="text" id="version" name="version"
+                   value="{{fw_info['data']['version']}}"
+                   readonly required>
+        </div>
+
+        <div class="form-control">
+            <label for="desc">Описание</label>
+            <input type="text" id="desc" name="desc"
+                   value="{{fw_info['data']['description']}}"
+                   readonly required>
+        </div>
+
+        <div class="form-control">
+            <label for="emp_id">Ф.И.О</label>
+            <input type="text" id="emp_id" name="emp_id"
+                   value="{{fullname}}"
+                   readonly required>
+        </div>
+
+        <div class="buttons">
+            <input type="button" class="firmwares-add-submit" onclick="updateFirm()" value="Изменить">
+
+            <button type="button" class="firmwares-add-submit1" onclick="deleteFirm()">
+                Удалить
+            </button>
+
+            <button type="button" class="firmwares-add-submit2" onclick="otmenFunction()">
+                Назад
+            </button>
+        </div>
+    </form>
+
+</div>
 
 <script src="/static/js/products/firmware/get.js"></script>
 

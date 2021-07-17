@@ -72,6 +72,7 @@ class FirmwareC:
         if get_result['data'] != []:
             firm_info['date_modified'] = datetime.now()
             update_result = FirmwareTable.update(firm_info)
+            firm_info['modify_emp_id'] = 1
             
             return {
                 'success' : update_result['success'],

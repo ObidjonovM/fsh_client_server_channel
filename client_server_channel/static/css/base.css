@@ -23,7 +23,7 @@ body {
     margin: 0;
 }
 
-.form-control input:focus {
+.form-control input:focus, select:focus {
     outline: 0;
     border-color: #777;
 }
@@ -52,11 +52,11 @@ body {
     transition: all 0.2s ease-out;
 }
 
-.viyti{
+.viyti {
     left: 81%;
 }
 
-.glavni-stranisa:hover{
+.glavni-stranisa:hover {
     background-color: #2fa28f;
     box-shadow: 0px 0px 1px 1px #4e4e4e;
     border: 1px solid #9ef6f1;
@@ -69,15 +69,6 @@ body {
 textarea {
     resize: none;
 }
-
-.add-type-submit{
-    text-align: center;
-}
-
-
-
-
-
 
 /****** Base.css da table stylel lari ******/
 .table {
@@ -106,7 +97,7 @@ textarea {
     background-color: #f5f5f5;
 }
 
-/*responsive*/
+/*---- responsive ----*/
 
 @media (max-width: 500px) {
     .table thead {
@@ -158,10 +149,6 @@ tbody td button:hover {
     box-shadow: 0px 0px 4px 2px #4e4e4e;
 }
 
-.add-button:hover {
-    box-shadow: 0px 0px 4px 2px #4e4e4e;
-}
-
 .add-button {
     position: absolute;
     top: 60px;
@@ -180,4 +167,18 @@ tbody td button:hover {
 .add-button:hover {
     background-color: #2fa28f;
     border: 1px solid #9ef6f1;
+    box-shadow: 0px 0px 4px 2px #4e4e4e;
 }
+
+
+/****** employees dagi add.css, get.css va update.css larning style lari ******/
+
+.add-submit:hover, .add-submit2:hover, .add-submit3:hover {
+    background-color: #044f66;
+}
+
+
+
+
+
+
