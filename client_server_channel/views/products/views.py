@@ -1,11 +1,12 @@
 from flask import Blueprint, render_template, request, url_for, redirect
 from client_server_channel.controls import (ProductC, ProductInfoC, 
-						DealerC, ClientC, FirmwaresC, ProductStatusC)
+						DealerC, ClientC, FirmwareC, ProductStatusC)
 from .. import view_utils as utls
 from .category import category
 from .product_info import product_info
 from .dealer import dealer
 from .status import status
+from .firmware import firmware
 
 
 products = Blueprint('products', __name__, url_prefix='/products')
@@ -13,6 +14,7 @@ products.register_blueprint(category)
 products.register_blueprint(product_info)
 products.register_blueprint(dealer)
 products.register_blueprint(status)
+products.register_blueprint(firmware)
 
 
 @products.route('/products')
@@ -35,7 +37,7 @@ def add():
 			products_ids = ProductInfoC.get_ids_names(),
 			dealers_ids = DealerC.get_ids_names(),
 			clients_ids = ClientC.get_ids_names(),
-			firmwares_ids = FirmwaresC.get_ids_names(),
+			firmwares_ids = FirmwareC.get_ids_names(),
 			status_ids = ProductStatusC.get_ids_names()
 		)
 
@@ -68,7 +70,7 @@ def get(serial_num):
 			product_name = ProductInfoC.get(product_info['data']['product_id']),
 			dealer_name = DealerC.get(product_info['data']['dealer_id']),
 			client_name = ClientC.get(product_info['data']['client_id']),
-			firmware_name = FirmwaresC.get(product_info['data']['firmware_id']),
+			firmware_name = FirmwareC.get(product_info['data']['firmware_id']),
 			status_name = ProductStatusC.get(product_info['data']['status_id'])
 		)
 
@@ -85,7 +87,7 @@ def all():
 		products_by_ids = ProductInfoC.get_names_by_ids(products_info['data']['product_id']),
 		dealers_by_ids = DealerC.get_names_by_ids(products_info['data']['dealer_id']),
 		clients_by_ids = ClientC.get_names_by_ids(products_info['data']['client_id']),
-		firmwares_by_ids = FirmwaresC.get_names_by_ids(products_info['data']['firmware_id']),
+		firmwares_by_ids = FirmwareC.get_names_by_ids(products_info['data']['firmware_id']),
 		status_by_ids = ProductStatusC.get_names_by_ids(products_info['data']['status_id'])
 	)
 
@@ -103,7 +105,7 @@ def update(serial_num):
 				status_ids = ProductStatusC.get_ids_names(),
 				product_name = ProductInfoC.get(product_info['data']['product_id']),
 				clients_ids = ClientC.get(product_info['data']['client_id']),
-				firmwares_ids = FirmwaresC.get(product_info['data']['firmware_id'])
+				firmwares_ids = FirmwareC.get(product_info['data']['firmware_id'])
 			)
 
 		return redirect(url_for('products.all'))

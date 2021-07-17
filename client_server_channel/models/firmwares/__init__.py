@@ -1,1 +1,0 @@
-from .firmwares import FirmwaresTable

@@ -1,7 +1,7 @@
 from .. import crud
 
 
-class FirmwaresTable:
+class FirmwareTable:
 
     @staticmethod
     def insert(firm_info):

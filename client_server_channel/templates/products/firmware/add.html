@@ -10,7 +10,7 @@
 {% block body %}
 {{super()}}
 
-<form action="{{url_for('firmwares.add')}}" method="POST">
+<form action="{{url_for('products.firmware.add')}}" method="POST">
     <label for="name">name</label>
     <input type="text" id="name" name="name">
     <label for="model">model</label>
