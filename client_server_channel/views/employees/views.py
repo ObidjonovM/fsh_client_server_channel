@@ -54,6 +54,9 @@ def login():
 
 @employees.route('/change_password', methods=['GET', 'POST'])
 def change_password():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
     if request.method == 'GET':
         return render_template(
             utls.url_join(['employees', 'change_password.html']),
@@ -72,7 +75,7 @@ def change_password():
             return redirect(url_for('core.index'))
         
         if result['user_exists'] and not result['wrong_password']:
-            return redirect(url_for('employees.logout'))
+            return redirect(url_for('employees.account'))
 
         return render_template(
             utls.url_join(['employees', 'change_password.html']),
