@@ -12,9 +12,7 @@ class EmployeeC:
         emp_info['username'] = f"{emp_info['first_name'].lower()}.{emp_info['last_name'].lower()}"
         emp_info['password'] = generate_password_hash('123')
         emp_info['date_added'] = now
-        emp_info['add_emp_id'] = 1
         emp_info['date_modified'] = now
-        emp_info['modify_emp_id'] = 1
         add_result = EmployeesTable.insert(emp_info)
 
         return {
@@ -67,7 +65,6 @@ class EmployeeC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             type_info['date_modified'] = datetime.now()
-            type_info['modify_emp_id'] = 1
             update_result = EmployeesTable.update(type_info)
             return {
                 'success' : update_result['success'],
@@ -121,7 +118,10 @@ class EmployeeC:
 
                 if not result['wrong_password']:
                     if new_password:
-                        EmployeesTable.change_password(login_result['data'], generate_password_hash(new_password))
+                        EmployeesTable.change_password(
+                            login_result['data'],
+                            generate_password_hash(new_password)
+                            )
                     
                     EmployeesTable.update_lastsignin(login_result['data'], datetime.now())
                     result['wrong_password'] = False

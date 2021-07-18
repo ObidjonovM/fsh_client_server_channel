@@ -6,16 +6,11 @@ from datetime import datetime
 class DepartmentC:
 
     @staticmethod
-    def add(name, desc):
+    def add(dept_info):
         now = datetime.now()
-        add_result = DepartmentTable.insert({
-            'name' : name,
-            'description' : desc,
-            'date_added' : now,
-            'add_emp_id' : 1,
-            'date_modified' : now,
-            'modify_emp_id' : 1
-        })
+        dept_info['date_added'] = now,
+        dept_info['date_modified'] = now,
+        add_result = DepartmentTable.insert(dept_info)
 
         return {
             'success' : add_result['success'],
@@ -73,7 +68,6 @@ class DepartmentC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             dept_info['date_modified'] = datetime.now()
-            dept_info['modify_emp_id'] = 1
             update_result = DepartmentTable.update(dept_info)
             return {
                 'success' : update_result['success'],

@@ -14,7 +14,12 @@ def add():
         return render_template(utls.url_join(['employees','employee_type','add.html']))
 
     if request.method == 'POST':
-        result = EmployeeTypeC.add(request.form['type_name'], request.form['desc'])
+        result = EmployeeTypeC.add({
+            'emp_type_name' : request.form['type_name'],
+            'description' : request.form['desc'],
+            'add_emp_id' : session['employee']['id'],
+            'modify_emp_id' : session['employee']['id']
+            })
         if result['success']:
             return redirect(url_for('employees.employee_type.all'))
         
@@ -67,6 +72,7 @@ def update(type_id):
     if request.method == 'POST':
         result = EmployeeTypeC.update({
 				    'description' : request.form['desc'],
+                    'modify_emp_id' : session['employee']['id'],
 				    'emp_type_id' : type_id
 				     })
         if result['success']:

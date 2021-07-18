@@ -136,7 +136,9 @@ def add():
                     'phone' : params['phone'],
                     'home_phone' : params['home_phone'],
                     'email' : params['email'],
-                    'emp_status_id' : params['status_id']
+                    'emp_status_id' : params['status_id'],
+                    'add_emp_id' : session['employee']['id'],
+                    'modify_emp_id' : session['employee']['id']
         })
         if result['success']:
             return redirect(url_for('employees.all'))
@@ -220,6 +222,7 @@ def update(emp_id):
                     'home_phone' : params['home_phone'],
                     'email' : params['email'],
                     'emp_status_id' : params['status_id'],
+                    'modify_emp_id' : session['employee']['id'],
 				    'emp_id' : emp_id
 		})
         if result['success']:

@@ -6,16 +6,11 @@ from datetime import datetime
 class EmployeeStatusC:
 
     @staticmethod
-    def add(name, desc):
+    def add(status_info):
         now = datetime.now()
-        add_result = EmployeeStatusTable.insert({
-            'status' : name,
-            'description' : desc,
-            'date_added' : now,
-            'add_emp_id' : 1,
-            'date_modified' : now,
-            'modify_emp_id' : 1
-        })
+        status_info['date_added'] = now
+        status_info['date_modified'] = now
+        add_result = EmployeeStatusTable.insert(status_info)    
 
         return {
             'success' : add_result['success'],
@@ -73,7 +68,6 @@ class EmployeeStatusC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             status_info['date_modified'] = datetime.now()
-            status_info['modify_emp_id'] = 1
             update_result = EmployeeStatusTable.update(status_info)
             return {
                 'success' : update_result['success'],

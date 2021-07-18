@@ -17,10 +17,12 @@ def add():
         )
 
     if request.method == 'POST':
-        result = DepartmentC.add(
-            request.form['name'],
-            request.form['desc']
-        )
+        result = DepartmentC.add({
+            'name' : request.form['name'],
+            'description' : request.form['desc'],
+            'add_emp_id' : session['employee']['id'],
+            'modify_emp_id' : session['employee']['id']
+        })
 
         if result['success']:
             return redirect(url_for('employees.department.all'))
@@ -82,6 +84,7 @@ def update(dept_id):
     if request.method == 'POST':
         result = DepartmentC.update({
             'description' : request.form['desc'],
+            'modify_emp_id' : session['employee']['id'],
             'dept_id' : dept_id
         })
 
