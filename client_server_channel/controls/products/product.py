@@ -13,11 +13,8 @@ class ProductC:
         )
         product_info['default_login'] = ProductTable.generate_login(8)
         product_info['default_password'] = ProductTable.generate_password(8)
-        product_info['resp_emp_id'] = 1
         product_info['date_added'] = now
-        product_info['add_emp_id'] = 1
         product_info['date_modified'] = now
-        product_info['modify_emp_id'] = 1
         add_result = ProductTable.insert(product_info)
 
         return {
@@ -76,7 +73,6 @@ class ProductC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             product_info['date_modified'] = datetime.now()
-            product_info['modify_emp_id'] = 1
             update_result = ProductTable.update(product_info)
             return {
                 'success' : update_result['success'],

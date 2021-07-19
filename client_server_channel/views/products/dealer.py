@@ -29,6 +29,8 @@ def add():
 			'email' : params['email'],
 			'website' : params['website'],
 			'geo_location' : params['geo_location'],
+			'add_emp_id' : session['employee']['id'],
+			'modify_emp_id' : session['employee']['id']
 		})
 
 		if result['success']:
@@ -96,6 +98,7 @@ def update(dealer_id):
 			'email' : params['email'],
 			'website' : params['website'],
 			'geo_location' : params['geo_location'],
+			'modify_emp_id' : session['employee']['id'],
 			'dealer_id' : dealer_id
 		})
 
@@ -109,5 +112,5 @@ def update(dealer_id):
 def delete(dealer_id):
 	if not 'username' in session:
 		return redirect(url_for('employees.login'))
-		
+
 	return DealerC.delete(dealer_id)

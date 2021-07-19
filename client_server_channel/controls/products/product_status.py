@@ -9,9 +9,7 @@ class ProductStatusC:
     def add(status_info):
         now = datetime.now()
         status_info['date_added'] = now
-        status_info['add_emp_id'] = 1
         status_info['date_modified'] = now
-        status_info['modify_emp_id'] = 1
         add_result = ProductStatusTable.insert(status_info)
 
         return {
@@ -70,7 +68,6 @@ class ProductStatusC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             status_info['date_modified'] = datetime.now()
-            status_info['modify_emp_id'] = 1
             update_result = ProductStatusTable.update(status_info)
             return {
                 'success' : update_result['success'],

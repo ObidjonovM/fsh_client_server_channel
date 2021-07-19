@@ -51,7 +51,10 @@ def add():
 			'client_id' : params['client_id'],
 			'manufactured_date' : params['manufactured_date'],
 			'firmware_id' : params['fw_id'],
-			'status_id' : params['status_id']
+			'status_id' : params['status_id'],
+			'resp_emp_id' : session['employee']['id'],
+			'add_emp_id' : session['employee']['id'],
+			'modify_emp_id' : session['employee']['id']
 		})
 
 		if result['success']:
@@ -116,7 +119,8 @@ def update(serial_num):
 				status_ids = ProductStatusC.get_ids_names(),
 				product_name = ProductInfoC.get(product_info['data']['product_id']),
 				clients_ids = ClientC.get(product_info['data']['client_id']),
-				firmwares_ids = FirmwareC.get(product_info['data']['firmware_id'])
+				firmwares_ids = FirmwareC.get(product_info['data']['firmware_id']),
+				resp_emp_id = session['employee']['id']
 			)
 
 		return redirect(url_for('products.all'))
@@ -125,8 +129,9 @@ def update(serial_num):
 		params = request.form
 		result = ProductC.update({
 			'dealer_id' : params['dealer_id'],
-			'resp_emp_id' : params['emp_id'],
+			'resp_emp_id' : session['employee']['id'],
 			'status_id' : params['status_id'],
+			'modify_emp_id' : session['employee']['id'],
 			'serial_num' : serial_num
 		})
 
@@ -140,5 +145,5 @@ def update(serial_num):
 def delete(serial_num):
 	if not 'username' in session:
 		return redirect(url_for('employees.login'))
-		
+
 	return ProductC.delete(serial_num)

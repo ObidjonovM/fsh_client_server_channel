@@ -24,6 +24,8 @@ def add():
 			'name' : params['name'],
 			'description' : params['desc'],
 			'parent_cat_id' : params['parent_id'],
+			'add_emp_id' : session['employee']['id'],
+			'modify_emp_id' : session['employee']['id']
 		})
 
 		if result['success']:
@@ -87,6 +89,7 @@ def update(cat_id):
 		result = CategoriesC.update({
 			'description' : params['desc'],
 			'parent_cat_id' : params['parent_id'],
+			'modify_emp_id' : session['employee']['id'],
 			'category_id' : cat_id
 		})
 
@@ -100,5 +103,5 @@ def update(cat_id):
 def delete_category(cat_id):
 	if not 'username' in session:
 		return redirect(url_for('employees.login'))
-		
+
 	return CategoriesC.delete(cat_id)

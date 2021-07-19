@@ -20,7 +20,9 @@ def add():
 		params = request.form
 		result = ProductStatusC.add({
 			'status' : params['status'],
-			'description' : params['desc']
+			'description' : params['desc'],
+			'add_emp_id' : session['employee']['id'],
+			'modify_emp_id' : session['employee']['id']
 		})
 
 		if result['success']:
@@ -80,6 +82,7 @@ def update(status_id):
 		result = ProductStatusC.update({
 			'status' : params['status'],
 			'description' : params['desc'],
+			'modify_emp_id' : session['employee']['id'],
 			'status_id' : status_id
 		})
 
@@ -93,5 +96,5 @@ def update(status_id):
 def delete(status_id):
 	if not 'username' in session:
 		return redirect(url_for('employees.login'))
-		
+
 	return ProductStatusC.delete(status_id)

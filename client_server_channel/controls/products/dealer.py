@@ -9,9 +9,7 @@ class DealerC:
     def add(dealer_info):
         now = datetime.now()
         dealer_info['date_added'] = now
-        dealer_info['add_emp_id'] = 1
         dealer_info['date_modified'] = now
-        dealer_info['modify_emp_id'] = 1
         add_result = DealerTable.insert(dealer_info)
 
         return {
@@ -70,7 +68,6 @@ class DealerC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             dealer_info['date_modified'] = datetime.now()
-            dealer_info['modify_emp_id'] = 1
             update_result = DealerTable.update(dealer_info)
             return {
                 'success' : update_result['success'],

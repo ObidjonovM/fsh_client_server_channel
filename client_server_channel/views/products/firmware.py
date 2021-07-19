@@ -19,11 +19,14 @@ def add():
 
     if request.method == 'POST':
         params = request.form
-        result = FirmwareC.add({'name': params['name'],
-                                'model': params['model'],
-                                'version': params['version'],
-                                'description': params['desc'],
-                                'author_id': params['emp_id']
+        result = FirmwareC.add({
+            'name': params['name'],
+            'model': params['model'],
+            'version': params['version'],
+            'description': params['desc'],
+            'author_id': params['emp_id'],
+            'add_emp_id' : session['employee']['id'],
+			'modify_emp_id' : session['employee']['id']
         })
         
         if result['success']:
@@ -58,17 +61,16 @@ def all():
         return redirect(url_for('employees.login'))
 
     firmwares = FirmwareC.get_all()
-    names_by_ids = EmployeeC.get_names_by_ids(firmwares['data']['author_id'])
+    if len(firmwares['data']) > 0:
+        names_by_ids = EmployeeC.get_names_by_ids(firmwares['data']['author_id'])
+    else:
+        names_by_ids = ''
 
-    if firmwares['success'] and names_by_ids['success']:
-        
-        return render_template(
-            utls.url_join(['products', 'firmware', 'all.html']),
-            firmwares = firmwares,
-            names_by_ids = names_by_ids['data']
-        )
-
-    return redirect(url_for('core.index'))            # TODO later!!!!
+    return render_template(
+        utls.url_join(['products', 'firmware', 'all.html']),
+        firmwares = firmwares,
+        names_by_ids = names_by_ids
+    )
 
 
 @firmware.route('/update/<int:fw_id>', methods=['GET', 'POST'])
@@ -94,6 +96,7 @@ def update(fw_id):
     if request.method == 'POST':
         result = FirmwareC.update({
             'description' : request.form['desc'],
+			'modify_emp_id' : session['employee']['id'],
             'fw_id' : fw_id
         })
         
@@ -107,5 +110,5 @@ def update(fw_id):
 def delete(fw_id):
     if not 'username' in session:
         return redirect(url_for('employees.login'))
-        
+
     return FirmwareC.delete(fw_id)

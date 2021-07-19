@@ -10,9 +10,7 @@ class CategoriesC:
         now = datetime.now()
         cat_info['leaf_cat'] = False
         cat_info['date_added'] = now
-        cat_info['add_emp_id'] = 1
         cat_info['date_modified'] = now
-        cat_info['modify_emp_id'] = 1
         add_result = CategoriesTable.insert(cat_info)
 
         return {
@@ -82,7 +80,6 @@ class CategoriesC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             cat_info['date_modified'] = datetime.now()
-            cat_info['modify_emp_id'] = 1
             update_result = CategoriesTable.update(cat_info)
             return {
                 'success' : update_result['success'],

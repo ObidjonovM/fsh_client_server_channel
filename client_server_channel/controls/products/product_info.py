@@ -9,9 +9,7 @@ class ProductInfoC:
     def add(product_info):
         now = datetime.now()
         product_info['date_added'] = now
-        product_info['add_emp_id'] = 1
         product_info['date_modified'] = now
-        product_info['modify_emp_id'] = 1
         add_result = ProductInfoTable.insert(product_info)
 
         return {

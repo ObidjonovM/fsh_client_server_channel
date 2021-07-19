@@ -24,6 +24,8 @@ def add():
 			'name' : params['name'],
 			'model' : params['model'],
 			'category_id' : params['cat_id'],
+			'add_emp_id' : session['employee']['id'],
+			'modify_emp_id' : session['employee']['id']
 		})
 
 		if result['success']:
@@ -72,5 +74,5 @@ def all():
 def delete(product_id):
 	if not 'username' in session:
 		return redirect(url_for('employees.login'))
-		
+
 	return ProductInfoC.delete(product_id)
