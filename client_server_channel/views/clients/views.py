@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import ClientC, SubscriptionC
 from .. import view_utils as utls
 from .subscription import subscription
@@ -30,6 +30,9 @@ def account():
 
 @clients.route('/add', methods=['GET', 'POST'])
 def add():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 		names_ids = SubscriptionC.get_ids_names()
 		if names_ids['success']:
@@ -66,6 +69,9 @@ def add():
 
 @clients.route('/get/<int:client_id>')
 def get(client_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	client_info = ClientC.get(client_id)
 	
 	if len(client_info['data']) > 0:
@@ -82,6 +88,9 @@ def get(client_id):
 
 @clients.route('/all')
 def all():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	clients_info = ClientC.get_all()
 	if len(clients_info['data']) > 0:
 		names_by_ids = SubscriptionC.get_names_by_ids(clients_info['data']['subs_id'])
@@ -97,6 +106,9 @@ def all():
 
 @clients.route('/update/<int:client_id>', methods=['GET', 'POST'])
 def update(client_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 		client_info = ClientC.get(client_id)
 		names_ids = SubscriptionC.get_ids_names()
@@ -137,4 +149,7 @@ def update(client_id):
 
 @clients.route('/delete/<int:client_id>', methods=['DELETE'])
 def delete(client_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	return ClientC.delete(client_id)
