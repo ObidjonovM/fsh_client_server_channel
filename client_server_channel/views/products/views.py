@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request, url_for, redirect, session
 from client_server_channel.controls import (ProductC, ProductInfoC, 
 						DealerC, ClientC, FirmwareC, ProductStatusC)
 from .. import view_utils as utls
@@ -29,6 +29,8 @@ def product_page(pid):
 
 @products.route('/add', methods=['GET', 'POST'])
 def add():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
 
 	if request.method == 'GET':
 
@@ -60,6 +62,9 @@ def add():
 
 @products.route('/get/<serial_num>')
 def get(serial_num):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	product_info = ProductC.get(serial_num)
 	
 	if len(product_info['data']) > 0:
@@ -79,6 +84,9 @@ def get(serial_num):
 
 @products.route('/all')
 def all():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	products_info = ProductC.get_all()
 	
 	return render_template(
@@ -94,6 +102,9 @@ def all():
 
 @products.route('/update/<serial_num>', methods=['GET', 'POST'])
 def update(serial_num):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 		product_info = ProductC.get(serial_num)
 	
@@ -127,4 +138,7 @@ def update(serial_num):
 
 @products.route('/delete/<serial_num>', methods=['DELETE'])
 def delete(serial_num):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+		
 	return ProductC.delete(serial_num)

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import ProductStatusC
 from .. import view_utils as utls
 
@@ -7,6 +7,9 @@ status = Blueprint('status', __name__, url_prefix='/status')
 
 @status.route('/add', methods=['GET', 'POST'])
 def add():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 
 		return render_template(
@@ -28,6 +31,9 @@ def add():
 
 @status.route('/get/<int:status_id>')
 def get(status_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	status_info = ProductStatusC.get(status_id)
 	
 	if len(status_info['data']) > 0:
@@ -42,6 +48,9 @@ def get(status_id):
 
 @status.route('/all')
 def all():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	status_info = ProductStatusC.get_all()
 	
 	return render_template(
@@ -52,6 +61,9 @@ def all():
 
 @status.route('/update/<int:status_id>', methods=['GET', 'POST'])
 def update(status_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 		status_info = ProductStatusC.get(status_id)
 	
@@ -79,4 +91,7 @@ def update(status_id):
 
 @status.route('/delete/<int:status_id>', methods=['DELETE'])
 def delete(status_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+		
 	return ProductStatusC.delete(status_id)

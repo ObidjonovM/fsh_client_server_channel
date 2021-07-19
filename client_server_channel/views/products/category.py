@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import CategoriesC
 from .. import view_utils as utls
 
@@ -7,6 +7,9 @@ category = Blueprint('category', __name__, url_prefix='/category')
 
 @category.route('/add', methods=['GET', 'POST'])
 def add():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	ids_names = CategoriesC.get_ids_names()
 	if request.method == 'GET':
 
@@ -31,6 +34,9 @@ def add():
 
 @category.route('/get/<int:cat_id>')
 def get(cat_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	cat_info = CategoriesC.get(cat_id)
 	
 	if len(cat_info['data']) > 0:
@@ -46,6 +52,9 @@ def get(cat_id):
 
 @category.route('/all')
 def all():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	cats_info = CategoriesC.get_all()
 	
 	return render_template(
@@ -57,6 +66,9 @@ def all():
 
 @category.route('/update/<int:cat_id>', methods=['GET', 'POST'])
 def update(cat_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 		cat_info = CategoriesC.get(cat_id)
 
@@ -86,4 +98,7 @@ def update(cat_id):
 
 @category.route('/delete/<int:cat_id>', methods=['DELETE'])
 def delete_category(cat_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+		
 	return CategoriesC.delete(cat_id)

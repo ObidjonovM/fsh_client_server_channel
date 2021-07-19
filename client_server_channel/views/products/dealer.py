@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import DealerC
 from .. import view_utils as utls
 
@@ -7,6 +7,9 @@ dealer = Blueprint('dealer', __name__, url_prefix='/dealer')
 
 @dealer.route('/add', methods=['GET', 'POST'])
 def add():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 
 		return render_template(
@@ -36,6 +39,9 @@ def add():
 
 @dealer.route('/get/<int:dealer_id>')
 def get(dealer_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	dealer_info = DealerC.get(dealer_id)
 	
 	if len(dealer_info['data']) > 0:
@@ -50,6 +56,9 @@ def get(dealer_id):
 
 @dealer.route('/all')
 def all():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	dealers_info = DealerC.get_all()
 	
 	return render_template(
@@ -60,6 +69,9 @@ def all():
 
 @dealer.route('/update/<int:dealer_id>', methods=['GET', 'POST'])
 def update(dealer_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 		dealer_info = DealerC.get(dealer_id)
 	
@@ -95,4 +107,7 @@ def update(dealer_id):
 
 @dealer.route('/delete/<int:dealer_id>', methods=['DELETE'])
 def delete(dealer_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+		
 	return DealerC.delete(dealer_id)
