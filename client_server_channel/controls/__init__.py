@@ -10,3 +10,4 @@ from .products import ProductC
 from .clients import SubscriptionC
 from .clients import ClientC
 from .employees import DepartmentC
+from .currency import CurrencyC
