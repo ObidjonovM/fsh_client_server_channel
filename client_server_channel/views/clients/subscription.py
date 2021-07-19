@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import SubscriptionC
 from .. import view_utils as utls
 
@@ -7,6 +7,9 @@ subscription = Blueprint('subscription', __name__, url_prefix='/subscription')
 
 @subscription.route('/add', methods=['GET', 'POST'])
 def add():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 
 		return render_template(
@@ -29,6 +32,9 @@ def add():
 
 @subscription.route('/get/<int:subs_id>')
 def get(subs_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	subs_info = SubscriptionC.get(subs_id)
 	
 	if len(subs_info['data']) > 0:
@@ -43,6 +49,9 @@ def get(subs_id):
 
 @subscription.route('/all')
 def all():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	subs_info = SubscriptionC.get_all()
 	
 	return render_template(
@@ -53,6 +62,9 @@ def all():
 
 @subscription.route('/update/<int:subs_id>', methods=['GET', 'POST'])
 def update(subs_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	if request.method == 'GET':
 		subs_info = SubscriptionC.get(subs_id)
 	
@@ -80,4 +92,7 @@ def update(subs_id):
 
 @subscription.route('/delete/<int:subs_id>', methods=['DELETE'])
 def delete(subs_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
 	return SubscriptionC.delete(subs_id)
