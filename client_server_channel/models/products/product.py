@@ -52,7 +52,7 @@ class ProductTable:
 
     @staticmethod
     def insert(product_info):
-        return crud.insert('products', product_info)
+        return crud.insert('products', product_info, False)
 
 
     @staticmethod

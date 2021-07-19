@@ -12,10 +12,15 @@ def __last_pk_value(table_name):
 	return {pk_col : result['data'][0][0]}
 
 
-def insert(table_name, info):
-    pk, val = __last_pk_value(table_name).popitem()       # getting the last value of PK column
-    sql = f'INSERT INTO {table_name} ({pk}, '
-    values = f'VALUES ({val + 1}, '
+def insert(table_name, info, generate_pk=True):
+    if generate_pk:
+        pk, val = __last_pk_value(table_name).popitem()       # getting the last value of PK column
+        sql = f'INSERT INTO {table_name} ({pk}, '
+        values = f'VALUES ({val + 1}, '
+    else:
+        sql = f'INSERT INTO {table_name} ('
+        values = f'VALUES ('
+
     for key in info.keys():
         sql += key + ', '
         values += f'%({key})s, '
