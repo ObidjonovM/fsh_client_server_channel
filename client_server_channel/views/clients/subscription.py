@@ -21,7 +21,9 @@ def add():
 		result = SubscriptionC.add({
 			'name' : params['name'],
 			'description' : params['desc'],
-			'monthly_fee' : params['monthly_fee']
+			'monthly_fee' : params['monthly_fee'],
+			'add_emp_id' : session['employee']['id'],
+			'modify_emp_id' : session['employee']['id']
 		})
 
 		if result['success']:
@@ -81,6 +83,7 @@ def update(subs_id):
 		result = SubscriptionC.update({
 			'description' : params['desc'],
 			'monthly_fee' : params['monthly_fee'],
+			'modify_emp_id' : session['employee']['id'],
 			'subs_id' : subs_id
 		})
 

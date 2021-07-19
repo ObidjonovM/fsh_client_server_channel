@@ -9,9 +9,7 @@ class SubscriptionC:
     def add(subs_info):
         now = datetime.now()
         subs_info['date_added'] = now
-        subs_info['add_emp_id'] = 1
         subs_info['date_modified'] = now
-        subs_info['modify_emp_id'] = 1
         add_result = SubscriptionTable.insert(subs_info)
 
         return {
@@ -70,7 +68,6 @@ class SubscriptionC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             subs_info['date_modified'] = datetime.now()
-            subs_info['modify_emp_id'] = 1
             update_result = SubscriptionTable.update(subs_info)
             return {
                 'success' : update_result['success'],
