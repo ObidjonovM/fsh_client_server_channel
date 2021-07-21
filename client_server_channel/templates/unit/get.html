@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div class="container">
+    <div class="header">
+        <h2>Названия должности</h2>
+    </div>
+
+    <div class="form">
+        <div class="form-control">
+            <input id="unit_id" type="hidden" value="{{unit_info['data']['unit_id']}}"/>
+        </div>
+
+        <div class="form-control">
+            <label for="type_name">Имя</label>
+            <input type="text" name="type_name"
+                   value="{{unit_info['data']['unit']}}" id="type_name" readonly/>
+        </div>
+
+        <div class="form-control">
+            <label for="desc">Описание</label>
+            <textarea name="desc" readonly id="desc">{{unit_info['data']['description']}}</textarea>
+        </div>
+
+        <button onclick="updateType()" class="add-type-submit">
+            Изменить
+        </button>
+
+        <button onclick="deleteUnit()" class="add-type-submit2">
+            Удалить
+        </button>
+
+        <button onclick="otmenFunction()" class="add-type-submit3">
+           Назад
+        </button>
+    </div>
+
+</div>
+
+<script src="/static/js/unit/get.js"></script>
+
+{% endblock %}
+
+

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/update.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div class="container">
+        <div class="header">
+                <h2>Названия должности</h2>
+        </div>
+<form class="form"
+      action="{{ url_for('unit.update', unit_id=unit_info['data']['unit_id']) }}"
+      method="POST">
+
+        <div class="form-control">
+        <label for="unit">Имя</label>
+        <input type="text" name="unit" id="unit"
+               readonly value="{{unit_info['data']['unit']}}"/>
+        </div>
+
+        <div class="form-control">
+        <label for="desc">Описание</label>
+        <textarea name="desc" id="desc">{{unit_info['data']['description']}}</textarea>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <button type="button" onclick="otmenFunction()"
+                class="add-type-submit" value="Отмена" >
+                Отмена
+        </button>
+
+</form>
+
+</div>
+
+<script src="/static/js/employees/department/update.js"></script>
+
+{% endblock %}
+
+

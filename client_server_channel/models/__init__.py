@@ -12,3 +12,4 @@ from .products import ProductTable
 from .clients import SubscriptionTable
 from .clients import ClientTable
 from .currency import CurrencyTable
+from .unit import UnitTable
