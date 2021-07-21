@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{supplier_info}}
+        <input type="text" id="supplier_id" value="{{supplier_info['data']['supplier_id']}}">
+
+        <button onclick="deleteSupp()" class="add-type-submit2">
+            Удалить
+        </button>
+
+        
+    </div>
+
+</div>
+
+<script src="/static/js/supplier/get.js"></script>
+
+{% endblock %}
+
+

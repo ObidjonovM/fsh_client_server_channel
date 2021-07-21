@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div class="container">
+        <div class="header">
+                <h2>Названия должности</h2>
+        </div>
+<form class="form"
+      action="{{ url_for('supplier.update', supplier_id=supplier_info['data']['supplier_id']) }}"
+      method="POST">
+
+        <div class="form-control">
+        <label for="name">Имя</label>
+        <input type="text" name="name" id="name"
+               readonly value="{{supplier_info['data']['name']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="address_1">address_1</label>
+                <input type="text" name="address_1" id="address_1"
+                        value="{{supplier_info['data']['address_1']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="address_2">address_2</label>
+                <input type="text" name="address_2" id="address_2"
+                        value="{{supplier_info['data']['address_2']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="city">city</label>
+                <input type="text" name="city" id="city"
+                        value="{{supplier_info['data']['city']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="country">country</label>
+                <input type="text" name="country" id="country"
+                        value="{{supplier_info['data']['country']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="zipcode">zipcode</label>
+                <input type="text" name="zipcode" id="zipcode"
+                        value="{{supplier_info['data']['zipcode']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="phone">phone</label>
+                <input type="text" name="phone" id="phone"
+                        value="{{supplier_info['data']['phone']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="email">email</label>
+                <input type="text" name="email" id="email"
+                        value="{{supplier_info['data']['email']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="website">website</label>
+                <input type="text" name="website" id="website"
+                        value="{{supplier_info['data']['website']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="geo_location">geo_location</label>
+                <input type="text" name="geo_location" id="geo_location"
+                        value="{{supplier_info['data']['geo_location']}}"/>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <button type="button" onclick="otmenFunction()"
+                class="add-type-submit" value="Отмена" >
+                Отмена
+        </button>
+
+</form>
+
+</div>
+
+<script src="/static/js/employees/department/update.js"></script>
+
+{% endblock %}
+
+
