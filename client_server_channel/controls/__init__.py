@@ -13,3 +13,4 @@ from .employees import DepartmentC
 from .currency import CurrencyC
 from .unit import UnitC
 from .supplier import SupplierC
+from .carrier import CarrierC

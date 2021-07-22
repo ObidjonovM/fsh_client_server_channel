@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<!-- <link rel="stylesheet" href="/static/css/employees/department/add.css"> -->
+<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+
+
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+
+<div class="container">
+    <div class="header">
+        <h2>Новая должность</h2>
+    </div>
+    <form id="myForm" class="form" action="{{url_for('carrier.add')}}" method="POST">
+        <div class="form-control">
+            <label for="name">name</label>
+            <input type="text" name="name" placeholder="Введите имя..." id="name" required/>
+        </div>
+
+        <div class="form-control">
+            <label for="address_1">address_1</label>
+            <input type="text" name="address_1" id="address_1" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="address_2">address_2</label>
+            <input type="text" name="address_2" id="address_2" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="city">city</label>
+            <input type="text" name="city" id="city" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="country">country</label>
+            <input type="text" name="country" id="country" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="zipcode">zipcode</label>
+            <input type="text" name="zipcode" id="zipcode" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="phone">phone</label>
+            <input type="text" name="phone" id="phone" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="email">email</label>
+            <input type="text" name="email" id="email" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="website">website</label>
+            <input type="text" name="website" id="website" placeholder="Введите описание..."/>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить"/>
+        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+
+    </form>
+</div>
+
+
+
+<!-- <script src="/static/js/employees/department/add.js"></script> -->
+
+{% endblock %}
+
+

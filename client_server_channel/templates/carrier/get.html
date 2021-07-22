@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{carrier_info}}
+        <input type="text" id="carrier_id" value="{{carrier_info['data']['carrier_id']}}">
+
+        <button onclick="deleteCarr()" class="add-type-submit2">
+            Удалить
+        </button>
+
+        
+    </div>
+
+</div>
+
+<script src="/static/js/carrier/get.js"></script>
+
+{% endblock %}
+
+

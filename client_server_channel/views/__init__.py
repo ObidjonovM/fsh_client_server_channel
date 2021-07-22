@@ -6,3 +6,4 @@ from .error_pages import error_pages
 from .currency import currency
 from .unit import unit
 from .supplier import supplier
+from .carrier import carrier
