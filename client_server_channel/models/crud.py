@@ -76,14 +76,13 @@ def get_ids_fullnames(table_name, name_cols):
         sql += str(name_col) + ', '
 
     sql = sql[:-2] + f' FROM {table_name} WHERE active = TRUE'
-    print(sql)
     result = utls.send_to_db(sql, None, True)
-    print(result)
+
     if result['success']:
         result['data'] = utls.list_tuples2tuple_lists(result['data'])
-        print(result['data'])
+
         result['data'] = utls.keyval_tuples2dict((name_cols), result['data'])
-        print(result)
+
     return result
 
 

@@ -91,16 +91,23 @@ def all():
 		return redirect(url_for('employees.login'))
 
 	products_info = ProductC.get_all()
-	
-	return render_template(
-		utls.url_join(['products', 'all.html']),
-		products_info = products_info,
-		products_by_ids = ProductInfoC.get_names_by_ids(products_info['data']['product_id']),
-		dealers_by_ids = DealerC.get_names_by_ids(products_info['data']['dealer_id']),
-		clients_by_ids = ClientC.get_names_by_ids(products_info['data']['client_id']),
-		firmwares_by_ids = FirmwareC.get_names_by_ids(products_info['data']['firmware_id']),
-		status_by_ids = ProductStatusC.get_names_by_ids(products_info['data']['status_id'])
-	)
+	if products_info['success']:
+
+		if len(products_info['data']) > 0:
+		
+			return render_template(
+				utls.url_join(['products', 'all.html']),
+				products_info = products_info,
+				products_by_ids = ProductInfoC.get_names_by_ids(products_info['data']['product_id']),
+				dealers_by_ids = DealerC.get_names_by_ids(products_info['data']['dealer_id']),
+				clients_by_ids = ClientC.get_names_by_ids(products_info['data']['client_id']),
+				firmwares_by_ids = FirmwareC.get_names_by_ids(products_info['data']['firmware_id']),
+				status_by_ids = ProductStatusC.get_names_by_ids(products_info['data']['status_id'])
+			)
+
+		return render_template(utls.url_join(['products', 'all.html']))
+
+	return redirect(url_for('core.index'))
 
 
 @products.route('/update/<serial_num>', methods=['GET', 'POST'])
