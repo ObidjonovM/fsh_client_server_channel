@@ -17,3 +17,4 @@ from .supplier import SupplierTable
 from .carrier import CarrierTable
 from .shipping_type import ShippingTypeTable
 from .tracking_status import TrackingStatusTable
+from .sp_type import SpTypeTable

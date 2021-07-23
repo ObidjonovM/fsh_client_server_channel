@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{sp_type_info}}
+        
+<input type="text" id="sp_type_id" value="{{sp_type_info['data']['sp_type_id']}}">
+
+        <button onclick="deleteSpType()" class="add-type-submit2">
+            Удалить
+        </button>
+
+<script src="/static/js/sp_type/get.js"></script>
+
+{% endblock %}
+
+
