@@ -14,30 +14,44 @@
 
 <table class="table">
     <thead>
+
     <tr>
+
         <th class="hidden">Номер должности</th>
+
         <th>№</th>
+
         <th>Названия должности</th>
-        <th colspan="2"></th>
+
+        <th>Действия</th>
+
     </tr>
+
     </thead>
 
     <tbody id="tBody">
+
     {% for i in range(departments['data']['dept_id']|length) %}
+
     <tr ondblclick="getType(this)">
+
         <td class="hidden">{{departments['data']['dept_id'][i]}}</td>
+
         <td>{{i+1}}</td>
+
         <td>{{departments['data']['name'][i]}}</td>
+
         <td>
             <button onclick="deleteType(this)">Удалить</button>
         </td>
+
     </tr>
+
     {% endfor %}
+
     </tbody>
 
 </table>
-
-
 
 
 <script src="/static/js/employees/department/all.js"></script>

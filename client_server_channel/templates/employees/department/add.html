@@ -4,8 +4,6 @@
 {{super()}}
 
 <link rel="stylesheet" href="/static/css/employees/department/add.css">
-<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-
 
 
 {% endblock %}
@@ -18,7 +16,9 @@
     <div class="header">
         <h2>Новая должность</h2>
     </div>
+
     <form id="myForm" class="form">
+
         <div class="form-control">
             <label for="dept_name">Имя</label>
             <input type="text" name="name" placeholder="Введите имя..." id="dept_name" required/>
@@ -30,11 +30,11 @@
         </div>
 
         <input type="submit" class="add-type-submit" value="Сохранить"/>
-        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+
+        <input onclick="otmenFunction()" type="button" class="add-type-submit2" value="Отмена"/>
 
     </form>
 </div>
-
 
 
 <script src="/static/js/employees/department/add.js"></script>
