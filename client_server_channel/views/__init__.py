@@ -8,3 +8,4 @@ from .unit import unit
 from .supplier import supplier
 from .carrier import carrier
 from .shipping_type import shipping_type
+from .tracking_status import tracking_status

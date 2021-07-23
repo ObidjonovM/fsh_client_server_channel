@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{tracking_status_info}}
+{{carrier_name}}
+        
+<input type="text" id="status_id" value="{{tracking_status_info['data']['status_id']}}">
+
+        <button onclick="deleteTrackStatus()" class="add-type-submit2">
+            Удалить
+        </button>
+
+<script src="/static/js/tracking_status/get.js"></script>
+
+{% endblock %}
+
+

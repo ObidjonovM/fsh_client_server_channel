@@ -15,3 +15,4 @@ from .unit import UnitC
 from .supplier import SupplierC
 from .carrier import CarrierC
 from .shipping_type import ShippingTypeC
+from .tracking_status import TrackingStatusC
