@@ -7,3 +7,4 @@ from .currency import currency
 from .unit import unit
 from .supplier import supplier
 from .carrier import carrier
+from .shipping_type import shipping_type

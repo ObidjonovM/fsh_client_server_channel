@@ -1,6 +1,6 @@
 from flask import Flask
 from .views import (clients, core, employees, products, error_pages,
-                    currency, unit, supplier, carrier)
+                    currency, unit, supplier, carrier, shipping_type)
 from . import config
 
 app = Flask(__name__)
@@ -16,3 +16,4 @@ app.register_blueprint(currency)
 app.register_blueprint(unit)
 app.register_blueprint(supplier)
 app.register_blueprint(carrier)
+app.register_blueprint(shipping_type)

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div class="container">
+        <div class="header">
+                <h2>Названия должности</h2>
+        </div>
+<form class="form"
+      action="{{ url_for('shipping_type.update', shipping_type_id=shipping_type_info['data']['shipping_type_id']) }}"
+      method="POST">
+        {{currencies_ids}}
+        {{units_ids}}
+        {{carriers_ids}}
+        <div class="form-control">
+                <label for="name">name</label>
+                <input type="text" id="name"
+                        value="{{shipping_type_info['data']['name']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="price">price</label>
+                <input type="text" name="price" id="price"
+                        value="{{shipping_type_info['data']['price']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="curr_id">curr_id</label>
+                <input type="text" name="curr_id" id="curr_id"
+                        value="{{shipping_type_info['data']['curr_id']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="min_delivery_days">min_delivery_days</label>
+                <input type="text" name="min_delivery_days" id="min_delivery_days"
+                        value="{{shipping_type_info['data']['min_delivery_days']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="max_delivery_days">max_delivery_days</label>
+                <input type="text" name="max_delivery_days" id="max_delivery_days"
+                        value="{{shipping_type_info['data']['max_delivery_days']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="unit_id">unit_id</label>
+                <input type="text" name="unit_id" id="unit_id"
+                        value="{{shipping_type_info['data']['unit_id']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="carrier_id">carrier_id</label>
+                <input type="text" name="carrier_id" id="carrier_id"
+                        value="{{shipping_type_info['data']['carrier_id']}}"/>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <button type="button" onclick="otmenFunction()"
+                class="add-type-submit" value="Отмена" >
+                Отмена
+        </button>
+
+</form>
+
+</div>
+
+<script src="/static/js/employees/department/update.js"></script>
+
+{% endblock %}
+
+

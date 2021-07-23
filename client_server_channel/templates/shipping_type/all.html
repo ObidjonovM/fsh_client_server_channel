@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/all.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+{{shipping_types}}
+{{currencies_ids}}
+{{units_ids}}
+{{carriers_ids}}
+
+
+
+<script src="/static/js/employees/department/all.js"></script>
+
+{% endblock %}
+
+

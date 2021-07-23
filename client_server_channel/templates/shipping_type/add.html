@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<!-- <link rel="stylesheet" href="/static/css/employees/department/add.css"> -->
+<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+
+
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{currencies_ids}}
+{{units_ids}}
+{{carriers_ids}}
+
+<div class="container">
+    <div class="header">
+        <h2>Новая должность</h2>
+    </div>
+    <form id="myForm" class="form" action="{{url_for('shipping_type.add')}}" method="POST">
+        <div class="form-control">
+            <label for="name">name</label>
+            <input type="text" name="name" placeholder="Введите имя..." id="name" required/>
+        </div>
+
+        <div class="form-control">
+            <label for="price">price</label>
+            <input type="text" name="price" id="price" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="curr_id">curr_id</label>
+            <input type="text" name="curr_id" id="curr_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="unit_id">unit_id</label>
+            <input type="text" name="unit_id" id="unit_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="min_delivery_days">min_delivery_days</label>
+            <input type="text" name="min_delivery_days" id="min_delivery_days" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="max_delivery_days">max_delivery_days</label>
+            <input type="text" name="max_delivery_days" id="max_delivery_days" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="carrier_id">carrier_id</label>
+            <input type="text" name="carrier_id" id="carrier_id" placeholder="Введите описание..."/>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить"/>
+        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+
+    </form>
+</div>
+
+
+
+<!-- <script src="/static/js/employees/department/add.js"></script> -->
+
+{% endblock %}
+
+

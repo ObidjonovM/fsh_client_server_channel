@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{shipping_type_info}}
+{{currency_name}}
+{{unit_name}}
+{{carrier_name}}
+        <input type="text" id="shipping_type_id" value="{{shipping_type_info['data']['shipping_type_id']}}">
+
+        <button onclick="deleteShippType()" class="add-type-submit2">
+            Удалить
+        </button>
+
+        
+    </div>
+
+</div>
+
+<script src="/static/js/shipping_type/get.js"></script>
+
+{% endblock %}
+
+
