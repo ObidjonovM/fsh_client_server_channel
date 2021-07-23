@@ -38,3 +38,15 @@ window.addEventListener( "load", function () {
 function otmenFunction (){
     window.open('/employees/all', '_self');
 }
+
+function отдельFunction (){
+    window.open('/employees/department/all', '_self');
+}
+
+function типFunction (){
+    window.open('/employees/type/all', '_self');
+}
+
+function статусFunction (){
+    window.open('/employees/status/all', '_self');
+}

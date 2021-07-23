@@ -42,3 +42,8 @@ document.getElementById("addClick").onclick = function () {
 function getType(e) {
     window.open('/employees/get/' + e.children[0].innerHTML, '_self');
 }
+
+function otmenFunction() {
+    window.open('/employees/account', '_self');
+
+}
