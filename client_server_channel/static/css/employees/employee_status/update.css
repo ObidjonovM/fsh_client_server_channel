@@ -64,7 +64,7 @@
     width: 100%;
 }
 
-.form .add-type-submit {
+.form .add-type-submit, .add-type-submit2 {
     background-color: #006666;
     border: 2px solid #006666;
     border-radius: 4px;
@@ -78,7 +78,7 @@
     cursor: pointer;
 }
 
-.add-type-submit:hover {
+.add-type-submit:hover, .add-type-submit2:hover {
     background-color: #044f66;
 }
 

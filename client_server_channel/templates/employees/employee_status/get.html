@@ -16,30 +16,29 @@
     </div>
 
     <div class="form">
-        <div class="form-control">
+
             <input id="status_id" type="hidden" value="{{status_info.data.status_id}}"/>
-        </div>
 
         <div class="form-control">
             <label for="type_name">Имя</label>
-            <input type="text" name="type_name" placeholder="Введите имя..."
-                   id="type_name" value="{{status_info.data.status}}"  readonly/>
+            <input type="text" name="type_name" id="type_name"
+                   value="{{status_info.data.status}}"  readonly/>
         </div>
 
         <div class="form-control">
             <label for="desc">Описание</label>
-              <textarea name="desc" readonly id="desc">{{status_info.data.description}}</textarea>
+              <textarea name="desc" id="desc" readonly>{{status_info.data.description}}</textarea>
         </div>
 
         <button onclick="updateStatus()" class="add-type-submit">
             Изменить
         </button>
 
-        <button onclick="deleteStatus()" class="add-type-submit">
+        <button onclick="deleteStatus()" class="add-type-submit2">
             Удалить
         </button>
 
-        <button onclick="otmenFunction()" class="add-type-submit">
+        <button onclick="otmenFunction()" class="add-type-submit3">
             Назад
         </button>
     </div>
