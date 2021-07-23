@@ -14,23 +14,40 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th class="hidden">Номер должности</th>
-            <th>№</th>
-            <th>Названия должности</th>
-            <th colspan="2">Действия</th>
-        </tr>
+
+    <tr>
+
+        <th class="hidden">Номер должности</th>
+
+        <th>№</th>
+
+        <th>Названия должности</th>
+
+        <th>Действия</th>
+
+    </tr>
     </thead>
 
     <tbody id="tBody">
-        {% for i in range(types['data']['emp_type_id']|length) %}
-            <tr ondblclick="getType(this)">
-                <td class="hidden">{{types['data']['emp_type_id'][i]}}</td>
-                <td>{{i+1}}</td>
-                <td>{{types['data']['emp_type_name'][i]}}</td>
-                <td><button onclick="deleteType(this)">Удалить</button></td>
-            </tr>
-        {% endfor %}
+
+    {% for i in range(types['data']['emp_type_id']|length) %}
+
+    <tr ondblclick="getType(this)">
+
+        <td class="hidden">{{types['data']['emp_type_id'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>{{types['data']['emp_type_name'][i]}}</td>
+
+        <td>
+            <button onclick="deleteType(this)">Удалить</button>
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
     </tbody>
 
 </table>

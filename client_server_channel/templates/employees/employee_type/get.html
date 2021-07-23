@@ -16,13 +16,12 @@
     </div>
 
     <div class="form">
-        <div class="form-control">
-            <input id="emp_id" type="hidden" value="{{type_info['data']['emp_type_id']}}"/>
-        </div>
+
+        <input id="emp_id" type="hidden" value="{{type_info['data']['emp_type_id']}}"/>
 
         <div class="form-control">
             <label for="type_name">Имя</label>
-            <input type="text" name="type_name" placeholder="Введите имя..."
+            <input type="text" name="type_name"
                    value="{{type_info['data']['emp_type_name']}}" id="type_name" readonly/>
         </div>
 
@@ -35,12 +34,12 @@
             Изменить
         </button>
 
-        <button onclick="deleteType()" class="add-type-submit">
+        <button onclick="deleteType()" class="add-type-submit2">
             Удалить
         </button>
 
-        <button onclick="otmenFunction()" class="add-type-submit">
-           Назад
+        <button onclick="otmenFunction()" class="add-type-submit3">
+            Назад
         </button>
     </div>
 

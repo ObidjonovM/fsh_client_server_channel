@@ -11,31 +11,33 @@
 {{super()}}
 
 <div class="container">
-        <div class="header">
-                <h2>Названия должности</h2>
-        </div>
-<form class="form"
-      action="{{ url_for('employees.employee_type.update', type_id=type_info['emp_type_id']) }}"
-      method="POST">
+    <div class="header">
+        <h2>Названия должности</h2>
+    </div>
+
+    <form class="form"
+          action="{{ url_for('employees.employee_type.update', type_id=type_info['emp_type_id']) }}"
+          method="POST">
 
         <div class="form-control">
-        <label for="type_name">Имя</label>
-        <input type="text" name="type_name" id="type_name"
-               readonly value="{{type_info['emp_type_name']}}"/>
+            <label for="type_name">Имя</label>
+            <input type="text" name="type_name" id="type_name"
+                   readonly value="{{type_info['emp_type_name']}}"/>
         </div>
 
         <div class="form-control">
-        <label for="desc">Описание</label>
-        <textarea name="desc" id="desc">{{type_info['description']}}</textarea>
+            <label for="desc">Описание</label>
+            <textarea name="desc" id="desc">{{type_info['description']}}</textarea>
         </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <input type="submit" class="add-type-submit" value="Сохранить"/>
+
         <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
-                Отмена
+                class="add-type-submit2" value="Отмена">
+            Отмена
         </button>
 
-</form>
+    </form>
 
 </div>
 
