@@ -37,17 +37,7 @@
     margin-bottom: 5px;
 }
 
-.form-control input, select {
-    border: 2px solid #f0f0f0;
-    border-radius: 4px;
-    display: block;
-    font-family: inherit;
-    font-size: 14px;
-    padding: 10px;
-    width: 100%;
-}
-
-.form-control textarea {
+.form-control input, select, textarea {
     border: 2px solid #f0f0f0;
     border-radius: 4px;
     display: block;
