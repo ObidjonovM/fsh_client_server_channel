@@ -45,6 +45,8 @@
 
 .form-control input {
     width: 280px;
+    height: 43px;
+    padding: 10px;
     border-radius: 4px;
     border: 2px solid #f0f0f0;
     font-family: inherit;
@@ -62,7 +64,7 @@
     margin: 10px;
 }
 
-.add-submit, .add-submit2, .add-submit3 {
+.add-submit, .add-submit2 {
     background-color: #006666;
     border: 2px solid #006666;
     border-radius: 4px;
