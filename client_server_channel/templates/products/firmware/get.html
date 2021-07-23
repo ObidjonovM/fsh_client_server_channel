@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/firmwares/get.css">
+<link rel="stylesheet" href="/static/css/products/firmware/get.css">
 
 {% endblock %}
 
@@ -12,8 +12,6 @@
 
 <div class="container">
 
-<input id="fw_id" type="text" value="{{fw_info['data']['fw_id']}}"/>
-<button onclick="deleteType()">Delete Type</button>
     <div class="header">
         <h2>Новая должность</h2>
     </div>
@@ -26,48 +24,44 @@
             <label for="name">Имя</label><br/>
             <input type="text" id="name" name="name"
                    value="{{fw_info['data']['name']}}"
-                   readonly required>
-        </div>
+                   readonly>
 
-        <div class="form-control">
             <label for="model">Модель</label>
             <input type="text" id="model" name="model"
                    value="{{fw_info['data']['model']}}"
-                   readonly required>
+                   readonly>
         </div>
+
 
         <div class="form-control">
             <label for="version">Версия</label>
             <input type="text" id="version" name="version"
                    value="{{fw_info['data']['version']}}"
-                   readonly required>
-        </div>
+                   readonly>
 
-        <div class="form-control">
             <label for="desc">Описание</label>
             <input type="text" id="desc" name="desc"
                    value="{{fw_info['data']['description']}}"
-                   readonly required>
+                   readonly>
         </div>
 
         <div class="form-control">
             <label for="emp_id">Ф.И.О</label>
             <input type="text" id="emp_id" name="emp_id"
                    value="{{fullname}}"
-                   readonly required>
+                   readonly>
         </div>
 
-        <div class="buttons">
-            <input type="button" class="firmwares-add-submit" onclick="updateFirm()" value="Изменить">
+        <input type="button" class="add-submit" onclick="updateFirm()" value="Изменить">
 
-            <button type="button" class="firmwares-add-submit1" onclick="deleteFirm()">
-                Удалить
-            </button>
+        <button type="button" class="add-submit2" onclick="deleteFirm()">
+            Удалить
+        </button>
 
-            <button type="button" class="firmwares-add-submit2" onclick="otmenFunction()">
-                Назад
-            </button>
-        </div>
+        <button type="button" class="add-submit3" onclick="otmenFunction()">
+            Назад
+        </button>
+
     </form>
 
 </div>

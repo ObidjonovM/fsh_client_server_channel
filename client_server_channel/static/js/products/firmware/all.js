@@ -7,7 +7,7 @@ function deleteFirm(e) {
     var result = confirm("Удалить ?");
 
     if (result) {
-        xhttp.open('DELETE', '/firmwares/delete/' + firm_id, true);
+        xhttp.open('DELETE', '/products/firmware/delete/' + firm_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -32,10 +32,10 @@ function deleteFirm(e) {
 
 // dobavit uchun js code: Ishlayapti
 document.getElementById("addClick").onclick = function () {
-    window.open('/firmwares/add', '_self');
+    window.open('/products/firmware/add', '_self');
 };
 
 // get_types dagi malumotlarni get_type ga olib boradi tr ni ikki marta click qilganda: ?
 function getType(e) {
-    window.open('/firmwares/get/' + e.children[0].innerHTML, '_self');
+    window.open('/products/firmware/get/' + e.children[0].innerHTML, '_self');
 }

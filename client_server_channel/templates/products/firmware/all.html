@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/firmwares/get_all.css">
+<link rel="stylesheet" href="/static/css/products/firmware/all.css">
 
 {% endblock %}
 
@@ -25,8 +25,6 @@
 
         <th>Версия</th>
 
-        <th>Описание</th>
-
         <th>Ф.И.О</th>
 
         <th>Действия</th>
@@ -46,10 +44,8 @@
         <td>{{firmwares['data']['model'][i]}}</td>
 
         <td>{{firmwares['data']['version'][i]}}</td>
-
-        <td>{{firmwares['data']['description'][i]}}</td>
-
-        <td>{{ names_by_ids[ firmwares['data']['author_id'][i]] }}</td>
+        
+        <td>{{ names_by_ids['data'][firmwares['data']['author_id'][i]] }}</td>
 
         <td>
             <button onclick="deleteFirm(this)">Удалить</button>
@@ -60,7 +56,7 @@
 
 </table>
 
-<script src="/static/js/firmwares/get_all.js"></script>
+<script src="/static/js/products/firmware/all.js"></script>
 
 {% endblock %}
 

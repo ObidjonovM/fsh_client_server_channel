@@ -3,27 +3,12 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/firmwares/update.css">
+<link rel="stylesheet" href="/static/css/products/firmware/update.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{fullname}}
-{{fw_info}}
-<form action="{{url_for('products.firmware.update', fw_id=fw_info['fw_id'])}}" method="POST">
-    <label for="name">name</label>
-    <input type="text" id="name" name="name" value="{{fw_info['name']}}">
-    <label for="model">model</label>
-    <input type="text" id="model" name="model" value="{{fw_info['model']}}">
-    <label for="version">version</label>
-    <input type="text" id="version" name="version" value="{{fw_info['version']}}">
-    <label for="desc">desc</label>
-    <input type="text" id="desc" name="desc" value="{{fw_info['description']}}">
-    <label for="fullname">fullname</label>
-    <input type="text" id="fullname" value="{{fullname}}">
-    <input type="submit" value="Update">
-</form>
 
 <div class="container">
 
@@ -31,43 +16,40 @@
         <h2>Названия должности</h2>
     </div>
 
-    <form action="{{url_for('firmwares.update', fw_id=fw_info['fw_id'])}}" class="form" method="POST">
+    <form action="{{url_for('products.firmware.update', fw_id=fw_info['fw_id'])}}" class="form" method="POST">
 
         <div class="form-control">
             <label for="name">Имя</label>
             <input type="text" id="name" name="name" value="{{fw_info['name']}}" readonly>
-        </div>
 
-        <div class="form-control">
             <label for="model">Модель</label>
             <input type="text" id="model" name="model" value="{{fw_info['model']}}" readonly>
         </div>
 
+
         <div class="form-control">
             <label for="version">Версия</label>
             <input type="text" id="version" name="version" value="{{fw_info['version']}}" readonly>
-        </div>
 
-        <div class="form-control">
             <label for="desc">Описание</label>
             <input type="text" id="desc" name="desc" value="{{fw_info['description']}}">
         </div>
+
 
         <div class="form-control">
             <label for="fullname">Ф.И.О</label>
             <input type="text" id="fullname" value="{{fullname}}" readonly>
         </div>
 
-        <div class="buttons">
-            <input type="submit" class="firmwares-add-submit" value="Сохранить">
 
-            <input type="button" class="firmwares-add-submit1" onclick="otmenFunction()" value="Отмена">
-        </div>
+            <input type="submit" class="add-submit" value="Сохранить">
+
+            <input type="button" class="add-submit2" onclick="otmenFunction()" value="Отмена">
 
     </form>
 
 </div>
 
-<script src="/static/js/firmwares/update.js"></script>
+<script src="/static/js/products/firmware/update.js"></script>
 
 {% endblock %}

@@ -25,7 +25,7 @@ window.addEventListener("load", function () {
             alert('Error');
         });
 
-        XHR.open("POST", "/firmwares/add");
+        XHR.open("POST", "/products/firmware/add");
 
         XHR.send(FD);
     }
@@ -41,5 +41,5 @@ window.addEventListener("load", function () {
 
 
 function otmenFunction() {
-    window.open('/firmwares/get_all', '_self');
+    window.open('/products/firmware/all', '_self');
 }

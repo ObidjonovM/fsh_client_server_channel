@@ -3,29 +3,13 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/firmwares/add.css">
+<link rel="stylesheet" href="/static/css/products/firmware/add.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<form action="{{url_for('products.firmware.add')}}" method="POST">
-    <label for="name">name</label>
-    <input type="text" id="name" name="name">
-    <label for="model">model</label>
-    <input type="text" id="model" name="model">
-    <label for="version">version</label>
-    <input type="text" id="version" name="version">
-    <label for="desc">desc</label>
-    <input type="text" id="desc" name="desc">
-    <select name="emp_id" id="emp_id">
-        {%for i in range(ids_fullname.data.emp_id|length)%}
-            <option value="{{ids_fullname.data.emp_id[i]}}">{{ids_fullname.data.last_name[i]}}{{ids_fullname.data.first_name[i]}}{{ids_fullname.data.middle_name[i]}}</option>
-        {%endfor%}
-    </select>
-    <input type="submit" value="Add">
-</form>
 <div class="container">
 
     <div class="header">
@@ -34,8 +18,10 @@
 
     <form id="myForm" class="form">
         <div class="form-control">
+
             <label for="emp_id">Ф.И.О</label><br/>
-            <select name="emp_id" id="emp_id">
+            <select name="emp_id" id="emp_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
                 {%for i in range(ids_fullname.data.emp_id|length)%}
                 <option value="{{ids_fullname.data.emp_id[i]}}">
                     {{ids_fullname.data.last_name[i]}} {{ids_fullname.data.first_name[i]}}
@@ -43,37 +29,42 @@
                 </option>
                 {%endfor%}
             </select>
-        </div>
 
-        <div class="form-control">
             <label for="name">Имя</label>
             <input type="text" id="name" name="name" required>
+
+
         </div>
 
+
         <div class="form-control">
+
             <label for="model">Модель</label>
             <input type="text" id="model" name="model" required>
-        </div>
 
-        <div class="form-control">
+
             <label for="version">Версия</label>
             <input type="text" id="version" name="version" required>
+
         </div>
+
 
         <div class="form-control">
+
             <label for="desc">Описание</label>
-            <input type="text" id="desc" name="desc" required>
+            <textarea type="text" name="desc" id="desc"> </textarea>
+
         </div>
 
-        <div class="buttons">
-            <input type="submit" class="firmwares-add-submit" value="Сохранить">
 
-            <input type="button" class="firmwares-add-submit1" onclick="otmenFunction()" value="Отмена">
-        </div>
+        <input type="submit" class="add-submit" value="Сохранить">
+
+        <input type="button" class="add-submit2" onclick="otmenFunction()" value="Отмена">
+
     </form>
 
 </div>
 
-<script src="/static/js/firmwares/add.js"></script>
+<script src="/static/js/products/firmware/add.js"></script>
 
 {% endblock %}
