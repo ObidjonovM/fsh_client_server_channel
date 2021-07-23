@@ -10,6 +10,16 @@
 {% block body %}
 {{super()}}
 
+<div class="btns">
+
+    <input type="button" class="add-submit1" value="Отдель" onclick="отдельFunction()"/>
+
+    <input type="button" class="add-submit1-1" value="Тип" onclick="типFunction()"/>
+
+    <input type="button" class="add-submit1-2" value="Статус" onclick="статусFunction()"/>
+
+</div>
+
 <div class="add-container">
 
     <div class="add-header">
@@ -20,7 +30,7 @@
 
         <div class="form-control">
             <label for="dept_id">Отдель</label>
-            <select name="dept_id" id="dept_id"  required>
+            <select name="dept_id" id="dept_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(names_ids_departments['dept_id']|length)%}
                 <option value="{{names_ids_departments['dept_id'][i]}}">{{names_ids_departments['name'][i]}}</option>
@@ -88,7 +98,9 @@
 
 
         <input type="submit" class="add-submit" value="Сохранить"/>
+
         <input type="button" class="add-submit2" onclick="otmenFunction()" value="Отмена"/>
+
     </form>
 
 </div>
