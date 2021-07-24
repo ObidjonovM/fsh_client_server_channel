@@ -3,51 +3,95 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/products/dealer/update.css">
+<link rel="stylesheet" href="/static/css/products/update.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-
 <div class="add-container">
-        <div class="add-header">
-                <h2>Названия должности</h2>
-        </div>
 
-<form class="add-form"
-      action="{{ url_for('products.update', serial_num=product_info['data']['serial_num']) }}"
-      method="POST">
-{{product_info}}
-{{dealers_ids}}
-{{status_ids}}
-{{product_name}}
-{{clients_ids}}
-{{firmwares_ids}}
+    <div class="add-header">
+        <h2>Названия должности</h2>
+    </div>
+
+    <form action="{{ url_for('products.update', serial_num=product_info['data']['serial_num']) }}"
+          method="POST"
+          id="myForm" class="add-form">
+
         <div class="form-control">
-                <label for="dealer_id">dealer_id</label>
-                <input type="text" name="dealer_id">
-                <label for="emp_id">emp_id</label>
-                <input type="text" name="emp_id">
-                <label for="status_id">status_id</label>
-                <input type="text" name="status_id">
+
+            <label for="manufactured_date">Дата</label>
+            <input type="date" id="manufactured_date" readonly
+                   value="{{product_info['data']['manufactured_date']}}">
+
+            <label for="product_name">Товар</label>
+            <input type="text" id="product_name" readonly
+                   value="{{product_name['data']['name']}}">
+
+            <label for="dealers_ids">Дилер</label>
+            <select name="dealers_ids" id="dealers_ids" required>
+                {%for i in range(dealers_ids['data']['dealer_id']|length)%}
+                {%if product_info['data']['dealer_id'] == dealers_ids['data']['dealer_id'][i]%}
+                <option selected value="{{dealers_ids['data']['dealer_id'][i]}}">
+                    {{dealers_ids['data']['name'][i]}}
+                </option>
+                {% else %}
+                <option value="{{dealers_ids['data']['dealer_id'][i]}}">
+                    {{dealers_ids['data']['name'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
+
+
+            <label for="product_info">mac_address</label>
+            <input type="text" id="product_info" readonly
+                   value="{{product_info['data']['mac_address']}}">
+
+        </div>
+
+        <div class="form-control">
+
+            <label for="clients_ids">Клиент</label>
+            <input type="text" id="clients_ids" readonly
+                   value="{{clients_ids['data']['last_name']}} {{clients_ids['data']['first_name']}} {{clients_ids['data']['middle_name']}}">
+
+            <label for="firmwares_ids">Прошивка</label>
+            <input type="text" id="firmwares_ids" readonly
+                   value="{{firmwares_ids['data']['name']}}">
+
+            <label for="status_ids">Статус</label>
+            <select name="status_ids" id="status_ids" required>
+                {%for i in range(status_ids['data']['status_id']|length)%}
+                {%if product_info['data']['status_id'] == status_ids['data']['status_id'][i]%}
+                <option selected value="{{status_ids['data']['status_id'][i]}}">
+                    {{status_ids['data']['status'][i]}}
+                </option>
+                {% else %}
+                <option value="{{status_ids['data']['status_id'][i]}}">
+                    {{status_ids['data']['status'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
+
         </div>
 
 
+        <input type="submit" class="add-submit" value="Сохранить"/>
 
-        <input type="submit" class="add-submit" value="Сохранить" />
-
-        <button type="button" onclick="otmenFunction()"
-                class="add-submit2" value="Отмена" >
-                Отмена
+        <button type="button" onclick="otmenFunction()" class="add-submit2" value="Add">
+            Отмена
         </button>
 
-</form>
+    </form>
 
 </div>
 
-<script src="/static/js/products/dealer/update.js"></script>
+
+<script src="/static/js/products/update.js"></script>
 
 {% endblock %}
 

@@ -3,21 +3,76 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/products/dealer/all.css">
+<link rel="stylesheet" href="/static/css/products/all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-{{products_info}}
-{{products_by_ids}}
-{{dealers_by_ids}}
-{{clients_by_ids}}
-{{firmwares_by_ids}}
-{{status_by_ids}}
+<button class="add-button" id="addClick">Добавить</button>
 
-<script src="/static/js/products/dealer/all.js"></script>
+<table class="table">
+    <thead>
+
+    <tr>
+
+        <th class="hidden">Номер должности</th>
+
+        <th>№</th>
+
+        <th>Товар</th>
+
+        <th>Дилер</th>
+
+        <th>MAC-адрес</th>
+
+        <th>Клиент</th>
+
+        <th>Прошивка</th>
+
+        <th>Статус</th>
+
+        <th colspan="2">Действия</th>
+
+    </tr>
+
+    </thead>
+
+
+    <tbody id="tBody">
+
+    {% for i in range(products_info['data']['serial_num']|length) %}
+    <tr ondblclick="getType(this)">
+
+        <td class="hidden">{{products_info['data']['serial_num'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>{{products_by_ids['data'][products_info['data']['product_id'][i]]}}</td>
+
+        <td>{{dealers_by_ids['data'][products_info['data']['dealer_id'][i]]}}</td>
+
+        <td>{{products_info['data']['mac_address'][i]}}</td>
+
+        <td>{{clients_by_ids['data'][products_info['data']['client_id'][i]]}}</td>
+
+        <td>{{firmwares_by_ids['data'][products_info['data']['firmware_id'][i]]}}</td>
+
+        <td>{{status_by_ids['data'][products_info['data']['status_id'][i]]}}</td>
+
+        <td>
+            <button onclick="deleteType(this)">Удалить</button>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+<script src="/static/js/products/all.js"></script>
 
 {% endblock %}
 

@@ -1,14 +1,13 @@
-const product_id = document.getElementById("product_id");
-
-function deleteProduct() {
+function deleteType(e) {
+    let serial_num = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
     var result = confirm("Удалить ?");
 
-    if (result) {
+    if (result){
 
-        xhttp.open('DELETE', '/products/delete/' + product_id.value, true);
+        xhttp.open('DELETE', '/products/delete/' + serial_num, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -27,14 +26,17 @@ function deleteProduct() {
         }
 
     }
+    else {
+        return false;
+    }
+
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/products/add', '_self');
+};
 
-function updateProduct() {
-    window.open('/products/update/' + product_id.value, '_self');
+function getType(e) {
+    window.open('/products/get/' + e.children[0].innerHTML, '_self');
 }
 
-
-function otmenFunction () {
-    window.open('/products/all', '_self');
-}

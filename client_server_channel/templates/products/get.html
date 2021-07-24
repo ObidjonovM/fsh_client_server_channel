@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/products/dealer/get.css">
+<link rel="stylesheet" href="/static/css/products/get.css">
 
 {% endblock %}
 
@@ -11,20 +11,70 @@
 {{super()}}
 
 
-{{product_info}}
-{{product_name}}
-{{dealer_name}}
-{{client_name}}
-{{firmware_name}}
-{{status_name}}
-<input type="text" id="product_id" value="{{product_info['data']['serial_num']}}">
+<div class="add-container">
 
+    <div class="add-header">
+        <h2>Названия должности</h2>
+    </div>
+
+    <div class="add-form" id="myForm">
+
+        <input type="hidden" id="product_id" value="{{product_info['data']['serial_num']}}">
+
+
+        <div class="form-control">
+
+            <label for="manufactured_date">Дата</label>
+            <input type="date" id="manufactured_date" readonly
+                   value="{{product_info['data']['manufactured_date']}}">
+
+            <label for="product_name">Товар</label>
+            <input type="text" id="product_name" readonly
+                   value="{{product_name['data']['name']}}">
+
+
+            <label for="dealer_name">Дилер</label>
+            <input type="text" id="dealer_name" readonly
+                   value="{{dealer_name['data']['name']}}">
+
+            <label for="mac_address">MAC-адрес</label>
+            <input type="text" id="mac_address" readonly
+                   value="{{product_info['data']['mac_address']}}">
+
+        </div>
+
+
+        <div class="form-control">
+            <label for="client_name">Клиент</label>
+            <input type="text" id="client_name" readonly
+                   value="{{client_name['data']['last_name']}} {{client_name['data']['first_name']}} {{client_name['data']['middle_name']}}">
+
+            <label for="firmware_name">Прошивка</label>
+            <input type="text" id="firmware_name" readonly
+                   value="{{firmware_name['data']['name']}}">
+
+            <label for="status_name">Статус</label>
+            <input type="text" id="status_name" readonly
+                   value="{{status_name['data']['status']}}">
+        </div>
+
+
+        <button onclick="updateProduct()" class="add-submit">
+            Изменить
+        </button>
 
         <button onclick="deleteProduct()" class="add-submit2">
             Удалить
         </button>
 
+        <button onclick="otmenFunction()" class="add-submit3">
+            Назад
+        </button>
 
+    </div>
+
+
+</div>
 
 
 <script src="/static/js/products/get.js"></script>
