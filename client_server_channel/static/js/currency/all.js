@@ -1,6 +1,6 @@
-const curr_id = document.getElementById("curr_id");
+function deleteCurrency(e) {
 
-function deleteCurr() {
+    let curr_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
@@ -8,7 +8,7 @@ function deleteCurr() {
 
     if (result){
 
-        xhttp.open('DELETE', '/currency/delete/' + curr_id.value, true);
+        xhttp.open('DELETE', '/currency/delete/' + curr_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -18,22 +18,25 @@ function deleteCurr() {
 
             if (xhttp.readyState == 4 && xhttp.status == 200) {
                 const resp = JSON.parse(xhttp.responseText);
-
                 if (resp['success']) {
                     window.open('/currency/all', '_self')
                 } else {
                     alert('Не удалось удалить тип сотрудника!');
                 }
-
             }
 
         }
     }
+    else {
+        return false;
+    }
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/currency/add', '_self');
+};
 
-
-function otmenFunction () {
-    window.open('/currency/all', '_self');
+function getType(e) {
+    window.open('/currency/get/' + e.children[0].innerHTML, '_self');
 }
 

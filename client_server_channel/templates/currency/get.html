@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/department/get.css">
+<link rel="stylesheet" href="/static/css/currency/get.css">
 
 {% endblock %}
 
@@ -11,14 +11,14 @@
 {{super()}}
 
 <div class="container">
+
     <div class="header">
         <h2>Названия должности</h2>
     </div>
 
     <div class="form">
-        <div class="form-control">
-            <input id="curr_id" type="hidden" value="{{curr_info['data']['curr_id']}}"/>
-        </div>
+
+        <input id="curr_id" type="hidden" value="{{curr_info['data']['curr_id']}}"/>
 
         <div class="form-control">
             <label for="currency">Имя</label>
@@ -26,16 +26,12 @@
                    value="{{curr_info['data']['currency']}}" id="currency" readonly/>
         </div>
 
-        <button onclick="updateType()" class="add-type-submit">
-            Изменить
-        </button>
-
         <button onclick="deleteCurr()" class="add-type-submit2">
             Удалить
         </button>
 
         <button onclick="otmenFunction()" class="add-type-submit3">
-           Назад
+            Назад
         </button>
     </div>
 

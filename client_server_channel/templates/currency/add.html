@@ -3,9 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/department/add.css">
-<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-
+<link rel="stylesheet" href="/static/css/currency/add.css">
 
 
 {% endblock %}
@@ -15,22 +13,28 @@
 
 
 <div class="container">
+
     <div class="header">
-        <h2>Новая должность</h2>
+        <h2>Новая валюта</h2>
     </div>
+
     <form id="myForm" class="form" action="{{url_for('currency.add')}}" method="POST">
+
         <div class="form-control">
-            <label for="currency">Имя</label>
-            <input type="text" name="currency" placeholder="Введите имя..." id="currency" required/>
+            <label for="currency">Валюта</label>
+            <input type="text" name="currency" placeholder="Введите валюта..." id="currency" required/>
         </div>
 
         <input type="submit" class="add-type-submit" value="Сохранить"/>
+
         <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
 
     </form>
+
 </div>
 
 
+<script src="/static/js/currency/add.js"></script>
 
 
 {% endblock %}

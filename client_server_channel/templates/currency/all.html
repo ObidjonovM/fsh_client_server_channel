@@ -3,19 +3,58 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/department/all.css">
+<link rel="stylesheet" href="/static/css/currency/all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-{{currencies}}
+<button class="add-button" onclick="addClick()" id="addClick">Добавить</button>
+
+<table class="table">
+    <thead>
+
+    <tr>
+
+        <th class="hidden">Номер должности</th>
+
+        <th>№</th>
+
+        <th>Валюта</th>
+
+        <th>Действия</th>
+
+    </tr>
+    </thead>
+
+    <tbody id="tBody">
+
+    {% for i in range(currencies['data']['curr_id']|length) %}
+
+    <tr ondblclick="getType(this)">
+
+        <td class="hidden">{{currencies['data']['curr_id'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>{{currencies['data']['currency'][i]}}</td>
+
+        <td>
+            <button onclick="deleteCurrency(this)">Удалить</button>
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
 
 
 
-
-<script src="/static/js/employees/department/all.js"></script>
+<script src="/static/js/currency/all.js"></script>
 
 {% endblock %}
 
