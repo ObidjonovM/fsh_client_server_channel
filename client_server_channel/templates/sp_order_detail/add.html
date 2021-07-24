@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<!-- <link rel="stylesheet" href="/static/css/employees/department/add.css"> -->
+<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+
+
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+{{types_ids}}
+{{currencies_ids}}
+{{units_ids}}
+{{orders_ids}}
+
+<div class="container">
+    <div class="header">
+        <h2>Новая должность</h2>
+    </div>
+    <form id="myForm" class="form" action="{{url_for('sp_order_detail.add')}}" method="POST">
+
+        <div class="form-control">
+            <label for="type_id">type_id</label>
+            <input type="text" name="type_id" id="type_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="price_per_unit">price_per_unit</label>
+            <input type="number" name="price_per_unit" id="price_per_unit" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="curr_id">curr_id</label>
+            <input type="text" name="curr_id" id="curr_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="amount">amount</label>
+            <input type="number" name="amount" id="amount" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="unit_id">unit_id</label>
+            <input type="text" name="unit_id" id="unit_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="order_id">order_id</label>
+            <input type="text" name="order_id" id="order_id" placeholder="Введите описание..."/>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить"/>
+        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+
+    </form>
+</div>
+
+
+
+<!-- <script src="/static/js/employees/department/add.js"></script> -->
+
+{% endblock %}
+
+

@@ -13,3 +13,4 @@ from .sp_type import sp_type
 from .sp_logistic import sp_logistic
 from .sp_order_status import sp_order_status
 from .sp_order import sp_order
+from .sp_order_detail import sp_order_detail

@@ -20,14 +20,14 @@ class SpOrderTable:
 
     @staticmethod
     def get_ids_names():
-        return crud.get_ids_names('sp_orders', 'sp_order_id')
+        return crud.get_ids_names('sp_orders', 'sp_order_id', 'total_cost')
 
 
     @staticmethod
     def get_names_by_ids(sp_orders_ids):
         result = crud.get_columns_by_ids(
             'sp_orders',
-            ['sp_order_id'],
+            ['sp_order_id', 'total_cost'],
             'sp_order_id',
             sp_orders_ids
         )
@@ -37,7 +37,7 @@ class SpOrderTable:
             data = result['data']
             data_len = len(data['sp_order_id'])
             for i in range(data_len):
-                names_ids[data['sp_order_id'][i]]
+                names_ids[data['sp_order_id'][i]] = data['total_cost'][i]
 
             result['data'] = names_ids
 
