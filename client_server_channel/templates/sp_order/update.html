@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div class="container">
+        <div class="header">
+                <h2>Названия должности</h2>
+        </div>
+<form class="form"
+      action="{{ url_for('sp_order.update', sp_order_id=sp_order_info['data']['sp_order_id']) }}"
+      method="POST">
+        {{sp_order_info}}
+        {{order_statuses_ids}}
+        {{currency_name}}
+        {{supplier_name}}
+        {{logistic_name}}
+        {{employee_name}}
+
+        <div class="form-control">
+                <label for="order_status_id">order_status_id</label>
+                <input type="text" id="order_status_id" name="order_status_id"
+                        value="{{sp_order_info['data']['order_status_id']}}"/>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <button type="button" onclick="otmenFunction()"
+                class="add-type-submit" value="Отмена" >
+                Отмена
+        </button>
+
+</form>
+
+</div>
+
+<script src="/static/js/employees/department/update.js"></script>
+
+{% endblock %}
+
+

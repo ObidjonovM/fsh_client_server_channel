@@ -19,3 +19,4 @@ from .tracking_status import TrackingStatusC
 from .sp_type import SpTypeC
 from .sp_logistic import SpLogisticC
 from .sp_order_status import SpOrderStatusC
+from .sp_order import SpOrderC

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{sp_order_info}}
+{{currency_name}}
+{{supplier_name}}
+{{order_status}}
+{{logistic_name}}
+{{employee_name}}
+        
+<input type="text" id="sp_order_id" value="{{sp_order_info['data']['sp_order_id']}}">
+
+        <button onclick="deleteSpOrder()" class="add-type-submit2">
+            Удалить
+        </button>
+
+<script src="/static/js/sp_order/get.js"></script>
+
+{% endblock %}
+
+

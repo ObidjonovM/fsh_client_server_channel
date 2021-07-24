@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<!-- <link rel="stylesheet" href="/static/css/employees/department/add.css"> -->
+<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+
+
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+{{currencies_ids}}
+{{suppliers_ids}}
+{{order_statuses_ids}}
+{{logistics_ids}}
+{{ord_emp_id}}
+
+<div class="container">
+    <div class="header">
+        <h2>Новая должность</h2>
+    </div>
+    <form id="myForm" class="form" action="{{url_for('sp_order.add')}}" method="POST">
+
+        <div class="form-control">
+            <label for="issued_order_id">issued_order_id</label>
+            <input type="text" name="issued_order_id" id="issued_order_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="total_cost">total_cost</label>
+            <input type="number" name="total_cost" id="total_cost" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="curr_id">curr_id</label>
+            <input type="text" name="curr_id" id="curr_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="supplier_id">supplier_id</label>
+            <input type="text" name="supplier_id" id="supplier_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="exp_dispatch_date">exp_dispatch_date</label>
+            <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="order_status_id">order_status_id</label>
+            <input type="text" name="order_status_id" id="order_status_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="shipment_id">shipment_id</label>
+            <input type="text" name="shipment_id" id="shipment_id" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="order_date">order_date</label>
+            <input type="date" name="order_date" id="order_date" placeholder="Введите описание..."/>
+        </div>
+
+        <div class="form-control">
+            <label for="ord_emp_id">ord_emp_id</label>
+            <input type="text" name="ord_emp_id" id="ord_emp_id" placeholder="Введите описание..."/>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить"/>
+        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+
+    </form>
+</div>
+
+
+
+<!-- <script src="/static/js/employees/department/add.js"></script> -->
+
+{% endblock %}
+
+

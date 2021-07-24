@@ -48,6 +48,17 @@ class EmployeeC:
 
 
     @staticmethod
+    def get_ids_names():
+        ids_names = EmployeesTable.get_ids_names()
+
+        return {
+            'success' : ids_names['success'],
+            'data' : ids_names['data'],
+            'log_code' : utls.record_log(ids_names, 'get_ids_names', 'crud_logs')
+        }
+
+
+    @staticmethod
     def get_names_by_ids(emp_ids):
         name_ids = EmployeesTable.get_fullnames(emp_ids)
 
