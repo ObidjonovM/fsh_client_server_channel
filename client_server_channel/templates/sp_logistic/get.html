@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{sp_logistic_info}}
+{{carrier_name}}
+{{currency_name}}
+{{shipping_type_name}}
+{{tracking_status_name}}
+        
+<input type="text" id="shipment_id" value="{{sp_logistic_info['data']['shipment_id']}}">
+
+        <button onclick="deleteSpLogistic()" class="add-type-submit2">
+            Удалить
+        </button>
+
+<script src="/static/js/sp_logistic/get.js"></script>
+
+{% endblock %}
+
+

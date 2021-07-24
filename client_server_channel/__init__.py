@@ -1,7 +1,7 @@
 from flask import Flask
 from .views import (clients, core, employees, products, error_pages,
                     currency, unit, supplier, carrier, shipping_type,
-                    tracking_status, sp_type)
+                    tracking_status, sp_type, sp_logistic)
 from . import config
 
 app = Flask(__name__)
@@ -20,3 +20,4 @@ app.register_blueprint(carrier)
 app.register_blueprint(shipping_type)
 app.register_blueprint(tracking_status)
 app.register_blueprint(sp_type)
+app.register_blueprint(sp_logistic)

@@ -10,3 +10,4 @@ from .carrier import carrier
 from .shipping_type import shipping_type
 from .tracking_status import tracking_status
 from .sp_type import sp_type
+from .sp_logistic import sp_logistic
