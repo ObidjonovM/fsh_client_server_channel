@@ -3,9 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/department/add.css">
-<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-
+<link rel="stylesheet" href="/static/css/unit//add.css">
 
 
 {% endblock %}
@@ -16,7 +14,7 @@
 
 <div class="container">
     <div class="header">
-        <h2>Новая должность</h2>
+        <h2>Новая единица измерения</h2>
     </div>
     <form id="myForm" class="form" action="{{url_for('unit.add')}}" method="POST">
         <div class="form-control">
@@ -30,6 +28,7 @@
         </div>
 
         <input type="submit" class="add-type-submit" value="Сохранить"/>
+
         <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
 
     </form>
@@ -37,7 +36,7 @@
 
 
 
-<!-- <script src="/static/js/employees/department/add.js"></script> -->
+ <script src="/static/js/unit/add.js"></script>
 
 {% endblock %}
 
