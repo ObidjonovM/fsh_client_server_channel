@@ -27,12 +27,12 @@
 
         <div class="form-control">
                 <label for="desc">Description</label>
-                <input type="text" name="desc" value="{{subs_info['data']['description']}}" id="desc" required/>
+                <input type="text" name="desc" value="{{subs_info['data']['description']}}" id="desc"/>
         </div>
 
         <div class="form-control">
                 <label for="monthly_fee">Ежемесячная плата</label>
-                <input type="text" name="monthly_fee" value="{{subs_info['data']['monthly_fee']}}" id="monthly_fee" required/>
+                <input type="number" name="monthly_fee" value="{{subs_info['data']['monthly_fee']}}" id="monthly_fee" required/>
         </div>
 
         <input type="submit" class="add-type-submit" value="Сохранить" />
