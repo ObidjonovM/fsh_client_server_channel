@@ -18,3 +18,4 @@ from .shipping_type import ShippingTypeC
 from .tracking_status import TrackingStatusC
 from .sp_type import SpTypeC
 from .sp_logistic import SpLogisticC
+from .sp_order_status import SpOrderStatusC
