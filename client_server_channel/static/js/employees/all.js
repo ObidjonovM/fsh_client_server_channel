@@ -20,7 +20,7 @@ function deleteEmp(e) {
                 const resp = JSON.parse(xhttp.responseText);
 
                 if (resp['success']) {
-                    window.open('/employees/get_all', '_self')
+                    window.open('/employees/all', '_self')
                 } else {
                     alert('Не удалось удалить тип сотрудника!');
                 }
