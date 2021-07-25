@@ -1,14 +1,13 @@
-const supplier_id = document.getElementById("supplier_id");
-
-function deleteSupp() {
+function deleteType(e) {
+    let supplier_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
     var result = confirm("Удалить ?");
 
-    if (result) {
+    if (result){
 
-        xhttp.open('DELETE', '/supplier/delete/' + supplier_id.value, true);
+        xhttp.open('DELETE', '/supplier/delete/' + supplier_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -27,14 +26,17 @@ function deleteSupp() {
         }
 
     }
+    else {
+        return false;
+    }
+
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/supplier/add', '_self');
+};
 
-function updateSupp() {
-    window.open('/supplier/update/' + supplier_id.value, '_self');
+function getType(e) {
+    window.open('/supplier/get/' + e.children[0].innerHTML, '_self');
 }
 
-
-function otmenFunction () {
-    window.open('/supplier/all', '_self');
-}
