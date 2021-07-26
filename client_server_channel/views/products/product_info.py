@@ -59,7 +59,7 @@ def all():
 
 	products_info = ProductInfoC.get_all()
 
-	if product_info['success']:
+	if products_info['success']:
 		if len(products_info['data']) > 0:
 			return render_template(
 				utls.url_join(['products', 'product_info', 'all.html']),
