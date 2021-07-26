@@ -77,7 +77,7 @@ def update(type_id):
                 type_info=type_info['data']
             )
         
-        return redirect(url_for('employees.employee_type.get'))
+        return redirect(url_for('employees.employee_type.all'))
 
     if request.method == 'POST':
         result = EmployeeTypeC.update({
