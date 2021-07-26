@@ -3,19 +3,51 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/department/get.css">
+<link rel="stylesheet" href="/static/css/sp_order_status/get.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{sp_order_status_info}}
-        
-<input type="text" id="status_id" value="{{sp_order_status_info['data']['status_id']}}">
 
-        <button onclick="deleteSpOrderStatus()" class="add-type-submit2">
+<div class="container">
+
+    <div class="header">
+        <h2>Новая должность</h2>
+    </div>
+
+    <div id="myForm" class="form">
+
+        <input type="hidden" id="status_id" value="{{sp_order_status_info['data']['status_id']}}">
+
+        <div class="form-control">
+            <label for="name">Название</label>
+            <input type="text" id="name" readonly
+                   value="{{sp_order_status_info['data']['name']}}"/>
+        </div>
+
+        <div class="form-control">
+            <label for="desc">Описание</label>
+            <input type="text" id="desc" readonly
+                   value="{{sp_order_status_info['data']['description']}}"/>
+        </div>
+
+
+
+        <button onclick="updateSpOrderStatus()" class="add-type-submit">
+            Изменить
+        </button>
+
+        <button onclick="deleteSpOrderStatus()" class="add-type-submit">
             Удалить
         </button>
+
+        <button onclick="otmenFunction()" class="add-type-submit">
+            Назад
+        </button>
+    </div>
+
+</div>
 
 <script src="/static/js/sp_order_status/get.js"></script>
 

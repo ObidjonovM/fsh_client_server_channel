@@ -1,14 +1,13 @@
-const status_id = document.getElementById("status_id");
-
-function deleteSpOrderStatus() {
+function deleteType(e) {
+    let status_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
     var result = confirm("Удалить ?");
 
-    if (result) {
+    if (result){
 
-        xhttp.open('DELETE', '/sp_order_status/delete/' + status_id.value, true);
+        xhttp.open('DELETE', '/sp_order_status/delete/' + status_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -27,14 +26,17 @@ function deleteSpOrderStatus() {
         }
 
     }
+    else {
+        return false;
+    }
+
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/sp_order_status/add', '_self');
+};
 
-function updateSpOrderStatus() {
-    window.open('/sp_order_status/update/' + status_id.value, '_self');
+function getType(e) {
+    window.open('/sp_order_status/get/' + e.children[0].innerHTML, '_self');
 }
 
-
-function otmenFunction () {
-    window.open('/sp_order_status/all', '_self');
-}

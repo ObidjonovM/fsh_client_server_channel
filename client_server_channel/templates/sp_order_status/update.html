@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+ <link rel="stylesheet" href="/static/css/sp_order_status/update.css">
 
 {% endblock %}
 
@@ -19,13 +19,13 @@
       method="POST">
 
         <div class="form-control">
-                <label for="name">name</label>
+                <label for="name">Название</label>
                 <input type="text" id="name"
                         value="{{sp_order_status_info['data']['name']}}"/>
         </div>
 
         <div class="form-control">
-                <label for="desc">desc</label>
+                <label for="desc">Описание</label>
                 <input type="text" name="desc" id="desc"
                         value="{{sp_order_status_info['data']['description']}}"/>
         </div>
@@ -40,7 +40,7 @@
 
 </div>
 
-<script src="/static/js/employees/department/update.js"></script>
+<script src="/static/js/sp_order_status/update.js"></script>
 
 {% endblock %}
 
