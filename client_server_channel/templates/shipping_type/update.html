@@ -3,76 +3,99 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+<link rel="stylesheet" href="/static/css/shipping_type/update.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<div class="container">
-        <div class="header">
-                <h2>Названия должности</h2>
-        </div>
-<form class="form"
-      action="{{ url_for('shipping_type.update', shipping_type_id=shipping_type_info['data']['shipping_type_id']) }}"
-      method="POST">
-        {{currencies_ids}}
-        {{units_ids}}
-        {{carriers_ids}}
+<div class="add-container">
+    <div class="add-header">
+        <h2>Названия перевозки</h2>
+    </div>
+    <form class="add-form"
+          action="{{ url_for('shipping_type.update', shipping_type_id=shipping_type_info['data']['shipping_type_id']) }}"
+          method="POST">
+
         <div class="form-control">
-                <label for="name">name</label>
-                <input type="text" id="name"
-                        value="{{shipping_type_info['data']['name']}}"/>
+            <label for="name">name</label>
+            <input type="text" id="name" readonly
+                   value="{{shipping_type_info['data']['name']}}"/>
+
+            <label for="carrier_id">Перевозчики</label>
+            <select name="carrier_id" id="carrier_id" required>
+                {% for i in range(carriers_ids['data']['carrier_id']|length)%}
+                {%if shipping_type_info['data']['unit_id'] == carriers_ids['data']['carrier_id'][i]%}
+                <option selected value="{{carriers_ids['data']['carrier_id'][i]}}">
+                    {{carriers_ids['data']['name'][i]}}
+                </option>
+                {%else%}
+                <option value="{{carriers_ids['data']['carrier_id'][i]}}">
+                    {{carriers_ids['data']['name'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
+
+            <label for="curr_id">Валюты</label>
+            <select name="curr_id" id="curr_id" required>
+                {% for i in range(currencies_ids['data']['curr_id']|length)%}
+                {%if shipping_type_info['data']['curr_id'] == currencies_ids['data']['curr_id'][i]%}
+                <option selected value="{{currencies_ids['data']['curr_id'][i]}}">
+                    {{currencies_ids['data']['currency'][i]}}
+                </option>
+                {%else%}
+                <option value="{{currencies_ids['data']['curr_id'][i]}}">
+                    {{currencies_ids['data']['currency'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
+
+            <label for="unit_id">Единица измерения</label>
+            <select name="unit_id" id="unit_id" required>
+                {% for i in range(units_ids['data']['unit_id']|length)%}
+                {%if shipping_type_info['data']['unit_id'] == units_ids['data']['unit_id'][i]%}
+                <option selected value="{{units_ids['data']['unit_id'][i]}}">
+                    {{units_ids['data']['unit'][i]}}
+                </option>
+                {%else%}
+                <option value="{{units_ids['data']['unit_id'][i]}}">
+                    {{units_ids['data']['unit'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
         </div>
 
         <div class="form-control">
-                <label for="price">price</label>
-                <input type="text" name="price" id="price"
-                        value="{{shipping_type_info['data']['price']}}"/>
+            <label for="price">Цена</label>
+            <input type="text" name="price" id="price"
+                   value="{{shipping_type_info['data']['price']}}"/>
+
+            <label for="min_delivery_days">Мин доставки дней</label>
+            <input type="text" name="min_delivery_days" id="min_delivery_days"
+                   value="{{shipping_type_info['data']['min_delivery_days']}}"/>
+
+            <label for="max_delivery_days">Мах доставки дней</label>
+            <input type="text" name="max_delivery_days" id="max_delivery_days"
+                   value="{{shipping_type_info['data']['max_delivery_days']}}"/>
         </div>
 
-        <div class="form-control">
-                <label for="curr_id">curr_id</label>
-                <input type="text" name="curr_id" id="curr_id"
-                        value="{{shipping_type_info['data']['curr_id']}}"/>
-        </div>
 
-        <div class="form-control">
-                <label for="min_delivery_days">min_delivery_days</label>
-                <input type="text" name="min_delivery_days" id="min_delivery_days"
-                        value="{{shipping_type_info['data']['min_delivery_days']}}"/>
-        </div>
+        <input type="submit" class="add-submit" value="Сохранить"/>
 
-        <div class="form-control">
-                <label for="max_delivery_days">max_delivery_days</label>
-                <input type="text" name="max_delivery_days" id="max_delivery_days"
-                        value="{{shipping_type_info['data']['max_delivery_days']}}"/>
-        </div>
-
-        <div class="form-control">
-                <label for="unit_id">unit_id</label>
-                <input type="text" name="unit_id" id="unit_id"
-                        value="{{shipping_type_info['data']['unit_id']}}"/>
-        </div>
-
-        <div class="form-control">
-                <label for="carrier_id">carrier_id</label>
-                <input type="text" name="carrier_id" id="carrier_id"
-                        value="{{shipping_type_info['data']['carrier_id']}}"/>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить" />
         <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
-                Отмена
+                class="add-submit2" value="Отмена">
+            Отмена
         </button>
 
-</form>
+    </form>
 
 </div>
 
-<script src="/static/js/employees/department/update.js"></script>
+<script src="/static/js/shipping_type/update.js"></script>
 
 {% endblock %}
 

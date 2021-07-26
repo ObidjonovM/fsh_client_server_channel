@@ -1,14 +1,13 @@
-const shipping_type_id = document.getElementById("shipping_type_id");
-
-function deleteShippType() {
+function deleteType(e) {
+    let shipping_type_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
     var result = confirm("Удалить ?");
 
-    if (result) {
+    if (result){
 
-        xhttp.open('DELETE', '/shipping_type/delete/' + shipping_type_id.value, true);
+        xhttp.open('DELETE', '/shipping_type/delete/' + shipping_type_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -27,14 +26,17 @@ function deleteShippType() {
         }
 
     }
+    else {
+        return false;
+    }
+
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/shipping_type/add', '_self');
+};
 
-function updateShippType() {
-    window.open('/shipping_type/update/' + shipping_type_id.value, '_self');
+function getType(e) {
+    window.open('/shipping_type/get/' + e.children[0].innerHTML, '_self');
 }
 
-
-function otmenFunction () {
-    window.open('/shipping_type/all', '_self');
-}
