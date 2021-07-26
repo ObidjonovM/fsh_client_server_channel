@@ -106,7 +106,7 @@ def get_columns_by_ids(table_name, cols, id_name, ids):
     sql = sql[:-2] + f' FROM {str(table_name)} WHERE active = TRUE AND ('
 
     for id in ids:
-        sql += f'{str(id_name)} = {str(id)} OR '
+        sql += f"{str(id_name)} = '{str(id)}' OR "
 
     sql = sql[:-4] + f') ORDER BY {id_name}'
 
