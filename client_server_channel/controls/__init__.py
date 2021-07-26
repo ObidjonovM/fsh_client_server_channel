@@ -21,3 +21,4 @@ from .sp_logistic import SpLogisticC
 from .sp_order_status import SpOrderStatusC
 from .sp_order import SpOrderC
 from .sp_order_detail import SpOrderDetailC
+from .sp_status import SpStatusC

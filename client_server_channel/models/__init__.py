@@ -22,3 +22,4 @@ from .sp_logistic import SpLogisticTable
 from .sp_order_status import SpOrderStatusTable
 from .sp_order import SpOrderTable
 from .sp_order_detail import SpOrderDetailTable
+from .sp_status import SpStatusTable
