@@ -46,7 +46,7 @@ def get(sp_id):
 
     sp_warehouse_info = SpWarehouseC.get(sp_id)
 
-    if sp_warehouse_info['data'] != []:
+    if len(sp_warehouse_info['data']) > 0:
 
         return render_template(
             utls.url_join(['sp_warehouse', 'get.html']),

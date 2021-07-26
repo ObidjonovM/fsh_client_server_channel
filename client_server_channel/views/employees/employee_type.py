@@ -32,14 +32,14 @@ def get(type_id):
          return redirect(url_for('employees.login'))
 
     type_info=EmployeeTypeC.get(type_id)
-    if type_info['data'] == []:
-        return redirect(
-            url_for('employees.employee_type.all')
+    if len(type_info['data']) > 0:
+        return render_template(
+            utls.url_join(['employees','employee_type','get.html']),
+            type_info=type_info
         )
 
-    return render_template(
-        utls.url_join(['employees','employee_type','get.html']),
-        type_info=type_info
+    return redirect(
+        url_for('employees.employee_type.all')
     )
 
 

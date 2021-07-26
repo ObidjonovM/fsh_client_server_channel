@@ -37,7 +37,7 @@ def get(dept_id):
 
     dept_info = DepartmentC.get(dept_id)
 
-    if dept_info['data'] != []:
+    if len(dept_info['data']) > 0:
 
         return render_template(
             utls.url_join(['employees', 'department', 'get.html']),

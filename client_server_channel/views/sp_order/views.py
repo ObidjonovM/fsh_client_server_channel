@@ -51,7 +51,7 @@ def get(sp_order_id):
 
     sp_order_info = SpOrderC.get(sp_order_id)
 
-    if sp_order_info['data'] != []:
+    if len(sp_order_info['data']) > 0:
 
         return render_template(
             utls.url_join(['sp_order', 'get.html']),

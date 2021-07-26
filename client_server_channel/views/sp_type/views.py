@@ -41,7 +41,7 @@ def get(sp_type_id):
 
     sp_type_info = SpTypeC.get(sp_type_id)
 
-    if sp_type_info['data'] != []:
+    if len(sp_type_info['data']) > 0:
 
         return render_template(
             utls.url_join(['sp_type', 'get.html']),

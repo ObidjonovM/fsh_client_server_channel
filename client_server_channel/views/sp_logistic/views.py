@@ -50,7 +50,7 @@ def get(shipment_id):
 
     sp_logistic_info = SpLogisticC.get(shipment_id)
 
-    if sp_logistic_info['data'] != []:
+    if len(sp_logistic_info['data']) > 0:
 
         return render_template(
             utls.url_join(['sp_logistic', 'get.html']),

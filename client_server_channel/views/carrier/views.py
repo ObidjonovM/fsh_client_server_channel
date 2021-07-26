@@ -45,7 +45,7 @@ def get(carrier_id):
 
     carrier_info = CarrierC.get(carrier_id)
 
-    if carrier_info['data'] != []:
+    if len(carrier_info['data']) > 0:
 
         return render_template(
             utls.url_join(['carrier', 'get.html']),

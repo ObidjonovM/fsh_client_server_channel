@@ -47,7 +47,7 @@ def get(detail_id):
 
     detail_info = SpOrderDetailC.get(detail_id)
 
-    if detail_info['data'] != []:
+    if len(detail_info['data']) > 0:
 
         return render_template(
             utls.url_join(['sp_order_detail', 'get.html']),

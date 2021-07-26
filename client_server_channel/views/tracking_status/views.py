@@ -39,7 +39,7 @@ def get(status_id):
 
     tracking_status_info = TrackingStatusC.get(status_id)
 
-    if tracking_status_info['data'] != []:
+    if len(tracking_status_info['data']) > 0:
 
         return render_template(
             utls.url_join(['tracking_status', 'get.html']),

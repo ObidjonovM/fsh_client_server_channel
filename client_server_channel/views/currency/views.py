@@ -36,7 +36,7 @@ def get(curr_id):
 
     curr_info = CurrencyC.get(curr_id)
 
-    if curr_info['data'] != []:
+    if len(curr_info['data']) > 0:
 
         return render_template(
             utls.url_join(['currency', 'get.html']),

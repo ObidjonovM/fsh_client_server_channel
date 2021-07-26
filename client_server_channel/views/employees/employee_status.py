@@ -33,14 +33,14 @@ def get(status_id):
         return redirect(url_for('employees.login'))
 
     status_info=EmployeeStatusC.get(status_id)
-    if status_info['data'] == []:
-        return redirect(
-            url_for('employees.employee_status.all')
-        )
+    if len(status_info['data']) > 0:
+        return render_template(
+            utls.url_join(['employees', 'employee_status', 'get.html']),
+            status_info = status_info
+    )
 
-    return render_template(
-        utls.url_join(['employees', 'employee_status', 'get.html']),
-        status_info = status_info
+    return redirect(
+        url_for('employees.employee_status.all')
     )
 
 

@@ -38,7 +38,7 @@ def get(status_id):
 
     sp_order_status_info = SpOrderStatusC.get(status_id)
 
-    if sp_order_status_info['data'] != []:
+    if len(sp_order_status_info['data']) > 0:
 
         return render_template(
             utls.url_join(['sp_order_status', 'get.html']),

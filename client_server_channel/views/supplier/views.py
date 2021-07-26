@@ -46,7 +46,7 @@ def get(supplier_id):
 
     supplier_info = SupplierC.get(supplier_id)
 
-    if supplier_info['data'] != []:
+    if len(supplier_info['data']) > 0:
 
         return render_template(
             utls.url_join(['supplier', 'get.html']),

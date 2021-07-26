@@ -46,7 +46,7 @@ def get(shipping_type_id):
 
     shipping_type_info = ShippingTypeC.get(shipping_type_id)
 
-    if shipping_type_info['data'] != []:
+    if len(shipping_type_info['data']) > 0:
 
         return render_template(
             utls.url_join(['shipping_type', 'get.html']),

@@ -37,7 +37,7 @@ def get(unit_id):
 
     unit_info = UnitC.get(unit_id)
 
-    if unit_info['data'] != []:
+    if len(unit_info['data']) > 0:
 
         return render_template(
             utls.url_join(['unit', 'get.html']),
