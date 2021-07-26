@@ -31,7 +31,7 @@ class EmployeesTable:
             'emp_id', emp_ids
         )
 
-        if result['data'] != []:
+        if len(result['data']) > 0:
             names_ids = {}
             data = result['data']
             data_len = len(data['emp_id'])

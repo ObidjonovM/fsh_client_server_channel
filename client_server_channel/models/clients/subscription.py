@@ -32,7 +32,7 @@ class SubscriptionTable:
             subscriptions_ids
         )
 
-        if result['data'] != []:
+        if len(result['data']) > 0:
             names_ids={}
             data = result['data']
             data_len = len(data['subs_id'])

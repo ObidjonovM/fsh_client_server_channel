@@ -32,7 +32,7 @@ class SpTypeTable:
             sp_types_ids
         )
 
-        if result['data'] != []:
+        if len(result['data']) > 0:
             names_ids={}
             data = result['data']
             data_len = len(data['sp_type_id'])
