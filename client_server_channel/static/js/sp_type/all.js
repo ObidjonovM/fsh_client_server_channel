@@ -1,14 +1,13 @@
-const sp_type_id = document.getElementById("sp_type_id");
-
-function deleteSpType() {
+function deleteType(e) {
+    let sp_type_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
     var result = confirm("Удалить ?");
 
-    if (result) {
+    if (result){
 
-        xhttp.open('DELETE', '/sp_type/delete/' + sp_type_id.value, true);
+        xhttp.open('DELETE', '/sp_type/delete/' + sp_type_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -27,15 +26,17 @@ function deleteSpType() {
         }
 
     }
+    else {
+        return false;
+    }
+
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/sp_type/add', '_self');
+};
 
-function updateSpType() {
-    window.open('/sp_type/update/' + sp_type_id.value, '_self');
-}
-
-
-function otmenFunction () {
-    window.open('/sp_type/all', '_self');
+function getType(e) {
+    window.open('/sp_type/get/' + e.children[0].innerHTML, '_self');
 }
 

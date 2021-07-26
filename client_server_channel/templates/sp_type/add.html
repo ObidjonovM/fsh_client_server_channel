@@ -3,9 +3,7 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/add.css"> -->
-<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
-
+ <link rel="stylesheet" href="/static/css/sp_type/add.css">
 
 
 {% endblock %}
@@ -13,46 +11,43 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
-    <div class="header">
-        <h2>Новая должность</h2>
+<div class="add-container">
+
+    <div class="add-header">
+        <h2>Новая запчасть</h2>
     </div>
-    <form id="myForm" class="form" action="{{url_for('sp_type.add')}}" method="POST">
+
+    <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="name">name</label>
-            <input type="text" name="name" id="name" placeholder="Введите описание..."/>
+            <label for="name">Название</label>
+            <input type="text" name="name" id="name" placeholder="Введите название..."/>
+
+            <label for="brand">Марка</label>
+            <input type="text" name="brand" id="brand" placeholder="Введите марка..."/>
+
+            <label for="model">Модель</label>
+            <input type="text" name="model" id="model" placeholder="Введите модель..."/>
         </div>
 
         <div class="form-control">
-            <label for="brand">brand</label>
-            <input type="text" name="brand" id="brand" placeholder="Введите описание..."/>
-        </div>
+            <label for="version">Версия</label>
+            <input type="text" name="version" id="version" placeholder="Введите версия..."/>
 
-        <div class="form-control">
-            <label for="model">model</label>
-            <input type="text" name="model" id="model" placeholder="Введите описание..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="version">version</label>
-            <input type="text" name="version" id="version" placeholder="Введите описание..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="desc">desc</label>
+            <label for="desc">Описание</label>
             <input type="text" name="desc" id="desc" placeholder="Введите описание..."/>
         </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+        <input type="submit" class="add-submit" value="Сохранить"/>
+
+        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
 
     </form>
 </div>
 
 
 
-<!-- <script src="/static/js/employees/department/add.js"></script> -->
+ <script src="/static/js/sp_type/add.js"></script>
 
 {% endblock %}
 

@@ -3,62 +3,60 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+<link rel="stylesheet" href="/static/css/sp_type/update.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<div class="container">
-        <div class="header">
-                <h2>Названия должности</h2>
-        </div>
-<form class="form"
-      action="{{ url_for('sp_type.update', sp_type_id=sp_type_info['data']['sp_type_id']) }}"
-      method="POST">
+<div class="add-container">
+
+    <div class="add-header">
+        <h2>Названия запчасть</h2>
+    </div>
+
+    <form class="add-form"
+          action="{{ url_for('sp_type.update', sp_type_id=sp_type_info['data']['sp_type_id']) }}"
+          method="POST">
 
         <div class="form-control">
-                <label for="name">name</label>
-                <input type="text" id="name"
-                        value="{{sp_type_info['data']['name']}}"/>
-        </div>
+            <label for="name">Название</label>
+            <input type="text" id="name" readonly
+                   value="{{sp_type_info['data']['name']}}"/>
 
-        <div class="form-control">
-                <label for="brand">brand</label>
-                <input type="text" id="brand"
-                        value="{{sp_type_info['data']['brand']}}"/>
-        </div>
+            <label for="brand">Марка</label>
+            <input type="text" id="brand" readonly
+                   value="{{sp_type_info['data']['brand']}}"/>
 
-        <div class="form-control">
-                <label for="model">model</label>
-                <input type="text" id="model"
-                        value="{{sp_type_info['data']['model']}}"/>
+            <label for="model">Модель</label>
+            <input type="text" id="model" readonly
+                   value="{{sp_type_info['data']['model']}}"/>
         </div>
 
         <div class="form-control">
-                <label for="version">version</label>
-                <input type="text" id="version"
-                        value="{{sp_type_info['data']['version']}}"/>
+            <label for="version">Версия</label>
+            <input type="text" id="version" readonly
+                   value="{{sp_type_info['data']['version']}}"/>
+
+            <label for="desc">Описание</label>
+            <input type="text" name="desc" id="desc"
+                   value="{{sp_type_info['data']['description']}}"/>
         </div>
 
-        <div class="form-control">
-                <label for="desc">desc</label>
-                <input type="text" name="desc" id="desc"
-                        value="{{sp_type_info['data']['description']}}"/>
-        </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <input type="submit" class="add-submit" value="Сохранить"/>
+
         <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
-                Отмена
+                class="add-submit2" value="Отмена">
+            Отмена
         </button>
 
-</form>
+    </form>
 
 </div>
 
-<script src="/static/js/employees/department/update.js"></script>
+<script src="/static/js/sp_type/update.js"></script>
 
 {% endblock %}
 
