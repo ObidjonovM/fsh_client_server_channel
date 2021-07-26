@@ -100,9 +100,9 @@ def update(shipment_id):
             return render_template(
                 utls.url_join(['sp_logistic', 'update.html']),  
                 sp_logistic_info = sp_logistic_info,
-                carriers_ids = CarrierC.get_ids_names(),
-                currencies_ids = CurrencyC.get_ids_names(),
-                shipping_types_ids = ShippingTypeC.get_ids_names(),
+                carrier_name = CarrierC.get(sp_logistic_info['data']['carrier_id']),
+                currency_name = CurrencyC.get(sp_logistic_info['data']['curr_id']),
+                shipping_type_name = ShippingTypeC.get(sp_logistic_info['data']['shipping_type_id']),
                 tracking_statuses_ids = TrackingStatusC.get_ids_names()
             )
 
