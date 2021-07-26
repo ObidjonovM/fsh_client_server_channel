@@ -62,6 +62,10 @@ def all():
                 sp_order_statuses = sp_order_statuses
             )
 
+        return render_template(
+            utls.url_join(['sp_order_status', 'all.html'])
+        )
+
     return redirect(url_for('core.index'))            # TODO later!!!!
 
 

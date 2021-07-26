@@ -65,6 +65,10 @@ def all():
                 carriers_ids = CarrierC.get_names_by_ids(tracking_statuses['data']['carrier_id'])
             )
 
+        return render_template(
+            utls.url_join(['tracking_status', 'all.html'])
+        )
+
     return redirect(url_for('core.index'))            # TODO later!!!!
 
 

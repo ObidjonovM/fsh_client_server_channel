@@ -61,16 +61,20 @@ def all():
         return redirect(url_for('employees.login'))
 
     firmwares = FirmwareC.get_all()
-    if len(firmwares['data']) > 0:
-        names_by_ids = EmployeeC.get_names_by_ids(firmwares['data']['author_id'])
-    else:
-        names_by_ids = ''
 
-    return render_template(
-        utls.url_join(['products', 'firmware', 'all.html']),
-        firmwares = firmwares,
-        names_by_ids = names_by_ids
-    )
+    if firmwares['success']:
+        if len(firmwares['data']) > 0:
+            return render_template(
+                utls.url_join(['products', 'firmware', 'all.html']),
+                firmwares = firmwares,
+                names_by_ids = EmployeeC.get_names_by_ids(firmwares['data']['author_id'])
+            )
+
+        return render_template(
+            utls.url_join(['products', 'firmware', 'all.html'])
+        )
+    
+    return redirect(url_for('core.index'))            # TODO later!!!!
 
 
 @firmware.route('/update/<int:fw_id>', methods=['GET', 'POST'])

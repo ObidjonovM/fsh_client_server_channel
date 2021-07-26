@@ -59,11 +59,19 @@ def all():
 
 	cats_info = CategoriesC.get_all()
 	
-	return render_template(
-		utls.url_join(['products', 'category', 'all.html']),
-		cats_info = cats_info,
-		names_by_ids = CategoriesC.get_names_by_ids(cats_info['data']['parent_cat_id'])
-	)
+	if cats_info['success']:
+		if len(cats_info['data']) > 0:
+			return render_template(
+				utls.url_join(['products', 'category', 'all.html']),
+				cats_info = cats_info,
+				names_by_ids = CategoriesC.get_names_by_ids(cats_info['data']['parent_cat_id'])
+			)
+
+		return render_template(
+			utls.url_join(['products', 'category', 'all.html'])
+		)
+
+	return redirect(url_for('core.index'))            # TODO later!!!!
 
 
 @category.route('/update/<int:cat_id>', methods=['GET', 'POST'])

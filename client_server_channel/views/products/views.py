@@ -91,10 +91,9 @@ def all():
 		return redirect(url_for('employees.login'))
 
 	products_info = ProductC.get_all()
-	if products_info['success']:
 
+	if products_info['success']:
 		if len(products_info['data']) > 0:
-		
 			return render_template(
 				utls.url_join(['products', 'all.html']),
 				products_info = products_info,

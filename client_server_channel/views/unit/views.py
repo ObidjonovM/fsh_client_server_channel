@@ -55,10 +55,14 @@ def all():
     units = UnitC.get_all()
 
     if units['success']:
+        if len(units['data']) > 0:
+            return render_template(
+                utls.url_join(['unit', 'all.html']),
+                units = units
+            )
 
         return render_template(
-            utls.url_join(['unit', 'all.html']),
-            units = units
+            utls.url_join(['unit', 'all.html'])
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!

@@ -63,10 +63,18 @@ def all():
 
 	dealers_info = DealerC.get_all()
 	
-	return render_template(
-		utls.url_join(['products', 'dealer', 'all.html']),
-		dealers_info = dealers_info
-	)
+	if dealers_info['success']:
+		if len(dealers_info['data']) > 0:
+			return render_template(
+				utls.url_join(['products', 'dealer', 'all.html']),
+				dealers_info = dealers_info
+			)
+
+		return render_template(
+			utls.url_join(['products', 'dealer', 'all.html'])
+		)
+
+	return redirect(url_for('core.index'))            # TODO later!!!!
 
 
 @dealer.route('/update/<int:dealer_id>', methods=['GET', 'POST'])

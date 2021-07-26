@@ -92,16 +92,18 @@ def all():
 		return redirect(url_for('employees.login'))
 
 	clients_info = ClientC.get_all()
-	if len(clients_info['data']) > 0:
-		names_by_ids = SubscriptionC.get_names_by_ids(clients_info['data']['subs_id'])
-	else:
-		names_by_ids = ''
 	
-	return render_template(
-		utls.url_join(['clients', 'all.html']),
-		clients_info = clients_info,
-		names_by_ids = names_by_ids
-	)
+	if clients_info['success']:
+		if len(clients_info['data']) > 0:
+			return render_template(
+				utls.url_join(['clients', 'all.html']),
+				clients_info = clients_info,
+				names_by_ids = SubscriptionC.get_names_by_ids(clients_info['data']['subs_id'])
+			)
+		
+		return render_template(utls.url_join(['clients', 'all.html']))
+
+	return redirect(url_for('core.index'))
 
 
 @clients.route('/update/<int:client_id>', methods=['GET', 'POST'])

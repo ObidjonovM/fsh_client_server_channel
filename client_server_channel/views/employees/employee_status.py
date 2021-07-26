@@ -48,11 +48,21 @@ def get(status_id):
 def all():
     if not 'username' in session:
         return redirect(url_for('employees.login'))
+
+    status_all = EmployeeStatusC.get_all()
     
-    return render_template(
-        utls.url_join(['employees', 'employee_status', 'all.html']),
-        status_all = EmployeeStatusC.get_all()
-    )
+    if status_all['success']:
+        if len(status_all['data']) > 0:
+            return render_template(
+                utls.url_join(['employees', 'employee_status', 'all.html']),
+                status_all = status_all
+            )
+        
+        return render_template(
+            utls.url_join(['employees', 'employee_status', 'all.html'])
+        )
+
+    return redirect(url_for('core.index'))            # TODO later!!!!
 
 
 @employee_status.route('/update/<int:status_id>', methods=['GET', 'POST'])

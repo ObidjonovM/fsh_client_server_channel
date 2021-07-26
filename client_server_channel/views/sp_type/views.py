@@ -65,6 +65,10 @@ def all():
                 sp_types = sp_types
             )
 
+        return render_template(
+            utls.url_join(['sp_type', 'all.html'])
+        )
+
     return redirect(url_for('core.index'))            # TODO later!!!!
 
 

@@ -176,17 +176,25 @@ def all():
         return redirect(url_for('employees.login'))
     
     employees=EmployeeC.get_all()
+    
+    if employees['success']:
+        if len(employees['data']) > 0:
+            return render_template(
+                utls.url_join(['employees','all.html']),
+                employees=employees,
+                names_ids_type = EmployeeTypeC.get_names_by_ids(
+                    employees['data']['emp_type_id']),
+                names_ids_status = EmployeeStatusC.get_names_by_ids(
+                    employees['data']['emp_status_id']),
+                names_ids_departments = DepartmentC.get_names_by_ids(
+                    employees['data']['dept_id'])
+            )
 
-    return render_template(
-        utls.url_join(['employees','all.html']),
-        employees=employees,
-        names_ids_type = EmployeeTypeC.get_names_by_ids(
-            employees['data']['emp_type_id']),
-        names_ids_status = EmployeeStatusC.get_names_by_ids(
-            employees['data']['emp_status_id']),
-        names_ids_departments = DepartmentC.get_names_by_ids(
-            employees['data']['dept_id'])
-    )
+        return render_template(
+            utls.url_join(['employees','all.html'])
+        )
+
+    return redirect(url_for('core.index'))            # TODO later!!!!
 
 
 @employees.route('/update/<int:emp_id>', methods=['GET', 'POST'])

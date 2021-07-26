@@ -63,12 +63,13 @@ def all():
     carriers = CarrierC.get_all()
 
     if carriers['success']:
-
-        return render_template(
-            utls.url_join(['carrier', 'all.html']),
-            carriers = carriers
-        )
-
+        if len(carriers['data']) > 0:
+            return render_template(
+                utls.url_join(['carrier', 'all.html']),
+                carriers = carriers
+            )
+        return render_template(utls.url_join(['carrier', 'all.html']))
+        
     return redirect(url_for('core.index'))            # TODO later!!!!
 
 

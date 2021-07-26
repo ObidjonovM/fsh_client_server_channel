@@ -58,16 +58,20 @@ def all():
 		return redirect(url_for('employees.login'))
 
 	products_info = ProductInfoC.get_all()
-	if len(products_info['data']) > 0:
-		names_by_ids = CategoriesC.get_names_by_ids(products_info['data']['category_id'])
-	else:
-		names_by_ids = ''
 
-	return render_template(
-		utls.url_join(['products', 'product_info', 'all.html']),
-		products_info = products_info,
-		names_by_ids = names_by_ids
+	if product_info['success']:
+		if len(products_info['data']) > 0:
+			return render_template(
+				utls.url_join(['products', 'product_info', 'all.html']),
+				products_info = products_info,
+				names_by_ids = CategoriesC.get_names_by_ids(products_info['data']['category_id'])
+			)
+
+		return render_template(
+			utls.url_join(['products', 'product_info', 'all.html'])
 		)
+
+	return redirect(url_for('core.index'))            # TODO later!!!!
 
 
 @product_info.route('/delete/<int:product_id>', methods=['DELETE'])

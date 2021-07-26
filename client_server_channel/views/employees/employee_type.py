@@ -48,10 +48,20 @@ def all():
     if not 'username' in session:
          return redirect(url_for('employees.login'))
     
-    return render_template(
-        utls.url_join(['employees','employee_type','all.html']), 
-        types=EmployeeTypeC.get_all()
-    )
+    types=EmployeeTypeC.get_all()
+    
+    if types['success']:
+        if len(types['data']) > 0:
+            return render_template(
+                utls.url_join(['employees','employee_type','all.html']),
+                types=types
+            )
+
+        return render_template(
+            utls.url_join(['employees','employee_type','all.html'])
+        )
+
+    return redirect(url_for('core.index'))            # TODO later!!!!
 
 
 @employee_type.route('/update/<int:type_id>', methods=['GET', 'POST'])

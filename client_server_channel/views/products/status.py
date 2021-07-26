@@ -55,10 +55,18 @@ def all():
 
 	status_info = ProductStatusC.get_all()
 	
-	return render_template(
-		utls.url_join(['products', 'status', 'all.html']),
-		status_info = status_info
-	)
+	if status_info['success']:
+		if len(status_info['data']) > 0:
+			return render_template(
+				utls.url_join(['products', 'status', 'all.html']),
+				status_info = status_info
+			)
+
+		return render_template(
+			utls.url_join(['products', 'status', 'all.html'])
+		)
+
+	return redirect(url_for('core.index'))            # TODO later!!!!
 
 
 @status.route('/update/<int:status_id>', methods=['GET', 'POST'])

@@ -54,10 +54,14 @@ def all():
     currencies = CurrencyC.get_all()
 
     if currencies['success']:
+        if len(currencies['data']) > 0:
+            return render_template(
+                utls.url_join(['currency', 'all.html']),
+                currencies = currencies
+            )
 
         return render_template(
-            utls.url_join(['currency', 'all.html']),
-            currencies = currencies
+            utls.url_join(['currency', 'all.html'])
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!
