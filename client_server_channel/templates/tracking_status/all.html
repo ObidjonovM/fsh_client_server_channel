@@ -3,19 +3,62 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/department/all.css">
+<link rel="stylesheet" href="/static/css/tracking_status/all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-{{tracking_statuses}}
-{{carriers_ids}}
+<button class="add-button" id="addClick">Добавить</button>
+
+<table class="table">
+    <thead>
+
+    <tr>
+
+        <th class="hidden">Номер должности</th>
+
+        <th>№</th>
+
+        <th>Статус</th>
+
+        <th>Перевозчики</th>
+
+        <th>Действия</th>
+
+    </tr>
+
+    </thead>
+
+
+    <tbody id="tBody">
+
+    {% for i in range(tracking_statuses['data']['status_id']|length) %}
+    <tr ondblclick="getType(this)">
+
+        <td class="hidden">{{tracking_statuses['data']['status_id'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>{{tracking_statuses['data']['status'][i]}}</td>
+
+        <td>{{carriers_ids['data'][tracking_statuses['data']['carrier_id'][i]]}}</td>
+
+        <td>
+            <button onclick="deleteType(this)">Удалить</button>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+
+</table>
 
 
 
-<script src="/static/js/employees/department/all.js"></script>
+<script src="/static/js/tracking_status/all.js"></script>
 
 {% endblock %}
 

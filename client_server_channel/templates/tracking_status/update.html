@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+<link rel="stylesheet" href="/static/css/tracking_status/update.css">
 
 {% endblock %}
 
@@ -11,37 +11,49 @@
 {{super()}}
 
 <div class="container">
-        <div class="header">
-                <h2>Названия должности</h2>
-        </div>
-<form class="form"
-      action="{{ url_for('tracking_status.update', status_id=tracking_status_info['data']['status_id']) }}"
-      method="POST">
-        {{carriers_ids}}
+    <div class="header">
+        <h2>Названия статус отслеживания</h2>
+    </div>
+
+    <form class="form"
+          action="{{ url_for('tracking_status.update', status_id=tracking_status_info['data']['status_id']) }}"
+          method="POST">
 
         <div class="form-control">
-                <label for="status">status</label>
-                <input type="text" id="status"
-                        value="{{tracking_status_info['data']['status']}}"/>
+            <label for="status">Статус</label>
+            <input type="text" id="status" readonly
+                   value="{{tracking_status_info['data']['status']}}"/>
         </div>
 
         <div class="form-control">
-                <label for="carrier_id">carrier_id</label>
-                <input type="text" name="carrier_id" id="carrier_id"
-                        value="{{tracking_status_info['data']['carrier_id']}}"/>
+            <label for="carrier_id">Перевозчик</label>
+            <select name="carrier_id" id="carrier_id" required>
+                {% for i in range(carriers_ids['data']['carrier_id']|length)%}
+                {%if tracking_status_info['data']['carrier_id'] == carriers_ids['data']['carrier_id'][i]%}
+                <option selected value="{{carriers_ids['data']['carrier_id'][i]}}">
+                    {{carriers_ids['data']['name'][i]}}
+                </option>
+                {%else%}
+                <option value="{{carriers_ids['data']['carrier_id'][i]}}">
+                    {{carriers_ids[data]['name'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
         </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <input type="submit" class="add-type-submit" value="Сохранить"/>
+
         <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
-                Отмена
+                class="add-type-submit" value="Отмена">
+            Отмена
         </button>
 
-</form>
+    </form>
 
 </div>
 
-<script src="/static/js/employees/department/update.js"></script>
+<script src="/static/js/tracking_status/update.js"></script>
 
 {% endblock %}
 

@@ -3,44 +3,46 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/add.css"> -->
-<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
-
+<link rel="stylesheet" href="/static/css/tracking_status/add.css">
 
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{currencies_ids}}
-{{units_ids}}
-{{carriers_ids}}
 
 <div class="container">
+
     <div class="header">
-        <h2>Новая должность</h2>
+        <h2>Новая статус отслеживания</h2>
     </div>
-    <form id="myForm" class="form" action="{{url_for('tracking_status.add')}}" method="POST">
+
+    <form id="myForm" class="form">
 
         <div class="form-control">
-            <label for="status">status</label>
-            <input type="text" name="status" id="status" placeholder="Введите описание..."/>
+            <label for="status">Статус</label>
+            <input type="text" name="status" id="status" placeholder="Введите статус..."/>
         </div>
 
         <div class="form-control">
-            <label for="carrier_id">carrier_id</label>
-            <input type="text" name="carrier_id" id="carrier_id" placeholder="Введите описание..."/>
+            <label for="carrier_id">Перевозчик</label>
+            <select name="carrier_id" id="carrier_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(carriers_ids['data']['carrier_id']|length)%}
+                <option value="{{carriers_ids['data']['carrier_id'][i]}}">{{carriers_ids['data']['name'][i]}}</option>
+                {%endfor%}
+            </select>
         </div>
 
         <input type="submit" class="add-type-submit" value="Сохранить"/>
+
         <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
 
     </form>
 </div>
 
 
-
-<!-- <script src="/static/js/employees/department/add.js"></script> -->
+<script src="/static/js/tracking_status/add.js"></script>
 
 {% endblock %}
 
