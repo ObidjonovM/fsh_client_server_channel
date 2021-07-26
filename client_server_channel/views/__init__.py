@@ -15,3 +15,4 @@ from .sp_order_status import sp_order_status
 from .sp_order import sp_order
 from .sp_order_detail import sp_order_detail
 from .sp_status import sp_status
+from .sp_warehouse import sp_warehouse

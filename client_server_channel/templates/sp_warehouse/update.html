@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div class="container">
+        <div class="header">
+                <h2>Названия должности</h2>
+        </div>
+<form class="form"
+      action="{{ url_for('sp_warehouse.update', sp_id=sp_warehouse_info['data']['sp_id']) }}"
+      method="POST">
+        {{sp_warehouse_info}}
+        <br><br>
+        {{type_name}}
+        <br><br>
+        {{order_name}}
+        <br><br>
+        {{statuses_ids}}
+        <br><br>
+        {{employee_name}}
+        <br><br>
+        {{employees_ids}}
+        <br><br>
+        {{products_ids}}
+
+        <div class="form-control">
+                <label for="status_id">status_id</label>
+                <input type="text" id="status_id" name="status_id"
+                        value="{{sp_warehouse_info['data']['status_id']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="used_emp_id">used_emp_id</label>
+                <input type="text" id="used_emp_id" name="used_emp_id"
+                        value="{{sp_warehouse_info['data']['used_emp_id']}}"/>
+        </div>
+
+        <div class="form-control">
+                <label for="pr_serial_num">pr_serial_num</label>
+                <input type="text" id="pr_serial_num" name="pr_serial_num"
+                        value="{{sp_warehouse_info['data']['pr_serial_num']}}"/>
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <button type="button" onclick="otmenFunction()"
+                class="add-type-submit" value="Отмена" >
+                Отмена
+        </button>
+
+</form>
+
+</div>
+
+<script src="/static/js/employees/department/update.js"></script>
+
+{% endblock %}
+
+

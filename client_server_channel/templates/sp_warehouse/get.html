@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+
+<link rel="stylesheet" href="/static/css/employees/department/get.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+{{sp_warehouse_info}}
+<br><br>
+{{type_name}}
+<br><br>
+{{order_name}}
+<br><br>
+{{status_name}}
+<br><br>
+{{employee_name}}
+<br><br>
+{{product_name}}
+        
+<input type="text" id="sp_id" value="{{sp_warehouse_info['data']['sp_id']}}">
+
+        <button onclick="deleteSpWarehouse()" class="add-type-submit2">
+            Удалить
+        </button>
+
+<script src="/static/js/sp_warehouse/get.js"></script>
+
+{% endblock %}
+
+
