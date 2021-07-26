@@ -3,80 +3,91 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/add.css"> -->
-<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
-
+<link rel="stylesheet" href="/static/css/sp_logistic/add.css">
 
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{carriers_ids}}
-{{currencies_ids}}
-{{shipping_types_ids}}
-{{tracking_statuses_ids}}
 
-<div class="container">
-    <div class="header">
-        <h2>Новая должность</h2>
+<div class="add-container">
+    <div class="add-header">
+        <h2>Новая запчасть логистический</h2>
     </div>
-    <form id="myForm" class="form" action="{{url_for('sp_logistic.add')}}" method="POST">
+
+    <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="carrier_id">carrier_id</label>
-            <input type="text" name="carrier_id" id="carrier_id" placeholder="Введите описание..."/>
+            <label for="carrier_id">Перевозчик</label>
+            <select name="carrier_id" id="carrier_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(carriers_ids['data']['carrier_id']|length)%}
+                <option value="{{carriers_ids['data']['carrier_id'][i]}}">{{carriers_ids['data']['name'][i]}}</option>
+                {%endfor%}
+            </select>
+
+            <label for="total_cost">Общая стоимость</label>
+            <input type="number" name="total_cost" id="total_cost" required
+                   placeholder="Введите общая стоимость..."/>
+
+            <label for="curr_id">Валюта</label>
+            <select name="curr_id" id="curr_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(currencies_ids['data']['curr_id']|length)%}
+                <option value="{{currencies_ids['data']['curr_id'][i]}}">{{currencies_ids['data']['currency'][i]}}
+                </option>
+                {%endfor%}
+            </select>
         </div>
 
         <div class="form-control">
-            <label for="total_cost">total_cost</label>
-            <input type="number" name="total_cost" id="total_cost" placeholder="Введите описание..."/>
+            <label for="shipping_type_id">Тип доставки</label>
+            <select name="shipping_type_id" id="shipping_type_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(shipping_types_ids['data']['shipping_type_id']|length)%}
+                <option value="{{shipping_types_ids['data']['shipping_type_id'][i]}}">
+                    {{shipping_types_ids['data']['name'][i]}}
+                </option>
+                {%endfor%}
+            </select>
+
+            <label for="tr_number">Номер отслеживания</label>
+            <input type="text" name="tr_number" id="tr_number" required
+                   placeholder="Введите номер отслеживания..."/>
+
+            <label for="tr_status_id">Статус отслеживания</label>
+            <select name="tr_status_id" id="tr_status_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(tracking_statuses_ids['data']['status_id']|length)%}
+                <option value="{{tracking_statuses_ids['data']['status_id'][i]}}">
+                    {{tracking_statuses_ids['data']['status'][i]}}
+                </option>
+                {%endfor%}
+            </select>
         </div>
 
         <div class="form-control">
-            <label for="curr_id">curr_id</label>
-            <input type="text" name="curr_id" id="curr_id" placeholder="Введите описание..."/>
+            <label for="shipped_date">Дата отправки</label>
+            <input type="date" name="shipped_date" id="shipped_date" required/>
+
+            <label for="delivered_date">Дата доставки</label>
+            <input type="date" name="delivered_date" id="delivered_date" required/>
+
+            <label for="comment">Комментарий</label>
+            <input type="text" name="comment" id="comment" required
+                   placeholder="Введите комментарий..."/>
         </div>
 
-        <div class="form-control">
-            <label for="shipping_type_id">shipping_type_id</label>
-            <input type="text" name="shipping_type_id" id="shipping_type_id" placeholder="Введите описание..."/>
-        </div>
+        <input type="submit" class="add-submit" value="Сохранить"/>
 
-        <div class="form-control">
-            <label for="tr_number">tr_number</label>
-            <input type="text" name="tr_number" id="tr_number" placeholder="Введите описание..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="tr_status_id">tr_status_id</label>
-            <input type="text" name="tr_status_id" id="tr_status_id" placeholder="Введите описание..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="shipped_date">shipped_date</label>
-            <input type="date" name="shipped_date" id="shipped_date" placeholder="Введите описание..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="delivered_date">delivered_date</label>
-            <input type="date" name="delivered_date" id="delivered_date" placeholder="Введите описание..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="comment">comment</label>
-            <input type="text" name="comment" id="comment" placeholder="Введите описание..."/>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
 
     </form>
 </div>
 
 
-
-<!-- <script src="/static/js/employees/department/add.js"></script> -->
+<script src="/static/js/sp_logistic/add.js"></script>
 
 {% endblock %}
 

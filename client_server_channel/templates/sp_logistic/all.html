@@ -3,22 +3,70 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/department/all.css">
+<link rel="stylesheet" href="/static/css/sp_logistic/all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-{{sp_logistics}}
-{{carriers_ids}}
-{{currencies_ids}}
-{{shipping_types_ids}}
-{{tracking_statuses_ids}}
+<button class="add-button" id="addClick">Добавить</button>
+
+<table class="table">
+    <thead>
+
+    <tr>
+
+        <th class="hidden">Номер должности</th>
+
+        <th>№</th>
+
+        <th>Перевозчик</th>
+
+        <th>Валюты</th>
+
+        <th>Тип доставки</th>
+
+        <th>Статус отслеживания</th>
+
+        <th>Действия</th>
+
+    </tr>
+
+    </thead>
+
+
+    <tbody id="tBody">
+
+    {% for i in range(sp_logistics['data']['shipment_id']|length) %}
+    <tr ondblclick="getType(this)">
+
+        <td class="hidden">{{sp_logistics['data']['shipment_id'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>{{carriers_ids['data'][sp_logistics['data']['carrier_id'][i]]}}</td>
+
+        <td>{{currencies_ids['data'][sp_logistics['data']['curr_id'][i]]}}</td>
+
+        <td>{{shipping_types_ids['data'][sp_logistics['data']['shipping_type_id'][i]]}}</td>
+
+        <td>{{tracking_statuses_ids['data'][sp_logistics['data']['tr_status_id'][i]]}}</td>
+
+        <td>
+            <button onclick="deleteType(this)">Удалить</button>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+
+</table>
 
 
 
-<script src="/static/js/employees/department/all.js"></script>
+<script src="/static/js/sp_logistic/all.js"></script>
 
 {% endblock %}
 

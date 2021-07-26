@@ -3,55 +3,95 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+<link rel="stylesheet" href="/static/css/sp_logistic/update.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<div class="container">
-        <div class="header">
-                <h2>Названия должности</h2>
-        </div>
-<form class="form"
-      action="{{ url_for('sp_logistic.update', shipment_id=sp_logistic_info['data']['shipment_id']) }}"
-      method="POST">
-        {{sp_logistic_info}}
-        {{carrier_name}}
-        {{currency_name}}
-        {{shipping_type_name}}
-        {{tracking_statuses_ids}}
+
+<div class="add-container">
+    <div class="add-header">
+        <h2>Названия запчасть логистический</h2>
+    </div>
+
+    <form class="add-form"
+          action="{{ url_for('sp_logistic.update', shipment_id=sp_logistic_info['data']['shipment_id']) }}"
+          method="POST">
 
         <div class="form-control">
-                <label for="tr_status_id">tr_status_id</label>
-                <input type="text" id="tr_status_id" name="tr_status_id"
-                        value="{{sp_logistic_info['data']['tr_status_id']}}"/>
+            <label for="carrier_id">Перевозчик</label>
+            <input type="text" name="carrier_id" id="carrier_id" readonly
+                   value="{{carrier_name['data']['name']}}"/>
+
+            <label for="total_cost">Общая стоимость</label>
+            <input type="text" name="total_cost" id="total_cost" readonly
+                   value="{{sp_logistic_info['data']['total_cost']}}"/>
+
+
+            <label for="curr_id">Валюта</label>
+            <input type="text" name="curr_id" id="curr_id" readonly
+                   value="{{currency_name['data']['currency']}}"/>
+
+
         </div>
 
         <div class="form-control">
-                <label for="delivered_date">delivered_date</label>
-                <input type="date" name="delivered_date" id="delivered_date"
-                        value="{{sp_logistic_info['data']['delivered_date']}}"/>
+            <label for="shipping_type_id">Тип доставки</label>
+            <input type="text" name="shipping_type_id" id="shipping_type_id" readonly
+                   value="{{shipping_type_name['data']['name']}}"/>
+
+
+            <label for="tr_number">Номер отслеживания</label>
+            <input type="text" id="tr_number" name="tr_number" readonly
+                   value="{{sp_logistic_info['data']['tr_number']}}"/>
+
+            <label for="tr_status_id">Статус отслеживания</label>
+            <select name="tr_status_id" id="tr_status_id">
+                {% for i in range(tracking_statuses_ids['data']['status_id']|length)%}
+                {%if sp_logistic_info['data']['status_id'] == tracking_statuses_ids['data']['status_id'][i]%}
+                <option selected value="{{tracking_statuses_ids['data']['status_id'][i]}}">
+                    {{tracking_statuses_ids['data']['status'][i]}}
+                </option>
+                {%else%}
+                <option value="{{tracking_statuses_ids['data']['status_id'][i]}}">
+                    {{tracking_statuses_ids['data']['status'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
+
         </div>
+
 
         <div class="form-control">
-                <label for="comment">comment</label>
-                <input type="text" name="comment" id="comment"
-                        value="{{sp_logistic_info['data']['comment']}}"/>
+            <label for="shipped_date">Дата отправки</label>
+            <input type="text" id="shipped_date" name="shipped_date" readonly
+                   value="{{sp_logistic_info['data']['shipped_date']}}"/>
+
+            <label for="delivered_date">Дата доставки</label>
+            <input type="date" name="delivered_date" id="delivered_date"
+                   value="{{sp_logistic_info['data']['delivered_date']}}"/>
+
+            <label for="comment">Комментарий</label>
+            <input type="text" name="comment" id="comment"
+                   value="{{sp_logistic_info['data']['comment']}}"/>
         </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить" />
+
+        <input type="submit" class="add-submit" value="Сохранить"/>
+
         <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
-                Отмена
+                class="add-submit2" value="Отмена">
+            Отмена
         </button>
 
-</form>
+    </form>
 
 </div>
 
-<script src="/static/js/employees/department/update.js"></script>
+<script src="/static/js/sp_logistic/update.js"></script>
 
 {% endblock %}
 

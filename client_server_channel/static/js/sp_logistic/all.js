@@ -1,6 +1,5 @@
-const shipment_id = document.getElementById("shipment_id");
-
-function deleteSpLogistic() {
+function deleteType(e) {
+    let shipment_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
@@ -8,7 +7,7 @@ function deleteSpLogistic() {
 
     if (result){
 
-        xhttp.open('DELETE', '/sp_logistic/delete/' + shipment_id.value, true);
+        xhttp.open('DELETE', '/sp_logistic/delete/' + shipment_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -24,17 +23,20 @@ function deleteSpLogistic() {
                     alert('Не удалось удалить тип сотрудника!');
                 }
             }
-
         }
 
+    }
+    else {
+        return false;
     }
 
 }
 
-function updateSpLogistic() {
-    window.open('/sp_logistic/update/' + shipment_id.value, '_self');
+document.getElementById("addClick").onclick = () => {
+    window.open('/sp_logistic/add', '_self');
+};
+
+function getType(e) {
+    window.open('/sp_logistic/get/' + e.children[0].innerHTML, '_self');
 }
 
-function otmenFunction (){
-    window.open('/sp_logistic/all', '_self');
-}
