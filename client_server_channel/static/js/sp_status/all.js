@@ -1,6 +1,5 @@
-const status_id = document.getElementById("status_id");
-
-function deleteSpStatus() {
+function deleteType(e) {
+    let status_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
@@ -8,7 +7,7 @@ function deleteSpStatus() {
 
     if (result) {
 
-        xhttp.open('DELETE', '/sp_status/delete/' + status_id.value, true);
+        xhttp.open('DELETE', '/sp_status/delete/' + status_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -26,16 +25,22 @@ function deleteSpStatus() {
             }
         }
 
+    } else {
+        return false;
     }
+
+}
+
+document.getElementById("addClick").onclick = () => {
+    window.open('/sp_status/add', '_self');
+};
+
+function getType(e) {
+    window.open('/sp_status/get/' + e.children[0].innerHTML, '_self');
 }
 
 
-function updateSpStatus() {
-    window.open('/sp_status/update/' + status_id.value, '_self');
+function otmenFunction() {
+    window.open('/employees/account', '_self');
+
 }
-
-
-function otmenFunction () {
-    window.open('/sp_status/all', '_self');
-}
-

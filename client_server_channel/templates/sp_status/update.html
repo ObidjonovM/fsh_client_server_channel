@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+<link rel="stylesheet" href="/static/css/sp_status/update.css">
 
 {% endblock %}
 
@@ -11,36 +11,36 @@
 {{super()}}
 
 <div class="container">
-        <div class="header">
-                <h2>Названия должности</h2>
-        </div>
-<form class="form"
-      action="{{ url_for('sp_status.update', status_id=sp_status_info['data']['status_id']) }}"
-      method="POST">
+    <div class="header">
+        <h2>Названия информация о статусе sp</h2>
+    </div>
+    <form class="form"
+          action="{{ url_for('sp_status.update', status_id=sp_status_info['data']['status_id']) }}"
+          method="POST">
 
         <div class="form-control">
-                <label for="status">status</label>
-                <input type="text" id="status"
-                        value="{{sp_status_info['data']['status']}}"/>
+            <label for="status">status</label>
+            <input type="text" id="status" readonly
+                   value="{{sp_status_info['data']['status']}}"/>
         </div>
 
         <div class="form-control">
-                <label for="desc">desc</label>
-                <input type="text" name="desc" id="desc"
-                        value="{{sp_status_info['data']['description']}}"/>
+            <label for="desc">desc</label>
+            <input type="text" name="desc" id="desc"
+                   value="{{sp_status_info['data']['description']}}"/>
         </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <input type="submit" class="add-type-submit" value="Сохранить"/>
         <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
-                Отмена
+                class="add-type-submit" value="Отмена">
+            Отмена
         </button>
 
-</form>
+    </form>
 
 </div>
 
-<script src="/static/js/employees/department/update.js"></script>
+<script src="/static/js/sp_status/update.js"></script>
 
 {% endblock %}
 
