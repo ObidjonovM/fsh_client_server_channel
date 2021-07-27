@@ -3,63 +3,100 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+<link rel="stylesheet" href="/static/css/sp_warehouse/update.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<div class="container">
-        <div class="header">
-                <h2>Названия должности</h2>
-        </div>
-<form class="form"
-      action="{{ url_for('sp_warehouse.update', sp_id=sp_warehouse_info['data']['sp_id']) }}"
-      method="POST">
-        {{sp_warehouse_info}}
-        <br><br>
-        {{type_name}}
-        <br><br>
-        {{order_name}}
-        <br><br>
-        {{statuses_ids}}
-        <br><br>
-        {{employee_name}}
-        <br><br>
-        {{employees_ids}}
-        <br><br>
-        {{products_ids}}
+<div class="add-container">
+    <div class="add-header">
+        <h2>Названия sp склад</h2>
+    </div>
+    <form class="add-form"
+          action="{{ url_for('sp_warehouse.update', sp_id=sp_warehouse_info['data']['sp_id']) }}"
+          method="POST">
 
         <div class="form-control">
-                <label for="status_id">status_id</label>
-                <input type="text" id="status_id" name="status_id"
-                        value="{{sp_warehouse_info['data']['status_id']}}"/>
+            <label for="type_id">Тип</label>
+            <input type="text" id="type_id" readonly
+                   value="{{type_name['data']['name']}}">
+
+            <label for="order_id">Порядок</label>
+            <input type="text" id="order_id" readonly
+                   value="{{order_name['data']['total_cost']}}"/>
+
+            <label for="status_id">Статус</label>
+            <select name="status_id" id="status_id">
+                {% for i in range(statuses_ids['data']['status_id']|length)%}
+                {%if sp_warehouse_info['data']['status_id'] == statuses_ids['data']['status_id'][i]%}
+                <option selected value="{{statuses_ids['data']['status_id'][i]}}">
+                    {{statuses_ids['data']['status'][i]}}
+                </option>
+                {%else%}
+                <option value="{{statuses_ids['data']['status_id'][i]}}">
+                    {{statuses_ids['data']['status'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
         </div>
 
         <div class="form-control">
-                <label for="used_emp_id">used_emp_id</label>
-                <input type="text" id="used_emp_id" name="used_emp_id"
-                        value="{{sp_warehouse_info['data']['used_emp_id']}}"/>
+            <label for="acc_emp_id">Принял(а)</label>
+            <input type="text" id="acc_emp_id" readonly
+                   value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}}"/>
+
+
+            <label for="used_emp_id">Использовал(а)</label>
+            <select name="used_emp_id" id="used_emp_id">
+                {% for i in range(employees_ids['data']['emp_id']|length)%}
+                {%if sp_warehouse_info['data']['emp_id'] == employees_ids['data']['emp_id'][i]%}
+                <option selected value="{{employees_ids['data']['emp_id'][i]}}">
+                    {{employees_ids['data']['last_name'][i]}}
+                    {{employees_ids['data']['first_name'][i]}}
+                    {{employees_ids['data']['middle_name'][i]}}
+                </option>
+                {%else%}
+                <option value="{{employees_ids['data']['emp_id'][i]}}">
+                    {{employees_ids['data']['last_name'][i]}}
+                    {{employees_ids['data']['first_name'][i]}}
+                    {{employees_ids['data']['middle_name'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
+
+            <label for="pr_serial_num">Серийный номер продукта</label>
+            <select name="pr_serial_num" id="pr_serial_num">
+                {% for i in range(products_ids['data']['serial_num']|length)%}
+                {%if sp_warehouse_info['data']['serial_num'] == products_ids['data']['serial_num'][i]%}
+                <option selected value="{{products_ids['data']['serial_num'][i]}}">
+                    {{products_ids['data']['mac_address'][i]}}
+                </option>
+                {%else%}
+                <option value="{{products_ids['data']['serial_num'][i]}}">
+                    {{products_ids['data']['mac_address'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
         </div>
 
-        <div class="form-control">
-                <label for="pr_serial_num">pr_serial_num</label>
-                <input type="text" id="pr_serial_num" name="pr_serial_num"
-                        value="{{sp_warehouse_info['data']['pr_serial_num']}}"/>
-        </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить" />
+        <input type="submit" class="add-submit" value="Сохранить"/>
+
         <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
-                Отмена
+                class="add-submit2" value="Отмена">
+            Отмена
         </button>
 
-</form>
+    </form>
 
 </div>
 
-<script src="/static/js/employees/department/update.js"></script>
+<script src="/static/js/sp_warehouse/update.js"></script>
 
 {% endblock %}
 

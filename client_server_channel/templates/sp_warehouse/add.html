@@ -3,9 +3,7 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/add.css"> -->
-<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
-
+ <link rel="stylesheet" href="/static/css/sp_warehouse/add.css">
 
 
 {% endblock %}
@@ -13,65 +11,92 @@
 {% block body %}
 {{super()}}
 
-{{types_ids}}
-<br>
-<br>
-{{orders_ids}}
-<br>
-<br>
-{{statuses_ids}}
-<br>
-<br>
-{{employees_ids}}
-<br>
-<br>
-{{products_ids}}
-
-<div class="container">
-    <div class="header">
-        <h2>Новая должность</h2>
+<div class="add-container">
+    <div class="add-header">
+        <h2>Новая sp склад</h2>
     </div>
-    <form id="myForm" class="form" action="{{url_for('sp_warehouse.add')}}" method="POST">
+
+    <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="type_id">type_id</label>
-            <input type="text" name="type_id" id="type_id" placeholder="Введите описание..."/>
+            <label for="type_id">Тип</label>
+            <select name="type_id" id="type_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(types_ids['data']['sp_type_id']|length)%}
+                <option value="{{types_ids['data']['sp_type_id'][i]}}">
+                    {{types_ids['data']['name'][i]}}
+                </option>
+                {%endfor%}
+            </select>
+
+            <label for="order_id">Порядок</label>
+            <select name="order_id" id="order_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(orders_ids['data']['sp_order_id']|length)%}
+                <option value="{{orders_ids['data']['sp_order_id'][i]}}">
+                    {{orders_ids['data']['total_cost'][i]}}
+                </option>
+                {%endfor%}
+            </select>
+
+            <label for="status_id">Статус</label>
+            <select name="status_id" id="status_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(statuses_ids['data']['status_id']|length)%}
+                <option value="{{statuses_ids['data']['status_id'][i]}}">
+                    {{statuses_ids['data']['status'][i]}}
+                </option>
+                {%endfor%}
+            </select>
         </div>
 
         <div class="form-control">
-            <label for="order_id">order_id</label>
-            <input type="number" name="order_id" id="order_id" placeholder="Введите описание..."/>
+            <label for="acc_emp_id">Принял(а)</label>
+            <select name="acc_emp_id" id="acc_emp_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(employees_ids['data']['emp_id']|length)%}
+                <option value="{{employees_ids['data']['emp_id'][i]}}">
+                    {{employees_ids['data']['last_name'][i]}}
+                    {{employees_ids['data']['first_name'][i]}}
+                    {{employees_ids['data']['middle_name'][i]}}
+                </option>
+                {%endfor%}
+            </select>
+
+            <label for="used_emp_id">Использовал(а)</label>
+            <select name="used_emp_id" id="used_emp_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(employees_ids['data']['emp_id']|length)%}
+                <option value="{{employees_ids['data']['emp_id'][i]}}">
+                    {{employees_ids['data']['last_name'][i]}}
+                    {{employees_ids['data']['first_name'][i]}}
+                    {{employees_ids['data']['middle_name'][i]}}
+                </option>
+                {%endfor%}
+            </select>
+
+            <label for="pr_serial_num">Серийный номер продукта</label>
+            <select name="pr_serial_num" id="pr_serial_num" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(products_ids['data']['serial_num']|length)%}
+                <option value="{{products_ids['data']['serial_num'][i]}}">
+                    {{products_ids['data']['mac_address'][i]}}
+                </option>
+                {%endfor%}
+            </select>
         </div>
 
-        <div class="form-control">
-            <label for="status_id">status_id</label>
-            <input type="text" name="status_id" id="status_id" placeholder="Введите описание..."/>
-        </div>
 
-        <div class="form-control">
-            <label for="acc_emp_id">acc_emp_id</label>
-            <input type="text" name="acc_emp_id" id="acc_emp_id" placeholder="Введите описание..."/>
-        </div>
+        <input type="submit" class="add-submit" value="Сохранить"/>
 
-        <div class="form-control">
-            <label for="used_emp_id">used_emp_id</label>
-            <input type="text" name="used_emp_id" id="used_emp_id" placeholder="Введите описание..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="pr_serial_num">pr_serial_num</label>
-            <input type="text" name="pr_serial_num" id="pr_serial_num" placeholder="Введите описание..."/>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
 
     </form>
 </div>
 
 
 
-<!-- <script src="/static/js/employees/department/add.js"></script> -->
+ <script src="/static/js/sp_warehouse/add.js"></script>
 
 {% endblock %}
 

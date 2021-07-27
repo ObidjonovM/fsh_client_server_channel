@@ -1,14 +1,13 @@
-const sp_id = document.getElementById("sp_id");
-
-function deleteSpWarehouse() {
+function deleteType(e) {
+    let sp_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
     var result = confirm("Удалить ?");
 
-    if (result) {
+    if (result){
 
-        xhttp.open('DELETE', '/sp_warehouse/delete/' + sp_id.value, true);
+        xhttp.open('DELETE', '/sp_warehouse/delete/' + sp_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -27,15 +26,20 @@ function deleteSpWarehouse() {
         }
 
     }
+    else {
+        return false;
+    }
+
 }
 
+document.getElementById("addClick").onclick = () => {
+    window.open('/sp_warehouse/add', '_self');
+};
 
-function updateSpWarehouse() {
-    window.open('/sp_warehouse/update/' + sp_id.value, '_self');
+function getType(e) {
+    window.open('/sp_warehouse/get/' + e.children[0].innerHTML, '_self');
 }
 
-
-function otmenFunction () {
-    window.open('/sp_warehouse/all', '_self');
+function otmenFunction() {
+    window.open('/employees/account', '_self');
 }
-

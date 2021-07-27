@@ -3,29 +3,74 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/department/get.css">
+<link rel="stylesheet" href="/static/css/sp_warehouse/get.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
-{{sp_warehouse_info}}
-<br><br>
-{{type_name}}
-<br><br>
-{{order_name}}
-<br><br>
-{{status_name}}
-<br><br>
-{{employee_name}}
-<br><br>
-{{product_name}}
-        
-<input type="text" id="sp_id" value="{{sp_warehouse_info['data']['sp_id']}}">
 
-        <button onclick="deleteSpWarehouse()" class="add-type-submit2">
+
+<div class="add-container">
+    <div class="add-header">
+        <h2>Названия sp склад</h2>
+    </div>
+
+    <div id="myForm" class="add-form">
+
+        <input type="hidden" id="sp_id" value="{{sp_warehouse_info['data']['sp_id']}}">
+
+
+        <div class="form-control">
+            <label for="type_id">Тип</label>
+            <input type="text" id="type_id" readonly
+                   value="{{type_name['data']['name']}}"/>
+
+
+            <label for="order_id">Порядок</label>
+            <input type="text" id="order_id" readonly
+                   value="{{order_name['data']['total_cost']}}"/>
+
+
+            <label for="status_id">Статус</label>
+            <input type="text" id="status_id" readonly
+                   value="{{status_name['data']['status']}}"/>
+
+        </div>
+
+        <div class="form-control">
+            <label for="acc_emp_id">Принял(а)</label>
+            <input type="text" id="acc_emp_id" readonly
+                   value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}}"/>
+
+
+            <label for="used_emp_id">Использовал(а)</label>
+            <input type="text" id="used_emp_id" readonly
+                   value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}}"/>
+
+
+            <label for="pr_serial_num">Серийный номер продукта</label>
+            <input type="text" id="pr_serial_num" readonly
+                   value="{{product_name['data']['mac_address']}}"/>
+
+        </div>
+
+
+        <button onclick="updateSpWarehouse()" class="add-submit">
+            Изменить
+        </button>
+
+        <button onclick="deleteSpWarehouse()" class="add-submit2">
             Удалить
         </button>
+
+        <button onclick="otmenFunction()" class="add-submit3">
+            Назад
+        </button>
+
+    </div>
+</div>
+
 
 <script src="/static/js/sp_warehouse/get.js"></script>
 
