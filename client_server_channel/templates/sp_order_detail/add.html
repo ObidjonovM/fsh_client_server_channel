@@ -3,9 +3,7 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/add.css"> -->
-<!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
-
+<link rel="stylesheet" href="/static/css/sp_order_detail/add.css">
 
 
 {% endblock %}
@@ -13,56 +11,76 @@
 {% block body %}
 {{super()}}
 
-{{types_ids}}
-{{currencies_ids}}
-{{units_ids}}
-{{orders_ids}}
+<div class="add-container">
 
-<div class="container">
-    <div class="header">
-        <h2>Новая должность</h2>
+    <div class="add-header">
+        <h2>Новая деталь заказа</h2>
     </div>
-    <form id="myForm" class="form" action="{{url_for('sp_order_detail.add')}}" method="POST">
+
+    <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="type_id">type_id</label>
-            <input type="text" name="type_id" id="type_id" placeholder="Введите описание..."/>
+            <label for="type_id">Тип</label>
+            <select name="type_id" id="type_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(types_ids['data']['sp_type_id']|length)%}
+                <option value="{{types_ids['data']['sp_type_id'][i]}}">
+                    {{types_ids['data']['name'][i]}}
+                </option>
+                {%endfor%}
+            </select>
+
+            <label for="curr_id">Валюта</label>
+            <select name="curr_id" id="curr_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(currencies_ids['data']['curr_id']|length)%}
+                <option value="{{currencies_ids['data']['curr_id'][i]}}">
+                    {{currencies_ids['data']['currency'][i]}}
+                </option>
+                {%endfor%}
+            </select>
+
+            <label for="unit_id">Единица измерения</label>
+            <select name="unit_id" id="unit_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(units_ids['data']['unit_id']|length)%}
+                <option value="{{units_ids['data']['unit_id'][i]}}">
+                    {{units_ids['data']['unit'][i]}}
+                </option>
+                {%endfor%}
+            </select>
         </div>
 
         <div class="form-control">
-            <label for="price_per_unit">price_per_unit</label>
-            <input type="number" name="price_per_unit" id="price_per_unit" placeholder="Введите описание..."/>
+            <label for="order_id">Порядок</label>
+            <select name="order_id" id="order_id" required>
+                <option hidden value="" selected disabled>--Выбрать--</option>
+                {% for i in range(orders_ids['data']['sp_order_id']|length)%}
+                <option value="{{orders_ids['data']['sp_order_id'][i]}}">
+                    {{orders_ids['data']['total_cost'][i]}}
+                </option>
+                {%endfor%}
+            </select>
+
+            <label for="price_per_unit">Цена за единицу</label>
+            <input type="number" name="price_per_unit" required
+                   id="price_per_unit" placeholder="Введите цена за единицу..."/>
+
+            <label for="amount">Количество</label>
+            <input type="number" name="amount" required
+                   id="amount" placeholder="Введите количество..."/>
         </div>
 
-        <div class="form-control">
-            <label for="curr_id">curr_id</label>
-            <input type="text" name="curr_id" id="curr_id" placeholder="Введите описание..."/>
-        </div>
 
-        <div class="form-control">
-            <label for="amount">amount</label>
-            <input type="number" name="amount" id="amount" placeholder="Введите описание..."/>
-        </div>
+        <input type="submit" class="add-submit" value="Сохранить"/>
 
-        <div class="form-control">
-            <label for="unit_id">unit_id</label>
-            <input type="text" name="unit_id" id="unit_id" placeholder="Введите описание..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="order_id">order_id</label>
-            <input type="text" name="order_id" id="order_id" placeholder="Введите описание..."/>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
 
     </form>
 </div>
 
 
-
-<!-- <script src="/static/js/employees/department/add.js"></script> -->
+<script src="/static/js/sp_order_detail/add.js"></script>
 
 {% endblock %}
 
