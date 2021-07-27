@@ -84,10 +84,10 @@ def update(fw_id):
 
     if request.method == 'GET':
         fw_info = FirmwareC.get(fw_id)
-        id_name = EmployeeC.get(fw_info['data']['author_id'])['data']
-        fullname = f"{id_name['last_name']} {id_name['first_name']} {id_name['middle_name']}"
         
         if len(fw_info['data']) > 0:
+            id_name = EmployeeC.get(fw_info['data']['author_id'])['data']
+            fullname = f"{id_name['last_name']} {id_name['first_name']} {id_name['middle_name']}"
             
             return render_template(
                 utls.url_join(['products', 'firmware', 'update.html']),
