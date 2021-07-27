@@ -3,44 +3,91 @@
 {% block head %}
 {{super()}}
 
-<!-- <link rel="stylesheet" href="/static/css/employees/department/update.css"> -->
+<link rel="stylesheet" href="/static/css/sp_order/update.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<div class="container">
-        <div class="header">
-                <h2>Названия должности</h2>
+<div class="add-container">
+
+    <div class="add-header">
+        <h2>Названия должности</h2>
+    </div>
+
+    <form class="add-form"
+          action="{{ url_for('sp_order.update', sp_order_id=sp_order_info['data']['sp_order_id']) }}"
+          method="POST">
+        <div class="form-control">
+            <label for="issued_order_id">Выданный идентификатор заказа</label>
+            <input type="text" id="issued_order_id" readonly
+                   value="{{sp_order_info['data']['issued_order_id']}}"/>
+
+            <label for="total_cost">Общая стоимость</label>
+            <input type="number" name="total_cost" id="total_cost" readonly
+                   value="{{sp_order_info['data']['total_cost']}}"/>
+
+            <label for="curr_id">Валюта</label>
+            <input type="text" name="curr_id" id="curr_id" readonly
+                   value="{{currency_name['data']['currency']}}"/>
         </div>
-<form class="form"
-      action="{{ url_for('sp_order.update', sp_order_id=sp_order_info['data']['sp_order_id']) }}"
-      method="POST">
-        {{sp_order_info}}
-        {{order_statuses_ids}}
-        {{currency_name}}
-        {{supplier_name}}
-        {{logistic_name}}
-        {{employee_name}}
 
         <div class="form-control">
-                <label for="order_status_id">order_status_id</label>
-                <input type="text" id="order_status_id" name="order_status_id"
-                        value="{{sp_order_info['data']['order_status_id']}}"/>
+            <label for="supplier_id">Поставщик</label>
+            <input type="text" name="supplier_id" id="supplier_id" readonly
+                   value="{{supplier_name['data']['name']}}"/>
+
+            <label for="exp_dispatch_date">Срок отправки</label>
+            <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" readonly
+                   value="{{sp_order_info['data']['exp_dispatch_date']}}"/>
+
+            <label for="order_status_id">Статус заказа</label>
+            <select name="order_status_id" id="order_status_id">
+                {% for i in range(order_statuses_ids['data']['status_id']|length)%}
+                {%if sp_order_info['data']['order_status_id'] == order_statuses_ids['data']['status_id'][i]%}
+                <option selected value="{{order_statuses_ids['data']['status_id'][i]}}">
+                    {{order_statuses_ids['data']['name'][i]}}
+                </option>
+                {%else%}
+                <option value="{{order_statuses_ids['data']['status_id'][i]}}">
+                    {{order_statuses_ids['data']['name'][i]}}
+                </option>
+                {%endif%}
+                {%endfor%}
+            </select>
+
+
         </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить" />
-        <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
-                Отмена
-        </button>
+        <div class="form-control">
+            <label for="shipment_id">Идентификатор отгрузки</label>
+            <input type="text" name="shipment_id" id="shipment_id" readonly
+                   value="{{logistic_name['data']['shipment_id']}}"/>
 
-</form>
+
+            <label for="order_date">Дата заказа</label>
+            <input type="date" name="order_date" id="order_date" readonly
+                   value="{{sp_order_info['data']['order_date']}}"/>
+
+            <label for="ord_emp_id">Приказать сотруднику</label>
+            <input type="text" name="ord_emp_id" id="ord_emp_id" readonly
+                   value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}} "/>
+
+
+        </div>
+
+
+        <input type="submit" class="add-submit" value="Сохранить"/>
+
+        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
+
+
+    </form>
 
 </div>
 
-<script src="/static/js/employees/department/update.js"></script>
+<script src="/static/js/sp_order/update.js"></script>
 
 {% endblock %}
 

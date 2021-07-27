@@ -3,23 +3,76 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="/static/css/employees/department/all.css">
+<link rel="stylesheet" href="/static/css/sp_order/all.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-{{sp_orders}}
-{{currencies_ids}}
-{{suppliers_ids}}
-{{order_statuses_ids}}
-{{logistics_ids}}
-{{employees_ids}}
+<button class="add-button" id="addClick">Добавить</button>
+
+<table class="table">
+    <thead>
+
+    <tr>
+
+        <th class="hidden">Номер должности</th>
+
+        <th>№</th>
+
+        <th>Перевозчик</th>
+
+        <th>Валюты</th>
+
+        <th>Валюты</th>
+
+        <th>Тип доставки</th>
+
+        <th>Статус отслеживания</th>
+
+        <th>Действия</th>
+
+    </tr>
+
+    </thead>
+
+
+    <tbody id="tBody">
+
+    {% for i in range(sp_orders['data']['sp_order_id']|length) %}
+    <tr ondblclick="getType(this)">
+
+        <td class="hidden">{{sp_orders['data']['sp_order_id'][i]}}</td>
+
+        <td>{{i+1}}</td>
+
+        <td>{{currencies_ids['data'][sp_orders['data']['curr_id'][i]]}}</td>
+
+        <td>{{suppliers_ids['data'][sp_orders['data']['supplier_id'][i]]}}</td>
+
+        <td>{{order_statuses_ids['data'][sp_orders['data']['order_status_id'][i]]}}</td>
+
+        <td>{{logistics_ids['data'][sp_orders['data']['shipment_id'][i]]}}</td>
+
+        <td>{{employees_ids['data'][sp_orders['data']['add_emp_id'][i]]}}</td>
+
+        <td>
+            <button onclick="deleteType(this)">Удалить</button>
+        </td>
+
+    </tr>
+    {% endfor %}
+
+    </tbody>
+
+</table>
 
 
 
-<script src="/static/js/employees/department/all.js"></script>
+
+
+<script src="/static/js/sp_order/all.js"></script>
 
 {% endblock %}
 

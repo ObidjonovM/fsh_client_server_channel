@@ -1,6 +1,5 @@
-const sp_order_id = document.getElementById("sp_order_id");
-
-function deleteSpOrder() {
+function deleteType(e) {
+    let sp_order_id = e.parentNode.parentNode.children[0].innerHTML;
 
     let xhttp = new XMLHttpRequest();
 
@@ -8,7 +7,7 @@ function deleteSpOrder() {
 
     if (result){
 
-        xhttp.open('DELETE', '/sp_order/delete/' + sp_order_id.value, true);
+        xhttp.open('DELETE', '/sp_order/delete/' + sp_order_id, true);
 
         xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 
@@ -24,17 +23,20 @@ function deleteSpOrder() {
                     alert('Не удалось удалить тип сотрудника!');
                 }
             }
-
         }
 
+    }
+    else {
+        return false;
     }
 
 }
 
-function updateSpOrder() {
-    window.open('/sp_order/update/' + sp_order_id.value, '_self');
+document.getElementById("addClick").onclick = () => {
+    window.open('/sp_order/add', '_self');
+};
+
+function getType(e) {
+    window.open('/sp_order/get/' + e.children[0].innerHTML, '_self');
 }
 
-function otmenFunction (){
-    window.open('/sp_order/all', '_self');
-}
