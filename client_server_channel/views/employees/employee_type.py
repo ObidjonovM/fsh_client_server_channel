@@ -51,14 +51,10 @@ def all():
     types=EmployeeTypeC.get_all()
     
     if types['success']:
-        if len(types['data']) > 0:
-            return render_template(
-                utls.url_join(['employees','employee_type','all.html']),
-                types=types
-            )
-
+        
         return render_template(
-            utls.url_join(['employees','employee_type','all.html'])
+            utls.url_join(['employees','employee_type','all.html']),
+            types=types
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!

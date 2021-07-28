@@ -59,14 +59,10 @@ def all():
     sp_types = SpTypeC.get_all()
 
     if sp_types['success']:
-        if len(sp_types['data']) > 0:
-            return render_template(
-                utls.url_join(['sp_type', 'all.html']),
-                sp_types = sp_types
-            )
-
+        
         return render_template(
-            utls.url_join(['sp_type', 'all.html'])
+            utls.url_join(['sp_type', 'all.html']),
+            sp_types = sp_types
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!

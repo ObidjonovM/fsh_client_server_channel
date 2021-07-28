@@ -57,14 +57,10 @@ def all():
 	subs_info = SubscriptionC.get_all()
 	
 	if subs_info['success']:
-		if len(subs_info['data']) > 0:
-			return render_template(
-				utls.url_join(['clients', 'subscription', 'all.html']),
-				subs_info = subs_info
-			)
-		
+
 		return render_template(
-			utls.url_join(['clients', 'subscription', 'all.html'])
+			utls.url_join(['clients', 'subscription', 'all.html']),
+			subs_info = subs_info
 		)
 
 	return redirect(url_for('core.index'))

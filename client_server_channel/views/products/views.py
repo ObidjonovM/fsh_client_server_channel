@@ -104,7 +104,9 @@ def all():
 				status_by_ids = ProductStatusC.get_names_by_ids(products_info['data']['status_id'])
 			)
 
-		return render_template(utls.url_join(['products', 'all.html']))
+		return render_template(utls.url_join(['products', 'all.html']),
+			products_info = products_info
+		)
 
 	return redirect(url_for('core.index'))
 

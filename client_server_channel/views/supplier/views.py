@@ -64,14 +64,10 @@ def all():
     suppliers = SupplierC.get_all()
 
     if suppliers['success']:
-        if len(suppliers['data']) > 0:
-            return render_template(
-                utls.url_join(['supplier', 'all.html']),
-                suppliers = suppliers
-            )
-
+        
         return render_template(
-            utls.url_join(['supplier', 'all.html'])
+            utls.url_join(['supplier', 'all.html']),
+            suppliers = suppliers
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!

@@ -80,7 +80,9 @@ def all():
                 products_ids = ProductC.get_names_by_ids(sp_warehouses['data']['pr_serial_num'])
             )
 
-        return render_template(utls.url_join(['sp_warehouse', 'all.html']))
+        return render_template(utls.url_join(['sp_warehouse', 'all.html']),
+            sp_warehouses = sp_warehouses
+        )
 
     return redirect(url_for('core.index'))            # TODO later!!!!
 

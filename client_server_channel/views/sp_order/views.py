@@ -85,7 +85,9 @@ def all():
                 employees_ids = EmployeeC.get_names_by_ids(sp_orders['data']['ord_emp_id'])
             )
 
-        return render_template(utls.url_join(['sp_order', 'all.html']))
+        return render_template(utls.url_join(['sp_order', 'all.html']),
+            sp_orders = sp_orders
+        )
 
     return redirect(url_for('core.index'))            # TODO later!!!!
 

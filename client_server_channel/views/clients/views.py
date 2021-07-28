@@ -101,7 +101,9 @@ def all():
 				names_by_ids = SubscriptionC.get_names_by_ids(clients_info['data']['subs_id'])
 			)
 		
-		return render_template(utls.url_join(['clients', 'all.html']))
+		return render_template(utls.url_join(['clients', 'all.html']),
+			clients_info = clients_info
+		)
 
 	return redirect(url_for('core.index'))
 

@@ -191,7 +191,9 @@ def all():
             )
 
         return render_template(
-            utls.url_join(['employees','all.html'])
+            utls.url_join(['employees','all.html'],
+                employees = employees
+            )
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!

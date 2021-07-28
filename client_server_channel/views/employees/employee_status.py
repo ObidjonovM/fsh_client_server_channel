@@ -52,14 +52,10 @@ def all():
     status_all = EmployeeStatusC.get_all()
     
     if status_all['success']:
-        if len(status_all['data']) > 0:
-            return render_template(
-                utls.url_join(['employees', 'employee_status', 'all.html']),
-                status_all = status_all
-            )
-        
+
         return render_template(
-            utls.url_join(['employees', 'employee_status', 'all.html'])
+            utls.url_join(['employees', 'employee_status', 'all.html']),
+            status_all = status_all
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!

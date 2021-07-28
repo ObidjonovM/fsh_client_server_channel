@@ -56,14 +56,10 @@ def all():
     sp_statuses = SpStatusC.get_all()
 
     if sp_statuses['success']:
-        if len(sp_statuses['data']) > 0:
-            return render_template(
-                utls.url_join(['sp_status', 'all.html']),
-                sp_statuses = sp_statuses
-            )
-
+        
         return render_template(
-            utls.url_join(['sp_status', 'all.html'])
+            utls.url_join(['sp_status', 'all.html']),
+            sp_statuses = sp_statuses
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!

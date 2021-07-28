@@ -66,7 +66,8 @@ def all():
             )
 
         return render_template(
-            utls.url_join(['tracking_status', 'all.html'])
+            utls.url_join(['tracking_status', 'all.html']),
+            tracking_statuses = tracking_statuses
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!

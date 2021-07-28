@@ -82,7 +82,9 @@ def all():
                 tracking_statuses_ids = TrackingStatusC.get_names_by_ids(sp_logistics['data']['tr_status_id'])
             )
 
-        return render_template(utls.url_join(['sp_logistic', 'all.html']))
+        return render_template(utls.url_join(['sp_logistic', 'all.html']),
+            sp_logistics = sp_logistics
+        )
 
     return redirect(url_for('core.index'))            # TODO later!!!!
 

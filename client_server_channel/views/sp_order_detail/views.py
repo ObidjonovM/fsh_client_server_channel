@@ -79,7 +79,9 @@ def all():
                 orders_ids = SpOrderC.get_names_by_ids(sp_order_details['data']['order_id']),
             )
 
-        return render_template(utls.url_join(['sp_order_detail', 'all.html']))
+        return render_template(utls.url_join(['sp_order_detail', 'all.html']),
+            sp_order_details = sp_order_details
+        )
 
     return redirect(url_for('core.index'))            # TODO later!!!!
 

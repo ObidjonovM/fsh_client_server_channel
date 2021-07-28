@@ -55,14 +55,10 @@ def all():
     departments = DepartmentC.get_all()
 
     if departments['success']:
-        if len(departments['data']) > 0:
-            return render_template(
-                utls.url_join(['employees', 'department', 'all.html']),
-                departments = departments
-            )
 
         return render_template(
-            utls.url_join(['employees', 'department', 'all.html'])
+            utls.url_join(['employees', 'department', 'all.html']),
+            departments = departments
         )
 
     return redirect(url_for('core.index'))            # TODO later!!!!
