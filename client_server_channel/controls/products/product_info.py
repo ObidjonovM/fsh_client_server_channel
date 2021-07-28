@@ -1,4 +1,4 @@
-from client_server_channel.models import ProductInfoTable
+from client_server_channel.models import ProductInfoTable, CategoriesTable
 from .. import control_utils as utls
 from datetime import datetime
 
@@ -7,6 +7,25 @@ class ProductInfoC:
 
     @staticmethod
     def add(product_info):
+        cat_result = CategoriesTable.get(product_info['category_id'])
+        if not len(cat_result['data']) > 0:
+            
+            return {
+                'success' : False,
+                'data' : cat_result['data'],
+                'log_code' : utls.record_log(cat_result, 'add', 'crud_logs')
+            }
+
+        cat_result['data']['leaf_cat'] = True
+        update_leaf_cat = CategoriesTable.update(cat_result['data'])
+
+        if not update_leaf_cat['success']:
+
+            return {
+                'success' : False,
+                'log_code' : utls.record_log(update_leaf_cat, 'add', 'crud_logs')
+            }
+
         now = datetime.now()
         product_info['date_added'] = now
         product_info['date_modified'] = now
