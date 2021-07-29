@@ -38,9 +38,3 @@ document.getElementById("addClick").onclick = () => {
 function getType(e) {
     window.open('/sp_status/get/' + e.children[0].innerHTML, '_self');
 }
-
-
-function otmenFunction() {
-    window.open('/employees/account', '_self');
-
-}

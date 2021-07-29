@@ -17,9 +17,7 @@
 
     <tr>
 
-        <th class="hidden">Номер должности</th>
-
-        <th>№</th>
+        <th class="hidden">ИД</th>
 
         <th>Перевозчик</th>
 
@@ -42,8 +40,6 @@
     <tr ondblclick="getType(this)">
 
         <td class="hidden">{{sp_logistics['data']['shipment_id'][i]}}</td>
-
-        <td>{{i+1}}</td>
 
         <td>{{carriers_ids['data'][sp_logistics['data']['carrier_id'][i]]}}</td>
 

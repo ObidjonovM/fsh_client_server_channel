@@ -19,13 +19,11 @@
 
         <th class="hidden">Номер должности</th>
 
-        <th>№</th>
-
-        <th>F.I.O</th>
+        <th>Ф.И.O</th>
 
         <th>Подписка</th>
 
-        <th colspan="2">Действия</th>
+        <th>Действия</th>
 
     </tr>
     </thead>
@@ -35,8 +33,6 @@
     <tr ondblclick="getClient(this)">
 
         <td class="hidden">{{clients_info['data']['client_id'][i]}}</td>
-
-        <td>{{i+1}}</td>
 
         <td>
             {{clients_info['data']['first_name'][i]}}

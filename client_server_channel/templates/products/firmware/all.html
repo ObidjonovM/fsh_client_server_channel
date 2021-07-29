@@ -15,9 +15,7 @@
 <table class="table">
     <thead>
     <tr>
-        <th class="hidden">Номер должности</th>
-
-        <th>№</th>
+        <th class="hidden">ИД</th>
 
         <th>Имя</th>
 
@@ -37,14 +35,12 @@
 
         <td class="hidden">{{firmwares['data']['fw_id'][i]}}</td>
 
-        <td>{{i+1}}</td>
-
         <td>{{firmwares['data']['name'][i]}}</td>
 
         <td>{{firmwares['data']['model'][i]}}</td>
 
         <td>{{firmwares['data']['version'][i]}}</td>
-        
+
         <td>{{ names_by_ids['data'][firmwares['data']['author_id'][i]] }}</td>
 
         <td>

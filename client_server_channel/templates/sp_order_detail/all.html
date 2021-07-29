@@ -17,9 +17,7 @@
 
     <tr>
 
-        <th class="hidden">Номер должности</th>
-
-        <th>№</th>
+        <th class="hidden">ИД</th>
 
         <th>Тип</th>
 
@@ -42,8 +40,6 @@
     <tr ondblclick="getType(this)">
 
         <td class="hidden">{{sp_order_details['data']['detail_id'][i]}}</td>
-
-        <td>{{i+1}}</td>
 
         <td>{{types_ids['data'][sp_order_details['data']['type_id'][i]]}}</td>
 

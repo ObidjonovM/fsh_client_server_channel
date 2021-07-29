@@ -10,7 +10,6 @@
 {% block body %}
 {{super()}}
 
-<button class="otmen-btn" onclick="otmenFunction()">Назад</button>
 <button class="add-button" id="addClick">Добавить</button>
 
 <table class="table">
@@ -18,9 +17,7 @@
 
     <tr>
 
-        <th class="hidden">Номер должности</th>
-
-        <th>№</th>
+        <th class="hidden">ИД</th>
 
         <th>Статус</th>
 
@@ -37,8 +34,6 @@
     <tr ondblclick="getType(this)">
 
         <td class="hidden">{{sp_statuses['data']['status_id'][i]}}</td>
-
-        <td>{{i+1}}</td>
 
         <td>{{sp_statuses['data']['status'][i]}}</td>
 

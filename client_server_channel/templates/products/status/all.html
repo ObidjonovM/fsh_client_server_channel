@@ -18,13 +18,11 @@
 
     <tr>
 
-        <th class="hidden">Номер должности</th>
-
-        <th>№</th>
+        <th class="hidden">ИД</th>
 
         <th>Статус</th>
 
-        <th colspan="2">Действия</th>
+        <th>Действия</th>
 
     </tr>
 
@@ -37,8 +35,6 @@
     <tr ondblclick="getType(this)">
 
         <td class="hidden">{{status_info['data']['status_id'][i]}}</td>
-
-        <td>{{i+1}}</td>
 
         <td>{{status_info['data']['status'][i]}}</td>
 

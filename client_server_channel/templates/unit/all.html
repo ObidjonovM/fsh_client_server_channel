@@ -14,25 +14,35 @@
 
 <table class="table">
     <thead>
+
     <tr>
-        <th class="hidden">Номер единица измерения</th>
-        <th>№</th>
+
+        <th class="hidden">ИД</th>
+
         <th>Единица измерения</th>
-        <th colspan="2"></th>
+
+        <th>Действия</th>
+
     </tr>
+
     </thead>
 
     <tbody id="tBody">
+
     {% for i in range(units['data']['unit_id']|length) %}
     <tr ondblclick="getType(this)">
+
         <td class="hidden">{{units['data']['unit_id'][i]}}</td>
-        <td>{{i+1}}</td>
+
         <td>{{units['data']['unit'][i]}}</td>
+
         <td>
             <button onclick="deleteUnit(this)">Удалить</button>
         </td>
+
     </tr>
     {% endfor %}
+
     </tbody>
 
 </table>
