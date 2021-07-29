@@ -1,11 +1,11 @@
 .add-container {
     position: absolute;
-    top: 52%;
+    top: 54%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
-    width: 1300px;
-    height: 550px;
+    width: 1000px;
+    height: 500px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -19,25 +19,25 @@
 }
 
 .add-form {
-    width: 80%;
-    height: 83%;
+    width: 90%;
+    height: 100vh;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
 
 }
 .form-control {
-    margin-top: 13px;
+    margin-top: 25px;
 }
 
 .form-control label {
     padding-left: 14px;
     margin-bottom: 0;
 }
-.form-control input {
-    width: 280px;
-    height: 43px;
+.form-control input, select {
+    width: 210px;
+    height: 40px;
     border-radius: 4px;
     border: 2px solid #f0f0f0;
     font-family: inherit;
@@ -46,15 +46,6 @@
     padding: 10px;
 }
 
-.form-control select {
-    width: 280px;
-    height: 43px;
-    border-radius: 4px;
-    border: 2px solid #f0f0f0;
-    font-family: inherit;
-    font-size: 14px;
-    margin: 10px;
-}
 
 .add-submit, .add-submit2{
     background-color: #006666;
@@ -73,62 +64,9 @@
 }
 
 .add-submit {
-    left:16%;
+    left:22%;
 }
 
 .add-submit2 {
-    left:60%;
+    left:53%;
 }
-
-
-
-.btns {
-    position: absolute;
-    top: 0;
-    left: 20%;
-    display: flex;
-    justify-items: center;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    height: 10%;
-}
-
-.add-submit1, .add-submit1-1, .add-submit1-2 {
-    background-color: #21709c;
-    border: 2px solid #006666;
-    border-radius: 5px;
-    color: #d5e2ff;
-    display: block;
-    font-family: inherit;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: 20px;
-    width: 10%;
-    height: 40px;
-    line-height: 20px;
-    cursor: pointer;
-    position: relative;
-    top:-10px;
-    bottom: 4px;
-    transition: all 0.2s ease-out;
-}
-
-.add-submit1:hover, .add-submit1-1:hover, .add-submit1-2:hover {
-    background-color: #2fa28f;
-    box-shadow: 0px 0px 1px 1px #4e4e4e;
-    border: 1px solid #9ef6f1;
-}
-
-.add-submit1{
-    left:-20%;
-}
-
-.add-submit1-1 {
-    left:0%;
-}
-
-.add-submit1-2 {
-    left:20%;
-}
-
