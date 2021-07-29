@@ -42,7 +42,7 @@ body {
     top: 15px;
     left: 10%;
     width: 120px;
-    height: 40px;
+    height: 43px;
     background-color: #21709c;
     color: white;
     border: none;
@@ -50,6 +50,7 @@ body {
     cursor: pointer;
     font-weight: bolder;
     transition: all 0.2s ease-out;
+    font-size: 16px;
 }
 
 .viyti {
@@ -75,7 +76,7 @@ textarea {
     width: 80%;
     border-collapse: collapse;
     position: absolute;
-    top: 110px;
+    top: 150px;
     left: 10%;
     background-color: #1e8985;
 }
@@ -151,8 +152,9 @@ tbody td button:hover {
 
 .add-button {
     position: absolute;
-    top: 60px;
-    left: 45%;
+    top: 16%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 200px;
     height: 45px;
     background-color: #21709c;
@@ -162,6 +164,7 @@ tbody td button:hover {
     cursor: pointer;
     font-weight: bolder;
     transition: all 0.3s ease-out;
+    font-size: 18px;
 }
 
 .add-button:hover {
