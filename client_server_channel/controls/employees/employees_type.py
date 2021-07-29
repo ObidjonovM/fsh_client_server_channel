@@ -92,7 +92,7 @@ class EmployeeTypeC:
     @staticmethod
     def delete(type_id):
         get_result = EmployeesTypeTable.get_type_info(type_id)
-        log_code = utls.record_log(get_result, 'delete', 'crud_clogs')
+        log_code = utls.record_log(get_result, 'delete', 'crud_logs')
         if get_result['data'] != []:
             delete_result = EmployeesTypeTable.delete_type(type_id)
             return {
