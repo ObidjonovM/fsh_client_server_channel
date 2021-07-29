@@ -96,17 +96,33 @@ class CategoriesC:
     @staticmethod
     def delete(cat_id):
         get_result = CategoriesTable.get(cat_id)
-        log_code = utls.record_log(get_result, 'delete', 'crud_logs')
-        if get_result['data'] != []:
-            delete_result = CategoriesTable.delete(cat_id)
+
+        if get_result['data'] == []:
             return {
-                'success' : delete_result['success'],
-                'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
+                'success' : False,
+                'log_code' : utls.record_log(get_result, 'delete', 'crud_logs'),
+                'comment' : 'DOES NOT EXIST'
             }
+
+        res_par_leaf = CategoriesTable.get_par_leaf()
+
+        if not len(res_par_leaf['data']) > 0:
+            return {
+                'success' : False,
+                'log_code' : utls.record_log(res_par_leaf, 'delete', 'crud_logs')
+            }
+
+        if not cat_id in res_par_leaf['data']['parent_cat_id']:
+            if get_result['data']['leaf_cat'] == False:
+                delete_result = CategoriesTable.delete(cat_id)
+
+                return {
+                    'success' : delete_result['success'],
+                    'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
+                }
 
         return {
             'success' : False,
-            'log_code' : log_code,
-            'comment' : 'DOES NOT EXIST'
+            'log_code' : -1010
         }
 

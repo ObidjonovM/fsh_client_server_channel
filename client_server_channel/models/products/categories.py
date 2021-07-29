@@ -24,6 +24,11 @@ class CategoriesTable:
 
 
     @staticmethod
+    def get_par_leaf():
+        return crud.get_ids_fullnames('categories', ['parent_cat_id'])
+
+
+    @staticmethod
     def get_other_pairs(cat_id):
         return crud.get_other_pairs(
             'categories', 'category_id', 'name', cat_id)
