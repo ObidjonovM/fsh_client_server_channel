@@ -19,14 +19,6 @@
           method="POST">
 
         <div class="form-control">
-            <label for="type_id">Тип</label>
-            <input type="text" id="type_id" readonly
-                   value="{{type_name['data']['name']}}">
-
-            <label for="order_id">Порядок</label>
-            <input type="text" id="order_id" readonly
-                   value="{{order_name['data']['total_cost']}}"/>
-
             <label for="status_id">Статус</label>
             <select name="status_id" id="status_id">
                 {% for i in range(statuses_ids['data']['status_id']|length)%}
@@ -41,13 +33,6 @@
                 {%endif%}
                 {%endfor%}
             </select>
-        </div>
-
-        <div class="form-control">
-            <label for="acc_emp_id">Принял(а)</label>
-            <input type="text" id="acc_emp_id" readonly
-                   value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}}"/>
-
 
             <label for="used_emp_id">Использовал(а)</label>
             <select name="used_emp_id" id="used_emp_id">

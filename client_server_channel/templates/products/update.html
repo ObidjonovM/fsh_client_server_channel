@@ -22,14 +22,6 @@
 
         <div class="form-control">
 
-            <label for="manufactured_date">Дата</label>
-            <input type="date" id="manufactured_date" readonly
-                   value="{{product_info['data']['manufactured_date']}}">
-
-            <label for="product_name">Товар</label>
-            <input type="text" id="product_name" readonly
-                   value="{{product_name['data']['name']}}">
-
             <label for="dealers_ids">Дилер</label>
             <select name="dealers_ids" id="dealers_ids" required>
                 {%for i in range(dealers_ids['data']['dealer_id']|length)%}
@@ -48,14 +40,6 @@
         </div>
 
         <div class="form-control">
-
-            <label for="clients_ids">Клиент</label>
-            <input type="text" id="clients_ids" readonly
-                   value="{{clients_ids['data']['last_name']}} {{clients_ids['data']['first_name']}} {{clients_ids['data']['middle_name']}}">
-
-            <label for="firmwares_ids">Прошивка</label>
-            <input type="text" id="firmwares_ids" readonly
-                   value="{{firmwares_ids['data']['name']}}">
 
             <label for="status_ids">Статус</label>
             <select name="status_ids" id="status_ids" required>

@@ -19,22 +19,6 @@
     <form action="{{url_for('products.firmware.update', fw_id=fw_info['fw_id'])}}" class="add-form" method="POST">
 
         <div class="form-control">
-
-            <label for="fullname">Ф.И.О</label>
-            <input type="text" id="fullname" value="{{fullname}}" readonly>
-
-            <label for="name">Имя</label>
-            <input type="text" id="name" name="name" value="{{fw_info['name']}}" readonly>
-
-            <label for="model">Модель</label>
-            <input type="text" id="model" name="model" value="{{fw_info['model']}}" readonly>
-        </div>
-
-
-        <div class="form-control">
-            <label for="version">Версия</label>
-            <input type="text" id="version" name="version" value="{{fw_info['version']}}" readonly>
-
             <label for="desc">Описание</label>
             <input type="text" id="desc" name="desc" value="{{fw_info['description']}}">
         </div>

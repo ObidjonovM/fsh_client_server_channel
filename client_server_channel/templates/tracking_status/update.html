@@ -20,12 +20,6 @@
           method="POST">
 
         <div class="form-control">
-            <label for="status">Статус</label>
-            <input type="text" id="status" readonly
-                   value="{{tracking_status_info['data']['status']}}"/>
-        </div>
-
-        <div class="form-control">
             <label for="carrier_id">Перевозчик</label>
             <select name="carrier_id" id="carrier_id" required>
                 {% for i in range(carriers_ids['data']['carrier_id']|length)%}

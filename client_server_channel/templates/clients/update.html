@@ -15,11 +15,25 @@
     <div class="add-header">
         <h2>Новая должность</h2>
     </div>
-        
+
     <form action="{{ url_for('clients.update', client_id=client_info['data']['client_id']) }}" method="POST" id="myForm"
           class="add-form">
 
         <div class="form-control">
+            <label for="first_name">Имя</label>
+            <input type="text" name="first_name" id="first_name" required
+                   value="{{client_info['data']['first_name']}}"/>
+
+            <label for="last_name">Фамилия</label>
+            <input type="text" name="last_name" id="last_name" required value="{{client_info['data']['last_name']}}"/>
+
+
+            <label for="middle_name">Отчество</label>
+            <input type="text" name="middle_name" id="middle_name" value="{{client_info['data']['middle_name']}}"/>
+
+            <label for="birth_date">Дата рождения</label>
+            <input type="date" name="birth_date" id="birth_date" required
+                   value="{{client_info['data']['birth_date']}}"/>
 
             <label for="subs_id">Подписка</label>
             <select name="subs_id" id="subs_id">
@@ -35,23 +49,6 @@
                 {%endif%}
                 {%endfor%}
             </select>
-
-            <label for="first_name">Имя</label>
-            <input type="text" name="first_name" id="first_name" required
-                   value="{{client_info['data']['first_name']}}"/>
-
-            <label for="last_name">Фамилия</label>
-            <input type="text" name="last_name" id="last_name" required value="{{client_info['data']['last_name']}}"/>
-
-
-            <label for="middle_name">Отчество</label>
-            <input type="text" name="middle_name" id="middle_name" value="{{client_info['data']['middle_name']}}"/>
-
-
-            <label for="birth_date">Дата рождения</label>
-            <input type="date" name="birth_date" id="birth_date" required
-                   value="{{client_info['data']['birth_date']}}"/>
-
         </div>
 
 

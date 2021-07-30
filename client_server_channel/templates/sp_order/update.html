@@ -34,13 +34,6 @@
         </div>
 
         <div class="form-control">
-            <label for="supplier_id">Поставщик</label>
-            <input type="text" name="supplier_id" id="supplier_id" readonly
-                   value="{{supplier_name['data']['name']}}"/>
-
-            <label for="exp_dispatch_date">Срок отправки</label>
-            <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" readonly
-                   value="{{sp_order_info['data']['exp_dispatch_date']}}"/>
 
             <label for="order_status_id">Статус заказа</label>
             <select name="order_status_id" id="order_status_id">
@@ -56,23 +49,6 @@
                 {%endif%}
                 {%endfor%}
             </select>
-
-
-        </div>
-
-        <div class="form-control">
-            <label for="shipment_id">Идентификатор отгрузки</label>
-            <input type="text" name="shipment_id" id="shipment_id" readonly
-                   value="{{logistic_name['data']['shipment_id']}}"/>
-
-
-            <label for="order_date">Дата заказа</label>
-            <input type="date" name="order_date" id="order_date" readonly
-                   value="{{sp_order_info['data']['order_date']}}"/>
-
-            <label for="ord_emp_id">Приказать сотруднику</label>
-            <input type="text" name="ord_emp_id" id="ord_emp_id" readonly
-                   value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}} "/>
 
 
         </div>

@@ -21,11 +21,7 @@
           method="POST">
 
         <div class="form-control">
-            <label for="name">Имя</label>
-            <input type="text" name="name" id="name"
-                   readonly value="{{supplier_info['data']['name']}}"/>
-
-            <label for="address_1">Адрес 1</label>
+             <label for="address_1">Адрес 1</label>
             <input type="text" name="address_1" id="address_1"
                    value="{{supplier_info['data']['address_1']}}"/>
 
@@ -40,14 +36,15 @@
             <label for="country">Страна</label>
             <input type="text" name="country" id="country"
                    value="{{supplier_info['data']['country']}}"/>
-        </div>
 
-
-        <div class="form-control">
             <label for="zipcode">Индекс</label>
             <input type="text" name="zipcode" id="zipcode"
                    value="{{supplier_info['data']['zipcode']}}"/>
 
+        </div>
+
+
+        <div class="form-control">
             <label for="phone">Телефон</label>
             <input type="text" name="phone" id="phone"
                    value="{{supplier_info['data']['phone']}}"/>
