@@ -71,9 +71,8 @@ def all():
             )
 
         return render_template(
-            utls.url_join(['products', 'firmware', 'all.html'],
+            utls.url_join(['products', 'firmware', 'all.html']),
                 firmwares = firmwares
-            )
         )
     
     return redirect(url_for('core.index'))            # TODO later!!!!

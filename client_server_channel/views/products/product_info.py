@@ -68,9 +68,8 @@ def all():
 			)
 
 		return render_template(
-			utls.url_join(['products', 'product_info', 'all.html'],
+			utls.url_join(['products', 'product_info', 'all.html']),
 				products_info = products_info
-			)
 		)
 
 	return redirect(url_for('core.index'))            # TODO later!!!!
