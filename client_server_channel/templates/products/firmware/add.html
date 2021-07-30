@@ -10,13 +10,13 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
+<div class="add-container">
 
-    <div class="header">
+    <div class="add-header">
         <h2>Новая прошивка</h2>
     </div>
 
-    <form id="myForm" class="form">
+    <form id="myForm" class="add-form">
         <div class="form-control">
 
             <label for="emp_id">Ф.И.О</label><br/>
@@ -33,6 +33,8 @@
             <label for="name">Имя</label>
             <input type="text" id="name" name="name" required>
 
+            <label for="desc">Описание</label>
+            <textarea type="text" name="desc" id="desc"> </textarea>
 
         </div>
 
@@ -45,14 +47,6 @@
 
             <label for="version">Версия</label>
             <input type="text" id="version" name="version" required>
-
-        </div>
-
-
-        <div class="form-control">
-
-            <label for="desc">Описание</label>
-            <textarea type="text" name="desc" id="desc"> </textarea>
 
         </div>
 

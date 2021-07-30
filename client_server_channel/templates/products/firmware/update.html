@@ -10,15 +10,19 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
+<div class="add-container">
 
-    <div class="header">
+    <div class="add-header">
         <h2>Названия прошивка</h2>
     </div>
 
-    <form action="{{url_for('products.firmware.update', fw_id=fw_info['fw_id'])}}" class="form" method="POST">
+    <form action="{{url_for('products.firmware.update', fw_id=fw_info['fw_id'])}}" class="add-form" method="POST">
 
         <div class="form-control">
+
+            <label for="fullname">Ф.И.О</label>
+            <input type="text" id="fullname" value="{{fullname}}" readonly>
+
             <label for="name">Имя</label>
             <input type="text" id="name" name="name" value="{{fw_info['name']}}" readonly>
 
@@ -34,13 +38,6 @@
             <label for="desc">Описание</label>
             <input type="text" id="desc" name="desc" value="{{fw_info['description']}}">
         </div>
-
-
-        <div class="form-control">
-            <label for="fullname">Ф.И.О</label>
-            <input type="text" id="fullname" value="{{fullname}}" readonly>
-        </div>
-
 
             <input type="submit" class="add-submit" value="Сохранить">
 

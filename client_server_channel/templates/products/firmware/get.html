@@ -10,17 +10,23 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
+<div class="add-container">
 
-    <div class="header">
+    <div class="add-header">
         <h2>Названия прошивка</h2>
     </div>
 
-    <form id="myForm" class="form">
+    <form id="myForm" class="add-form">
         <input id="fw_id" type="hidden"
                value="{{fw_info['data']['fw_id']}}"/>
 
         <div class="form-control">
+
+            <label for="emp_id">Ф.И.О</label>
+            <input type="text" id="emp_id" name="emp_id"
+                   value="{{fullname}}"
+                   readonly>
+
             <label for="name">Имя</label><br/>
             <input type="text" id="name" name="name"
                    value="{{fw_info['data']['name']}}"
@@ -30,6 +36,7 @@
             <input type="text" id="model" name="model"
                    value="{{fw_info['data']['model']}}"
                    readonly>
+
         </div>
 
 
@@ -42,13 +49,6 @@
             <label for="desc">Описание</label>
             <input type="text" id="desc" name="desc"
                    value="{{fw_info['data']['description']}}"
-                   readonly>
-        </div>
-
-        <div class="form-control">
-            <label for="emp_id">Ф.И.О</label>
-            <input type="text" id="emp_id" name="emp_id"
-                   value="{{fullname}}"
                    readonly>
         </div>
 
