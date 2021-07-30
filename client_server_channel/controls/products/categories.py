@@ -53,6 +53,28 @@ class CategoriesC:
 
 
     @staticmethod
+    def get_parent_cat():
+        ids_names = CategoriesTable.get_parent_cat()
+
+        return {
+            'success' : ids_names['success'],
+            'data' : ids_names['data'],
+            'log_code' : utls.record_log(ids_names, 'get_parent_cat', 'crud_logs')
+        }
+
+
+    @staticmethod
+    def get_leaf_cat():
+        ids_names = CategoriesTable.get_leaf_cat()
+
+        return {
+            'success' : ids_names['success'],
+            'data' : ids_names['data'],
+            'log_code' : utls.record_log(ids_names, 'get_leaf_cat', 'crud_logs')
+        }
+
+
+    @staticmethod
     def get_other_pairs(cat_id):
         ids_names = CategoriesTable.get_other_pairs(cat_id)
 

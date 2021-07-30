@@ -24,6 +24,27 @@ class CategoriesTable:
 
 
     @staticmethod
+    def get_parent_cat():
+        sql = 'SELECT category_id, name FROM categories'
+        sql += ' WHERE active = TRUE AND leaf_cat = FALSE'
+
+        result = crud.run_SQL(sql, 'categories')
+
+        return result
+
+
+    @staticmethod
+    def get_leaf_cat():
+        sql = 'SELECT a.category_id, a.name FROM categories a'
+        sql += ' LEFT JOIN categories b ON a.category_id = b.parent_cat_id'
+        sql += ' WHERE a.active = TRUE AND b.parent_cat_id is null'
+        
+        result = crud.run_SQL(sql, 'categories')
+
+        return result
+
+
+    @staticmethod
     def get_par_leaf():
         return crud.get_ids_fullnames('categories', ['parent_cat_id'])
 

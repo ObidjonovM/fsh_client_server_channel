@@ -10,7 +10,7 @@ def add():
 	if not 'username' in session:
 		return redirect(url_for('employees.login'))
 
-	ids_names = CategoriesC.get_ids_names()
+	ids_names = CategoriesC.get_parent_cat()
 	if request.method == 'GET':
 
 		return render_template(
@@ -88,8 +88,7 @@ def update(cat_id):
 			return render_template(
 				utls.url_join(['products', 'category', 'update.html']),
 				cat_info = cat_info,
-				ids_names = CategoriesC.get_other_pairs(
-					cat_info['data']['category_id'])
+				ids_names = CategoriesC.get_parent_cat()
 			)
 
 		return redirect(url_for('products.category.all'))
