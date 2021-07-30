@@ -10,7 +10,7 @@ def add():
 	if not 'username' in session:
 		return redirect(url_for('employees.login'))
 
-	ids_names = CategoriesC.get_ids_names()
+	ids_names = CategoriesC.get_leaf_cat()
 	if request.method == 'GET':
 
 		return render_template(
