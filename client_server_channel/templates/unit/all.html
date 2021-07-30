@@ -10,44 +10,46 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Единица измерения</th>
+            <th>Единица измерения</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
+        </thead>
 
-    <tbody id="tBody">
+        <tbody id="tBody">
 
-    {% for i in range(units['data']['unit_id']|length) %}
-    <tr ondblclick="getType(this)">
+        {% for i in range(units['data']['unit_id']|length) %}
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{units['data']['unit_id'][i]}}</td>
+            <td class="hidden">{{units['data']['unit_id'][i]}}</td>
 
-        <td>{{units['data']['unit'][i]}}</td>
+            <td>{{units['data']['unit'][i]}}</td>
 
-        <td>
-            <button onclick="deleteUnit(this)">Удалить</button>
-        </td>
+            <td>
+                <button onclick="deleteUnit(this)">Удалить</button>
+            </td>
 
-    </tr>
-    {% endfor %}
+        </tr>
+        {% endfor %}
 
-    </tbody>
+        </tbody>
 
-</table>
-
-
+    </table>
+</div>
 
 
 <script src="/static/js/unit/all.js"></script>

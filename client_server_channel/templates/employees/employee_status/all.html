@@ -9,38 +9,45 @@
 
 {% block body %}
 {{super()}}
-<button class="add-button" id="addClick">Добавить</button>
 
-<table class="table">
-    <thead>
-    <tr>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-        <th class="hidden">Номер должности</th>
+<div class="table">
+    <table>
+        <thead>
+        <tr>
 
-        <th>Статус</th>
+            <th class="hidden">Номер должности</th>
 
-        <th colspan="2">Действия</th>
+            <th>Статус</th>
 
-    </tr>
-    </thead>
+            <th colspan="2">Действия</th>
 
-    <tbody id="tBody">
-    {% for i in range(status_all['data']['status_id']|length) %}
+        </tr>
+        </thead>
 
-    <tr ondblclick="getType(this)">
+        <tbody id="tBody">
+        {% for i in range(status_all['data']['status_id']|length) %}
 
-        <td class="hidden">{{status_all['data']['status_id'][i]}}</td>
+        <tr ondblclick="getType(this)">
 
-        <td>{{status_all['data']['status'][i]}}</td>
+            <td class="hidden">{{status_all['data']['status_id'][i]}}</td>
 
-        <td><button onclick="deleteStatus(this)">Удалить</button></td>
+            <td>{{status_all['data']['status'][i]}}</td>
 
-    </tr>
+            <td>
+                <button onclick="deleteStatus(this)">Удалить</button>
+            </td>
 
-    {% endfor %}
-    </tbody>
+        </tr>
 
-</table>
+        {% endfor %}
+        </tbody>
+
+    </table>
+</div>
 
 <script src="/static/js/employees/employee_status/all.js"></script>
 

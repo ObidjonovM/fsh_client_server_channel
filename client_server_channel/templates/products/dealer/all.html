@@ -10,43 +10,47 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Имя</th>
+            <th>Имя</th>
 
-        <th colspan="2">Действия</th>
+            <th colspan="2">Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
+        </thead>
 
 
-    <tbody id="tBody">
-    {% for i in range(dealers_info['data']['dealer_id']|length) %}
+        <tbody id="tBody">
+        {% for i in range(dealers_info['data']['dealer_id']|length) %}
 
-    <tr ondblclick="getType(this)">
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{dealers_info['data']['dealer_id'][i]}}</td>
+            <td class="hidden">{{dealers_info['data']['dealer_id'][i]}}</td>
 
-        <td>{{dealers_info['data']['name'][i]}}</td>
+            <td>{{dealers_info['data']['name'][i]}}</td>
 
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
 
-    </tr>
+        </tr>
 
-    {% endfor %}
-    </tbody>
+        {% endfor %}
+        </tbody>
 
-</table>
+    </table>
+</div>
 
 <script src="/static/js/products/dealer/all.js"></script>
 

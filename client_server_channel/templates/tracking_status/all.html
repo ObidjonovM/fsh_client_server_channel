@@ -10,48 +10,51 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Статус</th>
+            <th>Статус</th>
 
-        <th>Перевозчики</th>
+            <th>Перевозчики</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
+        </thead>
 
 
-    <tbody id="tBody">
+        <tbody id="tBody">
 
-    {% for i in range(tracking_statuses['data']['status_id']|length) %}
-    <tr ondblclick="getType(this)">
+        {% for i in range(tracking_statuses['data']['status_id']|length) %}
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{tracking_statuses['data']['status_id'][i]}}</td>
+            <td class="hidden">{{tracking_statuses['data']['status_id'][i]}}</td>
 
-        <td>{{tracking_statuses['data']['status'][i]}}</td>
+            <td>{{tracking_statuses['data']['status'][i]}}</td>
 
-        <td>{{carriers_ids['data'][tracking_statuses['data']['carrier_id'][i]]}}</td>
+            <td>{{carriers_ids['data'][tracking_statuses['data']['carrier_id'][i]]}}</td>
 
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
 
-    </tr>
-    {% endfor %}
+        </tr>
+        {% endfor %}
 
-    </tbody>
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 
 
 <script src="/static/js/tracking_status/all.js"></script>

@@ -10,56 +10,59 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Перевозчик</th>
+            <th>Перевозчик</th>
 
-        <th>Валюты</th>
+            <th>Валюты</th>
 
-        <th>Тип доставки</th>
+            <th>Тип доставки</th>
 
-        <th>Статус отслеживания</th>
+            <th>Статус отслеживания</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
+        </thead>
 
 
-    <tbody id="tBody">
+        <tbody id="tBody">
 
-    {% for i in range(sp_logistics['data']['shipment_id']|length) %}
-    <tr ondblclick="getType(this)">
+        {% for i in range(sp_logistics['data']['shipment_id']|length) %}
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{sp_logistics['data']['shipment_id'][i]}}</td>
+            <td class="hidden">{{sp_logistics['data']['shipment_id'][i]}}</td>
 
-        <td>{{carriers_ids['data'][sp_logistics['data']['carrier_id'][i]]}}</td>
+            <td>{{carriers_ids['data'][sp_logistics['data']['carrier_id'][i]]}}</td>
 
-        <td>{{currencies_ids['data'][sp_logistics['data']['curr_id'][i]]}}</td>
+            <td>{{currencies_ids['data'][sp_logistics['data']['curr_id'][i]]}}</td>
 
-        <td>{{shipping_types_ids['data'][sp_logistics['data']['shipping_type_id'][i]]}}</td>
+            <td>{{shipping_types_ids['data'][sp_logistics['data']['shipping_type_id'][i]]}}</td>
 
-        <td>{{tracking_statuses_ids['data'][sp_logistics['data']['tr_status_id'][i]]}}</td>
+            <td>{{tracking_statuses_ids['data'][sp_logistics['data']['tr_status_id'][i]]}}</td>
 
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
 
-    </tr>
-    {% endfor %}
+        </tr>
+        {% endfor %}
 
-    </tbody>
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 
 
 <script src="/static/js/sp_logistic/all.js"></script>

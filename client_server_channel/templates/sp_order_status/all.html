@@ -10,50 +10,51 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Название</th>
+            <th>Название</th>
 
-        <th>Описание</th>
+            <th>Описание</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
-
-
-    <tbody id="tBody">
-
-    {% for i in range(sp_order_statuses['data']['status_id']|length) %}
-    <tr ondblclick="getType(this)">
-
-        <td class="hidden">{{sp_order_statuses['data']['status_id'][i]}}</td>
-
-        <td>{{sp_order_statuses['data']['name'][i]}}</td>
-
-        <td>{{sp_order_statuses['data']['description'][i]}}</td>
-
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
-
-    </tr>
-    {% endfor %}
-
-    </tbody>
-
-</table>
+        </thead>
 
 
+        <tbody id="tBody">
 
+        {% for i in range(sp_order_statuses['data']['status_id']|length) %}
+        <tr ondblclick="getType(this)">
+
+            <td class="hidden">{{sp_order_statuses['data']['status_id'][i]}}</td>
+
+            <td>{{sp_order_statuses['data']['name'][i]}}</td>
+
+            <td>{{sp_order_statuses['data']['description'][i]}}</td>
+
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
 
 
 <script src="/static/js/sp_order_status/all.js"></script>

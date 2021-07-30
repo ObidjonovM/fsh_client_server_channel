@@ -10,62 +10,63 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Перевозчик</th>
+            <th>Перевозчик</th>
 
-        <th>Валюты</th>
+            <th>Валюты</th>
 
-        <th>Валюты</th>
+            <th>Валюты</th>
 
-        <th>Тип доставки</th>
+            <th>Тип доставки</th>
 
-        <th>Статус отслеживания</th>
+            <th>Статус отслеживания</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
-
-
-    <tbody id="tBody">
-
-    {% for i in range(sp_orders['data']['sp_order_id']|length) %}
-    <tr ondblclick="getType(this)">
-
-        <td class="hidden">{{sp_orders['data']['sp_order_id'][i]}}</td>
-
-        <td>{{currencies_ids['data'][sp_orders['data']['curr_id'][i]]}}</td>
-
-        <td>{{suppliers_ids['data'][sp_orders['data']['supplier_id'][i]]}}</td>
-
-        <td>{{order_statuses_ids['data'][sp_orders['data']['order_status_id'][i]]}}</td>
-
-        <td>{{logistics_ids['data'][sp_orders['data']['shipment_id'][i]]}}</td>
-
-        <td>{{employees_ids['data'][sp_orders['data']['add_emp_id'][i]]}}</td>
-
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
-
-    </tr>
-    {% endfor %}
-
-    </tbody>
-
-</table>
+        </thead>
 
 
+        <tbody id="tBody">
 
+        {% for i in range(sp_orders['data']['sp_order_id']|length) %}
+        <tr ondblclick="getType(this)">
+
+            <td class="hidden">{{sp_orders['data']['sp_order_id'][i]}}</td>
+
+            <td>{{currencies_ids['data'][sp_orders['data']['curr_id'][i]]}}</td>
+
+            <td>{{suppliers_ids['data'][sp_orders['data']['supplier_id'][i]]}}</td>
+
+            <td>{{order_statuses_ids['data'][sp_orders['data']['order_status_id'][i]]}}</td>
+
+            <td>{{logistics_ids['data'][sp_orders['data']['shipment_id'][i]]}}</td>
+
+            <td>{{employees_ids['data'][sp_orders['data']['add_emp_id'][i]]}}</td>
+
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
 
 
 <script src="/static/js/sp_order/all.js"></script>

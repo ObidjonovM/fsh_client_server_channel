@@ -10,47 +10,51 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th class="hidden">ИД</th>
+<div class="table">
+    <table>
+        <thead>
+        <tr>
+            <th class="hidden">ИД</th>
 
-        <th>Имя</th>
+            <th>Имя</th>
 
-        <th>Модель</th>
+            <th>Модель</th>
 
-        <th>Версия</th>
+            <th>Версия</th>
 
-        <th>Ф.И.О</th>
+            <th>Ф.И.О</th>
 
-        <th>Действия</th>
-    </tr>
-    </thead>
+            <th>Действия</th>
+        </tr>
+        </thead>
 
-    <tbody id="tBody">
-    {% for i in range(firmwares['data']['fw_id']|length) %}
-    <tr ondblclick="getType(this)">
+        <tbody id="tBody">
+        {% for i in range(firmwares['data']['fw_id']|length) %}
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{firmwares['data']['fw_id'][i]}}</td>
+            <td class="hidden">{{firmwares['data']['fw_id'][i]}}</td>
 
-        <td>{{firmwares['data']['name'][i]}}</td>
+            <td>{{firmwares['data']['name'][i]}}</td>
 
-        <td>{{firmwares['data']['model'][i]}}</td>
+            <td>{{firmwares['data']['model'][i]}}</td>
 
-        <td>{{firmwares['data']['version'][i]}}</td>
+            <td>{{firmwares['data']['version'][i]}}</td>
 
-        <td>{{ names_by_ids['data'][firmwares['data']['author_id'][i]] }}</td>
+            <td>{{ names_by_ids['data'][firmwares['data']['author_id'][i]] }}</td>
 
-        <td>
-            <button onclick="deleteFirm(this)">Удалить</button>
-        </td>
-    </tr>
-    {% endfor %}
-    </tbody>
+            <td>
+                <button onclick="deleteFirm(this)">Удалить</button>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
 
-</table>
+    </table>
+</div>
 
 <script src="/static/js/products/firmware/all.js"></script>
 

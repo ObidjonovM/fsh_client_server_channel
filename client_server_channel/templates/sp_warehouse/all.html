@@ -10,60 +10,63 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Тип</th>
+            <th>Тип</th>
 
-        <th>Порядок</th>
+            <th>Порядок</th>
 
-        <th>Статус</th>
+            <th>Статус</th>
 
-        <th>Принял(а)</th>
+            <th>Принял(а)</th>
 
-        <th>Серийный номер продукта</th>
+            <th>Серийный номер продукта</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
+        </thead>
 
 
-    <tbody id="tBody">
+        <tbody id="tBody">
 
-    {% for i in range(sp_warehouses['data']['sp_id']|length) %}
-    <tr ondblclick="getType(this)">
+        {% for i in range(sp_warehouses['data']['sp_id']|length) %}
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{sp_warehouses['data']['sp_id'][i]}}</td>
+            <td class="hidden">{{sp_warehouses['data']['sp_id'][i]}}</td>
 
-        <td>{{types_ids['data'][sp_warehouses['data']['type_id'][i]]}}</td>
+            <td>{{types_ids['data'][sp_warehouses['data']['type_id'][i]]}}</td>
 
-        <td>{{orders_ids['data'][sp_warehouses['data']['order_id'][i]]}}</td>
+            <td>{{orders_ids['data'][sp_warehouses['data']['order_id'][i]]}}</td>
 
-        <td>{{statuses_ids['data'][sp_warehouses['data']['status_id'][i]]}}</td>
+            <td>{{statuses_ids['data'][sp_warehouses['data']['status_id'][i]]}}</td>
 
-        <td>{{employees_ids['data'][sp_warehouses['data']['acc_emp_id'][i]]}}</td>
+            <td>{{employees_ids['data'][sp_warehouses['data']['acc_emp_id'][i]]}}</td>
 
-        <td>{{products_ids['data'][sp_warehouses['data']['pr_serial_num'][i]]}}</td>
+            <td>{{products_ids['data'][sp_warehouses['data']['pr_serial_num'][i]]}}</td>
 
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
 
-    </tr>
-    {% endfor %}
+        </tr>
+        {% endfor %}
 
-    </tbody>
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 
 <script src="/static/js/sp_warehouse/all.js"></script>
 

@@ -10,57 +10,60 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Тип</th>
+            <th>Тип</th>
 
-        <th>Валюты</th>
+            <th>Валюты</th>
 
-        <th>Единица измерения</th>
+            <th>Единица измерения</th>
 
-        <th>Порядок</th>
+            <th>Порядок</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
-
-
-    <tbody id="tBody">
-
-    {% for i in range(sp_order_details['data']['detail_id']|length) %}
-    <tr ondblclick="getType(this)">
-
-        <td class="hidden">{{sp_order_details['data']['detail_id'][i]}}</td>
-
-        <td>{{types_ids['data'][sp_order_details['data']['type_id'][i]]}}</td>
-
-        <td>{{currencies_ids['data'][sp_order_details['data']['curr_id'][i]]}}</td>
-
-        <td>{{units_ids['data'][sp_order_details['data']['unit_id'][i]]}}</td>
-
-        <td>{{orders_ids['data'][sp_order_details['data']['order_id'][i]]}}</td>
+        </thead>
 
 
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
+        <tbody id="tBody">
 
-    </tr>
-    {% endfor %}
+        {% for i in range(sp_order_details['data']['detail_id']|length) %}
+        <tr ondblclick="getType(this)">
 
-    </tbody>
+            <td class="hidden">{{sp_order_details['data']['detail_id'][i]}}</td>
 
-</table>
+            <td>{{types_ids['data'][sp_order_details['data']['type_id'][i]]}}</td>
 
+            <td>{{currencies_ids['data'][sp_order_details['data']['curr_id'][i]]}}</td>
+
+            <td>{{units_ids['data'][sp_order_details['data']['unit_id'][i]]}}</td>
+
+            <td>{{orders_ids['data'][sp_order_details['data']['order_id'][i]]}}</td>
+
+
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
 
 <script src="/static/js/sp_order_detail/all.js"></script>
 

@@ -10,56 +10,59 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Имя</th>
+            <th>Имя</th>
 
-        <th>Валюты</th>
+            <th>Валюты</th>
 
-        <th>Единица измерения</th>
+            <th>Единица измерения</th>
 
-        <th>Перевозчики</th>
+            <th>Перевозчики</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
+        </thead>
 
 
-    <tbody id="tBody">
+        <tbody id="tBody">
 
-    {% for i in range(shipping_types['data']['shipping_type_id']|length) %}
-    <tr ondblclick="getType(this)">
+        {% for i in range(shipping_types['data']['shipping_type_id']|length) %}
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{shipping_types['data']['shipping_type_id'][i]}}</td>
+            <td class="hidden">{{shipping_types['data']['shipping_type_id'][i]}}</td>
 
-        <td>{{shipping_types['data']['name'][i]}}</td>
+            <td>{{shipping_types['data']['name'][i]}}</td>
 
-        <td>{{currencies_ids['data'][shipping_types['data']['curr_id'][i]]}}</td>
+            <td>{{currencies_ids['data'][shipping_types['data']['curr_id'][i]]}}</td>
 
-        <td>{{units_ids['data'][shipping_types['data']['unit_id'][i]]}}</td>
+            <td>{{units_ids['data'][shipping_types['data']['unit_id'][i]]}}</td>
 
-        <td>{{carriers_ids['data'][shipping_types['data']['carrier_id'][i]]}}</td>
+            <td>{{carriers_ids['data'][shipping_types['data']['carrier_id'][i]]}}</td>
 
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
 
-    </tr>
-    {% endfor %}
+        </tr>
+        {% endfor %}
 
-    </tbody>
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 
 
 <script src="/static/js/shipping_type/all.js"></script>

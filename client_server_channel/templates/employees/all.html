@@ -10,49 +10,54 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
+<div class="table">
+    <table>
 
-    <thead>
-    <tr>
-        <th class="hidden"></th>
+        <thead>
+        <tr>
+            <th class="hidden"></th>
 
-        <th>Ф.И.O</th>
+            <th>Ф.И.O</th>
 
-        <th>Отделение</th>
+            <th>Отделение</th>
 
-        <th>Статус</th>
+            <th>Статус</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
-    </thead>
+        </tr>
+        </thead>
 
-    <tbody id="tbody">
-    {%for i in range(employees['data']['emp_id']|length)%}
-    <tr ondblclick="getType(this)">
+        <tbody id="tbody">
+        {%for i in range(employees['data']['emp_id']|length)%}
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{employees['data']['emp_id'][i]}}</td>
+            <td class="hidden">{{employees['data']['emp_id'][i]}}</td>
 
-        <td>
-            {{employees['data']['last_name'][i]}}
-            {{employees['data']['first_name'][i]}}
-            {{employees['data']['middle_name'][i]}}
-        </td>
+            <td>
+                {{employees['data']['last_name'][i]}}
+                {{employees['data']['first_name'][i]}}
+                {{employees['data']['middle_name'][i]}}
+            </td>
 
-        <td>{{names_ids_departments['data'][employees['data']['dept_id'][i]]}}</td>
+            <td>{{names_ids_departments['data'][employees['data']['dept_id'][i]]}}</td>
 
-        <td>{{names_ids_status['data'][employees['data']['emp_status_id'][i]]}}</td>
+            <td>{{names_ids_status['data'][employees['data']['emp_status_id'][i]]}}</td>
 
-        <td><button onclick="deleteEmp(this)">Удалить</button></td>
+            <td>
+                <button onclick="deleteEmp(this)">Удалить</button>
+            </td>
 
-    </tr>
-    {%endfor%}
-    </tbody>
+        </tr>
+        {%endfor%}
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 
 <script src="/static/js/employees/all.js"></script>
 

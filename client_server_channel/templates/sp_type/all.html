@@ -10,57 +10,59 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">ИД</th>
+            <th class="hidden">ИД</th>
 
-        <th>Название</th>
+            <th>Название</th>
 
-        <th>Марка</th>
+            <th>Марка</th>
 
-        <th>Модель</th>
+            <th>Модель</th>
 
-        <th>Версия</th>
+            <th>Версия</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
+        </tr>
 
-    </thead>
-
-
-    <tbody id="tBody">
-
-    {% for i in range(sp_types['data']['sp_type_id']|length) %}
-    <tr ondblclick="getType(this)">
-
-        <td class="hidden">{{sp_types['data']['sp_type_id'][i]}}</td>
-
-        <td>{{sp_types['data']['name'][i]}}</td>
-
-        <td>{{sp_types['data']['brand'][i]}}</td>
-
-        <td>{{sp_types['data']['model'][i]}}</td>
-
-        <td>{{sp_types['data']['version'][i]}}</td>
-
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
-
-    </tr>
-    {% endfor %}
-
-    </tbody>
-
-</table>
+        </thead>
 
 
+        <tbody id="tBody">
+
+        {% for i in range(sp_types['data']['sp_type_id']|length) %}
+        <tr ondblclick="getType(this)">
+
+            <td class="hidden">{{sp_types['data']['sp_type_id'][i]}}</td>
+
+            <td>{{sp_types['data']['name'][i]}}</td>
+
+            <td>{{sp_types['data']['brand'][i]}}</td>
+
+            <td>{{sp_types['data']['model'][i]}}</td>
+
+            <td>{{sp_types['data']['version'][i]}}</td>
+
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
+
+        </tr>
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
 
 
 <script src="/static/js/sp_type/all.js"></script>

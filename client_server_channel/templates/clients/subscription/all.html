@@ -10,43 +10,46 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" id="addClick">Добавить</button>
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
-    <tr>
+<div class="table">
+    <table class="table">
+        <thead>
+        <tr>
 
-        <th class="hidden">Номер должности</th>
+            <th class="hidden">Номер должности</th>
 
-        <th>Названия должности</th>
+            <th>Названия должности</th>
 
-        <th>Ежемесячная плата</th>
+            <th>Ежемесячная плата</th>
 
-        <th colspan="2">Действия</th>
+            <th colspan="2">Действия</th>
 
-    </tr>
-    </thead>
+        </tr>
+        </thead>
 
-    <tbody id="tBody">
-    {% for i in range(subs_info['data']['subs_id']|length) %}
-    <tr ondblclick="getType(this)">
+        <tbody id="tBody">
+        {% for i in range(subs_info['data']['subs_id']|length) %}
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{subs_info['data']['subs_id'][i]}}</td>
+            <td class="hidden">{{subs_info['data']['subs_id'][i]}}</td>
 
-        <td>{{subs_info['data']['name'][i]}}</td>
+            <td>{{subs_info['data']['name'][i]}}</td>
 
-        <td>{{subs_info['data']['monthly_fee'][i]}}</td>
+            <td>{{subs_info['data']['monthly_fee'][i]}}</td>
 
-        <td>
-            <button onclick="deleteType(this)">Удалить</button>
-        </td>
+            <td>
+                <button onclick="deleteType(this)">Удалить</button>
+            </td>
 
-    </tr>
-    {% endfor %}
-    </tbody>
+        </tr>
+        {% endfor %}
+        </tbody>
 
-</table>
-
+    </table>
+</div>
 
 <script src="/static/js/clients/subscription/all.js"></script>
 

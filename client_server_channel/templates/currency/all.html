@@ -10,45 +10,47 @@
 {% block body %}
 {{super()}}
 
-<button class="add-button" onclick="addClick()" id="addClick">Добавить</button>
+<div class="add-button">
+    <button onclick="addClick()" id="addClick">Добавить</button>
+</div>
 
-<table class="table">
-    <thead>
+<div class="table">
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
-        <th class="hidden">Номер должности</th>
+            <th class="hidden">Номер должности</th>
 
-        <th>Валюта</th>
+            <th>Валюта</th>
 
-        <th>Действия</th>
+            <th>Действия</th>
 
-    </tr>
-    </thead>
+        </tr>
+        </thead>
 
-    <tbody id="tBody">
+        <tbody id="tBody">
 
-    {% for i in range(currencies['data']['curr_id']|length) %}
+        {% for i in range(currencies['data']['curr_id']|length) %}
 
-    <tr ondblclick="getType(this)">
+        <tr ondblclick="getType(this)">
 
-        <td class="hidden">{{currencies['data']['curr_id'][i]}}</td>
+            <td class="hidden">{{currencies['data']['curr_id'][i]}}</td>
 
-        <td>{{currencies['data']['currency'][i]}}</td>
+            <td>{{currencies['data']['currency'][i]}}</td>
 
-        <td>
-            <button onclick="deleteCurrency(this)">Удалить</button>
-        </td>
+            <td>
+                <button onclick="deleteCurrency(this)">Удалить</button>
+            </td>
 
-    </tr>
+        </tr>
 
-    {% endfor %}
+        {% endfor %}
 
-    </tbody>
+        </tbody>
 
-</table>
-
-
+    </table>
+</div>
 
 <script src="/static/js/currency/all.js"></script>
 

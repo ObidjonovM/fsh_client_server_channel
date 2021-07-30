@@ -10,9 +10,11 @@
 {% block body %}
 {{super()}}
 
+<div class="add-button">
+    <button id="addClick">Добавить</button>
+</div>
 
-<button class="add-button" id="addClick">Добавить</button>
-
+<div class="table">
 <table class="table">
     <thead>
     <tr>
@@ -51,6 +53,7 @@
     </tbody>
 
 </table>
+</div>
 
 <script src="/static/js/clients/all.js"></script>
 
