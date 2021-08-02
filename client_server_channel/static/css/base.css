@@ -142,7 +142,8 @@ tbody td button:hover {
 /****** employees dagi add.css, get.css va update.css larning style lari ******/
 
 .add-submit:hover, .add-submit2:hover, .add-submit3:hover {
-    background-color: #044f66;
+    background-color: #232F3E;
+    transition: all .3s;
 }
 
 

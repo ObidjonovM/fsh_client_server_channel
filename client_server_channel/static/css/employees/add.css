@@ -13,9 +13,10 @@
 }
 
 .add-header {
-    border-bottom: 1px solid #f0f0f0;
-    background-color: #f7f7f7;
+    border-bottom: 1px solid #232F3E;
+    background-color: #374a62;
     padding: 10px 30px;
+    color: white;
 }
 
 .add-form {
@@ -48,8 +49,8 @@
 
 
 .add-submit, .add-submit2{
-    background-color: #006666;
-    border: 2px solid #006666;
+    background-color: #374a62;
+    border: 2px solid #374a62;
     border-radius: 4px;
     color: #d5e2ff;
     display: block;
