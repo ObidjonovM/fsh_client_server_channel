@@ -52,3 +52,20 @@ class ClientTable:
     @staticmethod
     def delete(client_id):
         return crud.delete('clients', {'client_id' : client_id})
+
+
+    @staticmethod
+    def login(clientname):
+        return crud.get_records('clients', {'username' : clientname})
+
+
+    @staticmethod
+    def update_last_signin(client_info, signin_time):
+        client_info['last_signin'] = signin_time
+        return crud.update('clients', client_info, 'client_id')
+
+
+    @staticmethod
+    def change_password(client_info, new_password):
+        client_info['password'] = new_password
+        return crud.update('clients', client_info, 'client_id')

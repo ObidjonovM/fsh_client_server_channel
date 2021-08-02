@@ -9,7 +9,37 @@
 {% block body %}
 {{super()}}
 
-<h1>Login Page</h1>
+<div class="container">
+
+    <div class="header">
+        <h2>Заполнить форму</h2>
+    </div>
+
+
+    <form class="form" action="{{url_for('clients.login')}}" method="POST">
+
+        <div class="form-control">
+            <label for="clientname">Пользователь</label>
+            <input type="text" name="clientname" id="clientname" placeholder="Пользователь ... " required>
+            {% if not user_exists %}
+            <small>Пользователь не найден</small>
+            {% endif %}
+        </div>
+
+        <div class="form-control">
+            <label for="password">Пароль</label>
+            <input type="password" name="password" id="password" placeholder="Пароль ... " required>
+            {% if wrong_password %}
+            <small>Неверный пароль</small>
+            {% endif %}
+        </div>
+
+        <input type="submit" class="add-type-submit" value="Войти">
+
+    </form>
+
+</div>
+
 <script src="static/js/clients/login.js"></script>
 
 {% endblock %}

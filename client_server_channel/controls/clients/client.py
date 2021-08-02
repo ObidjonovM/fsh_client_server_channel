@@ -1,7 +1,7 @@
 from client_server_channel.models import ClientTable
 from .. import control_utils as utls
 from datetime import datetime
-from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 class ClientC:
@@ -11,6 +11,7 @@ class ClientC:
         now = datetime.now()
         client_info['username'] = f"{client_info['first_name'].lower()}.{client_info['last_name'].lower()}"
         client_info['password'] = generate_password_hash('123')
+        client_info['subs_id'] = 1
         client_info['date_added'] = now
         client_info['date_modified'] = now
         add_result = ClientTable.insert(client_info)
@@ -101,3 +102,35 @@ class ClientC:
             'comment' : 'DOES NOT EXIST'
         }
 
+
+    @staticmethod
+    def login(clientname, password, new_password):
+
+        login_result = ClientTable.login(clientname)
+        result = {
+            'success' : login_result['success'],
+            'log_code' : utls.record_log(login_result, 'client_login', 'crud_logs')
+        }
+
+        if login_result['success']:
+            result['user_exists'] = login_result['data'] != []
+            result['wrong_password'] = False
+
+            if result['user_exists']:
+                result['wrong_password'] = not check_password_hash(
+                    login_result['data']['password'],
+                    password
+                )
+
+                if not result['wrong_password']:
+                    if new_password:
+                        ClientTable.change_password(
+                            login_result['data'],
+                            generate_password_hash(new_password)
+                        )
+
+                    ClientTable.update_last_signin(login_result['data'], datetime.now())
+                    result['wrong_password'] = False
+                    result['client_id'] = login_result['data']['client_id']
+
+        return result
