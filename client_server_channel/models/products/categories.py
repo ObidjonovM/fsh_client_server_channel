@@ -28,7 +28,7 @@ class CategoriesTable:
         sql = 'SELECT category_id, name FROM categories'
         sql += ' WHERE active = TRUE AND leaf_cat = FALSE'
 
-        result = crud.run_SQL(sql, 'categories')
+        result = crud.run_SQL(sql, ['category_id', 'name'])
 
         return result
 
@@ -39,7 +39,7 @@ class CategoriesTable:
         sql += ' LEFT JOIN categories b ON a.category_id = b.parent_cat_id'
         sql += ' WHERE a.active = TRUE AND b.parent_cat_id is null'
         
-        result = crud.run_SQL(sql, 'categories')
+        result = crud.run_SQL(sql, ['category_id', 'name'])
 
         return result
 

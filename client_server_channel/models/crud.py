@@ -70,13 +70,12 @@ def get_ids_names(table_name, id_col, name_col):
     return result
 
 
-def run_SQL(sql, table_name, sql_params=None, fetchable=True):
+def run_SQL(sql, cols, sql_params=None, fetchable=True):
     result = utls.send_to_db(sql, sql_params, fetchable)
-    columns = utls.get_column_names(table_name)
 
     if result['success']:
         result['data'] = utls.list_tuples2tuple_lists(result['data'])
-        result['data'] = utls.keyval_tuples2dict(columns, result['data'])
+        result['data'] = utls.keyval_tuples2dict(tuple(cols), result['data'])
     
     return result
 
