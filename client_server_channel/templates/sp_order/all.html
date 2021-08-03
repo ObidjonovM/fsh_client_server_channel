@@ -22,22 +22,21 @@
 
             <th class="hidden">ИД</th>
 
-            <th>Перевозчик</th>
-
             <th>Валюты</th>
 
-            <th>Валюты</th>
+            <th>Поставщик</th>
 
-            <th>Тип доставки</th>
+            <th>Статус заказа</th>
 
-            <th>Статус отслеживания</th>
+            <th>Идентификатор отгрузки</th>
+
+            <th>Приказать сотруднику</th>
 
             <th>Действия</th>
 
         </tr>
 
         </thead>
-
 
         <tbody id="tBody">
 
@@ -54,7 +53,7 @@
 
             <td>{{logistics_ids['data'][sp_orders['data']['shipment_id'][i]]}}</td>
 
-            <td>{{employees_ids['data'][sp_orders['data']['add_emp_id'][i]]}}</td>
+            <td>{{employees_ids['data'][sp_orders['data']['ord_emp_id'][i]]}}</td>
 
             <td>
                 <button onclick="deleteType(this)">Удалить</button>
