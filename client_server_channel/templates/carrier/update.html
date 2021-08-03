@@ -20,10 +20,6 @@
           method="POST">
 
         <div class="form-control">
-            <label for="name">Имя</label>
-            <input type="text" id="name"
-                   readonly value="{{carrier_info['data']['name']}}"/>
-
             <label for="address_1">Адрес 1</label>
             <input type="text" name="address_1" id="address_1"
                    value="{{carrier_info['data']['address_1']}}"/>
@@ -31,14 +27,15 @@
             <label for="address_2">Адрес 2</label>
             <input type="text" name="address_2" id="address_2"
                    value="{{carrier_info['data']['address_2']}}"/>
-        </div>
 
-
-        <div class="form-control">
             <label for="city">Город</label>
             <input type="text" name="city" id="city"
                    value="{{carrier_info['data']['city']}}"/>
 
+        </div>
+
+
+        <div class="form-control">
             <label for="country">Страна</label>
             <input type="text" name="country" id="country"
                    value="{{carrier_info['data']['country']}}"/>
@@ -46,14 +43,14 @@
             <label for="zipcode">Индекс</label>
             <input type="text" name="zipcode" id="zipcode"
                    value="{{carrier_info['data']['zipcode']}}"/>
-        </div>
 
-
-        <div class="form-control">
             <label for="phone">Телефон</label>
             <input type="text" name="phone" id="phone"
                    value="{{carrier_info['data']['phone']}}"/>
 
+        </div>
+
+        <div class="form-control">
             <label for="email">Электронная почта</label>
             <input type="text" name="email" id="email"
                    value="{{carrier_info['data']['email']}}"/>
