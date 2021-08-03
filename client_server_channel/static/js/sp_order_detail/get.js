@@ -31,10 +31,6 @@ function deleteSpOrderDetail() {
 
 }
 
-function updateSpOrderDetail() {
-    window.open('/sp_order_detail/update/' + detail_id.value, '_self');
-}
-
 function otmenFunction (){
     window.open('/sp_order_detail/all', '_self');
 }
