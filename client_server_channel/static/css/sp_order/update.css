@@ -1,10 +1,10 @@
 .add-container {
     position: absolute;
-    top: 52%;
+    top: 54%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
-    width: 1200px;
+    width: 600px;
     height: 550px;
     background-color: #fff;
     border-radius: 5px;
@@ -13,24 +13,23 @@
 }
 
 .add-header {
-    border-bottom: 1px solid #f0f0f0;
-    background-color: #f7f7f7;
-    padding: 10px 30px;
+    border-bottom: 1px solid #232F3E;
+    background-color:#374a62;
+    padding: 10px 40px;
+    color: white;
 }
 
 .add-form {
-    width: 85%;
-    height: 83%;
+    width: 90%;
+    height: 90%;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
-
 }
 .form-control {
-    margin-left: 40px;
-    margin-right: 40px;
     margin-top: -60px;
+    width: 270px;
 }
 
 .form-control label {
@@ -38,10 +37,10 @@
     margin-bottom: 0;
 }
 .form-control input, select {
-    width: 280px;
+    width: 230px;
     height: 43px;
     border-radius: 4px;
-    border: 2px solid #f0f0f0;
+    border: 2px solid #c3c3c3;
     font-family: inherit;
     font-size: 14px;
     margin: 10px;
@@ -49,8 +48,8 @@
 }
 
 .add-submit, .add-submit2{
-    background-color: #006666;
-    border: 2px solid #006666;
+    background-color: #374a62;
+    border: 2px solid #374a62;
     border-radius: 4px;
     color: #d5e2ff;
     display: block;
@@ -58,16 +57,21 @@
     font-size: 16px;
     padding: 10px;
     margin-top: 20px;
-    width: 20%;
+    width: 25%;
     cursor: pointer;
     position: absolute;
     bottom: 4px;
 }
 
 .add-submit {
-    left:16%;
+    left:19%;
 }
 
 .add-submit2 {
-    left:60%;
+    left:56%;
+}
+
+.add-submit:hover, .add-submit2:hover, .add-submit3:hover {
+    background-color: #232F3E;
+    transition: all .3s;
 }

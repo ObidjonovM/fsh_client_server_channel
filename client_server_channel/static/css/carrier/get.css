@@ -1,10 +1,10 @@
 .add-container {
     position: absolute;
-    top: 52%;
+    top: 54%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
-    width: 1100px;
+    width: 880px;
     height: 550px;
     background-color: #fff;
     border-radius: 5px;
@@ -13,51 +13,42 @@
 }
 
 .add-header {
-    border-bottom: 1px solid #f0f0f0;
-    background-color: #f7f7f7;
-    padding: 15px 30px;
+    border-bottom: 1px solid #232F3E;
+    background-color: #374a62;
+    padding: 10px 30px;
+    color: white;
 }
 
 .add-form {
     width: 90%;
-    height: 88%;
+    height: 90%;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
 }
 .form-control {
-    margin: -70px 0 20px 20px;
+    margin-top: 65px;
 }
 
 .form-control label {
     padding-left: 14px;
     margin-bottom: 0;
 }
-.form-control input {
-    width: 280px;
+.form-control input, select {
+    width: 250px;
     height: 43px;
     border-radius: 4px;
-    border: 2px solid #f0f0f0;
+    border: 2px solid #c3c3c3;
     font-family: inherit;
     font-size: 14px;
     margin: 10px;
     padding: 10px;
 }
 
-.form-control select {
-    width: 280px;
-    height: 43px;
-    border-radius: 4px;
-    border: 2px solid #f0f0f0;
-    font-family: inherit;
-    font-size: 14px;
-    margin: 10px;
-}
-
 .add-submit, .add-submit2, .add-submit3{
-    background-color: #006666;
-    border: 2px solid #006666;
+    background-color: #374a62;
+    border: 2px solid #374a62;
     border-radius: 4px;
     color: #d5e2ff;
     display: block;
@@ -70,6 +61,7 @@
     position: absolute;
     bottom: 4px;
 }
+
 
 .add-submit {
     left:10%;

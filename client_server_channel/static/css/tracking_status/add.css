@@ -13,9 +13,10 @@
 }
 
 .header {
-    border-bottom: 1px solid #f0f0f0;
-    background-color: #f7f7f7;
-    padding: 20px 40px;
+    border-bottom: 1px solid #232F3E;
+    background-color:#374a62;
+    padding: 15px 40px;
+    color: white;
 }
 
 .header h2 {
@@ -36,8 +37,8 @@
     margin-bottom: 0;
 }
 
-.form-control input,select,textarea {
-    border: 2px solid #f0f0f0;
+.form-control input, textarea, select {
+    border: 2px solid #c3c3c3;
     border-radius: 4px;
     display: block;
     font-family: inherit;
@@ -47,8 +48,8 @@
 }
 
 .form .add-type-submit, .add-type-submit2 {
-    background-color: #006666;
-    border: 2px solid #006666;
+    background-color: #374a62;
+    border: 2px solid #374a62;
     border-radius: 4px;
     color: #d5e2ff;
     display: block;
@@ -60,7 +61,8 @@
     cursor: pointer;
 }
 
-.add-type-submit:hover, .add-type-submit2:hover {
-    background-color: #044f66;
+.add-type-submit:hover, .add-type-submit2:hover, .add-type-submit3:hover {
+    background-color: #232F3E;
+    transition: all .3s;
 }
 
