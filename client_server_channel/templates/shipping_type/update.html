@@ -23,7 +23,7 @@
             <label for="carrier_id">Перевозчики</label>
             <select name="carrier_id" id="carrier_id" required>
                 {% for i in range(carriers_ids['data']['carrier_id']|length)%}
-                {%if shipping_type_info['data']['unit_id'] == carriers_ids['data']['carrier_id'][i]%}
+                {%if shipping_type_info['data']['carrier_id'] == carriers_ids['data']['carrier_id'][i]%}
                 <option selected value="{{carriers_ids['data']['carrier_id'][i]}}">
                     {{carriers_ids['data']['name'][i]}}
                 </option>
