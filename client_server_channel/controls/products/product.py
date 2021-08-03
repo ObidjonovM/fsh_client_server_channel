@@ -8,18 +8,28 @@ class ProductC:
     @staticmethod
     def add(product_info):
         now = datetime.now()
-        product_info['serial_num'] = ProductTable.generate_serial(
-            product_info['product_id']
-        )
-        product_info['default_login'] = ProductTable.generate_login(8)
-        product_info['default_password'] = ProductTable.generate_password(8)
-        product_info['date_added'] = now
-        product_info['date_modified'] = now
-        add_result = ProductTable.insert(product_info)
+        ap_login_res = ProductTable.generate_ap_login()
+        if len(ap_login_res['data']) > 0:
+            login = 'FidoElectronics' + str(ap_login_res['data']['ap_login'][0] + 1)
+            product_info['ap_login'] = login
+            product_info['ap_password'] = ProductTable.generate_ap_password(8)
+            product_info['serial_num'] = ProductTable.generate_serial(
+                product_info['product_id']
+            )
+            product_info['default_login'] = ProductTable.generate_login(8)
+            product_info['default_password'] = ProductTable.generate_password(8)
+            product_info['date_added'] = now
+            product_info['date_modified'] = now
+            add_result = ProductTable.insert(product_info)
+
+            return {
+                'success' : add_result['success'],
+                'log_code' : utls.record_log(add_result, 'add', 'crud_logs')
+            }
 
         return {
-            'success' : add_result['success'],
-            'log_code' : utls.record_log(add_result, 'add', 'crud_logs')
+            'success' : ap_login_res['success'],
+            'log_code' : utls.record_log(ap_login_res, 'add', 'crud_logs')
         }
 
 

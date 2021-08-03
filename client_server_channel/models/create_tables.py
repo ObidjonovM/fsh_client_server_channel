@@ -312,6 +312,29 @@ CREATE TABLE IF NOT EXISTS subscriptions (
 ''')
 
 
+now = datetime.now()
+cur.execute('''
+DO
+$do$
+
+BEGIN
+    IF NOT EXISTS (SELECT subs_id FROM subscriptions) THEN
+        INSERT INTO subscriptions(
+            subs_id, name, description, monthly_fee,
+            date_added, add_emp_id, date_modified, 
+			modify_emp_id, active
+        )
+        VALUES (
+            1, 'basic', '\"basic\" subscription created during DB initialization',
+            0, %s, 1, %s, 1, TRUE
+        );
+    END IF;
+END;
+
+$do$
+''', (now, now))
+
+
 #creating clients table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS clients (
@@ -395,6 +418,8 @@ CREATE TABLE IF NOT EXISTS products (
 	default_password VARCHAR(30) UNIQUE NOT NULL,
 	login VARCHAR(30) UNIQUE,
 	password VARCHAR(30) UNIQUE,
+	ap_login VARCHAR(30) UNIQUE NOT NULL,
+	ap_password VARCHAR(30) UNIQUE NOT NULL,
 	dealer_id INT CHECK (dealer_id > 0),
 	client_id INT CHECK (client_id > 0),
 	manufactured_date DATE NOT NULL,

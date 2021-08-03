@@ -51,6 +51,23 @@ class ProductTable:
 
 
     @staticmethod
+    def generate_ap_login():
+        sql = 'SELECT COUNT(ap_login) FROM products'
+        result = crud.run_SQL(sql, ['ap_login'])
+
+        return result
+
+
+    @staticmethod
+    def generate_ap_password(pwd_len):
+        ap_password = generate_token(pwd_len)
+        while crud.record_exists('products', {'ap_password' : ap_password}):
+            ap_password = generate_token(pwd_len)
+
+        return ap_password
+
+
+    @staticmethod
     def insert(product_info):
         return crud.insert('products', product_info, False)
 
