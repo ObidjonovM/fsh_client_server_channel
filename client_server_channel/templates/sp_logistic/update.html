@@ -36,15 +36,18 @@
                 {%endif%}
                 {%endfor%}
             </select>
+        </div>
 
-            <label for="delivered_date">Дата доставки</label>
+        <div class="form-control">
+        <label for="delivered_date">Дата доставки</label>
             <input type="date" name="delivered_date" id="delivered_date"
                    value="{{sp_logistic_info['data']['delivered_date']}}"/>
+        </div>
 
-            <label for="comment">Комментарий</label>
+        <div class="form-control">
+        <label for="comment">Комментарий</label>
             <input type="text" name="comment" id="comment"
                    value="{{sp_logistic_info['data']['comment']}}"/>
-
         </div>
 
 

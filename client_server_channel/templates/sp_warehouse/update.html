@@ -33,8 +33,10 @@
                 {%endif%}
                 {%endfor%}
             </select>
+        </div>
 
-            <label for="used_emp_id">Использовал(а)</label>
+        <div class="form-control">
+        <label for="used_emp_id">Использовал(а)</label>
             <select name="used_emp_id" id="used_emp_id">
                 {% for i in range(employees_ids['data']['emp_id']|length)%}
                 {%if sp_warehouse_info['data']['emp_id'] == employees_ids['data']['emp_id'][i]%}
@@ -52,8 +54,10 @@
                 {%endif%}
                 {%endfor%}
             </select>
+        </div>
 
-            <label for="pr_serial_num">Серийный номер продукта</label>
+        <div class="form-control">
+        <label for="pr_serial_num">Серийный номер продукта</label>
             <select name="pr_serial_num" id="pr_serial_num">
                 {% for i in range(products_ids['data']['serial_num']|length)%}
                 {%if sp_warehouse_info['data']['serial_num'] == products_ids['data']['serial_num'][i]%}
