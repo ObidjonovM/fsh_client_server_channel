@@ -10,7 +10,6 @@
 {% block body %}
 {{super()}}
 
-
 <div class="add-container">
     <div class="add-header">
         <h2>Названия запчасть логистический</h2>
@@ -25,7 +24,7 @@
             <label for="tr_status_id">Статус отслеживания</label>
             <select name="tr_status_id" id="tr_status_id">
                 {% for i in range(tracking_statuses_ids['data']['status_id']|length)%}
-                {%if sp_logistic_info['data']['status_id'] == tracking_statuses_ids['data']['status_id'][i]%}
+                {%if sp_logistic_info['data']['tr_status_id'] == tracking_statuses_ids['data']['status_id'][i]%}
                 <option selected value="{{tracking_statuses_ids['data']['status_id'][i]}}">
                     {{tracking_statuses_ids['data']['status'][i]}}
                 </option>
