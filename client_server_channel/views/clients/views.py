@@ -70,7 +70,7 @@ def logout():
 		session.pop('clientname')
 		session.pop('clients')
 
-		return redirect(url_for('core.index'))
+	return redirect(url_for('core.index'))
 
 
 @clients.route('/register', methods=['GET', 'POST'])
