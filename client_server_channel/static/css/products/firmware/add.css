@@ -38,7 +38,7 @@
 }
 
 .form-control {
-    margin: 70px 40px;
+    margin: 50px 40px;
 }
 
 .form-control label {
@@ -57,6 +57,9 @@
     margin: 10px;
 }
 
+.form-control textarea {
+    height: 70px;
+}
 
 .form-control input:focus, select:focus {
     outline: 0;
