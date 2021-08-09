@@ -18,7 +18,6 @@ def add():
             currencies_ids = CurrencyC.get_ids_names(),
             suppliers_ids = SupplierC.get_ids_names(),
             order_statuses_ids = SpOrderStatusC.get_ids_names(),
-            logistics_ids = SpLogisticC.get_ids_names(),
             ord_emp_id = EmployeeC.get_ids_names()
         )
 
@@ -59,7 +58,6 @@ def get(sp_order_id):
             currency_name = CurrencyC.get(sp_order_info['data']['curr_id']),
             supplier_name = SupplierC.get(sp_order_info['data']['supplier_id']),
             order_status = SpOrderStatusC.get(sp_order_info['data']['order_status_id']),
-            logistic_name = SpLogisticC.get(sp_order_info['data']['shipment_id']),
             employee_name = EmployeeC.get(sp_order_info['data']['ord_emp_id'])
         )
 
@@ -81,7 +79,6 @@ def all():
                 currencies_ids = CurrencyC.get_names_by_ids(sp_orders['data']['curr_id']),
                 suppliers_ids = SupplierC.get_names_by_ids(sp_orders['data']['supplier_id']),
                 order_statuses_ids = SpOrderStatusC.get_names_by_ids(sp_orders['data']['order_status_id']),
-                logistics_ids = SpLogisticC.get_names_by_ids(sp_orders['data']['shipment_id']),
                 employees_ids = EmployeeC.get_names_by_ids(sp_orders['data']['ord_emp_id'])
             )
 
@@ -108,7 +105,6 @@ def update(sp_order_id):
                 order_statuses_ids = SpOrderStatusC.get_ids_names(),
                 currency_name = CurrencyC.get(sp_order_info['data']['curr_id']),
                 supplier_name = SupplierC.get(sp_order_info['data']['supplier_id']),
-                logistic_name = SpLogisticC.get(sp_order_info['data']['shipment_id']),
                 employee_name = EmployeeC.get(sp_order_info['data']['ord_emp_id'])
             )
 
