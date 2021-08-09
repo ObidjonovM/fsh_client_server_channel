@@ -17,8 +17,7 @@ def add():
             utls.url_join(['sp_order_detail', 'add.html']),
             types_ids = SpTypeC.get_ids_names(),
             currencies_ids = CurrencyC.get_ids_names(),
-            units_ids = UnitC.get_ids_names(),
-            orders_ids = SpOrderC.get_ids_names()
+            units_ids = UnitC.get_ids_names()
         )
 
     if request.method == 'POST':
@@ -54,8 +53,7 @@ def get(detail_id):
             detail_info = detail_info,
             type_name = SpTypeC.get(detail_info['data']['type_id']),
             currency_name = CurrencyC.get(detail_info['data']['curr_id']),
-            unit_name = UnitC.get(detail_info['data']['unit_id']),
-            order_name = SpOrderC.get(detail_info['data']['order_id'])
+            unit_name = UnitC.get(detail_info['data']['unit_id'])
         )
 
     return redirect(url_for('sp_order_detail.all'))
@@ -75,8 +73,7 @@ def all():
                 sp_order_details = sp_order_details,
                 types_ids = SpTypeC.get_names_by_ids(sp_order_details['data']['type_id']),
                 currencies_ids = CurrencyC.get_names_by_ids(sp_order_details['data']['curr_id']),
-                units_ids = UnitC.get_names_by_ids(sp_order_details['data']['unit_id']),
-                orders_ids = SpOrderC.get_names_by_ids(sp_order_details['data']['order_id']),
+                units_ids = UnitC.get_names_by_ids(sp_order_details['data']['unit_id'])
             )
 
         return render_template(utls.url_join(['sp_order_detail', 'all.html']),
