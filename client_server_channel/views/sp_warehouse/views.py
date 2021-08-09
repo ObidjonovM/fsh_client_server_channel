@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from client_server_channel.controls import (SpWarehouseC, SpTypeC, SpOrderC,
+from client_server_channel.controls import (SpWarehouseC, SpTypeC,
                                             SpStatusC, EmployeeC)
 from .. import view_utils as utls
 
@@ -16,7 +16,6 @@ def add():
         return render_template(
             utls.url_join(['sp_warehouse', 'add.html']),
             types_ids = SpTypeC.get_ids_names(),
-            orders_ids = SpOrderC.get_ids_names(),
             statuses_ids = SpStatusC.get_ids_names(),
             employees_ids = EmployeeC.get_ids_names()
         )
@@ -51,7 +50,6 @@ def get(sp_id):
             utls.url_join(['sp_warehouse', 'get.html']),
             sp_warehouse_info = sp_warehouse_info,
             type_name = SpTypeC.get(sp_warehouse_info['data']['type_id']),
-            order_name = SpOrderC.get(sp_warehouse_info['data']['order_id']),
             status_name = SpStatusC.get(sp_warehouse_info['data']['status_id']),
             employee_name = EmployeeC.get(sp_warehouse_info['data']['acc_emp_id'])
         )
@@ -72,7 +70,6 @@ def all():
                 utls.url_join(['sp_warehouse', 'all.html']),
                 sp_warehouses = sp_warehouses,
                 types_ids = SpTypeC.get_names_by_ids(sp_warehouses['data']['type_id']),
-                orders_ids = SpOrderC.get_names_by_ids(sp_warehouses['data']['order_id']),
                 statuses_ids = SpStatusC.get_names_by_ids(sp_warehouses['data']['status_id']),
                 employees_ids = EmployeeC.get_names_by_ids(sp_warehouses['data']['acc_emp_id'])
             )
@@ -98,9 +95,7 @@ def update(sp_id):
                 utls.url_join(['sp_warehouse', 'update.html']),  
                 sp_warehouse_info = sp_warehouse_info,
                 type_name = SpTypeC.get(sp_warehouse_info['data']['type_id']),
-                order_name = SpOrderC.get(sp_warehouse_info['data']['order_id']),
                 statuses_ids = SpStatusC.get_ids_names(),
-                employee_name = EmployeeC.get(sp_warehouse_info['data']['acc_emp_id']),
                 employees_ids = EmployeeC.get_ids_names()
             )
 
