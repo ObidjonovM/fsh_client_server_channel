@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import (SpWarehouseC, SpTypeC, SpOrderC,
-                                            SpStatusC, EmployeeC, ProductC)
+                                            SpStatusC, EmployeeC)
 from .. import view_utils as utls
 
 
@@ -18,8 +18,7 @@ def add():
             types_ids = SpTypeC.get_ids_names(),
             orders_ids = SpOrderC.get_ids_names(),
             statuses_ids = SpStatusC.get_ids_names(),
-            employees_ids = EmployeeC.get_ids_names(),
-            products_ids = ProductC.get_ids_names()
+            employees_ids = EmployeeC.get_ids_names()
         )
 
     if request.method == 'POST':
@@ -54,8 +53,7 @@ def get(sp_id):
             type_name = SpTypeC.get(sp_warehouse_info['data']['type_id']),
             order_name = SpOrderC.get(sp_warehouse_info['data']['order_id']),
             status_name = SpStatusC.get(sp_warehouse_info['data']['status_id']),
-            employee_name = EmployeeC.get(sp_warehouse_info['data']['acc_emp_id']),
-            product_name = ProductC.get(sp_warehouse_info['data']['pr_serial_num'])
+            employee_name = EmployeeC.get(sp_warehouse_info['data']['acc_emp_id'])
         )
 
     return redirect(url_for('sp_warehouse.all'))
@@ -76,8 +74,7 @@ def all():
                 types_ids = SpTypeC.get_names_by_ids(sp_warehouses['data']['type_id']),
                 orders_ids = SpOrderC.get_names_by_ids(sp_warehouses['data']['order_id']),
                 statuses_ids = SpStatusC.get_names_by_ids(sp_warehouses['data']['status_id']),
-                employees_ids = EmployeeC.get_names_by_ids(sp_warehouses['data']['acc_emp_id']),
-                products_ids = ProductC.get_names_by_ids(sp_warehouses['data']['pr_serial_num'])
+                employees_ids = EmployeeC.get_names_by_ids(sp_warehouses['data']['acc_emp_id'])
             )
 
         return render_template(utls.url_join(['sp_warehouse', 'all.html']),
@@ -104,8 +101,7 @@ def update(sp_id):
                 order_name = SpOrderC.get(sp_warehouse_info['data']['order_id']),
                 statuses_ids = SpStatusC.get_ids_names(),
                 employee_name = EmployeeC.get(sp_warehouse_info['data']['acc_emp_id']),
-                employees_ids = EmployeeC.get_ids_names(),
-                products_ids = ProductC.get_ids_names()
+                employees_ids = EmployeeC.get_ids_names()
             )
 
         return redirect(url_for('sp_warehouse.all'))
