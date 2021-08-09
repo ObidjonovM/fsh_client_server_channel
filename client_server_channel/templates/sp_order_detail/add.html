@@ -52,15 +52,8 @@
         </div>
 
         <div class="form-control">
-            <label for="order_id">Порядок</label>
-            <select name="order_id" id="order_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(orders_ids['data']['sp_order_id']|length)%}
-                <option value="{{orders_ids['data']['sp_order_id'][i]}}">
-                    {{orders_ids['data']['total_cost'][i]}}
-                </option>
-                {%endfor%}
-            </select>
+            <label for="order_id">Номер заказа</label>
+                <input type="text" name="order_id" id="order_id" required placeholder="Введите номер заказа">
 
             <label for="price_per_unit">Цена за единицу</label>
             <input type="number" name="price_per_unit" required
