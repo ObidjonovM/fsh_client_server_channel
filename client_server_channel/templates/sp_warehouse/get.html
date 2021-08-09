@@ -15,7 +15,6 @@
     <div class="add-header">
         <h2>Названия sp склад</h2>
     </div>
-
     <div id="myForm" class="add-form">
 
         <input type="hidden" id="sp_id" value="{{sp_warehouse_info['data']['sp_id']}}">
@@ -27,9 +26,9 @@
                    value="{{type_name['data']['name']}}"/>
 
 
-            <label for="order_id">Порядок</label>
+            <label for="order_id">Номер заказа</label>
             <input type="text" id="order_id" readonly
-                   value="{{order_name['data']['total_cost']}}"/>
+                   value="{{sp_warehouse_info['data']['order_id']}}"/>
 
 
             <label for="status_id">Статус</label>
@@ -51,7 +50,7 @@
 
             <label for="pr_serial_num">Серийный номер продукта</label>
             <input type="text" id="pr_serial_num" readonly
-                   value="{{product_name['data']['mac_address']}}"/>
+                   value="{{sp_warehouse_info['data']['pr_serial_num']}}"/>
 
         </div>
 

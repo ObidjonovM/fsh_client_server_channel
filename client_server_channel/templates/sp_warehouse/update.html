@@ -58,19 +58,9 @@
 
         <div class="form-control">
         <label for="pr_serial_num">Серийный номер продукта</label>
-            <select name="pr_serial_num" id="pr_serial_num">
-                {% for i in range(products_ids['data']['serial_num']|length)%}
-                {%if sp_warehouse_info['data']['serial_num'] == products_ids['data']['serial_num'][i]%}
-                <option selected value="{{products_ids['data']['serial_num'][i]}}">
-                    {{products_ids['data']['mac_address'][i]}}
-                </option>
-                {%else%}
-                <option value="{{products_ids['data']['serial_num'][i]}}">
-                    {{products_ids['data']['mac_address'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
+             <input type="text"  name="pr_serial_num" id="pr_serial_num" 
+             value="{{sp_warehouse_info['data']['pr_serial_num']}}"/>
+           
         </div>
 
 

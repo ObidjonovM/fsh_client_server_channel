@@ -24,7 +24,7 @@
 
             <th>Тип</th>
 
-            <th>Порядок</th>
+            <th>Номера заказов</th>
 
             <th>Статус</th>
 
@@ -48,13 +48,13 @@
 
             <td>{{types_ids['data'][sp_warehouses['data']['type_id'][i]]}}</td>
 
-            <td>{{orders_ids['data'][sp_warehouses['data']['order_id'][i]]}}</td>
+            <td>{{sp_warehouses['data']['order_id'][i]}}</td>
 
             <td>{{statuses_ids['data'][sp_warehouses['data']['status_id'][i]]}}</td>
 
             <td>{{employees_ids['data'][sp_warehouses['data']['acc_emp_id'][i]]}}</td>
 
-            <td>{{products_ids['data'][sp_warehouses['data']['pr_serial_num'][i]]}}</td>
+            <td>{{sp_warehouses['data']['pr_serial_num'][i]}}</td>
 
             <td>
                 <button onclick="deleteType(this)">Удалить</button>
