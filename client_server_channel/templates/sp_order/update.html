@@ -20,7 +20,7 @@
           action="{{ url_for('sp_order.update', sp_order_id=sp_order_info['data']['sp_order_id']) }}"
           method="POST">
         <div class="form-control">
-            <label for="issued_order_id">Идентификатор заказа</label>
+            <label for="issued_order_id">Изданный ид заказа</label>
             <input type="text" id="issued_order_id"
                    value="{{sp_order_info['data']['issued_order_id']}}"/>
 

@@ -16,55 +16,48 @@
     <div class="add-header">
         <h2>Названия порядок</h2>
     </div>
-
     <div id="myForm" class="add-form">
 
         <input type="hidden" id="sp_order_id" value="{{sp_order_info['data']['sp_order_id']}}">
 
         <div class="form-control">
-            <label for="issued_order_id">Идентификатор заказа</label>
-            <input type="text" id="issued_order_id" readonly
-                   value="{{sp_order_info['data']['issued_order_id']}}"/>
+            <label for="issued_order_id">Изданный ид заказа</label>
+            <input type="text" id="issued_order_id" readonly value="{{sp_order_info['data']['issued_order_id']}}" />
 
             <label for="total_cost">Общая стоимость</label>
-            <input type="number" id="total_cost" readonly
-                   value="{{sp_order_info['data']['total_cost']}}"/>
+            <input type="number" id="total_cost" readonly value="{{sp_order_info['data']['total_cost']}}" />
 
             <label for="curr_id">Валюта</label>
-            <input type="text" id="curr_id" readonly
-                   value="{{currency_name['data']['currency']}}">
+            <input type="text" id="curr_id" readonly value="{{currency_name['data']['currency']}}">
 
         </div>
 
         <div class="form-control">
             <label for="supplier_id">Поставщик</label>
-            <input type="text" id="supplier_id" readonly
-                   value="{{supplier_name['data']['name']}}">
+            <input type="text" id="supplier_id" readonly value="{{supplier_name['data']['name']}}">
 
 
             <label for="exp_dispatch_date">Срок отправки</label>
             <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" readonly
-                   value="{{sp_order_info['data']['exp_dispatch_date']}}"/>
+                value="{{sp_order_info['data']['exp_dispatch_date']}}" />
 
             <label for="order_status_id">Статус заказа</label>
-            <input type="text" id="order_status_id" readonly
-                   value="{{order_status['data']['name']}}">
+            <input type="text" id="order_status_id" readonly value="{{order_status['data']['name']}}">
 
         </div>
 
         <div class="form-control">
-            <label for="shipment_id">Идентификатор отгрузки</label>
-            <input type="text" id="shipment_id" readonly
-                   value="{{logistic_name['data']['shipment_id']}}">
+            <label for="shipment_id">Ид логистика</label>
+            <input type="text" id="shipment_id" readonly value="{{sp_order_info['data']['shipment_id']}}">
 
 
             <label for="order_date">Дата заказа</label>
             <input type="date" name="order_date" id="order_date" readonly
-                   value="{{sp_order_info['data']['order_date']}}"/>
+                value="{{sp_order_info['data']['order_date']}}" />
 
-            <label for="ord_emp_id">Приказать сотруднику</label>
+            <label for="ord_emp_id">Приказал(а) сотруднику</label>
             <input type="text" id="ord_emp_id" readonly
-                   value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}}">
+                value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}}">
 
         </div>
 
@@ -88,5 +81,3 @@
 <script src="/static/js/sp_order/get.js"></script>
 
 {% endblock %}
-
-

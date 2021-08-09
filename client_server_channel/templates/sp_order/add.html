@@ -20,13 +20,11 @@
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="issued_order_id">Идентификатор заказа</label>
-            <input type="text" name="issued_order_id" id="issued_order_id" required
-                   placeholder="Введите описание..."/>
+            <label for="issued_order_id">Изданный ид заказа</label>
+            <input type="text" name="issued_order_id" id="issued_order_id" required placeholder="Введите описание..." />
 
             <label for="total_cost">Общая стоимость</label>
-            <input type="number" name="total_cost" id="total_cost" required
-                   placeholder="Введите Общая стоимость..."/>
+            <input type="number" name="total_cost" id="total_cost" required placeholder="Введите Общая стоимость..." />
 
             <label for="curr_id">Валюта</label>
             <select name="curr_id" id="curr_id" required>
@@ -52,7 +50,7 @@
 
             <label for="exp_dispatch_date">Срок отправки</label>
             <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" required
-                   placeholder="Введите описание..."/>
+                placeholder="Введите описание..." />
 
             <label for="order_status_id">Статус заказа</label>
             <select name="order_status_id" id="order_status_id" required>
@@ -66,19 +64,11 @@
         </div>
 
         <div class="form-control">
-            <label for="shipment_id">Идентификатор отгрузки</label>
-            <select name="shipment_id" id="shipment_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(logistics_ids['data']['shipment_id']|length)%}
-                <option value="{{logistics_ids['data']['shipment_id'][i]}}">
-                    {{logistics_ids['data']['shipment_id'][i]}}
-                </option>
-                {%endfor%}
-            </select>
+            <label for="shipment_id">Ид логистика</label>
+            <input type="text" id="shipment_id" name="shipment_id" placeholder="Введите ид логистика">
 
             <label for="order_date">Дата заказа</label>
-            <input type="date" name="order_date" id="order_date" required
-                   placeholder="Введите описание..."/>
+            <input type="date" name="order_date" id="order_date" required placeholder="Введите описание..." />
 
             <label for="ord_emp_id">Приказать сотруднику</label>
             <select name="ord_emp_id" id="ord_emp_id" required>
@@ -94,9 +84,9 @@
         </div>
 
 
-        <input type="submit" class="add-submit" value="Сохранить"/>
+        <input type="submit" class="add-submit" value="Сохранить" />
 
-        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
+        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена" />
 
     </form>
 </div>
@@ -105,5 +95,3 @@
 <script src="/static/js/sp_order/add.js"></script>
 
 {% endblock %}
-
-
