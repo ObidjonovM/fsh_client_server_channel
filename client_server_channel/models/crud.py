@@ -80,7 +80,7 @@ def run_SQL(sql, cols, sql_params=None, fetchable=True):
     return result
 
 
-def get_ids_fullnames(table_name, name_cols):
+def get_columns_by_col_names(table_name, name_cols):
     sql = f'SELECT '
     for name_col in name_cols:
         sql += str(name_col) + ', '

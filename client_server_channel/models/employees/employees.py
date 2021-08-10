@@ -20,7 +20,7 @@ class EmployeesTable:
 
     @staticmethod
     def get_ids_names():
-        return crud.get_ids_fullnames('employees', ['emp_id', 'last_name', 'first_name', 'middle_name'])
+        return crud.get_columns_by_col_names('employees', ['emp_id', 'last_name', 'first_name', 'middle_name'])
 
 
     @staticmethod
