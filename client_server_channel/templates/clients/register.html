@@ -3,7 +3,7 @@
 {% block head %}
 {{super()}}
 
-<link rel="stylesheet" href="static/css/clients/register.css">
+<link rel="stylesheet" href="/static/css/clients/register.css">
 
 {% endblock %}
 
@@ -13,7 +13,7 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Новая должность</h2>
+        <h2>Новая регистр</h2>
     </div>
 
     <form action="{{url_for('clients.register')}}" method="POST" id="myForm" class="add-form">
@@ -49,13 +49,14 @@
             <label for="country">Страна</label>
             <input type="text" name="country" id="country" placeholder="Введите Страна ..." required/>
 
-            <label for="zipcode">Индекс</label>
-            <input type="text" name="zipcode" id="zipcode" placeholder="Введите Индекс ..." required/>
-
+          
         </div>
 
 
         <div class="form-control">
+           
+            <label for="zipcode">Индекс</label>
+            <input type="text" name="zipcode" id="zipcode" placeholder="Введите Индекс ..." required/>
 
             <label for="phone">Телефон</label>
             <input type="text" name="phone" id="phone" placeholder="Введите Телефон ..." required/>
@@ -68,13 +69,13 @@
 
         </div>
 
-        <input type="submit" class="add-submit" value="Add"/>
+        <input type="submit" class="add-submit" value="Сохранить"/>
         <input type="button" onclick="otmenFunction()" class="add-submit2" value="Отмена"/>
 
     </form>
 
 </div>
 
-<script src="static/js/clients/register.js"></script>
+<script src="/static/js/clients/register.js"></script>
 
 {% endblock %}
