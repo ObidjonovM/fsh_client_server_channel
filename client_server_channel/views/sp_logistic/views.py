@@ -18,7 +18,7 @@ def add():
             carriers_ids = CarrierC.get_ids_names(),
             currencies_ids = CurrencyC.get_ids_names(),
             shipping_types_ids = ShippingTypeC.get_ids_names(),
-            tracking_statuses_ids = TrackingStatusC.get_ids_names()
+            tracking_statuses_ids = TrackingStatusC.get_columns_by_col_names()
         )
 
     if request.method == 'POST':
@@ -105,7 +105,7 @@ def update(shipment_id):
                 carrier_name = CarrierC.get(sp_logistic_info['data']['carrier_id']),
                 currency_name = CurrencyC.get(sp_logistic_info['data']['curr_id']),
                 shipping_type_name = ShippingTypeC.get(sp_logistic_info['data']['shipping_type_id']),
-                tracking_statuses_ids = TrackingStatusC.get_ids_names()
+                tracking_statuses_ids = TrackingStatusC.get_columns_by_col_names()
             )
 
         return redirect(url_for('sp_logistic.all'))

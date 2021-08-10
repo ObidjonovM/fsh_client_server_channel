@@ -29,9 +29,11 @@
                     {{tracking_statuses_ids['data']['status'][i]}}
                 </option>
                 {%else%}
+                {%if tracking_statuses_ids['data']['carrier_id'][i] == carrier_name['data']['carrier_id'] %}
                 <option value="{{tracking_statuses_ids['data']['status_id'][i]}}">
                     {{tracking_statuses_ids['data']['status'][i]}}
                 </option>
+                {%endif%}
                 {%endif%}
                 {%endfor%}
             </select>

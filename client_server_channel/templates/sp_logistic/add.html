@@ -20,7 +20,7 @@
 
         <div class="form-control">
             <label for="carrier_id">Перевозчик</label>
-            <select name="carrier_id" id="carrier_id" required>
+            <select name="carrier_id" id="carrier_id" onchange="getTrStatusByCarrId()" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(carriers_ids['data']['carrier_id']|length)%}
                 <option value="{{carriers_ids['data']['carrier_id'][i]}}">{{carriers_ids['data']['name'][i]}}</option>
@@ -58,9 +58,9 @@
 
             <label for="tr_status_id">Статус отслеживания</label>
             <select name="tr_status_id" id="tr_status_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
+                <option hidden id="default_status" value="" selected='selected' disabled>--Выбрать--</option>
                 {% for i in range(tracking_statuses_ids['data']['status_id']|length)%}
-                <option value="{{tracking_statuses_ids['data']['status_id'][i]}}">
+                <option carrier_id = "{{tracking_statuses_ids['data']['carrier_id'][i]}}" value="{{tracking_statuses_ids['data']['status_id'][i]}}">
                     {{tracking_statuses_ids['data']['status'][i]}}
                 </option>
                 {%endfor%}

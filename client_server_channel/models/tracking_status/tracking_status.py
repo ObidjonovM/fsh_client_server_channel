@@ -19,8 +19,11 @@ class TrackingStatusTable:
 
 
     @staticmethod
-    def get_ids_names():
-        return crud.get_ids_names('tracking_statuses', 'status_id', 'status')
+    def get_columns_by_col_names():
+        return crud.get_columns_by_col_names(
+            'tracking_statuses', 
+            ['status_id', 'status', 'carrier_id']
+        )
 
 
     @staticmethod

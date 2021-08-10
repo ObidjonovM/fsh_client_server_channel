@@ -41,8 +41,8 @@ class TrackingStatusC:
 
 
     @staticmethod
-    def get_ids_names():
-        ids_names = TrackingStatusTable.get_ids_names()
+    def get_columns_by_col_names():
+        ids_names = TrackingStatusTable.get_columns_by_col_names()
 
         return {
             'success' : ids_names['success'],
