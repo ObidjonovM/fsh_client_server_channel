@@ -5,3 +5,7 @@ function glavniyStranisa(){
 function Viyti() {
     window.open('/employees/logout', '_self');
 }
+
+function logoutClient() {
+    window.open('/clients/logout', '_self');
+}
