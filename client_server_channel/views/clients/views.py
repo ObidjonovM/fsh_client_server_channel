@@ -116,7 +116,7 @@ def get():
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
 
-	client_info = ClientC.get(session['clients']['id'])
+	client_info = ClientC.get(session['client']['id'])
 	
 	if len(client_info['data']) > 0:
 		
@@ -134,7 +134,7 @@ def update():
 		return redirect(url_for('clients.login'))
 
 	if request.method == 'GET':
-		client_info = ClientC.get(session['clients']['id'])
+		client_info = ClientC.get(session['client']['id'])
 
 		if len(client_info['data']) > 0:
 			return render_template(
@@ -160,7 +160,7 @@ def update():
 			'home_phone' : params['home_phone'],
 			'email' : params['email'],
 			'subs_id' : params['subs_id'],
-			'client_id' : session['clients']['id']
+			'client_id' : session['client']['id']
 		})
 
 		if result['success']:
@@ -174,4 +174,4 @@ def delete():
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
 
-	return ClientC.delete(session['clients']['id'])
+	return ClientC.delete(session['client']['id'])
