@@ -14,7 +14,7 @@
 
 .header {
     border-bottom: 1px solid #232F3E;
-    background-color:#374a62;
+    background-color: #374a62;
     padding: 15px 40px;
     color: white;
 }
@@ -63,6 +63,26 @@
 }
 
 .add-type-submit:hover, .add-type-submit2:hover {
-    background-color: #232F3E!important;
+    background-color: #232F3E !important;
     transition: all .3s;
+}
+
+
+/*** register open ***/
+
+.register-open {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-control a {
+    text-decoration: none;
+    color: #374a62;
+    padding-top: 2px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.form-control a:hover {
+    text-decoration: underline #374a62;
 }

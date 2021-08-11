@@ -34,8 +34,9 @@
         <div class="form-control">
             <label for="password">Пароль</label>
             <input type="password" name="password" id="password" placeholder="Пароль ... " required>
+            <div class="register-open"><a href="#" id="register-open">Регистрация</a></div>
             {% if wrong_password %}
-            <small>Неверный пароль</small>
+            <small id="error-small2">Неверный пароль</small>
             {% endif %}
         </div>
 
