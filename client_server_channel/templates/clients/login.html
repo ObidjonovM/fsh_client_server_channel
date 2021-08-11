@@ -1,14 +1,19 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/css/clients/login.css">
+    <link rel="stylesheet" href="/static/css/base.css">
 
-{% block head %}
-{{super()}}
-<link rel="stylesheet" href="/static/css/clients/login.css">
 
-{% endblock %}
-
-{% block body %}
-{{super()}}
-
+    <title>Fido Smart Home</title>
+</head>
+<body class="background-color">
+<div class="fixed">
+    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+    <button type="button" onclick="logoutClient()" class="glavni-stranisa viyti">Выйти</button>
+</div>
 <div class="container">
 
     <div class="header">
@@ -41,5 +46,10 @@
 </div>
 
 <script src="/static/js/clients/login.js"></script>
+<script src="/static/js/clients.js"></script>
 
-{% endblock %}
+</body>
+</html>
+
+
+
