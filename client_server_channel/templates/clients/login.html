@@ -27,7 +27,7 @@
             <label for="clientname">Пользователь</label>
             <input type="text" name="clientname" id="clientname" placeholder="Пользователь ... " required>
             {% if not user_exists %}
-            <small>Пользователь не найден</small>
+            <small id="error-small">Пользователь не найден</small>
             {% endif %}
         </div>
 
