@@ -86,17 +86,13 @@ def register():
 		params = request.form
 		result = ClientC.add({
 			'first_name' : params['first_name'],
-			'middle_name' : params['middle_name'],
 			'last_name' : params['last_name'],
 			'birth_date' : params['birth_date'],
 			'address_1' : params['address_1'],
-			'address_2' : params['address_2'],
 			'city' : params['city'],
 			'country' : params['country'],
 			'zipcode' : params['zipcode'],
 			'phone' : params['phone'],
-			'home_phone' : params['home_phone'],
-			'email' : params['email']
 		})
 
 		if result['success']:
