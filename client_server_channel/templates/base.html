@@ -12,15 +12,15 @@
 
     {% endblock %}
 </head>
-<body>
-<div class="background-color">
+<body class="background-color">
+
     {% block body %}
     <div class="fixed">
         <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
         <button type="button" onclick="Viyti()" class="glavni-stranisa viyti">Выйти</button>
     </div>
-    <script src="/static/js/base.js"></script>
     {% endblock %}
-</div>
+
+    <script src="/static/js/base.js"></script>
 </body>
 </html>
