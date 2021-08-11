@@ -72,6 +72,7 @@ class ClientC:
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             client_info['date_modified'] = datetime.now()
+            client_info['subs_id'] = 1
             update_result = ClientTable.update(client_info)
             return {
                 'success' : update_result['success'],

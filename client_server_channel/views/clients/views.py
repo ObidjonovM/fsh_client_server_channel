@@ -159,7 +159,6 @@ def update():
 			'phone' : params['phone'],
 			'home_phone' : params['home_phone'],
 			'email' : params['email'],
-			'subs_id' : params['subs_id'],
 			'client_id' : session['client']['id']
 		})
 

@@ -34,21 +34,6 @@
             <label for="birth_date">Дата рождения</label>
             <input type="date" name="birth_date" id="birth_date" required
                    value="{{client_info['data']['birth_date']}}"/>
-
-            <label for="subs_id">Подписка</label>
-            <select name="subs_id" id="subs_id">
-                {% for i in range(names_ids['data']['subs_id']|length)%}
-                {%if client_info['data']['subs_id'] == names_ids['data']['subs_id'][i]%}
-                <option selected value="{{names_ids['data']['subs_id'][i]}}">
-                    {{names_ids['data']['name'][i]}}
-                </option>
-                {%else%}
-                <option value="{{names_ids['data']['subs_id'][i]}}">
-                    {{names_ids['data']['name'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
         </div>
 
 
