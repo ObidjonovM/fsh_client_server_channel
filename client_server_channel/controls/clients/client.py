@@ -132,5 +132,6 @@ class ClientC:
                     ClientTable.update_last_signin(login_result['data'], datetime.now())
                     result['wrong_password'] = False
                     result['client_id'] = login_result['data']['client_id']
+                    result['first_name'] = login_result['data']['first_name']
 
         return result

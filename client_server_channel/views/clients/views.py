@@ -28,8 +28,9 @@ def login():
 		if result['success']:
 			if result['user_exists'] and not result['wrong_password']:
 				session['clientname'] = request.form['clientname']
-				session['clients'] = {}
-				session['clients']['id'] = result['client_id']
+				session['client'] = {}
+				session['client']['id'] = result['client_id']
+				session['client']['first_name'] = result['first_name']
 
 				return redirect(url_for('clients.account'))
 
@@ -68,7 +69,7 @@ def change_password():
 def logout():
 	if 'clientname' in session:
 		session.pop('clientname')
-		session.pop('clients')
+		session.pop('client')
 
 	return redirect(url_for('core.index'))
 
@@ -109,7 +110,9 @@ def account():
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
 
-	return render_template(utls.url_join(['clients','account.html']))
+	return render_template(utls.url_join(['clients','account.html']),
+		first_name = session['client']['first_name']
+	)
 
 
 @clients.route('/get')
