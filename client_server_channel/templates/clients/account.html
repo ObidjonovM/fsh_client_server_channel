@@ -1,17 +1,34 @@
-{% extends 'clients.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% block head %}
-{{super()}}
+    <title>Fido Smart Home</title>
 
-<link rel="stylesheet" href="static/css/clients/account.css">
+    <link rel="stylesheet" href="/static/css/clients/account.css">
+</head>
 
-{% endblock %}
+<body class="background-color" id="container">
 
-{% block body %}
-{{super()}}
-{{first_name}}
-<h1>Accout Page</h1>
+<div class="fixed">
+    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+    <button type="button" onclick="logoutClient()" class="glavni-stranisa viyti">Выйти</button>
+    <button type="button" class="hi-person" id="hi-person" onmouseover="displayBlock()" onmouseout="displayNone()" >
+        <span>Привет {{first_name}}</span>
+        <p> Аккаунт & Продукты</p>
+    </button>
+</div>
 
-<script src="static/js/clients/account.js"></script>
+<div class="container">
+    <div class="account-products" id="account-products" onmouseover="accountProductsBlock()" onmouseout="accountProductsNone()">
+        <ul>
+            <li><a href="#" id="account">Аккаунт</a></li>
+            <li><a href="#" id="products">Продукты</a></li>
+        </ul>
+    </div>
 
-{% endblock %}
+</div>
+<script src="/static/js/clients/account.js"></script>
+</body>
+</html>
