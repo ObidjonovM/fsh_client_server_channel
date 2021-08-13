@@ -1,0 +1,248 @@
+.background-color {
+    width: 100%;
+    height: 100vh;
+    background-color: #EAEDED;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-control input:focus, select:focus, textarea:focus {
+    outline: 0;
+    border-color: #777;
+}
+
+.add-type-submit:hover, .add-type-submit2:hover, .add-type-submit3:hover {
+    background-color: #232F3E;
+}
+
+.fixed {
+    width: 100%;
+    height: 50px;
+    background-color: #1b232e;
+}
+
+.glavni-stranisa, .sign-in {
+    width: 120px;
+    height: 43px;
+    margin:3px;
+    background-color: #1b232e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.sign-in {
+    float: right;
+}
+
+.glavni-stranisa:hover, .viyti:hover, .sign-in:hover {
+    border: 1px solid #c7c7c7;
+}
+
+.glavni-stranisa {
+    float: left;
+}
+
+.viyti {
+    float: right;
+}
+
+.hi-person {
+    float: right;
+}
+
+.hi-person {
+    width: 160px;
+    height: 46px;
+    margin-top: 2px;
+    background-color: #1b232e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+
+.hi-person span {
+    font-size: 11px;
+}
+
+.hi-person p {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hi-person:hover {
+    border: 1px solid #c7c7c7;
+}
+
+.account-products ul::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right:50%;
+    transform: translate(20%,-90%);
+    border-width: 0.5em .5em;
+    border-style: solid;
+    border-left-color:transparent;
+    border-right-color:transparent;
+    border-bottom-color:white;
+    border-top-color:transparent;
+}
+
+.account-products {
+    position: absolute;
+    top:48px;
+    right: 126px;
+    margin: 0;
+    display: none;
+}
+
+.account-products ul {
+    list-style: none;
+    height: auto;
+    width: 170px;
+    background-color: white;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,.2);
+    transition: all 1s ease;
+    border-top-right-radius: 2px;
+
+}
+
+.account-products ul li {
+    width: 100%;
+}
+
+.account-products ul li a {
+    width: 100%;
+    text-decoration: none;
+    padding: 7px;
+    color: #1b232e;
+    font-family: Arial;
+    display: block;
+}
+
+.account-products ul li a:hover {
+    background-color: #c7cbcb;
+}
+
+
+/****  input search design open  ****/
+
+.search-form {
+    width: 30%;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.select-search {
+    border: none;
+    outline: none;
+    width: 110px;
+    height: 37px;
+    cursor: pointer;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-right: 1px solid #d5d2d2;
+    padding-left: 5px;
+}
+
+.input-search {
+    width: 450px;
+    height: 37px;
+    line-height: 37px;
+    outline: none;
+    padding-left: 15px;
+    color: #283341;
+    border: none;
+}
+
+.input-search-button {
+    border: none;
+    outline: none;
+    width: 55px;
+    height: 37px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    cursor: pointer;
+    border-left: 1px solid #d5d2d2;
+    line-height: 37px;
+}
+
+.input-search-button i {
+    font-size: 17px;
+    color: #414040;
+}
+
+/****  input search design close  ****/
+
+
+
+/****  modal open ****/
+
+.modal-products {
+    width: 100%;
+    display: none;
+    border: 1px solid #9d9292;
+    transition: all 1s ease-in;
+}
+
+.modal {
+    position: relative;
+    border-radius: 5px;
+    background-color: #293a50;
+    width: 100%;
+    max-width: 100%;
+
+}
+.modal span {
+    color: white;
+    font-size: 36px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    top: 5px;
+    right: 9px;
+    padding-left: 3px;
+    border: 1px solid black;
+
+}
+.modal span:active{
+    border: 1px solid white;
+}
+.modal h1 {
+    padding: 10px;
+    color: white;
+}
+.modal p{
+    opacity: .7;
+    padding: 10px;
+    color: white;
+}
+
+.modal button {
+    margin:20px 10px;
+    background-color: #1b232e;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+/****  modal close ****/
