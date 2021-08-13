@@ -37,3 +37,33 @@ account.addEventListener('click', () => {
     window.open('/clients/update', '_self');
 })
 // header dagi account-products clasi uchun yopildi
+
+
+
+
+
+
+
+const modal_products = document.getElementById('modal-products');
+const products = document.getElementById('products');
+const close = document.getElementById('close');
+const closeBtn = document.getElementById('closeBtn');
+
+products.addEventListener('click', () => {
+    document.getElementById('modal-products').style.display = "block";
+})
+
+close.addEventListener('click', () => {
+    document.getElementById('modal-products').style.display = "none";
+
+})
+
+closeBtn.addEventListener('click', () => {
+    document.getElementById('modal-products').style.display = "none";
+
+})
+
+// modal_products.addEventListener('click', () => {
+//     document.getElementById('modal-products').style.display = "none";
+//
+// })
