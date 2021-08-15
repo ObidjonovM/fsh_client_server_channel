@@ -13,13 +13,13 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Новая прошивка</h2>
+        <h2>Прошивка</h2>
     </div>
 
     <form id="myForm" class="add-form">
         <div class="form-control">
 
-            <label for="emp_id">Ф.И.О</label><br/>
+            <label for="emp_id">Ф.И.О сотрудника</label><br/>
             <select name="emp_id" id="emp_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {%for i in range(ids_fullname.data.emp_id|length)%}
@@ -30,8 +30,8 @@
                 {%endfor%}
             </select>
 
-            <label for="name">Имя</label>
-            <input type="text" id="name" name="name" required placeholder="Введите имя..." />
+            <label for="name">Наименование</label>
+            <input type="text" id="name" name="name" required placeholder="Введите наименование..." />
 
             <label for="model">Модель</label>
             <input type="text" id="model" name="model" required placeholder="Введите модель..." />
@@ -42,7 +42,7 @@
         <div class="form-control">
 
             <label for="version">Версия</label>
-            <input type="text" id="version" name="version" required placeholder="Введите версия..." />
+            <input type="text" id="version" name="version" required placeholder="Введите версию..." />
 
             <label for="desc">Описание</label>
             <textarea type="text" name="desc" id="desc" placeholder="Введите описание..."></textarea>

@@ -13,16 +13,16 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Новая перевозки</h2>
+        <h2>Тип доставки</h2>
     </div>
 
     <form id="myForm" class="add-form" >
 
         <div class="form-control">
-            <label for="name">Имя</label>
-            <input type="text" name="name" placeholder="Введите имя..." id="name" required/>
+            <label for="name">Наименование</label>
+            <input type="text" name="name" placeholder="Введите наименование..." id="name" required/>
 
-            <label for="carrier_id">Перевозчики</label>
+            <label for="carrier_id">Доставщик</label>
             <select name="carrier_id" id="carrier_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(carriers_ids['data']['carrier_id']|length)%}
@@ -30,7 +30,7 @@
                 {%endfor%}
             </select>
 
-            <label for="curr_id">Валюты</label>
+            <label for="curr_id">Валюта</label>
             <select name="curr_id" id="curr_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(currencies_ids['data']['curr_id']|length)%}
@@ -50,13 +50,13 @@
 
         <div class="form-control">
             <label for="price">Цена</label>
-            <input type="text" name="price" id="price" placeholder="Введите цена..."/>
+            <input type="text" name="price" id="price" placeholder="Введите цену..."/>
 
-            <label for="min_delivery_days">Мин доставки дней</label>
-            <input type="text" name="min_delivery_days" id="min_delivery_days" placeholder="Введите мин доставки дней..."/>
+            <label for="min_delivery_days">Мин. день доставки</label>
+            <input type="text" name="min_delivery_days" id="min_delivery_days" placeholder="Введите мин. день доставки..."/>
 
-            <label for="max_delivery_days">Мах доставки дней</label>
-            <input type="text" name="max_delivery_days" id="max_delivery_days" placeholder="Введите мах доставки дней..."/>
+            <label for="max_delivery_days">Мах. день доставки</label>
+            <input type="text" name="max_delivery_days" id="max_delivery_days" placeholder="Введите мах. день доставки..."/>
         </div>
 
 

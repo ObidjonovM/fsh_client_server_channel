@@ -13,7 +13,7 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Названия запчасть логистический</h2>
+        <h2>Информация о доставке</h2>
     </div>
 
     <div id="myForm" class="add-form">
@@ -21,7 +21,7 @@
         <input type="hidden" id="shipment_id" value="{{sp_logistic_info['data']['shipment_id']}}">
 
         <div class="form-control">
-            <label for="carrier_id">Перевозчик</label>
+            <label for="carrier_id">Доставщик</label>
             <input type="text" id="carrier_id" readonly
                    value="{{carrier_name['data']['name']}}"/>
 

@@ -14,7 +14,7 @@
 <div class="container">
 
     <div class="header">
-        <h2>Названия статус отслеживания</h2>
+        <h2>Статус отслеживания</h2>
     </div>
 
     <div id="myForm" class="form">
@@ -22,13 +22,13 @@
         <input type="hidden" id="status_id" value="{{tracking_status_info['data']['status_id']}}">
 
         <div class="form-control">
-            <label for="status">Статус</label>
+            <label for="status">Наименование</label>
             <input type="text" id="status" readonly
                    value="{{tracking_status_info['data']['status']}}"/>
         </div>
 
         <div class="form-control">
-            <label for="carrier_id">Перевозчик</label>
+            <label for="carrier_id">Доставщик</label>
             <input type="text" id="carrier_id" readonly
                    value="{{carrier_name['data']['name']}}"/>
         </div>

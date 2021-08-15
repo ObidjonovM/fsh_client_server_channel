@@ -13,13 +13,13 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Новая запчасть логистический</h2>
+        <h2>Информация о доставке</h2>
     </div>
 
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="carrier_id">Перевозчик</label>
+            <label for="carrier_id">Доставщик</label>
             <select name="carrier_id" id="carrier_id" onchange="getTrStatusByCarrId()" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(carriers_ids['data']['carrier_id']|length)%}

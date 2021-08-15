@@ -13,7 +13,7 @@
 <div class="container">
 
     <div class="header">
-        <h2>Названия статус</h2>
+        <h2>Изменить</h2>
     </div>
 
     <form action="{{ url_for('employees.employee_status.update', status_id=status_info['status_id']) }}" class="form"
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-control">
-            <label for="desc">Description</label>
+            <label for="desc">Описание</label>
             <textarea name="desc" id="desc">{{status_info['description']}}</textarea>
         </div>
 

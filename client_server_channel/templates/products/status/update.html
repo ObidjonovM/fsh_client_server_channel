@@ -12,14 +12,14 @@
 
 <div class="container">
     <div class="header">
-        <h2>Названия статус</h2>
+        <h2>Изменить</h2>
     </div>
     <form action="{{ url_for('products.status.update', status_id=status_info['data']['status_id']) }}"
           class="form"
           method="POST">
 
         <div class="form-control">
-            <label for="status">Статус</label>
+            <label for="status">Наменование</label>
             <input type="text" name="status" id="status" value="{{status_info['data']['status']}}"/>
         </div>
 

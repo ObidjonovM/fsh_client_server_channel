@@ -13,13 +13,13 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Новая sp склад</h2>
+        <h2>Склад запчасти</h2>
     </div>
 
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="type_id">Тип</label>
+            <label for="type_id">Тип запчасти</label>
             <select name="type_id" id="type_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(types_ids['data']['sp_type_id']|length)%}

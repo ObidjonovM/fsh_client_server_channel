@@ -13,13 +13,13 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Новая товары</h2>
+        <h2>Продукт</h2>
     </div>
 
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="product_id">Товар</label>
+            <label for="product_id">Наименование</label>
             <select name="product_id" id="product_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(products_ids['data']['product_id']|length)%}

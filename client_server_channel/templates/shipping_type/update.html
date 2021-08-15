@@ -12,7 +12,7 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Названия перевозки</h2>
+        <h2>Изменить</h2>
     </div>
     <form class="add-form"
           action="{{ url_for('shipping_type.update', shipping_type_id=shipping_type_info['data']['shipping_type_id']) }}"
@@ -20,7 +20,7 @@
 
         <div class="form-control">
 
-            <label for="carrier_id">Перевозчики</label>
+            <label for="carrier_id">Доставщик</label>
             <select name="carrier_id" id="carrier_id" required>
                 {% for i in range(carriers_ids['data']['carrier_id']|length)%}
                 {%if shipping_type_info['data']['carrier_id'] == carriers_ids['data']['carrier_id'][i]%}
@@ -35,7 +35,7 @@
                 {%endfor%}
             </select>
 
-            <label for="curr_id">Валюты</label>
+            <label for="curr_id">Валюта</label>
             <select name="curr_id" id="curr_id" required>
                 {% for i in range(currencies_ids['data']['curr_id']|length)%}
                 {%if shipping_type_info['data']['curr_id'] == currencies_ids['data']['curr_id'][i]%}
@@ -71,11 +71,11 @@
             <input type="text" name="price" id="price"
                    value="{{shipping_type_info['data']['price']}}"/>
 
-            <label for="min_delivery_days">Мин доставки дней</label>
+            <label for="min_delivery_days">Мин. день доставки</label>
             <input type="text" name="min_delivery_days" id="min_delivery_days"
                    value="{{shipping_type_info['data']['min_delivery_days']}}"/>
 
-            <label for="max_delivery_days">Мах доставки дней</label>
+            <label for="max_delivery_days">Мах. день доставки</label>
             <input type="text" name="max_delivery_days" id="max_delivery_days"
                    value="{{shipping_type_info['data']['max_delivery_days']}}"/>
         </div>

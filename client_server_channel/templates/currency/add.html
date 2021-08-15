@@ -15,14 +15,14 @@
 <div class="container">
 
     <div class="header">
-        <h2>Новая валюта</h2>
+        <h2>Валюта</h2>
     </div>
 
     <form id="myForm" class="form" action="{{url_for('currency.add')}}" method="POST">
 
         <div class="form-control">
-            <label for="currency">Валюта</label>
-            <input type="text" name="currency" placeholder="Введите валюта..." id="currency" required/>
+            <label for="currency">Наименование</label>
+            <input type="text" name="currency" placeholder="Введите наименование..." id="currency" required/>
         </div>
 
         <input type="submit" class="add-type-submit" value="Сохранить"/>

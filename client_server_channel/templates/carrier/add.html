@@ -16,15 +16,15 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Новая перевозчик</h2>
+        <h2>Доставщик</h2>
     </div>
 
     <form id="myForm" class="add-form" action="{{url_for('carrier.add')}}" method="POST">
 
         <div class="form-control">
 
-            <label for="name">Имя</label>
-            <input type="text" name="name" placeholder="Введите имя..." id="name" required/>
+            <label for="name">Наименование</label>
+            <input type="text" name="name" placeholder="Введите наименование..." id="name" required/>
 
             <label for="address_1">Адрес 1</label>
             <input type="text" name="address_1" id="address_1" placeholder="Введите адрес 1..."/>
@@ -40,7 +40,7 @@
             <input type="text" name="city" id="city" placeholder="Введите город..."/>
 
             <label for="country">Страна</label>
-            <input type="text" name="country" id="country" placeholder="Введите страна..."/>
+            <input type="text" name="country" id="country" placeholder="Введите страну..."/>
 
             <label for="zipcode">Индекс</label>
             <input type="text" name="zipcode" id="zipcode" placeholder="Введите индекс..."/>
@@ -53,7 +53,7 @@
             <input type="text" name="phone" id="phone" placeholder="Введите телефон..."/>
 
             <label for="email">Электронная почта</label>
-            <input type="text" name="email" id="email" placeholder="Введите электронная почта..."/>
+            <input type="text" name="email" id="email" placeholder="Введите электронную почту..."/>
 
             <label for="website">Сайт</label>
             <input type="text" name="website" id="website" placeholder="Введите сайт..."/>

@@ -13,7 +13,7 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Новая сотрудника</h2>
+        <h2>Сотрудник</h2>
     </div>
 
     <form id="myForm" class="add-form">
@@ -27,7 +27,7 @@
                 {%endfor%}
             </select>
 
-            <label for="type_id">Тип</label>
+            <label for="type_id">Должность</label>
             <select name="type_id" id="type_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(names_ids_type['emp_type_id']|length)%}

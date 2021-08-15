@@ -14,14 +14,14 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Новая порядок</h2>
+        <h2>Заказ запчасти</h2>
     </div>
 
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="issued_order_id">Изданный id заказа</label>
-            <input type="text" name="issued_order_id" id="issued_order_id" required placeholder="Введите описание..." />
+            <label for="issued_order_id">Переданный ID заказа</label>
+            <input type="text" name="issued_order_id" id="issued_order_id" required placeholder="Введите переданный ID заказа..." />
 
             <label for="total_cost">Общая стоимость</label>
             <input type="number" name="total_cost" id="total_cost" required placeholder="Введите Общая стоимость..." />
@@ -64,13 +64,13 @@
         </div>
 
         <div class="form-control">
-            <label for="shipment_id">Id логистика</label>
-            <input type="text" id="shipment_id" name="shipment_id" required placeholder="Введите ид логистика">
+            <label for="shipment_id">ID данных доставки</label>
+            <input type="text" id="shipment_id" name="shipment_id" required placeholder="Введите ID данных доставки">
 
             <label for="order_date">Дата заказа</label>
             <input type="date" name="order_date" id="order_date" required placeholder="Введите описание..." />
 
-            <label for="ord_emp_id">Приказать сотруднику</label>
+            <label for="ord_emp_id">Ответственный сотрудник</label>
             <select name="ord_emp_id" id="ord_emp_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(ord_emp_id['data']['emp_id']|length)%}

@@ -12,7 +12,7 @@
 
 <div class="container">
     <div class="header">
-        <h2>Названия статус отслеживания</h2>
+        <h2>Изменить</h2>
     </div>
 
     <form class="form"
@@ -20,7 +20,7 @@
           method="POST">
 
         <div class="form-control">
-            <label for="carrier_id">Перевозчик</label>
+            <label for="carrier_id">Доставщик</label>
             <select name="carrier_id" id="carrier_id" required>
                 {% for i in range(carriers_ids['data']['carrier_id']|length)%}
                 {%if tracking_status_info['data']['carrier_id'] == carriers_ids['data']['carrier_id'][i]%}

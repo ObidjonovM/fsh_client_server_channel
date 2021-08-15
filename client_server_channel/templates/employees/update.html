@@ -13,7 +13,7 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Названия сотрудника</h2>
+        <h2>Изменить</h2>
     </div>
 
     <form action="{{ url_for('employees.update', emp_id=emp_info['emp_id']) }}"
@@ -54,7 +54,7 @@
                 {%endfor%}
             </select>
 
-            <label for="type_id">Тип</label>
+            <label for="type_id">Должность</label>
             <select name="type_id" id="type_id" required>
                 {%for i in range(names_ids_type['emp_type_id']|length)%}
                 {%if emp_info['emp_type_id'] == names_ids_type['emp_type_id'][i]%}
