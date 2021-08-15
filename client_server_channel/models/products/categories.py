@@ -50,6 +50,39 @@ class CategoriesTable:
 
 
     @staticmethod
+    def get_first_par_cat():
+        sql = 'SELECT category_id, name FROM categories WHERE'
+        sql += ' parent_cat_id = 1 AND category_id != 1'
+        sql += 'AND active = TRUE ORDER BY category_id'
+
+        result = crud.run_SQL(sql, ['category_id', 'name'])
+
+        return result
+
+
+    @staticmethod
+    def get_sub_cat(cat_id):
+        sql = 'SELECT category_id, name FROM categories WHERE'
+        sql += f' parent_cat_id = {cat_id} AND'
+        sql += ' active = TRUE ORDER BY category_id'
+
+        result = crud.run_SQL(sql, ['category_id', 'name'])
+
+        return result
+
+
+    @staticmethod
+    def get_product_by_cat_id(cat_id):
+        sql = 'SELECT product_id, name FROM product_info WHERE'
+        sql += f' category_id = {cat_id} AND active = TRUE'
+        sql += ' ORDER BY category_id'
+
+        result = crud.run_SQL(sql, ['product_id', 'name'])
+
+        return result
+
+
+    @staticmethod
     def get_other_pairs(cat_id):
         return crud.get_other_pairs(
             'categories', 'category_id', 'name', cat_id)

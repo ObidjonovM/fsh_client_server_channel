@@ -563,7 +563,7 @@ CREATE TABLE IF NOT EXISTS shipping_types (
 	FOREIGN KEY (unit_id)
 	REFERENCES units(unit_id),
 	FOREIGN KEY (carrier_id)
-	REFERENCES carriers(carrier_id),
+	REFERENCES carriers(carrier_id),	
 	FOREIGN KEY (add_emp_id)
 	REFERENCES employees(emp_id),
 	FOREIGN KEY (modify_emp_id)
