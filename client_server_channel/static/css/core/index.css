@@ -65,7 +65,8 @@
     border-top-color: transparent;
     border-bottom-color: transparent;
     margin: 30px auto;
-
+    display: flex;
+    justify-content: space-evenly;
 }
 
 @media  screen and (max-width:1200px) and (min-width:768px) {
@@ -74,45 +75,41 @@
     }
 }
 
-@media  screen and (max-width:768px) {
+@media screen and (max-width:768px) {
     .content-container {
         width: 100%;
     }
 }
 
 .images-div {
+    width: 100%;
     display: flex;
     justify-content:center;
-    align-content: center;
 }
 .images-div div {
-    width: 410px;
-    height: 500px;
+    max-width: 350px;
     background-color: white;
-    margin: 40px;
+    margin: 40px 0px 0px 60px;
     padding: 20px 45px;
     border-radius: 2px;
     transition: all .2s ease-in;
 }
 .images-div div:hover {
-
     transition: all .2s ease-in;
     box-shadow:0px 4px 5px 2px rgba(0,0,0,.3);
     transform: scale(1.01);
-
 }
 
 .images-div div img {
-    width: 320px;
-    height: 400px;
+    width: 100%;
+    height: 85%;
     cursor: pointer;
 
 }
 .images-div div p {
     font-weight: bold;
     color: #1b232e;
-    padding: 5px 0px;
-
+    padding: 5px 0px
 }
 
 .images-div div p, a {
@@ -137,3 +134,99 @@
 
 
 
+
+
+/****  acardion css open  ****/
+
+
+ul {
+    list-style-type: none;
+}
+
+
+.accordion {
+    width: 180%;
+    max-width: 360px;
+    max-height: 400px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #f0f3f3;
+    margin-top: 40px;
+    box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.3);
+}
+
+.accordion .link {
+    cursor: pointer;
+    display: block;
+    padding: 15px 15px 15px 42px;
+    color: #4D4D4D;
+    font-size: 14px;
+    font-weight: 700;
+    border-bottom: 1px solid #CCC;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.accordion li:last-child .link {
+    border-bottom: 1px solid #98999a;
+}
+
+.accordion li i {
+    position: absolute;
+    top: 16px;
+    left: 12px;
+    font-size: 18px;
+    color: #152436;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.accordion li i.fa-chevron-down {
+    right: 12px;
+    left: auto;
+    font-size: 16px;
+}
+
+.accordion li a {
+    text-decoration: none;
+}
+
+.accordion li.open .link { color: #442a2a; }
+
+.accordion li.open i { color: #363535; }
+
+.accordion li.open i.fa-chevron-down {
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+
+.submenu {
+    display: none;
+    background: #fff;
+    font-size: 14px;
+}
+
+.submenu li { border-bottom: 1px solid #c0c0c5; }
+
+.submenu a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 12px;
+    padding-left: 42px;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+
+.submenu a:hover {
+    background: #EAEDED;
+}
+/****  acardion css close  ****/
