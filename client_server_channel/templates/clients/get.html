@@ -17,7 +17,7 @@
         <h2>Новая должность</h2>
     </div>
 
-    <form action="{{url_for('clients.add')}}" method="POST" id="myForm" class="add-form">
+    <div id="myForm" class="add-form">
 
         <input id="client_id" type="hidden" value="{{client_info['data']['client_id']}}"/>
 
@@ -101,7 +101,7 @@
             Назад
         </button>
 
-    </form>
+    </div>
 
 </div>
 
