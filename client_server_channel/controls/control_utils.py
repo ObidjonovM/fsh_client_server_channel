@@ -1,6 +1,7 @@
 import logging
 import os
 import sys
+import base64
 from datetime import datetime
 from client_server_channel import config
 from client_server_channel.models import ErrorLogsTable
@@ -46,3 +47,13 @@ def record_log(result, func_name, logger_name):
         print(f'{t} - {v}')
 
     return -4       # could not record logs anywhere
+
+
+def byte_to_base64(byte_img):
+    base64_img = str(base64.b64encode(byte_img))
+    pre_base64 = 'data:image/png;base64, '
+    star_pos = base64_img.index("'") + 1
+    end_pos = base64_img.rindex("'")
+    result = pre_base64 + base64_img[star_pos:end_pos]
+
+    return result

@@ -1,4 +1,5 @@
-from client_server_channel.models import ProductInfoTable, CategoriesTable
+from client_server_channel.models import (ProductInfoTable, CategoriesTable,
+                                        ProductPhotoTable)
 from .. import control_utils as utls
 from datetime import datetime
 
@@ -29,6 +30,25 @@ class ProductInfoC:
         now = datetime.now()
         product_info['date_added'] = now
         product_info['date_modified'] = now
+        add_photo = ProductPhotoTable.insert({
+            'name' : product_info['foto'].filename,
+            'photo_byte' : product_info['foto'].read(),
+            'add_emp_id' : product_info['add_emp_id'],
+            'modify_emp_id' : product_info['modify_emp_id'],
+            'date_added' : now,
+            'date_modified' : now
+        })
+
+        if not add_photo['success']:
+
+            return {
+                'success' : False,
+                'log_code' : utls.record_log(add_photo, 'add', 'crud_logs')
+            }
+
+        del product_info['foto']
+        product_info['photo_id'] = add_photo['data']['photo_id']
+
         add_result = ProductInfoTable.insert(product_info)
 
         return {
@@ -87,6 +107,15 @@ class ProductInfoC:
         log_code = utls.record_log(get_result, 'delete', 'crud_logs')
         if get_result['data'] != []:
             delete_result = ProductInfoTable.delete(product_id)
+            if delete_result['success']:
+                delete_photo = ProductPhotoTable.delete(get_result['data']['photo_id'])
+                if not delete_photo['success']:
+
+                    return {
+                        'success' : delete_photo['success'],
+                        'log_code' : utls.record_log(delete_photo, 'delete', 'crud_logs')
+                    }
+
             return {
                 'success' : delete_result['success'],
                 'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')

@@ -16,7 +16,7 @@
         <h2>Информация о продукте</h2>
     </div>
 
-    <form id="myForm" class="form">
+    <form action="{{url_for('products.product_info.add')}}" method="POST" enctype="multipart/form-data">
         <div class="form-control">
             <label for="name">Наименование</label>
             <input type="text" name="name" placeholder="Введите наименование..." id="name" required/>
@@ -25,6 +25,10 @@
         <div class="form-control">
             <label for="model">Модель</label>
             <input type="text" name="model" id="model" placeholder="Введите модель..." required/>
+        </div>
+        <div class="form-control">
+            <label for="foto">Фото</label>
+            <input type="file" name="foto" id="foto" />
         </div>
         <div class="form-control">
             <label for="cat_id">Категория</label>
@@ -43,7 +47,7 @@
 </div>
 
 
-<script src="/static/js/products/product_info/add.js"></script>
+<!-- <script src="/static/js/products/product_info/add.js"></script> -->
 
 {% endblock %}
 

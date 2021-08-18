@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from client_server_channel.controls import ProductInfoC, CategoriesC
+from client_server_channel.controls import ProductInfoC, CategoriesC, ProductPhotoC
 from .. import view_utils as utls
 
 product_info = Blueprint('product_info', __name__, url_prefix='/info')
@@ -23,6 +23,7 @@ def add():
 		result = ProductInfoC.add({
 			'name' : params['name'],
 			'model' : params['model'],
+			'foto' : request.files['foto'],
 			'category_id' : params['cat_id'],
 			'add_emp_id' : session['employee']['id'],
 			'modify_emp_id' : session['employee']['id']
@@ -46,7 +47,8 @@ def get(product_id):
 		return render_template(
 			utls.url_join(['products', 'product_info', 'get.html']),
 			product_info = product_info,
-			id_name = CategoriesC.get(product_info['data']['category_id'])
+			id_name = CategoriesC.get(product_info['data']['category_id']),
+			product_photo = ProductPhotoC.get(product_info['data']['photo_id'])
 		)
 
 	return redirect(url_for('products.product_info.all'))

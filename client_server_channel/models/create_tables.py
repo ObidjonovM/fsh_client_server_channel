@@ -242,12 +242,31 @@ $do$
 ''', (now, now))
 
 
+cur.execute('''
+CREATE TABLE IF NOT EXISTS product_photo (
+	photo_id INT PRIMARY KEY CHECK (photo_id > 0),
+	name TEXT NOT NULL,
+	photo_byte BYTEA NOT NULL,
+	date_added TIMESTAMP NOT NULL,
+    add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
+	date_modified TIMESTAMP NOT NULL,
+	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
+	active BOOLEAN NOT NULL,
+
+	FOREIGN KEY (add_emp_id)
+	REFERENCES employees(emp_id),
+	FOREIGN KEY (modify_emp_id)
+	REFERENCES employees(emp_id));
+''')
+
+
 #creating product_info table
 cur.execute('''
 CREATE TABLE IF NOT EXISTS product_info (
 	product_id INT PRIMARY KEY CHECK (product_id > 0),
 	name VARCHAR(50) UNIQUE NOT NULL,
 	model VARCHAR(50) NOT NULL,
+	photo_id INT NOT NULL,
 	category_id INT NOT NULL CHECK(category_id > 0),
         date_added TIMESTAMP NOT NULL,
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
@@ -255,6 +274,8 @@ CREATE TABLE IF NOT EXISTS product_info (
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
 	active BOOLEAN NOT NULL,
 
+	FOREIGN KEY(photo_id)
+	REFERENCES product_photo(photo_id),
 	FOREIGN KEY(category_id)
 	REFERENCES categories(category_id),
 	FOREIGN KEY (add_emp_id)

@@ -1,7 +1,7 @@
 from . import model_utils as utls
 
 
-def __last_pk_value(table_name):
+def last_pk_value(table_name):
 	col_names = utls.get_column_names(table_name)
 	pk_col = col_names[0]
 	sql = f'SELECT COUNT({pk_col}) FROM {table_name}'
@@ -14,7 +14,7 @@ def __last_pk_value(table_name):
 
 def insert(table_name, info, generate_pk=True):
     if generate_pk:
-        pk, val = __last_pk_value(table_name).popitem()       # getting the last value of PK column
+        pk, val = last_pk_value(table_name).popitem()       # getting the last value of PK column
         sql = f'INSERT INTO {table_name} ({pk}, '
         values = f'VALUES ({val + 1}, '
     else:

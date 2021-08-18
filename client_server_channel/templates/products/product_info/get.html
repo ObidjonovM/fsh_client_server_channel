@@ -34,6 +34,11 @@
         </div>
 
         <div class="form-control">
+            <label for="foto">Фото</label>
+            <img id="foto" width="100%" src="{{product_photo['data']['photo_byte']}}"/>
+        </div>
+
+        <div class="form-control">
             <label for="parent_id">Категория</label>
             <input type="text" name="parent_id"
                    value="{{id_name['data']['name']}}" id="parent_id" readonly/>

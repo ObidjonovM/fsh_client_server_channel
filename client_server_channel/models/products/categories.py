@@ -53,7 +53,7 @@ class CategoriesTable:
     def get_first_par_cat():
         sql = 'SELECT category_id, name FROM categories WHERE'
         sql += ' parent_cat_id = 1 AND category_id != 1'
-        sql += 'AND active = TRUE ORDER BY category_id'
+        sql += ' AND active = TRUE ORDER BY category_id'
 
         result = crud.run_SQL(sql, ['category_id', 'name'])
 

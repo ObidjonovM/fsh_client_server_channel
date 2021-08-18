@@ -9,6 +9,7 @@ from .products import ProductInfoTable
 from .products import DealerTable
 from .products import ProductStatusTable
 from .products import ProductTable
+from .products import ProductPhotoTable
 from .clients import SubscriptionTable
 from .clients import ClientTable
 from .currency import CurrencyTable
