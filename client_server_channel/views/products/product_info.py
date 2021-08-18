@@ -1,9 +1,14 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash
 from client_server_channel.controls import ProductInfoC, CategoriesC, ProductPhotoC
 from .. import view_utils as utls
 
 product_info = Blueprint('product_info', __name__, url_prefix='/info')
 
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @product_info.route('/add', methods=['GET', 'POST'])
 def add():
@@ -20,19 +25,32 @@ def add():
 
 	if request.method == 'POST':
 		params = request.form
-		result = ProductInfoC.add({
-			'name' : params['name'],
-			'model' : params['model'],
-			'foto' : request.files['foto'],
-			'category_id' : params['cat_id'],
-			'add_emp_id' : session['employee']['id'],
-			'modify_emp_id' : session['employee']['id']
-		})
 
-		if result['success']:
-			return redirect(url_for('products.product_info.all'))
+		if 'foto' not in request.files:
+			flash('No file part')
+			return redirect(request.url)
+		file = request.files['foto']
+        
+		if file.filename == '':
+			flash('No selected file')
+			return redirect(request.url)
 
-		return result
+		if file and allowed_file(file.filename):
+			
+			result = ProductInfoC.add({
+				'name' : params['name'],
+				'model' : params['model'],
+				'foto' : request.files['foto'],
+				'category_id' : params['cat_id'],
+				'add_emp_id' : session['employee']['id'],
+				'modify_emp_id' : session['employee']['id']
+			})
+
+			if result['success']:
+				return redirect(url_for('products.product_info.all'))
+		
+		return redirect(request.url)
+
 
 
 @product_info.route('/get/<int:product_id>')
