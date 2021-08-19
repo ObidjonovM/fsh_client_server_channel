@@ -4,7 +4,7 @@ from .. import view_utils as utls
 
 product_info = Blueprint('product_info', __name__, url_prefix='/info')
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):
     return '.' in filename and \

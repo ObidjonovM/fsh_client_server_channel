@@ -49,9 +49,10 @@ def record_log(result, func_name, logger_name):
     return -4       # could not record logs anywhere
 
 
-def byte_to_base64(byte_img):
+def byte_to_base64(name, byte_img):
+    format_img = name[name.rindex(".") + 1:]
     base64_img = str(base64.b64encode(byte_img))
-    pre_base64 = 'data:image/png;base64, '
+    pre_base64 = f'data:image/{format_img};base64, '
     star_pos = base64_img.index("'") + 1
     end_pos = base64_img.rindex("'")
     result = pre_base64 + base64_img[star_pos:end_pos]
