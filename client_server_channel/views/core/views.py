@@ -1,3 +1,4 @@
+from client_server_channel.models.products.categories import CategoriesTable
 from flask import Blueprint, render_template
 from client_server_channel.controls import CategoriesC
 from .. import view_utils as utls
@@ -7,14 +8,14 @@ core = Blueprint('core', __name__)
 @core.route('/')
 def index():
 	return render_template(utls.url_join(['core', 'index.html']),
-		first_parent = CategoriesC.get_first_par_cat()
+		all_cat = CategoriesTable.get_all()
 	)
 
 
 @core.route('/category/<int:cat_id>')
 def get_category(cat_id):
 	return render_template(utls.url_join(['core', 'category.html']),
-		sub_cat_product = CategoriesC.get_product_or_sub_cat(cat_id)
+		product_by_cat_id = CategoriesC.get_product_by_cat_id(cat_id)
 	)
 
 

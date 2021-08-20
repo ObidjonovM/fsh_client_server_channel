@@ -1,4 +1,5 @@
 from .. import crud
+from .. import model_utils as utls
 
 
 class CategoriesTable:
@@ -15,12 +16,19 @@ class CategoriesTable:
 
     @staticmethod
     def get_all():
-        return crud.get_all('categories')
+        sql = 'SELECT category_id, name, parent_cat_id FROM categories'
+        sql += ' WHERE category_id != 1 ORDER BY category_id'
+
+        result = crud.run_SQL(sql, ['category_id', 'name', 'parent_cat_id'])
+
+        return result
 
 
     @staticmethod
     def get_ids_names():
         return crud.get_ids_names('categories', 'category_id', 'name')
+
+
 
 
     @staticmethod
@@ -54,17 +62,6 @@ class CategoriesTable:
         sql = 'SELECT category_id, name FROM categories WHERE'
         sql += ' parent_cat_id = 1 AND category_id != 1'
         sql += ' AND active = TRUE ORDER BY category_id'
-
-        result = crud.run_SQL(sql, ['category_id', 'name'])
-
-        return result
-
-
-    @staticmethod
-    def get_sub_cat(cat_id):
-        sql = 'SELECT category_id, name FROM categories WHERE'
-        sql += f' parent_cat_id = {cat_id} AND'
-        sql += ' active = TRUE ORDER BY category_id'
 
         result = crud.run_SQL(sql, ['category_id', 'name'])
 

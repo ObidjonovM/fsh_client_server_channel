@@ -86,20 +86,11 @@ class CategoriesC:
 
 
     @staticmethod
-    def get_product_or_sub_cat(cat_id):
+    def get_product_by_cat_id(cat_id):
         get_result = CategoriesTable.get(cat_id)
         log_code = utls.record_log(get_result, 'get_product_by_cat_id', 'crud_logs')
         if len(get_result['data']) > 0:
-            if get_result['data']['leaf_cat'] == False:
-                if cat_id == 1: cat_id = 0
-                result = CategoriesTable.get_sub_cat(cat_id)
-
-                return {
-                    'success' : result['success'],
-                    'data' : result['data'],
-                    'log_code' : utls.record_log(result, 'get_product_by_cat_id', 'crud_logs')
-                }
-
+            
             result = CategoriesTable.get_product_by_cat_id(cat_id)
 
             return {
