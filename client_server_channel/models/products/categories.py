@@ -70,11 +70,12 @@ class CategoriesTable:
 
     @staticmethod
     def get_product_by_cat_id(cat_id):
-        sql = 'SELECT product_id, name FROM product_info WHERE'
-        sql += f' category_id = {cat_id} AND active = TRUE'
+        sql = 'SELECT pi.product_id, pi.name, pi.photo_id, pp.name, pp.photo_byte FROM'
+        sql += ' product_info pi , product_photo pp WHERE pi.photo_id = pp.photo_id AND'
+        sql += f' category_id = {cat_id} AND pi.active = TRUE'
         sql += ' ORDER BY category_id'
 
-        result = crud.run_SQL(sql, ['product_id', 'name'])
+        result = crud.run_SQL(sql, ['product_id', 'product_name', 'photo_id', 'photo_name', 'photo'])
 
         return result
 

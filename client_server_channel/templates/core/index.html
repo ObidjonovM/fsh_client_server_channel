@@ -46,7 +46,7 @@
     <ul id="accordion" class="accordion">
         {% for i in range(all_cat['data']['category_id']|length)%}
         <li>
-            <a href="{{url_for('core.get_category', cat_id=all_cat['data']['category_id'][i])}}" id="{{all_cat['data']['category_id'][i]}}" class="link">{{all_cat['data']['name'][i]}}<i class="fa fa-chevron-down"></i></a>
+            <a href="{{url_for('core.category', cat_id=all_cat['data']['category_id'][i])}}" id="{{all_cat['data']['category_id'][i]}}" class="link">{{all_cat['data']['name'][i]}}<i class="fa fa-chevron-down"></i></a>
             <ul class="submenu">
                 <li><a href="#">Photoshop</a></li>
             </ul>

@@ -50,11 +50,13 @@ def record_log(result, func_name, logger_name):
 
 
 def byte_to_base64(name, byte_img):
-    format_img = name[name.rindex(".") + 1:]
-    base64_img = str(base64.b64encode(byte_img))
-    pre_base64 = f'data:image/{format_img};base64, '
-    star_pos = base64_img.index("'") + 1
-    end_pos = base64_img.rindex("'")
-    result = pre_base64 + base64_img[star_pos:end_pos]
+    result = []
+    for i in range(len(name)):
+        format_img = name[i][name[i].rindex(".") + 1:]
+        base64_img = str(base64.b64encode(byte_img[i]))
+        pre_base64 = f'data:image/{format_img};base64, '
+        star_pos = base64_img.index("'") + 1
+        end_pos = base64_img.rindex("'")
+        result.append(pre_base64 + base64_img[star_pos:end_pos])
 
     return result

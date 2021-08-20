@@ -86,22 +86,16 @@ class CategoriesC:
 
 
     @staticmethod
-    def get_product_by_cat_id(cat_id):
-        get_result = CategoriesTable.get(cat_id)
-        log_code = utls.record_log(get_result, 'get_product_by_cat_id', 'crud_logs')
-        if len(get_result['data']) > 0:
-            
-            result = CategoriesTable.get_product_by_cat_id(cat_id)
-
-            return {
-                'success' : result['success'],
-                'data' : result['data'],
-                'log_code' : utls.record_log(result, 'get_product_by_cat_id', 'crud_logs')
-            }
-
+    def get_product_by_cat_id(cat_id): 
+        result = CategoriesTable.get_product_by_cat_id(cat_id)
+        result['data']['photo'] = utls.byte_to_base64(
+            result['data']['photo_name'],
+            result['data']['photo']
+        )
         return {
-            'success' : False,
-            'log_code' : log_code
+            'success' : result['success'],
+            'data' : result['data'],
+            'log_code' : utls.record_log(result, 'get_product_by_cat_id', 'crud_logs')
         }
 
 
