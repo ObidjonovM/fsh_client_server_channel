@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, json
 from client_server_channel.controls import CategoriesC
 from .. import view_utils as utls
 
@@ -6,8 +6,9 @@ core = Blueprint('core', __name__)
 
 @core.route('/')
 def index():
+	all_cat = CategoriesC.get_all()
 	return render_template(utls.url_join(['core', 'index.html']),
-		all_cat = CategoriesC.get_all()
+		all_cat = json.dumps(all_cat)
 	)
 
 

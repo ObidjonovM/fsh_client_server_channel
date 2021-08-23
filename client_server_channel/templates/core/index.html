@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/static/css/core/index.css">
     <link rel="stylesheet" href="/static/css/base.css">
@@ -12,85 +13,104 @@
     <title>Document</title>
 
 </head>
+
 <body class="background-color">
 
-<div class="fixed">
-    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-    <form action="#" class="search-form">
-        <div>
-            <select name="" id="" class="select-search">
-                <option value="1">SmartHome</option>
-                <option value="2">Amazon1</option>
-                <option value="3">Amazon2</option>
-            </select>
-        </div>
+    <div class="fixed">
+        <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+        <form action="#" class="search-form">
+            <div>
+                <select name="" id="" class="select-search">
+                    <option value="1">SmartHome</option>
+                    <option value="2">Amazon1</option>
+                    <option value="3">Amazon2</option>
+                </select>
+            </div>
+
+            <div>
+                <input type="search" class="input-search" placeholder="search..">
+            </div>
+
+            <div>
+                <button type="submit" class="input-search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+        <button class="sign-in" id="sign-in">Войти</button>
+    </div>
+
+    <div class="content-container">
+        <!--  cardion menu category opne -->
 
         <div>
-            <input type="search" class="input-search" placeholder="search..">
-        </div>
+            <ul id="categories">
 
-        <div>
-            <button type="submit" class="input-search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </form>
-    <button class="sign-in" id="sign-in">Войти</button>
-</div>
-
-<div class="content-container">
-    <!--  cardion menu category opne -->
-
-    <div>
-
-    <ul id="accordion" class="accordion">
-        {% for i in range(all_cat['data']['category_id']|length)%}
-        <li>
-            <a href="{{url_for('core.category', cat_id=all_cat['data']['category_id'][i])}}" id="{{all_cat['data']['category_id'][i]}}" class="link">{{all_cat['data']['name'][i]}}<i class="fa fa-chevron-down"></i></a>
-            <ul class="submenu">
-                <li><a href="#">Photoshop</a></li>
             </ul>
-        </li>
-        {%endfor%}
-    </ul>
-
-    </div>
-
-    <!--  cardion menu category close -->
 
 
-    <div class="images-div">
-        <div>
-            <p>Shop by Category</p>
-            <img src="../../static/img/Bazaart_20210813_033305.png" alt="wifi_rezatka">
-            <a href="#">
-                Shop now
-            </a>
         </div>
 
-        <div>
-            <p>Shop by Category</p>
-            <img src="../../static/img/Bazaart_20210813_064046.png" alt="gaz_datchik">
-            <a href="#">
-                Shop now
-            </a>
+        <!--  cardion menu category close -->
 
+
+        <div class="images-div">
+            <div>
+                <p>Shop by Category</p>
+                <img src="../../static/img/Bazaart_20210813_033305.png" alt="wifi_rezatka">
+                <a href="#">
+                    Shop now
+                </a>
+            </div>
+
+            <div>
+                <p>Shop by Category</p>
+                <img src="../../static/img/Bazaart_20210813_064046.png" alt="gaz_datchik">
+                <a href="#">
+                    Shop now
+                </a>
+
+            </div>
         </div>
     </div>
-</div>
 
 
-<h1>main page</h1>
+    <h1>main page</h1>
 
 
 
 
-<script src="../../static/js/library_js/jQuery.min.js"></script>
-<script src="/static/js/core/index.js"></script>
-<script src="/static/js/base.js"></script>
+    <script src="../../static/js/library_js/jQuery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/core/index.js') }}"></script>
+    <script src="/static/js/base.js"></script>
+    <script>
+        let data = ('{{ all_cat | safe }}');
+        let resp = JSON.parse(data)
+        // console.log(resp)
+        const categories = document.getElementById('categories');
+        for (let i = 0; i < resp['data']['category_id'].length; i++) {
+            // console.log(i)
+            if (resp['data']['parent_cat_id'][i] == 1) {
+                var node = document.createElement("LI");
+                node.setAttribute('id', resp['data']['category_id'][i]);
+                var textnode = document.createTextNode(resp['data']['name'][i]);
+                node.appendChild(textnode);
+                categories.appendChild(node);
+            } else {
+                for (let j=0; j < categories.querySelectorAll('li').length; j++) {
+                    if (categories.querySelectorAll('li')[j].id == resp['data']['parent_cat_id'][i]) {
+                        var node = document.createElement("LI");
+                        node.setAttribute('id', resp['data']['category_id'][i]);
+                        var textnode = document.createTextNode(resp['data']['name'][i]);
+                        node.appendChild(textnode);
+                        categories.querySelectorAll('li')[j].appendChild(node);
+                    }
+                }
+            }
+        }
+
+
+    </script>
 </body>
+
 </html>
-
-
-
-
