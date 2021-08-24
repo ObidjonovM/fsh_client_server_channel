@@ -1,34 +1,22 @@
 from .. import crud
 from .. import model_utils as utls
 
-
 class ProductPhotoTable:
 
     @staticmethod
     def insert(product_photo):
-        pk, val = crud.last_pk_value('product_photo').popitem()
-        sql = f'INSERT INTO product_photo ({pk}, '
-        values = f'VALUES ({val + 1}, '
-        for key in product_photo.keys():
-            sql += key + ', '
-            values += f'%({key})s, '
-
-        sql += 'active) '
-        values += 'TRUE)'
-        sql = sql + values
-        result = utls.send_to_db(sql, product_photo, False)
-
-        if result['success']:
-            result['data'] = {'photo_id' : val + 1}
-        else:
-            result['data'] = {}
-        return result
+        return crud.insert('product_photo', product_photo)
 
 
     @staticmethod
-    def get(photo_id):
-        return crud.get('product_photo', {'photo_id' : photo_id})
-
+    def get(product_id):
+        col_names = utls.get_column_names('product_photo')
+        sql = f'SELECT * FROM product_photo WHERE product_id = %(product_id)s'
+        sql += ' AND active = TRUE'
+        result = crud.run_SQL(sql, col_names, {'product_id' : product_id})
+        
+        return result
+            
 
     @staticmethod
     def get_all():

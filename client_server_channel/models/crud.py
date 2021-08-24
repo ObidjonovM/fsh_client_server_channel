@@ -76,6 +76,8 @@ def run_SQL(sql, cols, sql_params=None, fetchable=True):
     if result['success']:
         result['data'] = utls.list_tuples2tuple_lists(result['data'])
         result['data'] = utls.keyval_tuples2dict(tuple(cols), result['data'])
+        if 'active' in result['data']:
+            del result['data']['active']
     
     return result
 

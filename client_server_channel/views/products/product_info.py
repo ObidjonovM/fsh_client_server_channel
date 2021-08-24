@@ -26,11 +26,12 @@ def add():
 	if request.method == 'POST':
 		params = request.form
 
-		if 'foto' not in request.files:
+		if 'photos[]' not in request.files:
 			flash('No file part')
 			return redirect(request.url)
-		file = request.files['foto']
-        
+		files = request.files.getlist('photos[]')
+		for file in files:
+			file = file
 		if file.filename == '':
 			flash('No selected file')
 			return redirect(request.url)
@@ -40,7 +41,7 @@ def add():
 			result = ProductInfoC.add({
 				'name' : params['name'],
 				'model' : params['model'],
-				'foto' : request.files['foto'],
+				'photos' : request.files.getlist('photos[]'),
 				'category_id' : params['cat_id'],
 				'add_emp_id' : session['employee']['id'],
 				'modify_emp_id' : session['employee']['id']
@@ -66,7 +67,7 @@ def get(product_id):
 			utls.url_join(['products', 'product_info', 'get.html']),
 			product_info = product_info,
 			id_name = CategoriesC.get(product_info['data']['category_id']),
-			product_photo = ProductPhotoC.get(product_info['data']['photo_id'])
+			product_photo = ProductPhotoC.get(product_id)
 		)
 
 	return redirect(url_for('products.product_info.all'))

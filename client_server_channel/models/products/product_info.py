@@ -1,11 +1,28 @@
 from .. import crud
+from .. import model_utils as utls
 
 
 class ProductInfoTable:
 
     @staticmethod
     def insert(product_info):
-        return crud.insert('product_info', product_info)
+        pk, val = crud.last_pk_value('product_info').popitem()
+        sql = f'INSERT INTO product_info ({pk}, '
+        values = f'VALUES ({val + 1}, '
+        for key in product_info.keys():
+            sql += key + ', '
+            values += f'%({key})s, '
+
+        sql += 'active) '
+        values += 'TRUE)'
+        sql = sql + values
+        result = utls.send_to_db(sql, product_info, False)
+
+        if result['success']:
+            result['data'] = {'product_id' : val + 1}
+        else:
+            result['data'] = {}
+        return result
 
 
     @staticmethod

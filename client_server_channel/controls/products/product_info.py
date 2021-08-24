@@ -30,14 +30,28 @@ class ProductInfoC:
         now = datetime.now()
         product_info['date_added'] = now
         product_info['date_modified'] = now
-        add_photo = ProductPhotoTable.insert({
-            'name' : product_info['foto'].filename,
-            'photo_byte' : product_info['foto'].read(),
-            'add_emp_id' : product_info['add_emp_id'],
-            'modify_emp_id' : product_info['modify_emp_id'],
+        
+        add_result = ProductInfoTable.insert({
+            'name' : product_info['name'],
+            'model' : product_info['model'],
+            'category_id' : product_info['category_id'],
             'date_added' : now,
-            'date_modified' : now
+            'add_emp_id' : product_info['add_emp_id'],
+            'date_modified' : now,
+            'modify_emp_id' : product_info['modify_emp_id']
         })
+
+        for i in range(len(product_info['photos'])):
+            add_photo = ProductPhotoTable.insert({
+                'product_id' : add_result['data']['product_id'],
+                'name' : product_info['photos'][i].filename,
+                'photo_byte' : product_info['photos'][i].read(),
+                'main_photo' : False,
+                'add_emp_id' : product_info['add_emp_id'],
+                'modify_emp_id' : product_info['modify_emp_id'],
+                'date_added' : now,
+                'date_modified' : now
+            })
 
         if not add_photo['success']:
 
@@ -45,11 +59,6 @@ class ProductInfoC:
                 'success' : False,
                 'log_code' : utls.record_log(add_photo, 'add', 'crud_logs')
             }
-
-        del product_info['foto']
-        product_info['photo_id'] = add_photo['data']['photo_id']
-
-        add_result = ProductInfoTable.insert(product_info)
 
         return {
             'success' : add_result['success'],
