@@ -1,23 +1,23 @@
-from flask import Blueprint, render_template, json
+from flask import Blueprint, render_template, request, redirect
 from client_server_channel.controls import CategoriesC
 from .. import view_utils as utls
 
 core = Blueprint('core', __name__)
 
-@core.route('/')
+@core.route('/', methods = ['GET', 'POST'])
 def index():
-	all_cat = CategoriesC.get_all()
-	return render_template(utls.url_join(['core', 'index.html']),
-		all_cat = json.dumps(all_cat)
-	)
 
+	if request.method == 'GET':
+		return render_template(utls.url_join(['core', 'index.html']),
+			get_first_par_cat = CategoriesC.get_first_par_cat()
+		)
 
-@core.route('/category/<int:cat_id>')
-def category(cat_id):
-	return render_template(utls.url_join(['core', 'category.html']),
-		all_cat = CategoriesC.get_all(),
-		product_by_cat_id = CategoriesC.get_product_by_cat_id(cat_id)
-	)
+	if request.method == 'POST':
+		result = CategoriesC.get_sub_cat(request.json['cat_id'])
+		if result['success']:
+			return result
+
+		return redirect(request.url)
 
 
 @core.route('/about')

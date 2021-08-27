@@ -102,3 +102,13 @@ def delete(product_id):
 		return redirect(url_for('employees.login'))
 
 	return ProductInfoC.delete(product_id)
+
+
+@product_info.route('/<int:cat_id>', methods=['POST'])
+def product_cat(cat_id):
+
+	if request.method == 'POST':
+		result = ProductInfoC.get_product_by_cat_id(cat_id)
+
+		return result
+

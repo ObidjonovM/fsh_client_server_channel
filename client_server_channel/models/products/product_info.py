@@ -41,6 +41,18 @@ class ProductInfoTable:
 
 
     @staticmethod
+    def get_product_by_cat_id(cat_id):
+        sql = 'SELECT pi.product_id, pi.name, pp.photo_id, pp.name, pp.photo_byte FROM'
+        sql += ' product_info pi , product_photo pp WHERE pi.product_id = pp.product_id AND'
+        sql += f' pi.category_id = {cat_id} AND pi.active = TRUE'
+        sql += ' ORDER BY pi.product_id'
+
+        result = crud.run_SQL(sql, ['product_id', 'product_name', 'photo_id', 'photo_name', 'photo'])
+
+        return result
+
+
+    @staticmethod
     def get_names_by_ids(products_ids):
         result = crud.get_columns_by_ids(
             'product_info',

@@ -13,6 +13,7 @@
     <title>Document</title>
 
 </head>
+{{get_first_par_cat}}
 
 <body class="background-color">
 
@@ -45,7 +46,9 @@
 
         <div>
             <ul id="categories">
-
+            {% for i in range(get_first_par_cat['data']['category_id']|length) %}
+                <li><a onclick="get_sub_cat(this)" id="{{get_first_par_cat['data']['category_id'][i]}}">{{get_first_par_cat['data']['name'][i]}}</a></li>
+            {% endfor %}
             </ul>
 
 
@@ -54,23 +57,8 @@
         <!--  cardion menu category close -->
 
 
-        <div class="images-div">
-            <div>
-                <p>Shop by Category</p>
-                <img src="../../static/img/Bazaart_20210813_033305.png" alt="wifi_rezatka">
-                <a href="#">
-                    Shop now
-                </a>
-            </div>
-
-            <div>
-                <p>Shop by Category</p>
-                <img src="../../static/img/Bazaart_20210813_064046.png" alt="gaz_datchik">
-                <a href="#">
-                    Shop now
-                </a>
-
-            </div>
+        <div id="product_img" class="images-div">
+            
         </div>
     </div>
 
@@ -81,36 +69,9 @@
 
 
     <script src="../../static/js/library_js/jQuery.min.js"></script>
-    <script src="{{ url_for('static', filename='js/core/index.js') }}"></script>
+    <script src="/static/js/core/index.js"></script>
     <script src="/static/js/base.js"></script>
-    <script>
-        let data = ('{{ all_cat | safe }}');
-        let resp = JSON.parse(data)
-        // console.log(resp)
-        const categories = document.getElementById('categories');
-        for (let i = 0; i < resp['data']['category_id'].length; i++) {
-            // console.log(i)
-            if (resp['data']['parent_cat_id'][i] == 1) {
-                var node = document.createElement("LI");
-                node.setAttribute('id', resp['data']['category_id'][i]);
-                var textnode = document.createTextNode(resp['data']['name'][i]);
-                node.appendChild(textnode);
-                categories.appendChild(node);
-            } else {
-                for (let j=0; j < categories.querySelectorAll('li').length; j++) {
-                    if (categories.querySelectorAll('li')[j].id == resp['data']['parent_cat_id'][i]) {
-                        var node = document.createElement("LI");
-                        node.setAttribute('id', resp['data']['category_id'][i]);
-                        var textnode = document.createTextNode(resp['data']['name'][i]);
-                        node.appendChild(textnode);
-                        categories.querySelectorAll('li')[j].appendChild(node);
-                    }
-                }
-            }
-        }
 
-
-    </script>
 </body>
 
 </html>

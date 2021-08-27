@@ -89,6 +89,21 @@ class ProductInfoC:
 
 
     @staticmethod
+    def get_product_by_cat_id(cat_id): 
+        result = ProductInfoTable.get_product_by_cat_id(cat_id)
+        if len(result['data']) > 0:
+            result['data']['photo'] = utls.byte_to_base64(
+                result['data']['photo_name'],
+                result['data']['photo']
+            )
+        return {
+            'success' : result['success'],
+            'data' : result['data'],
+            'log_code' : utls.record_log(result, 'get_product_by_cat_id', 'crud_logs')
+        }
+
+
+    @staticmethod
     def get_ids_names():
         ids_names = ProductInfoTable.get_ids_names()
 
