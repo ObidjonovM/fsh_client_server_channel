@@ -6,6 +6,10 @@ function Viyti() {
     window.open('/employees/logout', '_self');
 }
 
-function logoutClient() {
+function Logout() {
     window.open('/clients/logout', '_self');
 }
+
+
+
+

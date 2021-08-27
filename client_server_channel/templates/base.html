@@ -9,18 +9,49 @@
     <title>Fido Smart Home</title>
 
     <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+
 
     {% endblock %}
 </head>
+
 <body class="background-color">
 
-    {% block body %}
-    <div class="fixed">
-        <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-        <button type="button" onclick="Viyti()" class="glavni-stranisa viyti">Выйти</button>
-    </div>
-    {% endblock %}
+{% block body %}
 
-    <script src="/static/js/base.js"></script>
+<div class="fixed">
+    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+
+    <form action="#" class="search-form">
+        <div>
+            <select name="" id="" class="select-search">
+                <option value="1">SmartHome</option>
+                <option value="2">Amazon1</option>
+                <option value="3">Amazon2</option>
+            </select>
+        </div>
+
+        <div>
+            <input type="search" class="input-search" placeholder="search..">
+        </div>
+
+        <div>
+            <button type="submit" class="input-search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
+
+    <button type="button" onclick="Viyti()" class="glavni-stranisa viyti">Выйти</button>
+
+<!--    <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>-->
+
+</div>
+
+{% endblock %}
+
+
+<script src="/static/js/base.js"></script>
 </body>
+
 </html>
