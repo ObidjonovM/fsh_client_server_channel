@@ -1,47 +1,31 @@
-`// sign in open model`
-const sign_in = document.getElementById('sign-in');
+// sign in open model
 
-sign_in.addEventListener('click', () => {
+function SignIn() {
     window.open('/clients/login', '_self');
-})
+}
+
 // sign in close model
 
 
-// Acardion js open
+// Acardion js and image open
+const link = document.querySelectorAll('.link');
+const submenu = document.querySelectorAll('.submenu');
+const icon = document.querySelectorAll('.fa-chevron-down');
+for (let i = 0; i < link.length; i++) {
 
-// $(function() {
-//     var Accordion = function(el, multiple) {
-//         this.el = el || {};
-//         this.multiple = multiple || false;
+    link[i].onclick = function () {
+        submenu[i].classList.toggle('active');
+        icon[i].classList.toggle('active');
+    }
 
-//         // Variables privadas
-//         var links = this.el.find('.link');
-//         // Evento
-//         links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
-//     }
+}
 
-//     Accordion.prototype.dropdown = function(e) {
-//         var $el = e.data.el;
-//         $this = $(this),
-//             $next = $this.next();
 
-//         $next.slideToggle();
-//         $this.parent().toggleClass('open');
-
-//         if (!e.data.multiple) {
-//             $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
-//         };
-//     }
-
-//     var accordion = new Accordion($('#accordion'), false);
-// });
-
-// Acardion js close
 const product_img = document.getElementById('product_img')
 var xhttp = new XMLHttpRequest();
 
 function get_sub_cat(e) {
-    let cat_id = { 'cat_id': e.id }
+    let cat_id = {'cat_id': e.id}
     xhttp.open('POST', '/', true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhttp.send(JSON.stringify(cat_id));
@@ -59,8 +43,8 @@ function get_sub_cat(e) {
                         let textnode = document.createTextNode(resp['data']['name'][i]);
                         a.appendChild(textnode);
                         li.appendChild(a);
+                        ul.appendChild(li);
                     }
-                    ul.appendChild(li)
                     e.parentNode.appendChild(ul)
                 }
             } else {
@@ -86,3 +70,5 @@ function get_sub_cat(e) {
         }
     }
 }
+
+// Acardion and image js close

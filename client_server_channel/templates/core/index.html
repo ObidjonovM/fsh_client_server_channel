@@ -1,76 +1,78 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Fido Smart Home</title>
+
     <link rel="stylesheet" href="/static/css/core/index.css">
     <link rel="stylesheet" href="/static/css/base.css">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
-    <title>Document</title>
-
 </head>
 {{get_first_par_cat}}
 
-<body class="background-color">
+<body class="background-color" id="src">
 
-    <div class="fixed">
-        <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-        <form action="#" class="search-form">
-            <div>
-                <select name="" id="" class="select-search">
-                    <option value="1">SmartHome</option>
-                    <option value="2">Amazon1</option>
-                    <option value="3">Amazon2</option>
-                </select>
-            </div>
 
-            <div>
-                <input type="search" class="input-search" placeholder="search..">
-            </div>
-
-            <div>
-                <button type="submit" class="input-search-button">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
-        </form>
-        <button class="sign-in" id="sign-in">Войти</button>
-    </div>
-
-    <div class="content-container">
-        <!--  cardion menu category opne -->
+<div class="fixed">
+    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+    <form action="#" class="search-form">
+        <div>
+            <select name="" id="" class="select-search">
+                <option value="1">SmartHome</option>
+                <option value="2">Amazon1</option>
+                <option value="3">Amazon2</option>
+            </select>
+        </div>
 
         <div>
-            <ul id="categories">
-            {% for i in range(get_first_par_cat['data']['category_id']|length) %}
-                <li><a onclick="get_sub_cat(this)" id="{{get_first_par_cat['data']['category_id'][i]}}">{{get_first_par_cat['data']['name'][i]}}</a></li>
-            {% endfor %}
-            </ul>
-
-
+            <input type="search" class="input-search" placeholder="search..">
         </div>
 
-        <!--  cardion menu category close -->
-
-
-        <div id="product_img" class="images-div">
-            
+        <div>
+            <button type="submit" class="input-search-button">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
+    </form>
+    <button class="sign-in" id="sign-in">Войти</button>
+</div>
+
+
+<h1>main page</h1>
+
+
+<div class="content-container">
+    <!--  cardion menu category opne -->
+
+
+    <ul id="categories">
+        {% for i in range(get_first_par_cat['data']['category_id']|length) %}
+        <li><a onclick="get_sub_cat(this)" id="{{get_first_par_cat['data']['category_id'][i]}}">{{get_first_par_cat['data']['name'][i]}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <!--  cardion menu category close -->
+
+
+    <!--    images open   -->
+    <div id="product_img" class="images-div">
+
     </div>
+    <!--    images close   -->
 
 
-    <h1>main page</h1>
+</div>
 
 
+<h1>main page</h1>
 
 
-    <script src="../../static/js/library_js/jQuery.min.js"></script>
-    <script src="/static/js/core/index.js"></script>
-    <script src="/static/js/base.js"></script>
+<script src="/static/js/core/index.js"></script>
+<script src="/static/js/base.js"></script>
 
 </body>
 
