@@ -12,10 +12,8 @@
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
 </head>
-{{get_first_par_cat}}
 
 <body class="background-color" id="src">
-
 
 <div class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
@@ -41,17 +39,18 @@
     <button class="sign-in" id="sign-in">Войти</button>
 </div>
 
-
-<h1>main page</h1>
-
-
 <div class="content-container">
     <!--  cardion menu category opne -->
 
 
-    <ul id="categories">
+    <ul id="categories" class="accordion">
         {% for i in range(get_first_par_cat['data']['category_id']|length) %}
-        <li><a onclick="get_sub_cat(this)" id="{{get_first_par_cat['data']['category_id'][i]}}">{{get_first_par_cat['data']['name'][i]}}</a>
+        <li class="li">
+            <a onmousedown="get_sub_cat(this)" onmouseup="open_sub_cat(this)" id="{{get_first_par_cat['data']['category_id'][i]}}" class="link">
+                {{get_first_par_cat['data']['name'][i]}}
+                <i class="fa fa-chevron-down i"></i>
+            </a>
+
         </li>
         {% endfor %}
     </ul>
