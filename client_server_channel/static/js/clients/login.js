@@ -5,7 +5,6 @@ function logoutClient() {
 document.getElementById('error-small').style.display = "none";
 
 
-
 const register_open = document.getElementById('register-open');
 
 register_open.addEventListener('click', () => {
