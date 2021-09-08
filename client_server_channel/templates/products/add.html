@@ -36,18 +36,6 @@
                 {%endfor%}
             </select>
 
-
-            <label for="client_id">Клиент</label>
-            <select name="client_id" id="client_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(clients_ids['data']['client_id']|length)%}
-                <option value="{{clients_ids['data']['client_id'][i]}}">
-                    {{clients_ids['data']['last_name'][i]}}
-                    {{clients_ids['data']['first_name'][i]}}
-                    {{clients_ids['data']['middle_name'][i]}}
-                </option>
-                {%endfor%}
-            </select>
         </div>
 
 

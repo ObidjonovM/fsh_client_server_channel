@@ -1,6 +1,9 @@
 from client_server_channel.models import ProductTable
+from .product_photo import ProductPhotoC
 from .. import control_utils as utls
 from datetime import datetime
+import requests as reqs
+import json
 
 
 class ProductC:
@@ -36,6 +39,10 @@ class ProductC:
     @staticmethod
     def get(serial_num):
         get_result = ProductTable.get(serial_num)
+        if len(get_result['data']) > 0:
+            photo_result = ProductPhotoC.get(get_result['data']['product_id'])
+            if len(photo_result['data']) > 0:
+                get_result['data']['photo'] = photo_result['data']['photo_byte']
 
         return {
             'success' : get_result['success'],
@@ -114,4 +121,86 @@ class ProductC:
         }
 
 
-    
+    @staticmethod
+    def get_my_products(client_id):
+        result = ProductTable.get_my_products(client_id)
+        headers = {'Content-Type': 'application/json; charset=utf8'}
+        ss_ser_num = {'serial_number' : []}
+        sg_ser_num = {'serial_number' : []}
+
+        for i in range(len(result['data']['product_id'])):
+
+            if result['data']['product_id'][i] == 1:
+                ss_ser_num['serial_number'].append(result['data']['serial_num'][i])
+
+            if result['data']['product_id'][i] == 2:
+                sg_ser_num['serial_number'].append(result['data']['serial_num'][i])
+
+        ss_params = json.dumps(ss_ser_num)
+        sg_params = json.dumps(sg_ser_num)
+
+        if len(result['data']) > 0:
+            result['data']['photo'] = utls.byte_to_base64(
+                list(result['data']['photo_name']),
+                list(result['data']['photo'])
+            )
+
+            ss_resp = reqs.post(
+               'http://127.0.0.1:5001/ss_get_status',
+               data = ss_params,
+               headers = headers
+               )
+
+            sg_resp = reqs.post(
+               'http://127.0.0.1:5001/sg_get_status',
+               data = sg_params,
+               headers = headers
+               )
+
+        del result['data']['product_id']
+        del result['data']['photo_name']
+
+        return {
+            'success' : result['success'],
+            'data' : result['data'],
+            'ss_action' : ss_resp.json()['data'],
+            'sg_action' : sg_resp.json()['data'],
+            'log_code' : utls.record_log(result, 'get_my_products', 'crud_logs')
+        }
+
+
+    @staticmethod
+    def get_logs(ser_num, product_id, start_date, end_date):
+        headers = {'Content-Type': 'application/json; charset=utf8'}
+
+        if str(product_id) == '1':
+            ss_params = json.dumps({'serial_num' : ser_num,
+                                    'start_date' : start_date,
+                                    'end_date' : end_date
+            })
+
+            ss_resp = reqs.post(
+                'http://127.0.0.1:5001/ss_get_logs',
+                data = ss_params,
+                headers = headers
+                )
+            
+            return {
+                'action' : ss_resp.json()['data']
+            }
+
+        if str(product_id) == '2':
+            sg_params = json.dumps({'serial_num' : ser_num,
+                                    'start_date' : start_date,
+                                    'end_date' : end_date
+            })
+
+            sg_resp = reqs.post(
+                'http://127.0.0.1:5001/sg_get_logs',
+                data = sg_params,
+                headers = headers
+                )
+
+            return {
+                'action' : sg_resp.json()['data']
+            }

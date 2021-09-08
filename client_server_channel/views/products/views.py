@@ -7,6 +7,7 @@ from .product_info import product_info
 from .dealer import dealer
 from .status import status
 from .firmware import firmware
+from .product_photo import product_photo
 
 
 products = Blueprint('products', __name__, url_prefix='/products')
@@ -15,6 +16,7 @@ products.register_blueprint(product_info)
 products.register_blueprint(dealer)
 products.register_blueprint(status)
 products.register_blueprint(firmware)
+products.register_blueprint(product_photo)
 
 
 @products.route('/products')
@@ -38,7 +40,6 @@ def add():
 			utls.url_join(['products', 'add.html']),
 			products_ids = ProductInfoC.get_ids_names(),
 			dealers_ids = DealerC.get_ids_names(),
-			clients_ids = ClientC.get_ids_names(),
 			firmwares_ids = FirmwareC.get_ids_names(),
 			status_ids = ProductStatusC.get_ids_names()
 		)
@@ -48,7 +49,6 @@ def add():
 		result = ProductC.add({
 			'product_id' : params['product_id'],
 			'dealer_id' : params['dealer_id'],
-			'client_id' : params['client_id'],
 			'manufactured_date' : params['manufactured_date'],
 			'firmware_id' : params['fw_id'],
 			'status_id' : params['status_id'],
@@ -126,7 +126,6 @@ def update(serial_num):
 				dealers_ids = DealerC.get_ids_names(),
 				status_ids = ProductStatusC.get_ids_names(),
 				product_name = ProductInfoC.get(product_info['data']['product_id']),
-				clients_ids = ClientC.get(product_info['data']['client_id']),
 				firmwares_ids = FirmwareC.get(product_info['data']['firmware_id']),
 				resp_emp_id = session['employee']['id']
 			)

@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from client_server_channel.controls import ClientC
+from client_server_channel.controls import ClientC, ProductC
 from .. import view_utils as utls
 from .subscription import subscription
 
@@ -109,6 +109,49 @@ def account():
 	return render_template(utls.url_join(['clients','account.html']),
 		first_name = session['client']['first_name']
 	)
+
+
+@clients.route('/my_products', methods=['GET', 'POST'])
+def my_products():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'GET':
+		return render_template(
+			utls.url_join(['clients', 'my_products.html']),
+			my_products = ProductC.get_my_products(session['client']['id'])
+		)
+
+	if request.method == 'POST':
+		result = ProductC.update({
+			'serial_num' : request.form['ser_num'],
+			'client_id' : session['client']['id']
+		})
+
+		if result['success']:
+			return redirect(url_for('clients.my_products'))
+
+		return result
+
+
+@clients.route('/info/<ser_num>', methods=['GET', 'POST'])
+def product_info(ser_num):
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'GET':
+		return render_template(
+			utls.url_join(['clients', 'product_info.html']),
+			my_product = ProductC.get(ser_num)
+		)
+
+	if request.method == 'POST':
+		result = ProductC.get_logs(ser_num,
+								request.form['product_id'],
+								request.form['start_date'],
+								request.form['end_date']
+							)
+		return result
 
 
 @clients.route('/get')

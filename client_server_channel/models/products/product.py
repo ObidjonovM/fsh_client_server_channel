@@ -116,3 +116,16 @@ class ProductTable:
     @staticmethod
     def delete(serial_num):
         return crud.delete('products', {'serial_num' : serial_num})
+
+
+    @staticmethod
+    def get_my_products(client_id):
+        sql = 'SELECT p.serial_num, p.product_id, pp.photo_byte, pp.name, '
+        sql += 'p.mac_address, p.default_login, p.default_password, '
+        sql += 'p.login, p.password, ap_login, ap_password, p.manufactured_date FROM '
+        sql += 'products p, product_photo pp WHERE '
+        sql += f'p.client_id = {client_id} AND p.product_id = pp.product_id ORDER BY p.serial_num'
+
+        return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo', 'photo_name', 
+                                'mac_address', 'default_login', 'default_password',
+                                'login', 'password', 'ap_login', 'ap_password', 'manufactured_date'])
