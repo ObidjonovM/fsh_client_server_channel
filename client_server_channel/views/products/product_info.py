@@ -30,25 +30,26 @@ def add():
 			flash('No file part')
 			return redirect(request.url)
 		files = request.files.getlist('photos[]')
+
 		for file in files:
-			file = file
-		if file.filename == '':
-			flash('No selected file')
-			return redirect(request.url)
+			if file.filename == '':
+				flash('No selected file')
+				return redirect(request.url)
 
-		if file and allowed_file(file.filename):
+			if not file or not allowed_file(file.filename):
+				return redirect(request.url)
 			
-			result = ProductInfoC.add({
-				'name' : params['name'],
-				'model' : params['model'],
-				'photos' : request.files.getlist('photos[]'),
-				'category_id' : params['cat_id'],
-				'add_emp_id' : session['employee']['id'],
-				'modify_emp_id' : session['employee']['id']
-			})
+		result = ProductInfoC.add({
+			'name' : params['name'],
+			'model' : params['model'],
+			'photos' : request.files.getlist('photos[]'),
+			'category_id' : params['cat_id'],
+			'add_emp_id' : session['employee']['id'],
+			'modify_emp_id' : session['employee']['id']
+		})
 
-			if result['success']:
-				return redirect(url_for('products.product_info.all'))
+		if result['success']:
+			return redirect(url_for('products.product_info.all'))
 		
 		return redirect(request.url)
 
