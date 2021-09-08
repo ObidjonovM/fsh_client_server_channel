@@ -125,6 +125,7 @@ def my_products():
 	if request.method == 'POST':
 		result = ProductC.update({
 			'serial_num' : request.form['ser_num'],
+			'description' : request.form['desc'],
 			'client_id' : session['client']['id']
 		})
 

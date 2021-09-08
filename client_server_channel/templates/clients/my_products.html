@@ -13,8 +13,10 @@
         {% for i in range(my_products['data']['serial_num']|length)%}
         <img src="{{my_products['data']['photo'][i]}}" width="20%">
         {% endfor %}
-        <label for="ser_num"></label>
+        <label for="ser_num">serial number</label>
         <input type="text" id="ser_num" name="ser_num">
+        <label for="desc">description</label>
+        <input type="text" id="desc" name="desc">
         <input type="submit" value="Submit">
     </form>
 </body>

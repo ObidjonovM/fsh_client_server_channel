@@ -442,6 +442,7 @@ CREATE TABLE IF NOT EXISTS products (
 	password VARCHAR(30) UNIQUE,
 	ap_login VARCHAR(30) UNIQUE NOT NULL,
 	ap_password VARCHAR(30) UNIQUE NOT NULL,
+	description TEXT,
 	dealer_id INT CHECK (dealer_id > 0),
 	client_id INT CHECK (client_id > 0),
 	manufactured_date DATE NOT NULL,

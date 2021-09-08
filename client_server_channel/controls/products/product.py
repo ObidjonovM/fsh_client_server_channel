@@ -128,37 +128,39 @@ class ProductC:
         ss_ser_num = {'serial_number' : []}
         sg_ser_num = {'serial_number' : []}
 
-        for i in range(len(result['data']['product_id'])):
-
-            if result['data']['product_id'][i] == 1:
-                ss_ser_num['serial_number'].append(result['data']['serial_num'][i])
-
-            if result['data']['product_id'][i] == 2:
-                sg_ser_num['serial_number'].append(result['data']['serial_num'][i])
-
-        ss_params = json.dumps(ss_ser_num)
-        sg_params = json.dumps(sg_ser_num)
-
         if len(result['data']) > 0:
+
+            for i in range(len(result['data']['product_id'])):
+
+                if result['data']['product_id'][i] == 1:
+                    ss_ser_num['serial_number'].append(result['data']['serial_num'][i])
+
+                if result['data']['product_id'][i] == 2:
+                    sg_ser_num['serial_number'].append(result['data']['serial_num'][i])
+
+
             result['data']['photo'] = utls.byte_to_base64(
                 list(result['data']['photo_name']),
                 list(result['data']['photo'])
             )
 
-            ss_resp = reqs.post(
-               'http://127.0.0.1:5001/ss_get_status',
-               data = ss_params,
-               headers = headers
-               )
+            del result['data']['product_id']
+            del result['data']['photo_name']
 
-            sg_resp = reqs.post(
-               'http://127.0.0.1:5001/sg_get_status',
-               data = sg_params,
-               headers = headers
-               )
+        ss_params = json.dumps(ss_ser_num)
+        sg_params = json.dumps(sg_ser_num)
 
-        del result['data']['product_id']
-        del result['data']['photo_name']
+        ss_resp = reqs.post(
+            'http://127.0.0.1:5001/ss_get_status',
+            data = ss_params,
+            headers = headers
+            )
+
+        sg_resp = reqs.post(
+            'http://127.0.0.1:5001/sg_get_status',
+            data = sg_params,
+            headers = headers
+            )
 
         return {
             'success' : result['success'],
