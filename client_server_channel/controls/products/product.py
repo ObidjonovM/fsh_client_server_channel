@@ -125,18 +125,18 @@ class ProductC:
     def get_my_products(client_id):
         result = ProductTable.get_my_products(client_id)
         headers = {'Content-Type': 'application/json; charset=utf8'}
-        ss_ser_num = {'serial_number' : []}
-        sg_ser_num = {'serial_number' : []}
+        ss_ser_num = {'serial_num' : []}
+        sg_ser_num = {'serial_num' : []}
 
         if len(result['data']) > 0:
 
             for i in range(len(result['data']['product_id'])):
 
                 if result['data']['product_id'][i] == 1:
-                    ss_ser_num['serial_number'].append(result['data']['serial_num'][i])
+                    ss_ser_num['serial_num'].append(result['data']['serial_num'][i])
 
                 if result['data']['product_id'][i] == 2:
-                    sg_ser_num['serial_number'].append(result['data']['serial_num'][i])
+                    sg_ser_num['serial_num'].append(result['data']['serial_num'][i])
 
 
             result['data']['photo'] = utls.byte_to_base64(
@@ -144,7 +144,6 @@ class ProductC:
                 list(result['data']['photo'])
             )
 
-            del result['data']['product_id']
             del result['data']['photo_name']
 
         ss_params = json.dumps(ss_ser_num)
@@ -206,3 +205,29 @@ class ProductC:
             return {
                 'action' : sg_resp.json()['data']
             }
+
+
+    @staticmethod
+    def turn_on(ser_num):
+        headers = {'Content-Type': 'application/json; charset=utf8'}
+
+        resp = reqs.post(
+            'http://127.0.0.1:5001/turn_on',
+            data = json.dumps(ser_num),
+            headers=headers
+        )
+
+        return resp.json()
+
+
+    @staticmethod
+    def turn_off(ser_num):
+        headers = {'Content-Type': 'application/json; charset=utf8'}
+
+        resp = reqs.post(
+            'http://127.0.0.1:5001/turn_off',
+            data = json.dumps(ser_num),
+            headers=headers
+        )
+
+        return resp.json()

@@ -11,7 +11,11 @@
 
     <form action="{{url_for('clients.my_products')}}" method="post">
         {% for i in range(my_products['data']['serial_num']|length)%}
-        <img src="{{my_products['data']['photo'][i]}}" width="20%">
+        <img src="{{my_products['data']['photo'][i]}}" ser_num = "{{my_products['data']['serial_num'][i]}}" width="20%">
+        {% if my_products['data']['product_id'][i] == 1 %}
+        <input type="button" value="On" onclick="turnOn(this)" ser_num = "{{my_products['data']['serial_num'][i]}}">
+        <input type="button" value="Off" onclick="turnOff(this)" ser_num = "{{my_products['data']['serial_num'][i]}}">
+        {% endif %}
         {% endfor %}
         <label for="ser_num">serial number</label>
         <input type="text" id="ser_num" name="ser_num">
@@ -20,4 +24,33 @@
         <input type="submit" value="Submit">
     </form>
 </body>
+<script>
+var xhttp = new XMLHttpRequest();
+function turnOn(e) {
+    let ser_num = {'serial_num': e.getAttribute('ser_num')}
+    xhttp.open('POST', '/clients/smart_socket/on', true);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify(ser_num));
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let resp = JSON.parse(this.responseText);
+            console.log(resp)
+        }
+    }
+}
+
+function turnOff(e) {
+    let ser_num = {'serial_num': e.getAttribute('ser_num')}
+    xhttp.open('POST', '/clients/smart_socket/off', true);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify(ser_num));
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let resp = JSON.parse(this.responseText);
+            console.log(resp)
+        }
+    }
+}
+
+</script>
 </html>

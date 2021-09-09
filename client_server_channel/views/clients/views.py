@@ -135,6 +135,28 @@ def my_products():
 		return result
 
 
+@clients.route('/smart_socket/on', methods=['POST'])
+def turn_on():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ProductC.turn_on(request.json)
+
+		return result
+
+
+@clients.route('/smart_socket/off', methods=['POST'])
+def turn_off():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ProductC.turn_off(request.json)
+
+		return result
+
+
 @clients.route('/info/<ser_num>', methods=['GET', 'POST'])
 def product_info(ser_num):
 	if not 'clientname' in session:
