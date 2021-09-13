@@ -138,14 +138,6 @@ class ProductC:
                 if result['data']['product_id'][i] == 2:
                     sg_ser_num['serial_num'].append(result['data']['serial_num'][i])
 
-
-            result['data']['photo'] = utls.byte_to_base64(
-                list(result['data']['photo_name']),
-                list(result['data']['photo'])
-            )
-
-            del result['data']['photo_name']
-
         ss_params = json.dumps(ss_ser_num)
         sg_params = json.dumps(sg_ser_num)
 

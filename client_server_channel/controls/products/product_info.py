@@ -2,6 +2,9 @@ from client_server_channel.models import (ProductInfoTable, CategoriesTable,
                                         ProductPhotoTable)
 from .. import control_utils as utls
 from datetime import datetime
+import io
+import base64
+from PIL import Image
 
 
 class ProductInfoC:
@@ -30,7 +33,6 @@ class ProductInfoC:
         now = datetime.now()
         product_info['date_added'] = now
         product_info['date_modified'] = now
-        
         add_result = ProductInfoTable.insert({
             'name' : product_info['name'],
             'model' : product_info['model'],
@@ -41,12 +43,29 @@ class ProductInfoC:
             'modify_emp_id' : product_info['modify_emp_id']
         })
 
-        for i in range(len(product_info['photos'])):
+        for i in range(len(product_info['other_photos'])):
+            if product_info['other_photos'][i] in product_info['main_photo']:
+                star = product_info['other_photos'][i].find("data:image/")
+                end = product_info['other_photos'][i].find(";base64")
+                format_img = product_info['other_photos'][i][star + 11:end]
+                base64_str = "'" + product_info['other_photos'][i][end + 8:]  + "'"
+                main_photo = True
+                buffer = io.BytesIO()
+                imgdata = base64.b64decode(base64_str)
+                img = Image.open(io.BytesIO(imgdata))
+                new_img = img.resize((379, 304))  # x, y
+                new_img.save(buffer, format=format_img)
+                img_b64 = base64.b64encode(buffer.getvalue())
+                main_b64_photo = "data:image/" + format_img + ";base64," + str(img_b64)[2:-1]
+                photo_byte = main_b64_photo
+            else:
+                main_photo = False
+                photo_byte = product_info['other_photos'][i]
+            
             add_photo = ProductPhotoTable.insert({
                 'product_id' : add_result['data']['product_id'],
-                'name' : product_info['photos'][i].filename,
-                'photo_byte' : product_info['photos'][i].read(),
-                'main_photo' : False,
+                'photo_byte' : photo_byte,
+                'main_photo' : main_photo,
                 'add_emp_id' : product_info['add_emp_id'],
                 'modify_emp_id' : product_info['modify_emp_id'],
                 'date_added' : now,
@@ -89,13 +108,9 @@ class ProductInfoC:
 
 
     @staticmethod
-    def get_product_by_cat_id(cat_id): 
-        result = ProductInfoTable.get_product_by_cat_id(cat_id)
-        if len(result['data']) > 0:
-            result['data']['photo'] = utls.byte_to_base64(
-                result['data']['photo_name'],
-                result['data']['photo']
-            )
+    def get_products_by_cat_id(cat_id): 
+        result = ProductInfoTable.get_products_by_cat_id(cat_id)
+
         return {
             'success' : result['success'],
             'data' : result['data'],

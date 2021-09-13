@@ -22,11 +22,6 @@ class ProductPhotoC:
     @staticmethod
     def get(product_id):
         get_result = ProductPhotoTable.get(product_id)
-        
-        get_result['data']['photo_byte'] = utls.byte_to_base64(
-            list(get_result['data']['name']),
-            list(get_result['data']['photo_byte'])
-        )
 
         return {
             'success' : get_result['success'],

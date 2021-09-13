@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import ProductInfoC, CategoriesC, ProductPhotoC
 from .. import view_utils as utls
 
@@ -6,9 +6,8 @@ product_info = Blueprint('product_info', __name__, url_prefix='/info')
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+def allowed_file(format):
+    return format.lower() in ALLOWED_EXTENSIONS
 
 @product_info.route('/add', methods=['GET', 'POST'])
 def add():
@@ -24,34 +23,44 @@ def add():
 		)
 
 	if request.method == 'POST':
-		params = request.form
+		params = request.json
+		if not params['other_photos']:
+			return {
+				'success' : False,
+				'comment' : "Fayl tanlanmadi"
+			}
 
-		if 'photos[]' not in request.files:
-			flash('No file part')
-			return redirect(request.url)
-		files = request.files.getlist('photos[]')
+		for file in params['other_photos']:
+			star = file.find("data:image/")
+			end = file.find(";base64")
+			format_img = file[star + 11:end]
 
-		for file in files:
-			if file.filename == '':
-				flash('No selected file')
-				return redirect(request.url)
+			if file and not allowed_file(format_img):
+				return {
+					'success' : False,
+					'comment' : "Siz faqat png, jpg, jpeg, gif formatdagi fayllarni saqlashingiz mumkin"
+				}
 
-			if not file or not allowed_file(file.filename):
-				return redirect(request.url)
-			
 		result = ProductInfoC.add({
 			'name' : params['name'],
 			'model' : params['model'],
-			'photos' : request.files.getlist('photos[]'),
+			'main_photo' : params['main_photo'],
+			'other_photos' : params['other_photos'],
 			'category_id' : params['cat_id'],
 			'add_emp_id' : session['employee']['id'],
 			'modify_emp_id' : session['employee']['id']
 		})
 
 		if result['success']:
-			return redirect(url_for('products.product_info.all'))
+			return {
+				'success' : True,
+				'comment' : ''
+			}
 		
-		return redirect(request.url)
+		return {
+			'success' : False,
+			'comment' : 'Serverda xatolik'
+		}
 
 
 
@@ -109,7 +118,7 @@ def delete(product_id):
 def product_cat(cat_id):
 
 	if request.method == 'POST':
-		result = ProductInfoC.get_product_by_cat_id(cat_id)
+		result = ProductInfoC.get_products_by_cat_id(cat_id)
 
 		return result
 
