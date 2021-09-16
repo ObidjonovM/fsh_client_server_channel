@@ -12,7 +12,7 @@ const close = document.getElementById('close');
 const closeBtn = document.getElementById('closeBtn');
 
 products.addEventListener('click', () => {
-    document.getElementById('modal-products').style.display = "block";
+    window.open('/clients/my_products', '_self');
 })
 
 close.addEventListener('click', () => {
