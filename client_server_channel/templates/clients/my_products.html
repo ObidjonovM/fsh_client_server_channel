@@ -1,56 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {{my_products}}
+{% extends 'base.html' %}
 
-    <form action="{{url_for('clients.my_products')}}" method="post">
+{% block head %}
+{{super()}}
+    <link rel="stylesheet" href="/static/css/clients/my_products.css">
+    <title>Document</title>
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div class="container">
+
+    <div class="header">
+        <h2>My Product(s)</h2>
+    </div>
+
+    <form action="{{url_for('clients.my_products')}}" method="post" class="form">
+
         {% for i in range(my_products['data']['serial_num']|length)%}
-        <img src="{{my_products['data']['photo'][i]}}" ser_num = "{{my_products['data']['serial_num'][i]}}" width="20%">
+        <img src="{{my_products['data']['photo'][i]}}" ser_num="{{my_products['data']['serial_num'][i]}}" width="20%">
         {% if my_products['data']['product_id'][i] == 1 %}
-        <input type="button" value="On" onclick="turnOn(this)" ser_num = "{{my_products['data']['serial_num'][i]}}">
-        <input type="button" value="Off" onclick="turnOff(this)" ser_num = "{{my_products['data']['serial_num'][i]}}">
+        <input type="button" value="On" onclick="turnOn(this)" ser_num="{{my_products['data']['serial_num'][i]}}">
+        <input type="button" value="Off" onclick="turnOff(this)" ser_num="{{my_products['data']['serial_num'][i]}}">
         {% endif %}
         {% endfor %}
-        <label for="ser_num">serial number</label>
-        <input type="text" id="ser_num" name="ser_num">
-        <label for="desc">description</label>
-        <input type="text" id="desc" name="desc">
-        <input type="submit" value="Submit">
-    </form>
-</body>
-<script>
-var xhttp = new XMLHttpRequest();
-function turnOn(e) {
-    let ser_num = {'serial_num': e.getAttribute('ser_num')}
-    xhttp.open('POST', '/clients/smart_socket/on', true);
-    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhttp.send(JSON.stringify(ser_num));
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let resp = JSON.parse(this.responseText);
-            console.log(resp)
-        }
-    }
-}
 
-function turnOff(e) {
-    let ser_num = {'serial_num': e.getAttribute('ser_num')}
-    xhttp.open('POST', '/clients/smart_socket/off', true);
-    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhttp.send(JSON.stringify(ser_num));
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let resp = JSON.parse(this.responseText);
-            console.log(resp)
+        <div class="form-control">
+
+            <label for="ser_num">Серийный номер</label>
+            <input type="text" id="ser_num" name="ser_num">
+        </div>
+
+        <div class="form-control">
+
+            <label for="desc">Описание</label>
+            <textarea type="text" id="desc" name="desc"></textarea>
+
+        </div>
+
+        <input type="submit" value="Submit" class="add-type-submit">
+
+    </form>
+
+
+</div>
+
+<script>
+
+    var xhttp = new XMLHttpRequest();
+
+    function turnOn(e) {
+        let ser_num = {'serial_num': e.getAttribute('ser_num')}
+        xhttp.open('POST', '/clients/smart_socket/on', true);
+        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        xhttp.send(JSON.stringify(ser_num));
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let resp = JSON.parse(this.responseText);
+                console.log(resp)
+            }
         }
     }
-}
+
+    function turnOff(e) {
+        let ser_num = {'serial_num': e.getAttribute('ser_num')}
+        xhttp.open('POST', '/clients/smart_socket/off', true);
+        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        xhttp.send(JSON.stringify(ser_num));
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let resp = JSON.parse(this.responseText);
+                console.log(resp)
+            }
+        }
+    }
 
 </script>
-</html>
+
+{% endblock %}
