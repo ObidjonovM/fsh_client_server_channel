@@ -11,36 +11,19 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
-    <div class="header">
+<div class="add-container">
+    <div class="add-header">
         <h2>Информация о продукте</h2>
     </div>
 
-    <form id="myForm" enctype="multipart/form-data">
+    <form id="myForm" enctype="multipart/form-data" class="add-form">
         <div class="form-control">
             <label for="name">Наименование</label>
             <input type="text" name="name" placeholder="Введите наименование..." id="name" required/>
-        </div>
 
-        <div class="form-control">
             <label for="model">Модель</label>
             <input type="text" name="model" id="model" placeholder="Введите модель..." required/>
-        </div>
-        <div class="form-control">
-            <label for="main_photo">Фото</label>
-            <div id="div_main_photo">
-            
-            </div>
-        </div>
-        
-        <div class="form-control">
-            <label for="other_photos">Фото</label>
-            <input type="file" name="other_photos[]" id="other_photos" multiple onchange="set_other_photos(this)"/>
-        </div>
-        <div id="div_other_photos">
 
-        </div>
-        <div class="form-control">
             <label for="cat_id">Категория</label>
             <select name="cat_id" id="cat_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
@@ -48,11 +31,28 @@
                 <option value="{{ids_names['data']['category_id'][i]}}">{{ids_names['data']['name'][i]}}</option>
                 {%endfor%}
             </select>
+
+            <label for="other_photos">Фото</label>
+            <input type="file" name="other_photos[]" id="other_photos" multiple onchange="set_other_photos(this)"/>
+
+        </div>
+
+        <div class="form-control">
+            <label for="main_photo">Главное фото</label>
+            <div id="div_main_photo">
+
+            </div>
+
+            <label for="main_photo">Другие фотографии</label>
+            <div id="div_other_photos">
+
+            </div>
+
         </div>
 
 
-        <input type="button" class="add-type-submit" onclick="addForm()" value="Сохранить"/>
-        <input type="button" onclick="otmenFunction()" class="add-type-submit2" value="Отмена"/>
+        <input type="button" class="add-submit" onclick="addForm()" value="Сохранить"/>
+        <input type="button" onclick="otmenFunction()" class="add-submit2" value="Отмена"/>
     </form>
 </div>
 

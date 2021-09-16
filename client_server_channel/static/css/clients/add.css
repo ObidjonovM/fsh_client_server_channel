@@ -56,12 +56,12 @@
     padding: 10px;
 }
 
-.form-control input:focus, select:focus {
+.form-control input:focus {
     outline: 0;
     border-color: #777;
 }
 
-.add-submit, .add-submit2, .add-submit3 {
+.add-submit{
     background-color: #006666;
     border: 2px solid #006666;
     border-radius: 4px;
@@ -77,6 +77,6 @@
     bottom: 4px;
 }
 
-.add-submit:hover, .add-submit2:hover, .add-submit3:hover {
+.add-submit:hover {
     background-color: #044f66;
 }
