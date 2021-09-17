@@ -1,22 +1,145 @@
-.container {
-    position: absolute;
-    z-index: 999;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    width: 400px;
-    max-width: 100%;
+.full-container {
+    width: 100%;
+    height: auto;
 }
 
-.header {
-    border-bottom: 1px solid #232F3E;
-    background-color:#374a62;
-    padding: 15px 40px;
+.container {
+    max-width: 1300px;
+    width: 1300px;
+    margin: 10px auto;
+}
+
+section {
+    max-width: 1300px;
+    width: 1300px;
+    margin: 35px auto;
+}
+
+.wifi-razvetka-glavni-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 18px;
+    margin-top: 20px;
+}
+
+.wifi-razvetka-glavni-div .w-r-border {
+    height: 1px;
+    width: 123px;
+    border-top: 1px solid hsla(0,3%,23%,.3);
+    margin: 0 14px;
+}
+
+.wifi-razvetka-glavni-div .wifi-razvetka-name {
+    height: 32px;
+    line-height: 32px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+}
+
+
+.all-products-content {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.all-products {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    display: flex;
+}
+
+.all-products .img-div {
+    max-width: 290px;
+    min-height: 120px;
+    height: 345px;
+    background-color: #fff;
+    margin: 20px;
+    cursor: pointer;
+    padding: 45px 30px;
+
+}
+
+.all-products .img-div a {
+    font-size: 13px;
+    color: #007185;
+    text-decoration: none;
+    font-family: "Amazon Ember",Arial,sans-serif;
+}
+
+.all-products .img-div a:hover {
+    text-decoration: underline;
+    color: #C7511F;
+}
+
+.all-products img {
+    width: 100%;
+    min-height: 120px;
+    /*height: 245px;*/
+    height: 255px;
+    cursor: pointer;
+    margin-top: 15px;
+    background-color: #eaeded;
+    margin-bottom: 10px;
+}
+
+.all-products img:hover{
+    background-color: #dde0e0;
+}
+
+.all-products input {
+    width: 288px;
+    height: 30px;
+    background-color: #fff;
+    border: none;
+    border-radius: 2px;
+    color: #1b232e;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0px 0px 4px 1px rgba(0,0,0,.2);
+}
+
+.on {
+    margin-top: 370px;
+    float: left;
+    margin-left: -309px;
+}
+
+.off {
+    float: left;
+    margin-left: -288px;
+    margin-top: 404px;
+}
+
+.all-products .on:focus, .off:focus  {
+    background-color: red;
     color: white;
+}
+
+.all-products .description {
+    width: 229px;
+    height: auto;
+    text-align: left;
+    font-size: 15px;
+    color: #1b232e;
+    font-weight: 600;
+    /*margin-left: -280px;*/
+    margin-top: -34px;
+}
+
+
+
+/****** Modal open ******/
+.header {
+    text-align: center;
+    color: #374a62;
+    padding: 15px 40px;
+    font-size: 22px;
 }
 
 .header h2 {
@@ -24,7 +147,13 @@
 }
 
 .form {
-    padding: 30px 40px;
+    padding: 30px 0px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
 }
 
 .form-control {
@@ -35,19 +164,25 @@
 
 .form-control label {
     margin-bottom: 0;
+    color: #374a62;
+    font-weight: 600;
 }
 
 .form-control input, textarea {
-    border: 2px solid #c3c3c3;
+    border: 2px solid #506886;
     border-radius: 4px;
     display: block;
     font-family: inherit;
     font-size: 14px;
-    padding: 10px;
+    padding: 12px;
     width: 100%;
 }
 
-.form .add-type-submit {
+.form-control input:focus, textarea:focus{
+    border: 2px solid #374a62;
+}
+
+.form .add-type-submit, .add-type-submit2 {
     background-color: #374a62;
     border: 2px solid #374a62;
     border-radius: 4px;
@@ -56,13 +191,110 @@
     font-family: inherit;
     font-size: 16px;
     padding: 10px;
-    margin-top: 20px;
+    margin: 20px;
     width: 100%;
     cursor: pointer;
 }
 
-.add-type-submit:hover {
+.add-type-submit:hover, .add-type-submit2:hover {
     background-color: #232F3E;
     transition: all .3s;
 }
+
+.show-modal {
+    margin: 40px auto;
+    width: 213px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: white;;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, .2);
+}
+
+.show-modal:hover {
+    background-color: #dde0e0;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
+    transition: all .2s ease-in-out;
+}
+
+.show-modal .add-img {
+    width: 14px;
+}
+
+.show-modal p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #5a5555;
+    padding: 12px 3px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1.2rem;
+    right: 1rem;
+    font-size: 39px;
+    color: #374a62;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 40px;
+    height: 40px;
+}
+
+.close-modal:focus{
+    border: 1px solid #9a9a6f;
+    box-shadow: 0px 0px 1px 1px #e4e418;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 33%;
+    background-color: white;
+    padding: 4rem;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+@media screen and (max-width: 600px) {
+    .modal {
+        width: 100%;
+        padding: 4rem;
+        border-radius: 2px;
+        margin: 2px;
+    }
+
+    .form-control input, textarea {
+        border: 2px solid #c3c3c3;
+        border-radius: 4px;
+        display: block;
+        font-family: inherit;
+        font-size: 14px;
+        padding: 10px;
+        width: 100%;
+    }
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+}
+/****** Modal close ******/
 

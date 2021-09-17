@@ -2,50 +2,101 @@
 
 {% block head %}
 {{super()}}
-    <link rel="stylesheet" href="/static/css/clients/my_products.css">
-    <title>Document</title>
+<link rel="stylesheet" href="/static/css/clients/my_products.css">
+<title>Document</title>
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<div class="container">
+<div class="full-container">
 
-    <div class="header">
-        <h2>My Product(s)</h2>
+    <div class="container">
+        <section>
+    <button class="show-modal">
+        <img src="../../static/img/add_img.svg" class="add-img" alt="">
+        <p>ДОБАВИТ ПРОДУКТ</p>
+    </button>
+        </section>
     </div>
 
-    <form action="{{url_for('clients.my_products')}}" method="post" class="form">
 
+    <div class="container">
         {% for i in range(my_products['data']['serial_num']|length)%}
-        <img src="{{my_products['data']['photo'][i]}}" ser_num="{{my_products['data']['serial_num'][i]}}" width="20%">
-        {% if my_products['data']['product_id'][i] == 1 %}
-        <input type="button" value="On" onclick="turnOn(this)" ser_num="{{my_products['data']['serial_num'][i]}}">
-        <input type="button" value="Off" onclick="turnOff(this)" ser_num="{{my_products['data']['serial_num'][i]}}">
-        {% endif %}
+    <section>
+        <div class="wifi-razvetka-glavni-div">
+            <div class="w-r-border"></div>
+            <div class="wifi-razvetka-name">Wifi Razvetka</div>
+            <div class="w-r-border"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="all-products-content">
+
+            <div class="all-products">
+                <!--Avval for sick shetta edi -->
+                <div class="img-div">
+                    <span>
+                       <p class="description">{{my_products['data']['description'][i]}}</p>
+                    </span>
+                    <img src="{{my_products['data']['photo'][i]}}" ser_num="{{my_products['data']['serial_num'][i]}}">
+                    <a href="#">Learn more</a>
+                </div>
+                {% if my_products['data']['product_id'][i] == 1 %}
+                <span style="display: flex">
+            <input type="button" value="On" onclick="turnOn(this)" class="on"
+                   ser_num="{{my_products['data']['serial_num'][i]}}">
+
+            <input type="button" value="Off" onclick="turnOff(this)" class="off"
+                   ser_num="{{my_products['data']['serial_num'][i]}}">
+            </span>
+                {% endif %}
+
+
+            </div>
+        </div>
+    </section>
         {% endfor %}
+    </div>
 
-        <div class="form-control">
+    <div class="container modal hidden">
+        <button class="close-modal">&times;</button>
 
-            <label for="ser_num">Серийный номер</label>
-            <input type="text" id="ser_num" name="ser_num">
+        <div class="header">
+            <h2>Добавит продукт</h2>
         </div>
 
-        <div class="form-control">
+        <form action="{{url_for('clients.my_products')}}" method="post" class="form">
 
-            <label for="desc">Описание</label>
-            <textarea type="text" id="desc" name="desc"></textarea>
 
-        </div>
+            <div class="form-control">
 
-        <input type="submit" value="Submit" class="add-type-submit">
+                <label for="ser_num">Серийный номер</label><span style="color: red; font-size: 16px">*</span>
+                <input type="text" id="ser_num" name="ser_num" required>
+            </div>
 
-    </form>
+            <div class="form-control">
+
+                <label for="desc">Описание</label>
+                <textarea type="text" id="desc" name="desc"></textarea>
+
+            </div>
+
+            <div class="buttons">
+                <input type="submit" value="Сохранить" class="add-type-submit">
+                <input type="button" value="Отмена" class="add-type-submit2 close-modal2">
+            </div>
+        </form>
+    </div>
+    <div class="overlay hidden"></div>
 
 
 </div>
 
+
+<script src="/static/js/clients/my_products.js"></script>
 <script>
 
     var xhttp = new XMLHttpRequest();
