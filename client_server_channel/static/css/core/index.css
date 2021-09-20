@@ -363,3 +363,61 @@ li {
 /****** Modal close ******/
 /************************/
 
+
+/***** products img open ****/
+
+section {
+    max-width: 1300px;
+    min-width: 360px;
+    width: 1100px;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid red;
+}
+
+.all-products .img-div{
+    display: flex;
+}
+
+.all-products .img-div {
+    max-width: 290px;
+    min-height: 120px;
+    height: 345px;
+    background-color: #fff;
+    margin: 20px;
+    padding: 45px 30px;
+    border: 1px solid black;
+
+}
+
+/*.all-products .img-div a {*/
+/*    font-size: 13px;*/
+/*    color: #007185;*/
+/*    text-decoration: none;*/
+/*    font-family: "Amazon Ember",Arial,sans-serif;*/
+/*}*/
+
+/*.all-products .img-div a:hover {*/
+/*    text-decoration: underline;*/
+/*    color: #C7511F;*/
+/*}*/
+
+/*.all-products img {*/
+/*    width: 100%;*/
+/*    min-height: 120px;*/
+/*    !*height: 245px;*!*/
+/*    height: 255px;*/
+/*    cursor: pointer;*/
+/*    margin-top: 15px;*/
+/*    background-color: #eaeded;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+/*.all-products img:hover{*/
+/*    background-color: #dde0e0;*/
+/*}*/
+
+
+
+/***** products img close ****/
+

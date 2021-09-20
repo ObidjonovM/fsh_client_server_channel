@@ -18,46 +18,27 @@
 <div class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
     <div>
-        <button type="button" class="show-modal add-product">Добавит продукт</button>
+        <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">Добавит продукт
+        </button>
         <button class="sign-in" id="sign-in" onclick="SignIn()">Войти</button>
     </div>
 </div>
 
-<!--product modal open-->
-{{get_products}}
-<div class="content-container">
-    <div class="container modal hidden">
-        <button class="close-modal">&times;</button>
 
-        <div class="header">
-            <h2>Добавит продукт</h2>
-        </div>
-
-        <form action="{{url_for('clients.my_products')}}" method="post" class="form">
-
-
-            <div class="form-control">
-
-                <label for="ser_num">Серийный номер</label><span style="color: red; font-size: 16px">*</span>
-                <input type="text" id="ser_num" name="ser_num" placeholder="введите серийный номер..." required>
-            </div>
-
-            <div class="form-control">
-
-                <label for="desc">Описание</label>
-                <textarea type="text" id="desc" name="desc" placeholder="введите описание..."></textarea>
-
-            </div>
-
-            <div class="buttons">
-                <input type="submit" value="Сохранить" class="add-type-submit">
-                <input type="button" value="Отмена" class="add-type-submit2 close-modal2">
-            </div>
-        </form>
-    </div>
-    <div class="overlay hidden"></div>
+{% for i in range(get_products['data']['name']|length)%}
+<section>
+<div class="all-products">
+     <div class="img-div">
+        <span>
+            <p class="description">{{get_products['data']['name'][i]}}</p>
+        </span>
+        <img src="{{get_products['data']['photo'][i]}}" alt="">
+        <a href="#">Learn more</a>
+     </div>
 </div>
-<!--product modal close-->
+</section>
+{%endfor%}
+
 
 <h1>main page</h1>
 
