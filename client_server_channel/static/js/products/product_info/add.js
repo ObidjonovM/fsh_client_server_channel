@@ -51,7 +51,7 @@ function set_other_photos(ev) {
     div_main_photo.innerHTML = ''
     div_other_photos.innerHTML = ''
     readURL(ev, div_other_photos);
-};
+}
 
 
 function readURL(ev, parent_div) {
@@ -71,8 +71,10 @@ function readURL(ev, parent_div) {
             }else {
                 alert("Kiritilgan rasm 100kb dan katta bo'lmasligi kerak");
             }
+
         }
     }
+
 }
 
 function get_photos(imgs) {
@@ -84,6 +86,17 @@ function get_photos(imgs) {
     return result
 }
 
+function get_main_photos (otherImg, mainImg) {
+    let result = [];
+    for (let i=0; i<otherImg.length; i++){
+        if (mainImg[0] == otherImg[i]){
+            result.push(true);
+        }else {
+           result.push(false);
+        }
+    }
+    return result;
+}
 
 
 const xhttp = new XMLHttpRequest();
@@ -97,19 +110,24 @@ function addForm() {
     info['name'] = name.value;
     info['model'] = model.value;
     info['cat_id'] = cat_id.value;
-    info['main_photo'] = src_main_photo;
+    info['main_photo'] = get_main_photos(src_other_photos, src_main_photo);
     info['other_photos'] = src_other_photos;
     xhttp.open('POST', '/products/info/add', true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhttp.send(JSON.stringify(info));
+
     xhttp.onreadystatechange = function() {
+
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             const resp = JSON.parse(xhttp.responseText);
             if (resp['success']) {
-                window.location.href = '/products/info/all'
+                window.location.href = '/products/info/all';
             }else {
                 alert(resp['comment'])
             }
+
         }
     }
+
+
 }
