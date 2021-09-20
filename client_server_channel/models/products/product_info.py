@@ -36,6 +36,15 @@ class ProductInfoTable:
 
 
     @staticmethod
+    def get_all_info():
+        sql = 'SELECT pp.small_photo, pp.photo_format, pi.name, pi.model FROM '
+        sql += 'product_photo pp, product_info pi WHERE pp.main_photo = TRUE '
+        sql += 'AND pp.product_id = pi.product_id'
+        
+        return crud.run_SQL(sql, ['photo', 'format', 'name', 'model'])
+
+
+    @staticmethod
     def get_ids_names():
         return crud.get_ids_names('product_info', 'product_id', 'name')
 

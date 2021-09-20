@@ -53,9 +53,9 @@ class ProductInfoC:
             imgdata = base64.b64decode(base64_str)
             img = Image.open(io.BytesIO(imgdata))
             small_img = img.resize((379, 304))  # x, y
-            small_img.save(buffer, format="PNG")
+            small_img.save(buffer, format=format_img)
             small_img_byte = buffer.getvalue()
-            img.save(buffer, format="PNG")
+            img.save(buffer, format=format_img)
 
             add_photo = ProductPhotoTable.insert({
                 'product_id' : add_result['data']['product_id'],
@@ -96,6 +96,22 @@ class ProductInfoC:
     @staticmethod
     def get_all():
         get_all_result = ProductInfoTable.get_all()
+
+        return {
+            'success' : get_all_result['success'],
+            'data' : get_all_result['data'],
+            'log_code' : utls.record_log(get_all_result, 'get_all', 'crud_logs')
+        }
+
+
+    @staticmethod
+    def get_all_info():
+        get_all_result = ProductInfoTable.get_all_info()
+        get_all_result['data']['photo'] = utls.byte_to_base64(
+            get_all_result['data']['format'],
+            get_all_result['data']['photo']
+        )
+        del get_all_result['data']['format']
 
         return {
             'success' : get_all_result['success'],
