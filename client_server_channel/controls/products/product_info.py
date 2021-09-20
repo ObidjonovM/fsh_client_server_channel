@@ -43,29 +43,26 @@ class ProductInfoC:
             'modify_emp_id' : product_info['modify_emp_id']
         })
 
-        for i in range(len(product_info['other_photos'])):
-            if product_info['other_photos'][i] in product_info['main_photo']:
-                star = product_info['other_photos'][i].find("data:image/")
-                end = product_info['other_photos'][i].find(";base64")
-                format_img = product_info['other_photos'][i][star + 11:end]
-                base64_str = "'" + product_info['other_photos'][i][end + 8:]  + "'"
-                main_photo = True
-                buffer = io.BytesIO()
-                imgdata = base64.b64decode(base64_str)
-                img = Image.open(io.BytesIO(imgdata))
-                new_img = img.resize((379, 304))  # x, y
-                new_img.save(buffer, format=format_img)
-                img_b64 = base64.b64encode(buffer.getvalue())
-                main_b64_photo = "data:image/" + format_img + ";base64," + str(img_b64)[2:-1]
-                photo_byte = main_b64_photo
-            else:
-                main_photo = False
-                photo_byte = product_info['other_photos'][i]
-            
+        for i in range(len(product_info['main_photo'])):
+
+            star = product_info['other_photos'][i].find("data:image/")
+            end = product_info['other_photos'][i].find(";base64")
+            format_img = product_info['other_photos'][i][star + 11:end]
+            base64_str = "'" + product_info['other_photos'][i][end + 8:]  + "'"
+            buffer = io.BytesIO()
+            imgdata = base64.b64decode(base64_str)
+            img = Image.open(io.BytesIO(imgdata))
+            small_img = img.resize((379, 304))  # x, y
+            small_img.save(buffer, format="PNG")
+            small_img_byte = buffer.getvalue()
+            img.save(buffer, format="PNG")
+
             add_photo = ProductPhotoTable.insert({
                 'product_id' : add_result['data']['product_id'],
-                'photo_byte' : photo_byte,
-                'main_photo' : main_photo,
+                'photo_format' : format_img,
+                'original_photo' : imgdata,
+                'small_photo' : small_img_byte,
+                'main_photo' : product_info['main_photo'][i],
                 'add_emp_id' : product_info['add_emp_id'],
                 'modify_emp_id' : product_info['modify_emp_id'],
                 'date_added' : now,

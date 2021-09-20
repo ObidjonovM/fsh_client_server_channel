@@ -268,7 +268,9 @@ cur.execute('''
 CREATE TABLE IF NOT EXISTS product_photo (
 	photo_id INT PRIMARY KEY CHECK (photo_id > 0),
 	product_id INT NOT NULL CHECK (product_id > 0),
-	photo_byte TEXT NOT NULL,
+	photo_format VARCHAR(10) NOT NULL,
+	original_photo BYTEA NOT NULL,
+	small_photo BYTEA NOT NULL,
 	main_photo BOOLEAN NOT NULL,
 	date_added TIMESTAMP NOT NULL,
 	add_emp_id INT NOT NULL CHECK(add_emp_id > 0),

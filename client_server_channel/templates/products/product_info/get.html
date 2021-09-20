@@ -35,7 +35,7 @@
         {% for i in range(product_photo['data']['photo_id']|length) %}
         <div class="form-control">
             <label for="{{product_photo['data']['photo_id'][i]}}">Фото</label>
-            <img id="{{product_photo['data']['photo_id'][i]}}" width="100%" src="{{product_photo['data']['photo_byte'][i]}}"/>
+            <img id="{{product_photo['data']['photo_id'][i]}}" width="100%" src="{{product_photo['data']['small_photo'][i]}}"/>
         </div>
         {% endfor %}
 

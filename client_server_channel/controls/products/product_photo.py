@@ -22,6 +22,16 @@ class ProductPhotoC:
     @staticmethod
     def get(product_id):
         get_result = ProductPhotoTable.get(product_id)
+        
+        get_result['data']['original_photo'] = utls.byte_to_base64(
+            get_result['data']['photo_format'],
+            get_result['data']['original_photo']
+            )
+
+        get_result['data']['small_photo'] = utls.byte_to_base64(
+            get_result['data']['photo_format'],
+            get_result['data']['small_photo']
+            )
 
         return {
             'success' : get_result['success'],
