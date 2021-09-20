@@ -1,3 +1,7 @@
+function Logout() {
+    window.open('/clients/logout', '_self');
+}
+
 // modal open
 'use strict';
 

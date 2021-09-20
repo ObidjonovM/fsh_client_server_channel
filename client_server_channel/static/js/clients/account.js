@@ -24,3 +24,7 @@ closeBtn.addEventListener('click', () => {
     document.getElementById('modal-products').style.display = "none";
 
 })
+
+function Logout() {
+    window.open('/clients/logout', '_self');
+}

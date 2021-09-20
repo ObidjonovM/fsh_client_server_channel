@@ -21,44 +21,22 @@
 
 <div class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-
-    <form action="#" class="search-form">
-        <div>
-            <select name="" id="" class="select-search">
-                <option value="1">SmartHome</option>
-                <option value="2">Amazon1</option>
-                <option value="3">Amazon2</option>
-            </select>
-        </div>
-
-        <div>
-            <input type="search" class="input-search" placeholder="search..">
-        </div>
-
-        <div>
-            <button type="submit" class="input-search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </form>
+    <div>
+        <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>
+        <button type="button" class="hi-person" id="hi-person" onmouseover="displayBlock()" onmouseout="displayNone()">
+            <span>Привет {{first_name}}</span>
+            <p> Аккаунт & Продукты</p>
 
 
-    <button type="button" class="hi-person" id="hi-person" onmouseover="displayBlock()" onmouseout="displayNone()">
-        <span>Привет {{first_name}}</span>
-        <p> Аккаунт & Продукты</p>
-
-
-        <div class="account-products" id="account-products" onmouseover="accountProductsBlock()"
-             onmouseout="accountProductsNone()">
-            <ul>
-                <li><a href="#" id="account">Аккаунт</a></li>
-                <li><a href="#" id="products">Продукты</a></li>
-            </ul>
-        </div>
-    </button>
-
-    <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>
-
+            <div class="account-products" id="account-products" onmouseover="accountProductsBlock()"
+                 onmouseout="accountProductsNone()">
+                <ul>
+                    <li><a href="#" id="account">Аккаунт</a></li>
+                    <li><a href="#" id="products">Продукты</a></li>
+                </ul>
+            </div>
+        </button>
+    </div>
 </div>
 
 <h1>Account page</h1>

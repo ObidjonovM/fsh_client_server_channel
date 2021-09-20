@@ -1,43 +1,6 @@
-// window.addEventListener( "load", function () {
-//     function sendData() {
-//         const XHR = new XMLHttpRequest();
-
-//         const FD = new FormData( form );
-
-//         XHR.addEventListener( "load", function(event) {
-//             // if(event.target.responseURL == window.location.href){
-//             //     // const resp = JSON.parse(event.target.responseText);
-//             //     // if(resp.log_code == -1){
-//             //         alert('Данная должность уже сушествует');
-//             //     // }
-//             // }else {
-//             //     location.href = event.target.responseURL;
-//             // }
-//             console.log(event)
-//         } );
-
-//         XHR.addEventListener( "error", function( event ) {
-//             alert( 'Error' );
-//         } );
-
-//         XHR.open( "POST", "/products/info/add" );
-
-//         XHR.send( FD );
-//     }
-
-//     const form = document.getElementById( "myForm" );
-
-//     form.addEventListener( "submit", function ( event ) {
-//         event.preventDefault();
-
-//         sendData();
-//     } );
-// } );
-
-
-// function otmenFunction (){
-//     window.open('/products/info/all', '_self');
-// }
+function otmenFunction (){
+    window.open('/products/info/all', '_self');
+}
 
 const div_main_photo = document.getElementById('div_main_photo');
 const div_other_photos = document.getElementById('div_other_photos');
@@ -45,11 +8,11 @@ const other_photos = document.getElementById('other_photos');
 
 
 
-let base_64_code = []
+let base_64_code = [];
 function set_other_photos(ev) {
-    base_64_code = []
-    div_main_photo.innerHTML = ''
-    div_other_photos.innerHTML = ''
+    base_64_code = [];
+    div_main_photo.innerHTML = '';
+    div_other_photos.innerHTML = '';
     readURL(ev, div_other_photos);
 }
 
@@ -101,7 +64,7 @@ function get_main_photos (otherImg, mainImg) {
 
 const xhttp = new XMLHttpRequest();
 function addForm() {
-    let info = {}
+    let info = {};
     let src_other_photos = get_photos(div_other_photos.children);
     let src_main_photo = get_photos(div_main_photo.children);
     const name = document.getElementById('name');
