@@ -28,7 +28,7 @@
     justify-content: space-between;
 }
 
-.glavni-stranisa, .viyti, .sign-in  {
+.glavni-stranisa, .viyti, .sign-in, .add-product  {
     width: 120px;
     height: 43px;
     margin:3px;
@@ -40,8 +40,11 @@
     font-weight: bolder;
     font-size: 16px;
 }
+.add-product {
+    width: 160px;
+}
 
-.glavni-stranisa:hover, .viyti:hover, .sign-in:hover {
+.glavni-stranisa:hover, .viyti:hover, .sign-in:hover, .add-product:hover {
     border: 1px solid #c7c7c7;
 }
 

@@ -17,55 +17,46 @@
 
 <div class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-    <form action="#" class="search-form">
-        <div>
-            <select name="" id="" class="select-search">
-                <option value="1">SmartHome</option>
-                <option value="2">Amazon1</option>
-                <option value="3">Amazon2</option>
-            </select>
-        </div>
-
-        <div>
-            <input type="search" class="input-search" placeholder="search..">
-        </div>
-
-        <div>
-            <button type="submit" class="input-search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-    </form>
-    <button class="sign-in" id="sign-in" onclick="SignIn()">Войти</button>
-</div>
-
-<div class="content-container">
-    <!--  cardion menu category opne -->
-
-
-    <ul id="categories" class="accordion">
-        {% for i in range(get_first_par_cat['data']['category_id']|length) %}
-        <li class="li">
-            <a onmousedown="get_sub_cat(this)" onmouseup="open_sub_cat(this)" id="{{get_first_par_cat['data']['category_id'][i]}}" class="link">
-                {{get_first_par_cat['data']['name'][i]}}
-                <i class="fa fa-chevron-down i"></i>
-            </a>
-
-        </li>
-        {% endfor %}
-    </ul>
-    <!--  cardion menu category close -->
-
-
-    <!--    images open   -->
-    <div id="product_img" class="images-div">
-
+    <div>
+        <button type="button" class="show-modal add-product">Добавит продукт</button>
+        <button class="sign-in" id="sign-in" onclick="SignIn()">Войти</button>
     </div>
-    <!--    images close   -->
-
-
 </div>
 
+<!--product modal open-->
+<div class="content-container">
+    <div class="container modal hidden">
+        <button class="close-modal">&times;</button>
+
+        <div class="header">
+            <h2>Добавит продукт</h2>
+        </div>
+
+        <form action="{{url_for('clients.my_products')}}" method="post" class="form">
+
+
+            <div class="form-control">
+
+                <label for="ser_num">Серийный номер</label><span style="color: red; font-size: 16px">*</span>
+                <input type="text" id="ser_num" name="ser_num" placeholder="введите серийный номер..." required>
+            </div>
+
+            <div class="form-control">
+
+                <label for="desc">Описание</label>
+                <textarea type="text" id="desc" name="desc" placeholder="введите описание..."></textarea>
+
+            </div>
+
+            <div class="buttons">
+                <input type="submit" value="Сохранить" class="add-type-submit">
+                <input type="button" value="Отмена" class="add-type-submit2 close-modal2">
+            </div>
+        </form>
+    </div>
+    <div class="overlay hidden"></div>
+</div>
+<!--product modal close-->
 
 <h1>main page</h1>
 
