@@ -4,6 +4,7 @@ from .. import control_utils as utls
 from datetime import datetime
 import requests as reqs
 import json
+from client_server_channel.config import hd_server
 
 
 class ProductC:
@@ -146,13 +147,13 @@ class ProductC:
         sg_params = json.dumps(sg_ser_num)
 
         ss_resp = reqs.post(
-            'http://127.0.0.1:5001/ss_get_status',
+            hd_server + '/ss_get_status',
             data = ss_params,
             headers = headers
             )
 
         sg_resp = reqs.post(
-            'http://127.0.0.1:5001/sg_get_status',
+            hd_server + '/sg_get_status',
             data = sg_params,
             headers = headers
             )
