@@ -41,8 +41,6 @@ def login():
 
 @clients.route('/change_password', methods=['GET', 'POST'])
 def change_password():
-	if not 'clientname' in session:
-		return redirect(url_for('clients.login'))
 
 	if request.method == 'GET':
 		return render_template(
