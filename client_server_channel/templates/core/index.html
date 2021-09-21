@@ -15,32 +15,47 @@
 
 <body class="background-color" id="src">
 
-<div class="fixed">
+<header class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-    <div>
-        <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">Добавит продукт
-        </button>
-        <button class="sign-in" id="sign-in" onclick="SignIn()">Войти</button>
-    </div>
-</div>
-{{first_name}}
 
-{% for i in range(get_products['data']['name']|length)%}
+    <div>
+        {%if first_name%}
+        <button type="button" class="hi-person" id="hi-person">
+            <span>Привет {{first_name}}</span>
+            <p> Аккаунт & Продукты</p>
+
+            <div class="account-products" id="account-products">
+                <ul>
+                    <li><a href="#" onclick="Account()">Аккаунт</a></li>
+                    <li><a href="#" onclick="Products()">Продукты</a></li>
+                </ul>
+            </div>
+        </button>
+        {%endif%}
+        <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">Добавит продукт</button>
+        {%if first_name %}
+        <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>
+        {%else%}
+        <button class="sign-in" id="sign-in" onclick="SignIn()">Войти</button>
+        {%endif%}
+    </div>
+</header>
+
 <section>
-<div class="all-products">
-     <div class="img-div">
+    {% for i in range(get_products['data']['name']|length)%}
+    <div class="all-products">
+
+        <div class="img-div">
         <span>
             <p class="description">{{get_products['data']['name'][i]}}</p>
         </span>
-        <img src="{{get_products['data']['photo'][i]}}" alt="">
-        <a href="#">Learn more</a>
-     </div>
-</div>
+            <img src="{{get_products['data']['photo'][i]}}" alt="">
+            <a href="#">Учить больше</a>
+        </div>
+
+    </div>
+    {%endfor%}
 </section>
-{%endfor%}
-
-
-<h1>main page</h1>
 
 
 <script src="/static/js/core/index.js"></script>
