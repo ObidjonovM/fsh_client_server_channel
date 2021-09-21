@@ -9,8 +9,7 @@ class ClientC:
     @staticmethod
     def add(client_info):
         now = datetime.now()
-        client_info['username'] = f"{client_info['first_name'].lower()}.{client_info['last_name'].lower()}"
-        client_info['password'] = generate_password_hash('123')
+        client_info['password'] = generate_password_hash(client_info['password'])
         client_info['subs_id'] = 1
         client_info['date_added'] = now
         client_info['date_modified'] = now

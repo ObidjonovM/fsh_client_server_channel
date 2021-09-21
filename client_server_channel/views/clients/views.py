@@ -93,6 +93,8 @@ def register():
 			'country' : params['country'],
 			'zipcode' : params['zipcode'],
 			'phone' : params['phone'],
+			'username' : params['username'],
+			'password' : params['password']
 		})
 
 		if result['success']:

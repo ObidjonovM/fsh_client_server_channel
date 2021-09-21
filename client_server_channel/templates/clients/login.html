@@ -29,8 +29,8 @@
     <form class="form" action="{{url_for('clients.login')}}" method="POST">
 
         <div class="form-control">
-            <label for="clientname">Пользователь</label>
-            <input type="text" name="clientname" id="clientname" placeholder="Пользователь ... " required>
+            <label for="clientname">Логин</label>
+            <input type="text" name="clientname" id="clientname" placeholder="Логин ... " required>
             {% if not user_exists %}
             <small id="error-small">Пользователь не найден</small>
             {% endif %}
