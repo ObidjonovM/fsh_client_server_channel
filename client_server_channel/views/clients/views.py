@@ -95,9 +95,8 @@ def register():
 			'birth_date' : params['birth_date'],
 			'address_1' : params['address_1'],
 			'city' : params['city'],
-			'country' : params['country'],
-			'zipcode' : params['zipcode'],
 			'phone' : params['phone'],
+			'email' : params['email'],
 			'username' : params['clientname'],
 			'password' : params['password']
 		})
