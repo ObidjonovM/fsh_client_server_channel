@@ -111,7 +111,7 @@ def register():
 @clients.route('/user_exists', methods=['POST'])
 def user_exists():
 	if request.method == 'POST':
-		result = ClientC.user_exists(request.json)
+		result = ClientC.user_exists(request.json['name'])
 
 		return result
 

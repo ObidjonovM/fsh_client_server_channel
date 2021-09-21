@@ -139,7 +139,7 @@ class ClientC:
     
     def user_exists(clientname):
         login_result = ClientTable.login(clientname)
-        if len(login_result['data'] > 0):
+        if len(login_result['data']) > 0:
             return {
                 'user_exists' : True
             }
