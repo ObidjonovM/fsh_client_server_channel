@@ -11,7 +11,7 @@ clients.register_blueprint(subscription)
 @clients.route('/login', methods=['GET', 'POST'])
 def login():
 	if 'clientname' in session:
-		return redirect(url_for('clients.account'))
+		return redirect(url_for('core.index'))
 
 	if request.method == 'GET':
 		return render_template(
@@ -32,7 +32,7 @@ def login():
 				session['client']['id'] = result['client_id']
 				session['client']['first_name'] = result['first_name']
 
-				return redirect(url_for('clients.account'))
+				return redirect(url_for('core.index'))
 
 		return render_template(
 			utls.url_join(['clients', 'login.html'])
