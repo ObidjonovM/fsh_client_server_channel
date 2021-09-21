@@ -22,14 +22,18 @@
 
 <div class="container">
 
-    <div class="header">
-        <h2>Заполнить форму</h2>
-    </div>
+<!--    <div class="header">-->
+<!--        <h2>Заполнить форму</h2>-->
+<!--    </div>-->
+    <nav class="auth">
+        <div class="login selected">Логин</div>
+        <div class="signup" id="register_open">Регистрация</div>
+    </nav>
 
-    <form class="form" action="{{url_for('clients.login')}}" method="POST">
+    <form class="form show" action="{{url_for('clients.login')}}" id="login"  method="POST">
 
         <div class="form-control">
-            <label for="clientname">Логин</label>
+            <label for="clientname">Логин</label><span style="color: red; font-size: 16px">*</span>
             <input type="text" name="clientname" id="clientname" placeholder="Логин ... " required>
             {% if not user_exists %}
             <small id="error-small">Пользователь не найден</small>
@@ -37,9 +41,9 @@
         </div>
 
         <div class="form-control">
-            <label for="password">Пароль</label>
+            <label for="password">Пароль</label><span style="color: red; font-size: 16px">*</span>
             <input type="password" name="password" id="password" placeholder="Пароль ... " required>
-            <div class="register-open"><a href="#" id="register-open">Регистрация</a></div>
+            <div class="register-open"><a href="#" id="change_password">Измени пароль</a></div>
             {% if wrong_password %}
             <small id="error-small2">Неверный пароль</small>
             {% endif %}

@@ -12,48 +12,50 @@
 
 <div class="add-container">
 
-    <div class="add-header">
-        <h2>Новая регистр</h2>
-    </div>
+<!--    <div class="add-header">-->
+<!--        <h2>Новая регистр</h2>-->
+<!--    </div>-->
+
+    <nav class="auth">
+        <div class="login" id="login_open">Логин</div>
+        <div class="signup selected" id="register_open">Регистрация</div>
+    </nav>
 
     <form action="{{url_for('clients.register')}}" method="POST" id="myForm" class="add-form">
 
         <div class="form-control">
 
-            <label for="first_name">Наименование</label>
+            <label for="first_name">Имя</label><span style="color: red; font-size: 16px">*</span>
             <input type="text" name="first_name" id="first_name" placeholder="Введите наименование ..." required/>
 
-            <label for="last_name">Фамилия</label>
+            <label for="last_name">Фамилия</label><span style="color: red; font-size: 16px">*</span>
             <input type="text" name="last_name" id="last_name" placeholder="Введите фамилия " required/>
 
-            <label for="birth_date">Дата рождения</label>
+            <label for="birth_date">Дата рождения</label><span style="color: red; font-size: 16px">*</span>
             <input type="date" name="birth_date" id="birth_date" placeholder="Введите Дата рождения ..." required/>
 
-            <label for="address_1">Адрес 1</label>
+            <label for="address_1">Адрес</label><span style="color: red; font-size: 16px">*</span>
             <input type="text" name="address_1" id="address_1" placeholder="Введите Адрес ..." required/>
 
-            <label for="username">Логин</label>
-            <input type="text" name="username" id="username" placeholder="Введите логин ..." required/>
-
+            <label for="city">Город</label><span style="color: red; font-size: 16px">*</span>
+            <input type="text" name="city" id="city" placeholder="Введите Город ..." required/>
+            
         </div>
 
 
         <div class="form-control">
 
-            <label for="city">Город</label>
-            <input type="text" name="city" id="city" placeholder="Введите Город ..." required/>
-
-            <label for="country">Страна</label>
-            <input type="text" name="country" id="country" placeholder="Введите страну ..." required/>
-
-            <label for="zipcode">Индекс</label>
-            <input type="text" name="zipcode" id="zipcode" placeholder="Введите Индекс ..." required/>
-
-            <label for="phone">Телефон</label>
+            <label for="phone">Телефон</label><span style="color: red; font-size: 16px">*</span>
             <input type="text" name="phone" id="phone" placeholder="Введите Телефон ..." required/>
 
-            <label for="password">Пароль</label>
+            <label for="username">Логин</label><span style="color: red; font-size: 16px">*</span>
+            <input type="text" name="username" id="username" placeholder="Введите логин ..." required/>
+
+            <label for="password">Пароль</label><span style="color: red; font-size: 16px">*</span>
             <input type="password" name="password" id="password" placeholder="Введите пароль ..." required/>
+
+            <label for="confirm_password">Повторите пароль</label><span style="color: red; font-size: 16px">*</span>
+            <input type="password" name="password" id="confirm_password" placeholder="Введите пароль ..." required/>
 
 
         </div>

@@ -8,12 +8,12 @@
 
 .add-container {
     position: absolute;
-    top: 53%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
     width: 600px;
-    height: 520px;
+    height: 525px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -33,13 +33,13 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .form-control {
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: -30px;
+    margin-top: 10px;
 }
 
 .form-control label {
@@ -83,3 +83,23 @@
     background-color: #232F3E;
     transition: all .3s;
 }
+
+
+/*Alohida*/
+nav.auth {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+nav.auth > div {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
+nav.auth > div.selected {
+    border-bottom: 2px solid #374a62;
+}
+
+/*Alohida*/

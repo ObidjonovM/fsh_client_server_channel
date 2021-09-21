@@ -75,4 +75,8 @@ function validateForm() {
 
 
 
+const back = document.getElementById('back');
+back.addEventListener('click', function () {
+    window.open('/clients/login', '_self');
+})
 
