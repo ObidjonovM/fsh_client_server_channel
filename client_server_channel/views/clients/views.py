@@ -15,14 +15,15 @@ def login():
 
 	if request.method == 'GET':
 		return render_template(
-			utls.url_join(['clients', 'login.html'])
+			utls.url_join(['clients', 'login.html']),
+			user_exists = True,
+			wrong_password = False
 		)
 
 	if request.method == 'POST':
 		result = ClientC.login(
 			request.form['clientname'],
-			request.form['password'],
-			None
+			request.form['password']
 		)
 
 		if result['success']:
@@ -35,7 +36,9 @@ def login():
 				return redirect(url_for('core.index'))
 
 		return render_template(
-			utls.url_join(['clients', 'login.html'])
+			utls.url_join(['clients', 'login.html']),
+			user_exists = result['user_exists'],
+			wrong_password = result['wrong_password']
 		)
 
 
@@ -44,7 +47,9 @@ def change_password():
 
 	if request.method == 'GET':
 		return render_template(
-			utls.url_join(['clients', 'change_password.html'])
+			utls.url_join(['clients', 'change_password.html']),
+			user_exists = True,
+			wrong_password = False
 		)
 
 	if request.method == 'POST':
@@ -56,12 +61,14 @@ def change_password():
 
 		if result['success']:
 			if result['user_exists'] and not result['wrong_password']:
-				return redirect(url_for('clients.account'))
+				return redirect(url_for('clients.login'))
 
 		return render_template(
-			utls.url_join(['clients', 'change_password.html'])
+			utls.url_join(['clients', 'change_password.html']),
+			user_exists = result['user_exists'],
+			wrong_password = result['wrong_password']
 		)
- 
+
 
 @clients.route('/logout')
 def logout():
@@ -91,12 +98,20 @@ def register():
 			'country' : params['country'],
 			'zipcode' : params['zipcode'],
 			'phone' : params['phone'],
-			'username' : params['username'],
+			'username' : params['clientname'],
 			'password' : params['password']
 		})
 
 		if result['success']:
 			return redirect(url_for('clients.login'))
+
+		return result
+
+
+@clients.route('/user_exists', methods=['POST'])
+def user_exists():
+	if request.method == 'POST':
+		result = ClientC.user_exists(request.json)
 
 		return result
 

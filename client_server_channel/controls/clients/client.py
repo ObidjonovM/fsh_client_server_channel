@@ -104,7 +104,7 @@ class ClientC:
 
 
     @staticmethod
-    def login(clientname, password, new_password):
+    def login(clientname, password, new_password=None):
 
         login_result = ClientTable.login(clientname)
         result = {
@@ -135,3 +135,15 @@ class ClientC:
                     result['first_name'] = login_result['data']['first_name']
 
         return result
+
+    
+    def user_exists(clientname):
+        login_result = ClientTable.login(clientname)
+        if len(login_result['data'] > 0):
+            return {
+                'user_exists' : True
+            }
+
+        return {
+            'user_exists' : False
+        }
