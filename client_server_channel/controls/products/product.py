@@ -124,6 +124,11 @@ class ProductC:
     @staticmethod
     def get_my_products(client_id):
         result = ProductTable.get_my_products(client_id)
+
+        result['data']['photo'] = utls.byte_to_base64(
+            result['data']['format'],
+            result['data']['photo']
+        )
         headers = {'Content-Type': 'application/json; charset=utf8'}
         ss_ser_num = {'serial_num' : []}
         sg_ser_num = {'serial_num' : []}
