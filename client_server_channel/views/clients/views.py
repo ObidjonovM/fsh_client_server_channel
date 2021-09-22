@@ -183,7 +183,7 @@ def get_logs(ser_num):
 
 
 @clients.route('/my_products/delete/<ser_num>', methods=['POST'])
-def product_info(ser_num):
+def delete_product(ser_num):
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
 
