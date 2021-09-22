@@ -149,6 +149,56 @@ def my_products():
 		return result
 
 
+@clients.route('/my_products/<ser_num>', methods=['GET', 'POST'])
+def product_info(ser_num):
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'GET':
+		return render_template(
+			utls.url_join(['clients', 'product_info.html']),
+			my_product = ProductC.get(ser_num)
+		)
+
+	if request.method == 'POST':
+		ProductC.update({
+			'serial_num' : ser_num,
+			'login' : request.form['login'],
+			'password' : request.form['password'],
+			'description' : request.form['desc']
+		})
+
+
+
+@clients.route('/my_products/logs/<ser_num>', methods=['POST'])
+def get_logs(ser_num):
+	if request.method == 'POST':
+		result = ProductC.get_logs(
+								ser_num,
+								request.form['product_id'],
+								request.form['start_date'],
+								request.form['end_date']
+							)
+		return result
+
+
+@clients.route('/my_products/delete/<ser_num>', methods=['POST'])
+def product_info(ser_num):
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		ProductC.update({
+			'serial_num' : ser_num,
+			'login' : '',
+			'password' : '',
+			'description' : '',
+			'client_id' : ''
+		})
+
+		return redirect(url_for('clients.my_products'))
+
+
 @clients.route('/smart_socket/on', methods=['POST'])
 def turn_on():
 	if not 'clientname' in session:
@@ -168,26 +218,6 @@ def turn_off():
 	if request.method == 'POST':
 		result = ProductC.turn_off(request.json)
 
-		return result
-
-
-@clients.route('/info/<ser_num>', methods=['GET', 'POST'])
-def product_info(ser_num):
-	if not 'clientname' in session:
-		return redirect(url_for('clients.login'))
-
-	if request.method == 'GET':
-		return render_template(
-			utls.url_join(['clients', 'product_info.html']),
-			my_product = ProductC.get(ser_num)
-		)
-
-	if request.method == 'POST':
-		result = ProductC.get_logs(ser_num,
-								request.form['product_id'],
-								request.form['start_date'],
-								request.form['end_date']
-							)
 		return result
 
 
