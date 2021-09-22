@@ -13,7 +13,7 @@
     transform: translate(-50%, -50%);
     z-index: 999;
     width: 600px;
-    height: 525px;
+    height: 540px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -29,7 +29,7 @@
 
 .add-form {
     width: 80%;
-    height: 83%;
+    height: 88%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -39,11 +39,11 @@
 .form-control {
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 10px;
+    margin-top: 22px;
 }
 
 .form-control label {
-    padding-left: 14px;
+    padding-left: 3px;
     margin-bottom: 0;
 }
 
@@ -55,7 +55,7 @@
     border: 2px solid #c3c3c3;
     font-family: inherit;
     font-size: 14px;
-    margin: 10px;
+    /*margin: 12px 0px;*/
 }
 
 .form-control input:focus, select:focus {
@@ -84,6 +84,17 @@
     transition: all .3s;
 }
 
+#login_error, #error_password, #confirm_error_password {
+    padding-left: 3px;
+    display: block;
+    color: red;
+    font-size: 10px;
+}
+
+.star {
+    color: red;
+    font-size: 16px
+}
 
 /*Alohida*/
 nav.auth {

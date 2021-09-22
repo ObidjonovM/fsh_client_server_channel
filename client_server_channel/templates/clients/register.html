@@ -12,32 +12,32 @@
 
 <div class="add-container">
 
-<!--    <div class="add-header">-->
-<!--        <h2>Новая регистр</h2>-->
-<!--    </div>-->
-
     <nav class="auth">
         <div class="login" id="login_open">Логин</div>
         <div class="signup selected" id="register_open">Регистрация</div>
     </nav>
 
-    <form action="{{url_for('clients.register')}}" method="POST" id="myForm" class="add-form">
+    <form action="{{url_for('clients.register')}}" method="POST" id="myForm" class="add-form" onsubmit="return validateForm()">
 
         <div class="form-control">
 
-            <label for="first_name">Имя</label><span style="color: red; font-size: 16px">*</span>
+            <label for="first_name">Имя<span class="star">*</span></label>
             <input type="text" name="first_name" id="first_name" placeholder="Введите наименование ..." required/>
-
-            <label for="last_name">Фамилия</label><span style="color: red; font-size: 16px">*</span>
+            <br>
+            <br>
+            <label for="last_name">Фамилия<span class="star">*</span></label>
             <input type="text" name="last_name" id="last_name" placeholder="Введите фамилия " required/>
-
-            <label for="birth_date">Дата рождения</label><span style="color: red; font-size: 16px">*</span>
+            <br>
+            <br>
+            <label for="birth_date">Дата рождения<span class="star">*</span></label>
             <input type="date" name="birth_date" id="birth_date" placeholder="Введите Дата рождения ..." required/>
-
-            <label for="address_1">Адрес</label><span style="color: red; font-size: 16px">*</span>
+            <br>
+            <br>
+            <label for="address_1">Адрес<span class="star">*</span></label>
             <input type="text" name="address_1" id="address_1" placeholder="Введите Адрес ..." required/>
-
-            <label for="city">Город</label><span style="color: red; font-size: 16px">*</span>
+            <br>
+            <br>
+            <label for="city">Город<span style="color: red; font-size: 16px">*</span></label>
             <input type="text" name="city" id="city" placeholder="Введите Город ..." required/>
             
         </div>
@@ -45,23 +45,31 @@
 
         <div class="form-control">
 
-            <label for="phone">Телефон</label><span style="color: red; font-size: 16px">*</span>
+            <label for="phone">Телефон<span class="star">*</span></label>
             <input type="text" name="phone" id="phone" placeholder="Введите Телефон ..." required/>
-
-            <label for="clientname">Логин</label><span style="color: red; font-size: 16px">*</span>
-            <input type="text" name="clientname" id="clientname" placeholder="Введите логин ..." required/>
-
-            <label for="password">Пароль</label><span style="color: red; font-size: 16px">*</span>
+            <br>
+            <br>
+            <label for="email">Эл. адрес<span class="star">*</span></label>
+            <input type="email" name="email" id="email" placeholder="Введите логин ..." />
+            <br>
+            <br>
+            <label for="clientname">Логин<span class="star">*</span></label>
+            <input type="text" name="clientname" id="clientname" placeholder="Введите логин ..." onchange="loginChange()" required/>
+            <span id="login_error"></span>
+            <br>
+            <label for="password">Пароль<span class="star">*</span></label>
             <input type="password" name="password" id="password" placeholder="Введите пароль ..." required/>
-
-            <label for="confirm_password">Повторите пароль</label><span style="color: red; font-size: 16px">*</span>
+            <span id="error_password"></span>
+            <br>
+            <br>
+            <label for="confirm_password">Повторите парол<span class="star">*</span></label>
             <input type="password" name="password" id="confirm_password" placeholder="Введите пароль ..." required/>
-
+            <span id="confirm_error_password"></span>
 
         </div>
 
 
-        <input type="submit" class="add-submit" value="Сохранить"/>
+        <input type="submit" class="add-submit" id="submit" value="Сохранить"/>
         <input type="button" onclick="otmenFunction()" class="add-submit2" value="Отмена"/>
 
     </form>
