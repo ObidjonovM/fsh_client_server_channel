@@ -32,7 +32,8 @@
             </div>
         </button>
         {%endif%}
-        <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">Добавит продукт</button>
+        <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">Добавит продукт
+        </button>
         {%if first_name %}
         <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>
         {%else%}
@@ -46,9 +47,9 @@
     <div class="all-products">
 
         <div class="img-div">
-        <span>
-            <p class="description">{{get_products['data']['name'][i]}}</p>
-        </span>
+            <span>
+                <p class="description">{{get_products['data']['name'][i]}}</p>
+            </span>
             <img src="{{get_products['data']['photo'][i]}}" alt="">
             <a href="#">Учить больше</a>
         </div>
