@@ -1,4 +1,4 @@
-document.getElementById('error_username').style.display = "none";
+// document.getElementById('error_username').style.display = "none";
 
 function validateForm() {
 
