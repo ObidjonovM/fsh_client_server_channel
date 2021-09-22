@@ -63,7 +63,7 @@ class ProductInfoTable:
 
     @staticmethod
     def get_products_by_cat_id(cat_id):
-        sql = 'SELECT pi.product_id, pi.name, pp.photo_id, pp.photo_byte FROM '
+        sql = 'SELECT pi.product_id, pi.name, pp.photo_id, pp.small_photo FROM '
         sql += 'product_info pi , product_photo pp WHERE pi.product_id = pp.product_id AND '
         sql += f'pi.category_id = {cat_id} AND pp.main_photo = TRUE AND pi.active = TRUE '
         sql += 'ORDER BY pi.product_id'
