@@ -157,14 +157,15 @@ def product_info(ser_num):
 	if request.method == 'GET':
 		return render_template(
 			utls.url_join(['clients', 'product_info.html']),
-			my_product = ProductC.get(ser_num)
+			my_product = ProductC.get_my_product(
+				session['client']['id'],
+				ser_num
+				)
 		)
 
 	if request.method == 'POST':
 		ProductC.update({
 			'serial_num' : ser_num,
-			'login' : request.form['login'],
-			'password' : request.form['password'],
 			'description' : request.form['desc']
 		})
 

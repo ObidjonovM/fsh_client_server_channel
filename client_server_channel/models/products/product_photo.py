@@ -11,8 +11,8 @@ class ProductPhotoTable:
     @staticmethod
     def get(product_id):
         col_names = utls.get_column_names('product_photo')
-        sql = f'SELECT * FROM product_photo WHERE product_id = %(product_id)s'
-        sql += ' AND active = TRUE'
+        sql = f'SELECT * FROM product_photo WHERE product_id = %(product_id)s '
+        sql += 'AND active = TRUE'
         result = crud.run_SQL(sql, col_names, {'product_id' : product_id})
         
         return result

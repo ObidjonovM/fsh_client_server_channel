@@ -123,6 +123,23 @@ class ProductC:
 
 
     @staticmethod
+    def get_my_product(client_id, serial_num):
+        get_product = ProductTable.get_my_product(client_id, serial_num)
+        if len(get_product['data']) > 0:
+            get_product['data']['photo'] = utls.byte_to_base64(
+                get_product['data']['format'],
+                get_product['data']['photo']
+                )
+            del get_product['data']['format']
+
+        return {
+            'success' : get_product['success'],
+            'data' : get_product['data'],
+            'log_code' : utls.record_log(get_product, 'get', 'crud_logs')
+        }
+
+
+    @staticmethod
     def get_my_products(client_id):
         result = ProductTable.get_my_products(client_id)
 
