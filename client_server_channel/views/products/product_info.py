@@ -44,6 +44,7 @@ def add():
 		result = ProductInfoC.add({
 			'name' : params['name'],
 			'model' : params['model'],
+			'description' : params['desc'],
 			'main_photo' : params['main_photo'],
 			'other_photos' : params['other_photos'],
 			'category_id' : params['cat_id'],
@@ -122,3 +123,12 @@ def product_cat(cat_id):
 
 		return result
 
+
+@product_info.route('/<int:product_id>')
+def product_by_id(product_id):
+
+	if request.method == 'GET':
+		return render_template(
+			utls.url_join(['products', 'product_info', 'get_info.html']),
+			get_info = ProductInfoC.get_all_info_by_prod_id(product_id)
+		)

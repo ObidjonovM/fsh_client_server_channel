@@ -123,6 +123,28 @@ class ProductInfoC:
 
 
     @staticmethod
+    def get_all_info_by_prod_id(product_id):
+        get_all_result = ProductInfoTable.get_all_info_by_prod_id(product_id)
+        print(get_all_result)
+        if len(get_all_result['data']) > 0:
+            get_all_result['data']['sm_photo'] = utls.byte_to_base64(
+                get_all_result['data']['format'],
+                get_all_result['data']['sm_photo']
+            )
+            get_all_result['data']['org_photo'] = utls.byte_to_base64(
+                get_all_result['data']['format'],
+                get_all_result['data']['org_photo']
+            )
+            del get_all_result['data']['format']
+
+        return {
+            'success' : get_all_result['success'],
+            'data' : get_all_result['data'],
+            'log_code' : utls.record_log(get_all_result, 'get_all', 'crud_logs')
+        }
+
+
+    @staticmethod
     def get_products_by_cat_id(cat_id): 
         result = ProductInfoTable.get_products_by_cat_id(cat_id)
 
