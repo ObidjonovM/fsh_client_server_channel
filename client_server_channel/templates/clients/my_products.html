@@ -25,7 +25,6 @@
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
 </div>
 
-
 <div class="full-container">
 
     <div class="container">
@@ -39,41 +38,53 @@
 
 
     <div class="container">
-        {% for i in range(my_products['data']['serial_num']|length)%}
-        <section>
-            <div class="wifi-razvetka-glavni-div">
-                <div class="w-r-border"></div>
-                <div class="wifi-razvetka-name">Wifi Razvetka</div>
-                <div class="w-r-border"></div>
-            </div>
-        </section>
+
+<!--        <section>-->
+<!--            <div class="wifi-razvetka-glavni-div">-->
+<!--                <div class="w-r-border"></div>-->
+<!--                <div class="wifi-razvetka-name">Wifi Razvetka</div>-->
+<!--                <div class="w-r-border"></div>-->
+<!--            </div>-->
+<!--        </section>-->
 
         <section>
+
+
             <div class="all-products-content">
-
+                {% for i in range(my_products['data']['serial_num']|length)%}
                 <div class="all-products">
-                    <!--Avval for sick shetta edi -->
                     <div class="img-div">
                     <span>
                        <p class="description">{{my_products['data']['description'][i]}}</p>
                     </span>
-                        <img src="{{my_products['data']['photo'][i]}}"
-                             ser_num="{{my_products['data']['serial_num'][i]}}">
+                        <img src="{{my_products['data']['photo'][i]}}" class="s"
+                             ser_num="{{my_products['data']['serial_num'][i]}}" onclick="productImg()">
                         <a href="#">Learn more</a>
                     </div>
                     {% if my_products['data']['product_id'][i] == 1 %}
-                    <span style="display: flex">
+                    <div class="input-on-off">
                         <input type="button" value="On" onclick="turnOn(this)" class="on"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
 
                         <input type="button" value="Off" onclick="turnOff(this)" class="off"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
-                    </span>
+                    </div>
+                    {%else%}
+                    <div class="input-on-off">
+                        <input type="text" value="On" class="on1" style="text-align: center;" readonly
+                               ser_num="{{my_products['data']['serial_num'][i]}}">
+
+                        <input type="text" value="Off" class="off1" style="text-align: center;" readonly
+                               ser_num="{{my_products['data']['serial_num'][i]}}">
+                    </div>
                     {% endif %}
                 </div>
+                {% endfor %}
+
             </div>
+
         </section>
-        {% endfor %}
+
     </div>
 
     <div class="container modal hidden">

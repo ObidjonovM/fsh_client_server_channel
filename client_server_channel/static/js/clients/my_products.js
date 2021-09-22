@@ -40,3 +40,14 @@ document.addEventListener('keydown', function (e) {
     }
 });
 // modal close
+
+
+function productImg() {
+    const imgs = document.getElementsByTagName('img');
+
+    for (let i=0; i<imgs.length; i++){
+       var x = imgs[i].getAttribute("ser_num");
+        console.log(x);
+        // window.open('/clients/my_products/'+ x, '_self');
+    }
+}

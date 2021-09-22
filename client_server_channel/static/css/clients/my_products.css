@@ -9,11 +9,6 @@
     margin: 10px auto;
 }
 
-section {
-    max-width: 1300px;
-    width: 1300px;
-    margin: 35px auto;
-}
 
 .wifi-razvetka-glavni-div {
     display: flex;
@@ -39,19 +34,29 @@ section {
     color: #000;
 }
 
+section {
+    max-width: 1500px;
+    min-width: 360px;
+    width: 1330px;
+    margin: 15px auto;
+    /*border: 1px solid red;*/
+}
+
 
 .all-products-content {
-    display: flex;
-    justify-content: start;
-    align-items: start;
+    /*border: 1px solid black;*/
 }
 
 .all-products {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding: 10px;
-    display: flex;
+    /*border: 1px solid yellow;*/
+    /*width: 100%;*/
+    max-width: 291px;
+    min-height: 120px;
+    height: 348px;
+    float: left;
+    margin: 28px 20px;
+    /*padding: 10px;*/
+    /*    display: flex;*/
 }
 
 .all-products .img-div {
@@ -59,8 +64,8 @@ section {
     min-height: 120px;
     height: 345px;
     background-color: #fff;
-    margin: 20px;
     padding: 45px 30px;
+    float: left;
 
 }
 
@@ -92,7 +97,7 @@ section {
 }
 
 .all-products input {
-    width: 288px;
+    width: 141px;
     height: 30px;
     background-color: #fff;
     border: none;
@@ -101,18 +106,20 @@ section {
     cursor: pointer;
     font-weight: 600;
     box-shadow: 0px 0px 4px 1px rgba(0,0,0,.2);
+    margin: 2px;
+    float: left;
 }
 
-.on {
-    margin-top: 370px;
-    float: left;
-    margin-left: -309px;
+.input-on-off {
+    max-width: 290px;
+    height: 34px;
+    background-color: rgba(224, 219, 219, 0.7);
+    transition: all .3s ease-in-out;
+    display: block;
 }
 
-.off {
-    float: left;
-    margin-left: -288px;
-    margin-top: 404px;
+.input-on-off .on1, .off1 {
+    pointer-events: none;
 }
 
 .all-products .on:focus, .off:focus  {
