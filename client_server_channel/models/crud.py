@@ -41,22 +41,39 @@ def get(table_name, rec_dict):
         result['data'] = utls.keyval_tuples2dict(col_names, result['data'][0])
         if 'active' in result['data']:
             del result['data']['active']
+        if 'date_added' in result['data']:
+            del result['data']['date_added']
+        if 'date_modified' in result['data']:
+            del result['data']['date_modified']
+        if 'add_emp_id' in result['data']:
+            del result['data']['add_emp_id']
+        if 'modify_emp_id' in result['data']:
+            del result['data']['modify_emp_id']
 
     return result
 
 
 def get_all(table_name):
-	col_names = utls.get_column_names(table_name)
-	sql = f'SELECT * FROM {table_name} WHERE active = TRUE ORDER BY {col_names[0]}'
-	result = utls.send_to_db(sql, None, True)
+    col_names = utls.get_column_names(table_name)
+    sql = f'SELECT * FROM {table_name} WHERE active = TRUE ORDER BY {col_names[0]}'
+    result = utls.send_to_db(sql, None, True)
 
-	if result['success']:
-		result['data'] = utls.list_tuples2tuple_lists(result['data'])
-		result['data'] = utls.keyval_tuples2dict(col_names, result['data'])
-		if 'active' in result['data']:
-			del result['data']['active']
-	
-	return result
+
+    if result['success']:
+        result['data'] = utls.list_tuples2tuple_lists(result['data'])
+        result['data'] = utls.keyval_tuples2dict(col_names, result['data'])
+        if 'active' in result['data']:
+            del result['data']['active']
+        if 'date_added' in result['data']:
+            del result['data']['date_added']
+        if 'date_modified' in result['data']:
+            del result['data']['date_modified']
+        if 'add_emp_id' in result['data']:
+            del result['data']['add_emp_id']
+        if 'modify_emp_id' in result['data']:
+            del result['data']['modify_emp_id']
+
+    return result
 
 
 def get_ids_names(table_name, id_col, name_col):
@@ -78,6 +95,14 @@ def run_SQL(sql, cols, sql_params=None, fetchable=True):
         result['data'] = utls.keyval_tuples2dict(tuple(cols), result['data'])
         if 'active' in result['data']:
             del result['data']['active']
+        if 'date_added' in result['data']:
+            del result['data']['date_added']
+        if 'date_modified' in result['data']:
+            del result['data']['date_modified']
+        if 'add_emp_id' in result['data']:
+            del result['data']['add_emp_id']
+        if 'modify_emp_id' in result['data']:
+            del result['data']['modify_emp_id']
     
     return result
 
