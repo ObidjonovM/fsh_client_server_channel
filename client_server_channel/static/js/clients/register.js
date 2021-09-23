@@ -12,12 +12,13 @@ login_open.addEventListener('click', function () {
 const xhttp = new XMLHttpRequest();
 function loginChange() {
     let clientname = document.getElementById('clientname').value;
+    let login_error = document.getElementById('login_error');
+    let submit = document.getElementById('submit');
     console.log(clientname)
     xhttp.open('Post', '/clients/user_exists', true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhttp.send(JSON.stringify({'name' : clientname}));
-    let login_error = document.getElementById('login_error');
-    let submit = document.getElementById('submit');
+
 
     xhttp.onreadystatechange = function (ev) {
         if (xhttp.readyState ==4 && xhttp.status == 200){
