@@ -39,15 +39,12 @@ document.addEventListener('keydown', function (e) {
         closeModal();
     }
 });
+
 // modal close
 
 
-function productImg() {
-    const imgs = document.getElementsByTagName('img');
+function productImg(ev) {
 
-    for (let i=0; i<imgs.length; i++){
-       var x = imgs[i].getAttribute("ser_num");
-        console.log(x);
-        // window.open('/clients/my_products/'+ x, '_self');
-    }
+    var x = ev.getAttribute("ser_num");
+    window.open('/clients/my_products/' + x, '_self');
 }
