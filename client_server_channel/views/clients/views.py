@@ -150,7 +150,7 @@ def my_products():
 
 
 @clients.route('/my_products/<ser_num>', methods=['GET', 'POST'])
-def product_info(ser_num):
+def my_product(ser_num):
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
 
@@ -168,8 +168,8 @@ def product_info(ser_num):
 			'serial_num' : ser_num,
 			'description' : request.form['desc']
 		})
-		
-		return redirect(url_for(request.url))
+
+		return redirect(request.url)
 
 
 @clients.route('/my_products/logs/<ser_num>', methods=['POST'])
