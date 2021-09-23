@@ -36,3 +36,16 @@ document.addEventListener('keydown', function (e) {
     }
 });
 // modal close
+
+
+window.addEventListener('load', function (){
+    const description_form = document.getElementById('description_form');
+
+    description_form.addEventListener('submit', function () {
+        let desc = document.getElementById('desc');
+        let s = desc.textContent
+
+
+        console.log(s);
+    })
+})

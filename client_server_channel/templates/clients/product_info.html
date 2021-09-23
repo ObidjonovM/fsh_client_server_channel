@@ -15,7 +15,6 @@
 
 <body class="background-color">
 {% block body %}
-
 <div class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
@@ -66,33 +65,33 @@
 </div>
 <div class="overlay hidden"></div>
 
-<section>
+<section class="description-img-section">
     {% for i in range(my_product['data']['photo']|length)%}
     <div class="all-products">
         <div class="img-div">
+            <span>{{my_product['data']['description'][i]}}</span>
             <img src="{{my_product['data']['photo'][i]}}" alt="img">
         </div>
     </div>
     {%endfor%}
 
-<!--    <div class="container">-->
-<!--        <div class="header">-->
-<!--            <h2>Должность</h2>-->
-<!--        </div>-->
 
-<!--        <form action="#" class="form">-->
-<!--            <div class="form-control">-->
-<!--                <label for="desc">description</label>-->
-<!--                <textarea type="text" name="desc" id="desc" value="{{my_product['data']['description']}}"></textarea>-->
-<!--            </div>-->
+    <div class="description-container">
+        <div class="description-header">
+            <h2>Измените описание!</h2>
+        </div>
 
-<!--            <input type="submit" class="add-type-submit" value="Сохранить"/>-->
+        <form action="{{url_for('clients.product_info', ser_num=my_product['data']['serial_num'][0])}}" method="post" class="description-form" id="description_form">
+            <div class="description-form-control">
+                <input type="hidden" name="ser_num" id="ser_num" value="{{my_product['data']['serial_num'][0]}}"/>
 
-<!--            <input onclick="otmenFunction()" type="button" class="add-type-submit2" value="Отмена"/>-->
-<!--        </form>-->
-<!--    </div>-->
+                <label for="desc">description</label>
+                <textarea type="text" name="desc" id="desc">{{my_product['data']['description'][0]}}</textarea>
+            </div>
 
-
+            <input type="submit" class="add-type-submit" value="Сохранить"/>
+        </form>
+    </div>
 </section>
 
 
