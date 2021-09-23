@@ -41,7 +41,6 @@
         {%endif%}
     </div>
 </header>
-
 <section>
     {% for i in range(get_products['data']['name']|length)%}
     <div class="all-products">
@@ -50,7 +49,8 @@
             <span>
                 <p class="description">{{get_products['data']['name'][i]}}</p>
             </span>
-            <img src="{{get_products['data']['photo'][i]}}" alt="">
+            <img src="{{get_products['data']['photo'][i]}}" alt="image" id="{{get_products['data']['product_id'][i]}}"
+                 onclick="getInfo(this)">
             <a href="#">Учить больше</a>
         </div>
 
