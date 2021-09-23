@@ -168,7 +168,8 @@ def product_info(ser_num):
 			'serial_num' : ser_num,
 			'description' : request.form['desc']
 		})
-
+		
+		return redirect(url_for(request.url))
 
 
 @clients.route('/my_products/logs/<ser_num>', methods=['POST'])
