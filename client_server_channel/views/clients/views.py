@@ -156,7 +156,7 @@ def my_product(ser_num):
 
 	if request.method == 'GET':
 		return render_template(
-			utls.url_join(['clients', 'product_info.html']),
+			utls.url_join(['clients', 'my_product.html']),
 			my_product = ProductC.get_my_product(
 				session['client']['id'],
 				ser_num
@@ -192,8 +192,6 @@ def delete_product(ser_num):
 	if request.method == 'POST':
 		ProductC.update({
 			'serial_num' : ser_num,
-			'login' : '',
-			'password' : '',
 			'description' : '',
 			'client_id' : ''
 		})
