@@ -235,7 +235,7 @@ class ProductC:
         headers = {'Content-Type': 'application/json; charset=utf8'}
 
         resp = reqs.post(
-            hd_server + 4'/turn_off',
+            hd_server + '/turn_off',
             data = json.dumps(ser_num),
             headers=headers
         )
