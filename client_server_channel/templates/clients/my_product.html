@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="/static/css/clients/product_info.css">
+    <link rel="stylesheet" href="/static/css/clients/my_product.css">
 
     {% endblock %}
 </head>
@@ -19,18 +19,17 @@
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
 </div>
-
 <br>
 <section>
-<h1 class="h1-my-product">My Product</h1>
+    <h1 class="h1-my-product">Мой продукт</h1>
 </section>
 
 
-    <section>
-        <button class="show-modal">
-            <p>Информация о товаре</p>
-        </button>
-    </section>
+<section>
+    <button class="show-modal">
+        <p>Информация о товаре</p>
+    </button>
+</section>
 
 <div class="container modal hidden">
     <button class="close-modal">&times;</button>
@@ -42,20 +41,20 @@
     <div class="form">
 
         <div class="form-control">
-            <label for="serial_num">Serial Num</label>
-            <div id="serial_num" class="information">{{my_product['data']['serial_num']}}</div>
+            <label for="serial_num">Серийный номер</label>
+            <div id="serial_num" class="information">{{my_product['data']['serial_num'][0]}}</div>
 
             <label for="default_login">Default Login</label>
-            <div id="default_login" class="information">{{my_product['data']['default_login']}}</div>
+            <div id="default_login" class="information">{{my_product['data']['default_login'][0]}}</div>
 
-            <label for="default_password">Default Password</label>
-            <div id="default_password" class="information">{{my_product['data']['default_password']}}</div>
+            <label for="default_password">Логин по умолчанию</label>
+            <div id="default_password" class="information">{{my_product['data']['default_password'][0]}}</div>
 
-            <label for="ap_login">App Login</label>
-            <div id="ap_login" class="information">{{my_product['data']['ap_login']}}</div>
+            <label for="ap_login">Логин Ap</label>
+            <div id="ap_login" class="information">{{my_product['data']['ap_login'][0]}}</div>
 
-            <label for="ap_password">App Password</label>
-            <div id="ap_password" class="information">{{my_product['data']['ap_password']}}</div>
+            <label for="ap_password">Пароль Ap</label>
+            <div id="ap_password" class="information">{{my_product['data']['ap_password'][0]}}</div>
         </div>
 
         <div class="buttons">
@@ -81,11 +80,12 @@
             <h2>Измените описание!</h2>
         </div>
 
-        <form action="{{url_for('clients.product_info', ser_num=my_product['data']['serial_num'][0])}}" method="post" class="description-form" id="description_form">
+        <form action="{{url_for('clients.my_product', ser_num=my_product['data']['serial_num'][0])}}" method="post"
+              class="description-form" id="description_form">
             <div class="description-form-control">
                 <input type="hidden" name="ser_num" id="ser_num" value="{{my_product['data']['serial_num'][0]}}"/>
 
-                <label for="desc">description</label>
+                <label for="desc">Описание</label>
                 <textarea type="text" name="desc" id="desc">{{my_product['data']['description'][0]}}</textarea>
             </div>
 
@@ -94,29 +94,19 @@
     </div>
 </section>
 
-
-
-<!--<form action="{{ url_for('clients.product_info', ser_num=my_product['data']['serial_num']) }}" method="post">-->
-<!--    <input type="text" name="product_id" value="{{my_product['data']['product_id']}}" style="display: none;">-->
-<!--    <label for="start_date">start_date</label>-->
-<!--    <input type="datetime-local" step="1" id="start_date" name="start_date">-->
-<!--    <label for="end_date">end_date</label>-->
-<!--    <input type="datetime-local" step="1" id="end_date" name="end_date">-->
-<!--    <input type="submit" value="Submit">-->
-<!--</form>-->
-
-
-
-
-
-
-
+<section>
+    <div class="delete-product-div">
+        <form action="{{url_for('clients.delete_product', ser_num=my_product['data']['serial_num'][0])}}" method="post">
+            <input type="submit" value="Delete Product" class="delete-product">
+        </form>
+    </div>
+</section>
 
 
 {% endblock %}
 
 <script src="/static/js/base.js"></script>
-<script src="/static/js/clients/product_info.js"></script>
+<script src="/static/js/clients/my_product.js"></script>
 </body>
 
 </html>
