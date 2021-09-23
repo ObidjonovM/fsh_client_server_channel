@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, url_for, redirect, session
-from client_server_channel.controls import (ProductC, ProductInfoC, 
+from client_server_channel.controls import (ProductC, ProductInfoC, ProductPhotoC,
 						DealerC, ClientC, FirmwareC, ProductStatusC)
 from .. import view_utils as utls
 from .category import category
@@ -79,7 +79,8 @@ def get(serial_num):
 			dealer_name = DealerC.get(product_info['data']['dealer_id']),
 			client_name = ClientC.get(product_info['data']['client_id']),
 			firmware_name = FirmwareC.get(product_info['data']['firmware_id']),
-			status_name = ProductStatusC.get(product_info['data']['status_id'])
+			status_name = ProductStatusC.get(product_info['data']['status_id']),
+			product_photo = ProductPhotoC.get(product_info['data']['product_id'])
 		)
 
 	return redirect(url_for('products.all'))
@@ -127,7 +128,6 @@ def update(serial_num):
 				status_ids = ProductStatusC.get_ids_names(),
 				product_name = ProductInfoC.get(product_info['data']['product_id']),
 				firmwares_ids = FirmwareC.get(product_info['data']['firmware_id']),
-				resp_emp_id = session['employee']['id']
 			)
 
 		return redirect(url_for('products.all'))

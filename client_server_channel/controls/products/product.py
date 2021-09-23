@@ -40,10 +40,6 @@ class ProductC:
     @staticmethod
     def get(serial_num):
         get_result = ProductTable.get(serial_num)
-        if len(get_result['data']) > 0:
-            photo_result = ProductPhotoC.get(get_result['data']['product_id'])
-            if len(photo_result['data']) > 0:
-                get_result['data']['photo'] = photo_result['data']['small_photo']
 
         return {
             'success' : get_result['success'],
