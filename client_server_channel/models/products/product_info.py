@@ -37,11 +37,11 @@ class ProductInfoTable:
 
     @staticmethod
     def get_all_info():
-        sql = 'SELECT pp.small_photo, pp.photo_format, pi.name, pi.model FROM '
+        sql = 'SELECT pp.small_photo, pp.photo_format, pi.product_id, pi.name, pi.model FROM '
         sql += 'product_photo pp, product_info pi WHERE pp.main_photo = TRUE '
         sql += 'AND pp.product_id = pi.product_id'
         
-        return crud.run_SQL(sql, ['photo', 'format', 'name', 'model'])
+        return crud.run_SQL(sql, ['photo', 'format', 'product_id', 'name', 'model'])
 
 
     @staticmethod
