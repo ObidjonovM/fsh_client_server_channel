@@ -192,8 +192,8 @@ def delete_product(ser_num):
 	if request.method == 'POST':
 		ProductC.update({
 			'serial_num' : ser_num,
-			'description' : '',
-			'client_id' : ''
+			'description' : None,
+			'client_id' : None
 		})
 
 		return redirect(url_for('clients.my_products'))

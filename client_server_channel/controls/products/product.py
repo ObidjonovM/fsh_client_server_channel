@@ -191,7 +191,7 @@ class ProductC:
             })
 
             ss_resp = reqs.post(
-                'http://127.0.0.1:5001/ss_get_logs',
+                hd_server + '/ss_get_logs',
                 data = ss_params,
                 headers = headers
                 )
@@ -207,7 +207,7 @@ class ProductC:
             })
 
             sg_resp = reqs.post(
-                'http://127.0.0.1:5001/sg_get_logs',
+                hd_server + '/sg_get_logs',
                 data = sg_params,
                 headers = headers
                 )
@@ -222,7 +222,7 @@ class ProductC:
         headers = {'Content-Type': 'application/json; charset=utf8'}
 
         resp = reqs.post(
-            'http://127.0.0.1:5001/turn_on',
+            hd_server + '/turn_on',
             data = json.dumps(ser_num),
             headers=headers
         )
@@ -235,7 +235,7 @@ class ProductC:
         headers = {'Content-Type': 'application/json; charset=utf8'}
 
         resp = reqs.post(
-            'http://127.0.0.1:5001/turn_off',
+            hd_server + 4'/turn_off',
             data = json.dumps(ser_num),
             headers=headers
         )
