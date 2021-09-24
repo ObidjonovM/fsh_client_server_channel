@@ -39,7 +39,7 @@ class ProductInfoTable:
     def get_all_info():
         sql = 'SELECT pp.small_photo, pp.photo_format, pi.product_id, pi.name, pi.model FROM '
         sql += 'product_photo pp, product_info pi WHERE pp.main_photo = TRUE '
-        sql += 'AND pp.product_id = pi.product_id'
+        sql += 'AND pp.product_id = pi.product_id AND pp.active = TRUE AND pi.active = TRUE'
         
         return crud.run_SQL(sql, ['photo', 'format', 'product_id', 'name', 'model'])
 
@@ -49,7 +49,7 @@ class ProductInfoTable:
         sql = 'SELECT pp.small_photo, pp.original_photo, pp.photo_format, '
         sql += 'pp.main_photo, pi.name, pi.model, pi.description FROM '
         sql += 'product_photo pp, product_info pi WHERE pp.product_id = pi.product_id '
-        sql += f'AND pi.product_id = {product_id} '
+        sql += f'AND pi.product_id = {product_id} AND pp.active = TRUE AND pi.active = TRUE'
         
         return crud.run_SQL(sql, ['sm_photo', 'org_photo', 'format',
                                  'main_photo', 'name', 'model', 'description']
@@ -66,7 +66,7 @@ class ProductInfoTable:
         sql = 'SELECT pi.product_id, pi.name, pp.photo_id, pp.small_photo FROM '
         sql += 'product_info pi , product_photo pp WHERE pi.product_id = pp.product_id AND '
         sql += f'pi.category_id = {cat_id} AND pp.main_photo = TRUE AND pi.active = TRUE '
-        sql += 'ORDER BY pi.product_id'
+        sql += 'AND pp.active = TRUE ORDER BY pi.product_id'
 
         result = crud.run_SQL(sql, ['product_id', 'product_name', 'photo_id', 'photo'])
 

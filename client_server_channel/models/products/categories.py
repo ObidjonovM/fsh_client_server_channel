@@ -17,7 +17,7 @@ class CategoriesTable:
     @staticmethod
     def get_all():
         sql = 'SELECT category_id, name, parent_cat_id FROM categories'
-        sql += ' WHERE category_id != 1 ORDER BY category_id'
+        sql += ' WHERE category_id != 1 AND active = TRUE ORDER BY category_id'
 
         result = crud.run_SQL(sql, ['category_id', 'name', 'parent_cat_id'])
 
@@ -70,7 +70,7 @@ class CategoriesTable:
 
     @staticmethod
     def get_sub_cat(cat_id):
-        sql = 'SELECT category_id, name FROM categories WHERE'
+        sql = 'SELECT category_id, name FROM categories WHERE active = TRUE'
         sql += f' parent_cat_id = {cat_id} ORDER BY category_id'
 
         result = crud.run_SQL(sql, ['category_id', 'name'])

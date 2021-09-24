@@ -123,8 +123,9 @@ class ProductTable:
         sql = 'SELECT p.serial_num, p.product_id, pp.small_photo, '
         sql += 'pp.photo_format, p.mac_address, p.default_login, p.default_password, '
         sql += 'p.ap_login, p.ap_password, p.manufactured_date, p.description FROM '
-        sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE AND '
-        sql += f'p.client_id = {client_id} AND p.product_id = pp.product_id ORDER BY p.serial_num'
+        sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE '
+        sql += f'AND p.active = TRUE AND pp.active = TRUE AND p.client_id = {client_id} '
+        sql += 'AND p.product_id = pp.product_id ORDER BY p.serial_num'
 
         return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo', 'format', 
                                 'mac_address', 'default_login', 'default_password',
@@ -138,7 +139,8 @@ class ProductTable:
         sql += 'p.ap_login, p.ap_password, p.manufactured_date, p.description FROM '
         sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE AND '
         sql += f"p.product_id = pp.product_id AND p.client_id = {client_id} AND "
-        sql += f"p.serial_num = '{ser_num}' ORDER BY p.serial_num"
+        sql += f"p.serial_num = '{ser_num}' AND p.active = TRUE "
+        sql += 'AND pp.active = TRUE ORDER BY p.serial_num'
 
         return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo', 'format',
                                 'mac_address', 'default_login', 'default_password',
