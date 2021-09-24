@@ -23,11 +23,11 @@
 </div>
 
 
-<content>
+<main>
     <section>
         <ul>
             {% for i in range(get_info['data']['main_photo']|length)%}
-            <li>
+            <li class="sm-photo">
                 <span>
                     <img src="{{get_info['data']['sm_photo'][i]}}" alt="main page image">
                 </span>
@@ -37,7 +37,7 @@
     </section>
 
 
-</content>
+</main>
 
 {% endblock %}
 

@@ -62,7 +62,7 @@
     margin: 10px;
 }
 
-.form-control input, select {
+.form-control input, select, textarea {
     width: 250px;
     height: 40px;
     padding: 10px;
@@ -73,7 +73,7 @@
     margin: 10px;
 }
 
-.form-control input:focus, select:focus {
+.form-control input:focus, select:focus, textarea:focus {
     outline: 0;
     border-color: #777;
 }
