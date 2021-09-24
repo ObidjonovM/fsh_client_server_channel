@@ -22,6 +22,8 @@
 
             <th class="hidden">ИД</th>
 
+            <th>Серийный номер</th>
+
             <th>Наименование</th>
 
             <th>Дилер</th>
@@ -46,7 +48,7 @@
         {% for i in range(products_info['data']['serial_num']|length) %}
         <tr ondblclick="getType(this)">
 
-            <td class="hidden">{{products_info['data']['serial_num'][i]}}</td>
+            <td >{{products_info['data']['serial_num'][i]}}</td>
 
             <td>{{products_by_ids['data'][products_info['data']['product_id'][i]]}}</td>
 
