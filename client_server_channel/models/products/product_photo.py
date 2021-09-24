@@ -52,3 +52,8 @@ class ProductPhotoTable:
     @staticmethod
     def delete(photo_id):
         return crud.delete('product_photo', {'photo_id' : photo_id})
+
+
+    @staticmethod
+    def delete_by_product_id(product_id):
+        return crud.delete('product_photo', {'product_id' : product_id})

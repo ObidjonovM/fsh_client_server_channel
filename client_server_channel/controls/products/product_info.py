@@ -184,7 +184,7 @@ class ProductInfoC:
         if get_result['data'] != []:
             delete_result = ProductInfoTable.delete(product_id)
             if delete_result['success']:
-                delete_photo = ProductPhotoTable.delete(get_result['data']['photo_id'])
+                delete_photo = ProductPhotoTable.delete_by_product_id(get_result['data']['product_id'])
                 if not delete_photo['success']:
 
                     return {
