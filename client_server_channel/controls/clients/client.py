@@ -136,6 +136,14 @@ class ClientC:
 
         return result
 
+
+    def check_password(client_id, password):
+        get_result = ClientTable.get(client_id)
+        return check_password_hash(
+            get_result['data']['password'],
+            password
+        )
+
     
     def user_exists(clientname):
         login_result = ClientTable.login(clientname)

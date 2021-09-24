@@ -195,11 +195,28 @@ def delete_product(ser_num):
 		return redirect(url_for('clients.login'))
 
 	if request.method == 'POST':
-		ProductC.update({
-			'serial_num' : ser_num,
-			'description' : None,
-			'client_id' : None
-		})
+		result = ClientC.check_password(
+			session['client']['id'],
+			request.form['password']
+			)
+
+		if (result):
+			ProductC.update({
+				'serial_num' : ser_num,
+				'description' : None,
+				'client_id' : None
+			})
+
+			return redirect(url_for('clients.my_products'))
+		my_product = ProductC.get_my_product(
+				session['client']['id'],
+				ser_num
+				)
+		if len(my_product['data']) > 0:
+			return render_template(
+				utls.url_join(['clients', 'my_product.html']),
+				my_product = my_product
+				)
 
 		return redirect(url_for('clients.my_products'))
 

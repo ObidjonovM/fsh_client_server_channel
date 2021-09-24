@@ -97,6 +97,7 @@
 <section>
     <div class="delete-product-div">
         <form action="{{url_for('clients.delete_product', ser_num=my_product['data']['serial_num'][0])}}" method="post">
+            <input type="text" name="password">
             <input type="submit" value="Delete Product" class="delete-product">
         </form>
     </div>
