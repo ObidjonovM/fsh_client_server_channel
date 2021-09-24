@@ -82,11 +82,18 @@ class ProductC:
 
 
     @staticmethod
-    def update(product_info):
+    def update(product_info, add_client = False):
         get_result = ProductTable.get(product_info['serial_num'])
         log_code = utls.record_log(get_result, 'update', 'crud_logs')
         if get_result['data'] != []:
             product_info['date_modified'] = datetime.now()
+            if get_result['data']['client_id'] != None and add_client == True:
+                return {
+                    'success' : False,
+                    'log_code' : 0,
+                    'comment' : '<h1>Продукт продан!</h1>'
+                }
+
             update_result = ProductTable.update(product_info)
             return {
                 'success' : update_result['success'],

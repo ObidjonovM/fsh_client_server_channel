@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
 from client_server_channel.controls import ClientC, ProductC
+import json
 from .. import view_utils as utls
 from .subscription import subscription
 
@@ -141,12 +142,12 @@ def my_products():
 			'serial_num' : request.form['ser_num'],
 			'description' : request.form['desc'],
 			'client_id' : session['client']['id']
-		})
+		}, True)
 
 		if result['success']:
 			return redirect(url_for('clients.my_products'))
 
-		return result
+		return json.dumps(result, ensure_ascii=False)
 
 
 @clients.route('/my_products/<ser_num>', methods=['GET', 'POST'])
