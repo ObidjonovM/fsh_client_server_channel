@@ -122,26 +122,24 @@ class ProductTable:
     def get_my_products(client_id):
         sql = 'SELECT p.serial_num, p.product_id, pp.small_photo, '
         sql += 'pp.photo_format, p.mac_address, p.default_login, p.default_password, '
-        sql += 'p.login, p.password, p.ap_login, p.ap_password, p.manufactured_date, p.description FROM '
+        sql += 'p.ap_login, p.ap_password, p.manufactured_date, p.description FROM '
         sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE AND '
         sql += f'p.client_id = {client_id} AND p.product_id = pp.product_id ORDER BY p.serial_num'
 
         return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo', 'format', 
                                 'mac_address', 'default_login', 'default_password',
-                                'login', 'password', 'ap_login', 'ap_password',
-                                'manufactured_date', 'description'])
+                                'ap_login', 'ap_password', 'manufactured_date', 'description'])
 
 
     @staticmethod
     def get_my_product(client_id, ser_num):
         sql = 'SELECT p.serial_num, p.product_id, pp.small_photo, '
         sql += 'pp.photo_format, p.mac_address, p.default_login, p.default_password, '
-        sql += 'p.login, p.password, p.ap_login, p.ap_password, p.manufactured_date, p.description FROM '
+        sql += 'p.ap_login, p.ap_password, p.manufactured_date, p.description FROM '
         sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE AND '
         sql += f"p.product_id = pp.product_id AND p.client_id = {client_id} AND "
         sql += f"p.serial_num = '{ser_num}' ORDER BY p.serial_num"
 
         return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo', 'format',
                                 'mac_address', 'default_login', 'default_password',
-                                'login', 'password', 'ap_login', 'ap_password',
-                                'manufactured_date', 'description'])
+                                'ap_login', 'ap_password', 'manufactured_date', 'description'])

@@ -440,8 +440,6 @@ CREATE TABLE IF NOT EXISTS products (
 	product_id INT CHECK (product_id > 0) NOT NULL,
 	default_login VARCHAR(30) UNIQUE NOT NULL,
 	default_password VARCHAR(30) UNIQUE NOT NULL,
-	login VARCHAR(30) UNIQUE,
-	password VARCHAR(30) UNIQUE,
 	ap_login VARCHAR(30) UNIQUE NOT NULL,
 	ap_password VARCHAR(30) UNIQUE NOT NULL,
 	description TEXT,
