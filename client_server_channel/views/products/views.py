@@ -48,6 +48,7 @@ def add():
 		params = request.form
 		result = ProductC.add({
 			'product_id' : params['product_id'],
+			'mac_address' : params['mac_address'],
 			'dealer_id' : params['dealer_id'],
 			'manufactured_date' : params['manufactured_date'],
 			'firmware_id' : params['fw_id'],

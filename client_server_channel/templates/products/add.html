@@ -35,12 +35,15 @@
                 <option value="{{dealers_ids['data']['dealer_id'][i]}}">{{dealers_ids['data']['name'][i]}}</option>
                 {%endfor%}
             </select>
+            
+            <label for="mac_address">Mac адрес</label>
+            <input type="text" name="mac_address" id="mac_address" placeholder="Введите mac адрес...">
 
         </div>
 
 
         <div class="form-control">
-            <label for="manufactured_date">Дата</label>
+            <label for="manufactured_date">Дата изготовления</label>
             <input type="date" name="manufactured_date" id="manufactured_date" required>
 
             <label for="fw_id">Прошивка</label>
