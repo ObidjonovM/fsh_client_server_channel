@@ -34,7 +34,36 @@
             </button>
         </section>
     </div>
+    <div class="container modal hidden">
+        <button class="close-modal">&times;</button>
 
+        <div class="header">
+            <h2>Добавит продукт</h2>
+        </div>
+
+        <form action="{{url_for('clients.my_products')}}" method="post" class="form">
+
+
+            <div class="form-control">
+
+                <label for="ser_num">Серийный номер</label><span style="color: red; font-size: 16px">*</span>
+                <input type="text" id="ser_num" name="ser_num" required>
+            </div>
+
+            <div class="form-control">
+
+                <label for="desc">Описание</label>
+                <textarea type="text" id="desc" name="desc"></textarea>
+
+            </div>
+
+            <div class="buttons">
+                <input type="submit" value="Сохранить" class="add-type-submit">
+                <input type="button" value="Отмена" class="add-type-submit2 close-modal2">
+            </div>
+        </form>
+    </div>
+    <div class="overlay hidden"></div>
 
     <div class="container">
 
@@ -86,36 +115,7 @@
 
     </div>
 
-    <div class="container modal hidden">
-        <button class="close-modal">&times;</button>
 
-        <div class="header">
-            <h2>Добавит продукт</h2>
-        </div>
-
-        <form action="{{url_for('clients.my_products')}}" method="post" class="form">
-
-
-            <div class="form-control">
-
-                <label for="ser_num">Серийный номер</label><span style="color: red; font-size: 16px">*</span>
-                <input type="text" id="ser_num" name="ser_num" required>
-            </div>
-
-            <div class="form-control">
-
-                <label for="desc">Описание</label>
-                <textarea type="text" id="desc" name="desc"></textarea>
-
-            </div>
-
-            <div class="buttons">
-                <input type="submit" value="Сохранить" class="add-type-submit">
-                <input type="button" value="Отмена" class="add-type-submit2 close-modal2">
-            </div>
-        </form>
-    </div>
-    <div class="overlay hidden"></div>
 
 
 </div>

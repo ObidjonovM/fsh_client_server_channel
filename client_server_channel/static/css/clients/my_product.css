@@ -22,7 +22,57 @@ section{
     overflow: hidden;
     max-width: 100%;
 }
+.container1 {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+}
+.form-control1 {
+    margin: 0 auto;
+    border: 1px solid transparent;
+    width: 60%;
+}
 
+.form label {
+    margin-bottom: 0;
+    float: left;
+    margin-top: -20px;
+}
+
+.form2 label {
+    margin-bottom: 0;
+    float: left;
+    margin-top: -20px;
+    margin-left: 25px;
+}
+
+#forInfoPass {
+    width: 100%;
+    height: 40px;
+    background-color: #fff;
+    border: none;
+    border-radius: 2px;
+    color: #1b232e;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,.2);
+    margin: 2px;
+    padding-left: 10px;
+    float: left;
+}
+
+.delete-product {
+    background-color: #374a62;
+    border: 2px solid #374a62;
+    border-radius: 4px;
+    color: #d5e2ff;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 60px;
+    width: 101%;
+    cursor: pointer;
+}
 
 /****** Modal open ******/
 .header {
@@ -48,10 +98,9 @@ section{
     position: relative;
 }
 
-.form-control label {
-    color: #374a62;
-    font-weight: 600;
-    padding-left: 30px;
+.for_delete_label {
+    float: left;
+    margin-top: -20px;
 }
 
 .form-control .information{
@@ -62,7 +111,7 @@ section{
     font-size: 14px;
     padding: 12px;
     width: 90%;
-    margin: 15px auto;
+    margin: 30px auto;
 }
 
 .add-type-submit:hover, .add-type-submit2:hover {
@@ -70,7 +119,7 @@ section{
     transition: all .3s;
 }
 
-.show-modal {
+.show-modal, .delete-product-button {
     text-align: center;
     width: 213px;
     padding:3px;
@@ -99,7 +148,7 @@ section{
     padding: 12px 3px;
 }
 
-.close-modal {
+.close-modal, .close-modal1, .close-modal3 {
     position: absolute;
     top: 1.2rem;
     right: 1rem;
@@ -112,7 +161,7 @@ section{
     height: 40px;
 }
 
-.close-modal:focus{
+.close-modal:focus, .close-modal1:focus, .close-modal3:focus{
     border: 1px solid #9a9a6f;
     box-shadow: 0px 0px 1px 1px #e4e418;
 }
@@ -121,12 +170,33 @@ section{
     display: none;
 }
 
+.hidden1 {
+    display: none;
+}
+
+.hidden2 {
+    display: none;
+}
+
 .modal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 33%;
+    width: 26%;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.modal1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26%;
     background-color: white;
     padding: 1rem;
     border-radius: 5px;
@@ -153,7 +223,18 @@ section{
     }
 }
 
-.overlay {
+.overlay, .overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+}
+
+.overlay1 {
     position: absolute;
     top: 0;
     left: 0;
@@ -166,20 +247,18 @@ section{
 /****** Modal close ******/
 
 
-
-
 .all-products {
-    max-width: 275px;
+    max-width: 350px;
     min-height: 120px;
-    height: 296px;
+    height: 432px;
     margin: 30px 20px;
     border-radius: 8px;
 }
 
 .all-products .img-div {
-    max-width: 275px;
+    max-width: 350px;
     min-height: 120px;
-    height: 322px;
+    height: 430px;
     background-color: #fff;
     padding: 10px 28px;
     border-radius: 8px;
@@ -188,7 +267,7 @@ section{
 .all-products img {
     width: 100%;
     min-height: 120px;
-    height: 255px;
+    height: 361px;
     cursor: pointer;
     margin-top: 15px;
     background-color: #eaeded;
@@ -197,6 +276,37 @@ section{
 
 .all-products img:hover{
     background-color: #dde0e0;
+}
+
+.all-products input{
+    width: 170px;
+    height: 32px;
+    background-color: #fff;
+    border: none;
+    border-radius: 2px;
+    color: #1b232e;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,.2);
+    margin: 2px;
+    float: left;
+}
+
+.input-on-off {
+    max-width: 350px;
+    height: 37px;
+    background-color: rgba(224, 219, 219, 0.7);
+    transition: all .3s ease-in-out;
+    display: block;
+}
+
+.input-on-off .on1, .off1 {
+    pointer-events: none;
+}
+
+.all-products .on:focus, .off:focus  {
+    background-color: red;
+    color: white;
 }
 
 
@@ -208,8 +318,6 @@ section{
     min-width: 800px;
     width: 1200px;
     margin: 100px auto;
-    border-left: 1px solid #adaeb19e;
-    border-right: 1px solid #adaeb19e;
 }
 .description-container {
     background-color: #fff;
@@ -271,23 +379,18 @@ section{
 /*description-container close*/
 
 .delete-product-div {
-    max-width: 1500px;
-    min-width: 800px;
-    width: 1200px;
+    min-width: 250px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .delete-product-div input {
-    min-width: 100px;
-    width: 800px;
     height: 40px;
     border: 1px solid #32334e;
     border-radius: 4px;
     padding: 5px 10px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 600;
-    color: #32334e;
+    width: 100%;
 }

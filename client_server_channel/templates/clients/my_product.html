@@ -31,23 +31,22 @@
     </button>
 </section>
 
-<div class="container modal hidden">
+<div id="containerModal" class="container modal hidden">
     <button class="close-modal">&times;</button>
 
     <div class="header">
-        <h2>Информация о товаре</h2>
+        <h2>Введите пароль</h2>
     </div>
 
     <div class="form">
-
-        
-
-        <div class="buttons">
-            <input type="button" value="Отмена" class="add-type-submit2 close-modal2">
-        </div>
+           <div class="form-control1">
+            <label for="forInfoPass">Пароль</label>
+            <input type="password" id="forInfoPass" placeholder="введите пароль" required>
+            <input type="button" value="Info Product" onclick="OpenNewModal()" class="delete-product">
+           </div>
     </div>
 </div>
-<div class="overlay hidden"></div>
+<div id="overlay" class="overlay hidden"></div>
 
 <section class="description-img-section">
     {% for i in range(my_product['data']['photo']|length)%}
@@ -56,11 +55,30 @@
             <span>{{my_product['data']['description'][i]}}</span>
             <img src="{{my_product['data']['photo'][i]}}" alt="img">
         </div>
+
+        {% if my_product['data']['product_id'][i] == 1 %}
+        <div class="input-on-off">
+            <input type="button" value="On" onclick="turnOn(this)" class="on"
+                   ser_num="{{my_product['data']['serial_num'][i]}}">
+
+            <input type="button" value="Off" onclick="turnOff(this)" class="off"
+                   ser_num="{{my_product['data']['serial_num'][i]}}">
+        </div>
+        {%else%}
+        <div class="input-on-off">
+            <input type="text" value="On" class="on1" style="text-align: center;" readonly
+                   ser_num="{{my_product['data']['serial_num'][i]}}">
+
+            <input type="text" value="Off" class="off1" style="text-align: center;" readonly
+                   ser_num="{{my_product['data']['serial_num'][i]}}">
+        </div>
+        {% endif %}
     </div>
     {%endfor%}
 
 
     <div class="description-container">
+
         <div class="description-header">
             <h2>Измените описание!</h2>
         </div>
@@ -74,29 +92,34 @@
                 <textarea type="text" name="desc" id="desc">{{my_product['data']['description'][0]}}</textarea>
             </div>
 
-            <input type="submit" class="add-type-submit" value="Сохранить"/>
+            <input type="submit" class="add-type-submit2" value="Сохранить"/>
+            <button type="button" class="delete-product-button add-type-submit2">
+                <p>Delete My Product</p>
+            </button>
         </form>
+
     </div>
+</section>
+<section>
+    <div class="container1 modal1 hidden1">
+        <button class="close-modal1">&times;</button>
+
+        <div class="header">
+            <h2>Введите пароль</h2>
+        </div>
+
+        <div class="delete-product-div">
+            <form action="{{url_for('clients.delete_product', ser_num=my_product['data']['serial_num'][0])}}" id="delete_form" method="post">
+                <label class="for_delete_label" for="for_delete_input">Пароль</label>
+                <input type="password" name="password" id="for_delete_input" placeholder="введите пароль" required>
+                <input type="submit" value="Потдвердить" class="add-type-submit2 delete-product">
+            </form>
+        </div>
+    </div>
+    <div class="overlay1 hidden1"></div>
 </section>
 
-<section>
-    <div class="delete-product-div">
-        <form action="{{url_for('clients.delete_product', ser_num=my_product['data']['serial_num'][0])}}" method="post">
-            <input type="text" name="password">
-            <input type="submit" value="Delete Product" class="delete-product">
-        </form>
-    </div>
-</section>
 
-<section>
-    <div class="delete-product-div">
-        <form action="{{url_for('clients.my_product_info', ser_num=my_product['data']['serial_num'][0])}}" method="post">
-            <input type="text" name="password">
-            <input type="submit" value="Info Product" class="delete-product">
-            {{info_result}}
-        </form>
-    </div>
-</section>
 
 
 {% endblock %}
