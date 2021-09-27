@@ -121,27 +121,34 @@ class ProductTable:
     @staticmethod
     def get_my_products(client_id):
         sql = 'SELECT p.serial_num, p.product_id, pp.small_photo, '
-        sql += 'pp.photo_format, p.mac_address, p.default_login, p.default_password, '
-        sql += 'p.ap_login, p.ap_password, p.manufactured_date, p.description FROM '
+        sql += 'pp.photo_format, p.description FROM '
         sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE '
         sql += f'AND p.active = TRUE AND pp.active = TRUE AND p.client_id = {client_id} '
         sql += 'AND p.product_id = pp.product_id ORDER BY p.serial_num'
 
-        return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo', 'format', 
-                                'mac_address', 'default_login', 'default_password',
-                                'ap_login', 'ap_password', 'manufactured_date', 'description'])
+        return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo',
+                                'format', 'description'])
 
 
     @staticmethod
     def get_my_product(client_id, ser_num):
         sql = 'SELECT p.serial_num, p.product_id, pp.small_photo, '
-        sql += 'pp.photo_format, p.mac_address, p.default_login, p.default_password, '
-        sql += 'p.ap_login, p.ap_password, p.manufactured_date, p.description FROM '
+        sql += 'pp.photo_format, p.description FROM '
         sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE AND '
         sql += f"p.product_id = pp.product_id AND p.client_id = {client_id} AND "
         sql += f"p.serial_num = '{ser_num}' AND p.active = TRUE "
         sql += 'AND pp.active = TRUE ORDER BY p.serial_num'
 
-        return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo', 'format',
-                                'mac_address', 'default_login', 'default_password',
-                                'ap_login', 'ap_password', 'manufactured_date', 'description'])
+        return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo',
+                                'format', 'description'])
+
+
+    @staticmethod
+    def my_product_info(client_id, ser_num):
+        sql = 'SELECT mac_address, default_login, default_password, '
+        sql += 'ap_login, ap_password, manufactured_date FROM products '
+        sql += f"WHERE client_id = {client_id} AND serial_num = '{ser_num}' "
+        sql += 'AND active = TRUE'
+
+        return crud.run_SQL(sql, ['mac_address', 'def_login', 'def_password',
+                            'ap_login', 'ap_password', 'manufactured_date'], True)

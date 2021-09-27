@@ -138,7 +138,18 @@ class ProductC:
         return {
             'success' : get_product['success'],
             'data' : get_product['data'],
-            'log_code' : utls.record_log(get_product, 'get', 'crud_logs')
+            'log_code' : utls.record_log(get_product, 'get_my_product', 'crud_logs')
+        }
+
+
+    @staticmethod
+    def my_product_info(client_id, ser_num):
+        result = ProductTable.my_product_info(client_id, ser_num)
+
+        return {
+            'success' : result['success'],
+            'data' : result['data'],
+            'log_code' : utls.record_log(result, 'my_product_info', 'crud_logs')
         }
 
 

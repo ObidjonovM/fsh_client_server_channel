@@ -40,22 +40,7 @@
 
     <div class="form">
 
-        <div class="form-control">
-            <label for="serial_num">Серийный номер</label>
-            <div id="serial_num" class="information">{{my_product['data']['serial_num'][0]}}</div>
-
-            <label for="default_login">Default Login</label>
-            <div id="default_login" class="information">{{my_product['data']['default_login'][0]}}</div>
-
-            <label for="default_password">Логин по умолчанию</label>
-            <div id="default_password" class="information">{{my_product['data']['default_password'][0]}}</div>
-
-            <label for="ap_login">Логин Ap</label>
-            <div id="ap_login" class="information">{{my_product['data']['ap_login'][0]}}</div>
-
-            <label for="ap_password">Пароль Ap</label>
-            <div id="ap_password" class="information">{{my_product['data']['ap_password'][0]}}</div>
-        </div>
+        
 
         <div class="buttons">
             <input type="button" value="Отмена" class="add-type-submit2 close-modal2">
@@ -99,6 +84,16 @@
         <form action="{{url_for('clients.delete_product', ser_num=my_product['data']['serial_num'][0])}}" method="post">
             <input type="text" name="password">
             <input type="submit" value="Delete Product" class="delete-product">
+        </form>
+    </div>
+</section>
+
+<section>
+    <div class="delete-product-div">
+        <form action="{{url_for('clients.my_product_info', ser_num=my_product['data']['serial_num'][0])}}" method="post">
+            <input type="text" name="password">
+            <input type="submit" value="Info Product" class="delete-product">
+            {{info_result}}
         </form>
     </div>
 </section>

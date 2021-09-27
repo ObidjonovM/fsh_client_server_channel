@@ -189,6 +189,45 @@ def get_logs(ser_num):
 		return result
 
 
+@clients.route('/my_products/info/<ser_num>', methods=['POST'])
+def my_product_info(ser_num):
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ClientC.check_password(
+			session['client']['id'],
+			request.form['password']
+			)
+		info_result = ProductC.my_product_info(
+				session['client']['id'],
+				ser_num
+				)
+
+		my_product = ProductC.get_my_product(
+				session['client']['id'],
+				ser_num
+				)
+
+		if (result):
+			if len(my_product['data']) > 0 and len(info_result['data']) > 0:
+				return render_template(
+				utls.url_join(['clients', 'my_product.html']),
+				my_product = my_product,
+				info_result = info_result
+				)
+
+			return redirect(url_for('clients.my_products'))
+		
+		if len(my_product['data']) > 0:
+			return render_template(
+				utls.url_join(['clients', 'my_product.html']),
+				my_product = my_product
+				)
+
+		return redirect(url_for('clients.my_products'))
+
+
 @clients.route('/my_products/delete/<ser_num>', methods=['POST'])
 def delete_product(ser_num):
 	if not 'clientname' in session:
