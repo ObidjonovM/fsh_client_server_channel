@@ -53,3 +53,10 @@ function productImg(ev) {
     var x = ev.getAttribute("ser_num");
     window.open('/clients/my_products/' + x, '_self');
 }
+
+window.onload = function () {
+    if(localStorage.getItem("openModal") == "open") {
+        openModal();
+        localStorage.removeItem('openModal');
+    }
+}
