@@ -13,8 +13,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
-    width: 810px;
-    height: 500px;
+    width: 48%;
+    height: 511px;
+    min-height: 400px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -29,13 +30,15 @@
 }
 
 .add-form {
-    width: 83%;
-    height: 83%;
+    width: 96%;
+    height: 90%;
     margin: 0 auto;
     display: flex;
     justify-content: start;
     align-items: start;
 }
+
+
 
 .form-control {
     margin-left: 0px;
@@ -49,11 +52,10 @@
 }
 
 #div_main_photo, #div_other_photos {
+    overflow: hidden;
     width: 250px;
-    max-width: 800px;
-    min-height: 40px;
-    height: auto;
-    max-height: 100px;
+    min-height: 100px;
+    height: 118px;
     padding: 10px;
     border-radius: 4px;
     border: 2px solid #c3c3c3;
@@ -71,6 +73,14 @@
     font-family: inherit;
     font-size: 14px;
     margin: 10px;
+}
+
+.desc {
+    height: 59.6%;
+}
+
+.form-control2{
+    height: 100%;
 }
 
 .form-control input:focus, select:focus, textarea:focus {

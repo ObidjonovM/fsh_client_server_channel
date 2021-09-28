@@ -25,10 +25,10 @@ function readURL(ev, parent_div) {
                 reader.onload = function (e) {
                     let img = document.createElement('img');
                     img.setAttribute('src', e.target.result);
-                    img.setAttribute('width', '20%');
+                    img.setAttribute('width', '30%');
                     parent_div.appendChild(img);
                     base_64_code.push(e.target.result);
-                    div_main_photo.innerHTML = "<img src = '" + base_64_code[0] + "' width = '20%'>"
+                    div_main_photo.innerHTML = "<img src = '" + base_64_code[0] + "' width = '30%'>"
                 }
                 reader.readAsDataURL(ev.files[i]);
             }else {
