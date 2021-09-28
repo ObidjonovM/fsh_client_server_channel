@@ -22,6 +22,8 @@ class ProductC:
             )
             product_info['default_login'] = ProductTable.generate_login(8)
             product_info['default_password'] = ProductTable.generate_password(8)
+            if not product_info['mac_address']:
+                product_info['mac_address'] = None
             product_info['date_added'] = now
             product_info['date_modified'] = now
             add_result = ProductTable.insert(product_info)
