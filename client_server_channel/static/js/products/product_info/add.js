@@ -70,11 +70,13 @@ function addForm() {
     const name = document.getElementById('name');
     const model = document.getElementById('model');
     const cat_id = document.getElementById('cat_id');
+    const desc = document.getElementById('desc');
     info['name'] = name.value;
     info['model'] = model.value;
     info['cat_id'] = cat_id.value;
     info['main_photo'] = get_main_photos(src_other_photos, src_main_photo);
     info['other_photos'] = src_other_photos;
+    info['desc'] = desc.value;
     xhttp.open('POST', '/products/info/add', true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhttp.send(JSON.stringify(info));
