@@ -121,7 +121,7 @@ section {
     margin: 20px auto;
     border-left: 1px solid #adaeb19e;
     border-right: 1px solid #adaeb19e;
-    position: fixed;
+    position: absolute;
     top: 10%;
     left: 50%;
     transform: translate(-50%, 0);
