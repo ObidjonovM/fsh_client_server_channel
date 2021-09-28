@@ -1,34 +1,114 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 main{
     width: 100%;
     height: auto;
-    border: 1px solid red;
 }
 
 section {
-    max-width: 1500px;
     min-width: 360px;
-    width: 1330px;
-    margin: 20px auto;
+    width: 80%;
+    margin: 3% auto;
     border-left: 1px solid #adaeb19e;
     border-right: 1px solid #adaeb19e;
+    position: relative;
 }
 
-ul li{
-    list-style-type: none;
+.main-cases {
+    margin: 1% 10%;
 }
 
-ul .sm-photo {
+/*sm img open*/
+.sm-photo-ul {
+    float: left;
+    margin-top: 10px;
+}
+
+.sm-photo-ul .sm-photo-li {
     width: 65px;
+    height: 85px;
+    list-style-type: none;
+    cursor: pointer;
     margin-left: 10px;
     margin-top: 5px;
     overflow: hidden;
     border: 1px solid #adaeb19e;
 }
 
-ul .sm-photo img {
-    width: 100px;
-    padding: 5px;
-    margin-left: -18px;
-    margin-top: 4px;
+/*.active:nth-child(1) {*/
+/*    border: 1px solid #1b232e;*/
+/*}*/
+
+/*.sm-photo-ul .sm-photo-li:hover .active:nth-child(1) {*/
+/*    border: 1px solid #adaeb19e;*/
+/*}*/
+
+.sm-photo-ul .sm-photo-li:hover {
+    border: 1px solid #1b232e;
 }
 
+.sm-photo-ul .sm-photo-li img {
+    width: 100px;
+    margin-left: -18px;
+    padding: 10px;
+}
+/*sm img close*/
+
+/*org image open*/
+.full-org-photo-div {
+    position: relative;
+    width: 452px;
+    height: 502px;
+    left: 10%;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.org-photo-div {
+    width: 450px;
+    height:500px ;
+    border: 1px solid #adaeb19e;
+    overflow: hidden;
+    position: absolute;
+}
+
+.org-photo-div .org-img {
+    width: 100%;
+    height: 100%;
+}
+.org-photo-div .org-img img {
+    width: 100%;
+    height: 100%;
+}
+/*org image close*/
+
+/*product name open*/
+
+.full-product-name-div {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 500px;
+    height: 400px;
+}
+
+.product-name h4 {
+    width: 100%;
+    text-align: left;
+    padding: 5px;
+    margin-top: 5px;
+    vertical-align: inherit;
+}
+
+.product-name h4 span {
+    font-family:"Amazon Ember", "Arial Narrow", sans-serif;
+    font-size: 18px;
+    color: black;
+    margin-top: 10px;
+    font-weight: 100;
+}
+/*product name close*/
