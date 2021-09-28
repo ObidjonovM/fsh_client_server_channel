@@ -79,7 +79,7 @@ class SpOrderC:
         return {
             'success' : False,
             'log_code' : log_code,
-            'comment' : 'DOES NOT EXIST'
+            'comment' : 'НЕ СУЩЕСТВУЕТ'
         }
 
 
@@ -97,6 +97,6 @@ class SpOrderC:
         return {
             'success' : False,
             'log_code' : log_code,
-            'comment' : 'DOES NOT EXIST'
+            'comment' : 'НЕ СУЩЕСТВУЕТ'
         }
 

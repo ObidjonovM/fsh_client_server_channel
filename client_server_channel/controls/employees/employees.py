@@ -86,7 +86,7 @@ class EmployeeC:
             return {
                 'success' : False,
                 'log_code' : log_code,
-                'comment' : 'DOES NOT EXIST'
+                'comment' : 'НЕ СУЩЕСТВУЕТ'
             }
 
 
@@ -104,7 +104,7 @@ class EmployeeC:
         return {
             'success' : False,
             'log_code' : log_code,
-            'comment' : 'DOES NOT EXIST'
+            'comment' : 'НЕ СУЩЕСТВУЕТ'
 		}
 
 

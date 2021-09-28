@@ -133,7 +133,7 @@ class CategoriesC:
         return {
             'success' : False,
             'log_code' : log_code,
-            'comment' : 'DOES NOT EXIST'
+            'comment' : 'НЕ СУЩЕСТВУЕТ'
         }
 
 
@@ -145,7 +145,7 @@ class CategoriesC:
             return {
                 'success' : False,
                 'log_code' : utls.record_log(get_result, 'delete', 'crud_logs'),
-                'comment' : 'DOES NOT EXIST'
+                'comment' : 'НЕ СУЩЕСТВУЕТ'
             }
 
         res_par_leaf = CategoriesTable.get_par_leaf()

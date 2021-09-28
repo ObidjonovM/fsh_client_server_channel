@@ -27,7 +27,7 @@ def add():
 		if not params['other_photos']:
 			return {
 				'success' : False,
-				'comment' : "Fayl tanlanmadi"
+				'comment' : "Файл не выбран"
 			}
 
 		for file in params['other_photos']:
@@ -38,7 +38,7 @@ def add():
 			if file and not allowed_file(format_img):
 				return {
 					'success' : False,
-					'comment' : "Siz faqat png, jpg, jpeg, gif formatdagi fayllarni saqlashingiz mumkin"
+					'comment' : "Вы можете сохранять файлы только в формате png, jpg, jpeg, gif."
 				}
 
 		result = ProductInfoC.add({
@@ -60,7 +60,7 @@ def add():
 		
 		return {
 			'success' : False,
-			'comment' : 'Serverda xatolik'
+			'comment' : 'Ошибка сервера'
 		}
 
 
