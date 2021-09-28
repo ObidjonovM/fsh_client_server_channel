@@ -36,6 +36,7 @@ class ProductInfoC:
         add_result = ProductInfoTable.insert({
             'name' : product_info['name'],
             'model' : product_info['model'],
+            'description' : product_info['description'],
             'category_id' : product_info['category_id'],
             'date_added' : now,
             'add_emp_id' : product_info['add_emp_id'],
