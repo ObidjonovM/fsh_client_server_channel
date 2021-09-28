@@ -1,29 +1,16 @@
 // modal open
-'use strict';
-//Измените описание!
+// 'use strict';
+//Delete my product open!
 const overlay1 = document.querySelector('.overlay1');
 const modal1 = document.querySelector('.modal1');
-//Измените описание!
-
-// const modal2 = document.querySelector('.modal2');
-
-const modal = document.querySelector('.modal');
-const overlay = document.querySelector('.overlay');
-// const overlay2 = document.querySelector('.overlay2');
-
-const btnCloseModal = document.querySelector('.close-modal');
 const btnCloseModal1 = document.querySelector('.close-modal1');
-
-
-
-const btnOpenModal = document.querySelector('.show-modal');
 const deleteProductButton = document.querySelector('.delete-product-button');
 const for_delete_input = document.getElementById('for_delete_input');
-const password = document.getElementById('password');
 
-const openModal = function () {
-    modal.classList.remove('hidden');
-    overlay.classList.remove('hidden');
+const closeModal1 = function () {
+    modal1.classList.add('hidden1');
+    overlay1.classList.add('hidden1');
+    for_delete_input.value = "";
 };
 
 const deleteProduct = function () {
@@ -31,40 +18,32 @@ const deleteProduct = function () {
     overlay1.classList.remove('hidden1');
 };
 
-//Измените описание!
-const closeModal1 = function () {
-    modal1.classList.add('hidden1');
-    overlay1.classList.add('hidden1');
-    for_delete_input.value = " ";
-};
-//Измените описание!
+deleteProductButton.addEventListener('click', deleteProduct);
+btnCloseModal1.addEventListener('click', closeModal1);
+//Delete my product close!
 
-const closeModal = function () {
-    console.log()
+
+//information about my product open
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const forInfoPass = document.getElementById('forInfoPass');
+const btnCloseModalInformation = document.querySelector('.close-modal');
+const btnOpenModal = document.querySelector('.show-modal');
+
+const openModal = function () {
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+};
+
+const closeModalInformation = function () {
+    forInfoPass.value = "";
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
-    password.value = " ";
-    containerModal.innerHTML = "";
 };
-
-
-// const closeModal3 = function () {
-//     modal.classList.add('hidden');
-//     overlay.classList.add('hidden');
-//     password.value = " ";
-//     containerModal.innerHTML = "";
-// };
-
 
 // for (let i = 0; i < btnsOpenModal.length; i++)
 btnOpenModal.addEventListener('click', openModal);
-
-//Измените описание!
-deleteProductButton.addEventListener('click', deleteProduct);
-btnCloseModal1.addEventListener('click', closeModal1);
-//Измените описание!
-
-btnCloseModal.addEventListener('click', closeModal);
+btnCloseModalInformation.addEventListener('click', closeModalInformation);
 // btnCloseModal2.addEventListener('click', closeModal2);
 // overlay.addEventListener('click', closeModal);
 
@@ -75,18 +54,10 @@ document.addEventListener('keydown', function (e) {
         closeModal();
     }
 });
+//information about my product close
 // modal close
 
-// const btnCloseModal3 = document.querySelector('.close-modal3');
-// const closeModal3 = function () {
-//     modal.classList.add('hidden');
-//     overlay.classList.add('hidden');
-//     password.value = " ";
-//     containerModal.innerHTML = "";
-// }
-// btnCloseModal3.addEventListener('click', closeModal3);
-
-let overlay10 = document.getElementById('overlay')
+let overlay10 = document.getElementById('overlay');
 
 function closeModal3() {
     containerModal.classList.add('hidden');
@@ -96,7 +67,7 @@ function closeModal3() {
 
 const containerModal = document.getElementById('containerModal');
 const xhttp = new XMLHttpRequest();
-const forInfoPass = document.getElementById('forInfoPass');
+
 let url = window.location.href;
 function OpenNewModal() {
     xhttp.open('POST', '/clients/my_products/info/' + url.substring(url.lastIndexOf('/') + 1), true);
