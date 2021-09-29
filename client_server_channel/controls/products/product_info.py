@@ -7,6 +7,27 @@ import base64
 from PIL import Image
 
 
+def resize_photos(photos):
+    result = {}
+    star = photos.find("data:image/")
+    end = photos.find(";base64")
+    format_img = photos[star + 11:end]
+    base64_str = "'" + photos[end + 8:]  + "'"
+    buffer = io.BytesIO()
+    img_byte = base64.b64decode(base64_str)
+    img = Image.open(io.BytesIO(img_byte))
+    small_img = img.resize((379, 304))  # x, y
+    small_img.save(buffer, format=format_img)
+    small_img_byte = buffer.getvalue()
+    img.save(buffer, format=format_img)
+
+    result['org'] = img_byte
+    result['small'] = small_img_byte
+    result['format'] = format_img
+
+    return result
+
+
 class ProductInfoC:
 
     @staticmethod
@@ -45,24 +66,15 @@ class ProductInfoC:
         })
 
         for i in range(len(product_info['main_photo'])):
-
-            star = product_info['other_photos'][i].find("data:image/")
-            end = product_info['other_photos'][i].find(";base64")
-            format_img = product_info['other_photos'][i][star + 11:end]
-            base64_str = "'" + product_info['other_photos'][i][end + 8:]  + "'"
-            buffer = io.BytesIO()
-            imgdata = base64.b64decode(base64_str)
-            img = Image.open(io.BytesIO(imgdata))
-            small_img = img.resize((379, 304))  # x, y
-            small_img.save(buffer, format=format_img)
-            small_img_byte = buffer.getvalue()
-            img.save(buffer, format=format_img)
+            resize_result = resize_photos(
+                product_info['other_photos'][i]
+                )
 
             add_photo = ProductPhotoTable.insert({
                 'product_id' : add_result['data']['product_id'],
-                'photo_format' : format_img,
-                'original_photo' : imgdata,
-                'small_photo' : small_img_byte,
+                'photo_format' : resize_result['format'],
+                'original_photo' : resize_result['org'],
+                'small_photo' : resize_result['small'],
                 'main_photo' : product_info['main_photo'][i],
                 'add_emp_id' : product_info['add_emp_id'],
                 'modify_emp_id' : product_info['modify_emp_id'],
@@ -175,6 +187,67 @@ class ProductInfoC:
             'success' : names_ids['success'],
             'data' : names_ids['data'],
             'log_code' : utls.record_log(names_ids, 'get_names_by_ids', 'crud_logs')
+        }
+
+
+    @staticmethod
+    def update(product_info):
+        get_result = ProductInfoTable.get(product_info['product_id'])
+        log_code = utls.record_log(get_result, 'update', 'crud_logs')
+        if len(get_result['data']) > 0:
+
+            update_info = ProductInfoTable.update({
+                'description' : product_info['description'],
+                'modify_emp_id' : product_info['modify_emp_id'],
+                'date_modified' : datetime.now()
+                })
+
+            for i in range(len(product_info['photos_id'])):
+                if product_info['photos_id'][i] > 0:
+                    update_photo = ProductPhotoTable.update({
+                        'main_photo' : product_info['main_photo'][i],
+                        'photo_id' : product_info['photos_id'][i]
+                    })
+                else:
+                    resize_result = resize_photos(
+                        product_info['other_photos'][i]
+                    )
+
+                    add_photo = ProductPhotoTable.insert({
+                        'product_id' : product_info['product_id'],
+                        'photo_format' : resize_result['format'],
+                        'original_photo' : resize_result['org'],
+                        'small_photo' : resize_result['small'],
+                        'main_photo' : product_info['main_photo'][i],
+                        'add_emp_id' : product_info['add_emp_id'],
+                        'modify_emp_id' : product_info['modify_emp_id'],
+                        'date_added' : datetime.now(),
+                        'date_modified' : datetime.now()
+                    })
+
+            if not add_photo['success']:
+
+                return {
+                    'success' : False,
+                    'log_code' : utls.record_log(add_photo, 'update', 'crud_logs')
+                }
+
+            if not update_photo['success']:
+
+                return {
+                    'success' : False,
+                    'log_code' : utls.record_log(update_photo, 'update', 'crud_logs')
+                }
+
+            return {
+                'success' : update_info['success'],
+                'log_code' : utls.record_log(update_info, 'update', 'crud_logs')
+            }
+
+        return {
+            'success' : False,
+            'log_code' : log_code,
+            'comment' : 'НЕ СУЩЕСТВУЕТ'
         }
 
 

@@ -20,8 +20,19 @@ class ProductPhotoC:
 
 
     @staticmethod
-    def get(product_id):
-        get_result = ProductPhotoTable.get(product_id)
+    def get(photo_id):
+        get_result = ProductPhotoTable.get(photo_id)
+
+        return {
+            'success' : get_result['success'],
+            'data' : get_result['data'],
+            'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+        }
+
+
+    @staticmethod
+    def get_by_product_id(product_id):
+        get_result = ProductPhotoTable.get_by_product_id(product_id)
         if len(get_result['data']) > 0:
             get_result['data']['original_photo'] = utls.byte_to_base64(
                 get_result['data']['photo_format'],
@@ -38,7 +49,7 @@ class ProductPhotoC:
         return {
             'success' : get_result['success'],
             'data' : get_result['data'],
-            'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+            'log_code' : utls.record_log(get_result, 'get_by_product_id', 'crud_logs')
         }
 
 

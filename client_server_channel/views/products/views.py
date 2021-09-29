@@ -81,7 +81,7 @@ def get(serial_num):
 			client_name = ClientC.get(product_info['data']['client_id']),
 			firmware_name = FirmwareC.get(product_info['data']['firmware_id']),
 			status_name = ProductStatusC.get(product_info['data']['status_id']),
-			product_photo = ProductPhotoC.get(product_info['data']['product_id'])
+			product_photo = ProductPhotoC.get_by_product_id(product_info['data']['product_id'])
 		)
 
 	return redirect(url_for('products.all'))

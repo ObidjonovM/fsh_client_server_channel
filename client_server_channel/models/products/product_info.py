@@ -95,5 +95,10 @@ class ProductInfoTable:
 
 
     @staticmethod
+    def update(product_info):
+        return crud.update('product_info', product_info, 'product_id')
+
+
+    @staticmethod
     def delete(product_id):
         return crud.delete('product_info', {'product_id' : product_id})

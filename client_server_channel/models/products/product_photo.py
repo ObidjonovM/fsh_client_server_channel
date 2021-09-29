@@ -9,7 +9,12 @@ class ProductPhotoTable:
 
 
     @staticmethod
-    def get(product_id):
+    def get(photo_id):
+        return crud.get('product_photo', {'photo_id' : photo_id})
+
+
+    @staticmethod
+    def get_by_product_id(product_id):
         col_names = utls.get_column_names('product_photo')
         sql = f'SELECT * FROM product_photo WHERE product_id = {product_id} '
         sql += 'AND active = TRUE'
@@ -47,6 +52,11 @@ class ProductPhotoTable:
             result['data'] = names_ids
 
         return result
+
+
+    @staticmethod
+    def update(product_photo):
+        return crud.update('product_photo', product_photo, 'photo_id')
 
 
     @staticmethod

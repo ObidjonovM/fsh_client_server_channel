@@ -78,7 +78,7 @@ def get(product_id):
 			utls.url_join(['products', 'product_info', 'get.html']),
 			product_info = product_info,
 			id_name = CategoriesC.get(product_info['data']['category_id']),
-			product_photo = ProductPhotoC.get(product_id)
+			product_photo = ProductPhotoC.get_by_product_id(product_id)
 		)
 
 	return redirect(url_for('products.product_info.all'))
@@ -105,6 +105,42 @@ def all():
 		)
 
 	return redirect(url_for('core.index'))            # TODO later!!!!
+
+
+@product_info.route('/update/<int:product_id>', methods=['GET', 'POST'])
+def update(product_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
+	if request.method == 'GET':
+		product_info = ProductInfoC.get(product_id)
+	
+		if len(product_info['data']) > 0:
+			product_photos = ProductPhotoC.get_by_product_id(product_info['data']['product_id'])
+			if len(product_photos['data']) > 0:
+				return render_template(
+					utls.url_join(['products', 'product_info', 'update.html']),
+					product_info = product_info,
+					product_photos = product_photos
+				)
+
+		return redirect(url_for('products.product_info.all'))
+
+	if request.method == 'POST':
+		params = request.form
+		result = ProductInfoC.update({
+			'description' : params['desc'],
+			'main_photo' : params['main_photo'],
+			'other_photos' : params['other_photos'],
+			'photos_id' : params['photos_id'],
+			'modify_emp_id' : session['employee']['id'],
+			'product_id' : product_id
+		})
+
+		if result['success']:
+			return redirect(url_for('products.all'))
+
+		return result
 
 
 @product_info.route('/delete/<int:product_id>', methods=['DELETE'])
