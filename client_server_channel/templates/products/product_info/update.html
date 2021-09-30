@@ -1,13 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {{product_info}}
-    {{product_photos}}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="/static/css/products/product_info/update.css">
+{% endblock %}
+
+{% block body %}
+{{super()}}
+<div class="add-container">
+
+    <div class="add-header">
+        <h2>Update Product</h2>
+    </div>
+
+    <div class="add-form">
+        <div class="add-photo-div">
+            <input type="file" id="fileElem" multiple style="display: none" onchange="set_other_photos(this)" accept="image/*">
+            <button type="button" id="fileSelect">Добавить фото</button>
+
+        </div>
+        <div class="main-photo-label">Главное фото</div>
+        <div class="form-control">
+            {%for i in range(product_photos['data']['main_photo']|length)%}
+            {%if product_photos['data']['main_photo'][i] == True:%}
+            <div id="org_photo" class="org-photo">
+                <img id="main_photo" src="{{product_photos['data']['original_photo'][i]}}" alt="">
+            </div>
+            {%endif%}
+            {%endfor%}
+
+            <div class="desc-div">
+                <label for="desc">Описание</label>
+                <textarea name="desc" id="desc">{{product_info['data']['description']}}</textarea>
+            </div>
+
+        </div>
+
+        <div class="other-photo-label">Другие фотографии</div>
+        <div id="div_other_photos" class="div-other-photos">
+            {%for i in range(product_photos['data']['main_photo']|length)%}
+            <div class="full-div-other-photo" id="full_div_other_photo">
+                <div class="div-other-photo" id="div_other_photo">
+                    <img id="{{product_photos['data']['photo_id'][i]}}"
+                         src="{{product_photos['data']['original_photo'][i]}}"
+                         main="{{product_photos['data']['main_photo'][i]}}" onclick="changeMainPhoto(this)">
+                </div>
+                <button type="button" class="delete-photo" onclick="deletePhoto(this)">Удалить фото</button>
+            </div>
+            {%endfor%}
+        </div>
+
+        <div class="button-div">
+            <input type="button" class="add-submit" onclick="addForm()" value="Сохранить"/>
+            <input type="button" onclick="otmenFunction()" class="add-submit2" value="Отмена"/>
+        </div>
+    </div>
+</div>
+
+
+<script src="/static/js/base.js"></script>
+<script src="/static/js/products/product_info/update.js"></script>
+{% endblock %}

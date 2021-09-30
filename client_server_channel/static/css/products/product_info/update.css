@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.add-container{
+    width: 100%;
+    height: auto;
+    position: relative;
+    /*border: 1px solid red;*/
+}
+
+.add-header {
+    width: 70%;
+    padding: 5px;
+    margin: 1% auto;
+}
+
+.add-header h2 {
+    text-align: center;
+}
+
+.add-form {
+    width: 95%;
+    margin: 10px auto;
+    /*border: 1px solid red;*/
+}
+
+.add-photo-div {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.add-photo-div button {
+    width: 170px;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid #888787;
+    outline: none;
+}
+
+.add-photo-div button:hover {
+    background-color: #232F3E;
+    color: white;
+}
+
+.form-control {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.main-photo-label {
+    font-size: 18px;
+    padding-left: 29.2%;
+    margin-top: 2%;
+}
+
+.org-photo{
+    width: 29%;
+    min-height: 200px;
+    height: 300px;
+    border: 1px solid #888787;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.org-photo img {
+    width: 100%;
+    min-height: 200px;
+    height: 300px;
+}
+
+
+.desc-div {
+    width: 40%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.desc-div label {
+    display: block;
+    margin: 5px;
+    font-size: 18px;
+}
+
+.desc-div textarea {
+    width: 100%;
+    height: 270px;
+    padding: 5px;
+    font-size: 16px;
+    resize: none;
+}
+
+.desc-div textarea:focus {
+    border: 1px solid #1b232e;
+}
+
+.other-photo-label{
+    font-size: 18px;
+    /* padding-left: 21.5%; */
+    margin-top: 12px;
+    /*border: 1px solid black;*/
+    text-align: center;
+    padding: 8px;
+}
+
+.div-other-photos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /*border: 1px solid red;*/
+    margin: 0 auto;
+    height: 358px;
+    max-height: 360px;
+    min-height: 200px;
+}
+
+.full-div-other-photo {
+    width: 15%;
+    min-height: 200px;
+    height: 302px;
+    border: 1px solid #888787;
+    margin: 5px;
+    cursor: pointer;
+}
+
+
+.div-other-photo {
+    width: 100%;
+    min-height: 200px;
+    height: 300px;
+    overflow: hidden;
+    border: 1px solid #888787;
+    cursor: pointer;
+}
+
+.div-other-photo img {
+    width: 100%;
+    min-height: 200px;
+    height: 300px;
+    cursor: pointer;
+}
+
+.delete-photo {
+    margin-top: 2%;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #888787;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.delete-photo:hover {
+    background-color: #232F3E;
+    color: white;
+}
+
+.button-div {
+
+    margin: 1% auto;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}
+
+.add-submit, .add-submit2 {
+    width: 16%;
+    height: 40px;
+    border: 1px solid #888787;
+    outline: none;
+    color: black;
+    margin: 1% 2%;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.add-submit:hover, .add-submit2:hover {
+    color: white;
+}
+
