@@ -198,46 +198,10 @@ class ProductInfoC:
 
             update_info = ProductInfoTable.update({
                 'description' : product_info['description'],
+                'product_id' : product_info['product_id'],
                 'modify_emp_id' : product_info['modify_emp_id'],
                 'date_modified' : datetime.now()
                 })
-
-            for i in range(len(product_info['photos_id'])):
-                if product_info['photos_id'][i] > 0:
-                    update_photo = ProductPhotoTable.update({
-                        'main_photo' : product_info['main_photo'][i],
-                        'photo_id' : product_info['photos_id'][i]
-                    })
-                else:
-                    resize_result = resize_photos(
-                        product_info['other_photos'][i]
-                    )
-
-                    add_photo = ProductPhotoTable.insert({
-                        'product_id' : product_info['product_id'],
-                        'photo_format' : resize_result['format'],
-                        'original_photo' : resize_result['org'],
-                        'small_photo' : resize_result['small'],
-                        'main_photo' : product_info['main_photo'][i],
-                        'add_emp_id' : product_info['add_emp_id'],
-                        'modify_emp_id' : product_info['modify_emp_id'],
-                        'date_added' : datetime.now(),
-                        'date_modified' : datetime.now()
-                    })
-
-            if not add_photo['success']:
-
-                return {
-                    'success' : False,
-                    'log_code' : utls.record_log(add_photo, 'update', 'crud_logs')
-                }
-
-            if not update_photo['success']:
-
-                return {
-                    'success' : False,
-                    'log_code' : utls.record_log(update_photo, 'update', 'crud_logs')
-                }
 
             return {
                 'success' : update_info['success'],

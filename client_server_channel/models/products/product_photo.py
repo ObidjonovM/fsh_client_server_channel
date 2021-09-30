@@ -14,6 +14,20 @@ class ProductPhotoTable:
 
 
     @staticmethod
+    def get_multiple(photos_id):
+        col_names = utls.get_column_names('product_photo')
+        sql = 'SELECT * FROM product_photo WHERE photo_id IN '
+        values = '('
+        for photo_id in photos_id:
+            values += str(photo_id) + ', '
+        values = values[:-2] + ') '
+        sql += values
+        sql += 'AND active = TRUE'
+
+        return crud.run_SQL(sql, col_names)
+
+
+    @staticmethod
     def get_by_product_id(product_id):
         col_names = utls.get_column_names('product_photo')
         sql = f'SELECT * FROM product_photo WHERE product_id = {product_id} '
@@ -57,6 +71,24 @@ class ProductPhotoTable:
     @staticmethod
     def update(product_photo):
         return crud.update('product_photo', product_photo, 'photo_id')
+
+
+    @staticmethod
+    def update_main_photo(product_photo):
+        sql = 'UPDATE product_photo SET main_photo = (CASE photo_id '
+        when = ''
+        photo_id =''
+        for i in range(len(product_photo['main_photo'])):
+            when += f"WHEN {product_photo['photos_id'][i]} THEN {product_photo['main_photo'][i]} "
+            photo_id += str(product_photo['photos_id'][i]) + ', '
+        photo_id = photo_id[:-2]
+        sql += when + f'ELSE main_photo END), '
+        sql += f"modify_emp_id = {product_photo['modify_emp_id']}, "
+        sql += f"date_modified = '{product_photo['date_modified']}' "
+        sql += f'WHERE photo_id IN({photo_id}) '
+        sql += 'AND active = TRUE'
+
+        return crud.run_SQL(sql, None, False, None, False)
 
 
     @staticmethod

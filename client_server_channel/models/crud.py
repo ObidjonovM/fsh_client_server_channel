@@ -91,21 +91,22 @@ def run_SQL(sql, cols, fetchone = False, sql_params=None, fetchable=True):
     result = utls.send_to_db(sql, sql_params, fetchable)
 
     if result['success']:
-        if fetchone:
-            result['data'] = utls.keyval_tuples2dict(tuple(cols), result['data'][0])
-        else:
-            result['data'] = utls.list_tuples2tuple_lists(result['data'])
-            result['data'] = utls.keyval_tuples2dict(tuple(cols), result['data'])
-        if 'active' in result['data']:
-            del result['data']['active']
-        if 'date_added' in result['data']:
-            del result['data']['date_added']
-        if 'date_modified' in result['data']:
-            del result['data']['date_modified']
-        if 'add_emp_id' in result['data']:
-            del result['data']['add_emp_id']
-        if 'modify_emp_id' in result['data']:
-            del result['data']['modify_emp_id']
+        if fetchable:
+            if fetchone:
+                result['data'] = utls.keyval_tuples2dict(tuple(cols), result['data'][0])
+            else:
+                result['data'] = utls.list_tuples2tuple_lists(result['data'])
+                result['data'] = utls.keyval_tuples2dict(tuple(cols), result['data'])
+            if 'active' in result['data']:
+                del result['data']['active']
+            if 'date_added' in result['data']:
+                del result['data']['date_added']
+            if 'date_modified' in result['data']:
+                del result['data']['date_modified']
+            if 'add_emp_id' in result['data']:
+                del result['data']['add_emp_id']
+            if 'modify_emp_id' in result['data']:
+                del result['data']['modify_emp_id']
     
     return result
 

@@ -127,18 +127,15 @@ def update(product_id):
 		return redirect(url_for('products.product_info.all'))
 
 	if request.method == 'POST':
-		params = request.form
+		params = request.json
 		result = ProductInfoC.update({
-			'description' : params['desc'],
+			'description' : params['description'],
 			'main_photo' : params['main_photo'],
 			'other_photos' : params['other_photos'],
 			'photos_id' : params['photos_id'],
 			'modify_emp_id' : session['employee']['id'],
 			'product_id' : product_id
 		})
-
-		if result['success']:
-			return redirect(url_for('products.all'))
 
 		return result
 

@@ -1,6 +1,30 @@
 from client_server_channel.models import ProductPhotoTable
 from .. import control_utils as utls
 from datetime import datetime
+import io
+import base64
+from PIL import Image
+
+
+def resize_photos(photos):
+    result = {}
+    star = photos.find("data:image/")
+    end = photos.find(";base64")
+    format_img = photos[star + 11:end]
+    base64_str = "'" + photos[end + 8:]  + "'"
+    buffer = io.BytesIO()
+    img_byte = base64.b64decode(base64_str)
+    img = Image.open(io.BytesIO(img_byte))
+    small_img = img.resize((379, 304))  # x, y
+    small_img.save(buffer, format=format_img)
+    small_img_byte = buffer.getvalue()
+    img.save(buffer, format=format_img)
+
+    result['org'] = img_byte
+    result['small'] = small_img_byte
+    result['format'] = format_img
+
+    return result
 
 
 class ProductPhotoC:
@@ -10,7 +34,15 @@ class ProductPhotoC:
         now = datetime.now()
         product_photo['date_added'] = now
         product_photo['date_modified'] = now
-        add_result = ProductPhotoTable.insert(product_photo)
+        for i in range(len(product_photo['main_photo'])):
+            resize_result = resize_photos(
+                product_photo['other_photos'][i]
+                )
+            product_photo['main_photo'] = product_photo['main_photo'][i]
+            product_photo['photo_format'] = resize_result['format']
+            product_photo['original_photo'] = resize_result['org']
+            product_photo['small_photo'] = resize_result['small']
+            add_result = ProductPhotoTable.insert(product_photo)
         
         return {
             'success' : add_result['success'],
@@ -87,14 +119,44 @@ class ProductPhotoC:
 
 
     @staticmethod
+    def update_main_photo(product_photo):
+        get_result = ProductPhotoTable.get_multiple(product_photo['photos_id'])
+        log_code = utls.record_log(get_result, 'update', 'crud_logs')
+        product_photo['date_modified'] = datetime.now()
+        if len(product_photo['photos_id']) == len(product_photo['main_photo']):
+            if len(get_result['data']) > 0:
+                if len(get_result['data']['photo_id']) == len(product_photo['photos_id']):
+
+                    update_info = ProductPhotoTable.update_main_photo(product_photo)
+
+                    return {
+                        'success' : update_info['success'],
+                        'log_code' : utls.record_log(update_info, 'update', 'crud_logs')
+                    }
+
+        return {
+            'success' : False,
+            'log_code' : log_code,
+            'comment' : 'НЕ СУЩЕСТВУЕТ'
+        }
+
+
+    @staticmethod
     def delete(photo_id):
         get_result = ProductPhotoTable.get(photo_id)
         log_code = utls.record_log(get_result, 'delete', 'crud_logs')
         if get_result['data'] != []:
-            delete_result = ProductPhotoTable.delete(photo_id)
+            if get_result['data']['main_photo'] == False:
+                delete_result = ProductPhotoTable.delete(photo_id)
+                return {
+                    'success' : delete_result['success'],
+                    'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
+                }
+
             return {
-                'success' : delete_result['success'],
-                'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
+                'success' : False,
+                'log_code' : log_code,
+                'comment' : 'Нельзя удалить основную фотографию!'
             }
 
         return {
