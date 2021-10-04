@@ -39,15 +39,7 @@ section {
     border: 1px solid #adaeb19e;
 }
 
-/*.active:nth-child(1) {*/
-/*    border: 1px solid #1b232e;*/
-/*}*/
-
-/*.sm-photo-ul .sm-photo-li:hover .active:nth-child(1) {*/
-/*    border: 1px solid #adaeb19e;*/
-/*}*/
-
-.sm-photo-ul .sm-photo-li:hover {
+.sm-photo-li.active:nth-child(1){
     border: 1px solid #1b232e;
 }
 
@@ -84,10 +76,18 @@ section {
     width: 100%;
     height: 100%;
 }
+
+.org-photo-div.active1{
+    display: none;
+}
+
+.org-photo-div:nth-child(1){
+    display: block;
+}
 /*org image close*/
 
-/*product name open*/
 
+/*product name open*/
 .full-product-name-div {
     position: absolute;
     left: 50%;

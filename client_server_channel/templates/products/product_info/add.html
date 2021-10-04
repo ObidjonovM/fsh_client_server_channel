@@ -34,19 +34,20 @@
             </select>
 
             <label for="other_photos">Фото</label>
-            <input type="file" id="other_photos" multiple onchange="set_other_photos(this)"/>
+            <input type="file" id="other_photos" onchange="set_other_photos(this)" accept="image/*" style="display: none"/>
+            <button type="button" id="addPhoto" >Добавить фото</button>
 
         </div>
 
 
         <div class="form-control">
 
-            <label for="main_photo">Главное фото</label>
+            <label for="div_main_photo">Главное фото</label>
             <div id="div_main_photo">
 
             </div>
 
-            <label for="main_photo">Другие фотографии</label>
+            <label for="div_other_photos">Другие фотографии</label>
             <div id="div_other_photos">
 
             </div>

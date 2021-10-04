@@ -64,7 +64,7 @@
     margin: 10px;
 }
 
-.form-control input, select, textarea {
+.form-control input, select, textarea, #addPhoto {
     width: 250px;
     height: 40px;
     padding: 10px;
@@ -73,6 +73,10 @@
     font-family: inherit;
     font-size: 14px;
     margin: 10px;
+}
+
+#addPhoto {
+    cursor: pointer;
 }
 
 .desc {

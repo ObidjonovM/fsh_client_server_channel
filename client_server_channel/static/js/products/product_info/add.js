@@ -96,3 +96,15 @@ function addForm() {
 
 
 }
+
+
+
+//buttonni bosgan inputni bosgandek bo'ladi add photo open
+const addPhoto = document.getElementById("addPhoto");
+
+addPhoto.addEventListener("click", function (e) {
+    if (other_photos) {
+        other_photos.click();
+    }
+}, false);
+//buttonni bosgan inputni bosgandek bo'ladi add photo close
