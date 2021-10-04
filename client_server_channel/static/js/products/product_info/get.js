@@ -30,6 +30,11 @@ function deleteProduct() {
 }
 
 
+function updateProduct() {
+    window.open('/products/info/update/' + product_id.value, '_self');
+}
+
+
 function otmenFunction() {
     window.open('/products/info/all', '_self');
 }

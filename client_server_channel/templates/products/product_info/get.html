@@ -25,35 +25,38 @@
             <label for="name">Наименование</label>
             <input type="text" name="name"
                    value="{{product_info['data']['name']}}" id="name" readonly/>
-        </div>
 
-        <div class="form-control">
             <label for="model">Модель</label>
             <input name="model" id="model"
                    readonly value="{{product_info['data']['model']}}"/>
-        </div>
-        {% for i in range(product_photo['data']['photo_id']|length) %}
-        <div class="form-control">
-            <label for="{{product_photo['data']['photo_id'][i]}}">Фото</label>
-            <img id="{{product_photo['data']['photo_id'][i]}}" width="100%" src="{{product_photo['data']['small_photo'][i]}}"/>
-        </div>
-        {% endfor %}
 
-        <div class="form-control">
             <label for="parent_id">Категория</label>
             <input type="text" name="parent_id"
                    value="{{id_name['data']['name']}}" id="parent_id" readonly/>
+
         </div>
 
+        <div class="product-photo-label" for="{{product_photo['data']['photo_id'][i]}}">Фото</div>
+        <div class="full-product-photo">
+            {% for i in range(product_photo['data']['photo_id']|length) %}
+        <div class="product-photo" style="display: flex">
+            <img id="{{product_photo['data']['photo_id'][i]}}" width="100%"
+                 src="{{product_photo['data']['small_photo'][i]}}"/>
+        </div>
+        {% endfor %}
+        </div>
 
-        <button onclick="deleteProduct()" class="add-type-submit2">
-            Удалить
-        </button>
+        <div class="buttons-div-get">
+            <button type="button" onclick="updateProduct()" class="add-type-submit">Изменить</button>
 
-        <button onclick="otmenFunction()" class="add-type-submit3">
-            Назад
-        </button>
+            <button onclick="deleteProduct()" class="add-type-submit2">
+                Удалить
+            </button>
 
+            <button onclick="otmenFunction()" class="add-type-submit3">
+                Назад
+            </button>
+        </div>
     </div>
 
 </div>

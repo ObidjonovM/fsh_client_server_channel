@@ -41,6 +41,8 @@
     cursor: pointer;
     border: 1px solid #888787;
     outline: none;
+    color: white;
+    background-color: #374a62;
 }
 
 .add-photo-div button:hover {
@@ -154,6 +156,9 @@
     border-radius: 4px;
     cursor: pointer;
     transition: all .2s ease-in-out;
+    background-color: #374a62;
+    color: white;
+
 }
 
 .delete-photo:hover {
@@ -174,14 +179,15 @@
     height: 40px;
     border: 1px solid #888787;
     outline: none;
-    color: black;
+    color: white;
     margin: 1% 2%;
     border-radius: 4px;
+    background-color: #374a62;
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
 
-.add-submit:hover, .add-submit2:hover {
-    color: white;
+.add-submit:hover, .add-submit2:hover, .add-photo-div button:hover {
+    background-color: #232F3E;
 }
 

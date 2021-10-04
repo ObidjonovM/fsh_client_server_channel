@@ -7,6 +7,7 @@ const xhttp = new XMLHttpRequest();
 let photos_id = [];
 let other_photos = [];
 let main_photos = [];
+let product_id = [];
 const url = window.location.href;
 const id = url.substring(url.lastIndexOf('/')+1);
 
@@ -80,6 +81,29 @@ function otmenFunction() {
 
 
 
+function deletePhoto(e) {
+    let result = confirm("Действительно удалить?");
+
+    let img_id = e.previousElementSibling.firstElementChild.id;
+    console.log(e.previousElementSibling.firstElementChild.id);
+    if (result){
+        xhttp.open('delete', '/products/photo/delete/' + img_id, true);
+        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        xhttp.send();
+        xhttp.onreadystatechange = function () {
+            if ((this.readyState ==4) && (this.status == 200)){
+                let resp = JSON.parse(this.responseText);
+                console.log(resp);
+                if (resp['success'] == true){
+                    location.reload();
+                }else {
+                    alert(resp['comment']);
+                }
+            }
+        }
+    }
+}
+
 
 
 
@@ -90,42 +114,8 @@ fileSelect.addEventListener("click", function (e) {
     if (fileElem) {
         fileElem.click();
     }
-    // xhttp.open('', '', true);
-    // xhttp.setRequestHeader("Content-type","application/json; charset=UTF-8");
-    //
-    // xhttp.send();
-    // xhttp.onreadystatechange = function () {
-    //     if ((this.readyState ==4) && (this.status == 200)){
-    //         let resp = JSON.parse(this.responseText);
-    //         console.log(resp);
-    //     }
-    // }
+
 }, false);
-
-
-function deletePhoto(e) {
-    let result = confirm("Действительно удалить?");
-
-    let img_id = e.previousElementSibling.firstElementChild.id
-    console.log(e.previousElementSibling.firstElementChild.id)
-    if (result){
-    xhttp.open('delete', '/products/photo/delete/' + img_id, true);
-    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhttp.send();
-    xhttp.onreadystatechange = function () {
-        if ((this.readyState ==4) && (this.status == 200)){
-             let resp = JSON.parse(this.responseText);
-            console.log(resp)
-             if (resp['success'] == true){
-                 location.reload()
-             }else {
-                 alert(resp['comment'])
-             }
-        }
-    }
-    }
-}
-
 
 
 
@@ -140,10 +130,28 @@ function set_other_photos(ev) {
     // div_main_photo.innerHTML = '';
     // div_other_photo.innerHTML = '';
     readURL(ev, div_other_photos);
+
+    let result = {};
+    result['main_photo'] = main_photo;
+    result['other_photos'] = other_photos;
+    result['product_id'] = product_id;
+    result['photos_id'] = photos_id;
+    console.log(result);
+    xhttp.open('Post', '/products/photo/add', true);
+    xhttp.setRequestHeader("Content-type","application/json; charset=UTF-8");
+
+    xhttp.send(JSON.stringify(result));
+    xhttp.onreadystatechange = function () {
+        if ((this.readyState ==4) && (this.status == 200)){
+            // let resp = JSON.parse(this.responseText);
+            console.log(this.responseText);
+        }
+    }
 }
 
 
 function readURL(ev, parent_div) {
+
     if (ev.files && ev.files[0]) {
         for (let i = 0; i < ev.files.length; i++) {
             if (ev.files[i].size <= 100000) {
@@ -160,11 +168,13 @@ function readURL(ev, parent_div) {
                     div2.setAttribute('class','div-other-photo')
                     div2.setAttribute('id','div_other_photo')
 
+                    button.setAttribute('type','button')
                     button.setAttribute('class','delete-photo')
                     button.setAttribute('onclick','deletePhoto(this)')
 
-                    img.setAttribute('onclick','changeMainPhoto(this);')
                     img.setAttribute('src', e.target.result);
+                    img.setAttribute('main','False');
+                    img.setAttribute('onclick','changeMainPhoto(this);');
 
                     div2.appendChild(img);
                     div1.appendChild(div2);
