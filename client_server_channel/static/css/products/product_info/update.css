@@ -43,6 +43,7 @@
     outline: none;
     color: white;
     background-color: #374a62;
+    margin: .5% 2%;
 }
 
 .add-photo-div button:hover {
@@ -126,7 +127,6 @@
     width: 15%;
     min-height: 200px;
     height: 302px;
-    border: 1px solid #888787;
     margin: 5px;
     cursor: pointer;
 }
@@ -167,27 +167,34 @@
 }
 
 .button-div {
-
     margin: 1% auto;
     width: 70%;
     display: flex;
     justify-content: center;
+    padding-bottom: 5%;
 }
 
-.add-submit, .add-submit2 {
+.add-submit, .add-submit2, .add-submit3 {
     width: 16%;
     height: 40px;
     border: 1px solid #888787;
     outline: none;
     color: white;
-    margin: 1% 2%;
     border-radius: 4px;
     background-color: #374a62;
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
 
-.add-submit:hover, .add-submit2:hover, .add-photo-div button:hover {
+.add-submit {
+    width: 40%;
+}
+
+.add-submit3 {
+    padding: 5px;
+}
+
+.add-submit:hover, .add-submit2:hover, .add-photo-div button:hover, .add-submit3:hover {
     background-color: #232F3E;
 }
 

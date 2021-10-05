@@ -38,8 +38,6 @@ function changeMainPhoto(e) {
     }
 }
 
-
-
 function mainPhoto() {
     photos_id = [];
     other_photos = [];
@@ -50,7 +48,6 @@ function mainPhoto() {
         main_photos.push(imgs[i].getAttribute('main'));
     }
 }
-
 
 function addForm() {
     let result = {}
@@ -79,8 +76,6 @@ function otmenFunction() {
     window.open('/products/info/get/' + value, '_self');
 }
 
-
-
 function deletePhoto(e) {
     let result = confirm("Действительно удалить?");
 
@@ -104,9 +99,6 @@ function deletePhoto(e) {
     }
 }
 
-
-
-
 const fileSelect = document.getElementById("fileSelect"),
     fileElem = document.getElementById("fileElem");
 
@@ -118,14 +110,10 @@ fileSelect.addEventListener("click", function (e) {
 }, false);
 
 
-
-
-
 const full_div_other_photo = document.getElementById('full_div_other_photo');
 const div_other_photo = document.getElementById('div_other_photo');
 let base_64_code = [];
 let requestJson = {}
-
 
 function addPhoto() {
     xhttp.open('Post', '/products/photo/add', true);
@@ -142,14 +130,10 @@ function addPhoto() {
     }
 }
 
-
 function set_other_photos(ev) {
     base_64_code = [];
-    // div_main_photo.innerHTML = '';
-    // div_other_photo.innerHTML = '';
     requestJson =  readURL(ev, div_other_photos);
 }
-
 
 function readURL(ev, parent_div) {
     let main = [];
@@ -164,6 +148,7 @@ function readURL(ev, parent_div) {
                     let div2 = document.createElement('DIV');
                     let div1 = document.createElement('DIV');
                     button.textContent = 'Удалить фото';
+
                     div1.setAttribute('class','full-div-other-photo')
                     div1.setAttribute('id','full_div_other_photo')
 

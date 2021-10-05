@@ -17,7 +17,8 @@
         <div class="signup selected" id="register_open">Регистрация</div>
     </nav>
 
-    <form action="{{url_for('clients.register')}}" method="POST" id="myForm" class="add-form" onsubmit="return validateForm()">
+    <form action="{{url_for('clients.register')}}" method="POST" id="myForm" class="add-form"
+          onsubmit="return validateForm()">
 
         <div class="form-control">
 
@@ -39,7 +40,7 @@
             <br>
             <label for="city">Город<span style="color: red; font-size: 16px">*</span></label>
             <input type="text" name="city" id="city" placeholder="Введите Город ..." required/>
-            
+
         </div>
 
 
@@ -50,17 +51,17 @@
             <br>
             <br>
             <label for="email">Эл. адрес<span class="star">*</span></label>
-            <input type="email" name="email" id="email" placeholder="Введите логин ..." />
+            <input type="email" name="email" id="email" placeholder="Введите логин ..." required/>
             <br>
             <br>
             <label for="clientname">Логин<span class="star">*</span></label>
-            <input type="text" name="clientname" id="clientname" placeholder="Введите логин ..." onchange="loginChange()" required/>
+            <input type="text" name="clientname" id="clientname" placeholder="Введите логин ..."
+                   onchange="loginChange()" required/>
             <span id="login_error"></span>
             <br>
             <label for="password">Пароль<span class="star">*</span></label>
             <input type="password" name="password" id="password" placeholder="Введите пароль ..." required/>
             <span id="error_password"></span>
-            <br>
             <br>
             <label for="confirm_password">Повторите парол<span class="star">*</span></label>
             <input type="password" name="password" id="confirm_password" placeholder="Введите пароль ..." required/>
@@ -75,6 +76,15 @@
     </form>
 
 </div>
+
+<div class="container modal hidden">
+    <button class="close-modal">&times;</button>
+
+    <div class="header" id="header">
+        <h2 id="h2">Пароль не тот!</h2>
+    </div>
+</div>
+<div class="overlay hidden"></div>
 
 <script src="/static/js/clients/register.js"></script>
 

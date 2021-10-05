@@ -25,7 +25,7 @@
             {%for i in range(product_photos['data']['main_photo']|length)%}
             {%if product_photos['data']['main_photo'][i] == True:%}
             <div id="org_photo" class="org-photo">
-                <img id="main_photo" src="{{product_photos['data']['original_photo'][i]}}" alt="">
+                <img id="main_photo" src="{{product_photos['data']['original_photo'][i]}}" alt="mainPhoto">
             </div>
             {%endif%}
             {%endfor%}
@@ -33,6 +33,7 @@
             <div class="desc-div">
                 <label for="desc">Описание</label>
                 <textarea name="desc" id="desc">{{product_info['data']['description']}}</textarea>
+                <input type="button" class="add-submit" onclick="addForm()" value="Сохранить описание"/>
             </div>
 
         </div>
@@ -42,7 +43,7 @@
             {%for i in range(product_photos['data']['main_photo']|length)%}
             <div class="full-div-other-photo" id="full_div_other_photo">
                 <div class="div-other-photo" id="div_other_photo">
-                    <img id="{{product_photos['data']['photo_id'][i]}}"
+                    <img id="{{product_photos['data']['photo_id'][i]}}" class="s"
                          src="{{product_photos['data']['original_photo'][i]}}"
                          main="{{product_photos['data']['main_photo'][i]}}" onclick="changeMainPhoto(this)">
                 </div>
@@ -52,7 +53,6 @@
         </div>
 
         <div class="button-div">
-            <input type="button" class="add-submit" onclick="addForm()" value="Сохранить"/>
             <input type="button" onclick="otmenFunction()" class="add-submit2" value="Отмена"/>
         </div>
     </div>
