@@ -10,12 +10,10 @@
 
 /****** hi person open ******/
 /***************************/
+
 .hi-person {
     float: left;
     margin-right: 10px;
-}
-
-.hi-person {
     width: 160px;
     height: 46px;
     margin-top: 2px;
@@ -26,6 +24,7 @@
     cursor: pointer;
     font-weight: bolder;
     font-size: 16px;
+
 }
 
 
@@ -114,17 +113,23 @@
 
 /***** products img open ****/
 /***************************/
+
+main {
+    position: relative;
+}
+
 section {
     max-width: 1500px;
     min-width: 360px;
     width: 1330px;
-    margin: 20px auto;
+    margin: 2% auto;
     border-left: 1px solid #adaeb19e;
     border-right: 1px solid #adaeb19e;
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0);
+    /*position: absolute;*/
+    /*top: 10%;*/
+    /*left: 50%;*/
+    /*z-index: 9;*/
+    /*transform: translate(-50%, 0);*/
 }
 
 .all-products {

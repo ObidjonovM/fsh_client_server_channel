@@ -18,7 +18,7 @@
 <header class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
 
-    <div>
+    <div style="position:relative; z-index: 100">
         {%if first_name%}
         <button type="button" class="hi-person" id="hi-person">
             <span>Привет {{first_name}}</span>
@@ -41,6 +41,7 @@
         {%endif%}
     </div>
 </header>
+<main>
 <section>
     {% for i in range(get_products['data']['name']|length)%}
     <div class="all-products">
@@ -57,7 +58,7 @@
     </div>
     {%endfor%}
 </section>
-
+</main>
 
 <script src="/static/js/core/index.js"></script>
 <script src="/static/js/base.js"></script>

@@ -48,16 +48,20 @@ section {
     margin-left: -18px;
     padding: 10px;
 }
+
+
 /*sm img close*/
 
 /*org image open*/
 .full-org-photo-div {
-    position: relative;
+    /*position: relative;*/
     width: 452px;
     height: 502px;
-    left: 10%;
+    /*left: 10%;*/
     margin-top: 30px;
     cursor: pointer;
+    float: left;
+    margin-left: 20px;
 }
 
 .org-photo-div {
@@ -65,7 +69,7 @@ section {
     height:500px ;
     border: 1px solid #adaeb19e;
     overflow: hidden;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .org-photo-div .org-img {
@@ -88,14 +92,19 @@ section {
 .org-photo-div:nth-child(1){
     display: block;
 }
+
+.for-img-text {
+    margin-left: 10%;
+    margin-top: 1%;
+    width: 29.5%;
+    text-align: center
+}
 /*org image close*/
 
 
 /*product name open*/
 .full-product-name-div {
-    position: absolute;
-    left: 50%;
-    top: 0;
+    /*position: relative;*/
     width: 500px;
     height: 400px;
 }
@@ -117,3 +126,72 @@ section {
 }
 /*product name close*/
 
+@media screen and (max-width: 640px) {
+    main {
+        /*border: 1px solid red;*/
+    }
+    section {
+        width: 100%;
+    }
+
+    .main-cases {
+        width: 100%;
+        margin: 10px 0px;
+        text-align: center;
+    }
+
+    .sm-photo-ul {
+        width: 100%;
+        display: flex;
+        float: none;
+    }
+
+    .sm-photo-li {
+        width: 40px;
+        height: 40px;
+    }
+
+    .sm-photo-li img {
+        width: 10%;
+    }
+
+    .fixed {
+        width: 100%;
+    }
+
+    .full-org-photo-div {
+        width: 100%;
+        margin: 10px 0px;
+        left: 0;
+        height: 300px;
+    }
+
+    .org-photo-div {
+        position: unset;
+        width: 100%;
+        height: 300px;
+    }
+
+    .org-photo-div img {
+        width: 100%;
+    }
+
+    .for-img-text {
+        width: 100%;
+        margin: 4% 0px;
+    }
+
+    .full-product-name-div {
+        width: 100%;
+    }
+
+    .product-name {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .full-product-name-div {
+        left: 62%;
+    }
+}
