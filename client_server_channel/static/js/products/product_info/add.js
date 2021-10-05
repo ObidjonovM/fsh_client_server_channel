@@ -8,6 +8,18 @@ const other_photos = document.getElementById('other_photos');
 
 
 
+//buttonni bosgan inputni bosgandek bo'ladi add photo open
+const addPhoto = document.getElementById("addPhoto");
+
+addPhoto.addEventListener("click", function (e) {
+    if (other_photos) {
+        other_photos.click();
+
+    }
+}, true);
+//buttonni bosgan inputni bosgandek bo'ladi add photo close
+
+
 let base_64_code = [];
 function set_other_photos(ev) {
     base_64_code = [];
@@ -99,12 +111,3 @@ function addForm() {
 
 
 
-//buttonni bosgan inputni bosgandek bo'ladi add photo open
-const addPhoto = document.getElementById("addPhoto");
-
-addPhoto.addEventListener("click", function (e) {
-    if (other_photos) {
-        other_photos.click();
-    }
-}, false);
-//buttonni bosgan inputni bosgandek bo'ladi add photo close

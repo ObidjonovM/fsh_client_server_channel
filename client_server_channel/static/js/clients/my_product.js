@@ -47,6 +47,7 @@ btnCloseModalInformation.addEventListener('click', closeModalInformation);
 // btnCloseModal2.addEventListener('click', closeModal2);
 // overlay.addEventListener('click', closeModal);
 
+
 document.addEventListener('keydown', function (e) {
     // console.log(e.key);
 
@@ -103,3 +104,10 @@ function OpenNewModal() {
         }
     }
 }
+
+
+document.addEventListener('keydown', function (e){
+    if (e.key === 'Enter'){
+        OpenNewModal();
+    }
+})
