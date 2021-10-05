@@ -124,34 +124,36 @@ fileSelect.addEventListener("click", function (e) {
 const full_div_other_photo = document.getElementById('full_div_other_photo');
 const div_other_photo = document.getElementById('div_other_photo');
 let base_64_code = [];
+let requestJson = {}
 
-function set_other_photos(ev) {
-    base_64_code = [];
-    // div_main_photo.innerHTML = '';
-    // div_other_photo.innerHTML = '';
-    readURL(ev, div_other_photos);
 
-    let result = {};
-    result['main_photo'] = main_photo;
-    result['other_photos'] = other_photos;
-    result['product_id'] = product_id;
-    result['photos_id'] = photos_id;
-    console.log(result);
+function addPhoto() {
     xhttp.open('Post', '/products/photo/add', true);
     xhttp.setRequestHeader("Content-type","application/json; charset=UTF-8");
 
-    xhttp.send(JSON.stringify(result));
+    xhttp.send(JSON.stringify(requestJson));
     xhttp.onreadystatechange = function () {
-        if ((this.readyState ==4) && (this.status == 200)){
-            // let resp = JSON.parse(this.responseText);
-            console.log(this.responseText);
+        if ((this.readyState == 4) && (this.status == 200)){
+            let resp = JSON.parse(this.responseText);
+            if (resp['success']) {
+                location.reload()
+            }
         }
     }
 }
 
 
-function readURL(ev, parent_div) {
+function set_other_photos(ev) {
+    base_64_code = [];
+    // div_main_photo.innerHTML = '';
+    // div_other_photo.innerHTML = '';
+    requestJson =  readURL(ev, div_other_photos);
+}
 
+
+function readURL(ev, parent_div) {
+    let main = [];
+    let oth_photos = [];
     if (ev.files && ev.files[0]) {
         for (let i = 0; i < ev.files.length; i++) {
             if (ev.files[i].size <= 100000) {
@@ -173,7 +175,9 @@ function readURL(ev, parent_div) {
                     button.setAttribute('onclick','deletePhoto(this)')
 
                     img.setAttribute('src', e.target.result);
+                    oth_photos.push(e.target.result)
                     img.setAttribute('main','False');
+                    main.push('False')
                     img.setAttribute('onclick','changeMainPhoto(this);');
 
                     div2.appendChild(img);
@@ -190,5 +194,9 @@ function readURL(ev, parent_div) {
 
         }
     }
-
+    return {
+        'main_photo' : main,
+        'other_photos' : oth_photos,
+        'product_id' : id
+    }
 }

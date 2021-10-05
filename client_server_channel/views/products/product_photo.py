@@ -17,7 +17,6 @@ def add():
                         'main_photo' : params['main_photo'],
                         'other_photos' : params['other_photos'],
                         'product_id' : params['product_id'],
-                        'photos_id' : params['photos_id'],
                         'add_emp_id' : session['employee']['id'],
                         'modify_emp_id' : session['employee']['id'],
                     })

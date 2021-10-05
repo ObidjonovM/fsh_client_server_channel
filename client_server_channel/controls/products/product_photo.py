@@ -32,18 +32,28 @@ class ProductPhotoC:
     @staticmethod
     def add(product_photo):
         now = datetime.now()
-        product_photo['date_added'] = now
-        product_photo['date_modified'] = now
         for i in range(len(product_photo['main_photo'])):
             resize_result = resize_photos(
                 product_photo['other_photos'][i]
                 )
-            product_photo['main_photo'] = product_photo['main_photo'][i]
-            product_photo['photo_format'] = resize_result['format']
-            product_photo['original_photo'] = resize_result['org']
-            product_photo['small_photo'] = resize_result['small']
-            add_result = ProductPhotoTable.insert(product_photo)
-        
+
+            add_result = ProductPhotoTable.insert({
+                'main_photo' : product_photo['main_photo'][i],
+                'product_id' : product_photo['product_id'],
+                'photo_format' : resize_result['format'],
+                'original_photo' : resize_result['org'],
+                'small_photo' : resize_result['small'],
+                'date_added' : now,
+                'add_emp_id' : product_photo['add_emp_id'],
+                'date_modified' : now,
+                'modify_emp_id' : product_photo['modify_emp_id']
+            })
+            if not add_result['success']:
+                return {
+                    'success' : False,
+                    'log_code' : utls.record_log(add_result, 'add', 'crud_logs')
+                }
+
         return {
             'success' : add_result['success'],
             'data' : add_result['data'],
