@@ -13,8 +13,8 @@ section {
     min-width: 360px;
     width: 80%;
     margin: 3% auto;
-    border-left: 1px solid #adaeb19e;
-    border-right: 1px solid #adaeb19e;
+    /*border-left: 1px solid #adaeb19e;*/
+    /*border-right: 1px solid #adaeb19e;*/
     position: relative;
 }
 
@@ -77,6 +77,10 @@ section {
     height: 100%;
 }
 
+.none {
+    border: 1px solid #adaeb19e;
+}
+
 .org-photo-div.active1{
     display: none;
 }
@@ -112,3 +116,4 @@ section {
     font-weight: 100;
 }
 /*product name close*/
+
