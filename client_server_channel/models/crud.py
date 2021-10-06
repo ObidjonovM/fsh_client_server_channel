@@ -160,6 +160,28 @@ def get_columns_by_ids(table_name, cols, id_name, ids):
     return result
 
 
+def get_fullnames(table_name, cols, id_name, ids):
+    sql = 'SELECT '
+    for col in cols:
+        sql += str(col) + ', '
+
+    sql = sql[:-2] + f' FROM {str(table_name)} WHERE active = TRUE AND ('
+
+    for id in ids:
+        if id != None:
+            sql += f"{str(id_name)} = '{str(id)}' OR "
+
+    sql = sql[:-4] + f') ORDER BY {id_name}'
+
+    result = utls.send_to_db(sql, None, True)
+
+    if result['success']:
+        result['data'] = utls.list_tuples2tuple_lists(result['data'])
+        result['data'] = utls.keyval_tuples2dict(tuple(cols), result['data'])
+
+    return result
+
+
 def record_exists(table_name, record):
     sql = f'SELECT * FROM {table_name} WHERE '
     for col in record.keys():

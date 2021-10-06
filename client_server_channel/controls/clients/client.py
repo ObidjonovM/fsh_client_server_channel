@@ -24,7 +24,12 @@ class ClientC:
     @staticmethod
     def get(client_id):
         get_result = ClientTable.get(client_id)
-
+        if get_result['data']['last_name'] == None:
+            get_result['data']['last_name'] = ''
+        if get_result['data']['first_name'] == None:
+            get_result['data']['first_name'] = ''
+        if get_result['data']['middle_name'] == None:
+            get_result['data']['middle_name'] = ''
         return {
             'success' : get_result['success'],
             'data' : get_result['data'],

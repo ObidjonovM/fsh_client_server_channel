@@ -25,7 +25,7 @@ class ClientTable:
 
     @staticmethod
     def get_fullnames(clients_ids):
-        result = crud.get_columns_by_ids(
+        result = crud.get_fullnames(
             'clients',
             ['client_id', 'first_name', 'middle_name', 'last_name'],
             'client_id',
@@ -37,6 +37,12 @@ class ClientTable:
             data = result['data']
             data_len = len(data['client_id'])
             for i in range(data_len):
+                if data['last_name'][i] == None:
+                    data['last_name'][i] = ''
+                if data['first_name'][i] == None:
+                    data['first_name'][i] = ''
+                if data['middle_name'][i] == None:
+                    data['middle_name'][i] = ''
                 names_ids[data['client_id'][i]] = f"{data['last_name'][i]} {data['first_name'][i]} {data['middle_name'][i]}"
 
             result['data'] = names_ids
