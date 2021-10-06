@@ -24,7 +24,6 @@
     <h1 class="h1-my-product">Мой продукт</h1>
 </section>
 
-
 <section>
     <button class="show-modal">
         <p>Информация о товаре</p>
@@ -58,10 +57,10 @@
 
         {% if my_product['data']['product_id'][i] == 1 %}
         <div class="input-on-off">
-            <input type="button" value="On" onclick="turnOn(this)" class="on"
+            <input type="button" action = "ON" value="On" onclick="actionCommand(this)" class="on"
                    ser_num="{{my_product['data']['serial_num'][i]}}">
 
-            <input type="button" value="Off" onclick="turnOff(this)" class="off"
+            <input type="button" action = "OFF" value="Off" onclick="actionCommand(this)" class="off"
                    ser_num="{{my_product['data']['serial_num'][i]}}">
         </div>
         {%else%}
@@ -83,7 +82,7 @@
             <h2>Измените описание!</h2>
         </div>
 
-        <form action="{{url_for('clients.my_product', ser_num=my_product['data']['serial_num'][0])}}" method="post"
+        <form action="{{url_for('clients.my_products.socket.get_my_product', ser_num=my_product['data']['serial_num'][0])}}" method="post"
               class="description-form" id="description_form">
             <div class="description-form-control">
                 <input type="hidden" name="ser_num" id="ser_num" value="{{my_product['data']['serial_num'][0]}}"/>
@@ -109,7 +108,7 @@
         </div>
 
         <div class="delete-product-div">
-            <form action="{{url_for('clients.delete_product', ser_num=my_product['data']['serial_num'][0])}}" id="delete_form" method="post">
+            <form action="{{url_for('clients.my_products.socket.delete_product', ser_num=my_product['data']['serial_num'][0])}}" id="delete_form" method="post">
                 <label class="for_delete_label" for="for_delete_input">Пароль</label>
                 <input type="password" name="password" id="for_delete_input" placeholder="введите пароль" required>
                 <input type="submit" value="Потдвердить" class="add-type-submit2 delete-product">
@@ -119,6 +118,17 @@
     <div class="overlay1 hidden1"></div>
 </section>
 
+<div class="delete-product-div">
+    <form action="{{url_for('clients.my_products.socket.get_logs', ser_num=my_product['data']['serial_num'][0])}}" id="" method="post">
+        <input type="hidden" name="product_id" value="{{my_product['data']['product_id'][0]}}">
+        <label for="start_date">start_date</label>
+        <input type="datetime-local" name="start_date">
+        <label for="end_date">end_date</label>
+        <input type="datetime-local" name="end_date">
+        <input type="submit" value="Add">
+    </form>
+</div>
+
 
 
 
@@ -126,6 +136,23 @@
 
 <script src="/static/js/base.js"></script>
 <script src="/static/js/clients/my_product.js"></script>
+<script>
+    function actionCommand(e) {
+        let action = {
+            'serial_num': e.getAttribute('ser_num'),
+            'action_requested' : e.getAttribute('action')
+        }
+        xhttp.open('POST', '/clients/my_products/socket/action', true);
+        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        xhttp.send(JSON.stringify(action));
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                // let resp = JSON.parse(this.responseText);
+                console.log(this.responseText)
+            }
+        }
+    }
+</script>
 </body>
 
 </html>

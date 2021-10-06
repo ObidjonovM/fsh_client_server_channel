@@ -41,7 +41,7 @@
             <h2>Добавит продукт</h2>
         </div>
 
-        <form action="{{url_for('clients.my_products')}}" method="post" class="form">
+        <form action="{{url_for('clients.my_products.get_my_products')}}" method="post" class="form">
 
 
             <div class="form-control">
@@ -91,10 +91,10 @@
                     </div>
                     {% if my_products['data']['product_id'][i] == 1 %}
                     <div class="input-on-off">
-                        <input type="button" value="On" onclick="turnOn(this)" class="on"
+                        <input type="button" action = "ON" value="On" onclick="actionCommand(this)" class="on"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
 
-                        <input type="button" value="Off" onclick="turnOff(this)" class="off"
+                        <input type="button" action = "OFF" value="Off" onclick="actionCommand(this)" class="off"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
                     </div>
                     {%else%}
@@ -128,31 +128,22 @@
 <script>
     var xhttp = new XMLHttpRequest();
 
-    function turnOn(e) {
-        let ser_num = {'serial_num': e.getAttribute('ser_num')}
-        xhttp.open('POST', '/clients/smart_socket/on', true);
+    function actionCommand(e) {
+        let action = {
+            'serial_num': e.getAttribute('ser_num'),
+            'action_requested' : e.getAttribute('action')
+        }
+        xhttp.open('POST', '/clients/my_products/socket/action', true);
         xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        xhttp.send(JSON.stringify(ser_num));
+        xhttp.send(JSON.stringify(action));
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                let resp = JSON.parse(this.responseText);
-                console.log(resp)
+                // let resp = JSON.parse(this.responseText);
+                console.log(this.responseText)
             }
         }
     }
 
-    function turnOff(e) {
-        let ser_num = {'serial_num': e.getAttribute('ser_num')}
-        xhttp.open('POST', '/clients/smart_socket/off', true);
-        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        xhttp.send(JSON.stringify(ser_num));
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                let resp = JSON.parse(this.responseText);
-                console.log(resp)
-            }
-        }
-    }
 </script>
 </body>
 

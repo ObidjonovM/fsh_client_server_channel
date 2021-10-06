@@ -51,7 +51,7 @@ document.addEventListener('keydown', function (e) {
 
 function productImg(ev) {
     var x = ev.getAttribute("ser_num");
-    window.open('/clients/my_products/' + x, '_self');
+    window.open('/clients/my_products/socket/' + x, '_self');
 }
 
 window.onload = function () {

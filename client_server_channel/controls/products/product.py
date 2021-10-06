@@ -6,6 +6,7 @@ import requests as reqs
 import json
 from client_server_channel.config import hd_server
 
+HEADERS = {'Content-Type': 'application/json; charset=utf8'}
 
 class ProductC:
 
@@ -128,23 +129,6 @@ class ProductC:
 
 
     @staticmethod
-    def get_my_product(client_id, serial_num):
-        get_product = ProductTable.get_my_product(client_id, serial_num)
-        if len(get_product['data']) > 0:
-            get_product['data']['photo'] = utls.byte_to_base64(
-                get_product['data']['format'],
-                get_product['data']['photo']
-                )
-            del get_product['data']['format']
-
-        return {
-            'success' : get_product['success'],
-            'data' : get_product['data'],
-            'log_code' : utls.record_log(get_product, 'get_my_product', 'crud_logs')
-        }
-
-
-    @staticmethod
     def my_product_info(client_id, ser_num):
         result = ProductTable.my_product_info(client_id, ser_num)
 
@@ -156,12 +140,54 @@ class ProductC:
 
 
     @staticmethod
+    def get_my_product(client_id, serial_num):
+        get_product = ProductTable.get_my_product(client_id, serial_num)
+
+        ser_num = {'serial_num' : ''}
+        resp = {}
+
+        if len(get_product['data']) > 0:
+            get_product['data']['photo'] = utls.byte_to_base64(
+                get_product['data']['format'],
+                get_product['data']['photo']
+                )
+            del get_product['data']['format']
+
+            ser_num['serial_num'] = get_product['data']['serial_num'][0]
+            params = json.dumps(ser_num)
+
+            if get_product['data']['product_id'][0] == 1:
+
+                resp = reqs.post(
+                    hd_server + '/socket/get_current_state',
+                    data = params,
+                    headers = HEADERS
+                ).json()
+
+            # if get_product['data']['product_id'][0] == 2:
+
+            #     resp = reqs.post(
+            #         hd_server + '/sg_get_status',
+            #         data = params,
+            #         headers = HEADERS
+            #     ).json()
+
+        return {
+            'success' : get_product['success'],
+            'data' : get_product['data'],
+            'action' : resp,
+            'log_code' : utls.record_log(get_product, 'get_my_product', 'crud_logs')
+        }
+
+
+    @staticmethod
     def get_my_products(client_id):
         result = ProductTable.get_my_products(client_id)
 
-        headers = {'Content-Type': 'application/json; charset=utf8'}
-        ss_ser_num = {'serial_num' : []}
-        sg_ser_num = {'serial_num' : []}
+        ss_ser_num = {'serial_nums' : []}
+        # sg_ser_num = {'serial_num' : []}
+        ss_resp = {}
+        sg_resp = {}
 
         if len(result['data']) > 0:
             result['data']['photo'] = utls.byte_to_base64(
@@ -171,39 +197,41 @@ class ProductC:
             for i in range(len(result['data']['product_id'])):
 
                 if result['data']['product_id'][i] == 1:
-                    ss_ser_num['serial_num'].append(result['data']['serial_num'][i])
+                    ss_ser_num['serial_nums'].append(result['data']['serial_num'][i])
 
-                if result['data']['product_id'][i] == 2:
-                    sg_ser_num['serial_num'].append(result['data']['serial_num'][i])
+                # if result['data']['product_id'][i] == 2:
+                #     sg_ser_num['serial_num'].append(result['data']['serial_num'][i])
 
         ss_params = json.dumps(ss_ser_num)
-        sg_params = json.dumps(sg_ser_num)
+        # sg_params = json.dumps(sg_ser_num)
 
         ss_resp = reqs.post(
-            hd_server + '/ss_get_status',
+            hd_server + '/socket/get_current_states',
             data = ss_params,
-            headers = headers
-            )
+            headers = HEADERS
+            ).json()
 
-        sg_resp = reqs.post(
-            hd_server + '/sg_get_status',
-            data = sg_params,
-            headers = headers
-            )
+        # sg_resp = reqs.post(
+        #     hd_server + '/sg_get_status',
+        #     data = sg_params,
+        #     headers = HEADERS
+        #     ).json()
 
         return {
             'success' : result['success'],
             'data' : result['data'],
-            'ss_action' : ss_resp.json()['data'],
-            'sg_action' : sg_resp.json()['data'],
+            'ss_action' : ss_resp,
+            'sg_action' : sg_resp,
             'log_code' : utls.record_log(result, 'get_my_products', 'crud_logs')
         }
 
 
     @staticmethod
-    def get_logs(ser_num, product_id, start_date, end_date):
-        headers = {'Content-Type': 'application/json; charset=utf8'}
-
+    def get_all_states_in_range(ser_num, product_id, start_date, end_date):
+        ss_params = {}
+        sg_params = {}
+        ss_resp = {}
+        sg_resp = {}
         if str(product_id) == '1':
             ss_params = json.dumps({'serial_num' : ser_num,
                                     'start_date' : start_date,
@@ -211,14 +239,12 @@ class ProductC:
             })
 
             ss_resp = reqs.post(
-                hd_server + '/ss_get_logs',
+                hd_server + '/socket/get_all_states_in_range',
                 data = ss_params,
-                headers = headers
-                )
+                headers = HEADERS
+                ).json()
             
-            return {
-                'action' : ss_resp.json()['data']
-            }
+            return ss_resp
 
         if str(product_id) == '2':
             sg_params = json.dumps({'serial_num' : ser_num,
@@ -226,38 +252,58 @@ class ProductC:
                                     'end_date' : end_date
             })
 
-            sg_resp = reqs.post(
-                hd_server + '/sg_get_logs',
-                data = sg_params,
-                headers = headers
-                )
+            # sg_resp = reqs.post(
+            #     hd_server + '/sg_get_logs',
+            #     data = sg_params,
+            #     headers = HEADERS
+            #     ).json()
 
-            return {
-                'action' : sg_resp.json()['data']
-            }
+            return sg_resp
 
 
     @staticmethod
-    def turn_on(ser_num):
-        headers = {'Content-Type': 'application/json; charset=utf8'}
-
+    def last_request_time(ser_num):
+        resp = {}
         resp = reqs.post(
-            hd_server + '/turn_on',
+            hd_server + '/socket/last_request_time',
             data = json.dumps(ser_num),
-            headers=headers
-        )
+            headers=HEADERS
+        ).json()
 
-        return resp.json()
+        return resp
 
 
     @staticmethod
-    def turn_off(ser_num):
-        headers = {'Content-Type': 'application/json; charset=utf8'}
-
+    def enter_requested_action(params):
+        resp = {}
         resp = reqs.post(
-            hd_server + '/turn_off',
-            data = json.dumps(ser_num),
-            headers=headers
-        )
+            hd_server + '/socket/enter_requested_action',
+            data = json.dumps(params),
+            headers=HEADERS
+        ).json()
 
-        return resp.json()
+        return resp
+
+
+    @staticmethod
+    def last_requested_action(ser_num):
+        resp = {}
+        resp = reqs.post(
+            hd_server + '/socket/last_requested_action',
+            data = json.dumps(ser_num),
+            headers=HEADERS
+        ).json()
+
+        return resp
+
+
+    @staticmethod
+    def requested_actions(ser_num):
+        resp = {}
+        resp = reqs.post(
+            hd_server + '/socket/requested_actions',
+            data = json.dumps(ser_num),
+            headers=HEADERS
+        ).json()
+
+        return resp

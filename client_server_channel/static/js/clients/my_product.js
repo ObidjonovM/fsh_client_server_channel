@@ -71,7 +71,7 @@ const xhttp = new XMLHttpRequest();
 
 let url = window.location.href;
 function OpenNewModal() {
-    xhttp.open('POST', '/clients/my_products/info/' + url.substring(url.lastIndexOf('/') + 1), true);
+    xhttp.open('POST', '/clients/my_products/socket/info/' + url.substring(url.lastIndexOf('/') + 1), true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhttp.send(JSON.stringify({'password' : forInfoPass.value}));
     xhttp.onreadystatechange = function () {
