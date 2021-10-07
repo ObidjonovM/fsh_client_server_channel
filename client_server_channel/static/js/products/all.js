@@ -40,3 +40,9 @@ function getType(e) {
     window.open('/products/get/' + e.children[0].innerHTML, '_self');
 }
 
+const td = document.getElementsByTagName('td');
+    for (let i=0; i<td.length; i++){
+        if ('None'.includes(td[i].innerHTML)) {
+            td[i].innerHTML = '';
+        }
+    }

@@ -13,7 +13,6 @@
 <div class="add-button">
     <button id="addClick">Добавить</button>
 </div>
-
 <div class="table">
     <table>
         <thead>
@@ -21,6 +20,14 @@
         <tr>
 
             <th class="hidden">ИД</th>
+
+            <th>Default Login</th>
+
+            <th>Default Password</th>
+
+            <th>Ap Login</th>
+
+            <th>Ap Password</th>
 
             <th>Серийный номер</th>
 
@@ -47,6 +54,14 @@
 
         {% for i in range(products_info['data']['serial_num']|length) %}
         <tr ondblclick="getType(this)">
+
+            <td>{{products_info['data']['default_login'][i]}}</td>
+
+            <td>{{products_info['data']['default_password'][i]}}</td>
+
+            <td>{{products_info['data']['ap_login'][i]}}</td>
+
+            <td>{{products_info['data']['ap_password'][i]}}</td>
 
             <td >{{products_info['data']['serial_num'][i]}}</td>
 
