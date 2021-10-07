@@ -30,13 +30,3 @@ function smallImgClick(evt) {
     console.log("1")
 
 }
-
-function largePhotoHoverBlock(){
-    small_text.style.display = 'none';
-    large_text.style.display = 'block';
-}
-
-function largePhotoHoverNone(){
-    small_text.style.display = 'block';
-    large_text.style.display = 'none';
-}

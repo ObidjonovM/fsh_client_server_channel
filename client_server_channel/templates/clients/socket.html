@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="/static/css/clients/my_product.css">
+    <link rel="stylesheet" href="/static/css/clients/socket.css">
 
     {% endblock %}
 </head>
@@ -20,6 +20,7 @@
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
 </div>
 <br>
+
 <section>
     <h1 class="h1-my-product">Мой продукт</h1>
 </section>
@@ -38,43 +39,16 @@
     </div>
 
     <div class="form">
-           <div class="form-control1">
+        <div class="form-control1">
             <label for="forInfoPass">Пароль</label>
             <input type="password" id="forInfoPass" class="password" placeholder="введите пароль" required>
             <input type="button" value="Info Product" onclick="OpenNewModal()" class="delete-product">
-           </div>
+        </div>
     </div>
 </div>
 <div id="overlay" class="overlay hidden"></div>
 
 <section class="description-img-section">
-    {% for i in range(my_product['data']['photo']|length)%}
-    <div class="all-products">
-        <div class="img-div">
-            <span>{{my_product['data']['description'][i]}}</span>
-            <img src="{{my_product['data']['photo'][i]}}" alt="img">
-        </div>
-
-        {% if my_product['data']['product_id'][i] == 1 %}
-        <div class="input-on-off">
-            <input type="button" action = "ON" value="On" onclick="actionCommand(this)" class="on"
-                   ser_num="{{my_product['data']['serial_num'][i]}}">
-
-            <input type="button" action = "OFF" value="Off" onclick="actionCommand(this)" class="off"
-                   ser_num="{{my_product['data']['serial_num'][i]}}">
-        </div>
-        {%else%}
-        <div class="input-on-off">
-            <input type="text" value="On" class="on1" style="text-align: center;" readonly
-                   ser_num="{{my_product['data']['serial_num'][i]}}">
-
-            <input type="text" value="Off" class="off1" style="text-align: center;" readonly
-                   ser_num="{{my_product['data']['serial_num'][i]}}">
-        </div>
-        {% endif %}
-    </div>
-    {%endfor%}
-
 
     <div class="description-container">
 
@@ -82,7 +56,8 @@
             <h2>Измените описание!</h2>
         </div>
 
-        <form action="{{url_for('clients.my_products.socket.get_my_product', ser_num=my_product['data']['serial_num'][0])}}" method="post"
+        <form action="{{url_for('clients.my_products.socket.get_my_product', ser_num=my_product['data']['serial_num'][0])}}"
+              method="post"
               class="description-form" id="description_form">
             <div class="description-form-control">
                 <input type="hidden" name="ser_num" id="ser_num" value="{{my_product['data']['serial_num'][0]}}"/>
@@ -96,9 +71,38 @@
                 <p>Delete My Product</p>
             </button>
         </form>
-
     </div>
+
+    {% for i in range(my_product['data']['photo']|length)%}
+    <div class="all-products">
+        <div class="img-div">
+            <span>{{my_product['data']['description'][i]}}</span>
+            <img src="{{my_product['data']['photo'][i]}}" alt="img">
+        </div>
+
+        {% if my_product['data']['product_id'][i] == 1 %}
+        <div class="input-on-off">
+            <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
+                   ser_num="{{my_product['data']['serial_num'][i]}}">
+
+            <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
+                   ser_num="{{my_product['data']['serial_num'][i]}}">
+        </div>
+        {%else%}
+        <div class="input-on-off">
+            <input type="text" value="Включить" class="on1" style="text-align: center;" readonly
+                   ser_num="{{my_product['data']['serial_num'][i]}}">
+
+            <input type="text" value="Выключить" class="off1" style="text-align: center;" readonly
+                   ser_num="{{my_product['data']['serial_num'][i]}}">
+        </div>
+        {% endif %}
+    </div>
+    {%endfor%}
+
 </section>
+
+
 <section>
     <div class="container1 modal1 hidden1">
         <button class="close-modal1">&times;</button>
@@ -108,7 +112,8 @@
         </div>
 
         <div class="delete-product-div">
-            <form action="{{url_for('clients.my_products.socket.delete_product', ser_num=my_product['data']['serial_num'][0])}}" id="delete_form" method="post">
+            <form action="{{url_for('clients.my_products.socket.delete_product', ser_num=my_product['data']['serial_num'][0])}}"
+                  id="delete_form" method="post">
                 <label class="for_delete_label" for="for_delete_input">Пароль</label>
                 <input type="password" name="password" id="for_delete_input" placeholder="введите пароль" required>
                 <input type="submit" value="Потдвердить" class="add-type-submit2 delete-product">
@@ -117,30 +122,35 @@
     </div>
     <div class="overlay1 hidden1"></div>
 </section>
-
-<div class="delete-product-div">
-    <form action="{{url_for('clients.my_products.socket.get_logs', ser_num=my_product['data']['serial_num'][0])}}" id="" method="post">
-        <input type="hidden" name="product_id" value="{{my_product['data']['product_id'][0]}}">
-        <label for="start_date">start_date</label>
-        <input type="datetime-local" name="start_date">
-        <label for="end_date">end_date</label>
-        <input type="datetime-local" name="end_date">
-        <input type="submit" value="Add">
-    </form>
-</div>
-
-
+{{my_product['data']['product_id'][0]}}
+<section>
+    <div class="delete-product-div">
+        <form action="{{url_for('clients.my_products.socket.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
+              class="delete-product-form" id="" method="post">
+            <input type="hidden" name="product_id" value="{{my_product['data']['product_id'][0]}}">
+            <div class="a">
+                <label for="start_date">start_date</label>
+                <input type="datetime-local" name="start_date">
+            </div>
+            <div class="a">
+                <label for="end_date">end_date</label>
+                <input type="datetime-local" name="end_date">
+            </div>
+            <input type="submit" class="add-type-submit4" value="Add">
+        </form>
+    </div>
+</section>
 
 
 {% endblock %}
 
 <script src="/static/js/base.js"></script>
-<script src="/static/js/clients/my_product.js"></script>
+<script src="/static/js/clients/socket.js"></script>
 <script>
     function actionCommand(e) {
         let action = {
             'serial_num': e.getAttribute('ser_num'),
-            'action_requested' : e.getAttribute('action')
+            'action_requested': e.getAttribute('action')
         }
         xhttp.open('POST', '/clients/my_products/socket/action', true);
         xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");

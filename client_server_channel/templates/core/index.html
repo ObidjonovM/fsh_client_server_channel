@@ -18,7 +18,7 @@
 <header class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
 
-    <div style="position:relative; z-index: 100">
+    <div class="hi-person-div">
         {%if first_name%}
         <button type="button" class="hi-person" id="hi-person">
             <span>Привет {{first_name}}</span>
@@ -43,9 +43,9 @@
 </header>
 <main>
 <section>
-    {% for i in range(get_products['data']['name']|length)%}
-    <div class="all-products">
 
+    <div class="all-products">
+        {% for i in range(get_products['data']['name']|length)%}
         <div class="img-div">
             <span>
                 <p class="description">{{get_products['data']['name'][i]}}</p>
@@ -54,9 +54,9 @@
                  onclick="getInfo(this)">
             <a href="#">Учить больше</a>
         </div>
-
+        {%endfor%}
     </div>
-    {%endfor%}
+
 </section>
 </main>
 

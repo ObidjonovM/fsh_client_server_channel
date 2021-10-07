@@ -49,9 +49,12 @@
 }
 
 @media screen and (max-width: 767px){
-    .glavni-stranisa, .viyti, .sign-in {
-        width: 70px;
-        font-size: 14px;
+    .sign-in {
+        margin-right: -20%;
+    }
+    .glavni-stranisa, .viyti{
+        width: 82px;
+        font-size: 13px;
     }
     .fixed {
         width: 100%;

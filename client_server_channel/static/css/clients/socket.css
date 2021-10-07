@@ -114,7 +114,7 @@ section{
     margin: 30px auto;
 }
 
-.add-type-submit:hover, .add-type-submit2:hover {
+.add-type-submit:hover, .add-type-submit2:hover, .add-type-submit4:hover {
     background-color: #232F3E;
     transition: all .3s;
 }
@@ -394,3 +394,130 @@ section{
     padding: 5px 10px;
     width: 100%;
 }
+
+/*delete-product-div open*/
+
+.delete-product-div {
+    width: 50%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.3);
+}
+
+.delete-product-form {
+    padding: 2%;
+    width: 100%;
+}
+
+.a {
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.delete-product-form input {
+    margin-top: 0;
+    border: 2px solid #c3c3c3;
+}
+
+.delete-product-form input:focus {
+    outline: 0;
+    border-color: #777;
+}
+
+.delete-product-form label {
+    margin-top: 2%;
+}
+
+.add-type-submit4 {
+   background-color: #374a62;
+    border: 1px solid #374a62;
+    color: white;
+    cursor: pointer;
+    margin-top: 2%;
+}
+/*delete-product-div close*/
+
+
+/*media style open */
+    @media only screen and (max-width: 731px) {
+
+        .description-img-section{
+            width: 100%;
+            border: 1px solid black;
+            display: contents;
+        }
+
+        section {
+            width: 100%;
+            display: block;
+        }
+
+        .show-modal {
+            margin-left: 20%;
+        }
+
+        .all-products{
+            width: 100%;
+            margin: 4% 1%;
+        }
+
+        .description-container {
+            width: 98%;
+            margin: 10% 1%;
+        }
+
+        .input-on-off {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .input-on-off input {
+            width: 99%;
+        }
+
+        .h1-my-product {
+            margin: 0;
+        }
+
+        .modal {
+            width: 98%;
+            padding: 1rem;
+            border-radius: 2px;
+            margin: 0;
+        }
+
+        .form-control1 input {
+            border: 2px solid #c3c3c3;
+            border-radius: 4px;
+            display: block;
+            font-family: inherit;
+            font-size: 14px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .header {
+            padding: 0;
+            margin-top: 10%;
+        }
+
+        .close-modal, .close-modal3 {
+            top: .2rem;
+            right: 0;
+        }
+
+        .form, .delete-product-div {
+            margin-top: 12%;
+        }
+
+        .modal1 {
+            width: 99%;
+            margin: 1% 0;
+        }
+
+        .input-on-off {
+            margin-bottom: 20%;
+        }
+    }
+/*media style close */

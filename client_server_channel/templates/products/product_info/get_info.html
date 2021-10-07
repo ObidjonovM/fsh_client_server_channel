@@ -28,31 +28,25 @@
     </div>
     <section>
 
-<div style="width: 100%;">
-        <ul class="sm-photo-ul">
-            {% for i in range(get_info['data']['main_photo']|length)%}
-            <li class="sm-photo-li active" id="sm_photo_li" onmouseover="smPhotoLi(this)" onclick="smallImgClick(this)">
-                <img src="{{get_info['data']['sm_photo'][i]}}" id="smPhoto" alt="sm_img">
-            </li>
-            {%endfor%}
-        </ul>
-</div>
+        <div style="width: 100%;">
+            <ul class="sm-photo-ul">
+                {% for i in range(get_info['data']['main_photo']|length)%}
+                <li class="sm-photo-li active" id="sm_photo_li" onmouseover="smPhotoLi(this)"
+                    onclick="smallImgClick(this)">
+                    <img src="{{get_info['data']['sm_photo'][i]}}" id="smPhoto" alt="sm_img">
+                </li>
+                {%endfor%}
+            </ul>
+        </div>
 
         <div class="full-org-photo-div">
             {%for i in range(get_info['data']['org_photo']|length)%}
             <div class="org-photo-div active1" id="org_photo_div">
                 <div class="org-img">
-                    <img src="{{get_info['data']['org_photo'][i]}}" id="orgPhoto" alt="org_img"
-                         onmouseover="largePhotoHoverBlock()" onmouseout="largePhotoHoverNone()">
+                    <img src="{{get_info['data']['org_photo'][i]}}" id="orgPhoto" alt="org_img">
                 </div>
             </div>
             {%endfor%}
-        </div>
-
-        <div class="for-img-text">
-            <p class="small-photo-hover" id="small_text" style="display: block">Rasmni kattalashtirish uchun ustiga
-                bosing!</p>
-            <p class="large-photo-hover" id="large_text" style="display: none">Yanada ko'proq malumot uchun bosing!</p>
         </div>
 
         <div class="full-product-name-div">

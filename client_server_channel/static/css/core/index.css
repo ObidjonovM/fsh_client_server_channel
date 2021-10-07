@@ -11,6 +11,11 @@
 /****** hi person open ******/
 /***************************/
 
+.hi-person-div {
+    position:relative;
+    z-index: 100
+}
+
 .hi-person {
     float: left;
     margin-right: 10px;
@@ -100,10 +105,8 @@
 @media screen and (min-width: 360px) and (max-width: 812px) {
     .account-products {
         position: absolute;
-        top: 48px;
-        right: 71px;
         margin: 0;
-        display: block;
+        display: none;
     }
 }
 
@@ -125,11 +128,6 @@ section {
     margin: 2% auto;
     border-left: 1px solid #adaeb19e;
     border-right: 1px solid #adaeb19e;
-    /*position: absolute;*/
-    /*top: 10%;*/
-    /*left: 50%;*/
-    /*z-index: 9;*/
-    /*transform: translate(-50%, 0);*/
 }
 
 .all-products {
@@ -186,3 +184,110 @@ section {
 
 /***** products img close ****/
 /****************************/
+
+
+
+/*media style open*/
+
+@media only screen and (max-width: 640px) {
+
+    .hi-person-div {
+        display: flex;
+        justify-content: right;
+        padding: 0 5%;
+        width: 75%;
+    }
+
+    .hi-person {
+        float: left;
+        width: 90%;
+        font-size: 13px;
+    }
+    .account-products {
+        display: none;
+    }
+    .show-modal {
+        min-width: 185px;
+        position: absolute;
+        top: 97%;
+        left: 0;
+    }
+    .glavni-stranisa {
+        float: right;
+    }
+
+    .account-products {
+        margin-right: -77%;
+        z-index: 100;
+    }
+
+    main {
+        width: 100%;
+        border: 1px solid transparent;
+        margin-top: 15%;
+    }
+    
+    section {
+        width: 100%;
+        position: unset;
+        margin: 1% 0;
+    }
+
+    .all-products {
+        width: 100%;
+    }
+
+    .all-products .img-div {
+        float: none;
+        margin: 3% auto;
+    }
+
+    .all-products .img-div .description, a  {
+        font-size: 13px;
+    }
+
+
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1024px){
+
+    section {
+        width: 100%;
+        margin-bottom: 5%;
+    }
+
+    .all-products {
+        width: 100%;
+        display: table;
+        margin-bottom: 4%;
+    }
+
+    .all-products .img-div {
+        width: 19.7%;
+        height: 230px;
+        padding: 41px 15px;
+    }
+
+    .all-products img {
+        height: 152px;
+
+    }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1366px){
+    section {
+        border: 1px solid red;
+    }
+    .all-products .img-div {
+        width: 21%;
+        height: 250px;
+        padding: 41px 20px;
+    }
+
+    .all-products img {
+        height: 170px;
+    }
+}
+
+
+/*media style close*/

@@ -27,13 +27,9 @@ function loginChange() {
                 let result = `<small style="color: red; font-size: 10px;">Bunday username mavjud!</small>`;
                 login_error.innerHTML = result;
                 submit.style.pointerEvents = 'none';
-                // password.setAttribute('readonly', '');
-                // confirm_password.setAttribute('readonly', '');
             } else {
                 login_error.innerHTML = " ";
                 submit.style.pointerEvents = 'visible';
-                // password.removeAttribute('readonly');
-                // confirm_password.removeAttribute('readonly');
             }
         }
     }
@@ -86,38 +82,14 @@ function validateForm() {
 
     if (password != confirm_password) {
 
-        // var myForm = document.getElementById('myForm');
-        // myForm.addEventListener('submit', function (event) {
-        //     // event.preventDefault();
-        //     console.log("2")
-        // });
-
         const modal = document.querySelector('.modal');
         const overlay = document.querySelector('.overlay');
         modal.classList.remove('hidden');
         overlay.classList.remove('hidden');
 
-        // alert("Parol bir xil emas!");
-
-
         return false;
-    }
-    else {
+    } else {
         alert("Вы зарегистрированы!")
-    //     const modal = document.querySelector('.modal');
-    //     const overlay = document.querySelector('.overlay');
-    //     const header = document.getElementById('header');
-    //     const h12 = document.getElementById('h2');
-    //     const input = document.querySelector('input');
-    //     h12.remove();
-    //     input.value = " ";
-    //     overlay.style.border = '3px solid yellow';
-    //     const h2 = document.createElement('H2');
-    //     h2.textContent = "Siz Registratsiyadan o'tdingiz!";
-    //     header.appendChild(h2).innerHTML;
-    //
-    //     modal.classList.remove('hidden');
-    //     overlay.classList.remove('hidden');
     }
 
 }

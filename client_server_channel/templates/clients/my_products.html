@@ -24,6 +24,7 @@
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
 </div>
+
 <div class="full-container">
 
     <div class="container">
@@ -34,6 +35,7 @@
             </button>
         </section>
     </div>
+
     <div class="container modal hidden">
         <button class="close-modal">&times;</button>
 
@@ -67,14 +69,6 @@
 
     <div class="container">
 
-<!--        <section>-->
-<!--            <div class="wifi-razvetka-glavni-div">-->
-<!--                <div class="w-r-border"></div>-->
-<!--                <div class="wifi-razvetka-name">Wifi Razvetka</div>-->
-<!--                <div class="w-r-border"></div>-->
-<!--            </div>-->
-<!--        </section>-->
-
         <section>
 
 
@@ -91,18 +85,18 @@
                     </div>
                     {% if my_products['data']['product_id'][i] == 1 %}
                     <div class="input-on-off">
-                        <input type="button" action = "ON" value="On" onclick="actionCommand(this)" class="on"
+                        <input type="button" action = "ON" value="Включить" onclick="actionCommand(this)" class="on"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
 
-                        <input type="button" action = "OFF" value="Off" onclick="actionCommand(this)" class="off"
+                        <input type="button" action = "OFF" value="Выключить" onclick="actionCommand(this)" class="off"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
                     </div>
                     {%else%}
                     <div class="input-on-off">
-                        <input type="text" value="On" class="on1" style="text-align: center;" readonly
+                        <input type="text" value="Включить" class="on1" style="text-align: center;" readonly
                                ser_num="{{my_products['data']['serial_num'][i]}}">
 
-                        <input type="text" value="Off" class="off1" style="text-align: center;" readonly
+                        <input type="text" value="Выключить" class="off1" style="text-align: center;" readonly
                                ser_num="{{my_products['data']['serial_num'][i]}}">
                     </div>
                     {% endif %}
