@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS employees (
 	zipcode VARCHAR(20),
 	phone VARCHAR(20) UNIQUE NOT NULL,
         home_phone VARCHAR(20),
-	email VARCHAR(50) UNIQUE,
+	email VARCHAR UNIQUE,
 	username VARCHAR(50) UNIQUE NOT NULL,
 	password VARCHAR NOT NULL,
         emp_status_id INT NOT NULL CHECK (emp_status_id > 0),
