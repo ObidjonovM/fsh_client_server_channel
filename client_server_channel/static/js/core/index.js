@@ -42,3 +42,11 @@ function getInfo(ev) {
     window.open('/products/info/' + x, '_self');
 }
 //img onclick close
+
+
+//get info two open
+function getInfoTwo(ev){
+    let x = ev.previousElementSibling.getAttribute("id");
+    window.open('/products/info/' + x, '_self');
+}
+//get info two close

@@ -150,6 +150,7 @@ section {
     color: #007185;
     text-decoration: none;
     font-family: "Amazon Ember", Arial, sans-serif;
+    cursor: pointer;
 }
 
 .all-products .img-div a:hover {

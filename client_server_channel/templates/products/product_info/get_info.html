@@ -31,8 +31,7 @@
         <div style="width: 100%;">
             <ul class="sm-photo-ul">
                 {% for i in range(get_info['data']['main_photo']|length)%}
-                <li class="sm-photo-li active" id="sm_photo_li" onmouseover="smPhotoLi(this)"
-                    onclick="smallImgClick(this)">
+                <li class="sm-photo-li active" id="sm_photo_li">
                     <img src="{{get_info['data']['sm_photo'][i]}}" id="smPhoto" alt="sm_img">
                 </li>
                 {%endfor%}

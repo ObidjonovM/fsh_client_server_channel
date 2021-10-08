@@ -1,10 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-main{
+main {
     width: 100%;
     height: auto;
 }
@@ -19,7 +19,7 @@ section {
 }
 
 .main-cases {
-    margin: 1% 10%;
+    margin: 1% 11%;
 }
 
 /*sm img open*/
@@ -37,9 +37,14 @@ section {
     margin-top: 5px;
     overflow: hidden;
     border: 1px solid #adaeb19e;
+    background-color: #eaeded;
 }
 
-.sm-photo-li.active:nth-child(1){
+.sm-photo-ul .sm-photo-li:hover {
+    background-color: #dde0e0;
+}
+
+.sm-photo-li.active:nth-child(1) {
     border: 1px solid #1b232e;
 }
 
@@ -54,28 +59,48 @@ section {
 
 /*org image open*/
 .full-org-photo-div {
-    /*position: relative;*/
+    position: relative;
     width: 452px;
     height: 502px;
-    /*left: 10%;*/
+    left: 3%;
+    top: 0;
     margin-top: 30px;
     cursor: pointer;
     float: left;
-    margin-left: 20px;
 }
 
 .org-photo-div {
     width: 450px;
-    height:500px ;
+    height: 500px;
     border: 1px solid #adaeb19e;
     overflow: hidden;
-    /*position: absolute;*/
+    position: absolute;
+    display: none;
+    background-color: #eaeded;
+
+}
+
+.org-photo-div:hover {
+    background-color: #dde0e0;
+}
+
+.org-photo-div:nth-child(1) {
+    /*display: block;*/
+}
+
+.show {
+    display: block;
+}
+
+.showw {
+    /*display: none;*/
 }
 
 .org-photo-div .org-img {
     width: 100%;
     height: 100%;
 }
+
 .org-photo-div .org-img img {
     width: 100%;
     height: 100%;
@@ -85,25 +110,20 @@ section {
     border: 1px solid #adaeb19e;
 }
 
-.org-photo-div.active1{
-    display: none;
-}
-
-.org-photo-div:nth-child(1){
-    display: block;
-}
 
 /*org image close*/
 
 
 /*product name open*/
 .full-product-name-div {
-    /*position: relative;*/
     width: 500px;
     height: 400px;
-    float: right;
-    margin-top: -34%;
-    margin-right: 20%;
+    float: inherit;
+    margin-top: 0%;
+    margin-left: 49%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1%;
 }
 
 .product-name h4 {
@@ -115,18 +135,20 @@ section {
 }
 
 .product-name h4 span {
-    font-family:"Amazon Ember", "Arial Narrow", sans-serif;
+    font-family: "Amazon Ember", "Arial Narrow", sans-serif;
     font-size: 18px;
     color: black;
     margin-top: 10px;
     font-weight: 100;
 }
+
 /*product name close*/
 
 @media screen and (max-width: 640px) {
     main {
         /*border: 1px solid red;*/
     }
+
     section {
         width: 100%;
     }
@@ -182,6 +204,8 @@ section {
         width: 100%;
         float: left;
         margin-top: 10%;
+        display: inline-block;
+        margin-left: 0;
     }
 
     .product-name {
@@ -189,10 +213,25 @@ section {
     }
 }
 
-@media screen and (min-width:641px) and (max-width: 1024px){
+@media screen and (min-width: 641px) and (max-width: 1024px) {
     .full-product-name-div {
         width: 100%;
         float: left;
         margin-top: 10%;
+        margin-left: 0;
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .full-product-name-div {
+        width: 258px;
+        height: 400px;
+        float: inherit;
+        margin-top: 0%;
+        margin-left: 49%;
+        display: flex;
+        justify-content: end;
+        padding-top: 2%;
     }
 }
