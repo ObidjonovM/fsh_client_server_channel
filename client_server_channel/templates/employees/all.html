@@ -10,10 +10,13 @@
 {% block body %}
 {{super()}}
 
+
+
 <div class="add-button">
+    <a class="back-button" href="{{url_for('employees.account')}}">Назад</a>
     <button id="addClick">Добавить</button>
 </div>
-
+<h2 class="header-all">Сотрудники</h2>
 <div class="table">
     <table>
 

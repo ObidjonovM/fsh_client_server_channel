@@ -12,6 +12,8 @@ class SpWarehouseC:
         sp_warehouse_info['date_accepted'] = now,
         if sp_warehouse_info['used_emp_id']:
             sp_warehouse_info['date_used'] = now,
+        if sp_warehouse_info['pr_serial_num'] == '':
+            sp_warehouse_info['pr_serial_num'] = None
 
         add_result = SpWarehouseTable.insert(sp_warehouse_info)
 
@@ -50,6 +52,8 @@ class SpWarehouseC:
         if get_result['data'] != []:
             if str(sp_warehouse_info['used_emp_id']) != str(get_result['data']['used_emp_id']):
                 sp_warehouse_info['date_used'] = datetime.now()
+            if sp_warehouse_info['pr_serial_num'] == '':
+                sp_warehouse_info['pr_serial_num'] = None
                 
             update_result = SpWarehouseTable.update(sp_warehouse_info)
             
