@@ -136,9 +136,9 @@ section {
 
 .all-products .img-div {
     float: left;
-    max-width: 290px;
+    max-width: 395px;
     min-height: 120px;
-    height: 345px;
+    height: 443px;
     background-color: #fff;
     margin: 20px;
     padding: 45px 30px;
@@ -161,7 +161,7 @@ section {
 .all-products img {
     width: 100%;
     min-height: 120px;
-    height: 255px;
+    height: 360px;
     cursor: pointer;
     margin-top: 15px;
     background-color: #eaeded;
@@ -169,7 +169,7 @@ section {
 }
 
 .all-products img:hover {
-    background-color: #dde0e0;
+    background-color: #d9dddd;
 }
 
 .all-products .description {

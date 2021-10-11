@@ -1,3 +1,27 @@
+var xhttp = new XMLHttpRequest();
+
+function actionCommand(e) {
+    let action = {
+        'serial_num': e.getAttribute('ser_num'),
+        'action_requested' : e.getAttribute('action')
+    }
+    xhttp.open('POST', '/clients/my_products/socket/action', true);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify(action));
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // let resp = JSON.parse(this.responseText);
+            console.log(this.responseText)
+        }
+    }
+}
+
+
+function goSocket(ev){
+    let x = ev.previousElementSibling.getAttribute("ser_num2");
+    window.open('/products/info/' + x, '_self');
+}
+
 function Logout() {
     window.open('/clients/logout', '_self');
 }
@@ -50,13 +74,32 @@ document.addEventListener('keydown', function (e) {
 
 
 function productImg(ev) {
-    var x = ev.getAttribute("ser_num");
+    var x = ev.getAttribute("ser_num2");
     window.open('/clients/my_products/socket/' + x, '_self');
 }
 
 window.onload = function () {
-    if(localStorage.getItem("openModal") == "open") {
+    if (localStorage.getItem("openModal") == "open") {
         openModal();
         localStorage.removeItem('openModal');
     }
 }
+
+
+
+var w;
+
+window.addEventListener('load', function (){
+
+    if (typeof(Worker) !== "undefined") {
+        if (typeof (w) == "undefined") {
+            w = new Worker("/static/js/clients/socket_worker.js");
+        }
+        w.onmessage = function (ev) {
+            console.log(ev.data)
+        };
+    }
+
+})
+
+

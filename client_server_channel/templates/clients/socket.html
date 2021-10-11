@@ -20,7 +20,6 @@
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
 </div>
 <br>
-
 <section>
     <h1 class="h1-my-product">Мой продукт</h1>
 </section>
@@ -77,7 +76,7 @@
     <div class="all-products">
         <div class="img-div">
             <span>{{my_product['data']['description'][i]}}</span>
-            <img src="{{my_product['data']['photo'][i]}}" alt="img">
+            <img src="{{my_product['data']['photo'][i]}}"  ser_num1="{{my_product['data']['serial_num'][i]}}" product_id1="{{my_product['data']['product_id'][i]}}" alt="img">
         </div>
 
         {% if my_product['data']['product_id'][i] == 1 %}
@@ -122,7 +121,6 @@
     </div>
     <div class="overlay1 hidden1"></div>
 </section>
-{{my_product['data']['product_id'][0]}}
 <section>
     <div class="delete-product-div">
         <form action="{{url_for('clients.my_products.socket.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
