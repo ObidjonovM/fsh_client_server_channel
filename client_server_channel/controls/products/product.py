@@ -143,9 +143,6 @@ class ProductC:
     def get_my_product(client_id, serial_num):
         get_product = ProductTable.get_my_product(client_id, serial_num)
 
-        ser_num = {'serial_num' : ''}
-        resp = {}
-
         if len(get_product['data']) > 0:
             get_product['data']['photo'] = utls.byte_to_base64(
                 get_product['data']['format'],
@@ -153,29 +150,9 @@ class ProductC:
                 )
             del get_product['data']['format']
 
-            ser_num['serial_num'] = get_product['data']['serial_num'][0]
-            params = json.dumps(ser_num)
-
-            if get_product['data']['product_id'][0] == 1:
-
-                resp = reqs.post(
-                    hd_server + '/socket/get_current_state',
-                    data = params,
-                    headers = HEADERS
-                ).json()
-
-            # if get_product['data']['product_id'][0] == 2:
-
-            #     resp = reqs.post(
-            #         hd_server + '/sg_get_status',
-            #         data = params,
-            #         headers = HEADERS
-            #     ).json()
-
         return {
             'success' : get_product['success'],
             'data' : get_product['data'],
-            'action' : resp,
             'log_code' : utls.record_log(get_product, 'get_my_product', 'crud_logs')
         }
 
