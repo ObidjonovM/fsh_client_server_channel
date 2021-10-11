@@ -182,7 +182,7 @@ class ProductC:
         serial_num['serial_num'] = ser_num
         params = json.dumps(serial_num)
 
-        if product_id == 1:
+        if str(product_id) == '1':
 
             resp = reqs.post(
                 hd_server + '/socket/get_current_state',
@@ -210,7 +210,7 @@ class ProductC:
 
         for i in range(len(product_id)):
 
-            if product_id[i] == 1:
+            if str(product_id[i]) == '1':
                 ss_ser_nums['serial_nums'].append(ser_num[i])
 
             # if product_id[i] == 2:
