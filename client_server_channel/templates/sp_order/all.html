@@ -21,7 +21,7 @@
 
         <tr>
 
-            <th class="hidden">ИД</th>
+            <th>ИД</th>
 
             <th>Валюта</th>
 
@@ -44,7 +44,9 @@
         {% for i in range(sp_orders['data']['sp_order_id']|length) %}
         <tr ondblclick="getType(this)">
 
-            <td class="hidden">{{sp_orders['data']['sp_order_id'][i]}}</td>
+            <td>{{i+1}}</td>
+
+            <td>{{sp_orders['data']['sp_order_id'][i]}}</td>
 
             <td>{{currencies_ids['data'][sp_orders['data']['curr_id'][i]]}}</td>
 

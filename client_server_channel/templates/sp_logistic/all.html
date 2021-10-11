@@ -21,7 +21,7 @@
 
         <tr>
 
-            <th class="hidden">ИД</th>
+            <th>ИД</th>
 
             <th>Доставщик</th>
 
@@ -43,7 +43,7 @@
         {% for i in range(sp_logistics['data']['shipment_id']|length) %}
         <tr ondblclick="getType(this)">
 
-            <td class="hidden">{{sp_logistics['data']['shipment_id'][i]}}</td>
+            <td>{{sp_logistics['data']['shipment_id'][i]}}</td>
 
             <td>{{carriers_ids['data'][sp_logistics['data']['carrier_id'][i]]}}</td>
 
