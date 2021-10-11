@@ -77,6 +77,20 @@ def enter_action():
 		return result
 
 
+@socket.route('/get_current_state', methods=['POST'])
+def get_current_state():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ProductC.get_current_state(
+			request.json['ser_num'],
+			request.json['product_id']
+		)
+
+		return result
+
+
 @socket.route('/delete/<ser_num>', methods=['POST'])
 def delete_product(ser_num):
 	if not 'clientname' in session:

@@ -30,3 +30,17 @@ def get_my_products():
 			return redirect(url_for('clients.my_products.get_my_products'))
 
 		return json.dumps(result, ensure_ascii=False)
+
+
+@my_products.route('/get_current_states', methods=['POST'])
+def get_current_states():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ProductC.get_current_states(
+			request.json['ser_num'],
+			request.json['product_id']
+		)
+
+		return result

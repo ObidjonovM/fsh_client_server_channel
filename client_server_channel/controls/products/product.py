@@ -184,26 +184,63 @@ class ProductC:
     def get_my_products(client_id):
         result = ProductTable.get_my_products(client_id)
 
-        ss_ser_num = {'serial_nums' : []}
-        # sg_ser_num = {'serial_num' : []}
-        ss_resp = {}
-        sg_resp = {}
-
         if len(result['data']) > 0:
             result['data']['photo'] = utls.byte_to_base64(
                 result['data']['format'],
                 result['data']['photo']
             )
-            for i in range(len(result['data']['product_id'])):
+            del result['data']['format']
+            
+        return {
+            'success' : result['success'],
+            'data' : result['data'],
+            'log_code' : utls.record_log(result, 'get_my_products', 'crud_logs')
+        }
 
-                if result['data']['product_id'][i] == 1:
-                    ss_ser_num['serial_nums'].append(result['data']['serial_num'][i])
 
-                # if result['data']['product_id'][i] == 2:
-                #     sg_ser_num['serial_num'].append(result['data']['serial_num'][i])
+    @staticmethod
+    def get_current_state(ser_num, product_id):
+        serial_num = {'serial_num' : ''}
+        resp = {}
+        serial_num['serial_num'] = ser_num
+        params = json.dumps(serial_num)
 
-        ss_params = json.dumps(ss_ser_num)
-        # sg_params = json.dumps(sg_ser_num)
+        if product_id == 1:
+
+            resp = reqs.post(
+                hd_server + '/socket/get_current_state',
+                data = params,
+                headers = HEADERS
+            ).json()
+
+        # if product_id == 2:
+
+        #     resp = reqs.post(
+        #         hd_server + '/gas/get_current_state',
+        #         data = params,
+        #         headers = HEADERS
+        #     ).json()
+
+        return resp
+
+
+    @staticmethod
+    def get_current_states(ser_num, product_id):
+        ss_ser_nums = {'serial_nums' : []}
+        sg_ser_nums = {'serial_nums' : []}
+        ss_resp = {}
+        sg_resp = {}
+
+        for i in range(len(product_id)):
+
+            if product_id[i] == 1:
+                ss_ser_nums['serial_nums'].append(ser_num[i])
+
+            # if product_id[i] == 2:
+            #     sg_ser_nums['serial_nums'].append(ser_num[i])
+
+        ss_params = json.dumps(ss_ser_nums)
+        # sg_params = json.dumps(sg_ser_nums)
 
         ss_resp = reqs.post(
             hd_server + '/socket/get_current_states',
@@ -212,17 +249,15 @@ class ProductC:
             ).json()
 
         # sg_resp = reqs.post(
-        #     hd_server + '/sg_get_status',
+        #     hd_server + '/gas/get_current_states',
         #     data = sg_params,
         #     headers = HEADERS
         #     ).json()
 
+
         return {
-            'success' : result['success'],
-            'data' : result['data'],
-            'ss_action' : ss_resp,
-            'sg_action' : sg_resp,
-            'log_code' : utls.record_log(result, 'get_my_products', 'crud_logs')
+            'ss_resp' : ss_resp,
+            'sg_resp' : sg_resp
         }
 
 
