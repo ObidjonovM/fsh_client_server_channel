@@ -125,7 +125,7 @@ tbody td button:hover {
     margin-top: 20px;
     }
 
-.add-button button {
+.add-button button{
     width: 200px;
     height: 45px;
     background-color: #374a62;
@@ -138,18 +138,18 @@ tbody td button:hover {
     font-size: 18px;
 }
 
-.add-button button:hover {
-    background-color: #232F3E;
-    border: 1px solid #c7c7c7;
-    box-shadow: 0px 0px 4px 2px #4e4e4e;
-}
+/*.add-button button:hover {*/
+/*    background-color: #232F3E;*/
+/*    border: 1px solid #c7c7c7;*/
+/*    box-shadow: 0px 0px 4px 2px #4e4e4e;*/
+/*}*/
 
 
 
 
 /****** employees dagi add.css, get.css va update.css larning style lari ******/
 
-.add-submit:hover, .add-submit2:hover, .add-submit3:hover {
+.add-submit:hover, .add-submit2:hover, .add-submit3:hover, .link-all:hover, .back-button:hover, .add-button button:hover {
     background-color: #232F3E;
     transition: all .3s;
 }
@@ -178,5 +178,5 @@ tbody td button:hover {
 
 .header-all {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 2%;
 }

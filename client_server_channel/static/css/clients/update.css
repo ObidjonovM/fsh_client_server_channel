@@ -143,5 +143,73 @@
 
 /*media style open*/
 
+@media only screen and (max-width: 640px){
+
+    body {
+        position: relative;
+    }
+
+    .add-header {
+        width: 100%;
+    }
+
+    .add-container {
+        width: 99%;
+        height: auto;
+        overflow: auto;
+        top: 110%;
+    }
+
+    .add-form {
+        width: 100%;
+        display: table;
+        justify-content: unset;
+    }
+
+    .form-control {
+        display: block;
+        margin: 5% auto;
+        width: 66%;
+    }
+
+    .form-control input {
+
+    }
+
+    .add-submit, .add-submit2 {
+        position: unset;
+        width: 55%;
+        margin: 4% auto;
+    }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1024px){
+    .add-container {
+        width: 99%;
+        height: auto;
+        overflow: auto;
+    }
+
+    .add-form {
+        width: 100%;
+    }
+
+    .form-control {
+        margin: 73px 20px;
+    }
+
+    .form-control label {
+        padding-left: 10px;
+    }
+
+    .form-control input {
+        width: 96%;
+        margin: 10px 3px;
+    }
+
+    .add-submit, .add-submit2 {
+        margin-top: 3%;
+    }
+}
 
 /*media style close*/
