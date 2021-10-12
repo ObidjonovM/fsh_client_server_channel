@@ -2,10 +2,10 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from client_server_channel.controls import ProductC
 import json
 from .. import view_utils as utls
-from .socket import socket
+from .my_product import my_product
 
 my_products = Blueprint('my_products', __name__, url_prefix='/my_products')
-my_products.register_blueprint(socket)
+my_products.register_blueprint(my_product)
 
 
 @my_products.route('/', methods=['GET', 'POST'])
@@ -39,8 +39,8 @@ def get_current_states():
 
 	if request.method == 'POST':
 		result = ProductC.get_current_states(
-			request.json['ser_num'],
-			request.json['product_id']
+			request.json['ser_nums'],
+			request.json['prefixs']
 		)
 
 		return result

@@ -111,26 +111,3 @@ document.addEventListener('keydown', function (e){
         OpenNewModal();
     }
 })
-
-
-
-let ser_number1 = document.querySelectorAll('.img-div > img')[0].getAttribute('ser_num1');
-let product_id1 = document.querySelectorAll('.img-div > img')[0].getAttribute('product_id1');
-
-window.onload = function () {
-    let json = {
-        'ser_num': [ser_number1],
-        'product_id': [product_id1]
-    }
-    xhttp.open('Post', '/clients/my_products/get_current_states', true);
-    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhttp.send(JSON.stringify(json));
-
-
-    xhttp.onreadystatechange = function (ev) {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            // const resp = JSON.parse(xhttp.responseText);
-            console.log(xhttp.responseText)
-        }
-    }
-}

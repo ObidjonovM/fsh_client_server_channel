@@ -121,26 +121,26 @@ class ProductTable:
     @staticmethod
     def get_my_products(client_id):
         sql = 'SELECT p.serial_num, p.product_id, pp.small_photo, '
-        sql += 'pp.photo_format, p.description FROM '
+        sql += 'pp.photo_format, p.description, p.prefix FROM '
         sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE '
         sql += f'AND p.active = TRUE AND pp.active = TRUE AND p.client_id = {client_id} '
         sql += 'AND p.product_id = pp.product_id ORDER BY p.serial_num'
 
         return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo',
-                                'format', 'description'])
+                                'format', 'description', 'prefix'])
 
 
     @staticmethod
     def get_my_product(client_id, ser_num):
         sql = 'SELECT p.serial_num, p.product_id, pp.small_photo, '
-        sql += 'pp.photo_format, p.description FROM '
+        sql += 'pp.photo_format, p.description, p.prefix FROM '
         sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE AND '
         sql += f"p.product_id = pp.product_id AND p.client_id = {client_id} AND "
         sql += f"p.serial_num = '{ser_num}' AND p.active = TRUE "
         sql += 'AND pp.active = TRUE ORDER BY p.serial_num'
 
         return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo',
-                                'format', 'description'])
+                                'format', 'description', 'prefix'])
 
 
     @staticmethod

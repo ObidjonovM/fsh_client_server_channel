@@ -1,3 +1,4 @@
+from sys import prefix
 from client_server_channel.models import ProductTable
 from .product_photo import ProductPhotoC
 from .. import control_utils as utls
@@ -25,6 +26,12 @@ class ProductC:
             product_info['default_password'] = ProductTable.generate_password(8)
             if not product_info['mac_address']:
                 product_info['mac_address'] = None
+            if str(product_info['product_id']) == '1':
+                product_info['prefix'] = 'socket'
+            if str(product_info['product_id']) == '2':
+                product_info['prefix'] = 'gas_sensor'
+            if str(product_info['product_id']) == '3':
+                product_info['prefix'] = 'water_sensor'
             product_info['date_added'] = now
             product_info['date_modified'] = now
             add_result = ProductTable.insert(product_info)
@@ -176,105 +183,57 @@ class ProductC:
 
 
     @staticmethod
-    def get_current_state(ser_num, product_id):
+    def get_current_state(ser_num, prefix):
         serial_num = {'serial_num' : ''}
         resp = {}
         serial_num['serial_num'] = ser_num
         params = json.dumps(serial_num)
 
-        if str(product_id) == '1':
-
-            resp = reqs.post(
-                hd_server + '/socket/get_current_state',
-                data = params,
-                headers = HEADERS
-            ).json()
-
-        # if product_id == 2:
-
-        #     resp = reqs.post(
-        #         hd_server + '/gas/get_current_state',
-        #         data = params,
-        #         headers = HEADERS
-        #     ).json()
+        resp = reqs.post(
+            hd_server + f'/{str(prefix)}/get_current_state',
+            data = params,
+            headers = HEADERS
+        ).json()
 
         return resp
 
 
     @staticmethod
-    def get_current_states(ser_num, product_id):
-        ss_ser_nums = {'serial_nums' : []}
-        sg_ser_nums = {'serial_nums' : []}
-        ss_resp = {}
-        sg_resp = {}
+    def get_current_states(ser_nums, prefixs):
+        resp = {'data' : []}
+        
+        for i in range(len(prefixs)):
 
-        for i in range(len(product_id)):
+            resp['data'].append(reqs.post(
+                hd_server + f'/{prefixs[i]}/get_current_states',
+                data = json.dumps({'serial_nums' : [ser_nums[i]]}),
+                headers = HEADERS
+                ).json())
 
-            if str(product_id[i]) == '1':
-                ss_ser_nums['serial_nums'].append(ser_num[i])
+        return resp
 
-            # if product_id[i] == 2:
-            #     sg_ser_nums['serial_nums'].append(ser_num[i])
 
-        ss_params = json.dumps(ss_ser_nums)
-        # sg_params = json.dumps(sg_ser_nums)
+    @staticmethod
+    def get_all_states_in_range(ser_num, prefix, start_date, end_date):
+        params = {}
+        resp = {}
 
-        ss_resp = reqs.post(
-            hd_server + '/socket/get_current_states',
-            data = ss_params,
+        params = json.dumps({'serial_num' : ser_num,
+                            'start_date' : start_date,
+                            'end_date' : end_date
+        })
+
+        resp = reqs.post(
+            hd_server + f'/{str(prefix)}/get_all_states_in_range',
+            data = params,
             headers = HEADERS
             ).json()
-
-        # sg_resp = reqs.post(
-        #     hd_server + '/gas/get_current_states',
-        #     data = sg_params,
-        #     headers = HEADERS
-        #     ).json()
-
-
-        return {
-            'ss_resp' : ss_resp,
-            'sg_resp' : sg_resp
-        }
-
-
-    @staticmethod
-    def get_all_states_in_range(ser_num, product_id, start_date, end_date):
-        ss_params = {}
-        sg_params = {}
-        ss_resp = {}
-        sg_resp = {}
-        if str(product_id) == '1':
-            ss_params = json.dumps({'serial_num' : ser_num,
-                                    'start_date' : start_date,
-                                    'end_date' : end_date
-            })
-
-            ss_resp = reqs.post(
-                hd_server + '/socket/get_all_states_in_range',
-                data = ss_params,
-                headers = HEADERS
-                ).json()
             
-            return ss_resp
-
-        if str(product_id) == '2':
-            sg_params = json.dumps({'serial_num' : ser_num,
-                                    'start_date' : start_date,
-                                    'end_date' : end_date
-            })
-
-            # sg_resp = reqs.post(
-            #     hd_server + '/sg_get_logs',
-            #     data = sg_params,
-            #     headers = HEADERS
-            #     ).json()
-
-            return sg_resp
+        return resp
 
 
     @staticmethod
-    def last_request_time(ser_num):
+    def last_request_time(ser_num, prefix):
         resp = {}
         resp = reqs.post(
             hd_server + '/socket/last_request_time',
@@ -286,10 +245,14 @@ class ProductC:
 
 
     @staticmethod
-    def enter_requested_action(params):
+    def enter_requested_action(ser_num, action, prefix):
+        params = {
+            'serial_num' : ser_num,
+            'action_requested' : action,
+        }
         resp = {}
         resp = reqs.post(
-            hd_server + '/socket/enter_requested_action',
+            hd_server + f'/{str(prefix)}/enter_requested_action',
             data = json.dumps(params),
             headers=HEADERS
         ).json()

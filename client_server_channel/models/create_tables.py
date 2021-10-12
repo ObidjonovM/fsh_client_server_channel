@@ -438,6 +438,7 @@ CREATE TABLE IF NOT EXISTS products (
 	serial_num VARCHAR(12) PRIMARY KEY,
 	mac_address MACADDR UNIQUE,
 	product_id INT CHECK (product_id > 0) NOT NULL,
+	prefix VARCHAR NOT NULL,
 	default_login VARCHAR(30) UNIQUE NOT NULL,
 	default_password VARCHAR(30) UNIQUE NOT NULL,
 	ap_login VARCHAR(30) UNIQUE NOT NULL,

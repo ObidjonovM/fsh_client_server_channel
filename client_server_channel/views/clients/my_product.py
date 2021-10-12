@@ -2,10 +2,10 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from client_server_channel.controls import ProductC, ClientC
 from .. import view_utils as utls
 
-socket = Blueprint('socket', __name__, url_prefix='/socket')
+my_product = Blueprint('my_product', __name__, url_prefix='/my_product')
 
 
-@socket.route('/<ser_num>', methods=['GET', 'POST'])
+@my_product.route('/<ser_num>', methods=['GET', 'POST'])
 def get_my_product(ser_num):
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
@@ -17,7 +17,7 @@ def get_my_product(ser_num):
 				)
 		if len(my_product['data']) > 0:
 			return render_template(
-				utls.url_join(['clients', 'socket.html']),
+				utls.url_join(['clients', 'my_product.html']),
 				my_product = my_product
 			)
 
@@ -32,19 +32,19 @@ def get_my_product(ser_num):
 		return redirect(request.url)
 
 
-@socket.route('/logs/<ser_num>', methods=['POST'])
+@my_product.route('/logs/<ser_num>', methods=['POST'])
 def get_logs(ser_num):
 	if request.method == 'POST':
 		result = ProductC.get_all_states_in_range(
 								ser_num,
-								request.form['product_id'],
+								request.form['prefix'],
 								request.form['start_date'],
 								request.form['end_date']
 							)
 		return result
 
 
-@socket.route('/info/<ser_num>', methods=['POST'])
+@my_product.route('/info/<ser_num>', methods=['POST'])
 def my_product_info(ser_num):
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
@@ -66,18 +66,22 @@ def my_product_info(ser_num):
     }
 
 
-@socket.route('/action', methods=['POST'])
+@my_product.route('/action', methods=['POST'])
 def enter_action():
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
 
 	if request.method == 'POST':
-		result = ProductC.enter_requested_action(request.json)
+		result = ProductC.enter_requested_action(
+			request.json['serial_num'],
+			request.json['action_requested'],
+			request.json['prefix']
+			)
 
 		return result
 
 
-@socket.route('/get_current_state', methods=['POST'])
+@my_product.route('/get_current_state', methods=['POST'])
 def get_current_state():
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
@@ -85,13 +89,13 @@ def get_current_state():
 	if request.method == 'POST':
 		result = ProductC.get_current_state(
 			request.json['ser_num'],
-			request.json['product_id']
+			request.json['prefix']
 		)
 
 		return result
 
 
-@socket.route('/delete/<ser_num>', methods=['POST'])
+@my_product.route('/delete/<ser_num>', methods=['POST'])
 def delete_product(ser_num):
 	if not 'clientname' in session:
 		return redirect(url_for('clients.login'))
@@ -116,7 +120,7 @@ def delete_product(ser_num):
 				)
 		if len(my_product['data']) > 0:
 			return render_template(
-				utls.url_join(['clients', 'socket.html']),
+				utls.url_join(['clients', 'my_product.html']),
 				my_product = my_product
 				)
 
