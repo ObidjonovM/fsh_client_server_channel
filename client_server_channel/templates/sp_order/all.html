@@ -44,8 +44,6 @@
         {% for i in range(sp_orders['data']['sp_order_id']|length) %}
         <tr ondblclick="getType(this)">
 
-            <td>{{i+1}}</td>
-
             <td>{{sp_orders['data']['sp_order_id'][i]}}</td>
 
             <td>{{currencies_ids['data'][sp_orders['data']['curr_id'][i]]}}</td>
