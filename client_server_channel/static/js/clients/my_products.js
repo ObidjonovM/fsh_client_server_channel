@@ -19,7 +19,7 @@ function actionCommand(e) {
 
 function goSocket(ev){
     let x = ev.previousElementSibling.getAttribute("ser_num2");
-    window.open('/products/info/' + x, '_self');
+    window.open('/clients/my_products/socket/' + x, '_self');
 }
 
 function Logout() {
