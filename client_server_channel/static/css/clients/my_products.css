@@ -20,7 +20,10 @@ section {
 
 .all-products-content {
     width: 100%;
-    margin-bottom: -35px;
+    margin-bottom: 5%;
+    display: inline-block;
+    margin-top: 5%;
+    position: relative;
 }
 
 .all-products {
@@ -29,6 +32,21 @@ section {
     height: 348px;
     float: left;
     margin: 28px 20px;
+}
+
+.ONOF {
+    width: 102%;
+    height: 50px;
+    font-size: 16px;
+    text-align: center;
+    margin-left: -1%;
+    line-height: 50px;
+    background: #fff;
+    color: black;
+    z-index: -2;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px  rgba(0,0,0,.4);
+    border: 3px solid #EAEDED;
 }
 
 .all-products .img-div {
@@ -255,6 +273,7 @@ section {
     backdrop-filter: blur(3px);
     z-index: 5;
 }
+
 /****** Modal close ******/
 
 /*media style open */

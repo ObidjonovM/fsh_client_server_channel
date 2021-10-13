@@ -73,11 +73,15 @@
         </form>
     </div>
 
+    <div class="onof-div">
     {% for i in range(my_product['data']['photo']|length)%}
     <div class="all-products">
+        <div class="ONOF"></div>
         <div class="img-div">
             <span>{{my_product['data']['description'][i]}}</span>
-            <img src="{{my_product['data']['photo'][i]}}" alt="img">
+
+            <img src="{{my_product['data']['photo'][i]}}" class="socket-img"
+                 ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}" alt="img">
         </div>
 
         {% if my_product['data']['product_id'][i] == 1 %}
@@ -99,6 +103,7 @@
         {% endif %}
     </div>
     {%endfor%}
+    </div>
 
 </section>
 
@@ -122,7 +127,7 @@
     </div>
     <div class="overlay1 hidden1"></div>
 </section>
-{{my_product}}
+
 <section>
     <div class="delete-product-div">
         <form action="{{url_for('clients.my_products.my_product.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
@@ -142,12 +147,23 @@
     </div>
 </section>
 
+<section style="display: flex; justify-content: center; width: 50%; margin: 3% auto">
+    <div class="information-on-of">
+        <input type="button" value="button" class="information-input"
+             ser_num="{{my_product['data']['serial_num'][0]}}"  prefix="{{my_product['data']['prefix'][0]}}"  onclick="informationOnOf(this)">
+    </div>
+
+    <div class="informationOnOf1"></div>
+</section>
+
 
 {% endblock %}
 
 <script src="/static/js/base.js"></script>
 <script src="/static/js/clients/my_product.js"></script>
+<script src="/static/js/clients/s_worker.js"></script>
 <script>
+    var xhttp = new XMLHttpRequest();
     function actionCommand(e) {
         let action = {
             'serial_num': e.getAttribute('ser_num'),

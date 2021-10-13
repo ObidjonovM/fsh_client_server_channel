@@ -22,7 +22,7 @@ function timedCount() {
             }
         }
     }
-    setTimeout("timedCount()",1000);
+    setTimeout("timedCount()",3000);
 }
 
 timedCount();

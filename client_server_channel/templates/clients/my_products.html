@@ -24,10 +24,8 @@
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
 </div>
-{{my_products}}
-<input type="text" id="prefixs" value="{{my_products['data']['prefix'][1]}}">
+
 <div class="full-container">
-{{my_products}}
     <div class="container">
         <section>
             <button class="show-modal">
@@ -72,18 +70,18 @@
 
         <section>
 
-
             <div class="all-products-content">
                 {% for i in range(my_products['data']['serial_num']|length)%}
                 <div class="all-products">
+                <div class="ONOF"></div>
                     <div class="img-div">
                     <span>
                        <p class="description">{{my_products['data']['description'][i]}}</p>
                     </span>
-                        <img src="{{my_products['data']['photo'][i]}}" class="s" id="s"
-                             ser_num="{{my_products['data']['serial_num'][i]}}" product_id = "{{my_products['data']['product_id'][i]}}" onclick="productImg(this)">
-                        <a href="#">Learn more</a>
 
+                        <img src="{{my_products['data']['photo'][i]}}" class="my-products-img"
+                             ser_num="{{my_products['data']['serial_num'][i]}}" prefix="{{my_products['data']['prefix'][i]}}" onclick="productImg(this)">
+                        <a onclick="goSocket(this)">Learn more</a>
                     </div>
                     {% if my_products['data']['product_id'][i] == 1 %}
                     <div class="input-on-off">
@@ -122,54 +120,6 @@
 <script src="/static/js/base.js"></script>
 <script src="/static/js/clients/my_products.js"></script>
 <script src="/static/js/clients/socket_worker.js"></script>
-<script>
-
-    var xhttp = new XMLHttpRequest();
-
-    function actionCommand(e) {
-        let action = {
-            'serial_num': e.getAttribute('ser_num'),
-            'action_requested' : e.getAttribute('action'),
-            'prefix' : 'socket'
-        }
-        xhttp.open('POST', '/clients/my_products/my_product/action', true);
-        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        xhttp.send(JSON.stringify(action));
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                // let resp = JSON.parse(this.responseText);
-                console.log(this.responseText)
-            }
-        }
-    }
-
-
-let ser_number = document.querySelectorAll('.img-div > img')[1].getAttribute('ser_num')
-let product_id = document.querySelectorAll('.img-div > img')[1].getAttribute('product_id')
-let prefixs = document.getElementById('prefixs').value;
-let w;
-
-window.onload = function () {
-    
-
-    let json = {
-        'ser_nums': ['000121068940', '00022101d034'],
-        'prefixs': ['socket', 'gas_sensor']
-    }
-    xhttp.open('Post', '/clients/my_products/get_current_states', true);
-    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhttp.send(JSON.stringify(json));
-
-
-    xhttp.onreadystatechange = function (ev) {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            // const resp = JSON.parse(xhttp.responseText);
-            console.log(xhttp.responseText)
-        }
-    }
-}
-
-</script>
 </body>
 
 </html>

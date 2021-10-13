@@ -28,6 +28,25 @@ section{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     max-width: 100%;
 }
+
+.ONOF {
+    width: 28.7%;
+    height: 50px;
+    font-size: 16px;
+    text-align: center;
+    /*margin-left: 24%;*/
+    line-height: 50px;
+    background: #fff;
+    color: black;
+    position: absolute;
+    right: 10.5%;
+    z-index: -2;
+    top: -5%;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px  rgba(0,0,0,.4);
+    border-radius: 4px;
+}
+
 .form-control1 {
     margin: 0 auto;
     border: 1px solid transparent;
@@ -318,6 +337,7 @@ section{
     min-width: 800px;
     width: 1200px;
     margin: 100px auto;
+    position: relative;
 }
 .description-container {
     background-color: #fff;
@@ -378,13 +398,18 @@ section{
 }
 /*description-container close*/
 
+
+
+/*delete-product-div open*/
+
 .delete-product-div {
     min-width: 250px;
-    width: 100%;
+    width: 52%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 40px;
+    background-color: #fff;
 }
 
 .delete-product-div input {
@@ -393,15 +418,6 @@ section{
     border-radius: 4px;
     padding: 5px 10px;
     width: 100%;
-}
-
-/*delete-product-div open*/
-
-.delete-product-div {
-    width: 50%;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,.3);
 }
 
 .delete-product-form {
@@ -431,13 +447,30 @@ section{
 
 .add-type-submit4 {
    background-color: #374a62;
-    border: 1px solid #374a62;
+    border: none;
     color: white;
     cursor: pointer;
     margin-top: 2%;
 }
 /*delete-product-div close*/
 
+
+.information-input {
+    width: 200px;
+    height: 40px;
+    outline: none;
+    color: black;
+    margin-bottom: 11%;
+}
+
+.informationOnOf1 {
+    width: 200px;
+    height: 40px;
+    margin-left: 3%;
+    text-align: center;
+    line-height: 40px;
+    margin-bottom: 3%;
+}
 
 /*media style open */
     @media only screen and (max-width: 731px) {
