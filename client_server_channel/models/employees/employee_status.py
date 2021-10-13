@@ -1,4 +1,5 @@
 from .. import crud
+from .. import model_utils as utls
 
 
 class EmployeeStatusTable:
@@ -15,7 +16,10 @@ class EmployeeStatusTable:
 
     @staticmethod
     def get_all():
-        return crud.get_all('employee_status')
+        col_names = utls.get_column_names('employee_status')
+        sql = 'SELECT * FROM employee_status WHERE active = TRUE AND status_id != 1 ORDER BY status_id'
+
+        return crud.run_SQL(sql, col_names)
 
 
     @staticmethod
