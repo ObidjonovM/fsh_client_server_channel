@@ -145,23 +145,25 @@ const  req_action = document.getElementsByClassName('ONOF');
 window.addEventListener('load', function (){
 
     let w;
-    let serNums = [];
-    let prefixes = [];
+    let serNumss = [];
+    let prefixess = [];
     for (let i=0; i < socket_img.length; i++) {
-        serNums.push(socket_img[i].getAttribute('ser_num'));
-        prefixes.push(socket_img[i].getAttribute('prefix'));
+        serNumss.push(socket_img[i].getAttribute('ser_num'));
+        prefixess.push(socket_img[i].getAttribute('prefix'));
     }
     let json = {
-        'ser_nums': serNums,
-        'prefixs': prefixes
+        'ser_num': serNumss,
+        'prefix': prefixess
     }
     if (typeof(Worker) !== "undefined") {
         if (typeof (w) == "undefined") {
             w = new Worker("/static/js/clients/s_worker.js");
         }
         w.postMessage(json)
+        // console.log(json)
         w.onmessage = function (ev) {
             for (let i=0; i < socket_img.length; i++) {
+
                 for (let j in ev.data['data']) {
                     var key = j;
                     var val = ev.data['data'][j];
@@ -171,7 +173,7 @@ window.addEventListener('load', function (){
                         if (socket_img[i].getAttribute('ser_num') == sub_key) {
                             socket_img[i].setAttribute('action', sub_val['state']);
                             req_action[i].innerHTML = sub_val['state'];
-                            // console.log(sub_val['state'])
+                            console.log(sub_val['state'])
                         }
                     }
                 }

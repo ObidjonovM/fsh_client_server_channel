@@ -6,11 +6,9 @@ self.addEventListener("message", function(e) {
 
 
 function timedCount() {
-
     if (!json['ser_nums']){
 
     }else {
-        // console.log(json)
         xhttp.open('Post', '/clients/my_products/get_current_states', true);
         xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
         xhttp.send(JSON.stringify(json));

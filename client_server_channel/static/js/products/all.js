@@ -37,7 +37,10 @@ document.getElementById("addClick").onclick = () => {
 };
 
 function getType(e) {
-    window.open('/products/get/' + e.children[0].innerHTML, '_self');
+    let ser_number = e.getAttribute('ser_num');
+    console.log(ser_number);
+    window.open('/products/get/' + ser_number, '_self');
+
 }
 
 const td = document.getElementsByTagName('td');
