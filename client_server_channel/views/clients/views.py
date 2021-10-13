@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, session
-from client_server_channel.controls import ClientC, ProductC
+from client_server_channel.controls import ClientC, SubscriptionC
 import json
 from .. import view_utils as utls
 from .subscription import subscription
@@ -128,21 +128,46 @@ def account():
 	)
 
 
-@clients.route('/get')
-def get():
-	if not 'clientname' in session:
-		return redirect(url_for('clients.login'))
+@clients.route('/get/<int:client_id>')
+def get(client_id):
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
 
-	client_info = ClientC.get(session['client']['id'])
+	client_info = ClientC.get(client_id)
 	
 	if len(client_info['data']) > 0:
 		
 		return render_template(
 			utls.url_join(['clients', 'get.html']),
 			client_info = client_info,
+			name_sub_id = SubscriptionC.get(client_info['data']['subs_id'])
 		)
 
 	return redirect(url_for('clients.account'))
+
+
+@clients.route('/all')
+def all():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+    
+    clients_info=ClientC.get_all()
+
+    if clients_info['success']:
+        if len(clients_info['data']) > 0:
+            return render_template(
+                utls.url_join(['clients','all.html']),
+                clients_info=clients_info,
+				names_ids_subs = SubscriptionC.get_names_by_ids(
+                    clients_info['data']['subs_id']),
+            )
+
+        return render_template(
+            utls.url_join(['clients','all.html']),
+                clients_info = clients_info
+        )
+
+    return redirect(url_for('core.index'))            # TODO later!!!!
 
 
 @clients.route('/update', methods=['GET', 'POST'])

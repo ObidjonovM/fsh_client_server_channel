@@ -11,9 +11,10 @@
 {{super()}}
 
 <div class="add-button">
+    <a class="back-button" href="{{url_for('employees.account')}}">Назад</a>
     <button id="addClick">Добавить</button>
 </div>
-
+<h2 class="header-all">Клиенты</h2>
 <div class="table">
 <table class="table">
     <thead>
@@ -39,10 +40,12 @@
         <td>
             {{clients_info['data']['first_name'][i]}}
             {{clients_info['data']['last_name'][i]}}
-            {{clients_info['data']['middle_name'][i]}}
+            {%if clients_info['data']['middle_name'][i] != None:%}
+                {{clients_info['data']['middle_name'][i]}}
+            {%endif%}
         </td>
 
-        <td>{{names_by_ids['data'][clients_info['data']['subs_id'][i]]}}</td>
+        <td>{{names_ids_subs['data'][clients_info['data']['subs_id'][i]]}}</td>
 
         <td>
             <button onclick="deleteClient(this)">Удалить</button>

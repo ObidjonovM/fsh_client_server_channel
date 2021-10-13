@@ -31,7 +31,7 @@ class EmployeeTypeC:
 
     @staticmethod
     def get_all():
-        get_all_result = EmployeesTypeTable.get_type_info_all()
+        get_all_result = EmployeesTypeTable.get_all()
 
         return {
             'success' : get_all_result['success'],

@@ -1,4 +1,5 @@
 from .. import crud
+from .. import model_utils as utls
 
 
 class DepartmentTable:
@@ -15,8 +16,10 @@ class DepartmentTable:
 
     @staticmethod
     def get_all():
-        return crud.get_all('departments')
+        col_names = utls.get_column_names('departments')
+        sql = 'SELECT * FROM departments WHERE active = TRUE AND dept_id != 1 ORDER BY dept_id'
 
+        return crud.run_SQL(sql, col_names)
 
     @staticmethod
     def get_ids_names():
