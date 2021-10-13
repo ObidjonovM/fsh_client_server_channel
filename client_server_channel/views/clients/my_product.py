@@ -95,6 +95,20 @@ def get_current_state():
 		return result
 
 
+@my_product.route('/last_request_time', methods=['POST'])
+def last_request_time():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ProductC.last_request_time(
+			request.json['ser_num'],
+			request.json['prefix']
+		)
+
+		return result
+
+
 @my_product.route('/delete/<ser_num>', methods=['POST'])
 def delete_product(ser_num):
 	if not 'clientname' in session:

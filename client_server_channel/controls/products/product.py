@@ -5,7 +5,7 @@ from .. import control_utils as utls
 from datetime import datetime
 import requests as reqs
 import json
-from client_server_channel.config import hd_server
+from client_server_channel.config import HD_SERVER
 
 HEADERS = {'Content-Type': 'application/json; charset=utf8'}
 
@@ -190,7 +190,7 @@ class ProductC:
         params = json.dumps(serial_num)
 
         resp = reqs.post(
-            hd_server + f'/{str(prefix)}/get_current_state',
+            HD_SERVER + f'/{str(prefix)}/get_current_state',
             data = params,
             headers = HEADERS
         ).json()
@@ -205,7 +205,7 @@ class ProductC:
         for i in range(len(prefixs)):
 
             resp['data'].append(reqs.post(
-                hd_server + f'/{prefixs[i]}/get_current_states',
+                HD_SERVER + f'/{prefixs[i]}/get_current_states',
                 data = json.dumps({'serial_nums' : [ser_nums[i]]}),
                 headers = HEADERS
                 ).json())
@@ -224,7 +224,7 @@ class ProductC:
         })
 
         resp = reqs.post(
-            hd_server + f'/{str(prefix)}/get_all_states_in_range',
+            HD_SERVER + f'/{str(prefix)}/get_all_states_in_range',
             data = params,
             headers = HEADERS
             ).json()
@@ -234,10 +234,13 @@ class ProductC:
 
     @staticmethod
     def last_request_time(ser_num, prefix):
+        serial_num = {
+            'serial_num' : ser_num
+        }
         resp = {}
         resp = reqs.post(
-            hd_server + '/socket/last_request_time',
-            data = json.dumps(ser_num),
+            HD_SERVER + f'/{prefix}/last_request_time',
+            data = json.dumps(serial_num),
             headers=HEADERS
         ).json()
 
@@ -252,7 +255,7 @@ class ProductC:
         }
         resp = {}
         resp = reqs.post(
-            hd_server + f'/{str(prefix)}/enter_requested_action',
+            HD_SERVER + f'/{str(prefix)}/enter_requested_action',
             data = json.dumps(params),
             headers=HEADERS
         ).json()
@@ -264,7 +267,7 @@ class ProductC:
     def last_requested_action(ser_num):
         resp = {}
         resp = reqs.post(
-            hd_server + '/socket/last_requested_action',
+            HD_SERVER + '/socket/last_requested_action',
             data = json.dumps(ser_num),
             headers=HEADERS
         ).json()
@@ -276,7 +279,7 @@ class ProductC:
     def requested_actions(ser_num):
         resp = {}
         resp = reqs.post(
-            hd_server + '/socket/requested_actions',
+            HD_SERVER + '/socket/requested_actions',
             data = json.dumps(ser_num),
             headers=HEADERS
         ).json()
