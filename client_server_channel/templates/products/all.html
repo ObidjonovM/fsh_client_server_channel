@@ -55,7 +55,7 @@
         <tbody id="tBody">
 
         {% for i in range(products_info['data']['serial_num']|length) %}
-        <tr ondblclick="getType(this)">
+        <tr ondblclick="getType(this)" ser_num="{{products_info['data']['serial_num'][i]}}">
 
             <td>{{products_info['data']['default_login'][i]}}</td>
 
