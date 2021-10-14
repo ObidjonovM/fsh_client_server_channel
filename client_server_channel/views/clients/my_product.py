@@ -37,9 +37,9 @@ def get_logs(ser_num):
 	if request.method == 'POST':
 		result = ProductC.get_all_states_in_range(
 								ser_num,
-								request.form['prefix'],
-								request.form['start_date'],
-								request.form['end_date']
+								request.json['prefix'],
+								request.json['start_date'],
+								request.json['end_date']
 							)
 		return result
 
