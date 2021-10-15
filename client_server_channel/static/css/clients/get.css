@@ -1,23 +1,19 @@
 
-.add-submit {
-    left:10%;
-}
-
 .add-submit2 {
-    left:40%;
+    left:21%;
 }
 
 .add-submit3 {
-    left:70%;
+    left:56%;
 }
 
 .add-container {
     position: absolute;
-    top: 52%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999;
-    width: 1200px;
+    transform: translate(-50%, 40%);
+    z-index: 10;
+    width: 53%;
     height: 550px;
     background-color: #fff;
     border-radius: 5px;
@@ -32,16 +28,16 @@
 }
 
 .add-form {
-    width: 80%;
-    height: 83%;
+    width: 95%;
+    height: 91%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .form-control {
-    margin: 13px 40px;
+    margin: 40px 15px;
 }
 
 .form-control label {
@@ -66,8 +62,8 @@
 }
 
 .add-submit, .add-submit2, .add-submit3 {
-    background-color: #006666;
-    border: 2px solid #006666;
+    background-color: #374a62;
+    border: 2px solid #374a62;
     border-radius: 4px;
     color: #d5e2ff;
     display: block;
@@ -82,5 +78,5 @@
 }
 
 .add-submit:hover, .add-submit2:hover, .add-submit3:hover {
-    background-color: #044f66;
+    background-color: #232F3E;
 }

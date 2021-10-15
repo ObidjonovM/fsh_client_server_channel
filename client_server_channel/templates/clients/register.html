@@ -9,7 +9,7 @@
 
 {% block body %}
 {{ super() }}
-
+<div style="position:relative;">
 <div class="add-container">
 
     <nav class="auth">
@@ -50,7 +50,7 @@
             <input type="text" name="phone" id="phone" placeholder="Введите Телефон ..." required/>
             <br>
             <br>
-            <label for="email">Эл. адрес<span class="star">*</span></label>
+            <label for="email">Эл. адрес</label>
             <input type="email" name="email" id="email" placeholder="Введите логин ..." required/>
             <br>
             <br>
@@ -76,7 +76,7 @@
     </form>
 
 </div>
-
+</div>
 <div class="container modal hidden">
     <button class="close-modal">&times;</button>
 

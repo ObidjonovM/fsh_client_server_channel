@@ -53,9 +53,6 @@
 /****  input search design close  ****/
 
 
-
-
-
 .add-submit {
     left:20%;
 }
@@ -68,7 +65,7 @@
     position: absolute;
     top: 52%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 40%);
     width: 900px;
     height: 550px;
     background-color: #fff;
@@ -143,7 +140,95 @@
 
 /*media style open*/
 
-@media only screen and (max-width: 640px){
+@media only screen and (min-width: 280px) and (max-width: 653px){
+    body {
+        position: relative;
+    }
+
+    .add-header {
+        width: 100%;
+    }
+
+    .add-container {
+        width: 99%;
+        height: auto;
+        overflow: auto;
+        transform: translate(-50%, 7%);
+    }
+
+    .add-form {
+        width: 100%;
+        display: table;
+        justify-content: unset;
+    }
+
+    .form-control {
+        display: block;
+        margin: 4% auto;
+        width: 66%;
+    }
+
+    .form-control label {
+        padding-left: 0;
+    }
+
+    .form-control input {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .add-submit, .add-submit2 {
+        position: unset;
+        width: 55%;
+        margin: 4% auto;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 568px){
+    body {
+        position: relative;
+    }
+
+    .add-header {
+        width: 100%;
+    }
+
+    .add-container {
+        width: 99%;
+        height: auto;
+        overflow: auto;
+        transform: translate(-50%, 7%);
+    }
+
+    .add-form {
+        width: 100%;
+        display: table;
+        justify-content: unset;
+    }
+
+    .form-control {
+        display: block;
+        margin: 4% auto;
+        width: 66%;
+    }
+
+    .form-control label {
+        padding-left: 0;
+    }
+
+    .form-control input {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .add-submit, .add-submit2 {
+        position: unset;
+        width: 55%;
+        margin: 4% auto;
+    }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 640px){
 
     body {
         position: relative;
@@ -157,7 +242,7 @@
         width: 99%;
         height: auto;
         overflow: auto;
-        top: 110%;
+        transform: translate(-50%, 7%);
     }
 
     .add-form {
@@ -168,12 +253,16 @@
 
     .form-control {
         display: block;
-        margin: 5% auto;
+        margin: 4% auto;
         width: 66%;
     }
 
-    .form-control input {
+    .form-control label {
+        padding-left: 0;
+    }
 
+    .form-control input {
+        margin-left: 0;
     }
 
     .add-submit, .add-submit2 {

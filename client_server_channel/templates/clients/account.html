@@ -21,7 +21,7 @@
 
 <div class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-    <div>
+    <div class="logout-hi-person">
         <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>
         <button type="button" class="hi-person" id="hi-person">
             <span>Привет {{first_name}}</span>
@@ -38,6 +38,7 @@
     </div>
 </div>
 
+<div style="position:relative;">
 <section>
     <div>
     <p class="your-account">Ваш Счет</p>
@@ -51,7 +52,8 @@
     </a>
 
 </section>
-{% endblock %}
+</div>
+    {% endblock %}
 
 
 <script src="/static/js/clients/account.js"></script>

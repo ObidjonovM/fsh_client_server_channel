@@ -101,15 +101,6 @@
     background-color: #e1e5e5;
 }
 
-
-@media screen and (min-width: 360px) and (max-width: 812px) {
-    .account-products {
-        position: absolute;
-        margin: 0;
-        display: none;
-    }
-}
-
 /****** hi person close ******/
 /****************************/
 
@@ -138,7 +129,7 @@ section {
     float: left;
     max-width: 395px;
     min-height: 120px;
-    height: 443px;
+    height: 470px;
     background-color: #fff;
     margin: 20px;
     padding: 45px 30px;
@@ -161,7 +152,7 @@ section {
 .all-products img {
     width: 100%;
     min-height: 120px;
-    height: 360px;
+    height: 380px;
     cursor: pointer;
     margin-top: 15px;
     background-color: #eaeded;
@@ -190,7 +181,24 @@ section {
 
 /*media style open*/
 
+
+
+
+
 @media only screen and (max-width: 640px) {
+
+    main {
+        width: 100%;
+        border: 1px solid transparent;
+        margin-top: 18%;
+    }
+
+    section {
+        width: 100%;
+        position: unset;
+        margin: 1% 0;
+        display: contents;
+    }
 
     .hi-person-div {
         display: flex;
@@ -222,18 +230,6 @@ section {
         z-index: 100;
     }
 
-    main {
-        width: 100%;
-        border: 1px solid transparent;
-        margin-top: 15%;
-    }
-    
-    section {
-        width: 100%;
-        position: unset;
-        margin: 1% 0;
-    }
-
     .all-products {
         width: 100%;
     }
@@ -250,7 +246,15 @@ section {
 
 }
 
-@media only screen and (min-width: 641px) and (max-width: 1024px){
+@media only screen and (min-width: 360px) and (max-width: 812px) {
+    .account-products {
+        position: absolute;
+        margin: 0;
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 1024px) {
 
     section {
         width: 100%;
@@ -275,18 +279,20 @@ section {
     }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1366px){
+@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+
     section {
-        border: 1px solid red;
+        width: 95%;
     }
+
     .all-products .img-div {
-        width: 21%;
-        height: 250px;
+        width: 26%;
+        height: 300px;
         padding: 41px 20px;
     }
 
     .all-products img {
-        height: 170px;
+        height: 222px;
     }
 }
 

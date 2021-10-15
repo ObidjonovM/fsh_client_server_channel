@@ -19,22 +19,8 @@
     <form class="add-form"
           action="{{ url_for('sp_order.update', sp_order_id=sp_order_info['data']['sp_order_id']) }}"
           method="POST">
-        <div class="form-control">
-            <label for="issued_order_id">Переданный ID заказа</label>
-            <input type="text" id="issued_order_id"
-                   value="{{sp_order_info['data']['issued_order_id']}}"/>
-
-            <label for="total_cost">Общая стоимость</label>
-            <input type="number" name="total_cost" id="total_cost"
-                   value="{{sp_order_info['data']['total_cost']}}"/>
-
-        </div>
 
         <div class="form-control">
-
-            <label for="curr_id">Валюта</label>
-            <input type="text" name="curr_id" id="curr_id"
-                   value="{{currency_name['data']['currency']}}"/>
 
             <label for="order_status_id">Статус заказа</label>
             <select name="order_status_id" id="order_status_id">
@@ -50,7 +36,6 @@
                 {%endif%}
                 {%endfor%}
             </select>
-
 
         </div>
 

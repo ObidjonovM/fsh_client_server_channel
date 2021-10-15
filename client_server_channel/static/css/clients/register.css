@@ -10,7 +10,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 40%);
     z-index: 10;
     width: 600px;
     height: 540px;
@@ -63,7 +63,7 @@
     border-color: #777;
 }
 
-.add-submit, .add-submit2, .add-submit3 {
+.add-submit, .add-submit2 {
     background-color: #374a62;
     border: 2px solid #374a62;
     border-radius: 4px;
@@ -79,7 +79,7 @@
     bottom: 4px;
 }
 
-.add-submit:hover, .add-submit2:hover, .add-submit3:hover {
+.add-submit:hover, .add-submit2:hover {
     background-color: #232F3E;
     transition: all .3s;
 }
@@ -175,3 +175,38 @@ nav.auth > div.selected {
     z-index: 99;
     border: 3px solid red;
 }
+
+
+/*media style open*/
+@media only screen and (max-width: 731px) {
+    .add-container {
+        width: 100%;
+        height: auto;
+        transform: translate(-50%, 7%);
+    }
+    .add-form {
+        width: 65%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .form-control {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .form-control input, select {
+        width: 100%;
+    }
+
+    .add-submit, .add-submit2 {
+        width: 46%;
+        position: unset;
+        display: inline-block;
+        margin-left: 2%;
+        margin-bottom: 3%;
+        padding: 9px 0px;
+    }
+}
+/*media style close*/

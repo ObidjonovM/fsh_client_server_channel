@@ -41,7 +41,7 @@ section {
     text-align: center;
     margin-left: -1%;
     line-height: 50px;
-    background: #fff;
+    /*background: #fff;*/
     color: black;
     z-index: -2;
     font-weight: bold;
@@ -106,10 +106,6 @@ section {
     background-color: rgba(224, 219, 219, 0.7);
     transition: all .3s ease-in-out;
     display: block;
-}
-
-.input-on-off .on1, .off1 {
-    pointer-events: none;
 }
 
 .all-products .on:focus, .off:focus  {

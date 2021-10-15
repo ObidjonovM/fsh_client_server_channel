@@ -19,7 +19,7 @@
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
     <button type="button" onclick="logoutClient()" class="glavni-stranisa viyti">Выйти</button>
 </div>
-
+<div style="position:relative;">
 <div class="container">
 
 <!--    <div class="header">-->
@@ -43,7 +43,7 @@
         <div class="form-control">
             <label for="password">Пароль</label><span style="color: red; font-size: 16px">*</span>
             <input type="password" name="password" id="password" placeholder="Пароль ... " required>
-            <div class="register-open"><a href="#" id="change_password">Изменитъ пароль</a></div>
+            <div class="register-open"><a href="#" id="change_password">Изменить пароль</a></div>
             {% if wrong_password %}
             <small id="error-small2">Неверный пароль</small>
             {% endif %}
@@ -53,6 +53,7 @@
 
     </form>
 
+</div>
 </div>
 
 {% endblock %}

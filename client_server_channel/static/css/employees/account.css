@@ -5,7 +5,7 @@
 .container-link {
     text-align: center;
     width: 80%;
-    margin: auto;
+    margin: 3% auto;
 }
 
 .link-all{
@@ -17,4 +17,9 @@
     display: inline-block;
     margin: 10px;
     border-radius: 5px;
+}
+
+span {
+    margin: 0px;
+    display: table;
 }

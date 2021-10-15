@@ -15,14 +15,7 @@ section{
     margin-top: 15px;
 }
 
-.container {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    max-width: 100%;
-}
-.container1 {
+.container, .container1, .container2, .container3 {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -36,9 +29,9 @@ section{
     text-align: center;
     /*margin-left: 24%;*/
     line-height: 50px;
-    background: #fff;
     color: black;
     position: absolute;
+    /*background-color: white;*/
     right: 10.5%;
     z-index: -2;
     top: -5%;
@@ -105,6 +98,14 @@ section{
     margin: 20px 0px;
 }
 
+.header2 h2 {
+    margin: 24px 0px;
+}
+
+.header3 h2 {
+    margin: 24px 0px;
+}
+
 .buttons{
     display: flex;
     justify-content: space-between;
@@ -143,15 +144,15 @@ section{
     width: 213px;
     padding:3px;
     border: none;
-    background-color: white;;
-    border-radius: 2px;
+    background-color: #374a62;
+    border-radius: 4px;
     cursor: pointer;
     transition: all .2s ease-in-out;
     box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, .2);
 }
 
-.show-modal:hover {
-    background-color: #dde0e0;
+.show-modal:hover, .information-input:hover {
+    background-color: #232F3E;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
     transition: all .2s ease-in-out;
 }
@@ -163,11 +164,11 @@ section{
 .show-modal p {
     font-size: 14px;
     font-weight: 600;
-    color: #32334e;
+    color: white;
     padding: 12px 3px;
 }
 
-.close-modal, .close-modal1, .close-modal3 {
+.close-modal, .close-modal1, .close-modal3, .close-modal2, .close-modal4 {
     position: absolute;
     top: 1.2rem;
     right: 1rem;
@@ -180,7 +181,12 @@ section{
     height: 40px;
 }
 
-.close-modal:focus, .close-modal1:focus, .close-modal3:focus{
+.close-modal2 {
+    top: 0.6rem;
+    right: .8rem;
+}
+
+.close-modal:focus, .close-modal1:focus, .close-modal3:focus, .close-modal2:focus, .close-modal4:focus {
     border: 1px solid #9a9a6f;
     box-shadow: 0px 0px 1px 1px #e4e418;
 }
@@ -197,52 +203,80 @@ section{
     display: none;
 }
 
-.modal {
+.hidden3 {
+    display: none;
+}
+
+.modal, .modal1, .modal2 {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 26%;
     background-color: white;
-    padding: 2rem;
-    border-radius: 5px;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
     z-index: 10;
+    border-radius: 5px;
+}
+
+.modal {
+    padding: 2rem;
+
 }
 
 .modal1 {
+    padding: 1rem;
+}
+
+.modal3 {
     position: absolute;
-    top: 50%;
+    top: -50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 26%;
+    width: 46%;
     background-color: white;
-    padding: 1rem;
-    border-radius: 5px;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
     z-index: 10;
+    border-radius: 5px;
 }
 
-@media screen and (max-width: 600px) {
-    .modal {
-        width: 100%;
-        padding: 4rem;
-        border-radius: 2px;
-        margin: 2px;
-    }
 
-    .form-control input, textarea {
-        border: 2px solid #c3c3c3;
-        border-radius: 4px;
-        display: block;
-        font-family: inherit;
-        font-size: 14px;
-        padding: 10px;
-        width: 100%;
-    }
+.information-section {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: 3% auto
 }
 
-.overlay, .overlay1 {
+.information-input {
+    height: 46px;
+    outline: none;
+    margin-left: 7%;
+    text-align: center;
+    width: 213px;
+    padding: 3px;
+    border: none;
+    background-color: #374a62;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0,.2);
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    border-radius: 4px;
+}
+
+.informationOnOf1 {
+    width: 65%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin: 2% auto 6% auto;
+    border: 1px solid #1b232e;
+    border-radius: 4px;
+}
+
+.overlay, .overlay1 , .overlay2{
     position: absolute;
     top: 0;
     left: 0;
@@ -253,23 +287,40 @@ section{
     z-index: 5;
 }
 
-.overlay1 {
-    position: absolute;
-    top: 0;
+.overlay3 {
+    position: fixed;
+    top: 0%;
     left: 0;
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(3px);
     z-index: 5;
+    background-attachment: fixed;
 }
-/****** Modal close ******/
+
+.table-date {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 3% auto;
+    border: 1px solid #939391;
+    overflow: scroll;
+}
+
+#thead_tr th, #tbody_tr #state_time_on_of{
+    width: 30%;
+    padding: 12px 15px;
+    border: 1px solid #2a2a28;
+    text-align: center;
+    font-size: 16px;
+}
+
+    /****** Modal close ******/
 
 
 .all-products {
     max-width: 350px;
     min-height: 120px;
-    height: 432px;
     margin: 30px 20px;
     border-radius: 8px;
 }
@@ -314,13 +365,9 @@ section{
 .input-on-off {
     max-width: 350px;
     height: 37px;
-    background-color: rgba(224, 219, 219, 0.7);
+    background-color: rgba(224, 219, 219, 0.4);
     transition: all .3s ease-in-out;
     display: block;
-}
-
-.input-on-off .on1, .off1 {
-    pointer-events: none;
 }
 
 .all-products .on:focus, .off:focus  {
@@ -399,16 +446,14 @@ section{
 /*description-container close*/
 
 
-
 /*delete-product-div open*/
-
 .delete-product-div {
     min-width: 250px;
     width: 52%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
+    margin: 40px auto;
     background-color: #fff;
 }
 
@@ -454,26 +499,8 @@ section{
 }
 /*delete-product-div close*/
 
-
-.information-input {
-    width: 200px;
-    height: 40px;
-    outline: none;
-    color: black;
-    margin-bottom: 11%;
-}
-
-.informationOnOf1 {
-    width: 200px;
-    height: 40px;
-    margin-left: 3%;
-    text-align: center;
-    line-height: 40px;
-    margin-bottom: 3%;
-}
-
 /*media style open */
-    @media only screen and (max-width: 731px) {
+@media only screen and (max-width: 640px) {
 
         .description-img-section{
             width: 100%;
@@ -492,7 +519,7 @@ section{
 
         .all-products{
             width: 100%;
-            margin: 4% 1%;
+            margin: 33% 1%;
         }
 
         .description-container {
@@ -541,7 +568,8 @@ section{
         }
 
         .form, .delete-product-div {
-            margin-top: 12%;
+            width: 98%;
+            margin: 27% auto;
         }
 
         .modal1 {
@@ -549,8 +577,134 @@ section{
             margin: 1% 0;
         }
 
+        .information-section {
+            width: 100%;
+        }
+
+        .information-on-of {
+            width: 50%;
+        }
+
+        .information-input {
+            width: 100%;
+        }
+
         .input-on-off {
             margin-bottom: 20%;
         }
+
+        .ONOF {
+            width: 98%;
+            top: 96%;
+            right: 1%;
+        }
+
+        .informationOnOf1 {
+            font-size: 12px;
+            margin-bottom: 6%;
+        }
     }
+
+
+@media only screen and (min-width: 641px) and (max-width: 1024px) {
+    section {
+        width: 100%;
+        display: block;
+    }
+
+    .show-modal {
+        margin-left: 38%;
+    }
+
+    .description-container {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .ONOF {
+        position: unset;
+        width: 99.7%;
+        height: 50px;
+        font-weight: bold;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.4);
+        border-radius: 4px;
+    }
+
+    .description-img-section {
+        width: 100%;
+        min-width: 0px;
+    }
+
+    .all-products {
+        margin: 0 auto;
+    }
+
+    .onof-div {
+        width: 70%;
+        margin: 4% auto;
+    }
+
+    .all-products .img-div {
+        margin-top: 1%;
+    }
+
+    .delete-product-div {
+        width: 60%;
+        margin: -8% auto;
+    }
+
+    .information-section {
+        display: flex;
+        margin: 15% auto;
+    }
+
+    .information-on-of {
+        width: 50%;
+        margin-bottom: 30%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .informationOnOf1 {
+        margin-bottom: 35%;
+    }
+
+    .information-input {
+        width: 100%;
+    }
+
+    .modal {
+        width: 60%;
+    }
+
+    .modal1 {
+        width: 60%;
+        padding: 3rem 1rem;
+    }
+
+    .modal1 .header {
+        margin-bottom: 11%;
+    }
+
+}
 /*media style close */
+
+@media screen and (max-width: 600px) {
+    .modal {
+        width: 100%;
+        padding: 4rem;
+        border-radius: 2px;
+        margin: 2px;
+    }
+
+    .form-control input, textarea {
+        border: 2px solid #c3c3c3;
+        border-radius: 4px;
+        display: block;
+        font-family: inherit;
+        font-size: 14px;
+        padding: 10px;
+        width: 100%;
+    }
+}
