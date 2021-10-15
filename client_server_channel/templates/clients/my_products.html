@@ -81,7 +81,7 @@
 
                         <img src="{{my_products['data']['photo'][i]}}" class="my-products-img"
                              ser_num="{{my_products['data']['serial_num'][i]}}" prefix="{{my_products['data']['prefix'][i]}}" onclick="productImg(this)">
-                        <a onclick="goSocket(this)">Learn more</a>
+                        <a onclick="goSocket(this)">Учить больше</a>
                     </div>
                     {% if my_products['data']['product_id'][i] == 1 %}
                     <div class="input-on-off">
@@ -89,14 +89,6 @@
                                ser_num="{{my_products['data']['serial_num'][i]}}">
 
                         <input type="button" action = "OFF" value="Выключить" onclick="actionCommand(this)" class="off"
-                               ser_num="{{my_products['data']['serial_num'][i]}}">
-                    </div>
-                    {%else%}
-                    <div class="input-on-off">
-                        <input type="text" value="Включить" class="on1" style="text-align: center;" readonly
-                               ser_num="{{my_products['data']['serial_num'][i]}}">
-
-                        <input type="text" value="Выключить" class="off1" style="text-align: center;" readonly
                                ser_num="{{my_products['data']['serial_num'][i]}}">
                     </div>
                     {% endif %}

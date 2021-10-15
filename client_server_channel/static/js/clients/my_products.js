@@ -114,7 +114,9 @@ let w;
                         var sub_val = val[a];
                         if (my_products_img[i].getAttribute('ser_num') == sub_key) {
                             my_products_img[i].setAttribute('action', sub_val['state'])
-                            req_action[i].innerHTML = sub_val['state']
+                            req_action[i].style.backgroundColor = 'white';
+                            req_action[i].innerHTML = sub_val['state'];
+
                         }
                     }
                 }

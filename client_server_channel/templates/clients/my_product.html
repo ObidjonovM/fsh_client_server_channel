@@ -25,11 +25,33 @@
     <h1 class="h1-my-product">Мой продукт</h1>
 </section>
 
-<section>
+<section style="display: flex; justify-content: center; align-items: center">
     <button class="show-modal">
         <p>Информация о товаре</p>
     </button>
+    <div class="information-on-of">
+        <button type="button" class="information-input" id="all_time_input"
+                ser_num="{{my_product['data']['serial_num'][0]}}" prefix="{{my_product['data']['prefix'][0]}}"
+                onclick="informationOnOf(this)">
+            Все время
+        </button>
+    </div>
 </section>
+<div id="containerModal2" class="container2 modal2 hidden2">
+    <button class="close-modal2">&times;</button>
+
+    <div class="header header2">
+        <h2>Все информационное время</h2>
+    </div>
+
+    <div class="informationOnOf1"></div>
+</div>
+<div id="overlay2" class="overlay2 hidden2"></div>
+
+
+<!--<section class="information-section">-->
+
+<!--</section>-->
 
 <div id="containerModal" class="container modal hidden">
     <button class="close-modal">&times;</button>
@@ -68,41 +90,34 @@
 
             <input type="submit" class="add-type-submit2" value="Сохранить"/>
             <button type="button" class="delete-product-button add-type-submit2">
-                <p>Delete My Product</p>
+                <p>Удалить мой продукт</p>
             </button>
         </form>
     </div>
 
     <div class="onof-div">
-    {% for i in range(my_product['data']['photo']|length)%}
-    <div class="all-products">
-        <div class="ONOF"></div>
-        <div class="img-div">
-            <span>{{my_product['data']['description'][i]}}</span>
+        {% for i in range(my_product['data']['photo']|length)%}
+        <div class="all-products">
+            <div class="ONOF"></div>
+            <div class="img-div">
+                <span>{{my_product['data']['description'][i]}}</span>
 
-            <img src="{{my_product['data']['photo'][i]}}" class="socket-img"
-                 ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}" alt="img">
+                <img src="{{my_product['data']['photo'][i]}}" class="socket-img"
+                     ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}"
+                     alt="img">
+            </div>
+
+            {% if my_product['data']['product_id'][i] == 1 %}
+            <div class="input-on-off">
+                <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
+                       ser_num="{{my_product['data']['serial_num'][i]}}">
+
+                <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
+                       ser_num="{{my_product['data']['serial_num'][i]}}">
+            </div>
+            {% endif %}
         </div>
-
-        {% if my_product['data']['product_id'][i] == 1 %}
-        <div class="input-on-off">
-            <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
-                   ser_num="{{my_product['data']['serial_num'][i]}}">
-
-            <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
-                   ser_num="{{my_product['data']['serial_num'][i]}}">
-        </div>
-        {%else%}
-        <div class="input-on-off">
-            <input type="text" value="Включить" class="on1" style="text-align: center;" readonly
-                   ser_num="{{my_product['data']['serial_num'][i]}}">
-
-            <input type="text" value="Выключить" class="off1" style="text-align: center;" readonly
-                   ser_num="{{my_product['data']['serial_num'][i]}}">
-        </div>
-        {% endif %}
-    </div>
-    {%endfor%}
+        {%endfor%}
     </div>
 
 </section>
@@ -127,33 +142,47 @@
     </div>
     <div class="overlay1 hidden1"></div>
 </section>
-
-<section>
+<section style="position: relative">
     <div class="delete-product-div">
         <form action="{{url_for('clients.my_products.my_product.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
-              class="delete-product-form" id="" method="post">
+              class="delete-product-form" id="data_form" method="post"
+              ser_num="{{my_product['data']['serial_num'][0]}}">
             <input type="hidden" value="{{my_product['data']['product_id'][0]}}">
-            <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}">
+            <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
             <div class="a">
-                <label for="start_date">start_date</label>
-                <input type="datetime-local" name="start_date">
+                <label for="start_date">Дата начала</label>
+                <input type="datetime-local" name="start_date" value="" id="start_date" required>
             </div>
             <div class="a">
-                <label for="end_date">end_date</label>
-                <input type="datetime-local" name="end_date">
+                <label for="end_date">Дата окончания</label>
+                <input type="datetime-local" name="end_date" value="" id="end_date" required>
             </div>
-            <input type="submit" class="add-type-submit4" value="Add">
+            <input type="submit" id="date_submit" class="add-type-submit4" value="Добавить">
         </form>
     </div>
-</section>
 
-<section style="display: flex; justify-content: center; width: 50%; margin: 3% auto">
-    <div class="information-on-of">
-        <input type="button" value="button" class="information-input"
-             ser_num="{{my_product['data']['serial_num'][0]}}"  prefix="{{my_product['data']['prefix'][0]}}"  onclick="informationOnOf(this)">
+    <div id="containerModal3" class="container3 modal3 hidden3">
+        <button class="close-modal4">&times;</button>
+
+        <div class="header header3">
+            <h2>Start date and End date</h2>
+        </div>
+    <div style="overflow: scroll; height: 240px">
+        <table class="table-date">
+            <thead id="thead_data">
+                <tr id="thead_tr">
+                    <th>ON and OF</th>
+                    <th>Start and End dates</th>
+                </tr>
+            </thead>
+
+            <tbody id="tbody_date">
+
+            </tbody>
+        </table>
     </div>
-
-    <div class="informationOnOf1"></div>
+    </div>
+    <div id="overlay3" class="overlay3 hidden3"></div>
 </section>
 
 
@@ -163,23 +192,7 @@
 <script src="/static/js/clients/my_product.js"></script>
 <script src="/static/js/clients/s_worker.js"></script>
 <script>
-    var xhttp = new XMLHttpRequest();
-    function actionCommand(e) {
-        let action = {
-            'serial_num': e.getAttribute('ser_num'),
-            'action_requested': e.getAttribute('action'),
-            'prefix' : 'socket'
-        }
-        xhttp.open('POST', '/clients/my_products/my_product/action', true);
-        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-        xhttp.send(JSON.stringify(action));
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                // let resp = JSON.parse(this.responseText);
-                console.log(this.responseText)
-            }
-        }
-    }
+
 </script>
 </body>
 
