@@ -31,7 +31,7 @@ window.addEventListener( "load", function () {
 
     form.addEventListener( "submit", function ( event ) {
         event.preventDefault();
-
+        console.log("1")
         sendData();
     } );
 } );
