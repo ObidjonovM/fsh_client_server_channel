@@ -10,7 +10,7 @@
 {% block body %}
 {{super()}}
 
-
+<div style="position: relative">
 <div class="add-container">
 
     <div class="add-header">
@@ -89,10 +89,6 @@
 
         </div>
 
-        <button type="button" onclick="updateClient()" class="add-submit">
-            Изменить
-        </button>
-
         <button type="button" onclick="deleteClient()" class="add-submit2">
             Удалить
         </button>
@@ -104,7 +100,7 @@
     </div>
 
 </div>
-
+</div>
 
 <script src="/static/js/clients/get.js"></script>
 
