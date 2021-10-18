@@ -144,42 +144,53 @@
     const btnCloseModal2 = document.querySelector('.close-modal2');
     const all_time_input2 = document.getElementById('all_time_input');
     let informationOnOf1 = document.querySelector('.informationOnOf1');
+    let information_on_of = document.querySelector('.information-on-of');
 
-    function closeModal4() {
-        all_time_modal2.classList.add('hidden2');
-        all_time_overlay2.classList.add('hidden2');
-        all_time_input2.value = "";
-    }
 
-    function openAllTime() {
-        all_time_modal2.classList.remove('hidden2');
-        all_time_overlay2.classList.remove('hidden2');
-    }
+    // function closeModal4() {
+    //     all_time_modal2.classList.add('hidden2');
+    //     all_time_overlay2.classList.add('hidden2');
+    //     all_time_input2.value = "";
+    // }
+    //
+    // function openAllTime() {
+    //     all_time_modal2.classList.remove('hidden2');
+    //     all_time_overlay2.classList.remove('hidden2');
+    // }
 
-    btnCloseModal2.addEventListener('click', closeModal4);
-    all_time_input2.addEventListener('click', openAllTime);
+    // btnCloseModal2.addEventListener('click', closeModal4);
+    // all_time_input2.addEventListener('click', openAllTime);
 
-    function informationOnOf(e){
+window.addEventListener('load', function () {
+
+
+    function informationOnOf(){
          let json = {
-             'ser_num' : e.getAttribute('ser_num'),
-             'prefix' : e.getAttribute('prefix')
+             'ser_num' : informationOnOf1.getAttribute('ser_num'),
+             'prefix' : informationOnOf1.getAttribute('prefix')
          }
 
-         console.log(json);
+        console.log(json);
          xhttp.open('Post', '/clients/my_products/my_product/last_request_time');
          xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
          xhttp.send(JSON.stringify(json))
          xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                  let resp = JSON.parse(this.responseText);
-                    // let div = document.createElement('DIV');
-                    console.log(resp['request_time']);
-                   // informationOnOf1.innerHTML = "<h2 style='border: 1px solid #6c6b6b'>" +resp['request_time']+ "</h2>\n"
-                    informationOnOf1.innerHTML = resp['request_time'];
-                    containerModal2.appendChild(informationOnOf1);
+
+                 if (resp['request_time'] == '-'){
+                     informationOnOf1.innerHTML = '';
+                 }else {
+                     informationOnOf1.innerHTML = resp['request_time'];
+                     information_on_of.appendChild(informationOnOf1);
+                 }
+
+
              }
          }
+        setTimeout("informationOnOf()",1000);
      }
+})
 // All time close
 
 
@@ -288,9 +299,15 @@
                 w = new Worker("/static/js/clients/s_worker.js");
             }
             w.postMessage(json)
-            // console.log(json)
+
             w.onmessage = function (ev) {
-                let on_of = ev.data['state'];
+                let on_of;
+                if (ev.data['state'] == 'ON'){
+                    on_of = 'Включить';
+                }
+                if (ev.data['state'] == 'OFF'){
+                    on_of = 'Выключить';
+                }
                 for (let i=0; i<req_action.length; i++) {
                     req_action[i].style.backgroundColor = 'white';
                     req_action[i].innerHTML = on_of;

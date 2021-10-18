@@ -1,4 +1,4 @@
-.h1-my-product{
+.h1-my-product {
     width: 100%;
     text-align: center;
     margin: 10px 20px;
@@ -6,7 +6,7 @@
     color: #32334e;
 }
 
-section{
+section {
     width: 100%;
     height: auto;
     display: flex;
@@ -23,21 +23,17 @@ section{
 }
 
 .ONOF {
-    width: 28.7%;
+    width: 100%;
     height: 50px;
     font-size: 16px;
     text-align: center;
-    /*margin-left: 24%;*/
     line-height: 50px;
     color: black;
-    position: absolute;
-    /*background-color: white;*/
-    right: 10.5%;
     z-index: -2;
-    top: -5%;
     font-weight: bold;
-    text-shadow: 1px 1px 1px  rgba(0,0,0,.4);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
     border-radius: 4px;
+    margin-bottom: 1%;
 }
 
 .form-control1 {
@@ -66,8 +62,7 @@ section{
     border: none;
     border-radius: 2px;
     color: #1b232e;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,.2);
-    margin: 2px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .2);
     padding-left: 10px;
     float: left;
 }
@@ -106,7 +101,7 @@ section{
     margin: 24px 0px;
 }
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: space-between;
     margin: 5px;
@@ -123,7 +118,7 @@ section{
     margin-top: -20px;
 }
 
-.form-control .information{
+.form-control .information {
     border: 2px solid #506886;
     border-radius: 4px;
     display: block;
@@ -134,6 +129,12 @@ section{
     margin: 30px auto;
 }
 
+.information-all-time {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
 .add-type-submit:hover, .add-type-submit2:hover, .add-type-submit4:hover {
     background-color: #232F3E;
     transition: all .3s;
@@ -142,7 +143,7 @@ section{
 .show-modal, .delete-product-button {
     text-align: center;
     width: 213px;
-    padding:3px;
+    padding: 3px;
     border: none;
     background-color: #374a62;
     border-radius: 4px;
@@ -230,10 +231,10 @@ section{
 
 .modal3 {
     position: absolute;
-    top: -50%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 46%;
+    width: 65%;
     background-color: white;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
     z-index: 10;
@@ -259,7 +260,7 @@ section{
     background-color: #374a62;
     cursor: pointer;
     transition: all .2s ease-in-out;
-    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0,.2);
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, .2);
     font-size: 14px;
     font-weight: 600;
     color: white;
@@ -276,7 +277,7 @@ section{
     border-radius: 4px;
 }
 
-.overlay, .overlay1 , .overlay2{
+.overlay, .overlay1, .overlay2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -307,7 +308,7 @@ section{
     overflow: scroll;
 }
 
-#thead_tr th, #tbody_tr #state_time_on_of{
+#thead_tr th, #tbody_tr #state_time_on_of {
     width: 30%;
     padding: 12px 15px;
     border: 1px solid #2a2a28;
@@ -315,7 +316,7 @@ section{
     font-size: 16px;
 }
 
-    /****** Modal close ******/
+/****** Modal close ******/
 
 
 .all-products {
@@ -344,12 +345,12 @@ section{
     margin-bottom: 10px;
 }
 
-.all-products img:hover{
+.all-products img:hover {
     background-color: #dde0e0;
 }
 
-.all-products input{
-    width: 170px;
+.all-products input {
+    width: 48.8%;
     height: 32px;
     background-color: #fff;
     border: none;
@@ -357,7 +358,7 @@ section{
     color: #1b232e;
     cursor: pointer;
     font-weight: 600;
-    box-shadow: 0px 0px 4px 0px rgba(0,0,0,.2);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .2);
     margin: 2px;
     float: left;
 }
@@ -370,36 +371,33 @@ section{
     display: block;
 }
 
-.all-products .on:focus, .off:focus  {
+.all-products .on:focus, .off:focus {
     background-color: red;
     color: white;
 }
 
 
-
-
 /*description-container open*/
-.description-img-section{
-    max-width: 1500px;
-    min-width: 800px;
-    width: 1200px;
-    margin: 100px auto;
-    position: relative;
+.description-img-section {
+    width: 85%;
+    margin: 3% auto;
 }
+
 .description-container {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     overflow: hidden;
-    width: 400px;
+    width: 25%;
     max-width: 100%;
 }
 
 .description-header {
     border-bottom: 1px solid #232F3E;
-    background-color:#374a62;
+    background-color: #374a62;
     padding: 15px 40px;
     color: white;
+    border-radius: 5px;
 }
 
 .description-header h2 {
@@ -443,18 +441,18 @@ section{
     width: 100%;
     cursor: pointer;
 }
+
 /*description-container close*/
 
 
 /*delete-product-div open*/
 .delete-product-div {
     min-width: 250px;
-    width: 52%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px auto;
+    width: 25%;
+    margin: 1%;
     background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+    border-radius: 5px;
 }
 
 .delete-product-div input {
@@ -466,14 +464,14 @@ section{
 }
 
 .delete-product-form {
-    padding: 2%;
     width: 100%;
+    border-radius: 5px;
 }
 
 .a {
-    width: 100%;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    width: 81%;
+    margin: 4% auto;
+    padding: 1%;
 }
 
 .delete-product-form input {
@@ -490,212 +488,134 @@ section{
     margin-top: 2%;
 }
 
-.add-type-submit4 {
-   background-color: #374a62;
-    border: none;
-    color: white;
+.delete-product-form .add-type-submit4 {
+    background-color: #374a62;
+    border: 2px solid #374a62;
+    color: #d5e2ff;
     cursor: pointer;
     margin-top: 2%;
 }
+
+.start-end-date {
+    overflow: scroll;
+    height: 240px
+}
+
+
 /*delete-product-div close*/
 
+
 /*media style open */
-@media only screen and (max-width: 640px) {
 
-        .description-img-section{
-            width: 100%;
-            border: 1px solid black;
-            display: contents;
-        }
+@media only screen and (min-width: 320px) and (max-width: 640px) {
 
-        section {
-            width: 100%;
-            display: block;
-        }
-
-        .show-modal {
-            margin-left: 20%;
-        }
-
-        .all-products{
-            width: 100%;
-            margin: 33% 1%;
-        }
-
-        .description-container {
-            width: 98%;
-            margin: 10% 1%;
-        }
-
-        .input-on-off {
-            display: inline-block;
-            width: 100%;
-        }
-
-        .input-on-off input {
-            width: 99%;
-        }
-
-        .h1-my-product {
-            margin: 0;
-        }
-
-        .modal {
-            width: 98%;
-            padding: 1rem;
-            border-radius: 2px;
-            margin: 0;
-        }
-
-        .form-control1 input {
-            border: 2px solid #c3c3c3;
-            border-radius: 4px;
-            display: block;
-            font-family: inherit;
-            font-size: 14px;
-            padding: 10px;
-            width: 100%;
-        }
-
-        .header {
-            padding: 0;
-            margin-top: 10%;
-        }
-
-        .close-modal, .close-modal3 {
-            top: .2rem;
-            right: 0;
-        }
-
-        .form, .delete-product-div {
-            width: 98%;
-            margin: 27% auto;
-        }
-
-        .modal1 {
-            width: 99%;
-            margin: 1% 0;
-        }
-
-        .information-section {
-            width: 100%;
-        }
-
-        .information-on-of {
-            width: 50%;
-        }
-
-        .information-input {
-            width: 100%;
-        }
-
-        .input-on-off {
-            margin-bottom: 20%;
-        }
-
-        .ONOF {
-            width: 98%;
-            top: 96%;
-            right: 1%;
-        }
-
-        .informationOnOf1 {
-            font-size: 12px;
-            margin-bottom: 6%;
-        }
+    .background-color {
+        background-color: #e4eded;
     }
 
+    .description-img-section {
+        width: 100%;
+        border: 1px solid black;
+        display: contents;
+    }
 
-@media only screen and (min-width: 641px) and (max-width: 1024px) {
+    .description-header h2 {
+        font-size: 18px;
+    }
+
     section {
         width: 100%;
         display: block;
     }
 
     .show-modal {
-        margin-left: 38%;
+        width: 180px;
     }
 
-    .description-container {
-        width: 60%;
-        margin: 0 auto;
-    }
-
-    .ONOF {
-        position: unset;
-        width: 99.7%;
-        height: 50px;
-        font-weight: bold;
-        text-shadow: 1px 1px 1px rgba(0,0,0,.4);
-        border-radius: 4px;
-    }
-
-    .description-img-section {
-        width: 100%;
-        min-width: 0px;
+    .close-modal4 {
+        top: 0.2rem;
+        right: 0rem;
     }
 
     .all-products {
-        margin: 0 auto;
+        width: 100%;
+        margin: 31% auto;
     }
 
-    .onof-div {
-        width: 70%;
-        margin: 4% auto;
+    .description-container {
+        width: 98%;
+        margin: 10% 1%;
     }
 
-    .all-products .img-div {
-        margin-top: 1%;
+    .input-on-off {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .input-on-off input {
+        width: 99%;
+    }
+
+    .h1-my-product {
+        margin: 0;
+    }
+
+    .modal {
+        width: 98%;
+        padding: 1rem;
+        border-radius: 2px;
+        margin: 0;
+    }
+
+    .form-control1 {
+        width: 95%;
+    }
+
+    .form-control1 input {
+        border: 2px solid #c3c3c3;
+        border-radius: 4px;
+        display: block;
+        font-family: inherit;
+        font-size: 14px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .header {
+        padding: 0;
+        margin-top: 10%;
+    }
+
+    .header h2 {
+        font-size: 19px;
+    }
+
+    .close-modal, .close-modal3 {
+        top: .2rem;
+        right: 0;
     }
 
     .delete-product-div {
-        width: 60%;
-        margin: -8% auto;
+        width: 98%;
+        margin: 27% auto;
+        min-width: 0;
     }
 
-    .information-section {
-        display: flex;
-        margin: 15% auto;
+    .modal1 .delete-product-div {
+        width: 70%;
+        box-shadow: none;
     }
 
-    .information-on-of {
-        width: 50%;
-        margin-bottom: 30%;
-        margin-left: auto;
-        margin-right: auto;
-
-    }
-
-    .informationOnOf1 {
-        margin-bottom: 35%;
-    }
-
-    .information-input {
-        width: 100%;
-    }
-
-    .modal {
-        width: 60%;
-    }
-
-    .modal1 {
-        width: 60%;
-        padding: 3rem 1rem;
-    }
-
-    .modal1 .header {
-        margin-bottom: 11%;
-    }
-
-}
-/*media style close */
-
-@media screen and (max-width: 600px) {
-    .modal {
-        width: 100%;
+    .modal, .modal2 {
+        width: 97%;
         padding: 4rem;
         border-radius: 2px;
-        margin: 2px;
+        margin: 0;
+    }
+
+    .modal3 {
+        width: 97%;
+        transform: translate(-50%, -20%);
     }
 
     .form-control input, textarea {
@@ -707,4 +627,230 @@ section{
         padding: 10px;
         width: 100%;
     }
+
+    .modal1 {
+        width: 97%;
+        margin: 1% 0;
+    }
+
+    .information-section {
+        width: 100%;
+    }
+
+    .information-on-of {
+        width: 33%;
+        margin-left: 2%;
+    }
+
+    .information-input {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .input-on-off {
+        margin-bottom: 20%;
+    }
+
+    .ONOF {
+        width: 100%;
+    }
+
+    .informationOnOf1 {
+        width: 90%;
+        font-size: 12px;
+        margin-bottom: 2%;
+    }
+
+    .table-date {
+        width: 100%;
+        margin: 0;
+    }
+
+    .start-end-date {
+        overflow: scroll;
+        height: 240px;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    #thead_tr th, #tbody_tr #state_time_on_of {
+        font-size: 14px;
+    }
+    .modal1 {
+        transform: translate(-50%, 95%);
+    }
+
+    .overlay1 {
+        position: fixed;
+    }
+
+    .form {
+        margin-top: 20%;
+    }
+
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    section {
+        width: 100%;
+        display: block;
+    }
+
+    .information-all-time {
+        margin-top: 5%;
+    }
+
+    .description-container {
+        width: 60%;
+        margin: 15% auto;
+    }
+
+    .ONOF {
+        position: unset;
+        width: 99.7%;
+        height: 50px;
+        font-weight: bold;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
+        border-radius: 4px;
+    }
+
+    .description-img-section {
+        width: 100%;
+        min-width: 0px;
+        margin-top: 15%;
+        display: block;
+    }
+
+    .all-products {
+        margin: 26% auto;
+    }
+
+    .modal1 .delete-product-div {
+        box-shadow: none;
+    }
+
+    .overlay1 {
+        position: fixed;
+    }
+
+    .onof-div {
+        width: 70%;
+        margin: -14% auto;
+        border:1px solid transparent;
+    }
+
+    .all-products .img-div {
+        margin-top: 1%;
+    }
+
+    .delete-product-div {
+        width: 60%;
+        margin: 0% auto;
+    }
+
+    .information-section {
+        display: flex;
+        margin: 15% auto;
+    }
+
+    .information-on-of {
+        width: 23%;
+
+    }
+
+    .modal2 {
+        width: 60%;
+    }
+
+    .informationOnOf1 {
+        margin-bottom: 11%;
+    }
+
+    .information-input {
+        width: 100%;
+    }
+
+    .modal {
+        width: 60%;
+    }
+
+    .modal1 {
+        transform: translate(-50%, 45%);
+        width: 60%;
+        padding: 3rem 1rem;
+    }
+
+    .modal1 .header {
+        margin-bottom: 11%;
+    }
+
+    .modal3 {
+        top: 10%;
+    }
+
+    .header3 {
+        margin-top: 5%;
+    }
+
+    .header3 h2 {
+        font-size: 22px;
+    }
+
+    .close-modal4 {
+        top: 0.2rem;
+        right: 0.5rem;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1366px) {
+    .description-img-section {
+        width: 100%;
+        display: block;
+        border: 1px solid transparent;
+    }
+
+    .delete-product-div {
+        width: 40%;
+        float: left;
+        margin-left: 7%;
+    }
+
+    .description-container {
+        width: 40%;
+        float: left;
+        margin-top: 0;
+        margin-left: 6%;
+    }
+
+    .onof-div {
+        margin: 30% auto;
+    }
+
+    .modal, .modal2 {
+        top: 30%;
+    }
+
+    .all-products {
+        margin: 30% auto;
+    }
+
+    .modal1 {
+        width: 60%;
+        top: 30%;
+        padding: 3rem 1rem;
+        transform: translate(-50%, -50%);
+    }
+
+    .modal1 .delete-product-div {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .modal1 .delete-product-div form {
+        width: 50%;
+        margin: -22px auto;
+    }
+}
+
+/*media style close */
+

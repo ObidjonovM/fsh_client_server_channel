@@ -114,8 +114,15 @@ let w;
                         var sub_val = val[a];
                         if (my_products_img[i].getAttribute('ser_num') == sub_key) {
                             my_products_img[i].setAttribute('action', sub_val['state'])
+                            let on_off;
+                            if (sub_val['state'] == 'ON'){
+                                on_off = 'Включить';
+                            }
+                            if(sub_val['state'] == 'OFF'){
+                                on_off = 'Выключить';
+                            }
                             req_action[i].style.backgroundColor = 'white';
-                            req_action[i].innerHTML = sub_val['state'];
+                            req_action[i].innerHTML = on_off;
 
                         }
                     }

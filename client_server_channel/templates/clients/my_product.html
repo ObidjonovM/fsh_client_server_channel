@@ -15,6 +15,7 @@
 
 <body class="background-color">
 {% block body %}
+
 <div class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
@@ -25,53 +26,106 @@
     <h1 class="h1-my-product">Мой продукт</h1>
 </section>
 
-<section style="display: flex; justify-content: center; align-items: center">
+<!--  Информация о товаре и Все время open -->
+<section class="information-all-time">
+<!--    Информация о товаре open-->
     <button class="show-modal">
         <p>Информация о товаре</p>
     </button>
-    <div class="information-on-of">
-        <button type="button" class="information-input" id="all_time_input"
-                ser_num="{{my_product['data']['serial_num'][0]}}" prefix="{{my_product['data']['prefix'][0]}}"
-                onclick="informationOnOf(this)">
-            Все время
-        </button>
-    </div>
-</section>
-<div id="containerModal2" class="container2 modal2 hidden2">
-    <button class="close-modal2">&times;</button>
 
-    <div class="header header2">
-        <h2>Все информационное время</h2>
-    </div>
+    <div id="containerModal" class="container modal hidden">
+        <button class="close-modal">&times;</button>
 
-    <div class="informationOnOf1"></div>
-</div>
-<div id="overlay2" class="overlay2 hidden2"></div>
+        <div class="header">
+            <h2>Введите пароль</h2>
+        </div>
 
-
-<!--<section class="information-section">-->
-
-<!--</section>-->
-
-<div id="containerModal" class="container modal hidden">
-    <button class="close-modal">&times;</button>
-
-    <div class="header">
-        <h2>Введите пароль</h2>
-    </div>
-
-    <div class="form">
-        <div class="form-control1">
-            <label for="forInfoPass">Пароль</label>
-            <input type="password" id="forInfoPass" class="password" placeholder="введите пароль" required>
-            <input type="button" value="Info Product" onclick="OpenNewModal()" class="delete-product">
+        <div class="form">
+            <div class="form-control1">
+                <label for="forInfoPass">Пароль</label>
+                <input type="password" id="forInfoPass" class="password" placeholder="введите пароль" required>
+                <input type="button" value="Info Product" onclick="OpenNewModal()" class="delete-product">
+            </div>
         </div>
     </div>
-</div>
-<div id="overlay" class="overlay hidden"></div>
+    <div id="overlay" class="overlay hidden"></div>
+    <!--    Информация о товаре close-->
 
-<section class="description-img-section">
+<!--    Все время open-->
+    <div class="information-on-of">
+        <button type="button" class="information-input" id="all_time_input"
+                ser_num="{{my_product['data']['serial_num'][0]}}" prefix="{{my_product['data']['prefix'][0]}}">
+        </button>
+    </div>
 
+    <div id="containerModal2" class="container2 modal2 hidden2">
+        <button class="close-modal2">&times;</button>
+
+        <div class="header header2">
+            <h2>Все информационное время</h2>
+        </div>
+
+        <div class="informationOnOf1"></div>
+    </div>
+    <div id="overlay2" class="overlay2 hidden2"></div>
+    <!--    Все время close-->
+</section>
+<!--  Информация о товаре и Все время close -->
+
+
+<!--Удалить мой продукт modal description img open -->
+<section class="description-img-section" style="position:relative;" >
+    <!--Дата начала Дата окончания open-->
+    <div class="delete-product-div" >
+
+        <form action="{{url_for('clients.my_products.my_product.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
+              class="delete-product-form" id="data_form" method="post"
+              ser_num="{{my_product['data']['serial_num'][0]}}">
+            <div class="description-header">
+                <h2>Дата начала и Дата окончания</h2>
+            </div>
+            <input type="hidden" value="{{my_product['data']['product_id'][0]}}">
+            <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
+            <div class="a">
+                <label for="start_date">Дата начала</label>
+                <input type="datetime-local" name="start_date" value="" id="start_date" required>
+            </div>
+            <div class="a">
+                <label for="end_date">Дата окончания</label>
+                <input type="datetime-local" name="end_date" value="" id="end_date" required>
+            </div>
+
+            <div class="a">
+                <input type="submit" id="date_submit" class="add-type-submit4" value="Добавить">
+            </div>
+        </form>
+        <div id="containerModal3" class="container3 modal3 hidden3">
+            <button class="close-modal4">&times;</button>
+
+            <div class="header header3">
+                <h2>Дата начала и окончания</h2>
+            </div>
+            <div class="start-end-date">
+                <table class="table-date">
+                    <thead id="thead_data">
+                    <tr id="thead_tr">
+                        <th>Включить и Выключить</th>
+                        <th>Дата начала и окончания</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="tbody_date">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="overlay3" class="overlay3 hidden3"></div>
+    </div>
+
+    <!--Дата начала Дата окончания close-->
+
+    <!--Удалить мой продукт modal open description-->
     <div class="description-container">
 
         <div class="description-header">
@@ -94,7 +148,9 @@
             </button>
         </form>
     </div>
+    <!--Удалить мой продукт modal close description-->
 
+    <!--    img open -->
     <div class="onof-div">
         {% for i in range(my_product['data']['photo']|length)%}
         <div class="all-products">
@@ -119,10 +175,13 @@
         </div>
         {%endfor%}
     </div>
+    <!--    img close -->
 
 </section>
+<!--Удалить мой продукт modal description img close -->
 
 
+<!--Удалить мой продукт modal open-->
 <section>
     <div class="container1 modal1 hidden1">
         <button class="close-modal1">&times;</button>
@@ -142,48 +201,11 @@
     </div>
     <div class="overlay1 hidden1"></div>
 </section>
-<section style="position: relative">
-    <div class="delete-product-div">
-        <form action="{{url_for('clients.my_products.my_product.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
-              class="delete-product-form" id="data_form" method="post"
-              ser_num="{{my_product['data']['serial_num'][0]}}">
-            <input type="hidden" value="{{my_product['data']['product_id'][0]}}">
-            <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
-            <div class="a">
-                <label for="start_date">Дата начала</label>
-                <input type="datetime-local" name="start_date" value="" id="start_date" required>
-            </div>
-            <div class="a">
-                <label for="end_date">Дата окончания</label>
-                <input type="datetime-local" name="end_date" value="" id="end_date" required>
-            </div>
-            <input type="submit" id="date_submit" class="add-type-submit4" value="Добавить">
-        </form>
-    </div>
+<!--Удалить мой продукт modal close-->
 
-    <div id="containerModal3" class="container3 modal3 hidden3">
-        <button class="close-modal4">&times;</button>
 
-        <div class="header header3">
-            <h2>Start date and End date</h2>
-        </div>
-    <div style="overflow: scroll; height: 240px">
-        <table class="table-date">
-            <thead id="thead_data">
-                <tr id="thead_tr">
-                    <th>ON and OF</th>
-                    <th>Start and End dates</th>
-                </tr>
-            </thead>
 
-            <tbody id="tbody_date">
 
-            </tbody>
-        </table>
-    </div>
-    </div>
-    <div id="overlay3" class="overlay3 hidden3"></div>
-</section>
 
 
 {% endblock %}
