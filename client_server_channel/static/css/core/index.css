@@ -231,12 +231,18 @@ section {
     }
 
     .all-products {
-        width: 100%;
+        width: 95%;
+        margin: 0 auto;
     }
 
     .all-products .img-div {
         float: none;
         margin: 3% auto;
+        height: 410px;
+    }
+
+    .all-products img {
+        height: 330px;
     }
 
     .all-products .img-div .description, a  {
@@ -279,20 +285,21 @@ section {
     }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1366px) {
+@media only screen and (min-width: 1024px) and (max-width: 1366px) {
 
     section {
-        width: 95%;
+        width: 100%;
     }
 
     .all-products .img-div {
         width: 26%;
-        height: 300px;
+        height: 340px;
         padding: 41px 20px;
+        margin-left: 4.5%;
     }
 
     .all-products img {
-        height: 222px;
+        height: 260px;
     }
 }
 
