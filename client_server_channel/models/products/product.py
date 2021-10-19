@@ -1,6 +1,7 @@
 from .. import crud
 import secrets
 from datetime import date
+from .. import model_utils as utls
 
 
 # login va parol generatsiya qilish uchun
@@ -79,7 +80,9 @@ class ProductTable:
 
     @staticmethod
     def get_all():
-        return crud.get_all('products')
+        col_names = utls.get_column_names('products')
+        sql = 'SELECT * FROM products WHERE active = TRUE ORDER BY date_added'
+        return crud.run_SQL(sql, col_names)
 
 
     @staticmethod
