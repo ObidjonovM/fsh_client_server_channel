@@ -15,7 +15,7 @@ section {
     margin-top: 15px;
 }
 
-.container, .container1, .container2, .container3 {
+.container, .container1, .container3 {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -93,10 +93,6 @@ section {
     margin: 20px 0px;
 }
 
-.header2 h2 {
-    margin: 24px 0px;
-}
-
 .header3 h2 {
     margin: 24px 0px;
 }
@@ -169,7 +165,7 @@ section {
     padding: 12px 3px;
 }
 
-.close-modal, .close-modal1, .close-modal3, .close-modal2, .close-modal4 {
+.close-modal, .close-modal1, .close-modal3, .close-modal4 {
     position: absolute;
     top: 1.2rem;
     right: 1rem;
@@ -182,12 +178,7 @@ section {
     height: 40px;
 }
 
-.close-modal2 {
-    top: 0.6rem;
-    right: .8rem;
-}
-
-.close-modal:focus, .close-modal1:focus, .close-modal3:focus, .close-modal2:focus, .close-modal4:focus {
+.close-modal:focus, .close-modal1:focus, .close-modal3:focus, .close-modal4:focus {
     border: 1px solid #9a9a6f;
     box-shadow: 0px 0px 1px 1px #e4e418;
 }
@@ -200,15 +191,11 @@ section {
     display: none;
 }
 
-.hidden2 {
-    display: none;
-}
-
 .hidden3 {
     display: none;
 }
 
-.modal, .modal1, .modal2 {
+.modal, .modal1 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -267,17 +254,7 @@ section {
     border-radius: 4px;
 }
 
-.informationOnOf1 {
-    width: 65%;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    margin: 2% auto 6% auto;
-    border: 1px solid #1b232e;
-    border-radius: 4px;
-}
-
-.overlay, .overlay1, .overlay2 {
+.overlay, .overlay1 {
     position: absolute;
     top: 0;
     left: 0;
@@ -606,7 +583,7 @@ section {
         box-shadow: none;
     }
 
-    .modal, .modal2 {
+    .modal {
         width: 97%;
         padding: 4rem;
         border-radius: 2px;
@@ -653,12 +630,6 @@ section {
 
     .ONOF {
         width: 100%;
-    }
-
-    .informationOnOf1 {
-        width: 90%;
-        font-size: 12px;
-        margin-bottom: 2%;
     }
 
     .table-date {
@@ -758,14 +729,6 @@ section {
 
     }
 
-    .modal2 {
-        width: 60%;
-    }
-
-    .informationOnOf1 {
-        margin-bottom: 11%;
-    }
-
     .information-input {
         width: 100%;
     }
@@ -807,12 +770,14 @@ section {
         width: 100%;
         display: block;
         border: 1px solid transparent;
+        margin: 10% auto;
     }
 
     .delete-product-div {
         width: 40%;
         float: left;
         margin-left: 7%;
+        margin-top: 0;
     }
 
     .description-container {
@@ -823,10 +788,10 @@ section {
     }
 
     .onof-div {
-        margin: 30% auto;
+        margin: 40% auto;
     }
 
-    .modal, .modal2 {
+    .modal {
         top: 30%;
     }
 

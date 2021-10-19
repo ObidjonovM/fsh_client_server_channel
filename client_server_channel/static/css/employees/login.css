@@ -27,6 +27,27 @@
     padding: 30px 40px;
 }
 
+.register-open {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.register-open a {
+    cursor: pointer;
+}
+
+.form-control a {
+    text-decoration: none;
+    color: #374a62;
+    padding-top: 2px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.form-control a:hover {
+    text-decoration: underline #374a62;
+}
+
 .form-control {
     margin-bottom: 10px;
     padding-bottom: 20px;

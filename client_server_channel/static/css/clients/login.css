@@ -70,6 +70,10 @@
     justify-content: flex-end;
 }
 
+.register-open a {
+    cursor: pointer;
+}
+
 .form-control a {
     text-decoration: none;
     color: #374a62;
