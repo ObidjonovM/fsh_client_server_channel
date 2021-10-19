@@ -29,7 +29,10 @@ class EmployeesTypeTable:
 
     @staticmethod
     def get_ids_names():
-        return crud.get_ids_names('employee_type', 'emp_type_id', 'emp_type_name')
+        sql = 'SELECT emp_type_id, emp_type_name FROM employee_type WHERE active = TRUE AND '
+        sql += 'emp_type_id != 1 ORDER BY emp_type_id'
+        
+        return crud.run_SQL(sql, ['emp_type_id', 'emp_type_name'])
 
 
     @staticmethod

@@ -20,12 +20,18 @@ class EmployeeTypeC:
  
     @staticmethod
     def get(type_id):
-        get_result = EmployeesTypeTable.get_type_info(type_id)
-        
+        if str(type_id) != '1':
+            get_result = EmployeesTypeTable.get_type_info(type_id)
+            
+            return {
+                'success' : get_result['success'],
+                'data' : get_result['data'],
+                'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+            }
+
         return {
-            'success' : get_result['success'],
-            'data' : get_result['data'],
-            'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+            'success' : False,
+            'data' : {}
         }
 
 
@@ -71,34 +77,35 @@ class EmployeeTypeC:
 
     @staticmethod
     def update(type_info):
-        get_result = EmployeesTypeTable.get_type_info(type_info['emp_type_id'])
-        log_code = utls.record_log(get_result, 'update', 'crud_logs')
-        if get_result['data'] != []:
-            type_info['date_modified'] = datetime.now()
-            update_result = EmployeesTypeTable.update_type_info(type_info)     
-            return {
-                'success' : update_result['success'],
-                'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
-            }
+        if str(type_info['emp_type_id']) != '1':
+            get_result = EmployeesTypeTable.get_type_info(type_info['emp_type_id'])
+            log_code = utls.record_log(get_result, 'update', 'crud_logs')
+            if get_result['data'] != []:
+                type_info['date_modified'] = datetime.now()
+                update_result = EmployeesTypeTable.update_type_info(type_info)     
+                return {
+                    'success' : update_result['success'],
+                    'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
+                }
 
-        else:
-            return {
-                'success' : False,
-                'log_code' : log_code,
-                'comment' : 'НЕ СУЩЕСТВУЕТ'
-            }
+        return {
+            'success' : False,
+            'log_code' : log_code,
+            'comment' : 'НЕ СУЩЕСТВУЕТ'
+        }
 
 
     @staticmethod
     def delete(type_id):
-        get_result = EmployeesTypeTable.get_type_info(type_id)
-        log_code = utls.record_log(get_result, 'delete', 'crud_logs')
-        if get_result['data'] != []:
-            delete_result = EmployeesTypeTable.delete_type(type_id)
-            return {
-                'success' : delete_result['success'],
-                'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
-            }
+        if str(type_id) != '1':
+            get_result = EmployeesTypeTable.get_type_info(type_id)
+            log_code = utls.record_log(get_result, 'delete', 'crud_logs')
+            if get_result['data'] != []:
+                delete_result = EmployeesTypeTable.delete_type(type_id)
+                return {
+                    'success' : delete_result['success'],
+                    'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
+                }
         
         return {
             'success' : False,

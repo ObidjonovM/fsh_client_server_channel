@@ -23,14 +23,21 @@ class EmployeeC:
 
     @staticmethod
     def get(emp_id):
-        get_result = EmployeesTable.get(emp_id)
-        del get_result['data']['username']
-        del get_result['data']['password']
+        if str(emp_id) != '1':
+            get_result = EmployeesTable.get(emp_id)
+            if len(get_result['data']) > 0:
+                del get_result['data']['username']
+                del get_result['data']['password']
+
+            return {
+                'success' : get_result['success'],
+                'data' : get_result['data'],
+                'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+            }
 
         return {
-            'success' : get_result['success'],
-            'data' : get_result['data'],
-            'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+            'success' : False,
+            'data' : {}
         }
 
 
@@ -72,34 +79,35 @@ class EmployeeC:
 
     @staticmethod
     def update(type_info):
-        get_result = EmployeesTable.get(type_info['emp_id'])
-        log_code = utls.record_log(get_result, 'update', 'crud_logs')
-        if get_result['data'] != []:
-            type_info['date_modified'] = datetime.now()
-            update_result = EmployeesTable.update(type_info)
-            return {
-                'success' : update_result['success'],
-                'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
-            }
+        if str(type_info['emp_id']) != '1':
+            get_result = EmployeesTable.get(type_info['emp_id'])
+            log_code = utls.record_log(get_result, 'update', 'crud_logs')
+            if get_result['data'] != []:
+                type_info['date_modified'] = datetime.now()
+                update_result = EmployeesTable.update(type_info)
+                return {
+                    'success' : update_result['success'],
+                    'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
+                }
 
-        else:
-            return {
-                'success' : False,
-                'log_code' : log_code,
-                'comment' : 'НЕ СУЩЕСТВУЕТ'
-            }
+        return {
+            'success' : False,
+            'log_code' : log_code,
+            'comment' : 'НЕ СУЩЕСТВУЕТ'
+        }
 
 
     @staticmethod
     def delete(emp_id):
-        get_result = EmployeesTable.get(emp_id)
-        log_code = utls.record_log(get_result, 'delete', 'crud_logs')
-        if get_result['data'] != []:
-            delete_result = EmployeesTable.delete(emp_id)
-            return {
-                'success' : delete_result['success'],
-                'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
-            }
+        if str(emp_id) != '1':
+            get_result = EmployeesTable.get(emp_id)
+            log_code = utls.record_log(get_result, 'delete', 'crud_logs')
+            if get_result['data'] != []:
+                delete_result = EmployeesTable.delete(emp_id)
+                return {
+                    'success' : delete_result['success'],
+                    'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
+                }
 
         return {
             'success' : False,

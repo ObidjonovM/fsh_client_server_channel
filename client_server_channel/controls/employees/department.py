@@ -20,12 +20,18 @@ class DepartmentC:
 
     @staticmethod
     def get(dept_id):
-        get_result = DepartmentTable.get(dept_id)
+        if str(dept_id) != '1':
+            get_result = DepartmentTable.get(dept_id)
+
+            return {
+                'success' : get_result['success'],
+                'data' : get_result['data'],
+                'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+            }
 
         return {
-            'success' : get_result['success'],
-            'data' : get_result['data'],
-            'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+            'success' : False,
+            'data' : {}
         }
 
 
@@ -64,15 +70,16 @@ class DepartmentC:
 
     @staticmethod
     def update(dept_info):
-        get_result = DepartmentTable.get(dept_info['dept_id'])
-        log_code = utls.record_log(get_result, 'update', 'crud_logs')
-        if get_result['data'] != []:
-            dept_info['date_modified'] = datetime.now()
-            update_result = DepartmentTable.update(dept_info)
-            return {
-                'success' : update_result['success'],
-                'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
-            }
+        if str(dept_info['dept_id']) != '1':
+            get_result = DepartmentTable.get(dept_info['dept_id'])
+            log_code = utls.record_log(get_result, 'update', 'crud_logs')
+            if get_result['data'] != []:
+                dept_info['date_modified'] = datetime.now()
+                update_result = DepartmentTable.update(dept_info)
+                return {
+                    'success' : update_result['success'],
+                    'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
+                }
 
         return {
             'success' : False,
@@ -83,14 +90,15 @@ class DepartmentC:
 
     @staticmethod
     def delete(dept_id):
-        get_result = DepartmentTable.get(dept_id)
-        log_code = utls.record_log(get_result, 'delete', 'crud_logs')
-        if get_result['data'] != []:
-            delete_result = DepartmentTable.delete(dept_id)
-            return {
-                'success' : delete_result['success'],
-                'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
-            }
+        if str(dept_id) != '1':
+            get_result = DepartmentTable.get(dept_id)
+            log_code = utls.record_log(get_result, 'delete', 'crud_logs')
+            if get_result['data'] != []:
+                delete_result = DepartmentTable.delete(dept_id)
+                return {
+                    'success' : delete_result['success'],
+                    'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
+                }
 
         return {
             'success' : False,

@@ -20,12 +20,18 @@ class EmployeeStatusC:
 
     @staticmethod
     def get(status_id):
-        get_result = EmployeeStatusTable.get(status_id)
+        if str(status_id) != '1':
+            get_result = EmployeeStatusTable.get(status_id)
+
+            return {
+                'success' : get_result['success'],
+                'data' : get_result['data'],
+                'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+            }
 
         return {
-            'success' : get_result['success'],
-            'data' : get_result['data'],
-            'log_code' : utls.record_log(get_result, 'get', 'crud_logs')
+            'success' : False,
+            'data' : {}
         }
 
 
@@ -64,15 +70,16 @@ class EmployeeStatusC:
 
     @staticmethod
     def update(status_info):
-        get_result = EmployeeStatusTable.get(status_info['status_id'])
-        log_code = utls.record_log(get_result, 'update', 'crud_logs')
-        if get_result['data'] != []:
-            status_info['date_modified'] = datetime.now()
-            update_result = EmployeeStatusTable.update(status_info)
-            return {
-                'success' : update_result['success'],
-                'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
-            }
+        if str(status_info['status_id'] != '1'):
+            get_result = EmployeeStatusTable.get(status_info['status_id'])
+            log_code = utls.record_log(get_result, 'update', 'crud_logs')
+            if get_result['data'] != []:
+                status_info['date_modified'] = datetime.now()
+                update_result = EmployeeStatusTable.update(status_info)
+                return {
+                    'success' : update_result['success'],
+                    'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
+                }
 
         return {
             'success' : False,
@@ -83,14 +90,15 @@ class EmployeeStatusC:
 
     @staticmethod
     def delete(status_id):
-        get_result = EmployeeStatusTable.get(status_id)
-        log_code = utls.record_log(get_result, 'delete', 'crud_logs')
-        if get_result['data'] != []:
-            delete_result = EmployeeStatusTable.delete(status_id)
-            return {
-                'success' : delete_result['success'],
-                'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
-            }
+        if str(status_id) != '1':
+            get_result = EmployeeStatusTable.get(status_id)
+            log_code = utls.record_log(get_result, 'delete', 'crud_logs')
+            if get_result['data'] != []:
+                delete_result = EmployeeStatusTable.delete(status_id)
+                return {
+                    'success' : delete_result['success'],
+                    'log_code' : utls.record_log(delete_result, 'delete', 'crud_logs')
+                }
 
         return {
             'success' : False,

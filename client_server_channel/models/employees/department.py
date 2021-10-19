@@ -23,7 +23,10 @@ class DepartmentTable:
 
     @staticmethod
     def get_ids_names():
-        return crud.get_ids_names('departments', 'dept_id', 'name')
+        sql = 'SELECT dept_id, name FROM departments WHERE active = TRUE AND '
+        sql += 'dept_id != 1 ORDER BY dept_id'
+        
+        return crud.run_SQL(sql, ['dept_id', 'name'])
 
 
     @staticmethod

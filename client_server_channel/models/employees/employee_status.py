@@ -11,6 +11,7 @@ class EmployeeStatusTable:
 
     @staticmethod
     def get(status_id):
+        sql = f'SELECT * FROM employee_status WHERE status_id = {status_id} AND active = TRUE'
         return crud.get('employee_status', {'status_id' : status_id})
 
 
@@ -24,7 +25,10 @@ class EmployeeStatusTable:
 
     @staticmethod
     def get_ids_names():
-        return crud.get_ids_names('employee_status', 'status_id', 'status')
+        sql = 'SELECT status_id, status FROM employee_status WHERE active = TRUE AND '
+        sql += 'status_id != 1 ORDER BY status_id'
+        
+        return crud.run_SQL(sql, ['status_id', 'status'])
 
 
     @staticmethod

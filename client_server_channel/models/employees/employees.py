@@ -24,7 +24,10 @@ class EmployeesTable:
 
     @staticmethod
     def get_ids_names():
-        return crud.get_columns_by_col_names('employees', ['emp_id', 'last_name', 'first_name', 'middle_name'])
+        sql = 'SELECT emp_id, last_name, first_name, middle_name FROM employees '
+        sql += 'WHERE active = TRUE AND emp_id != 1 ORDER BY emp_id'
+        
+        return crud.run_SQL(sql, ['emp_id', 'last_name', 'first_name', 'middle_name'])
 
 
     @staticmethod
