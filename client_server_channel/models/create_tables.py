@@ -790,7 +790,7 @@ CREATE TABLE IF NOT EXISTS sp_warehouse (
 	acc_emp_id INT NOT NULL CHECK (acc_emp_id > 0),
 	date_used TIMESTAMP,
 	used_emp_id INT CHECK (used_emp_id > 0),
-	pr_serial_num VARCHAR(12) UNIQUE,
+	pr_serial_num VARCHAR(12),
 	active BOOLEAN NOT NULL,	
 
 	FOREIGN KEY (type_id)
