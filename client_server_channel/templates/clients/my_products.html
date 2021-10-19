@@ -66,29 +66,30 @@
     </div>
     <div class="overlay hidden"></div>
 
-    <div class="container">
+    <div class="container" style="margin-top:-5%; ">
 
         <section>
 
             <div class="all-products-content">
                 {% for i in range(my_products['data']['serial_num']|length)%}
                 <div class="all-products">
-                <div class="ONOF"></div>
+                    <div class="ONOF"></div>
                     <div class="img-div">
                     <span>
                        <p class="description">{{my_products['data']['description'][i]}}</p>
                     </span>
 
                         <img src="{{my_products['data']['photo'][i]}}" class="my-products-img"
-                             ser_num="{{my_products['data']['serial_num'][i]}}" prefix="{{my_products['data']['prefix'][i]}}" onclick="productImg(this)">
+                             ser_num="{{my_products['data']['serial_num'][i]}}"
+                             prefix="{{my_products['data']['prefix'][i]}}" onclick="productImg(this)">
                         <a onclick="goSocket(this)">Учить больше</a>
                     </div>
                     {% if my_products['data']['product_id'][i] == 1 %}
                     <div class="input-on-off">
-                        <input type="button" action = "ON" value="Включить" onclick="actionCommand(this)" class="on"
+                        <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
 
-                        <input type="button" action = "OFF" value="Выключить" onclick="actionCommand(this)" class="off"
+                        <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
                     </div>
                     {% endif %}
@@ -100,8 +101,6 @@
         </section>
 
     </div>
-
-
 
 
 </div>

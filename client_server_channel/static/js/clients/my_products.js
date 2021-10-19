@@ -116,10 +116,10 @@ let w;
                             my_products_img[i].setAttribute('action', sub_val['state'])
                             let on_off;
                             if (sub_val['state'] == 'ON'){
-                                on_off = 'Включить';
+                                on_off = 'Включен';
                             }
                             if(sub_val['state'] == 'OFF'){
-                                on_off = 'Выключить';
+                                on_off = 'Выключен';
                             }
                             req_action[i].style.backgroundColor = 'white';
                             req_action[i].innerHTML = on_off;

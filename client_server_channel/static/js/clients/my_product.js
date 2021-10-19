@@ -138,59 +138,33 @@
 
 
 // All time open
-    const containerModal2 = document.getElementById('containerModal2');
-    const all_time_modal2 = document.querySelector('.modal2');
-    const all_time_overlay2 = document.querySelector('.overlay2');
-    const btnCloseModal2 = document.querySelector('.close-modal2');
     const all_time_input2 = document.getElementById('all_time_input');
-    let informationOnOf1 = document.querySelector('.informationOnOf1');
-    let information_on_of = document.querySelector('.information-on-of');
 
+    window.addEventListener('load', function () {
 
-    // function closeModal4() {
-    //     all_time_modal2.classList.add('hidden2');
-    //     all_time_overlay2.classList.add('hidden2');
-    //     all_time_input2.value = "";
-    // }
-    //
-    // function openAllTime() {
-    //     all_time_modal2.classList.remove('hidden2');
-    //     all_time_overlay2.classList.remove('hidden2');
-    // }
-
-    // btnCloseModal2.addEventListener('click', closeModal4);
-    // all_time_input2.addEventListener('click', openAllTime);
-
-window.addEventListener('load', function () {
-
-
-    function informationOnOf(){
-         let json = {
-             'ser_num' : informationOnOf1.getAttribute('ser_num'),
-             'prefix' : informationOnOf1.getAttribute('prefix')
-         }
-
-        console.log(json);
-         xhttp.open('Post', '/clients/my_products/my_product/last_request_time');
-         xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-         xhttp.send(JSON.stringify(json))
-         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                 let resp = JSON.parse(this.responseText);
-
-                 if (resp['request_time'] == '-'){
-                     informationOnOf1.innerHTML = '';
-                 }else {
-                     informationOnOf1.innerHTML = resp['request_time'];
-                     information_on_of.appendChild(informationOnOf1);
-                 }
-
-
+             let w1;
+             let json = {
+                 'ser_num' : all_time_input2.getAttribute('ser_num'),
+                 'prefix' : all_time_input2.getAttribute('prefix')
              }
-         }
-        setTimeout("informationOnOf()",1000);
-     }
-})
+
+            if (typeof(Worker) !== "undefined") {
+                if (typeof (w1) == "undefined") {
+                    w1 = new Worker("/static/js/clients/s_worker2.js");
+                }
+                w1.postMessage(json)
+
+                w1.onmessage = function (ev) {
+                    console.log(ev.data['request_time']);
+                    if (ev.data['request_time'] == '-') {
+                        all_time_input2.innerHTML = '';
+                    }else {
+                        all_time_input2.innerHTML = ev.data['request_time'];
+                    }
+                };
+            }
+
+    })
 // All time close
 
 
@@ -303,10 +277,10 @@ window.addEventListener('load', function () {
             w.onmessage = function (ev) {
                 let on_of;
                 if (ev.data['state'] == 'ON'){
-                    on_of = 'Включить';
+                    on_of = 'Включен';
                 }
                 if (ev.data['state'] == 'OFF'){
-                    on_of = 'Выключить';
+                    on_of = 'Выключен';
                 }
                 for (let i=0; i<req_action.length; i++) {
                     req_action[i].style.backgroundColor = 'white';
