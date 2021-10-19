@@ -73,5 +73,11 @@ function validateForm() {
 };
 
 
+const back = document.getElementById('back');
+back.addEventListener('click', function () {
+    window.open('/employees/login', '_self');
+})
+
+
 
 

@@ -169,7 +169,7 @@
 
 
 
-// start_date and end_data open
+// Дата начала and Дата окончания open
     function sendData() {
 
         const data_form = document.getElementById('data_form');
@@ -247,7 +247,7 @@
 
     date_submit.addEventListener('submit', open3);
     close_modal4.addEventListener('click', closeModal5);
-// start_date and end_data close
+// Дата начала and Дата окончания close
 
 
 
