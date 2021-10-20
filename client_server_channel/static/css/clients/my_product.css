@@ -905,6 +905,43 @@ section {
     }
 }
 
+@media only screen and (width: 1321px) and (height: 768px) {
+    section {
+        width: 92%;
+        margin: 15px auto;
+    }
+
+    .description-img-section {
+        width: 98%;
+    }
+
+    .add-type-submit2 {
+        margin-top: 14px;
+    }
+
+    .modal {
+        width: 35%;
+        position: fixed;
+        transform: translate(-50%, -50%);
+    }
+
+    .delete-product-form input {
+        background-color: white;
+    }
+
+    .overlay {
+        position: fixed;
+    }
+
+    .information-on-of {
+        width: 20%;
+    }
+
+    .information-input {
+        width: 100%;
+    }
+}
+
 @media only screen and (width: 1366px) and (height: 768px) {
 
     section {
