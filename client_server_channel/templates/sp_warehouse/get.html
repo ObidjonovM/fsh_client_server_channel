@@ -10,21 +10,20 @@
 {% block body %}
 {{super()}}
 
-
 <div class="add-container">
     <div class="add-header">
         <h2>Склад запчасти</h2>
     </div>
     <div id="myForm" class="add-form">
 
-        <input type="hidden" id="sp_id" value="{{sp_warehouse_info['data']['sp_id']}}">
-
-
         <div class="form-control">
+            <label for="sp_id">Номер запчасти</label>
+            <input type="text" id="sp_id" readonly
+                   value="{{sp_warehouse_info['data']['sp_id']}}"/>
+
             <label for="type_id">Тип запчасти</label>
             <input type="text" id="type_id" readonly
                    value="{{type_name['data']['name']}}"/>
-
 
             <label for="order_id">Номер заказа</label>
             <input type="text" id="order_id" readonly

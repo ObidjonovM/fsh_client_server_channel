@@ -37,13 +37,13 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .form-control {
     margin-left: 40px;
     margin-right: 40px;
-    margin-top: -60px;
+    margin-top: 8%;
 }
 
 .form-control label {

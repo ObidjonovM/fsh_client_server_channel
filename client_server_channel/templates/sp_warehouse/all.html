@@ -21,7 +21,7 @@
 
         <tr>
 
-            <th class="hidden">ИД</th>
+            <th>Номер запчасти</th>
 
             <th>Тип запчасти</th>
 
@@ -45,7 +45,7 @@
         {% for i in range(sp_warehouses['data']['sp_id']|length) %}
         <tr ondblclick="getType(this)">
 
-            <td class="hidden">{{sp_warehouses['data']['sp_id'][i]}}</td>
+            <td>{{sp_warehouses['data']['sp_id'][i]}}</td>
 
             <td>{{types_ids['data'][sp_warehouses['data']['type_id'][i]]}}</td>
 
