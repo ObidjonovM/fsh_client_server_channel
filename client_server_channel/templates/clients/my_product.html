@@ -64,14 +64,41 @@
 
 <!--Удалить мой продукт modal description img open -->
 <section class="description-img-section" style="position:relative;" >
-    <!--Дата начала Дата окончания open-->
-    <div class="delete-product-div" >
 
+    <!--    img open -->
+    <div class="onof-div">
+        {% for i in range(my_product['data']['photo']|length)%}
+        <div class="all-products">
+            <div class="ONOF"></div>
+            <div class="img-div">
+                <span>{{my_product['data']['description'][i]}}</span>
+
+                <img src="{{my_product['data']['photo'][i]}}" class="socket-img"
+                     ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}"
+                     alt="img">
+            </div>
+
+            {% if my_product['data']['product_id'][i] == 1 %}
+            <div class="input-on-off">
+                <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
+                       ser_num="{{my_product['data']['serial_num'][i]}}">
+
+                <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
+                       ser_num="{{my_product['data']['serial_num'][i]}}">
+            </div>
+            {% endif %}
+        </div>
+        {%endfor%}
+    </div>
+    <!--    img close -->
+
+    <!--Дата начала Дата окончания open-->
+    <div class="delete-product-div1" >
         <form action="{{url_for('clients.my_products.my_product.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
               class="delete-product-form" id="data_form" method="post"
               ser_num="{{my_product['data']['serial_num'][0]}}">
             <div class="description-header">
-                <h2>Дата начала и Дата окончания</h2>
+                <h2>Список записи</h2>
             </div>
             <input type="hidden" value="{{my_product['data']['product_id'][0]}}">
             <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
@@ -111,8 +138,8 @@
         </div>
         <div id="overlay3" class="overlay3 hidden3"></div>
     </div>
-
     <!--Дата начала Дата окончания close-->
+
 
     <!--Удалить мой продукт modal open description-->
     <div class="description-container">
@@ -138,33 +165,6 @@
         </form>
     </div>
     <!--Удалить мой продукт modal close description-->
-
-    <!--    img open -->
-    <div class="onof-div">
-        {% for i in range(my_product['data']['photo']|length)%}
-        <div class="all-products">
-            <div class="ONOF"></div>
-            <div class="img-div">
-                <span>{{my_product['data']['description'][i]}}</span>
-
-                <img src="{{my_product['data']['photo'][i]}}" class="socket-img"
-                     ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}"
-                     alt="img">
-            </div>
-
-            {% if my_product['data']['product_id'][i] == 1 %}
-            <div class="input-on-off">
-                <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
-                       ser_num="{{my_product['data']['serial_num'][i]}}">
-
-                <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
-                       ser_num="{{my_product['data']['serial_num'][i]}}">
-            </div>
-            {% endif %}
-        </div>
-        {%endfor%}
-    </div>
-    <!--    img close -->
 
 </section>
 <!--Удалить мой продукт modal description img close -->
