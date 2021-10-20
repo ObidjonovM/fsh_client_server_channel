@@ -277,6 +277,7 @@
         width: 99%;
         height: auto;
         overflow: auto;
+        transform: translate(-50%, 15%);
     }
 
     .add-form {
@@ -298,6 +299,13 @@
 
     .add-submit, .add-submit2 {
         margin-top: 3%;
+    }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1516px) and (min-height: 510px) and (max-height: 819px) {
+    .add-container {
+        transform: translate(-50%, 10%);
+        border: 1px solid red;
     }
 }
 

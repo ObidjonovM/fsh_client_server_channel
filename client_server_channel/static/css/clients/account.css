@@ -321,6 +321,20 @@ section{
     }
 }
 
+@media only screen and (min-width: 569px) and (max-width:767px){
+    .logout-hi-person {
+        width: 70%;
+    }
+
+    .hi-person {
+        margin-right: 1%;
+    }
+
+    .glavni-stranisa, .viyti {
+        border: 1px solid #c7c7c7!important;
+    }
+}
+
 @media only screen and (min-width: 768px) and (max-width:1024px){
 
     section {
@@ -353,7 +367,7 @@ section{
     }
 }
 
-@media only screen and (min-width: 1024px) and (max-width:1366px){
+@media only screen and (width: 1024px) and (height:1366px){
     section {
         width: 79%;
     }
