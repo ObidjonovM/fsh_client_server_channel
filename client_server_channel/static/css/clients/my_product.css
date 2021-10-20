@@ -674,6 +674,7 @@ section {
     .information-input {
         width: 100%;
         margin-left: 0;
+        font-size: 12px;
     }
 
     .input-on-off {
@@ -837,7 +838,7 @@ section {
     }
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1366px) {
+@media only screen and (width: 1024px) and (height: 1366px) {
 
     section {
         border: 1px solid transparent;
@@ -905,11 +906,29 @@ section {
 }
 
 @media only screen and (width: 1366px) and (height: 768px) {
-   .modal {
+
+    section {
+        width: 92%;
+        margin: 15px auto;
+    }
+
+    .description-img-section {
+        width: 98%;
+    }
+
+    .add-type-submit2 {
+        margin-top: 14px;
+    }
+
+    .modal {
        width: 35%;
        position: fixed;
-       transform: translate(-50%, -15%);
+       transform: translate(-50%, -50%);
    }
+
+    .delete-product-form input {
+        background-color: white;
+    }
 
     .overlay {
         position: fixed;
