@@ -31,7 +31,7 @@ class ProductC:
             if str(product_info['product_id']) == '2':
                 product_info['prefix'] = 'gas_sensor'
             if str(product_info['product_id']) == '3':
-                product_info['prefix'] = 'water_sensor'
+                product_info['prefix'] = 'socket_button'
             product_info['date_added'] = now
             product_info['date_modified'] = now
             add_result = ProductTable.insert(product_info)
