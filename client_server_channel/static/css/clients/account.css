@@ -216,6 +216,15 @@ section{
         border:1px solid #c7c7c7 ;
     }
 
+    .account-products {
+        position: absolute;
+        top: 48px;
+        right: 24%;
+        margin: 0;
+        display: none;
+        z-index: 10;
+    }
+
     .hi-person span{
         font-size: 11px;
     }
@@ -237,15 +246,16 @@ section{
 
     section {
         width: 99%;
-        transform: translate(-50%, 10%);
+        transform: translate(-50%, 20%);
     }
 
     .account-products {
         position: absolute;
-        top:48px;
-        right: 71px;
+        top: 48px;
+        right: 93px;
         margin: 0;
         display: none;
+        z-index: 10;
     }
 
     .hi-person {
@@ -265,6 +275,15 @@ section{
         border:1px solid #c7c7c7 ;
     }
 
+    .account-products {
+        position: absolute;
+        top: 48px;
+        right: 27%;
+        margin: 0;
+        display: none;
+        z-index: 10;
+    }
+
     .account-link1 {
         margin-left: 10%;
     }
@@ -275,6 +294,15 @@ section{
     .hi-person {
         margin-right: 12%;
         border:1px solid #c7c7c7 ;
+    }
+
+    .account-products {
+        position: absolute;
+        top: 48px;
+        right: 29%;
+        margin: 0;
+        display: none;
+        z-index: 10;
     }
 
     .account-link1 {
@@ -328,6 +356,15 @@ section{
 @media only screen and (min-width: 1024px) and (max-width:1366px){
     section {
         width: 79%;
+    }
+
+    .account-products {
+        position: absolute;
+        top: 48px;
+        right: 11.8%;
+        margin: 0;
+        display: none;
+        z-index: 10;
     }
 }
 /*media style close*/

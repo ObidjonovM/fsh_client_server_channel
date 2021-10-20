@@ -182,10 +182,174 @@ section {
 /*media style open*/
 
 
+@media only screen and (min-width: 280px) and (max-width: 653px) {
+    main {
+        width: 100%;
+        border: 1px solid transparent;
+        margin-top: 18%;
+    }
 
+    section {
+        width: 100%;
+        position: unset;
+        margin: 1% 0;
+        display: contents;
+    }
 
+    .hi-person-div {
+        display: flex;
+        justify-content: right;
+        padding: 0 5%;
+        width: 75%;
+    }
 
-@media only screen and (max-width: 640px) {
+    .hi-person {
+        float: left;
+        width: 100%;
+        font-size: 13px;
+        border:1px solid #c7c7c7;
+        margin-right: -2%;
+    }
+
+    .viyti {
+        margin-left: 2% !important;
+    }
+
+    .sign-in {
+        border:1px solid #c7c7c7!important;
+    }
+
+    .glavni-stranisa, .viyti {
+        border: 1px solid #c7c7c7!important;
+        margin-right: -6% !important;
+    }
+
+    .account-products {
+        display: none;
+        margin: 0;
+    }
+    .show-modal {
+        min-width: 185px;
+        position: absolute;
+        top: 97%;
+        left: -8%;
+    }
+    .glavni-stranisa {
+        float: right;
+    }
+
+    .account-products {
+        margin-right: -96%;
+        z-index: 100;
+    }
+
+    .all-products {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .all-products .img-div {
+        float: none;
+        margin: 3% auto;
+        height: 320px;
+        width: 270px;
+    }
+
+    .all-products img {
+        height: 240px;
+    }
+
+    .all-products .img-div .description, a  {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 568px) {
+    main {
+        width: 100%;
+        border: 1px solid transparent;
+        margin-top: 18%;
+    }
+
+    section {
+        width: 100%;
+        position: unset;
+        margin: 1% 0;
+        display: contents;
+    }
+
+    .hi-person-div {
+        display: flex;
+        justify-content: right;
+        padding: 0 5%;
+        width: 75%;
+    }
+
+    .hi-person {
+        float: left;
+        width: 100%;
+        font-size: 13px;
+        border:1px solid #c7c7c7;
+    }
+
+    .show-modal {
+        left: 2%;
+    }
+
+    .viyti {
+        margin-left: 2% !important;
+    }
+
+    .sign-in {
+        border:1px solid #c7c7c7!important;
+    }
+
+    .glavni-stranisa, .viyti {
+        border: 1px solid #c7c7c7!important;
+        margin-right: -6% !important;
+    }
+
+    .account-products {
+        display: none;
+        margin: 0;
+    }
+    .show-modal {
+        min-width: 185px;
+        position: absolute;
+        top: 97%;
+        left: 0;
+    }
+    .glavni-stranisa {
+        float: right;
+    }
+
+    .account-products {
+        margin-right: -96%;
+        z-index: 100;
+    }
+
+    .all-products {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .all-products .img-div {
+        float: none;
+        margin: 3% auto;
+        height: 320px;
+        width: 270px;
+    }
+
+    .all-products img {
+        height: 240px;
+    }
+
+    .all-products .img-div .description, a  {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 640px) {
 
     main {
         width: 100%;
@@ -209,11 +373,36 @@ section {
 
     .hi-person {
         float: left;
-        width: 90%;
+        width: 100%;
         font-size: 13px;
     }
+
+    .show-modal {
+        left: 2%;
+    }
+
+    .viyti {
+        margin-left: 2% !important;
+    }
+
+    .hi-person {
+        width: 92%;
+        margin-right: 8%;
+        border:1px solid #c7c7c7;
+    }
+
+    .sign-in {
+        border:1px solid #c7c7c7!important;
+    }
+
+    .glavni-stranisa, .viyti {
+        border: 1px solid #c7c7c7!important;
+        margin-right: -6% !important;
+    }
+
     .account-products {
         display: none;
+        margin: 0;
     }
     .show-modal {
         min-width: 185px;
@@ -226,7 +415,7 @@ section {
     }
 
     .account-products {
-        margin-right: -77%;
+        margin-right: -78%;
         z-index: 100;
     }
 
@@ -238,11 +427,12 @@ section {
     .all-products .img-div {
         float: none;
         margin: 3% auto;
-        height: 410px;
+        height: 320px;
+        width: 270px;
     }
 
     .all-products img {
-        height: 330px;
+        height: 240px;
     }
 
     .all-products .img-div .description, a  {
@@ -252,15 +442,70 @@ section {
 
 }
 
-@media only screen and (min-width: 360px) and (max-width: 812px) {
+@media only screen and (min-width: 375px) and (max-width: 812px) {
     .account-products {
         position: absolute;
-        margin: 0;
         display: none;
+        margin-right: -70%;
+
+    }
+
+    .sign-in {
+        border:1px solid #c7c7c7!important;
     }
 }
 
-@media only screen and (min-width: 641px) and (max-width: 1024px) {
+@media only screen and (min-width: 411px) and (max-width: 731px) {
+
+    .account-products {
+        margin-right: -56%;
+        z-index: 100;
+    }
+
+    .show-modal {
+      left: 2%;
+    }
+
+    .viyti {
+        margin-left: 2% !important;
+    }
+
+    .sign-in {
+        border:1px solid #c7c7c7!important;
+    }
+
+    .hi-person {
+        width: 56%;
+        margin-right: 16%;
+        border:1px solid #c7c7c7 ;
+    }
+
+    .glavni-stranisa, .viyti {
+        border: 1px solid #c7c7c7!important;
+        margin-right: -6% !important;
+    }
+}
+
+@media only screen and (min-width: 540px) and (max-width: 720px) {
+    .hi-person {
+        margin-right: 23%;
+    }
+
+    .show-modal {
+        left: 9%;
+    }
+
+    .sign-in {
+        border:1px solid #c7c7c7!important;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+    .account-products {
+        margin-right: 0%;
+        z-index: 100;
+    }
 
     section {
         width: 100%;
@@ -283,6 +528,8 @@ section {
         height: 152px;
 
     }
+
+
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1366px) {

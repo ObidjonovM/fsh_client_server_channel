@@ -8,9 +8,9 @@
 
 .add-container {
     position: absolute;
-    top: 50%;
+    top: 0;
     left: 50%;
-    transform: translate(-50%, 40%);
+    transform: translate(-50%, 20%);
     z-index: 10;
     width: 600px;
     height: 540px;
@@ -188,7 +188,7 @@ nav.auth > div.selected {
         width: 65%;
         height: auto;
         display: block;
-        margin: 0 auto;
+        margin: 5% auto;
     }
 
     .form-control {

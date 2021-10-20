@@ -131,12 +131,17 @@ section {
     align-items: center
 }
 
-.add-type-submit:hover, .add-type-submit2:hover, .add-type-submit4:hover {
+.add-type-submit:hover, .add-type-submit2:hover {
     background-color: #232F3E;
     transition: all .3s;
 }
 
-.show-modal, .delete-product-button {
+.a .add-type-submit4:hover {
+    background-color: #232F3E;
+    transition: all .3s;
+}
+
+.show-modal {
     text-align: center;
     width: 213px;
     padding: 3px;
@@ -148,7 +153,18 @@ section {
     box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, .2);
 }
 
-.show-modal:hover, .information-input:hover {
+.delete-product-button {
+    text-align: center;
+    width: 213px;
+    padding: 3px;
+    border: none;
+    background-color: #374a62;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, .2);
+}
+
+.show-modal:hover {
     background-color: #232F3E;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
     transition: all .2s ease-in-out;
@@ -236,22 +252,21 @@ section {
     margin: 3% auto
 }
 
+.information-on-of {
+    margin-left: 1%;
+}
+
 .information-input {
     height: 46px;
     outline: none;
-    margin-left: 7%;
+    /*margin-left: 7%;*/
     text-align: center;
-    width: 213px;
+    width: 220px;
     padding: 3px;
-    border: none;
-    background-color: #374a62;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, .2);
+    border: 1px solid #b8bbb8;
     font-size: 14px;
     font-weight: 600;
-    color: white;
-    border-radius: 4px;
+    color: black;
 }
 
 .overlay, .overlay1 {
@@ -367,6 +382,7 @@ section {
     overflow: hidden;
     width: 25%;
     max-width: 100%;
+    height: 335px;
 }
 
 .description-header {
@@ -423,6 +439,15 @@ section {
 
 
 /*delete-product-div open*/
+.delete-product-div1 {
+    min-width: 250px;
+    width: 25%;
+    margin: 1%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+    border-radius: 5px;
+    height: 335px;
+}
 .delete-product-div {
     min-width: 250px;
     width: 25%;
@@ -430,6 +455,15 @@ section {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
     border-radius: 5px;
+}
+
+.delete-product-div1 input {
+    height: 43px;
+    border: 1px solid #32334e;
+    border-radius: 4px;
+    padding: 5px 10px;
+    width: 100%;
+    font-size: 16px;
 }
 
 .delete-product-div input {
@@ -492,8 +526,8 @@ section {
 
     .description-img-section {
         width: 100%;
-        border: 1px solid black;
-        display: contents;
+        display: block;
+        border: 1px solid transparent;
     }
 
     .description-header h2 {
@@ -515,18 +549,35 @@ section {
     }
 
     .all-products {
-        width: 100%;
-        margin: 31% auto;
+        width: 90%;
+        margin: 10% auto;
+    }
+
+    .all-products .img-div {
+        height: 380px;
+    }
+
+    .all-products img {
+        height: 320px;
+    }
+
+    .delete-product-form .add-type-submit4 {
+        margin-bottom: 10%;
     }
 
     .description-container {
         width: 98%;
-        margin: 10% 1%;
+        margin: 24% 1%;
     }
 
     .input-on-off {
         display: inline-block;
         width: 100%;
+    }
+
+    .information-on-of {
+        width: 45%;
+        margin-left: 2%;
     }
 
     .input-on-off input {
@@ -572,9 +623,9 @@ section {
         right: 0;
     }
 
-    .delete-product-div {
+    .delete-product-div1 {
         width: 98%;
-        margin: 27% auto;
+        margin: 12% auto;
         min-width: 0;
     }
 
@@ -608,6 +659,8 @@ section {
     .modal1 {
         width: 97%;
         margin: 1% 0;
+        top: 130%;
+        transform: translate(-50%, 140%);
     }
 
     .information-section {
@@ -615,7 +668,6 @@ section {
     }
 
     .information-on-of {
-        width: 33%;
         margin-left: 2%;
     }
 
@@ -647,9 +699,6 @@ section {
     #thead_tr th, #tbody_tr #state_time_on_of {
         font-size: 14px;
     }
-    .modal1 {
-        transform: translate(-50%, 95%);
-    }
 
     .overlay1 {
         position: fixed;
@@ -659,6 +708,25 @@ section {
         margin-top: 20%;
     }
 
+}
+
+@media only screen and (min-width: 375px) and (max-width: 812px) {
+    .modal1 {
+        width: 97%;
+        margin: 1% 0;
+        top: 80%;
+        transform: translate(-50%, 140%);
+    }
+
+}
+
+@media only screen and (min-width: 414px) and (max-width: 736px) {
+    .modal1 {
+        width: 97%;
+        margin: 1% 0;
+        top: 100%;
+        transform: translate(-50%, 140%);
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
@@ -671,9 +739,18 @@ section {
         margin-top: 5%;
     }
 
+    .description-img-section {
+        width: 100%;
+        min-width: 0px;
+        margin-top: 5%;
+        display: block;
+        border: 1px solid transparent;
+    }
+
     .description-container {
         width: 60%;
-        margin: 15% auto;
+        margin: 5% auto;
+        margin-bottom: 20%;
     }
 
     .ONOF {
@@ -685,15 +762,8 @@ section {
         border-radius: 4px;
     }
 
-    .description-img-section {
-        width: 100%;
-        min-width: 0px;
-        margin-top: 15%;
-        display: block;
-    }
-
     .all-products {
-        margin: 26% auto;
+        margin: 0% auto;
     }
 
     .modal1 .delete-product-div {
@@ -705,8 +775,8 @@ section {
     }
 
     .onof-div {
-        width: 70%;
-        margin: -14% auto;
+        width: 46%;
+        margin: 0% auto;
         border:1px solid transparent;
     }
 
@@ -714,9 +784,9 @@ section {
         margin-top: 1%;
     }
 
-    .delete-product-div {
+    .delete-product-div1 {
         width: 60%;
-        margin: 0% auto;
+        margin: 5% auto;
     }
 
     .information-section {
@@ -725,7 +795,8 @@ section {
     }
 
     .information-on-of {
-        width: 23%;
+        width: 30%;
+        margin-left: 2%;
 
     }
 
@@ -738,7 +809,7 @@ section {
     }
 
     .modal1 {
-        transform: translate(-50%, 45%);
+        transform: translate(-50%, 30%);
         width: 60%;
         padding: 3rem 1rem;
     }
@@ -749,6 +820,7 @@ section {
 
     .modal3 {
         top: 10%;
+        transform: translate(-50%, 88%);
     }
 
     .header3 {
@@ -766,29 +838,38 @@ section {
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1366px) {
+
+    section {
+        border: 1px solid transparent;
+    }
+
     .description-img-section {
         width: 100%;
-        display: block;
+        display: table;
         border: 1px solid transparent;
-        margin: 10% auto;
+        margin: 5% auto;
+        margin-bottom: 35%;
     }
 
-    .delete-product-div {
+
+    .delete-product-div1 {
         width: 40%;
+        height: 340px;
         float: left;
         margin-left: 7%;
-        margin-top: 0;
+        margin-top: 5%;
     }
-
     .description-container {
         width: 40%;
+        height: 340px;
         float: left;
-        margin-top: 0;
+        margin-top: 5%;
         margin-left: 6%;
     }
 
     .onof-div {
-        margin: 40% auto;
+        width: 35%;
+        margin: 0 auto;
     }
 
     .modal {
@@ -796,7 +877,13 @@ section {
     }
 
     .all-products {
-        margin: 30% auto;
+        margin: 0 auto;
+    }
+
+    .information-on-of {
+        width: 25%;
+        margin-left: 2%;
+
     }
 
     .modal1 {
@@ -814,6 +901,26 @@ section {
     .modal1 .delete-product-div form {
         width: 50%;
         margin: -22px auto;
+    }
+}
+
+@media only screen and (width: 1366px) and (height: 768px) {
+   .modal {
+       width: 35%;
+       position: fixed;
+       transform: translate(-50%, -15%);
+   }
+
+    .overlay {
+        position: fixed;
+    }
+
+    .information-on-of {
+        width: 20%;
+    }
+
+    .information-input {
+        width: 100%;
     }
 }
 

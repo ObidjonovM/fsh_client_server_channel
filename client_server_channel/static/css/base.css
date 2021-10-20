@@ -48,9 +48,11 @@
     border: 1px solid #c7c7c7;
 }
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 640px){
     .sign-in {
-        margin-right: -20%;
+        font-size: 14px;
+        width: 71px;
+        margin-right: -6%;
     }
     .glavni-stranisa, .viyti{
         width: 82px;
