@@ -28,7 +28,7 @@
     justify-content: space-between;
 }
 
-.glavni-stranisa, .viyti, .sign-in, .add-product  {
+.glavni-stranisa, .viyti, .sign-in, .add-product, .get-my-products {
     width: 120px;
     height: 43px;
     margin:3px;
@@ -40,11 +40,17 @@
     font-weight: bolder;
     font-size: 16px;
 }
+
+.get-my-products {
+    width: 42%;
+    padding: 0 2%;
+    float: right;
+}
 .add-product {
     width: 160px;
 }
 
-.glavni-stranisa:hover, .viyti:hover, .sign-in:hover, .add-product:hover {
+.glavni-stranisa:hover, .viyti:hover, .sign-in:hover, .add-product:hover, .get-my-products:hover {
     border: 1px solid #c7c7c7;
 }
 

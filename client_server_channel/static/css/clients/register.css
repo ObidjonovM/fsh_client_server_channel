@@ -88,7 +88,7 @@
     padding-left: 3px;
     display: block;
     color: red;
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .star {
@@ -152,7 +152,7 @@ nav.auth > div.selected {
 }
 
 .modal {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -165,7 +165,7 @@ nav.auth > div.selected {
 }
 
 .overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

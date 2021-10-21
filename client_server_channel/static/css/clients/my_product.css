@@ -588,13 +588,6 @@ section {
         margin: 0;
     }
 
-    .modal {
-        width: 98%;
-        padding: 1rem;
-        border-radius: 2px;
-        margin: 0;
-    }
-
     .form-control1 {
         width: 95%;
     }
@@ -635,15 +628,28 @@ section {
     }
 
     .modal {
+        position: fixed;
         width: 97%;
-        padding: 4rem;
+        padding: 2rem;
         border-radius: 2px;
         margin: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .modal3 {
         width: 97%;
-        transform: translate(-50%, -20%);
+        position: fixed;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .modal1 {
+        position: fixed;
+        width: 97%;
+        margin: 1% 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .form-control input, textarea {
@@ -656,12 +662,6 @@ section {
         width: 100%;
     }
 
-    .modal1 {
-        width: 97%;
-        margin: 1% 0;
-        top: 130%;
-        transform: translate(-50%, 140%);
-    }
 
     .information-section {
         width: 100%;
@@ -701,6 +701,10 @@ section {
         font-size: 14px;
     }
 
+    .overlay {
+        position: fixed;
+    }
+
     .overlay1 {
         position: fixed;
     }
@@ -713,20 +717,29 @@ section {
 
 @media only screen and (min-width: 375px) and (max-width: 812px) {
     .modal1 {
+        position: fixed;
         width: 97%;
         margin: 1% 0;
-        top: 80%;
-        transform: translate(-50%, 140%);
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .overlay, .overlay1, .overlay3  {
+        position: fixed;
     }
 
 }
 
 @media only screen and (min-width: 414px) and (max-width: 736px) {
     .modal1 {
+        position: fixed;
         width: 97%;
         margin: 1% 0;
-        top: 100%;
-        transform: translate(-50%, 140%);
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .overlay, .overlay1, .overlay3  {
+        position: fixed;
     }
 }
 
@@ -751,7 +764,6 @@ section {
     .description-container {
         width: 60%;
         margin: 5% auto;
-        margin-bottom: 20%;
     }
 
     .ONOF {
@@ -787,7 +799,8 @@ section {
 
     .delete-product-div1 {
         width: 60%;
-        margin: 5% auto;
+        margin: 7% auto;
+        margin-bottom: 20%;
     }
 
     .information-section {
@@ -806,11 +819,16 @@ section {
     }
 
     .modal {
+        position: fixed;
+        top: 50%;
+        transform: translate(-50%,-50%);
         width: 60%;
     }
 
     .modal1 {
-        transform: translate(-50%, 30%);
+        position: fixed;
+        top: 50%;
+        transform: translate(-50%, -50%);
         width: 60%;
         padding: 3rem 1rem;
     }
@@ -820,7 +838,8 @@ section {
     }
 
     .modal3 {
-        top: 10%;
+        position: fixed;
+        top: 50%;
         transform: translate(-50%, 88%);
     }
 
@@ -874,7 +893,9 @@ section {
     }
 
     .modal {
-        top: 30%;
+        position: fixed;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
     .all-products {
@@ -888,8 +909,9 @@ section {
     }
 
     .modal1 {
+        position: fixed;
         width: 60%;
-        top: 30%;
+        top: 50%;
         padding: 3rem 1rem;
         transform: translate(-50%, -50%);
     }

@@ -18,10 +18,12 @@
 
 <div class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+    <div style="width: 17%;">
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
+        <button type="button" onclick="myProducts()" class="get-my-products">Мои продукты</button>
+    </div>
 </div>
 <br>
-
 <section>
     <h1 class="h1-my-product">Мой продукт</h1>
 </section>
@@ -92,6 +94,31 @@
     </div>
     <!--    img close -->
 
+    <!--Удалить мой продукт modal open description-->
+    <div class="description-container">
+
+        <div class="description-header">
+            <h2>Измените описание!</h2>
+        </div>
+
+        <form action="{{url_for('clients.my_products.my_product.get_my_product', ser_num=my_product['data']['serial_num'][0])}}"
+              method="post"
+              class="description-form" id="description_form">
+            <div class="description-form-control">
+                <input type="hidden" name="ser_num" id="ser_num" value="{{my_product['data']['serial_num'][0]}}"/>
+
+                <label for="desc">Описание</label>
+                <textarea type="text" name="desc" id="desc">{{my_product['data']['description'][0]}}</textarea>
+            </div>
+
+            <input type="submit" class="add-type-submit2" value="Сохранить"/>
+            <button type="button" class="delete-product-button add-type-submit2">
+                <p>Удалить мой продукт</p>
+            </button>
+        </form>
+    </div>
+    <!--Удалить мой продукт modal close description-->
+
     <!--Дата начала Дата окончания open-->
     <div class="delete-product-div1" >
         <form action="{{url_for('clients.my_products.my_product.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
@@ -139,32 +166,6 @@
         <div id="overlay3" class="overlay3 hidden3"></div>
     </div>
     <!--Дата начала Дата окончания close-->
-
-
-    <!--Удалить мой продукт modal open description-->
-    <div class="description-container">
-
-        <div class="description-header">
-            <h2>Измените описание!</h2>
-        </div>
-
-        <form action="{{url_for('clients.my_products.my_product.get_my_product', ser_num=my_product['data']['serial_num'][0])}}"
-              method="post"
-              class="description-form" id="description_form">
-            <div class="description-form-control">
-                <input type="hidden" name="ser_num" id="ser_num" value="{{my_product['data']['serial_num'][0]}}"/>
-
-                <label for="desc">Описание</label>
-                <textarea type="text" name="desc" id="desc">{{my_product['data']['description'][0]}}</textarea>
-            </div>
-
-            <input type="submit" class="add-type-submit2" value="Сохранить"/>
-            <button type="button" class="delete-product-button add-type-submit2">
-                <p>Удалить мой продукт</p>
-            </button>
-        </form>
-    </div>
-    <!--Удалить мой продукт modal close description-->
 
 </section>
 <!--Удалить мой продукт modal description img close -->

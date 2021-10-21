@@ -161,7 +161,7 @@
         let year = fullTime.substring(fullTime.indexOf(" ", 9) + 1, fullTime.indexOf(" ", 14));
         let hours = fullTime.substring(fullTime.indexOf(" ", 14) + 1, fullTime.indexOf(" ", 22));
 
-        let dmyh = addZero(day) + "." + monthName[month] + "." + addZero(year) + "." + addZero(hours);
+        let dmyh = addZero(day) + "." + monthName[month] + "." + addZero(year) + " " + addZero(hours);
 
         return dmyh;
     }
@@ -319,3 +319,9 @@
 
     })
 //ON OF close
+
+//get my products open
+    function myProducts() {
+        window.open('/clients/my_products', '_self');
+    }
+//get my products close
