@@ -1,3 +1,4 @@
+//all time open
 var xhttp = new XMLHttpRequest();
 let json1 = {}
 self.addEventListener("message", function(e) {
@@ -24,3 +25,4 @@ function timedCount() {
 }
 
 timedCount();
+//all time close

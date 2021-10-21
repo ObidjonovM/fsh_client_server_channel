@@ -451,9 +451,8 @@ section {
 .delete-product-div {
     min-width: 250px;
     width: 25%;
-    margin: 1%;
+    margin: 1% auto;
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
     border-radius: 5px;
 }
 
@@ -942,7 +941,7 @@ section {
     }
 
     .all-products input {
-        width: 48.6%;
+        width: 48%;
     }
 
     .add-type-submit2 {

@@ -44,9 +44,9 @@ section {
     background-color: #dde0e0;
 }
 
-.sm-photo-li.active:nth-child(1) {
-    border: 1px solid #1b232e;
-}
+/*.sm-photo-li.active:nth-child(1) {*/
+/*    border: 1px solid #1b232e;*/
+/*}*/
 
 .sm-photo-li.show2 {
     border: 1px solid #1b232e;
@@ -92,8 +92,8 @@ section {
     display: block;
 }
 
-.show {
-    display: block;
+.org-photo-div.show {
+    display: none;
 }
 
 .showw {
