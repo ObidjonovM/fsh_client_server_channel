@@ -44,7 +44,7 @@
             <div class="form-control1">
                 <label for="forInfoPass">Пароль</label>
                 <input type="password" id="forInfoPass" class="password" placeholder="введите пароль" required>
-                <input type="button" value="Info Product" onclick="OpenNewModal()" class="delete-product">
+                <input type="button" value="Потдвердить" onclick="OpenNewModal()" class="delete-product">
             </div>
         </div>
     </div>
@@ -78,7 +78,7 @@
                      alt="img">
             </div>
 
-            {% if my_product['data']['product_id'][i] == 1 %}
+            {% if my_product['data']['product_id'][i] == 1 or my_product['data']['product_id'][i] == 2 %}
             <div class="input-on-off">
                 <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
