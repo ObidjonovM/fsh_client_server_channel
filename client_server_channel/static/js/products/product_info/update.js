@@ -116,12 +116,14 @@ let base_64_code = [];
 let requestJson = {}
 
 function addPhoto() {
+   confirm("Сохранить изображение?");
+
     xhttp.open('Post', '/products/photo/add', true);
-    xhttp.setRequestHeader("Content-type","application/json; charset=UTF-8");
+    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     xhttp.send(JSON.stringify(requestJson));
     xhttp.onreadystatechange = function () {
-        if ((this.readyState == 4) && (this.status == 200)){
+        if ((this.readyState == 4) && (this.status == 200)) {
             let resp = JSON.parse(this.responseText);
             if (resp['success']) {
                 location.reload()
