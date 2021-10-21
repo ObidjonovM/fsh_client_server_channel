@@ -104,3 +104,18 @@ const closeModal = function () {
 };
 
 btnCloseModal.addEventListener('click', closeModal);
+
+
+function passwordLength() {
+    var password = document.getElementById('password').value;
+    var confirm_password = document.getElementById('confirm_password').value;
+    if (password.length < 5) {
+        alert("Длина пароля должна быть не менее 5 символов!")
+        // document.getElementById('error_password').innerHTML = "Длина пароля должна быть не менее 5 символов!";
+        // document.getElementById('error_password').style.display = "block";
+        document.getElementById('confirm_password').style.pointerEvents = "none";
+    }else {
+        document.getElementById('confirm_password').style.pointerEvents = "auto ";
+        document.getElementById('error_password').innerHTML = "";
+    }
+}
