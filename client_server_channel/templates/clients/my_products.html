@@ -42,7 +42,7 @@
             <h2>Добавит продукт</h2>
         </div>
 
-        <form action="{{url_for('clients.my_products.get_my_products')}}" method="post" class="form" id="from">
+        <form action="{{url_for('clients.my_products.get_my_products')}}" method="post" class="form" id="form">
 
 
             <div class="form-control">
@@ -83,7 +83,7 @@
                              prefix="{{my_products['data']['prefix'][i]}}" onclick="productImg(this)">
                         <a onclick="goSocket(this)">Учить больше</a>
                     </div>
-                    {% if my_products['data']['product_id'][i] == 1 %}
+                    {% if my_products['data']['product_id'][i] == 1 or my_products['data']['product_id'][i] == 2 %}
                     <div class="input-on-off">
                         <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
