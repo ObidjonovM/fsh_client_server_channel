@@ -137,9 +137,37 @@
     })
 
 
-// All time open
-    const all_time_input2 = document.getElementById('all_time_input');
 
+
+    // All time open
+    function addZero(e) {
+        let result = ""
+        if (e.length < 2) {
+            result = "0" + e
+        }else {
+            result = e
+        }
+        return result
+    }
+
+    const monthName = {'Jan': '01','Feb' : '02', 'Mart' : '03',
+        'Apr' : '04', 'May' : '05', 'Jun' : '06',
+        'Jul' : '07', 'Aug' : '08', 'Sep' : '09',
+        'Oct': '10', 'Nov' : '11', 'Dec' : '12'};
+
+    function getFullTime(fullTime) {
+        let month = fullTime.substring(fullTime.indexOf(" ", 5) + 1, fullTime.indexOf(" ", 9));
+        let day = fullTime.substring(fullTime.indexOf(" ") + 1, fullTime.indexOf(" ", 5));
+        let year = fullTime.substring(fullTime.indexOf(" ", 9) + 1, fullTime.indexOf(" ", 14));
+        let hours = fullTime.substring(fullTime.indexOf(" ", 14) + 1, fullTime.indexOf(" ", 22));
+
+        let dmyh = addZero(day) + "-" + monthName[month] + "-" + addZero(year) + " " + addZero(hours);
+
+        return dmyh;
+    }
+
+
+    const all_time_input2 = document.getElementById('all_time_input');
     window.addEventListener('load', function () {
 
              let w1;
@@ -159,7 +187,7 @@
                     if (ev.data['request_time'] == '-') {
                         all_time_input2.innerHTML = '';
                     }else {
-                        all_time_input2.innerHTML = ev.data['request_time'];
+                        all_time_input2.innerHTML = getFullTime(ev.data['request_time']);
                     }
                 };
             }
