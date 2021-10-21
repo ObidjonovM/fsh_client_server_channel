@@ -17,4 +17,9 @@ var allEl = document.querySelectorAll('*');
     }
 })
 
-
+let inputss = document.querySelectorAll('input');
+for (let i=0; i<inputss.length; i++){
+    if (inputss[i].value === 'None'){
+        inputss[i].value = '';
+    }
+}

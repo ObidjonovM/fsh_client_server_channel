@@ -38,3 +38,22 @@ function updateClient() {
 function otmenFunction (){
     window.open('/clients/all', '_self');
 }
+
+let inputss = document.querySelectorAll('input');
+    for (let i=0; i<inputss.length; i++){
+        if (inputss[i].value === 'None'){
+            inputss[i].value = '';
+        }
+    }
+
+function glavniyStranisa(){
+    window.open('/', '_self');
+}
+
+function Viyti() {
+    window.open('/employees/logout', '_self');
+}
+
+function Logout() {
+    window.open('/clients/logout', '_self');
+}
