@@ -27,7 +27,6 @@ function Logout() {
 }
 
 // modal open
-// 'use strict';
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.close-modal');
@@ -35,12 +34,7 @@ const btnCloseModal2 = document.querySelector('.close-modal2');
 const btnOpenModal = document.querySelector('.show-modal');
 const ser_num = document.getElementById('ser_num');
 const desc = document.getElementById('desc');
-const form = document.getElementById('from');
 
-form.addEventListener('submit', function () {
-    ser_num.value = "";
-    desc.value = "";
-})
 
 const openModal = function () {
     modal.classList.remove('hidden');
@@ -69,7 +63,6 @@ btnCloseModal2.addEventListener('click', closeModal2);
 // overlay.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function (e) {
-    // console.log(e.key);
 
     if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
         closeModal();
