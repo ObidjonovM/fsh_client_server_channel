@@ -39,7 +39,7 @@
         <label for="used_emp_id">Использовал(а)</label>
             <select name="used_emp_id" id="used_emp_id">
                 {% for i in range(employees_ids['data']['emp_id']|length)%}
-                {%if sp_warehouse_info['data']['emp_id'] == employees_ids['data']['emp_id'][i]%}
+                {%if sp_warehouse_info['data']['used_emp_id'] == employees_ids['data']['emp_id'][i]%}
                 <option selected value="{{employees_ids['data']['emp_id'][i]}}">
                     {{employees_ids['data']['last_name'][i]}}
                     {{employees_ids['data']['first_name'][i]}}
