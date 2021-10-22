@@ -51,7 +51,8 @@ def get(sp_id):
             sp_warehouse_info = sp_warehouse_info,
             type_name = SpTypeC.get(sp_warehouse_info['data']['type_id']),
             status_name = SpStatusC.get(sp_warehouse_info['data']['status_id']),
-            employee_name = EmployeeC.get(sp_warehouse_info['data']['acc_emp_id'])
+            acc_employee = EmployeeC.get(sp_warehouse_info['data']['acc_emp_id']),
+            used_employee = EmployeeC.get(sp_warehouse_info['data']['used_emp_id'])
         )
 
     return redirect(url_for('sp_warehouse.all'))
@@ -71,7 +72,8 @@ def all():
                 sp_warehouses = sp_warehouses,
                 types_ids = SpTypeC.get_names_by_ids(sp_warehouses['data']['type_id']),
                 statuses_ids = SpStatusC.get_names_by_ids(sp_warehouses['data']['status_id']),
-                employees_ids = EmployeeC.get_names_by_ids(sp_warehouses['data']['acc_emp_id'])
+                acc_employees = EmployeeC.get_names_by_ids(sp_warehouses['data']['acc_emp_id']),
+                used_employees = EmployeeC.get_names_by_ids(sp_warehouses['data']['used_emp_id'])
             )
 
         return render_template(utls.url_join(['sp_warehouse', 'all.html']),
