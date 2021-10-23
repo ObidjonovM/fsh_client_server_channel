@@ -23,7 +23,7 @@
         <div class="form-control">
 
             <label for="dealers_ids">Дилер</label>
-            <select name="dealers_ids" id="dealers_ids" required>
+            <select name="dealer_id" id="dealers_ids" required>
                 {%for i in range(dealers_ids['data']['dealer_id']|length)%}
                 {%if product_info['data']['dealer_id'] == dealers_ids['data']['dealer_id'][i]%}
                 <option selected value="{{dealers_ids['data']['dealer_id'][i]}}">
@@ -42,7 +42,7 @@
         <div class="form-control">
 
             <label for="status_ids">Статус</label>
-            <select name="status_ids" id="status_ids" required>
+            <select name="status_id" id="status_ids" required>
                 {%for i in range(status_ids['data']['status_id']|length)%}
                 {%if product_info['data']['status_id'] == status_ids['data']['status_id'][i]%}
                 <option selected value="{{status_ids['data']['status_id'][i]}}">
