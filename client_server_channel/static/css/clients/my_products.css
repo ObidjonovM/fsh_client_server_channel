@@ -13,36 +13,34 @@ section {
 
 
 .all-products-content {
-    width: 71%;
+    width: 90%;
     display: table;
     position: relative;
     margin: 0 auto;
 }
 
 .all-products {
-    width: 21%;
+    width: 289px;
     min-height: 120px;
     float: left;
     margin: 3% 26px;
 }
 
 .ONOF {
-    width: 104%;
+    width: 290px;
     height: 50px;
     font-size: 16px;
     text-align: center;
-    margin-left: -1%;
     line-height: 50px;
-    /*background: #fff;*/
+    background: white;
     color: black;
     z-index: -2;
     font-weight: bold;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
-    border: 3px solid #EAEDED;
+    margin-bottom: 1%;
 }
 
 .all-products .img-div {
-    /*width: 290px;*/
+    width: 290px;
     height: 345px;
     background-color: #fff;
     padding: 45px 30px;
@@ -95,8 +93,6 @@ section {
 .input-on-off {
     width: 290px;
     height: 34px;
-    background-color: rgba(224, 219, 219, 0.7);
-    transition: all .3s ease-in-out;
     display: block;
 }
 
@@ -527,7 +523,7 @@ section {
     }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1516px) and (max-height: 819px){
+@media only screen and (min-width: 1025px) and (max-width: 1919px) and (max-height: 1024px){
 
     .full-container {
         width: 100%;
@@ -598,7 +594,7 @@ section {
     }
 
     .ONOF {
-        width: 102%;
+        width: 100%;
     }
 
 }
