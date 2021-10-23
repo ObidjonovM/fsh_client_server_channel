@@ -81,6 +81,14 @@ window.onload = function () {
         openModal();
         localStorage.removeItem('openModal');
     }
+
+    btnCloseModal.addEventListener('click', function () {
+        window.open('/', '_self');
+    })
+
+    btnCloseModal2.addEventListener('click', function () {
+        window.open('/', '_self');
+    })
 }
 
 
