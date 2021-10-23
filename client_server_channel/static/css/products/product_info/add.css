@@ -112,3 +112,21 @@
     background-color: #232F3E;
     transition: all .3s;
 }
+
+@media only screen and (min-width: 1025px) and (max-width: 1516px) and (max-height: 820px){
+    .add-container {
+        width: 76%;
+        transform: translate(-50%, 15%);
+    }
+
+    .add-form {
+        width: 98%;
+        justify-content: center;
+    }
+
+    .form-control {
+        width: 27%;
+        margin: 3%;
+    }
+
+}

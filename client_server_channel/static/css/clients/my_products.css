@@ -4,34 +4,30 @@
 }
 
 .container {
-    max-width: 1300px;
-    width: 1300px;
-    margin: 10px auto;
+    width: 100%;
 }
 
 section {
     width: 100%;
-    margin: 15px auto;
 }
 
 
 .all-products-content {
-    width: 100%;
-    margin-bottom: 5%;
-    display: inline-block;
+    width: 71%;
+    display: table;
     position: relative;
+    margin: 0 auto;
 }
 
 .all-products {
-    max-width: 291px;
+    width: 21%;
     min-height: 120px;
-    height: 348px;
     float: left;
-    margin: 5% 20px;
+    margin: 3% 26px;
 }
 
 .ONOF {
-    width: 102%;
+    width: 104%;
     height: 50px;
     font-size: 16px;
     text-align: center;
@@ -46,7 +42,7 @@ section {
 }
 
 .all-products .img-div {
-    width: 290px;
+    /*width: 290px;*/
     height: 345px;
     background-color: #fff;
     padding: 45px 30px;
@@ -285,7 +281,7 @@ section {
 
     .all-products {
         width: 100%;
-        margin: 24% 0;
+        margin: 15% 0;
     }
 
     .all-products .img-div {
@@ -446,6 +442,14 @@ section {
         margin: 5px auto;
     }
 
+    .show-modal {
+        margin: 22px auto;
+    }
+
+    .ONOF {
+        width: 102%;
+    }
+
     section {
         width: 100%;
         display: inline-block;
@@ -455,11 +459,12 @@ section {
         width: 100%;
         display: inline-block;
         margin: 0;
+        margin-bottom: 16%;
     }
 
     .all-products {
         width: 30.7%;
-        margin: 0 10px;
+        margin: 3% 9.2px;
     }
 
     .all-products .img-div {
@@ -503,6 +508,7 @@ section {
 
     .all-products {
         width: 30.7%;
+        margin: 3% 13.2px;
     }
 
     .all-products .img-div {
@@ -521,7 +527,7 @@ section {
     }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1516px) and (min-height: 530px) and (max-height: 819px){
+@media only screen and (min-width: 1025px) and (max-width: 1516px) and (max-height: 819px){
 
     .full-container {
         width: 100%;
@@ -536,6 +542,26 @@ section {
         margin: 0;
     }
 
+    .all-products-content {
+        width: 100%;
+    }
+
+    .show-modal {
+        margin: 20px auto;
+    }
+
+    .all-products {
+        width: 21%;
+        margin: 2% 26px;
+    }
+
+    .all-products .img-div {
+        width: 100%;
+    }
+
+    .input-on-off {
+        width: 100%;
+    }
     .modal {
         width: 40%;
         position: fixed;
@@ -557,6 +583,10 @@ section {
 
     .form-control {
         margin-bottom: 0;
+    }
+
+    .all-products input {
+        width: 48.5%;
     }
 
     .buttons {
