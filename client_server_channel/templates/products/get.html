@@ -10,72 +10,94 @@
 {% block body %}
 {{super()}}
 
+<div style="position:relative;">
+    <div class="add-container">
 
-<div class="add-container">
+        <div class="add-header">
+            <h2>Продукт</h2>
+        </div>
 
-    <div class="add-header">
-        <h2>Продукт</h2>
-    </div>
+        <div class="add-form" id="myForm">
 
-    <div class="add-form" id="myForm">
-
-        <input type="hidden" id="product_id" value="{{product_info['data']['serial_num']}}">
-
-
-        <div class="form-control">
-
-            <label for="manufactured_date">Дата</label>
-            <input type="date" id="manufactured_date" readonly
-                   value="{{product_info['data']['manufactured_date']}}">
-
-            <label for="product_name">Наименование</label>
-            <input type="text" id="product_name" readonly
-                   value="{{product_name['data']['name']}}">
+            <input type="hidden" id="product_id" value="{{product_info['data']['serial_num']}}">
 
 
-            <label for="dealer_name">Дилер</label>
-            <input type="text" id="dealer_name" readonly
-                   value="{{dealer_name['data']['name']}}">
+            <div class="form-control">
 
-            <label for="mac_address">MAC-адрес</label>
-            <input type="text" id="mac_address" readonly
-                   value="{{product_info['data']['mac_address']}}">
+                <label for="default_login">Серийный номер</label>
+                <input type="text" id="default_login" readonly
+                       value="{{product_info['data']['default_login']}}">
+
+                <label for="default_password">Серийный номер</label>
+                <input type="text" id="default_password" readonly
+                       value="{{product_info['data']['default_password']}}">
+
+                <label for="ap_login">Серийный номер</label>
+                <input type="text" id="ap_login" readonly
+                       value="{{product_info['data']['ap_login']}}">
+
+                <label for="ap_password">Серийный номер</label>
+                <input type="text" id="ap_password" readonly
+                       value="{{product_info['data']['ap_password']}}">
+
+            </div>
+
+            <div class="form-control">
+                <label for="serial_num">Серийный номер</label>
+                <input type="text" id="serial_num" readonly
+                       value="{{product_info['data']['serial_num']}}">
+
+                <label for="manufactured_date">Дата</label>
+                <input type="date" id="manufactured_date" readonly
+                       value="{{product_info['data']['manufactured_date']}}">
+
+                <label for="product_name">Наименование</label>
+                <input type="text" id="product_name" readonly
+                       value="{{product_name['data']['name']}}">
+
+
+                <label for="dealer_name">Дилер</label>
+                <input type="text" id="dealer_name" readonly
+                       value="{{dealer_name['data']['name']}}">
+            </div>
+
+
+            <div class="form-control">
+                <label for="mac_address">MAC-адрес</label>
+                <input type="text" id="mac_address" readonly
+                       value="{{product_info['data']['mac_address']}}">
+
+                <label for="client_name">Клиент</label>
+                <input type="text" id="client_name" readonly
+                       value="{{client_name['data']['last_name']}} {{client_name['data']['first_name']}} {{client_name['data']['middle_name']}}">
+
+                <label for="firmware_name">Прошивка</label>
+                <input type="text" id="firmware_name" readonly
+                       value="{{firmware_name['data']['name']}}">
+
+                <label for="status_name">Статус</label>
+                <input type="text" id="status_name" readonly
+                       value="{{status_name['data']['status']}}">
+            </div>
+
+
+            <button onclick="updateProduct()" class="add-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteProduct()" class="add-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-submit3">
+                Назад
+            </button>
 
         </div>
 
 
-        <div class="form-control">
-            <label for="client_name">Клиент</label>
-            <input type="text" id="client_name" readonly
-                   value="{{client_name['data']['last_name']}} {{client_name['data']['first_name']}} {{client_name['data']['middle_name']}}">
-
-            <label for="firmware_name">Прошивка</label>
-            <input type="text" id="firmware_name" readonly
-                   value="{{firmware_name['data']['name']}}">
-
-            <label for="status_name">Статус</label>
-            <input type="text" id="status_name" readonly
-                   value="{{status_name['data']['status']}}">
-        </div>
-
-
-        <button onclick="updateProduct()" class="add-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteProduct()" class="add-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-submit3">
-            Назад
-        </button>
-
     </div>
-
-
 </div>
-
 
 <script src="/static/js/products/get.js"></script>
 
