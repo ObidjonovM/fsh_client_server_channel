@@ -4,7 +4,7 @@ from . import model_utils as utls
 def last_pk_value(table_name):
 	col_names = utls.get_column_names(table_name)
 	pk_col = col_names[0]
-	sql = f'SELECT COUNT({pk_col}) FROM {table_name}'
+	sql = f'SELECT MAX({pk_col}) FROM {table_name}'
 	result = utls.send_to_db(sql, None, True)
 	if not result['success']:
 		return {pk_col : -1}
