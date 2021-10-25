@@ -46,13 +46,13 @@
 
     <div class="all-products">
         {% for i in range(get_products['data']['name']|length)%}
-        <div class="img-div">
+        <div class="img-div" onclick="openProductInfo(this)">
             <span>
                 <p class="description">{{get_products['data']['name'][i]}}</p>
             </span>
             <img src="{{get_products['data']['photo'][i]}}" alt="image" id="{{get_products['data']['product_id'][i]}}"
                  onclick="getInfo(this)">
-            <a onclick="getInfoTwo(this)">Учить больше</a>
+            <a onclick="getInfoTwo(this)">Детайл</a>
         </div>
         {%endfor%}
     </div>

@@ -50,3 +50,12 @@ function getInfoTwo(ev){
     window.open('/products/info/' + x, '_self');
 }
 //get info two close
+
+
+// let aaaa = document.querySelector('img-div');
+function openProductInfo(ev) {
+    let firs_child = ev.firstChild;
+    let span = firs_child.nextElementSibling;
+    let img_id = span.nextElementSibling.getAttribute('id');
+    window.open('/products/info/' + img_id, '_self');
+}
