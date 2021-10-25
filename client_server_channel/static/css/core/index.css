@@ -134,6 +134,7 @@ section {
     margin: 20px;
     padding: 45px 30px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .all-products .img-div a {
