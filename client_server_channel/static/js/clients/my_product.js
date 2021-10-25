@@ -184,10 +184,15 @@
 
                 w1.onmessage = function (ev) {
                     console.log(ev.data['request_time']);
-                    if (ev.data['request_time'] == '-') {
+                // || getFullTime(ev.data['request_time']) == 'ISO.undefined.0 0'
+                    if (getFullTime(ev.data['request_time']) == '-' || getFullTime(ev.data['request_time']) == 'ISO.undefined.0 0') {
                         all_time_input2.innerHTML = '';
+                        all_time_input2.style.border = 'none';
+                        all_time_input2.style.outline = 'none';
                     }else {
                         all_time_input2.innerHTML = getFullTime(ev.data['request_time']);
+                        // all_time_input2.style.border = '1px solid #b8bbb8';
+                        console.log(getFullTime(ev.data['request_time']));
                     }
                 };
             }
@@ -325,3 +330,11 @@
         window.open('/clients/my_products', '_self');
     }
 //get my products close
+
+
+    //open product_info open
+    function openProduct(ev) {
+        let product_id = ev.getAttribute('id');
+        window.open('/products/info/' + product_id, '_self')
+    }
+    //open product_info close

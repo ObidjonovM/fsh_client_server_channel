@@ -81,14 +81,6 @@ window.onload = function () {
         openModal();
         localStorage.removeItem('openModal');
     }
-
-    btnCloseModal.addEventListener('click', function () {
-        window.open('/', '_self');
-    })
-
-    btnCloseModal2.addEventListener('click', function () {
-        window.open('/', '_self');
-    })
 }
 
 
@@ -130,6 +122,11 @@ let w;
                                 on_off = 'Выключен';
                             }
                             req_action[i].style.backgroundColor = 'white';
+
+                            if(sub_val['state'] != 'ON' && sub_val['state'] != 'OFF'){
+                                on_off = '';
+                                req_action[i].style.backgroundColor = 'transparent';
+                            }
                             req_action[i].innerHTML = on_off;
 
                         }

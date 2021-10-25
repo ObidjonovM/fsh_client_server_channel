@@ -23,7 +23,7 @@ section {
     width: 289px;
     min-height: 120px;
     float: left;
-    margin: 3% 26px;
+    margin: 0% 26px;
 }
 
 .ONOF {
@@ -32,7 +32,6 @@ section {
     font-size: 16px;
     text-align: center;
     line-height: 50px;
-    background: white;
     color: black;
     z-index: -2;
     font-weight: bold;
@@ -93,7 +92,7 @@ section {
 .input-on-off {
     width: 290px;
     height: 34px;
-    display: block;
+    display: flex;
 }
 
 .all-products .on:focus, .off:focus {

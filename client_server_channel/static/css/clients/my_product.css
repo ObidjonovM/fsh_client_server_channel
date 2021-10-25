@@ -24,10 +24,10 @@ section {
 
 .ONOF {
     width: 100%;
-    height: 50px;
+    height: 40px;
     font-size: 16px;
     text-align: center;
-    line-height: 50px;
+    line-height: 40px;
     color: black;
     z-index: -2;
     font-weight: bold;
@@ -141,7 +141,7 @@ section {
     transition: all .3s;
 }
 
-.show-modal {
+.show-modal, .all_information {
     text-align: center;
     width: 213px;
     padding: 3px;
@@ -149,6 +149,7 @@ section {
     background-color: #374a62;
     border-radius: 4px;
     cursor: pointer;
+    margin-left: .5%;
     transition: all .2s ease-in-out;
     box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, .2);
 }
@@ -164,7 +165,7 @@ section {
     box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, .2);
 }
 
-.show-modal:hover {
+.show-modal:hover, .all_information:hover {
     background-color: #232F3E;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, .3);
     transition: all .2s ease-in-out;
@@ -174,7 +175,7 @@ section {
     width: 14px;
 }
 
-.show-modal p {
+.show-modal p, .all_information p {
     font-size: 14px;
     font-weight: 600;
     color: white;
@@ -253,20 +254,32 @@ section {
 }
 
 .information-on-of {
-    margin-left: 1%;
+    margin-left: .5%;
+    background-color: #0d1724;
+    border-radius: 4px;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, .2);
+}
+
+.esp-get-time {
+    padding-top: 2px;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    color: white;
 }
 
 .information-input {
-    height: 46px;
+    height: 29px;
     outline: none;
-    /*margin-left: 7%;*/
     text-align: center;
     width: 220px;
     padding: 3px;
-    border: 1px solid #b8bbb8;
     font-size: 14px;
     font-weight: 600;
-    color: black;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    background-color: #0d1724;
 }
 
 .overlay, .overlay1 {
@@ -310,18 +323,21 @@ section {
 
 /****** Modal close ******/
 
+.onof-div {
+    width: 19%;
+}
 
 .all-products {
-    max-width: 350px;
+    width: 100%;
     min-height: 120px;
-    margin: 30px 20px;
+    margin: 0 auto;
     border-radius: 8px;
 }
 
 .all-products .img-div {
     max-width: 350px;
     min-height: 120px;
-    height: 430px;
+    height: 360px;
     background-color: #fff;
     padding: 10px 28px;
     border-radius: 8px;
@@ -330,7 +346,7 @@ section {
 .all-products img {
     width: 100%;
     min-height: 120px;
-    height: 361px;
+    height: 295px;
     cursor: pointer;
     margin-top: 15px;
     background-color: #eaeded;
@@ -342,7 +358,7 @@ section {
 }
 
 .all-products input {
-    width: 48.8%;
+    width: 48.6%;
     height: 32px;
     background-color: #fff;
     border: none;
@@ -356,10 +372,8 @@ section {
 }
 
 .input-on-off {
-    max-width: 350px;
+    max-width: 100%;
     height: 37px;
-    background-color: rgba(224, 219, 219, 0.4);
-    transition: all .3s ease-in-out;
     display: block;
 }
 

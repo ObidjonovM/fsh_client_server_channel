@@ -18,7 +18,7 @@
 
 <div class="fixed">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-    <div style="width: 17%;">
+    <div style="width: 18%;">
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
         <button type="button" onclick="myProducts()" class="get-my-products">Мои продукты</button>
     </div>
@@ -30,9 +30,10 @@
 
 <!--  Информация о товаре и Все время open -->
 <section class="information-all-time">
-<!--    Информация о товаре open-->
+<!--    configuration open-->
     <button class="show-modal">
-        <p>Информация о товаре</p>
+<!--        <p>Информация о товаре</p>-->
+        <p>Конфигурация</p>
     </button>
 
     <div id="containerModal" class="container modal hidden">
@@ -51,12 +52,20 @@
         </div>
     </div>
     <div id="overlay" class="overlay hidden"></div>
-    <!--    Информация о товаре close-->
+    <!--   configuration close-->
+
+<!--    Информация о товаре open-->
+        <button class='all_information' onclick="openProduct(this)" id="{{my_product['data']['product_id'][0]}}">
+          <p>Информация о товаре</p>
+        </button>
+<!--    Информация о товаре close-->
 
 <!--    Все время open-->
     <div class="information-on-of">
+        <span class="esp-get-time">Последнее время работы</span>
         <button type="button" class="information-input" id="all_time_input"
                 ser_num="{{my_product['data']['serial_num'][0]}}" prefix="{{my_product['data']['prefix'][0]}}">
+
         </button>
     </div>
     <!--    Все время close-->
