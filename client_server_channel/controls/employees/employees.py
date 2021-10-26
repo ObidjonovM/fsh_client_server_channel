@@ -44,8 +44,9 @@ class EmployeeC:
     @staticmethod
     def get_all():
         get_all_result = EmployeesTable.get_all()
-        del get_all_result['data']['username']
-        del get_all_result['data']['password']
+        if len(get_all_result['data']) > 0:
+            del get_all_result['data']['username']
+            del get_all_result['data']['password']
 
         return {
             'success' : get_all_result['success'],
