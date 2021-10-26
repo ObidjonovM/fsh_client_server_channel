@@ -282,19 +282,15 @@
         .hi-person-div {
             display: flex;
             justify-content: right;
-            padding: 0 5%;
-            width: 75%;
+            width: 73%;
         }
 
         .hi-person {
-            float: left;
+            float: unset;
             width: 100%;
             font-size: 13px;
             border: 1px solid #c7c7c7;
-        }
-
-        .show-modal {
-            left: 2%;
+            margin-right: 2%;
         }
 
         .viyti {
@@ -311,15 +307,15 @@
         }
 
         .account-products {
-            display: none;
-            margin: 0;
+
         }
 
         .show-modal {
             min-width: 185px;
             position: absolute;
             top: 97%;
-            left: 0;
+            left: -10%;
+            font-size: 13px;
         }
 
         .glavni-stranisa {
@@ -327,8 +323,9 @@
         }
 
         .account-products {
-            margin-right: -96%;
+            margin-right: -101%;
             z-index: 100;
+            display: none;
         }
 
         .all-products {
