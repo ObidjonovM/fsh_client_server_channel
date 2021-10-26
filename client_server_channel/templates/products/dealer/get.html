@@ -16,7 +16,7 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Дилер</h2>
+        <h2>Информация о дилере</h2>
     </div>
 
     <div class="add-form">
@@ -24,7 +24,7 @@
             <input id="dealer_id" type="hidden" value="{{dealer_info['data']['dealer_id']}}">
 
         <div class="form-control">
-            <label for="name">Наименование</label>
+            <label for="name">Название</label>
             <input type="text" name="name" id="name" value="{{dealer_info['data']['name']}}" readonly/>
 
 
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-control">
-            <label for="zipcode">Индекс</label>
+            <label for="zipcode">Почтовый индекс</label>
             <input type="text" name="zipcode" id="zipcode" value="{{dealer_info['data']['zipcode']}}" readonly/>
 
 
@@ -69,7 +69,7 @@
 
 
 
-            <label for="geo_location">Местоположение</label>
+            <label for="geo_location">Гео локация</label>
             <input type="text" name="geo_location" id="geo_location" value="{{dealer_info['data']['geo_location']}}" readonly/>
         </div>
 

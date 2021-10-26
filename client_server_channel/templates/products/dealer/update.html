@@ -13,7 +13,7 @@
 
 <div class="add-container">
         <div class="add-header">
-                <h2>Изменить</h2>
+                <h2>Изменить данные дилера</h2>
         </div>
 
 <form class="add-form"
@@ -22,7 +22,7 @@
 
         <div class="form-control">
 
-                <label for="name">Наименование</label>
+                <label for="name">Название</label>
                 <input type="text" id="name" name="name"
                         value="{{dealer_info['data']['name']}}"/>
 
@@ -43,7 +43,7 @@
 
 
         <div class="form-control">
-                <label for="zipcode">Индекс</label>
+                <label for="zipcode">Почтовый индекс</label>
                 <input type="text" name="zipcode"
                        value="{{dealer_info['data']['zipcode']}}" id="zipcode" required/>
 
@@ -59,7 +59,7 @@
                 <input type="text" name="website"
                        value="{{dealer_info['data']['website']}}" id="website"/>
 
-                <label for="geo_location">Местоположение</label>
+                <label for="geo_location">Гео локация</label>
                 <input type="text" name="geo_location"
                        value="{{dealer_info['data']['geo_location']}}" id="geo_location"/>
         </div>

@@ -14,14 +14,14 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Заказ запчасти</h2>
+        <h2>Информация о заказе запчастей</h2>
     </div>
     <div id="myForm" class="add-form">
 
         <input type="hidden" id="sp_order_id" value="{{sp_order_info['data']['sp_order_id']}}">
 
         <div class="form-control">
-            <label for="issued_order_id">Переданный ID заказа</label>
+            <label for="issued_order_id">Выданный ID заказа</label>
             <input type="text" id="issued_order_id" readonly value="{{sp_order_info['data']['issued_order_id']}}" />
 
             <label for="total_cost">Общая стоимость</label>
@@ -37,7 +37,7 @@
             <input type="text" id="supplier_id" readonly value="{{supplier_name['data']['name']}}">
 
 
-            <label for="exp_dispatch_date">Срок отправки</label>
+            <label for="exp_dispatch_date">Ожидаемая дата отправки</label>
             <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" readonly
                 value="{{sp_order_info['data']['exp_dispatch_date']}}" />
 
@@ -47,7 +47,7 @@
         </div>
 
         <div class="form-control">
-            <label for="shipment_id">ID данных доставки</label>
+            <label for="shipment_id">ID доставки заказа</label>
             <input type="text" id="shipment_id" readonly value="{{sp_order_info['data']['shipment_id']}}">
 
 

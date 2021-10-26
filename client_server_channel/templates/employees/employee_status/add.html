@@ -12,13 +12,13 @@
 
 <div class="container">
     <div class="header">
-        <h2>Статус</h2>
+        <h2>Добавить новый статус сотрудников</h2>
     </div>
 
     <form action="{{url_for('employees.employee_status.add')}}" id="myForm" class="form" method="POST">
 
         <div class="form-control">
-            <label for="status_name">Статус</label>
+            <label for="status_name">Названия статуса</label>
             <input type="text" name="status" id="status_name" required placeholder="Введите статус..."/>
         </div>
 

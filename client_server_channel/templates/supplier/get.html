@@ -12,7 +12,7 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Поставщик</h2>
+        <h2>Информация о поставщике</h2>
     </div>
     <div id="myForm" class="add-form">
 
@@ -20,7 +20,7 @@
 
 
         <div class="form-control">
-            <label for="name">Наименование</label>
+            <label for="name">Название</label>
             <input type="text" id="name" readonly
                    value="{{supplier_info['data']['name']}}"/>
 
@@ -43,7 +43,7 @@
 
 
         <div class="form-control">
-            <label for="zipcode">Индекс</label>
+            <label for="zipcode">Почтовый индекс</label>
             <input type="text" id="zipcode" readonly
                    value="{{supplier_info['data']['zipcode']}}"/>
 
@@ -59,7 +59,7 @@
             <input type="text" id="website" readonly
                    value="{{supplier_info['data']['website']}}"/>
 
-            <label for="geo_location">Местоположение</label>
+            <label for="geo_location">Гео локация</label>
             <input type="text" id="geo_location" readonly
                    value="{{supplier_info['data']['geo_location']}}"/>
         </div>

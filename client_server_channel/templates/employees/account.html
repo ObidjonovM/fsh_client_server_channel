@@ -10,30 +10,30 @@
 {% block body %}
 {{super()}}
 <div class="container-link">
-    <a class="link-all" href="{{url_for('employees.employee_type.all')}}">Должности</a>
+    <a class="link-all" href="{{url_for('employees.employee_type.all')}}">Должности сотрудников</a>
     <a class="link-all" href="{{url_for('employees.employee_status.all')}}">Статусы сотрудников</a>
-    <a class="link-all" href="{{url_for('employees.department.all')}}">Департаменты</a>
-    <a class="link-all" href="{{url_for('employees.all')}}">Сотрудники</a>
-    <a class="link-all" href="{{url_for('products.category.all')}}">Категории</a>
-    <a class="link-all" href="{{url_for('products.product_info.all')}}">Информация о продуктов</a>
+    <a class="link-all" href="{{url_for('employees.department.all')}}">Отделы</a>
+    <a class="link-all" href="{{url_for('employees.all')}}">Сотрудники компании</a>
+    <a class="link-all" href="{{url_for('products.category.all')}}">Категории продуктов</a>
+    <a class="link-all" href="{{url_for('products.product_info.all')}}">Общая информация о продуктов</a>
     <a class="link-all" href="{{url_for('products.dealer.all')}}">Дилеры</a>
     <a class="link-all" href="{{url_for('clients.all')}}">Клиенты</a>
-    <a class="link-all" href="{{url_for('products.firmware.all')}}">Прошивки</a>
+    <a class="link-all" href="{{url_for('products.firmware.all')}}">Прошивки устройств</a>
     <a class="link-all" href="{{url_for('products.status.all')}}">Статусы продуктов</a>
     <a class="link-all" href="{{url_for('products.all')}}">Продукты</a>
     <a class="link-all" href="{{url_for('currency.all')}}">Валюты</a>
     <a class="link-all" href="{{url_for('unit.all')}}">Единицы измерения</a>
-    <a class="link-all" href="{{url_for('supplier.all')}}">Поставщики</a>
-    <a class="link-all" href="{{url_for('carrier.all')}}">Доставщики</a>
+    <a class="link-all" href="{{url_for('supplier.all')}}">Поставщики запчастей</a>
+    <a class="link-all" href="{{url_for('carrier.all')}}">Доставщики запчастей</a>
     <a class="link-all" href="{{url_for('shipping_type.all')}}">Виды доставки</a>
     <a class="link-all" href="{{url_for('tracking_status.all')}}">Статусы отслеживания</a>
-    <a class="link-all" href="{{url_for('sp_type.all')}}">Запчасти</a>
+    <a class="link-all" href="{{url_for('sp_type.all')}}">Информация о запчастей</a>
     <a class="link-all" href="{{url_for('sp_logistic.all')}}">Информация о доставке</a>
-    <a class="link-all" href="{{url_for('sp_order_status.all')}}">Состояние заказанной запчасти</a>
+    <a class="link-all" href="{{url_for('sp_order_status.all')}}">Состояние заказа</a>
     <a class="link-all" href="{{url_for('sp_order.all')}}">Заказы на запчасти</a>
     <a class="link-all" href="{{url_for('sp_order_detail.all')}}">Деталь заказа запчастей</a>
     <a class="link-all" href="{{url_for('sp_status.all')}}">Состояние запчастей</a>
-    <a class="link-all" href="{{url_for('sp_warehouse.all')}}">Склад запчасти</a>
+    <a class="link-all" href="{{url_for('sp_warehouse.all')}}">Склад запчастей</a>
 </div>
 <script src="/static/js/employees/account.js"></script>
 

@@ -13,7 +13,7 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Склад запчасти</h2>
+        <h2>Новый запчасть</h2>
     </div>
 
     <form id="myForm" class="add-form">
@@ -32,7 +32,7 @@
             <label for="order_id">Номер заказа</label>
               <input type="text"  name="order_id" id="order_id" required placeholder="Введите номер заказа">
 
-            <label for="status_id">Статус</label>
+            <label for="status_id">Состояние запчасти</label>
             <select name="status_id" id="status_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(statuses_ids['data']['status_id']|length)%}

@@ -29,7 +29,7 @@
         <section>
             <button class="show-modal">
                 <img src="../../static/img/add_img.svg" class="add-img" alt="">
-                <p>ДОБАВИТ ПРОДУКТ</p>
+                <p>ДОБАВИТЬ ПРОДУКТ</p>
             </button>
         </section>
     </div>
@@ -38,7 +38,7 @@
         <button class="close-modal">&times;</button>
 
         <div class="header">
-            <h2>Добавит продукт</h2>
+            <h2>Добавить продукт</h2>
         </div>
 
         <form action="{{url_for('clients.my_products.get_my_products')}}" method="post" class="form" id="form">
@@ -46,12 +46,12 @@
 
             <div class="form-control">
 
-                <label for="ser_num">Серийный номер</label><span style="color: red; font-size: 16px">*</span>
+                <label for="ser_num">Введите серийный номер</label><span style="color: red; font-size: 16px">*</span>
                 <input type="text" id="ser_num" name="ser_num" required>
             </div>
 
             <div class="form-control">
-                <label for="desc">Описание</label>
+                <label for="desc">Описание (необезательно)</label>
                 <textarea type="text" id="desc" name="desc"></textarea>
 
             </div>
@@ -80,7 +80,7 @@
                         <img src="{{my_products['data']['photo'][i]}}" class="my-products-img"
                              ser_num="{{my_products['data']['serial_num'][i]}}"
                              prefix="{{my_products['data']['prefix'][i]}}" onclick="productImg(this)">
-                        <a onclick="goSocket(this)">Детали</a>
+                        <a onclick="goSocket(this)">Подробно</a>
                     </div>
                     {% if my_products['data']['product_id'][i] == 1 or my_products['data']['product_id'][i] == 2 %}
                     <div class="input-on-off">

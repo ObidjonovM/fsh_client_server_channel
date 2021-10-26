@@ -14,7 +14,7 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Тип доставки</h2>
+        <h2>Информация о виде доставки</h2>
     </div>
 
     <div id="myForm" class="add-form">
@@ -22,7 +22,7 @@
         <input type="hidden" id="shipping_type_id" value="{{shipping_type_info['data']['shipping_type_id']}}">
 
         <div class="form-control">
-            <label for="name">Наименование</label>
+            <label for="name">Название</label>
             <input type="text" id="name" readonly
                    value="{{shipping_type_info['data']['name']}}"/>
 
@@ -45,11 +45,11 @@
             <input type="text" id="price" readonly
                    value="{{shipping_type_info['data']['price']}}"/>
 
-            <label for="min_delivery_days">Мин. день доставки</label>
+            <label for="min_delivery_days">Минимальный день доставки</label>
             <input type="text" id="min_delivery_days" readonly
                    value="{{shipping_type_info['data']['min_delivery_days']}}"/>
 
-            <label for="max_delivery_days">Мах. день доставки</label>
+            <label for="max_delivery_days">Максимальный день доставки</label>
             <input type="text" id="max_delivery_days" readonly
                    value="{{shipping_type_info['data']['max_delivery_days']}}"/>
         </div>

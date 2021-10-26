@@ -14,7 +14,7 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Заказ запчасти</h2>
+        <h2>Новый заказ запчастей</h2>
     </div>
 
     <form id="myForm" class="add-form">
@@ -48,7 +48,7 @@
                 {%endfor%}
             </select>
 
-            <label for="exp_dispatch_date">Срок отправки</label>
+            <label for="exp_dispatch_date">Ожидаемая дата отправки</label>
             <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" required
                 placeholder="Введите описание..." />
 
@@ -64,8 +64,8 @@
         </div>
 
         <div class="form-control">
-            <label for="shipment_id">ID данных доставки</label>
-            <input type="text" id="shipment_id" name="shipment_id" required placeholder="Введите ID данных доставки">
+            <label for="shipment_id">ID доставки заказа</label>
+            <input type="text" id="shipment_id" name="shipment_id" required placeholder="Введите ID доставки заказа...">
 
             <label for="order_date">Дата заказа</label>
             <input type="date" name="order_date" id="order_date" required placeholder="Введите описание..." />

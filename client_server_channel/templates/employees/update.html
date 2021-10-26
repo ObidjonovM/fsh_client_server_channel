@@ -13,7 +13,7 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Изменить</h2>
+        <h2>Изменить данные сотрудника</h2>
     </div>
 
     <form action="{{ url_for('employees.update', emp_id=emp_info['emp_id']) }}"
@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-control">
-            <label for="dept_id">Отдель</label>
+            <label for="dept_id">Отдел</label>
             <select name="dept_id" id="dept_id" required>
                 {% for i in range(names_ids_departments['dept_id']|length)%}
                 {%if emp_info['dept_id'] == names_ids_departments['dept_id'][i]%}
@@ -102,7 +102,7 @@
             <input type="text" name="country" id="country" required
                    value="{{emp_info['country']}}"/>
 
-            <label for="zipcode">Индекс</label>
+            <label for="zipcode">Почтовый индекс</label>
             <input type="text" name="zipcode" id="zipcode"
                    value="{{emp_info['zipcode']}}"/>
         </div>

@@ -12,14 +12,14 @@
 
 <div class="add-container">
     <div class="add-header">
-        <h2>Изменить</h2>
+        <h2>Изменить данные запчасти</h2>
     </div>
     <form class="add-form"
           action="{{ url_for('sp_warehouse.update', sp_id=sp_warehouse_info['data']['sp_id']) }}"
           method="POST">
 
         <div class="form-control">
-            <label for="status_id">Статус</label>
+            <label for="status_id">Состояние</label>
             <select name="status_id" id="status_id">
                 {% for i in range(statuses_ids['data']['status_id']|length)%}
                 {%if sp_warehouse_info['data']['status_id'] == statuses_ids['data']['status_id'][i]%}

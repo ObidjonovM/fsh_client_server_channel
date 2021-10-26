@@ -14,7 +14,7 @@
     <div class="add-container">
 
         <div class="add-header">
-            <h2>Обновление клиентов</h2>
+            <h2>Личные данные</h2>
         </div>
 
         <form action="{{ url_for('clients.update', client_id=client_info['data']['client_id']) }}" method="POST"
@@ -22,7 +22,7 @@
               class="add-form">
 
             <div class="form-control">
-                <label for="first_name">Наименование</label>
+                <label for="first_name">Имя</label>
                 <input type="text" name="first_name" id="first_name"
                        value="{{client_info['data']['first_name']}}"/>
 
@@ -58,7 +58,7 @@
 
             <div class="form-control">
 
-                <label for="zipcode">Индекс</label>
+                <label for="zipcode">Почтовый индекс</label>
                 <input type="text" name="zipcode" id="zipcode" value="{{client_info['data']['zipcode']}}"/>
 
                 <label for="phone">Телефон</label>

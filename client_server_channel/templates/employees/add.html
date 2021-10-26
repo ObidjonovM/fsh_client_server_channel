@@ -13,13 +13,13 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Сотрудник</h2>
+        <h2>Новый сотрудник</h2>
     </div>
 
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="dept_id">Отдель</label>
+            <label for="dept_id">Отдел</label>
             <select name="dept_id" id="dept_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(names_ids_departments['dept_id']|length)%}
@@ -71,7 +71,7 @@
             <label for="country">Страна</label>
             <input type="text" name="country" id="country" required/>
 
-            <label for="zipcode">Индекс</label>
+            <label for="zipcode">Почтовый индекс</label>
             <input type="text" name="zipcode" id="zipcode"/>
         </div>
 

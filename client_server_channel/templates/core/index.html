@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Fido Smart Home</title>
+    <title>Fido Electronics</title>
 
     <link rel="stylesheet" href="/static/css/core/index.css">
     <link rel="stylesheet" href="/static/css/base.css">
@@ -21,8 +21,8 @@
     <div class="hi-person-div">
         {%if first_name%}
         <button type="button" class="hi-person" id="hi-person">
-            <span>Привет {{first_name}}</span>
-            <p> Аккаунт & Продукты</p>
+            <span>Привет, {{first_name}}</span>
+            <p> Аккаунт и Продукты</p>
 
             <div class="account-products" id="account-products">
                 <ul>
@@ -32,7 +32,7 @@
             </div>
         </button>
         {%endif%}
-        <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">Добавит продукт
+        <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">Добавить продукт
         </button>
         {%if first_name %}
         <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>
@@ -52,7 +52,7 @@
             </span>
             <img src="{{get_products['data']['photo'][i]}}" alt="image" id="{{get_products['data']['product_id'][i]}}"
                  onclick="getInfo(this)">
-            <a onclick="getInfoTwo(this)">Детали</a>
+            <a onclick="getInfoTwo(this)">Подробно</a>
         </div>
         {%endfor%}
     </div>

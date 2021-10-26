@@ -25,7 +25,7 @@
 </div>
 <br>
 <section>
-    <h1 class="h1-my-product">Мой продукт</h1>
+    <h1 class="h1-my-product">Данные устройства</h1>
 </section>
 
 <!--  Информация о товаре и Все время open -->
@@ -33,7 +33,7 @@
 <!--    configuration open-->
     <button class="show-modal">
 <!--        <p>Информация о товаре</p>-->
-        <p>Конфигурация</p>
+        <p>Конфигурации</p>
     </button>
 
     <div id="containerModal" class="container modal hidden">
@@ -46,8 +46,8 @@
         <div class="form">
             <div class="form-control1">
                 <label for="forInfoPass">Пароль</label>
-                <input type="password" id="forInfoPass" class="password" placeholder="введите пароль" required>
-                <input type="button" value="Потдвердить" onclick="OpenNewModal()" class="delete-product">
+                <input type="password" id="forInfoPass" class="password" placeholder="Введите пароль" required>
+                <input type="button" value="Подтвердить" onclick="OpenNewModal()" class="delete-product">
             </div>
         </div>
     </div>
@@ -56,13 +56,13 @@
 
 <!--    Информация о товаре open-->
         <button class='all_information' onclick="openProduct(this)" id="{{my_product['data']['product_id'][0]}}">
-          <p>Информация о товаре</p>
+          <p>Инструкции по подключению</p>
         </button>
 <!--    Информация о товаре close-->
 
 <!--    Все время open-->
     <div class="information-on-of">
-        <span class="esp-get-time">Последнее время работы</span>
+        <span class="esp-get-time">Время последного известия от устройства</span>
         <button type="button" class="information-input" id="all_time_input"
                 ser_num="{{my_product['data']['serial_num'][0]}}" prefix="{{my_product['data']['prefix'][0]}}">
 
@@ -107,7 +107,7 @@
     <div class="description-container">
 
         <div class="description-header">
-            <h2>Измените описание!</h2>
+            <h2>Изменить описание</h2>
         </div>
 
         <form action="{{url_for('clients.my_products.my_product.get_my_product', ser_num=my_product['data']['serial_num'][0])}}"
@@ -134,7 +134,7 @@
               class="delete-product-form" id="data_form" method="post"
               ser_num="{{my_product['data']['serial_num'][0]}}">
             <div class="description-header">
-                <h2>Список записи</h2>
+                <h2>Список логов</h2>
             </div>
             <input type="hidden" value="{{my_product['data']['product_id'][0]}}">
             <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
@@ -148,21 +148,21 @@
             </div>
 
             <div class="a">
-                <input type="submit" id="date_submit" class="add-type-submit4" value="Добавить">
+                <input type="submit" id="date_submit" class="add-type-submit4" value="Получть">
             </div>
         </form>
         <div id="containerModal3" class="container3 modal3 hidden3">
             <button class="close-modal4">&times;</button>
 
             <div class="header header3">
-                <h2>Дата начала и окончания</h2>
+                <h2>Логи</h2>
             </div>
             <div class="start-end-date">
                 <table class="table-date">
                     <thead id="thead_data">
                     <tr id="thead_tr">
-                        <th>Включить и Выключить</th>
-                        <th>Дата начала и окончания</th>
+                        <th>Действия</th>
+                        <th>Дата</th>
                     </tr>
                     </thead>
 
@@ -193,7 +193,7 @@
             <form action="{{url_for('clients.my_products.my_product.delete_product', ser_num=my_product['data']['serial_num'][0])}}"
                   id="delete_form" method="post">
                 <label class="for_delete_label" for="for_delete_input">Пароль</label>
-                <input type="password" name="password" id="for_delete_input" placeholder="введите пароль" required>
+                <input type="password" name="password" id="for_delete_input" placeholder="Введите пароль" required>
                 <input type="submit" value="Потдвердить" class="add-type-submit2 delete-product">
             </form>
         </div>

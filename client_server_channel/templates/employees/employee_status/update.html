@@ -13,14 +13,14 @@
 <div class="container">
 
     <div class="header">
-        <h2>Изменить</h2>
+        <h2>Изменить данные статуса</h2>
     </div>
 
     <form action="{{ url_for('employees.employee_status.update', status_id=status_info['status_id']) }}" class="form"
           method="POST">
 
         <div class="form-control">
-            <label for="status_name">Статус</label>
+            <label for="status_name">Название статуса</label>
             <input type="text" name="status_name" id="status_name" value="{{status_info['status']}}"/>
         </div>
 

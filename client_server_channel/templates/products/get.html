@@ -14,7 +14,7 @@
     <div class="add-container">
 
         <div class="add-header">
-            <h2>Продукт</h2>
+            <h2>Информация о продукте</h2>
         </div>
 
         <div class="add-form" id="myForm">
@@ -51,7 +51,7 @@
                 <input type="date" id="manufactured_date" readonly
                        value="{{product_info['data']['manufactured_date']}}">
 
-                <label for="product_name">Наименование</label>
+                <label for="product_name">Название</label>
                 <input type="text" id="product_name" readonly
                        value="{{product_name['data']['name']}}">
 
@@ -71,7 +71,7 @@
                 <input type="text" id="client_name" readonly
                        value="{{client_name['data']['last_name']}} {{client_name['data']['first_name']}} {{client_name['data']['middle_name']}}">
 
-                <label for="firmware_name">Прошивка</label>
+                <label for="firmware_name">Прощивка</label>
                 <input type="text" id="firmware_name" readonly
                        value="{{firmware_name['data']['name']}}">
 

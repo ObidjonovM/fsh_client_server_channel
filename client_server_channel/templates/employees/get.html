@@ -13,14 +13,14 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Сотрудник</h2>
+        <h2>Информация о сотрудник</h2>
     </div>
 
     <form id="myForm" class="add-form">
         <input id="emp_id" type="hidden" value="{{emp_info['data']['emp_id']}}"/>
 
         <div class="form-control">
-            <label for="dept_id">Отдель</label>
+            <label for="dept_id">Отдел</label>
             <input type="text" name="dept_id" id="dept_id" value="{{name_id_departments['data']['name']}}" readonly>
 
             <label for="name">Должность</label>
@@ -61,7 +61,7 @@
             <label for="country">Страна</label>
             <input type="text" name="country" id="country" readonly value="{{emp_info['data']['country']}}"/>
 
-            <label for="zipcode">Индекс</label>
+            <label for="zipcode">Почтовый индекс</label>
             <input type="text" name="zipcode" id="zipcode" readonly value="{{emp_info['data']['zipcode']}}"/>
         </div>
 
