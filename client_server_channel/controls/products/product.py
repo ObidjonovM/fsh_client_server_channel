@@ -36,6 +36,8 @@ class ProductC:
                 product_info['prefix'] = 'gerkon'
             if str(product_info['product_id']) == '5':
                 product_info['prefix'] = 'water_sensor'
+            if str(product_info['product_id']) == '6':
+                product_info['prefix'] = 'vibration_sensor'
             product_info['date_added'] = now
             product_info['date_modified'] = now
             add_result = ProductTable.insert(product_info)
