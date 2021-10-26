@@ -2,14 +2,18 @@ from . import model_utils as utls
 
 
 def last_pk_value(table_name):
-	col_names = utls.get_column_names(table_name)
-	pk_col = col_names[0]
-	sql = f'SELECT MAX({pk_col}) FROM {table_name}'
-	result = utls.send_to_db(sql, None, True)
-	if not result['success']:
-		return {pk_col : -1}
+    col_names = utls.get_column_names(table_name)
+    pk_col = col_names[0]
+    sql = f'SELECT MAX({pk_col}) FROM {table_name}'
+    result = utls.send_to_db(sql, None, True)
+    if not result['success']:
+        return {pk_col : -1}
+
+    if result['data'][0][0] is None:
+        return {pk_col : 0}
+
 	
-	return {pk_col : result['data'][0][0]}
+    return {pk_col : result['data'][0][0]}
 
 
 def insert(table_name, info, generate_pk=True):
