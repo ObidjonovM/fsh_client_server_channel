@@ -392,7 +392,7 @@ CREATE TABLE IF NOT EXISTS clients (
 cur.execute('''
 CREATE TABLE IF NOT EXISTS firmwares (
 	fw_id INT PRIMARY KEY CHECK (fw_id > 0),
-	name VARCHAR(30) NOT NULL,
+	name VARCHAR(100) NOT NULL,
         model VARCHAR(10) NOT NULL,
         version VARCHAR(10) NOT NULL,
         description VARCHAR(200),
