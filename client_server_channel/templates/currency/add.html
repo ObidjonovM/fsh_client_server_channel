@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<title>Новая валюта</title>
 {{super()}}
 
 <link rel="stylesheet" href="/static/css/currency/add.css">
@@ -15,7 +16,7 @@
 <div class="container">
 
     <div class="header">
-        <h2>Информация о валюте</h2>
+        <h2>Новая валюта</h2>
     </div>
 
     <form id="myForm" class="form" action="{{url_for('currency.add')}}" method="POST">

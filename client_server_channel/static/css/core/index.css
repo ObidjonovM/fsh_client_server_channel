@@ -110,14 +110,15 @@
 
     main {
         position: relative;
+        width: 1584px;
+        margin: 0 auto;
     }
 
     section {
-        width: 69%;
+        width: 83%;
         margin: 2% auto;
-        /*border-left: 1px solid #adaeb19e;*/
-        /*border-right: 1px solid #adaeb19e;*/
         display: flex;
+
     }
 
     .all-products {
@@ -551,6 +552,10 @@
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
 
+       main {
+           width: 100%;
+       }
+
         .account-products {
             margin-right: 0%;
             z-index: 100;
@@ -583,6 +588,10 @@
 
     @media only screen and (width: 1024px) and (height: 1366px) {
 
+        main {
+            width: 100%;
+        }
+
         section {
             width: 100%;
         }
@@ -599,7 +608,7 @@
         }
     }
 
-    @media only screen and (min-width: 1025px) and (max-width: 1516px) and (min-height: 530px) and (max-height: 819px) {
+    @media only screen and (min-width: 1025px) and (max-width: 1516px) and (max-height: 819px) {
         main {
             width: 100%;
         }

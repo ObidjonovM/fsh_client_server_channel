@@ -19,7 +19,8 @@ section {
 }
 
 .main-cases {
-    margin: 1% 11%;
+    margin: 1% auto;
+    width: 80%;
 }
 
 /*sm img open*/

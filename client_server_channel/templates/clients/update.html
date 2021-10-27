@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<title>Изменить данные клиента</title>
 {{super()}}
 
 <link rel="stylesheet" href="/static/css/clients/update.css">
@@ -14,7 +15,7 @@
     <div class="add-container">
 
         <div class="add-header">
-            <h2>Личные данные</h2>
+            <h2>Изменить данные клиента</h2>
         </div>
 
         <form action="{{ url_for('clients.update', client_id=client_info['data']['client_id']) }}" method="POST"

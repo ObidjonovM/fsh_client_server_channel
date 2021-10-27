@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<title>Новый доставщик</title>
 {{super()}}
+
 
  <link rel="stylesheet" href="/static/css/carrier/add.css">
 
@@ -16,7 +18,7 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Доставщик</h2>
+        <h2>Новый доставщик</h2>
     </div>
 
     <form id="myForm" class="add-form" action="{{url_for('carrier.add')}}" method="POST">
@@ -27,7 +29,7 @@
             <input type="text" name="name" placeholder="Введите название..." id="name" required/>
 
             <label for="address_1">Адрес</label>
-            <input type="text" name="address_1" id="address_1" placeholder="Введите адрес 1..."/>
+            <input type="text" name="address_1" id="address_1" placeholder="Введите адрес 1..." required/>
 
             <label for="address_2">Адрес (необезательно)</label>
             <input type="text" name="address_2" id="address_2" placeholder="Введите адрес 2..."/>

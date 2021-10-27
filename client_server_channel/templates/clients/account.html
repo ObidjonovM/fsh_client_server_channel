@@ -6,11 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Fido Smart Home</title>
-
+    <title>Fido Electronics</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="/static/css/clients/account.css">
     <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 
 
     {% endblock %}
@@ -24,7 +23,7 @@
     <div class="logout-hi-person">
         <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>
         <button type="button" class="hi-person" id="hi-person">
-            <span>Привет {{first_name}}</span>
+            <span>Привет, {{first_name}}</span>
             <p> Аккаунт и Продукты</p>
 
 

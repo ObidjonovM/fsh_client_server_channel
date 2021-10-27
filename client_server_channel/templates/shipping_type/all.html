@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<title>Виды доставки</title>
 {{super()}}
 
 <link rel="stylesheet" href="/static/css/shipping_type/all.css">
@@ -12,7 +13,7 @@
 
 <div class="add-button">
     <a class="back-button" href="{{url_for('employees.account')}}">Назад</a>
-    <button id="addClick">Добавить вид доставки</button>
+    <button id="addClick">Добавить</button>
 </div>
 <h2 class="header-all">Виды доставки</h2>
 <div class="table">

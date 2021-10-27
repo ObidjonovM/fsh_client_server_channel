@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<title>Изменить данные типа состоянии запчасти</title>
 {{super()}}
 
 <link rel="stylesheet" href="/static/css/sp_status/update.css">
@@ -12,7 +13,7 @@
 
 <div class="container">
     <div class="header">
-        <h2>Изменить данные о состоянии запчасти</h2>
+        <h2>Изменить данные типа состоянии запчасти</h2>
     </div>
     <form class="form"
           action="{{ url_for('sp_status.update', status_id=sp_status_info['data']['status_id']) }}"
