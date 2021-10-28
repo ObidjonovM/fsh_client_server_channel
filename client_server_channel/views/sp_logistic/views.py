@@ -7,6 +7,15 @@ from .. import view_utils as utls
 sp_logistic = Blueprint('sp_logistic', __name__, url_prefix='/sp_logistic')
 
 
+@sp_logistic.route('/')
+def sp_logistic_page():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
+    return render_template(
+        utls.url_join(['sp_logistic', 'sp_logistic.html'])
+    )
+
 @sp_logistic.route('/add', methods=['GET', 'POST'])
 def add():
     if not 'username' in session:

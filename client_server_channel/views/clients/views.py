@@ -10,6 +10,14 @@ clients = Blueprint('clients', __name__, url_prefix='/clients')
 clients.register_blueprint(subscription)
 clients.register_blueprint(my_products)
 
+@clients.route('/')
+def clients_page():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
+	return render_template(
+		utls.url_join(['clients', 'clients.html'])
+	)
 
 @clients.route('/login', methods=['GET', 'POST'])
 def login():

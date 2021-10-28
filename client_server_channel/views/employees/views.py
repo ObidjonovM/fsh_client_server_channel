@@ -12,6 +12,32 @@ employees.register_blueprint(employee_type)
 employees.register_blueprint(employee_status)
 employees.register_blueprint(department)
 
+@employees.route('/')
+def employees_page():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
+    return render_template(
+        utls.url_join(['employees', 'employees.html'])
+    )
+
+@employees.route('/orders')
+def orders_page():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
+    return render_template(
+        utls.url_join(['employees', 'orders.html'])
+    )
+
+@employees.route('/constants')
+def constants_page():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
+    return render_template(
+        utls.url_join(['employees', 'constants.html'])
+    )
 
 @employees.route('/login', methods=['GET','POST'])
 def login():

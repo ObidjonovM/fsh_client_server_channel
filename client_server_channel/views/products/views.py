@@ -18,6 +18,14 @@ products.register_blueprint(status)
 products.register_blueprint(firmware)
 products.register_blueprint(product_photo)
 
+@products.route('/')
+def products_page():
+	if not 'username' in session:
+		return redirect(url_for('employees.login'))
+
+	return render_template(
+		utls.url_join(['products', 'products.html'])
+	)
 
 @products.route('/products')
 def product_list():

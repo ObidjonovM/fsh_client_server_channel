@@ -83,6 +83,15 @@ def all():
     return redirect(url_for('core.index'))            # TODO later!!!!
 
 
+@sp_warehouse.route('/')
+def sp():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
+    return render_template(
+        utls.url_join(['sp_warehouse', 'sp.html'])
+    )
+
 @sp_warehouse.route('/update/<int:sp_id>', methods=['GET', 'POST'])
 def update(sp_id):
     if not 'username' in session:

@@ -6,6 +6,14 @@ from .. import view_utils as utls
 
 sp_order = Blueprint('sp_order', __name__, url_prefix='/sp_order')
 
+@sp_order.route('/')
+def sp_order_page():
+    if not 'username' in session:
+        return redirect(url_for('employees.login'))
+
+    return render_template(
+        utls.url_join(['sp_order', 'sp_order.html'])
+    )
 
 @sp_order.route('/add', methods=['GET', 'POST'])
 def add():
