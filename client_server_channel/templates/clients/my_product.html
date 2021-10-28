@@ -90,7 +90,7 @@
                      alt="img">
             </div>
 
-            {% if my_product['data']['product_id'][i] == 1 or my_product['data']['product_id'][i] == 2 %}
+            {% if my_product['data']['product_id'][i] == 1 or my_product['data']['product_id'][i] == 2 or my_product['data']['product_id'][i] == 8%}
             <div class="input-on-off">
                 <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
                        ser_num="{{my_product['data']['serial_num'][i]}}">

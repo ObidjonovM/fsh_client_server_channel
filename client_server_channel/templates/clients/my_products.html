@@ -81,7 +81,7 @@
                              prefix="{{my_products['data']['prefix'][i]}}" onclick="productImg(this)">
                         <a onclick="goSocket(this)">Подробно</a>
                     </div>
-                    {% if my_products['data']['product_id'][i] == 1 or my_products['data']['product_id'][i] == 2 %}
+                    {% if my_products['data']['product_id'][i] == 1 or my_products['data']['product_id'][i] == 2 or my_products['data']['product_id'][i] == 8 %}
                     <div class="input-on-off">
                         <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
