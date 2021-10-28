@@ -3,7 +3,7 @@ body {
 }
 
 .navbar_all {
-    width: 52%;
+    width: 58%;
     margin: 5px auto;
     display: flex;
     justify-content: center;
@@ -50,7 +50,7 @@ body {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 9%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -73,19 +73,19 @@ body {
 }
 
 .delivery-all {
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, .12);
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, .12);
-    z-index: 1;
-    right: -134%;
+    z-index: -1;
+    right: -124%;
     top: 0;
 }
 
 .orders-all {
     display: none;
     position: absolute;
-    right: -136%;
+    right: -126%;
     top: 50%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, .12);
     z-index: 1;
@@ -126,3 +126,13 @@ ul li {
 /*.dropdown-content .delivery1-link:hover .delivery-all {*/
 /*    display: block;*/
 /*}*/
+
+@media only screen and (min-width: 1025px) and (max-width: 1516px) and (max-height: 819px) {
+    .navbar_all {
+        width: 85%;
+    }
+
+    .dropdown-content {
+        min-width: 13%;
+    }
+}
