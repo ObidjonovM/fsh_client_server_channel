@@ -11,7 +11,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 40%);
+    transform: translate(-50%, 30%);
     z-index: 10;
     width: 53%;
     height: 550px;
@@ -23,8 +23,9 @@
 
 .add-header {
     border-bottom: 1px solid #f0f0f0;
-    background-color: #f7f7f7;
+    background-color: #374a62;
     padding: 10px 30px;
+    color: white;
 }
 
 .add-form {
@@ -83,7 +84,7 @@
 
 
 /*responsive style open*/
-@media only screen and (min-width: 1025px) and (max-width: 1516px) and (max-height: 819px){
+@media only screen and (min-width: 1000px) and (max-width: 1875px) and (max-height: 819px){
     .add-container {
         transform: translate(-50%, 10%);
         width: 65%;
