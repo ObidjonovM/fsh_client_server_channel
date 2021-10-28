@@ -1,12 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Sp</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+    <link rel="stylesheet" href="/static/css/sp_warehouse/sp.css">
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div style="width: 100%; text-align: center; margin-top: 1%">
+    <h1>Запчасти</h1>
+</div>
+
+<div class="menu">
+
+    <ul>
+        <li><a href="{{url_for('sp_type.all')}}">Информация о запчастей</a></li>
+        <li><a href="{{url_for('sp_status.all')}}">Состояние запчастей</a></li>
+        <li><a href="{{url_for('sp_warehouse.all')}}">Склад запчастей</a></li>
+        <li><a href="{{url_for('employees.account')}}" style="color: #bbb6b6; font-weight: bold">Назад</a></li>
+    </ul>
+
+</div>
+
+
+
+
+<script src="/static/js/sp_warehouse/sp.js"></script>
+<script src="/static/js/base.js"></script>
+{% endblock %}

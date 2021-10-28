@@ -2,16 +2,30 @@
 
 {% block head %}
 {{super()}}
-
-<link rel="stylesheet" href="static/css/products/products.css">
-
+    <link rel="stylesheet" href="/static/css/products/products.css">
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<h1>products page</h1>
+<div style="width: 100%; text-align: center; margin-top: 1%;">
+    <h1>Продукты</h1>
+</div>
 
-<script scr="static/js/products/products.js"></script>
+<div class="menu">
 
+    <ul>
+        <li><a href="{{url_for('products.category.all')}}">Категории продуктов</a></li>
+        <li><a href="{{url_for('products.dealer.all')}}">Дилеры</a></li>
+        <li><a href="{{url_for('products.firmware.all')}}">Прошивки устройств</a></li>
+        <li><a href="{{url_for('products.product_info.all')}}">Общая информация о продуктов</a></li>
+        <li><a href="{{url_for('products.status.all')}}">Статусы продуктов</a></li>
+        <li><a href="{{url_for('products.all')}}">Продукты</a></li>
+        <li><a href="{{url_for('employees.account')}}" style="color: #bbb6b6; font-weight: bold">Назад</a></li>
+    </ul>
+
+</div>
+
+
+<script src="/static/js/products/products.js"></script>
 {% endblock %}

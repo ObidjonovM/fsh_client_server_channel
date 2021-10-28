@@ -1,12 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Constants</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+    <link rel="stylesheet" href="/static/css/employees/constants.css">
+
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+<div style="width: 100%; text-align: center; margin-top: 1%;">
+    <h1>Константы</h1>
+</div>
+<div class="menu">
+
+    <ul>
+        <li><a href="{{url_for('unit.all')}}">Единицы измерения</a></li>
+        <li><a href="{{url_for('currency.all')}}">Валюты</a></li>
+        <li><a href="{{url_for('employees.account')}}" style="color: #bbb6b6; font-weight: bold">Назад</a></li>
+    </ul>
+
+</div>
+
+
+
+
+<script src="/static/js/employees/constants.js"></script>
+{% endblock %}
