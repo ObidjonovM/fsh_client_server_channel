@@ -147,7 +147,7 @@ section {
 
 .show-modal, .all_information {
     text-align: center;
-    width: 213px;
+    width: 15%;
     padding: 3px;
     border: none;
     background-color: #374a62;
@@ -258,6 +258,7 @@ section {
 }
 
 .information-on-of {
+    width: 15%;
     margin-left: .5%;
     background-color: #0d1724;
     border-radius: 4px;
@@ -273,7 +274,7 @@ section {
 }
 
 .information-input {
-    height: 29px;
+    height: 28px;
     outline: none;
     text-align: center;
     width: 220px;

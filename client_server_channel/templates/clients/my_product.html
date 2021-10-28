@@ -31,9 +31,9 @@
 
 <!--  Информация о товаре и Все время open -->
 <section class="information-all-time">
+
 <!--    configuration open-->
     <button class="show-modal">
-<!--        <p>Информация о товаре</p>-->
         <p>Конфигурации</p>
     </button>
 
@@ -66,7 +66,6 @@
         <span class="esp-get-time">Время последного известия от устройства</span>
         <button type="button" class="information-input" id="all_time_input"
                 ser_num="{{my_product['data']['serial_num'][0]}}" prefix="{{my_product['data']['prefix'][0]}}">
-
         </button>
     </div>
     <!--    Все время close-->
@@ -152,6 +151,7 @@
                 <input type="submit" id="date_submit" class="add-type-submit4" value="Получть">
             </div>
         </form>
+
         <div id="containerModal3" class="container3 modal3 hidden3">
             <button class="close-modal4">&times;</button>
 
@@ -195,6 +195,9 @@
                   id="delete_form" method="post">
                 <label class="for_delete_label" for="for_delete_input">Пароль</label>
                 <input type="password" name="password" id="for_delete_input" placeholder="Введите пароль" required>
+                {% if wrong_password %}
+                <small id="error-small2">Неверный пароль</small>
+                {% endif %}
                 <input type="submit" value="Потдвердить" class="add-type-submit2 delete-product">
             </form>
         </div>
