@@ -1,12 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Sp_order</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block head %}
+{{super()}}
+    <link rel="stylesheet" href="/static/css/sp_logistic/sp_logistic.css">
+{% endblock %}
+
+{% block body %}
+{{super()}}
+
+
+<div style="width: 100%; text-align: center; margin-top: 1%">
+    <h1>Заказы</h1>
+</div>
+<div class="menu">
+
+    <ul>
+        <li><a href="{{url_for('supplier.all')}}">Поставщики запчастей</a></li>
+        <li><a href="{{url_for('sp_order_status.all')}}">Состояние заказа</a></li>
+        <li><a href="{{url_for('sp_order.all')}}">Заказы на запчасти</a></li>
+        <li><a href="{{url_for('sp_order_detail.all')}}">Деталь заказа запчастей</a></li>
+        <li><a href="{{url_for('employees.orders_page')}}" style="color: #bbb6b6; font-weight: bold">Назад</a></li>
+    </ul>
+
+</div>
+
+
+<script src="/static/js/sp_logistic/sp_logistic.js"></script>
+{% endblock %}
