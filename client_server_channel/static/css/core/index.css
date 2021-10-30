@@ -156,12 +156,12 @@
         height: 380px;
         cursor: pointer;
         margin-top: 15px;
-        background-color: #eaeded;
+        background-color: #d9dddd;
         margin-bottom: 10px;
     }
 
     .all-products img:hover {
-        background-color: #d9dddd;
+        background-color: #c8d1d1;
     }
 
     .all-products .description {

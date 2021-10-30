@@ -65,7 +65,7 @@
     position: absolute;
     top: 52%;
     left: 50%;
-    transform: translate(-50%, 40%);
+    transform: translate(-50%, 30%);
     width: 900px;
     height: 550px;
     background-color: #fff;
@@ -304,8 +304,7 @@
 
 @media only screen and (min-width: 1025px) and (max-width: 1516px) and (min-height: 510px) and (max-height: 819px) {
     .add-container {
-        transform: translate(-50%, 10%);
-        border: 1px solid red;
+        transform: translate(-50%, 8%);
     }
 }
 
