@@ -44,3 +44,13 @@ def get_current_states():
 		)
 
 		return result
+
+
+@my_products.route('/setup_info')
+def setup_info():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	return render_template(
+		utls.url_join(['clients', 'setup_info.html'])
+	)
