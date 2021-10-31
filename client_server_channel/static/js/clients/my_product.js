@@ -340,12 +340,3 @@ function myProducts() {
 }
 
 //get my products close
-
-
-//open product_info open
-function openProduct(ev) {
-    let product_id = ev.getAttribute('id');
-    window.open('/products/info/' + product_id, '_self')
-}
-
-//open product_info close

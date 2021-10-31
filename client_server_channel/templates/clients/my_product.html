@@ -56,9 +56,9 @@
     <!--   configuration close-->
 
 <!--    Информация о товаре open-->
-        <button class='all_information' onclick="openProduct(this)" id="{{my_product['data']['product_id'][0]}}">
+        <a href="{{url_for('clients.my_products.setup_info')}}" style="text-decoration: none;" class='all_information'>
           <p>Инструкции по подключению</p>
-        </button>
+        </a>
 <!--    Информация о товаре close-->
 
 <!--    Все время open-->

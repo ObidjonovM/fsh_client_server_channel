@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fido Electronics</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/clients/setup_info.css">
+
+    {% endblock %}
+</head>
+
+<body class="background-color">
+{% block body %}
+
+<div class="fixed">
+    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+    <div class="viyti-get-my-products">
+        <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
+        <button type="button" onclick="myProducts()" class="get-my-products">Мои продукты</button>
+    </div>
+</div>
+<br>
+
+
+<div class="information">
+
+    <div class="img-information">
+        <p class="information1">1. Сначала нажмите «Войти» </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/1.jpg" alt="rasm">
+        </div>
+        <p class="information2">
+            появится новое окно, если вы не зарегистрированы на этом сайте, мы попросим вас перейти в раздел
+            «Регистрация» и зарегистрироваться.
+        </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/2.jpg" alt="rasm2">
+        </div>
+        <p>вас будет личный аккаунт. </p>
+        <p>2. Нажмите кнопку «Добавить продукт» , </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/3.jpg" alt="">
+        </div>
+        <p>и вам будет предоставлено форма для ввода «Серийный номер» и «Описание», </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/4.jpg" alt="">
+        </div>
+        <p>в этом разделе «Серийный номер» вы введете номер, состоящий из 12 символов на коробке устройства.</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/5.jpg" alt="">
+            <img src="/static/setup_info_img/6.jpg" alt="">
+        </div>
+        <p>В разделе «Описание» можно ввести любой текст.</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/7.jpg" alt="">
+        </div>
+        <p>Затем нажмите «Сохранить».</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/8.jpg" alt="">
+        </div>
+        <p>3. Вы увидите фотографию вашего устройства, </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/9.jpg" alt="">
+        </div>
+        <p>нажмите на изображение этого устройства один раз,</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/10.jpg" alt="">
+        </div>
+        <p>и вы перейдете к следующему разделу.</p>
+        <p>4. Нажмите кнопку «Конфигурации».</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/11.jpg" alt="">
+        </div>
+        <p>В разделе «Введите пароль» введите пароль, </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/12.jpg" alt="">
+        </div>
+        <p>который вы ввели при регистрации, и нажмите кнопку «Подтвердить».</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/13.jpg" alt="">
+        </div>
+        <p>5. Вы получите логины и пароли устройства. </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/14.jpg" alt="">
+        </div>
+        <p>6. Подключите устройство к питанию. </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/15.jpg" alt="">
+        </div>
+        <p>Затем подключите свой телефон (компьютер) к Wi-Fi, и у вас будет доступ к Wi-Fi под названием
+            «FidoElectronics ..»
+        </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/16.jpg" alt="">
+        </div>
+        <p>(в этом случае ваше устройство переключится в режим распространения Wi-Fi) и введите код в раздел «Настройки
+            пароля» введите,
+        </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/17.jpg" alt="">
+        </div>
+        <div class="img1">
+            <img src="/static/setup_info_img/18.jpg" alt="">
+        </div>
+        <p>тогда вы подключитесь к этому Wi-Fi.</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/19.jpg" alt="">
+        </div>
+        <p>7. Вы можете получить доступ к веб-сайту устройства по ссылке http://192.168.4.1, </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/20.jpg" alt="">
+        </div>
+        <p>введите «Логин по умолчанию» и «Пароль по умолчанию» из этапа 5.</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/21.jpg" alt="">
+        </div>
+        <p>Нажмите кнопку «Войти».</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/22.jpg" alt="">
+        </div>
+        <p>8. Вы увидите 3 кнопки, нажмите на кнопку с пометкой «Роутер». </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/23.jpg" alt="">
+        </div>
+        <p>Введите логин и пароль роутера, </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/24.jpg" alt="">
+        </div>
+        <p>установленного в вашем доме, затем нажмите кнопку «Сохоанить». </p>
+        <div class="img1">
+            <img src="/static/setup_info_img/25.jpg" alt="">
+        </div>
+        <p>Через некоторое время ваш телефон (компьютер) отключится от подключенного Wi-Fi (в этом случае ваше
+            устройство переключилось
+        </p>
+        <p>на режим Wi-Fi клиент подключения).</p>
+        <div class="img1">
+            <img src="/static/setup_info_img/26.jpg" alt="">
+        </div>
+        <p>9. Теперь вы можете управлять устройством, зайдя в свой персональный кабинет. </p>   
+        <div class="img1">
+            <img src="/static/setup_info_img/27.jpg" alt="">
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+<script src="/static/js/base.js"></script>
+<script src="/static/js/clients/setup_info.js"></script>
+<script>
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+.information {
+    width: 80%;
+    margin: 0 auto;
+    border: none;
+    border-left: 1px solid #b2a980;
+    border-right: 1px solid #b2a980
+;
+}
+
+.img-information {
+    margin: 3% auto;
+}
+
+.img1 {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.img1 img {
+    width: 100%;
+}
+
+.img-information p {
+    width: 80%;
+    margin: 1% auto;
+    text-align: justify;
+    font-weight: bold;
+    font-family: "Arial Narrow";
+}
+

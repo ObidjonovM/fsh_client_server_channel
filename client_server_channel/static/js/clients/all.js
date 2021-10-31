@@ -32,10 +32,6 @@ function deleteClient(e) {
 
 }
 
-document.getElementById("addClick").onclick = () => {
-    window.open('/clients/add', '_self');
-};
-
 function getClient(e) {
     window.open('/clients/get/' + e.children[0].innerHTML, '_self');
 }
