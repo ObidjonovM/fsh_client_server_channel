@@ -338,5 +338,4 @@ window.addEventListener('load', function () {
 function myProducts() {
     window.open('/clients/my_products', '_self');
 }
-
 //get my products close
