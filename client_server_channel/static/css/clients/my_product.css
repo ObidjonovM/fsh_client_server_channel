@@ -1,7 +1,7 @@
 .h1-my-product {
     width: 100%;
     text-align: center;
-    margin: 10px 20px;
+    margin: 4px 20px;
     font-size: 29px;
     color: #32334e;
 }
@@ -1084,7 +1084,7 @@ section {
 
     section {
         width: 92%;
-        margin: 15px auto;
+        margin: 0px auto;
     }
 
     .viyti-get-my-products {
@@ -1093,7 +1093,15 @@ section {
 
     .description-img-section {
         width: 98%;
-        margin: 3% auto;
+        margin: 1% auto;
+    }
+
+    .h1-my-product {
+        font-size: 24px;
+    }
+
+    .information-all-time {
+        margin-top: 0.5%;
     }
 
     .description-header {
