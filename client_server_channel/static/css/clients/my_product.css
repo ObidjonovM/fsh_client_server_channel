@@ -784,9 +784,22 @@ section {
 }
 
 @media only screen and (min-width: 411px) and (max-width: 731px) {
+    .onof-div {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .all-products {
+        width: auto;
+        margin: 10% auto;
+    }
+
+    .all-products .img-div {
+        max-width: none;
+    }
+
     .input-on-off {
         margin: 0;
-        width: 95%;
+        width: 100%;
     }
 }
 
@@ -1028,6 +1041,14 @@ section {
 
     .all-products {
         margin: 0 auto;
+    }
+
+    .all-products .img-div {
+        max-width: none;
+    }
+
+    .all-products input {
+        width: 48.8%;
     }
 
     .information-on-of {

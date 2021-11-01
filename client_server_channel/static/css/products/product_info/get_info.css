@@ -492,7 +492,11 @@ section {
 
 @media only screen and (min-width: 1025px) and (max-width: 1516px) and (max-height: 819px) {
     main {
-        height: 980px;
+        height: auto;
+    }
+
+    .img {
+        margin: 2% auto;
     }
 
     .full-org-photo-div {
