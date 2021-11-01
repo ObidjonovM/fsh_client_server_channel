@@ -13,7 +13,7 @@
 
     {% endblock %}
 </head>
-<body>
+<body class="background-color">
 {% block body %}
 
 <div class="fixed">
@@ -66,6 +66,18 @@
     </section>
 
 </main>
+
+<div class="information1">
+
+    <div class="img-information1">
+        {%for i in range(get_info['data']['org_photo']|length)%}
+        <div class="img">
+                    <img src="{{get_info['data']['org_photo'][i]}}" alt="org_img">
+        </div>
+        {%endfor%}
+    </div>
+
+</div>
 
 {% endblock %}
 
