@@ -276,7 +276,7 @@ section {
 
 .information-input {
     text-align: center;
-    width: 220px;
+    width: 100%;
     padding: 10px 3px;
     font-size: 14px;
     font-weight: 600;
@@ -284,6 +284,7 @@ section {
     border-radius: 4px;
     border: none;
     background-color: #0d1724;
+    margin: 0 auto;
 }
 
 .overlay, .overlay1 {
