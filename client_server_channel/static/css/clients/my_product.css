@@ -279,7 +279,7 @@ section {
 .information-input {
     text-align: center;
     width: 100%;
-    padding: 10px 3px;
+    padding: 5px 3px;
     font-size: 14px;
     font-weight: 600;
     color: white;
@@ -618,6 +618,7 @@ section {
 
     .information-on-of {
         width: 60%;
+        height: 60px;
         margin: 0 auto;
     }
 
@@ -854,8 +855,7 @@ section {
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     section {
-        width: 100%;
-        display: block;
+        width: 100%;;
     }
 
     .information-all-time {
@@ -935,6 +935,8 @@ section {
 
     .information-input {
         width: 100%;
+        font-size: 12px;
+        padding: 3px;
     }
 
     .modal {
@@ -981,6 +983,13 @@ section {
     section {
         border: 1px solid transparent;
     }
+
+    .information-input {
+        width: 100%;
+        font-size: 12px;
+        padding: 3px;
+    }
+
 
     .description-img-section {
         width: 100%;
@@ -1122,6 +1131,8 @@ section {
 
     .information-input {
         width: 100%;
+        font-size: 12px;
+        padding: 5px;
     }
 
     .show-modal, .all_information {
