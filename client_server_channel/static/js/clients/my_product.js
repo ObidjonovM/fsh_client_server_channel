@@ -311,10 +311,10 @@ window.addEventListener('load', function () {
         w.onmessage = function (ev) {
             let on_of;
             if (ev.data['state'] == 'ON') {
-                on_of = 'Включен';
+                on_of = 'Закрыто';
             }
             if (ev.data['state'] == 'OFF') {
-                on_of = 'Выключен';
+                on_of = 'Открыт';
             }
 
             for (let i = 0; i < req_action.length; i++) {

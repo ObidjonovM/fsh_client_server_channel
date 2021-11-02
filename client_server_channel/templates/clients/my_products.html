@@ -85,10 +85,10 @@
                     </div>
                     {% if my_products['data']['product_id'][i] == 1 or my_products['data']['product_id'][i] == 2 or my_products['data']['product_id'][i] == 8 %}
                     <div class="input-on-off">
-                        <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
+                        <input type="button" action="ON" value="Закрыть" onclick="actionCommand(this)" class="on"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
 
-                        <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
+                        <input type="button" action="OFF" value="Открыть" onclick="actionCommand(this)" class="off"
                                ser_num="{{my_products['data']['serial_num'][i]}}">
                     </div>
                     {%else%}
