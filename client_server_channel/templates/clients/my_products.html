@@ -35,6 +35,7 @@
 
     <div class="containerr modal hidden">
         <button class="close-modal">&times;</button>
+        <a href="{{url_for('core.index')}}" class="close-modal-localStorage">&times;</a>
 
         <div class="header">
             <h2>Добавить продукт</h2>
@@ -50,7 +51,7 @@
             </div>
 
             <div class="form-control">
-                <label for="desc">Описание (необезательно)</label>
+                <label for="desc">Описание (необязательно)</label>
                 <textarea type="text" id="desc" name="desc"></textarea>
 
             </div>
@@ -58,6 +59,7 @@
             <div class="buttons">
                 <input type="submit" value="Сохранить" class="add-type-submit">
                 <input type="button" value="Отмена" class="add-type-submit2 close-modal2">
+                <a href="{{url_for('core.index')}}" class="close-modal3">Отмена</a>
             </div>
         </form>
     </div>

@@ -30,6 +30,8 @@ function Logout() {
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.close-modal');
+const btnCloseModalLocal = document.querySelector('.close-modal-localStorage');
+const btnCloseModalLocal2 = document.querySelector('.close-modal3');
 const btnCloseModal2 = document.querySelector('.close-modal2');
 const btnOpenModal = document.querySelector('.show-modal');
 const ser_num = document.getElementById('ser_num');
@@ -39,10 +41,23 @@ const desc = document.getElementById('desc');
 const openModal = function () {
     modal.classList.remove('hidden');
     overlay.classList.remove('hidden');
-
 };
 
 const closeModal = function () {
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+    ser_num.value = "";
+    desc.value = "";
+};
+
+const closeModalLocal = function () {
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+    ser_num.value = "";
+    desc.value = "";
+};
+
+const closeModalLocal2 = function () {
     modal.classList.add('hidden');
     overlay.classList.add('hidden');
     ser_num.value = "";
@@ -59,6 +74,8 @@ const closeModal2 = function () {
 btnOpenModal.addEventListener('click', openModal);
 
 btnCloseModal.addEventListener('click', closeModal);
+btnCloseModalLocal2.addEventListener('click', closeModalLocal2);
+btnCloseModalLocal.addEventListener('click', closeModalLocal);
 btnCloseModal2.addEventListener('click', closeModal2);
 // overlay.addEventListener('click', closeModal);
 
@@ -79,6 +96,10 @@ function productImg(ev) {
 window.onload = function () {
     if (localStorage.getItem("openModal") == "open") {
         openModal();
+        btnCloseModalLocal.style.display = 'block';
+        btnCloseModalLocal2.style.display = 'block';
+        btnCloseModal2.remove();
+        btnCloseModal.remove();
         localStorage.removeItem('openModal');
     }
 }
