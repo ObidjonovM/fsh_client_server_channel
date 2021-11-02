@@ -105,6 +105,8 @@
                 <input type="button" action="OFF" value="Открыть" onclick="actionCommand(this)" class="off"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
             </div>
+            {%else%}
+            <div class="input-on-off"></div>
             {% endif %}
         </div>
         {%endfor%}

@@ -144,10 +144,10 @@ let w;
                             if(sub_val['state'] == 'OFF'){
                                 on_off = 'Выключен';
                             }
-                            if (id == 4){
+                            if ((sub_val['state'] == 'ON' && id == 4) || (sub_val['state'] == 'ON' && id == 8)){
                                 on_off = 'Закрыто';
                             }
-                            if (id == 8){
+                            if ((sub_val['state'] == 'OFF' && id == 4) || (sub_val['state'] == 'OFF' && id == 8)){
                                 on_off = 'Открыто';
                             }
                             req_action[i].style.backgroundColor = 'white';

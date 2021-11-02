@@ -289,6 +289,8 @@ close_modal4.addEventListener('click', closeModal5);
 //ON OF open
 const socket_img = document.querySelectorAll('.socket-img');
 const req_action = document.getElementsByClassName('ONOF');
+let id = socket_img[0].getAttribute('id');
+
 window.addEventListener('load', function () {
 
     let w;
@@ -313,9 +315,14 @@ window.addEventListener('load', function () {
             if (ev.data['state'] == 'ON') {
                 on_of = 'Включен';
             }
-            //Закрыто Открыто
             if (ev.data['state'] == 'OFF') {
                 on_of = 'Выключен';
+            }
+            if ((ev.data['state'] == 'ON' && id == 4) || (ev.data['state'] == 'ON' && id == 8) ) {
+                on_of = 'Закрыто';
+            }
+            if ((ev.data['state'] == 'OFF' && id == 4) || (ev.data['state'] == 'OFF' && id == 8) ) {
+                on_of = 'Открыто';
             }
 
 
