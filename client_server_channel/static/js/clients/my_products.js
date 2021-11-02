@@ -94,7 +94,6 @@ function productImg(ev) {
     var x = ev.getAttribute("ser_num");
     window.open('/clients/my_products/my_product/' + x, '_self');
 }
-
 window.onload = function () {
     if (localStorage.getItem("openModal") == "open") {
         openModal();
@@ -129,6 +128,7 @@ let w;
         w.postMessage(json)
         w.onmessage = function (ev) {
             for (let i=0; i < my_products_img.length; i++) {
+                let id = my_products_img[i].getAttribute('id');
                 for (let j in ev.data['data']) {
                     var key = j;
                     var val = ev.data['data'][j];
@@ -139,10 +139,16 @@ let w;
                             my_products_img[i].setAttribute('action', sub_val['state'])
                             let on_off;
                             if (sub_val['state'] == 'ON'){
-                                on_off = 'Закрыто';
+                                on_off = 'Включен';
                             }
                             if(sub_val['state'] == 'OFF'){
-                                on_off = 'Открыт';
+                                on_off = 'Выключен';
+                            }
+                            if (id == 4){
+                                on_off = 'Закрыто';
+                            }
+                            if (id == 8){
+                                on_off = 'Открыто';
                             }
                             req_action[i].style.backgroundColor = 'white';
 

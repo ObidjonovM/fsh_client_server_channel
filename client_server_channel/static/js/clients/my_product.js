@@ -311,11 +311,13 @@ window.addEventListener('load', function () {
         w.onmessage = function (ev) {
             let on_of;
             if (ev.data['state'] == 'ON') {
-                on_of = 'Закрыто';
+                on_of = 'Включен';
             }
+            //Закрыто Открыто
             if (ev.data['state'] == 'OFF') {
-                on_of = 'Открыт';
+                on_of = 'Выключен';
             }
+
 
             for (let i = 0; i < req_action.length; i++) {
                 req_action[i].style.backgroundColor = 'white';

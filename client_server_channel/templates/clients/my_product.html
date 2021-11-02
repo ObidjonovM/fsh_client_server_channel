@@ -84,12 +84,20 @@
             <div class="img-div">
                 <span>{{my_product['data']['description'][i]}}</span>
 
-                <img src="{{my_product['data']['photo'][i]}}" class="socket-img"
+                <img src="{{my_product['data']['photo'][i]}}" class="socket-img" id="{{my_product['data']['product_id'][i]}}"
                      ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}"
                      alt="img">
             </div>
 
-            {% if my_product['data']['product_id'][i] == 1 or my_product['data']['product_id'][i] == 2 or my_product['data']['product_id'][i] == 8%}
+            {% if my_product['data']['product_id'][i] == 1 or my_product['data']['product_id'][i] == 2 %}
+            <div class="input-on-off">
+                <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
+                       ser_num="{{my_product['data']['serial_num'][i]}}">
+
+                <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
+                       ser_num="{{my_product['data']['serial_num'][i]}}">
+            </div>
+            {%elif my_product['data']['product_id'][i] == 4 or my_product['data']['product_id'][i] == 8 %}
             <div class="input-on-off">
                 <input type="button" action="ON" value="Закрыть" onclick="actionCommand(this)" class="on"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
