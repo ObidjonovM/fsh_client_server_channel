@@ -51,15 +51,17 @@ const closeModal = function () {
 };
 
 const closeModalLocal = function () {
-    modal.classList.add('hidden');
-    overlay.classList.add('hidden');
+    // modal.classList.add('hidden');
+    // overlay.classList.add('hidden');
+    window.history.back();
     ser_num.value = "";
     desc.value = "";
 };
 
 const closeModalLocal2 = function () {
-    modal.classList.add('hidden');
-    overlay.classList.add('hidden');
+    // modal.classList.add('hidden');
+    // overlay.classList.add('hidden');
+    window.history.back();
     ser_num.value = "";
     desc.value = "";
 };
