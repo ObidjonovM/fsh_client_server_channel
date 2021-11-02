@@ -16,8 +16,9 @@
 <body class="background-color" id="src">
 
 <header class="fixed">
+    <a href="#">
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-
+    </a>
     <div class="hi-person-div">
         {%if first_name%}
         <button type="button" class="hi-person" id="hi-person">
@@ -35,9 +36,13 @@
         <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">Добавить продукт
         </button>
         {%if first_name %}
-        <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>
+        <a href="#" onclick="Logout(this)">
+        <button type="button" class="glavni-stranisa logout">Выйти</button>
+        </a>
         {%else%}
-        <button class="sign-in" id="sign-in" onclick="SignIn()">Войти</button>
+        <a href="#" onclick="SignIn()">
+        <button class="sign-in" id="sign-in">Войти</button>
+        </a>
         {%endif%}
     </div>
 </header>
@@ -52,7 +57,7 @@
             </span>
             <img src="{{get_products['data']['photo'][i]}}" alt="image" id="{{get_products['data']['product_id'][i]}}"
                  onclick="getInfo(this)">
-            <a onclick="getInfoTwo(this)">Подробно</a>
+            <a href="#" onclick="getInfoTwo(this)">Подробно</a >
         </div>
         {%endfor%}
     </div>

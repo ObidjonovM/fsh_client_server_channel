@@ -1,13 +1,16 @@
-function glavniyStranisa(){
+function glavniyStranisa(ev){
     window.open('/', '_self');
+    ev.removeAttribute("href");
 }
 
-function Viyti() {
+function Viyti(ev) {
     window.open('/employees/logout', '_self');
+    ev.removeAttribute("href");
 }
 
-function Logout() {
+function Logout(ev) {
     window.open('/clients/logout', '_self');
+    ev.removeAttribute("href");
 }
 
 var allEl = document.querySelectorAll('*');

@@ -12,8 +12,9 @@ function addProduct() {
 //local storage new page modal close
 
 // sign in open model
-function SignIn() {
+function SignIn(ev) {
     window.open('/clients/login', '_self');
+    ev.removeAttribute("href");
 }
 // sign in close model
 
@@ -48,6 +49,7 @@ function getInfo(ev) {
 function getInfoTwo(ev){
     let x = ev.previousElementSibling.getAttribute("id");
     window.open('/products/info/' + x, '_self');
+    ev.removeAttribute("href");
 }
 //get info two close
 
