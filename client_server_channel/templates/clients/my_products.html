@@ -23,6 +23,7 @@
     <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
     <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
 </div>
+{{my_products}}
 <div class="full-container">
     <div class="container">
         <section>
@@ -79,7 +80,7 @@
                         </span>
 
                         <img src="{{my_products['data']['photo'][i]}}" class="my-products-img"
-                             ser_num="{{my_products['data']['serial_num'][i]}}"
+                             ser_num="{{my_products['data']['serial_num'][i]}}" id="{{my_products['data']['product_id'][i]}}"
                              prefix="{{my_products['data']['prefix'][i]}}" onclick="productImg(this)">
                         <a onclick="goSocket(this)">Подробно</a>
                     </div>
