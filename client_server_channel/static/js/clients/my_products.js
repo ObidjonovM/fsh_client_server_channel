@@ -5,7 +5,7 @@ function actionCommand(e) {
         'serial_num': e.getAttribute('ser_num'),
         'action_requested' : e.getAttribute('action'),
         'prefix' : 'socket'
-    }
+    };
     xhttp.open('POST', '/clients/my_products/my_product/action', true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhttp.send(JSON.stringify(action));

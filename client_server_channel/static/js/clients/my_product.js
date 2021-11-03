@@ -176,7 +176,7 @@ window.addEventListener('load', function () {
     let json = {
         'ser_num': all_time_input2.getAttribute('ser_num'),
         'prefix': all_time_input2.getAttribute('prefix')
-    }
+    };
 
     if (typeof (Worker) !== "undefined") {
         if (typeof (w1) == "undefined") {
@@ -217,7 +217,7 @@ function sendData() {
         'prefix': prefix.getAttribute('value'),
         'start_date': start_date,
         'end_date': end_date
-    }
+    };
 
     xhttp.open("Post", "/clients/my_products/my_product/logs/" + ser_number);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -284,8 +284,6 @@ close_modal4.addEventListener('click', closeModal5);
 // Дата начала and Дата окончания close
 
 
-
-
 //ON OF open
 const socket_img = document.querySelectorAll('.socket-img');
 const req_action = document.getElementsByClassName('ONOF');
@@ -303,7 +301,7 @@ window.addEventListener('load', function () {
     let json = {
         'ser_num': serNum,
         'prefix': prefix
-    }
+    };
     if (typeof (Worker) !== "undefined") {
         if (typeof (w) == "undefined") {
             w = new Worker("/static/js/clients/s_worker.js");
@@ -318,10 +316,10 @@ window.addEventListener('load', function () {
             if (ev.data['state'] == 'OFF') {
                 on_of = 'Выключен';
             }
-            if ((ev.data['state'] == 'ON' && id == 4) || (ev.data['state'] == 'ON' && id == 8) ) {
+            if ((ev.data['state'] == 'ON' && id == 4) || (ev.data['state'] == 'ON' && id == 8)) {
                 on_of = 'Закрыто';
             }
-            if ((ev.data['state'] == 'OFF' && id == 4) || (ev.data['state'] == 'OFF' && id == 8) ) {
+            if ((ev.data['state'] == 'OFF' && id == 4) || (ev.data['state'] == 'OFF' && id == 8)) {
                 on_of = 'Открыто';
             }
 
@@ -329,17 +327,16 @@ window.addEventListener('load', function () {
             for (let i = 0; i < req_action.length; i++) {
                 req_action[i].style.backgroundColor = 'white';
                 req_action[i].innerHTML = on_of;
-                if (ev.data['state'] == 'undefined' || ev.data['state'] == '-' ){
+                if (ev.data['state'] == 'undefined' || ev.data['state'] == '-') {
                     req_action[i].style.backgroundColor = 'transparent';
                     req_action[i].textContent = '';
                 }
-                console.log(req_action[i].textContent);
 
             }
         };
     }
 
-})
+});
 //ON OF close
 
 
@@ -347,4 +344,5 @@ window.addEventListener('load', function () {
 function myProducts() {
     window.open('/clients/my_products', '_self');
 }
+
 //get my products close
