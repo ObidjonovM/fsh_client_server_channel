@@ -13,7 +13,6 @@
 
 <div style="position:relative;">
     <div class="add-container">
-
         <div class="add-header">
             <h2>Информация о продукте</h2>
         </div>
@@ -68,10 +67,6 @@
                 <input type="text" id="mac_address" readonly
                        value="{{product_info['data']['mac_address']}}">
 
-                <label for="client_name">Клиент</label>
-                <input type="text" id="client_name" readonly
-                       value="{{client_name['data']['last_name']}} {{client_name['data']['first_name']}} {{client_name['data']['middle_name']}}">
-
                 <label for="firmware_name">Прощивка</label>
                 <input type="text" id="firmware_name" readonly
                        value="{{firmware_name['data']['name']}}">
@@ -79,6 +74,22 @@
                 <label for="status_name">Статус</label>
                 <input type="text" id="status_name" readonly
                        value="{{status_name['data']['status']}}">
+
+                <label for="client_id">ID клиента </label>
+                <input type="text" id="client_id" readonly
+                       value="{{client_name['data']['client_id']}}">
+
+            </div>
+
+            <div class="form-control">
+                <label for="username">Логин клиента</label>
+                <input type="text" id="username" readonly
+                       value="{{client_name['data']['username']}}">
+
+                <label for="client_name">Клиент</label>
+                <input type="text" id="client_name" readonly
+                       value="{{client_name['data']['last_name']}} {{client_name['data']['first_name']}} {{client_name['data']['middle_name']}}">
+
             </div>
 
 

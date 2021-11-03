@@ -24,14 +24,6 @@
 
             <th class="hidden">ИД</th>
 
-            <th>Логин по умолчанию</th>
-
-            <th>Пароль по умолчанию</th>
-
-            <th>Wi-Fi Логин</th>
-
-            <th>Wi-Fi Пароль</th>
-
             <th>Серийный номер</th>
 
             <th>Название</th>
@@ -39,6 +31,10 @@
             <th>Дилер</th>
 
             <th>MAC-адрес</th>
+
+            <th>Логин клиента</th>
+
+            <th>ID клиента</th>
 
             <th>Клиент</th>
 
@@ -58,14 +54,6 @@
         {% for i in range(products_info['data']['serial_num']|length) %}
         <tr ondblclick="getType(this)" ser_num="{{products_info['data']['serial_num'][i]}}">
 
-            <td>{{products_info['data']['default_login'][i]}}</td>
-
-            <td>{{products_info['data']['default_password'][i]}}</td>
-
-            <td>{{products_info['data']['ap_login'][i]}}</td>
-
-            <td>{{products_info['data']['ap_password'][i]}}</td>
-
             <td >{{products_info['data']['serial_num'][i]}}</td>
 
             <td>{{products_by_ids['data'][products_info['data']['product_id'][i]]}}</td>
@@ -74,7 +62,11 @@
 
             <td>{{products_info['data']['mac_address'][i]}}</td>
 
-            <td>{{clients_by_ids['data'][products_info['data']['client_id'][i]]}}</td>
+            <td>{{clients_by_ids['data']['usernames'][products_info['data']['client_id'][i]]}}</td>
+
+            <td>{{products_info['data']['client_id'][i]}}</td>
+
+            <td>{{clients_by_ids['data']['fullnames'][products_info['data']['client_id'][i]]}}</td>
 
             <td>{{firmwares_by_ids['data'][products_info['data']['firmware_id'][i]]}}</td>
 
