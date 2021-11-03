@@ -42,6 +42,8 @@ class ProductC:
                 product_info['prefix'] = 'fire_sensor'
             if str(product_info['product_id']) == '8':
                 product_info['prefix'] = 'wifi_lock'
+            if str(product_info['product_id']) == '9':
+                product_info['prefix'] = 'invertor'
             product_info['date_added'] = now
             product_info['date_modified'] = now
             add_result = ProductTable.insert(product_info)
