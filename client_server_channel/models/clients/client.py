@@ -27,13 +27,14 @@ class ClientTable:
     def get_fullnames(clients_ids):
         result = crud.get_fullnames(
             'clients',
-            ['client_id', 'first_name', 'middle_name', 'last_name'],
+            ['client_id', 'first_name', 'middle_name', 'last_name', 'username'],
             'client_id',
             clients_ids
         )
 
         if len(result['data']) > 0:
             names_ids={}
+            username_ids = {}
             data = result['data']
             data_len = len(data['client_id'])
             for i in range(data_len):
@@ -44,8 +45,11 @@ class ClientTable:
                 if data['middle_name'][i] == None:
                     data['middle_name'][i] = ''
                 names_ids[data['client_id'][i]] = f"{data['last_name'][i]} {data['first_name'][i]} {data['middle_name'][i]}"
+                username_ids[data['client_id'][i]] = data['username'][i]
 
-            result['data'] = names_ids
+            result['data'] = {}
+            result['data']['fullnames'] = names_ids
+            result['data']['usernames'] = username_ids
 
         return result
 
