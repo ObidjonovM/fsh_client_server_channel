@@ -2,7 +2,7 @@
 
 {% block head %}
 {{super()}}
-    <link rel="stylesheet" href="/static/css/sp_logistic/sp_logistic.css">
+    <link rel="stylesheet" href="/static/css/sp_order/sp_order.css">
 {% endblock %}
 
 {% block body %}
@@ -19,11 +19,11 @@
         <li><a href="{{url_for('sp_order_status.all')}}">Состояние заказа</a></li>
         <li><a href="{{url_for('sp_order.all')}}">Заказы на запчасти</a></li>
         <li><a href="{{url_for('sp_order_detail.all')}}">Деталь заказа запчастей</a></li>
-        <li><a href="{{url_for('employees.orders_page')}}" style="color: #bbb6b6; font-weight: bold">Назад</a></li>
+        <li><a href="{{url_for('employees.orders_page')}}" class="back-li">Назад</a></li>
     </ul>
 
 </div>
 
 
-<script src="/static/js/sp_logistic/sp_logistic.js"></script>
+<script src="/static/js/sp_order/sp_order.js"></script>
 {% endblock %}

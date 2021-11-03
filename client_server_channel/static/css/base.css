@@ -15,6 +15,12 @@ a{
     text-decoration: none;
 }
 
+.back-li {
+    color: #bbb6b6;
+    font-weight: bold;
+    background-color: #1b232e;
+}
+
 .form-control input:focus, select:focus, textarea:focus {
     outline: 0;
     border-color: #777;
