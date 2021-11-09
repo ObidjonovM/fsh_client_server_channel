@@ -20,7 +20,7 @@
     <form id="myForm" class="add-form">
         <div class="form-control">
 
-            <label for="emp_id">Автор прощывки</label><br/>
+            <label for="emp_id">Автор прощывки</label><br/><span class="star">*</span>
             <select name="emp_id" id="emp_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {%for i in range(ids_fullname.data.emp_id|length)%}
@@ -31,10 +31,10 @@
                 {%endfor%}
             </select>
 
-            <label for="name">Название</label>
+            <label for="name">Название</label><span class="star">*</span>
             <input type="text" id="name" name="name" required placeholder="Введите название..." />
 
-            <label for="model">Модель</label>
+            <label for="model">Модель</label><span class="star">*</span>
             <input type="text" id="model" name="model" required placeholder="Введите модель..." />
 
         </div>
@@ -42,7 +42,7 @@
 
         <div class="form-control">
 
-            <label for="version">Версия</label>
+            <label for="version">Версия</label><span class="star">*</span>
             <input type="text" id="version" name="version" required placeholder="Введите версию..." />
 
             <label for="desc">Описание</label>

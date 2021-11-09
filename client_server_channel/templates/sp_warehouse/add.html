@@ -20,7 +20,7 @@
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="type_id">Тип запчасти</label>
+            <label for="type_id">Тип запчасти</label><span class="star">*</span>
             <select name="type_id" id="type_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(types_ids['data']['sp_type_id']|length)%}
@@ -30,10 +30,10 @@
                 {%endfor%}
             </select>
 
-            <label for="order_id">Номер заказа</label>
+            <label for="order_id">Номер заказа</label><span class="star">*</span>
               <input type="text"  name="order_id" id="order_id" required placeholder="Введите номер заказа">
 
-            <label for="status_id">Состояние запчасти</label>
+            <label for="status_id">Состояние запчасти</label><span class="star">*</span>
             <select name="status_id" id="status_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(statuses_ids['data']['status_id']|length)%}
@@ -45,7 +45,7 @@
         </div>
 
         <div class="form-control">
-            <label for="acc_emp_id">Принял(а)</label>
+            <label for="acc_emp_id">Принял(а)</label><span class="star">*</span>
             <select name="acc_emp_id" id="acc_emp_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(employees_ids['data']['emp_id']|length)%}
@@ -57,7 +57,7 @@
                 {%endfor%}
             </select>
 
-            <label for="used_emp_id">Использовал(а)</label>
+            <label for="used_emp_id">Использовал(а)</label><span class="star">*</span>
             <select name="used_emp_id" id="used_emp_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(employees_ids['data']['emp_id']|length)%}

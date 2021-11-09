@@ -20,13 +20,13 @@
         <form id="myForm" class="add-form">
             <div class="form-control">
 
-                <label for="name">Название</label>
+                <label for="name">Название</label><span class="star">*</span>
                 <input type="text" placeholder="Введите название..." id="name" required/>
 
-                <label for="model">Модель</label>
+                <label for="model">Модель</label><span class="star">*</span>
                 <input type="text" id="model" placeholder="Введите модель..." required/>
 
-                <label for="cat_id">Категория</label>
+                <label for="cat_id">Категория</label><span class="star">*</span>
                 <select id="cat_id" required>
                     <option hidden value="" selected disabled>--Выбрать--</option>
                     {% for i in range(ids_names['data']['category_id']|length)%}

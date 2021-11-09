@@ -21,12 +21,12 @@
     <form id="myForm" class="form">
 
         <div class="form-control">
-            <label for="status">Название</label>
+            <label for="status">Название</label><span class="star">*</span>
             <input type="text" name="status" id="status" required placeholder="Введите название..."/>
         </div>
 
         <div class="form-control">
-            <label for="carrier_id">Доставщик</label>
+            <label for="carrier_id">Доставщик</label><span class="star">*</span>
             <select name="carrier_id" id="carrier_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(carriers_ids['data']['carrier_id']|length)%}

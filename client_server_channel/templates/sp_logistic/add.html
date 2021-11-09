@@ -20,7 +20,7 @@
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="carrier_id">Доставщик</label>
+            <label for="carrier_id">Доставщик</label><span class="star">*</span>
             <select name="carrier_id" id="carrier_id" onchange="getTrStatusByCarrId()" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(carriers_ids['data']['carrier_id']|length)%}
@@ -28,11 +28,11 @@
                 {%endfor%}
             </select>
 
-            <label for="total_cost">Общая стоимость</label>
+            <label for="total_cost">Общая стоимость</label><span class="star">*</span>
             <input type="number" name="total_cost" id="total_cost" required
                    placeholder="Введите общая стоимость..."/>
 
-            <label for="curr_id">Валюта</label>
+            <label for="curr_id">Валюта</label><span class="star">*</span>
             <select name="curr_id" id="curr_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(currencies_ids['data']['curr_id']|length)%}
@@ -43,7 +43,7 @@
         </div>
 
         <div class="form-control">
-            <label for="shipping_type_id">Тип доставки</label>
+            <label for="shipping_type_id">Тип доставки</label><span class="star">*</span>
             <select name="shipping_type_id" id="shipping_type_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(shipping_types_ids['data']['shipping_type_id']|length)%}
@@ -53,11 +53,11 @@
                 {%endfor%}
             </select>
 
-            <label for="tr_number">Номер отслеживания</label>
+            <label for="tr_number">Номер отслеживания</label><span class="star">*</span>
             <input type="text" name="tr_number" id="tr_number" required
                    placeholder="Введите номер отслеживания..."/>
 
-            <label for="tr_status_id">Статус отслеживания</label>
+            <label for="tr_status_id">Статус отслеживания</label><span class="star">*</span>
             <select name="tr_status_id" id="tr_status_id" required>
                 <option hidden id="default_status" value="" selected='selected' disabled>--Выбрать--</option>
                 {% for i in range(tracking_statuses_ids['data']['status_id']|length)%}
@@ -69,10 +69,10 @@
         </div>
 
         <div class="form-control">
-            <label for="shipped_date">Дата отправки</label>
+            <label for="shipped_date">Дата отправки</label><span class="star">*</span>
             <input type="date" name="shipped_date" id="shipped_date" required/>
 
-            <label for="delivered_date">Дата доставки</label>
+            <label for="delivered_date">Дата доставки</label><span class="star">*</span>
             <input type="date" name="delivered_date" id="delivered_date" required/>
 
             <label for="comment">Комментарий</label>

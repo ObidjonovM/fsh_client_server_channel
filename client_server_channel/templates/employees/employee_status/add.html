@@ -19,7 +19,7 @@
     <form action="{{url_for('employees.employee_status.add')}}" id="myForm" class="form" method="POST">
 
         <div class="form-control">
-            <label for="status_name">Названия статуса</label>
+            <label for="status_name">Названия статуса</label><span class="star">*</span>
             <input type="text" name="status" id="status_name" required placeholder="Введите статус..."/>
         </div>
 

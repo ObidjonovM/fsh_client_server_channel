@@ -20,7 +20,7 @@
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="product_id">Название продукта</label>
+            <label for="product_id">Название продукта</label><span class="star">*</span>
             <select name="product_id" id="product_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(products_ids['data']['product_id']|length)%}
@@ -29,7 +29,7 @@
             </select>
 
 
-            <label for="dealer_id">Дилер</label>
+            <label for="dealer_id">Дилер</label><span class="star">*</span>
             <select name="dealer_id" id="dealer_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(dealers_ids['data']['dealer_id']|length)%}
@@ -44,10 +44,10 @@
 
 
         <div class="form-control">
-            <label for="manufactured_date">Дата изготовления</label>
+            <label for="manufactured_date">Дата изготовления</label><span class="star">*</span>
             <input type="date" name="manufactured_date" id="manufactured_date" required>
 
-            <label for="fw_id">Прощивка</label>
+            <label for="fw_id">Прощивка</label><span class="star">*</span>
             <select name="fw_id" id="fw_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(firmwares_ids['data']['fw_id']|length)%}
@@ -56,7 +56,7 @@
             </select>
 
 
-            <label for="status_id">Статус</label>
+            <label for="status_id">Статус</label><span class="star">*</span>
             <select name="status_id" id="status_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(status_ids['data']['status_id']|length)%}

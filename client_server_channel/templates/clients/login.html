@@ -34,7 +34,7 @@
     <form class="form show" action="{{url_for('clients.login')}}" id="login"  method="POST">
 
         <div class="form-control">
-            <label for="clientname">Логин</label><span style="color: red; font-size: 16px">*</span>
+            <label for="clientname">Логин</label><span class="star">*</span>
             <input type="text" name="clientname" id="clientname" placeholder="Логин ... " required>
             {% if not user_exists %}
             <small id="error-small">Пользователь не найден</small>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-control">
-            <label for="password">Пароль</label><span style="color: red; font-size: 16px">*</span>
+            <label for="password">Пароль</label><span class="star">*</span>
             <input type="password" name="password" id="password" placeholder="Пароль ... " required>
             <div class="register-open"><a id="change_password">Изменить пароль</a></div>
             {% if wrong_password %}

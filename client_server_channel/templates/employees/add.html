@@ -20,7 +20,7 @@
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="dept_id">Отдел</label>
+            <label for="dept_id">Отдел</label><span class="star">*</span>
             <select name="dept_id" id="dept_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(names_ids_departments['dept_id']|length)%}
@@ -28,7 +28,7 @@
                 {%endfor%}
             </select>
 
-            <label for="type_id">Должность</label>
+            <label for="type_id">Должность</label><span class="star">*</span>
             <select name="type_id" id="type_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(names_ids_type['emp_type_id']|length)%}
@@ -36,7 +36,7 @@
                 {%endfor%}
             </select>
 
-            <label for="status_id">Статус</label>
+            <label for="status_id">Статус</label><span class="star">*</span>
             <select name="status_id" id="status_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(names_ids_status['status_id']|length)%}
@@ -44,21 +44,21 @@
                 {%endfor%}
             </select>
 
-            <label for="last_name">Фамилия</label>
+            <label for="last_name">Фамилия</label><span class="star">*</span>
             <input type="text" name="last_name" id="last_name" required/>
         </div>
 
         <div class="form-control">
-            <label for="first_name">Имя</label>
+            <label for="first_name">Имя</label><span class="star">*</span>
             <input type="text" name="first_name" id="first_name" required/>
 
-            <label for="middle_name">Отчество</label>
+            <label for="middle_name">Отчество</label><span class="star">*</span>
             <input type="text" name="middle_name" id="middle_name" required/>
 
-            <label for="birth_date">Дата рождения</label>
+            <label for="birth_date">Дата рождения</label><span class="star">*</span>
             <input type="date" name="birth_date" id="birth_date" required/>
 
-            <label for="address_1">Адрес 1</label>
+            <label for="address_1">Адрес 1</label><span class="star">*</span>
             <input type="text" name="address_1" id="address_1" required/>
         </div>
 
@@ -66,10 +66,10 @@
             <label for="address_2">Адрес 2</label>
             <input type="text" name="address_2" id="address_2"/>
 
-            <label for="city">Город</label>
+            <label for="city">Город</label><span class="star">*</span>
             <input type="text" name="city" id="city" required/>
 
-            <label for="country">Страна</label>
+            <label for="country">Страна</label><span class="star">*</span>
             <input type="text" name="country" id="country" required/>
 
             <label for="zipcode">Почтовый индекс</label>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="form-control">
-            <label for="phone">Телефон</label>
+            <label for="phone">Телефон</label><span class="star">*</span>
             <input type="text" name="phone" id="phone" required/>
 
             <label for="home_phone">Домашний телефон</label>

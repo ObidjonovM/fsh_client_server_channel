@@ -21,7 +21,7 @@
     <form id="myForm" class="add-form">
 
         <div class="form-control">
-            <label for="type_id">Тип запчасти</label>
+            <label for="type_id">Тип запчасти</label><span class="star">*</span>
             <select name="type_id" id="type_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(types_ids['data']['sp_type_id']|length)%}
@@ -31,7 +31,7 @@
                 {%endfor%}
             </select>
 
-            <label for="curr_id">Валюта</label>
+            <label for="curr_id">Валюта</label><span class="star">*</span>
             <select name="curr_id" id="curr_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(currencies_ids['data']['curr_id']|length)%}
@@ -41,7 +41,7 @@
                 {%endfor%}
             </select>
 
-            <label for="unit_id">Единица измерения</label>
+            <label for="unit_id">Единица измерения</label><span class="star">*</span>
             <select name="unit_id" id="unit_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {% for i in range(units_ids['data']['unit_id']|length)%}
@@ -53,14 +53,14 @@
         </div>
 
         <div class="form-control">
-            <label for="order_id">Номер заказа</label>
+            <label for="order_id">Номер заказа</label><span class="star">*</span>
                 <input type="text" name="order_id" id="order_id" required placeholder="Введите номер заказа...">
 
-            <label for="price_per_unit">Цена за единицу</label>
+            <label for="price_per_unit">Цена за единицу</label><span class="star">*</span>
             <input type="number" name="price_per_unit" required
                    id="price_per_unit" placeholder="Введите цену за единицу..."/>
 
-            <label for="amount">Количество</label>
+            <label for="amount">Количество</label><span class="star">*</span>
             <input type="number" name="amount" required
                    id="amount" placeholder="Введите количество..."/>
         </div>
