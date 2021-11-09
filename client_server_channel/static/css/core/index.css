@@ -200,7 +200,7 @@
             display: flex;
             justify-content: right;
             padding: 0 5%;
-            width: 75%;
+            width: 71%;
         }
 
         .hi-person {
@@ -551,6 +551,9 @@
     }
 
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        .sign-in {
+            border: none!important;
+        }
 
        main {
            width: 100%;
