@@ -362,7 +362,7 @@ section {
 }
 
 .all-products input {
-    width: 48.6%;
+    width: 49%;
     height: 32px;
     background-color: #fff;
     border: none;
@@ -377,7 +377,9 @@ section {
 .input-on-off {
     max-width: 100%;
     height: 37px;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .all-products .on:focus, .off:focus {
