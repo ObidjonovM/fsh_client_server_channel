@@ -278,6 +278,10 @@ a {
         width: 100%;
     }
 
+    .glavni-stranisa, .viyti {
+        border: 1px solid white;
+    }
+
     section {
         width: 100%;
         display: contents;
@@ -343,6 +347,10 @@ a {
         display: contents;
     }
 
+    .glavni-stranisa, .viyti {
+        border: 1px solid white;
+    }
+
     .all-products {
         width: 100%;
         margin: 10% 0;
@@ -384,6 +392,10 @@ a {
 @media only screen and (min-width: 360px) and (max-width: 768px) {
     .full-container {
         display: contents;
+    }
+
+    .glavni-stranisa, .viyti {
+        border: 1px solid white;
     }
 
     .container {

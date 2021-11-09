@@ -78,6 +78,7 @@ a{
     .glavni-stranisa, .viyti{
         width: 82px;
         font-size: 13px;
+        border: 1px solid white;
     }
     .fixed {
         width: 100%;
