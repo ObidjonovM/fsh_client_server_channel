@@ -79,13 +79,14 @@ class EmployeeC:
 
 
     @staticmethod
-    def update(type_info):
-        if str(type_info['emp_id']) != '1':
-            get_result = EmployeesTable.get(type_info['emp_id'])
+    def update(emp_info):
+        if str(emp_info['emp_id']) != '1':
+            get_result = EmployeesTable.get(emp_info['emp_id'])
             log_code = utls.record_log(get_result, 'update', 'crud_logs')
             if get_result['data'] != []:
-                type_info['date_modified'] = datetime.now()
-                update_result = EmployeesTable.update(type_info)
+                emp_info['date_modified'] = datetime.now()
+                emp_info['username'] = f"{emp_info['first_name'].lower()}.{emp_info['last_name'].lower()}"
+                update_result = EmployeesTable.update(emp_info)
                 return {
                     'success' : update_result['success'],
                     'log_code' : utls.record_log(update_result, 'update', 'crud_logs')
