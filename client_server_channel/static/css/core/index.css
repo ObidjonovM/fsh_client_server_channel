@@ -129,7 +129,7 @@
         float: left;
         max-width: 395px;
         min-height: 120px;
-        height: 470px;
+        height: 473px;
         background-color: #fff;
         margin: 20px;
         padding: 45px 30px;
@@ -166,9 +166,9 @@
 
     .all-products .description {
         width: 100%;
-        height: 13%;
+        height: 10%;
         text-align: left;
-        font-size: 15px;
+        font-size: 14px;
         color: #1b232e;
         font-weight: 600;
         /*margin-left: -280px;*/
