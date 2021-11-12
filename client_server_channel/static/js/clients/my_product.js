@@ -215,8 +215,8 @@ function sendData() {
 
     const json = {
         'prefix': prefix.getAttribute('value'),
-        'start_date': start_date,
-        'end_date': end_date
+        'start_date': start_date+'T00:00',
+        'end_date': end_date+'T23:59'
     };
 
     xhttp.open("Post", "/clients/my_products/my_product/logs/" + ser_number);
@@ -227,7 +227,7 @@ function sendData() {
         if (this.readyState == 4 && this.status == 200) {
             let resp = JSON.parse(this.responseText);
             console.log(resp)
-            for (let i = 0; i < resp['data']['state'].length; i++) {
+            for (let i = resp['data']['state'].length; i < 0;  i--) {
 
                 let tr = document.createElement('TR');
                 tr.setAttribute('id', 'tbody_tr');
