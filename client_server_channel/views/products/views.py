@@ -8,7 +8,7 @@ from .dealer import dealer
 from .status import status
 from .firmware import firmware
 from .product_photo import product_photo
-
+# dushanbagacha commit
 
 products = Blueprint('products', __name__, url_prefix='/products')
 products.register_blueprint(category)
