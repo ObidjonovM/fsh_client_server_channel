@@ -226,7 +226,7 @@ function sendData() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let resp = JSON.parse(this.responseText);
-            for (let i = resp['data']['state'].length; i > 0;  i--) {
+            for (let i = resp['data']['state'].length-1; i >= 0;  i--) {
 
                 let tr = document.createElement('TR');
                 tr.setAttribute('id', 'tbody_tr');
