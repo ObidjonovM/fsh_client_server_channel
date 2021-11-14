@@ -48,7 +48,23 @@ a {
     background-color: #fff;
     padding: 45px 30px;
     float: left;
+    position: relative;
+}
 
+.character {
+    position: absolute;
+    top: 3%;
+    right: 2%;
+    font-size: 17px;
+    width: 16px;
+    height: 19px;
+    border: 1px solid red;
+    text-align: center;
+    margin: 1px;
+    border-radius: 5px;
+    color: white;
+    background-color: #f10909;
+    line-height: 19px;
 }
 
 .all-products .img-div a {
