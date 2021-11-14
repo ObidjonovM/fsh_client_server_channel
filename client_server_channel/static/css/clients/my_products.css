@@ -99,7 +99,7 @@ a {
 }
 
 .all-products .on:focus, .off:focus {
-    background-color: red;
+    background-color: #232F3E;
     color: white;
 }
 

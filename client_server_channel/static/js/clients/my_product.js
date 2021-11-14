@@ -309,26 +309,32 @@ window.addEventListener('load', function () {
 
         w.onmessage = function (ev) {
             let on_of;
-            if (ev.data['state'] == 'ON') {
-                on_of = 'Включен';
-            }
-            if (ev.data['state'] == 'OFF') {
-                on_of = 'Выключен';
-            }
-            if ((ev.data['state'] == 'ON' && id == 4) || (ev.data['state'] == 'ON' && id == 8)) {
-                on_of = 'Закрыто';
-            }
-            if ((ev.data['state'] == 'OFF' && id == 4) || (ev.data['state'] == 'OFF' && id == 8)) {
-                on_of = 'Открыто';
-            }
-
 
             for (let i = 0; i < req_action.length; i++) {
-                req_action[i].style.backgroundColor = 'white';
+                if (ev.data['state'] == 'ON') {
+                    on_of = 'Включен';
+                    req_action[i].style.backgroundColor = 'green';
+                    req_action[i].style.color = 'white';
+                }
+                if (ev.data['state'] == 'OFF') {
+                    on_of = 'Выключен';
+                    req_action[i].style.backgroundColor = 'red';
+                    req_action[i].style.color = 'white';
+                }
+                if ((ev.data['state'] == 'ON' && id == 4) || (ev.data['state'] == 'ON' && id == 8)) {
+                    on_of = 'Закрыто';
+                    req_action[i].style.backgroundColor = 'green';
+                    req_action[i].style.color = 'white';
+                }
+                if ((ev.data['state'] == 'OFF' && id == 4) || (ev.data['state'] == 'OFF' && id == 8)) {
+                    on_of = 'Открыто';
+                    req_action[i].style.backgroundColor = 'red';
+                    req_action[i].style.color = 'white';
+                }
                 req_action[i].innerHTML = on_of;
                 if (ev.data['state'] == 'undefined' || ev.data['state'] == '-') {
-                    req_action[i].style.backgroundColor = 'transparent';
-                    req_action[i].textContent = '';
+                     req_action[i].style.backgroundColor = 'transparent';
+                     req_action[i].textContent = '';
                 }
 
             }

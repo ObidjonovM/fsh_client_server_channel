@@ -239,7 +239,7 @@ section {
 
 .modal3 {
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 65%;
@@ -383,7 +383,7 @@ section {
 }
 
 .all-products .on:focus, .off:focus {
-    background-color: red;
+    background-color: #232F3E;
     color: white;
 }
 

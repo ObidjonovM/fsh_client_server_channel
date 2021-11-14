@@ -140,17 +140,24 @@ let w;
                             let on_off;
                             if (sub_val['state'] == 'ON'){
                                 on_off = 'Включен';
+                                req_action[i].style.backgroundColor = 'green';
+                                req_action[i].style.color = 'white';
                             }
                             if(sub_val['state'] == 'OFF'){
                                 on_off = 'Выключен';
+                                req_action[i].style.backgroundColor = 'red';
+                                req_action[i].style.color = 'white';
                             }
                             if ((sub_val['state'] == 'ON' && id == 4) || (sub_val['state'] == 'ON' && id == 8)){
                                 on_off = 'Закрыто';
+                                req_action[i].style.backgroundColor = 'green';
+                                req_action[i].style.color = 'white';
                             }
                             if ((sub_val['state'] == 'OFF' && id == 4) || (sub_val['state'] == 'OFF' && id == 8)){
                                 on_off = 'Открыто';
+                                req_action[i].style.backgroundColor = 'red';
+                                req_action[i].style.color = 'white';
                             }
-                            req_action[i].style.backgroundColor = 'white';
 
                             if(sub_val['state'] != 'ON' && sub_val['state'] != 'OFF'){
                                 on_off = '';
