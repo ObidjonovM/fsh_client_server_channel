@@ -38,7 +38,7 @@
     }
 
     .hi-person p {
-        font-size: 14px;
+        font-size: 12px;
         font-weight: bold;
     }
 
@@ -294,6 +294,10 @@
             margin-right: 2%;
         }
 
+        .hi-person p {
+            font-size: 10px;
+        }
+
         .viyti {
             margin-left: 2% !important;
         }
@@ -305,10 +309,7 @@
         .glavni-stranisa, .viyti {
             border: 1px solid #c7c7c7 !important;
             margin-right: -6% !important;
-        }
-
-        .account-products {
-
+            font-size: 12px!important;
         }
 
         .show-modal {
@@ -324,7 +325,7 @@
         }
 
         .account-products {
-            margin-right: -101%;
+            margin-right: -96%;
             z-index: 100;
             display: none;
         }
@@ -449,7 +450,7 @@
         .account-products {
             position: absolute;
             display: none;
-            margin-right: -73%;
+            margin-right: -68%;
 
         }
 
@@ -461,7 +462,7 @@
     @media only screen and (min-width: 411px) and (max-width: 731px) {
 
         .account-products {
-            margin-right: -56%;
+            margin-right: -53%;
             z-index: 100;
         }
 
@@ -481,6 +482,10 @@
             width: 56%;
             margin-right: 16%;
             border: 1px solid #c7c7c7;
+        }
+
+        .hi-person p {
+            font-size: 12px!important;
         }
 
         .glavni-stranisa, .viyti {
@@ -584,6 +589,11 @@
         .all-products img {
             height: 152px;
 
+        }
+
+        .all-products .description {
+            height: 22%;
+            font-size: 12px;
         }
 
 
