@@ -54,3 +54,17 @@ def setup_info():
 	return render_template(
 		utls.url_join(['clients', 'setup_info.html'])
 	)
+
+
+@my_products.route('/update_prev_state', methods=['POST'])
+def update_prev_state():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ProductC.update({
+			'serial_num': request.json['ser_num'],
+			'state_change_time': request.json['state_time']
+		})
+
+		return result

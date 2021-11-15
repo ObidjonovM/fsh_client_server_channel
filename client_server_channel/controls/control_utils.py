@@ -60,3 +60,6 @@ def byte_to_base64(format, byte_img):
         result.append(pre_base64 + base64_img[star_pos:end_pos])
 
     return result
+
+def parse_time(str_time):
+	return datetime.strptime(str_time, '%a, %d %b %Y %H:%M:%S %Z')

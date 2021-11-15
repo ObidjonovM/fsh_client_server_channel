@@ -454,7 +454,8 @@ CREATE TABLE IF NOT EXISTS products (
         add_emp_id INT NOT NULL CHECK(add_emp_id > 0),
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
-	active BOOLEAN NOT NULL,	
+	active BOOLEAN NOT NULL,
+	state_change_time TIMESTAMP NOT NULL,
 
 	FOREIGN KEY(product_id)
 	REFERENCES product_info(product_id),

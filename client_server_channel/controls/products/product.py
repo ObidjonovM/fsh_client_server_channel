@@ -46,6 +46,7 @@ class ProductC:
                 product_info['prefix'] = 'invertor'
             product_info['date_added'] = now
             product_info['date_modified'] = now
+            product_info['state_change_time'] = now
             add_result = ProductTable.insert(product_info)
 
             return {
@@ -215,12 +216,19 @@ class ProductC:
         resp = {'data' : []}
         
         for i in range(len(prefixs)):
-
+            get_result = ProductTable.get(ser_nums[i])
+            prevState = get_result['data']['state_change_time']
             resp['data'].append(reqs.post(
                 HD_SERVER + f'/{prefixs[i]}/get_current_states',
                 data = json.dumps({'serial_nums' : [ser_nums[i]]}),
                 headers = HEADERS
                 ).json())
+            currState = utls.parse_time(resp['data'][i][ser_nums[i]]['state_change_time'])
+
+            if prevState < currState:
+                resp['data'][i][ser_nums[i]]['notification'] = 'YES'
+            else:
+                resp['data'][i][ser_nums[i]]['notification'] = 'NO'
 
         return resp
 
