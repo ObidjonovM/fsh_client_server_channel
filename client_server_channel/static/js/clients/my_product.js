@@ -237,7 +237,7 @@ function sendData() {
                 td1.setAttribute('id', 'state_time_on_of');
                 td2.setAttribute('id', 'state_time_on_of');
 
-                td1.innerHTML = getFullTime(resp['data']['state'][i]);
+                td1.innerHTML = resp['data']['state'][i];
                 td2.innerHTML = getFullTime(resp['data']['state_time'][i]);
 
                 tr.appendChild(td1);
