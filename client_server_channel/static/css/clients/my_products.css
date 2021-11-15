@@ -56,7 +56,7 @@ a {
     top: 3%;
     right: 2%;
     font-size: 17px;
-    width: 16px;
+    width: 18px;
     height: 19px;
     border: 1px solid red;
     text-align: center;
@@ -71,11 +71,20 @@ a {
 }
 
 @keyframes characterExample {
-    0%   {background-color:red;}
+    0%   {
+        background-color:red;
+        transform: scale(1.1);
+    }
 
-    50%  {background-color:#d73636;}
+    50%  {
+        background-color:#d73636;
+        transform: scale(1.2);
+    }
 
-    100% {background-color: #b00f0f;}
+    100% {
+        background-color: #b00f0f;
+        transform: scale(1.1);
+    }
 }
 
 .all-products .img-div a {
