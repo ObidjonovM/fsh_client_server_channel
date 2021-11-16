@@ -64,7 +64,7 @@ def update_prev_state():
 	if request.method == 'POST':
 		result = ProductC.update({
 			'serial_num': request.json['ser_num'],
-			'state_change_time': request.json['state_time']
+			'state_change_time': utls.parse_time(request.json['state_time'])
 		})
 
 		return result
