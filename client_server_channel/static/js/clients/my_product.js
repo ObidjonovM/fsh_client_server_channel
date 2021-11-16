@@ -287,6 +287,28 @@ close_modal4.addEventListener('click', closeModal5);
 const socket_img = document.querySelectorAll('.socket-img');
 const req_action = document.getElementsByClassName('ONOF');
 let id = socket_img[0].getAttribute('id');
+let character = document.getElementById('character_id');
+let characters = document.getElementsByClassName('character12');
+
+function characterOtmen(e) {
+    let  serNum = e.getAttribute('ser_num');
+    let  state_time = e.getAttribute('state_time');
+    let json = {
+        'ser_num':serNum,
+        'state_time': state_time
+    }
+
+    xhttp.open('POST', '/clients/my_products/update_prev_state', true);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify(json));
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // let resp = JSON.parse(this.responseText);
+            console.log(this.responseText)
+        }
+    }
+}
+
 
 window.addEventListener('load', function () {
 
@@ -309,8 +331,18 @@ window.addEventListener('load', function () {
 
         w.onmessage = function (ev) {
             let on_of;
-
             for (let i = 0; i < req_action.length; i++) {
+                characters[i].setAttribute('state_time', ev.data['state_change_time']);
+                if (ev.data['notification'] === 'YES'){
+                    characters[i].innerHTML = 'x';
+                    characters[i].style.display = 'inline-block';
+                }
+
+                if (ev.data['notification'] === 'NO'){
+                    characters[i].innerHTML = '';
+                    characters[i].style.display = 'none';
+                }
+
                 if (ev.data['state'] == 'ON') {
                     on_of = 'Включен';
                     req_action[i].style.backgroundColor = 'green';

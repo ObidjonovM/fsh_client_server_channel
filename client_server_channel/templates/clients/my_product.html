@@ -84,7 +84,10 @@
         <div class="all-products">
             <div class="ONOF"></div>
             <div class="img-div">
-                <span>{{my_product['data']['description'][i]}}</span>
+                <span>
+                    <p>{{my_product['data']['description'][i]}}</p>
+                    <span class="character12" id="character_id" onclick="characterOtmen(this)" ser_num="{{my_product['data']['serial_num'][i]}}"></span>
+                </span>
 
                 <img src="{{my_product['data']['photo'][i]}}" class="socket-img" id="{{my_product['data']['product_id'][i]}}"
                      ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}"

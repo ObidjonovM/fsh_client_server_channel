@@ -18,8 +18,10 @@ function actionCommand(e) {
 }
 
 function goSocket(ev) {
+    let e = ev.previousElementSibling;
     let x = ev.previousElementSibling.getAttribute("ser_num");
     window.open('/clients/my_products/my_product/' + x, '_self');
+    characterElement(e);
 }
 
 function Logout() {

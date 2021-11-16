@@ -68,6 +68,7 @@ a {
     animation-name: characterExample;
     animation-duration: 1s;
     animation-iteration-count: infinite;
+    display: none;
 }
 
 @keyframes characterExample {
