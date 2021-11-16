@@ -181,7 +181,6 @@
 
     /*media style open*/
 
-
     @media only screen and (min-width: 280px) and (max-width: 653px) {
         main {
             width: 100%;
@@ -330,6 +329,10 @@
             display: none;
         }
 
+        .account-products ul {
+            width: 118px;
+        }
+
         .all-products {
             width: 95%;
             margin: 0 auto;
@@ -359,6 +362,15 @@
             margin-top: 18%;
         }
 
+        .account-products ul {
+            width: 145px;
+        }
+
+        .account-products ul::before {
+            right: auto;
+            transform: translate(-80%, -90%);
+        }
+
         section {
             width: 100%;
             position: unset;
@@ -373,12 +385,6 @@
             width: 75%;
         }
 
-        .hi-person {
-            float: left;
-            width: 100%;
-            font-size: 13px;
-        }
-
         .show-modal {
             left: 2%;
         }
@@ -388,8 +394,11 @@
         }
 
         .hi-person {
+            position: relative;
+            float: left;
+            font-size: 13px;
             width: 92%;
-            margin-right: 8%;
+            margin-right: 4%;
             border: 1px solid #c7c7c7;
         }
 
@@ -404,7 +413,8 @@
 
         .account-products {
             display: none;
-            margin: 0;
+            position: absolute;
+            left: -2%;
         }
 
         .show-modal {
@@ -454,6 +464,10 @@
 
         }
 
+        .account-products ul {
+            width: 155px;
+        }
+
         .sign-in {
             border: 1px solid #c7c7c7 !important;
         }
@@ -464,6 +478,10 @@
         .account-products {
             margin-right: -53%;
             z-index: 100;
+        }
+
+        .account-products ul {
+            width: 144px;
         }
 
         .show-modal {
@@ -560,6 +578,10 @@
             border: none!important;
         }
 
+        .hi-person {
+            position: relative;
+        }
+
        main {
            width: 100%;
        }
@@ -567,6 +589,8 @@
         .account-products {
             margin-right: 0%;
             z-index: 100;
+            position: absolute;
+            right: auto;
         }
 
         section {
@@ -578,6 +602,10 @@
             width: 100%;
             display: table;
             margin-bottom: 4%;
+        }
+
+        .account-products ul {
+            width: 166px;
         }
 
         .all-products .img-div {
@@ -609,15 +637,28 @@
             width: 100%;
         }
 
+        .hi-person {
+            position: relative;
+        }
+
+        .account-products {
+            position: absolute;
+            left: -2%;
+        }
+
+        .all-products .description {
+            height: 15%;
+        }
+
         .all-products .img-div {
             width: 26%;
-            height: 340px;
+            height: 323px;
             padding: 41px 20px;
             margin-left: 4.5%;
         }
 
         .all-products img {
-            height: 260px;
+            height: 236px;
         }
     }
 
