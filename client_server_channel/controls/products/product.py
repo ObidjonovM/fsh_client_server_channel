@@ -201,12 +201,20 @@ class ProductC:
         resp = {}
         serial_num['serial_num'] = ser_num
         params = json.dumps(serial_num)
+        get_result = ProductTable.get(ser_num)
+        prevState = get_result['data']['state_change_time']
 
         resp = reqs.post(
             HD_SERVER + f'/{str(prefix)}/get_current_state',
             data = params,
             headers = HEADERS
         ).json()
+        currState = utls.parse_time(resp['state_change_time'])
+
+        if prevState < currState:
+            resp['notification'] = 'YES'
+        else:
+            resp['notification'] = 'NO'
 
         return resp
 
