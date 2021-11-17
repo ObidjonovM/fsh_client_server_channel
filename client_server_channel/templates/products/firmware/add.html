@@ -20,7 +20,7 @@
     <form id="myForm" class="add-form">
         <div class="form-control">
 
-            <label for="emp_id">Автор прощывки</label><br/><span class="star">*</span>
+            <label for="emp_id">Автор прощывки</label><span class="star">*</span><br/>
             <select name="emp_id" id="emp_id" required>
                 <option hidden value="" selected disabled>--Выбрать--</option>
                 {%for i in range(ids_fullname.data.emp_id|length)%}
