@@ -44,6 +44,8 @@ class ProductC:
                 product_info['prefix'] = 'wifi_lock'
             if str(product_info['product_id']) == '9':
                 product_info['prefix'] = 'invertor'
+            if str(product_info['product_id']) == '10':
+                product_info['prefix'] = 'socket3x'
             product_info['date_added'] = now
             product_info['date_modified'] = now
             product_info['state_change_time'] = now
