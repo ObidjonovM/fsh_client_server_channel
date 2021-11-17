@@ -7,6 +7,8 @@ from .my_product import my_product
 my_products = Blueprint('my_products', __name__, url_prefix='/my_products')
 my_products.register_blueprint(my_product)
 
+#add commit socket_3x
+
 
 @my_products.route('/', methods=['GET', 'POST'])
 def get_my_products(): 
