@@ -72,6 +72,9 @@ def enter_action():
 		return redirect(url_for('clients.login'))
 
 	if request.method == 'POST':
+		if request.json['prefix'] == 'socket3x':
+			return ProductC.enter_requested_actions(request.json)
+
 		result = ProductC.enter_requested_action(
 			request.json['serial_num'],
 			request.json['action_requested'],
