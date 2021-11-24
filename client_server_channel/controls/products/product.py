@@ -294,16 +294,12 @@ class ProductC:
 
 
     @staticmethod
-    def enter_requested_actions(info):
-        params = {
-            'serial_num' : info['serial_num'],
-            'action_requested_left' : info['action_requested_left'],
-            'action_requested_center' : info['action_requested_center'],
-            'action_requested_right' : info['action_requested_right']
-        }
+    def enter_requested_actions(params):
+        prefix = params['prefix']
+        del params['prefix']
         resp = {}
         resp = reqs.post(
-            HD_SERVER + f"/{str(info['prefix'])}/enter_requested_action",
+            HD_SERVER + f"/{str(prefix)}/enter_requested_action",
             data = json.dumps(params),
             headers=HEADERS
         ).json()
