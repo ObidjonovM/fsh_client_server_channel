@@ -30,10 +30,10 @@ a {
     margin: 1% 26px;
 }
 
-.ONOF {
+.parent-curr-state {
     width: 290px;
     height: 40px;
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     line-height: 40px;
     color: black;
@@ -116,7 +116,7 @@ a {
     background-color: #dde0e0;
 }
 
-.all-products input {
+.all-products input, .input-on-off button {
     width: 141px;
     height: 30px;
     background-color: #fff;
@@ -324,7 +324,7 @@ a {
         display: contents;
     }
 
-    .ONOF {
+    .parent-curr-state {
         width: 100%;
     }
 
@@ -503,7 +503,7 @@ a {
         margin: 22px auto;
     }
 
-    .ONOF {
+    .parent-curr-state {
         width: 100%;
     }
 
@@ -540,7 +540,7 @@ a {
         width: 100%;
     }
 
-    .input-on-off input {
+    .input-on-off button {
         width: 99%;
     }
 
@@ -654,10 +654,34 @@ a {
         margin: 1%;
     }
 
-    .ONOF {
+    .parent-curr-state {
         width: 100%;
     }
 
+}
+
+.parent-curr-state {
+    text-align: center;
+}
+
+.curr-state {
+    display: inline-block;
+    width: 100%;
+    color: white;
+}
+
+.curr-state-left, .curr-state-center, .curr-state-right {
+    display: inline-block;
+    width: 33.33%;
+    color: white;
+}
+
+.curr-state-left {
+    border-right: 2px solid #e0e7e7;
+}
+
+.curr-state-center {
+    border-right: 2px solid #e0e7e7;
 }
 
 /*media style close */

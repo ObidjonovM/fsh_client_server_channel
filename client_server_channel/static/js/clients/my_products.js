@@ -17,6 +17,35 @@ function actionCommand(e) {
     }
 }
 
+function socket3Way(e) {
+    let action_inputs = e.parentNode.querySelectorAll('input');
+    let action = {
+        'serial_num': e.getAttribute('ser_num'),
+        'prefix': 'socket3x'
+    };
+
+    if (e.hasAttribute('action_left')) {
+        action['action_requested_left'] = reverseState(e.getAttribute('action_left'));
+    }
+    if (e.hasAttribute('action_center')) {
+        action['action_requested_center'] = reverseState(e.getAttribute('action_center'));
+    }
+    if (e.hasAttribute('action_right')) {
+        action['action_requested_right'] = reverseState(e.getAttribute('action_right'));
+    }
+
+
+    xhttp.open('POST', '/clients/my_products/my_product/action', true);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify(action));
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let resp = JSON.parse(this.responseText);
+            console.log(resp)
+        }
+    }
+}
+
 function goSocket(ev) {
     let e = ev.previousElementSibling;
     let x = ev.previousElementSibling.getAttribute("ser_num");
@@ -94,12 +123,13 @@ document.addEventListener('keydown', function (e) {
 
 
 const my_products_img = document.querySelectorAll('.my-products-img');
+
 function characterElement(e) {
     let serNum = e.getAttribute('ser_num');
     let state_time = e.getAttribute('state_time');
 
     let json = {
-        'ser_num':serNum,
+        'ser_num': serNum,
         'state_time': state_time
     };
 
@@ -131,12 +161,12 @@ window.onload = function () {
     }
 };
 
-
-const req_action = document.getElementsByClassName('ONOF');
+const parent_curr_state = document.getElementsByClassName('parent-curr-state');
 const character = document.getElementsByClassName('character');
+const input_on_off = document.getElementsByClassName('input-on-off');
+const socket3way_buttons = document.querySelectorAll('.socket3');
 
 window.addEventListener('load', function () {
-
     let w;
     let serNums = [];
     let prefixes = [];
@@ -157,7 +187,6 @@ window.addEventListener('load', function () {
             for (let i = 0; i < my_products_img.length; i++) {
                 let id = my_products_img[i].getAttribute('id');
                 for (let j in ev.data['data']) {
-                    // console.log(ev.data['data'][j]);
                     var key = j;
                     var val = ev.data['data'][j];
                     for (var a in val) {
@@ -165,10 +194,50 @@ window.addEventListener('load', function () {
                         var sub_val = val[a];
 
                         if (my_products_img[i].getAttribute('ser_num') == sub_key) {
-                            my_products_img[i].setAttribute('action', sub_val['state']);
+                            let ser_num = my_products_img[i].getAttribute('ser_num');
+                            if (id == 10) {
+                                let state_left = translateState(sub_val['state_left'], id);
+                                let state_center = translateState(sub_val['state_center'], id);
+                                let state_right = translateState(sub_val['state_right'], id);
+                                parent_curr_state[i].innerHTML = "<span class='curr-state-left state-all' style='background-color: " + state_left['bg_Color'] + "'>" + state_left['state'] + "</span>" +
+                                    "<span class='curr-state-center state-all' style='background-color: " + state_center['bg_Color'] + "'>" + state_center['state'] + "</span>" +
+                                    "<span class='curr-state-right state-all' style='background-color: " + state_right['bg_Color'] + "'>" + state_right['state'] + "</span>";
+                                let left_value = decTranslateState(sub_val['state_left']);
+                                let center_value = decTranslateState(sub_val['state_center']);
+                                let right_value = decTranslateState(sub_val['state_right']);
+                                let state_all = document.getElementsByClassName('state-all');
+
+                                for (let i = 0; i < socket3way_buttons.length; i++) {
+                                    if (state_all[i].innerText == state_left['state']) {
+                                        socket3way_buttons[i].innerHTML = left_value;
+                                        socket3way_buttons[i].attributes[1].value = sub_val['state_left'];
+                                    }
+                                    if (state_all[i].innerText == state_center['state']) {
+                                        socket3way_buttons[i].innerHTML = center_value;
+                                        socket3way_buttons[i].attributes[1].value = sub_val['state_center'];
+                                    }
+                                    if (state_all[i].innerText == state_right['state']) {
+                                        socket3way_buttons[i].innerHTML = right_value;
+                                        socket3way_buttons[i].attributes[1].value = sub_val['state_right'];
+                                    }
+                                }
+
+                                // input_on_off[i].innerHTML = "<input type=\"button\" action_left=\""+ sub_val['state_left'] +"\" value=\""+ left_value +"\" onclick=\"socket3Way(this)\" class=\"on\"\n" +
+                                //     "                               ser_num=\""+ ser_num +"\">\n" +
+                                //     "\n" +
+                                //     "                        <input type=\"button\" action_center=\""+ sub_val['state_center'] +"\" value=\"" +center_value+ "\" onclick=\"socket3Way(this)\" class=\"off\"\n" +
+                                //     "                               ser_num=\""+ser_num+"\">\n" +
+                                //     "\n" +
+                                //     "                        <input type=\"button\" action_right=\""+ sub_val['state_right'] +"\" value=\""+right_value+"\" onclick=\"socket3Way(this)\" class=\"off\"\n" +
+                                //     "                               ser_num=\""+ser_num+"\">";
+                            } else {
+                                let state = translateState(sub_val['state'], id);
+                                parent_curr_state[i].innerHTML = "<span class='curr-state' style='background-color: " + state['bg_Color'] + "'>" + state['state'] + "</span>";
+                            }
+
                             my_products_img[i].setAttribute('state_time', sub_val['state_change_time']);
 
-                            if (sub_val['notification'] === 'YES'){
+                            if (sub_val['notification'] === 'YES') {
                                 character[i].innerHTML = '!';
                                 character[i].style.display = 'inline-block';
                             }
@@ -177,35 +246,6 @@ window.addEventListener('load', function () {
                                 character[i].innerHTML = '';
                                 character[i].style.display = 'none';
                             }
-
-                            let on_off;
-                            if (sub_val['state'] == 'ON') {
-                                on_off = 'Включен';
-                                req_action[i].style.backgroundColor = 'green';
-                                req_action[i].style.color = 'white';
-                            }
-                            if (sub_val['state'] == 'OFF') {
-                                on_off = 'Выключен';
-                                req_action[i].style.backgroundColor = 'red';
-                                req_action[i].style.color = 'white';
-                            }
-                            if ((sub_val['state'] == 'ON' && id == 4) || (sub_val['state'] == 'ON' && id == 8)) {
-                                on_off = 'Закрыто';
-                                req_action[i].style.backgroundColor = 'green';
-                                req_action[i].style.color = 'white';
-                            }
-                            if ((sub_val['state'] == 'OFF' && id == 4) || (sub_val['state'] == 'OFF' && id == 8)) {
-                                on_off = 'Открыто';
-                                req_action[i].style.backgroundColor = 'red';
-                                req_action[i].style.color = 'white';
-                            }
-
-                            if (sub_val['state'] != 'ON' && sub_val['state'] != 'OFF') {
-                                on_off = '';
-                                req_action[i].style.backgroundColor = 'transparent';
-                            }
-                            req_action[i].innerHTML = on_off;
-
                         }
                     }
                 }
@@ -216,3 +256,49 @@ window.addEventListener('load', function () {
 })
 
 
+function translateState(state, id) {
+    if (id == 4 || id == 8) {
+        if (state == "ON") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Закрыто'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Открыто'
+            }
+        }
+    } else {
+        if (state == "ON") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Включен'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Выключен'
+            }
+        }
+    }
+}
+
+function decTranslateState(state) {
+    if (state == "ON") {
+        return 'Выключить';
+    } else {
+        return 'Включить';
+    }
+}
+
+function reverseState(state) {
+    if (state == "ON") {
+        return 'OFF';
+    }
+    if (state == "OFF") {
+        return 'ON';
+    }
+}

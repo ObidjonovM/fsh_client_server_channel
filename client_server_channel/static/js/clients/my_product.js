@@ -185,15 +185,12 @@ window.addEventListener('load', function () {
         w1.postMessage(json)
 
         w1.onmessage = function (ev) {
-            // console.log(ev.data['request_time']);
-            // || getFullTime(ev.data['request_time']) == 'ISO.undefined.0 0'
             if (getFullTime(ev.data['request_time']) == '-' || getFullTime(ev.data['request_time']) == 'ISO.undefined.0 0' || getFullTime(ev.data['request_time']) == '0.undefined.0 0') {
                 all_time_input2.innerHTML = '';
                 all_time_input2.style.border = 'none';
                 all_time_input2.style.outline = 'none';
             } else {
                 all_time_input2.innerHTML = getFullTime(ev.data['request_time']);
-                // all_time_input2.style.border = '1px solid #b8bbb8';
                 // console.log(getFullTime(ev.data['request_time']));
             }
         };
@@ -282,13 +279,42 @@ date_submit.addEventListener('submit', open3);
 close_modal4.addEventListener('click', closeModal5);
 // Дата начала and Дата окончания close
 
+function socket3Way(e) {
+    let action = {
+        'serial_num': e.getAttribute('ser_num'),
+        'prefix': 'socket3x'
+    };
+
+    if (e.hasAttribute('action_left')) {
+        action['action_requested_left'] = reverseState(e.getAttribute('action_left'));
+    }
+    if (e.hasAttribute('action_center')) {
+        action['action_requested_center'] = reverseState(e.getAttribute('action_center'));
+    }
+    if (e.hasAttribute('action_right')) {
+        action['action_requested_right'] = reverseState(e.getAttribute('action_right'));
+    }
+
+
+    xhttp.open('POST', '/clients/my_products/my_product/action', true);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify(action));
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let resp = JSON.parse(this.responseText);
+            console.log(resp)
+        }
+    }
+}
 
 //ON OF open
 const socket_img = document.querySelectorAll('.socket-img');
-const req_action = document.getElementsByClassName('ONOF');
+// const req_action = document.getElementsByClassName('ONOF');
+const parent_curr_state = document.getElementsByClassName('parent-curr-state');
 let id = socket_img[0].getAttribute('id');
 let character = document.getElementById('character_id');
 let characters = document.getElementsByClassName('character12');
+const socket3way_buttons = document.querySelectorAll('.socket3');
 
 function characterOtmen(e) {
     let  serNum = e.getAttribute('ser_num');
@@ -309,7 +335,6 @@ function characterOtmen(e) {
     }
 }
 
-
 window.addEventListener('load', function () {
 
     let w;
@@ -328,10 +353,8 @@ window.addEventListener('load', function () {
             w = new Worker("/static/js/clients/s_worker.js");
         }
         w.postMessage(json)
-
         w.onmessage = function (ev) {
-            let on_of;
-            for (let i = 0; i < req_action.length; i++) {
+            for (let i = 0; i < parent_curr_state.length; i++) {
                 characters[i].setAttribute('state_time', ev.data['state_change_time']);
                 if (ev.data['notification'] === 'YES'){
                     characters[i].innerHTML = 'x';
@@ -342,31 +365,44 @@ window.addEventListener('load', function () {
                     characters[i].innerHTML = '';
                     characters[i].style.display = 'none';
                 }
+                if (id == 10) {
+                    let state_left = translateState(ev.data['state_left'], id);
+                    let state_center = translateState(ev.data['state_center'], id);
+                    let state_right = translateState(ev.data['state_right'], id);
+                    parent_curr_state[i].innerHTML = "<span class='curr-state-left state-all' style='background-color: " + state_left['bg_Color'] + "'>" + state_left['state'] + "</span>" +
+                        "<span class='curr-state-center state-all' style='background-color: " + state_center['bg_Color'] + "'>" + state_center['state'] + "</span>" +
+                        "<span class='curr-state-right state-all' style='background-color: " + state_right['bg_Color'] + "'>" + state_right['state'] + "</span>";
+                    let left_value = decTranslateState(ev.data['state_left']);
+                    let center_value = decTranslateState(ev.data['state_center']);
+                    let right_value = decTranslateState(ev.data['state_right']);
+                    let state_all = document.getElementsByClassName('state-all');
 
-                if (ev.data['state'] == 'ON') {
-                    on_of = 'Включен';
-                    req_action[i].style.backgroundColor = 'green';
-                    req_action[i].style.color = 'white';
-                }
-                if (ev.data['state'] == 'OFF') {
-                    on_of = 'Выключен';
-                    req_action[i].style.backgroundColor = 'red';
-                    req_action[i].style.color = 'white';
-                }
-                if ((ev.data['state'] == 'ON' && id == 4) || (ev.data['state'] == 'ON' && id == 8)) {
-                    on_of = 'Закрыто';
-                    req_action[i].style.backgroundColor = 'green';
-                    req_action[i].style.color = 'white';
-                }
-                if ((ev.data['state'] == 'OFF' && id == 4) || (ev.data['state'] == 'OFF' && id == 8)) {
-                    on_of = 'Открыто';
-                    req_action[i].style.backgroundColor = 'red';
-                    req_action[i].style.color = 'white';
-                }
-                req_action[i].innerHTML = on_of;
-                if (ev.data['state'] == 'undefined' || ev.data['state'] == '-') {
-                     req_action[i].style.backgroundColor = 'transparent';
-                     req_action[i].textContent = '';
+                    for (let i = 0; i < socket3way_buttons.length; i++) {
+                        if (state_all[i].innerText == state_left['state']) {
+                            socket3way_buttons[i].innerHTML = left_value;
+                            socket3way_buttons[i].attributes[1].value = ev.data['state_left'];
+                        }
+                        if (state_all[i].innerText == state_center['state']) {
+                            socket3way_buttons[i].innerHTML = center_value;
+                            socket3way_buttons[i].attributes[1].value = ev.data['state_center'];
+                        }
+                        if (state_all[i].innerText == state_right['state']) {
+                            socket3way_buttons[i].innerHTML = right_value;
+                            socket3way_buttons[i].attributes[1].value = ev.data['state_right'];
+                        }
+                    }
+
+                    // input_on_off[i].innerHTML = "<input type=\"button\" action_left=\""+ sub_val['state_left'] +"\" value=\""+ left_value +"\" onclick=\"socket3Way(this)\" class=\"on\"\n" +
+                    //     "                               ser_num=\""+ ser_num +"\">\n" +
+                    //     "\n" +
+                    //     "                        <input type=\"button\" action_center=\""+ sub_val['state_center'] +"\" value=\"" +center_value+ "\" onclick=\"socket3Way(this)\" class=\"off\"\n" +
+                    //     "                               ser_num=\""+ser_num+"\">\n" +
+                    //     "\n" +
+                    //     "                        <input type=\"button\" action_right=\""+ sub_val['state_right'] +"\" value=\""+right_value+"\" onclick=\"socket3Way(this)\" class=\"off\"\n" +
+                    //     "                               ser_num=\""+ser_num+"\">";
+                } else {
+                    let state = translateState(ev.data['state'], id);
+                    parent_curr_state[i].innerHTML = "<span class='curr-state' style='background-color: " + state['bg_Color'] + "'>" + state['state'] + "</span>";
                 }
 
             }
@@ -375,6 +411,53 @@ window.addEventListener('load', function () {
 
 });
 //ON OF close
+
+function translateState(state, id) {
+    if (id == 4 || id == 8) {
+        if (state == "ON") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Закрыто'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Открыто'
+            }
+        }
+    } else {
+        if (state == "ON") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Включен'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Выключен'
+            }
+        }
+    }
+}
+
+function decTranslateState(state) {
+    if (state == "ON") {
+        return 'Выключить';
+    } else {
+        return 'Включить';
+    }
+}
+
+function reverseState(state) {
+    if (state == "ON") {
+        return 'OFF';
+    }
+    if (state == "OFF") {
+        return 'ON';
+    }
+}
 
 
 //get my products open

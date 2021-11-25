@@ -74,7 +74,6 @@
 </section>
 <!--  Информация о товаре и Все время close -->
 
-
 <!--Удалить мой продукт modal description img open -->
 <section class="description-img-section" style="position:relative;" >
 
@@ -82,7 +81,7 @@
     <div class="onof-div">
         {% for i in range(my_product['data']['photo']|length)%}
         <div class="all-products">
-            <div class="ONOF"></div>
+            <div class="parent-curr-state"></div>
             <div class="img-div">
                 <span>
                     <p>{{my_product['data']['description'][i]}}</p>
@@ -102,7 +101,7 @@
                 <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
             </div>
-            {%elif my_product['data']['product_id'][i] == 8 %}
+            {% elif my_product['data']['product_id'][i] == 8 %}
             <div class="input-on-off">
                 <input type="button" action="ON" value="Закрыть" onclick="actionCommand(this)" class="on"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
@@ -110,6 +109,18 @@
                 <input type="button" action="OFF" value="Открыть" onclick="actionCommand(this)" class="off"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
             </div>
+            {% elif my_product['data']['product_id'][i] == 10 %}
+            <div class="input-on-off">
+                <button type="button" action_left="" onclick="socket3Way(this)" class="on socket3"
+                        ser_num="{{my_product['data']['serial_num'][i]}}"></button>
+
+                <button type="button" action_center="" onclick="socket3Way(this)" class="off socket3"
+                        ser_num="{{my_product['data']['serial_num'][i]}}"></button>
+
+                <button type="button" action_right="" onclick="socket3Way(this)" class="off socket3"
+                        ser_num="{{my_product['data']['serial_num'][i]}}"></button>
+            </div>
+
             {%else%}
             <div class="input-on-off"></div>
             {% endif %}
