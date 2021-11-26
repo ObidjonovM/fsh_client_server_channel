@@ -144,13 +144,12 @@ a {
     width: 100%;
     height: auto;
     text-align: left;
-    font-size: 15px;
+    font-size: 13px;
     color: #1b232e;
     font-weight: 600;
     /*margin-left: -280px;*/
     margin-top: -34px;
 }
-
 
 /****** Modal open ******/
 .header {
