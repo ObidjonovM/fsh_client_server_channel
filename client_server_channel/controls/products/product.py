@@ -46,6 +46,8 @@ class ProductC:
                 product_info['prefix'] = 'invertor'
             if str(product_info['product_id']) == '10':
                 product_info['prefix'] = 'socket3x'
+            if str(product_info['product_id']) == '11':
+                product_info['prefix'] = 'tuvak'
             product_info['date_added'] = now
             product_info['date_modified'] = now
             product_info['state_change_time'] = now
