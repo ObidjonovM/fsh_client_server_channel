@@ -16,6 +16,7 @@ function timedCount() {
         xhttp.onreadystatechange = function (ev) {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
                 const resp = JSON.parse(xhttp.responseText);
+                // console.log(resp);
                 postMessage(resp);
             }
         }

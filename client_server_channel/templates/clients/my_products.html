@@ -84,7 +84,7 @@
                         <img src="{{my_products['data']['photo'][i]}}" class="my-products-img"
                              ser_num="{{my_products['data']['serial_num'][i]}}"
                              id="{{my_products['data']['product_id'][i]}}"
-                             prefix="{{my_products['data']['prefix'][i]}}" onclick="productImg(this)">
+                             prefix="{{my_products['data']['prefix'][i]}}" device_type="{{my_products['data']['device_type'][i]}}" onclick="productImg(this)" >
                         <a onclick="goSocket(this)">Подробно</a>
                     </div>
 
@@ -114,6 +114,11 @@
 
                         <button type="button" action_right="" onclick="socket3Way(this)" class="off socket3"
                                 ser_num="{{my_products['data']['serial_num'][i]}}"></button>
+                    </div>
+                    {% elif my_products['data']['product_id'][i] == 11 %}
+                    <div class="input-on-off">
+                        <button type="button" style="width: 100%;" onclick="Tuvak(this)" class="on"
+                                ser_num="{{my_products['data']['serial_num'][i]}}">Tuvak</button>
                     </div>
                     {%else%}
                     <div class="input-on-off"></div>

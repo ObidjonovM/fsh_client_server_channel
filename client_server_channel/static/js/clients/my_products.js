@@ -121,7 +121,6 @@ document.addEventListener('keydown', function (e) {
 
 // modal close
 
-
 const my_products_img = document.querySelectorAll('.my-products-img');
 
 function characterElement(e) {
@@ -161,6 +160,34 @@ window.onload = function () {
     }
 };
 
+function addZero(e) {
+    let result = ""
+    if (e.length < 2) {
+        result = "0" + e
+    } else {
+        result = e
+    }
+    return result
+}
+
+const monthName = {
+    'Jan': '01', 'Feb': '02', 'Mart': '03',
+    'Apr': '04', 'May': '05', 'Jun': '06',
+    'Jul': '07', 'Aug': '08', 'Sep': '09',
+    'Oct': '10', 'Nov': '11', 'Dec': '12'
+};
+
+function getFullTime(fullTime) {
+    let month = fullTime.substring(fullTime.indexOf(" ", 5) + 1, fullTime.indexOf(" ", 9));
+    let day = fullTime.substring(fullTime.indexOf(" ") + 1, fullTime.indexOf(" ", 5));
+    let year = fullTime.substring(fullTime.indexOf(" ", 9) + 1, fullTime.indexOf(" ", 14));
+    let hours = fullTime.substring(fullTime.indexOf(" ", 14) + 1, fullTime.indexOf(" ", 22));
+
+    let dmyh = addZero(day) + "." + monthName[month] + "." + addZero(year) + " " + addZero(hours);
+
+    return dmyh;
+}
+
 const parent_curr_state = document.getElementsByClassName('parent-curr-state');
 const character = document.getElementsByClassName('character');
 const input_on_off = document.getElementsByClassName('input-on-off');
@@ -170,13 +197,16 @@ window.addEventListener('load', function () {
     let w;
     let serNums = [];
     let prefixes = [];
+    let device_type = [];
     for (let i = 0; i < my_products_img.length; i++) {
         serNums.push(my_products_img[i].getAttribute('ser_num'));
         prefixes.push(my_products_img[i].getAttribute('prefix'));
+        device_type.push(my_products_img[i].getAttribute('device_type'));
     }
     let json = {
         'ser_nums': serNums,
-        'prefixs': prefixes
+        'prefixs': prefixes,
+        'device_type':device_type
     };
     if (typeof (Worker) !== "undefined") {
         if (typeof (w) == "undefined") {
@@ -195,6 +225,7 @@ window.addEventListener('load', function () {
 
                         if (my_products_img[i].getAttribute('ser_num') == sub_key) {
                             let ser_num = my_products_img[i].getAttribute('ser_num');
+
                             if (id == 10) {
                                 let state_left = translateState(sub_val['state_left'], id);
                                 let state_center = translateState(sub_val['state_center'], id);
@@ -230,6 +261,16 @@ window.addEventListener('load', function () {
                                 //     "\n" +
                                 //     "                        <input type=\"button\" action_right=\""+ sub_val['state_right'] +"\" value=\""+right_value+"\" onclick=\"socket3Way(this)\" class=\"off\"\n" +
                                 //     "                               ser_num=\""+ser_num+"\">";
+                            } else if(id == 11){
+                                if (getFullTime(sub_val['action_time'])  == '-' || getFullTime(sub_val['action_time'])  == 'ISO.undefined.0 0' || getFullTime(sub_val['action_time'])  == '0.undefined.0 0') {
+                                    parent_curr_state[i].innerHTML = "";
+                                    parent_curr_state[i].style.backgroundColor = 'transparent';
+                                } else {
+                                    parent_curr_state[i].innerHTML = getFullTime(sub_val['action_time']);
+                                    parent_curr_state[i].style.backgroundColor = 'green';
+                                    parent_curr_state[i].style.color = 'white';
+                                }
+
                             } else {
                                 let state = translateState(sub_val['state'], id);
                                 parent_curr_state[i].innerHTML = "<span class='curr-state' style='background-color: " + state['bg_Color'] + "'>" + state['state'] + "</span>";
@@ -237,12 +278,11 @@ window.addEventListener('load', function () {
 
                             my_products_img[i].setAttribute('state_time', sub_val['state_change_time']);
 
-                            if (sub_val['notification'] === 'YES') {
+
+                            if (getFullTime(sub_val['state_change_time']) > getFullTime(sub_val['prev_state_time'])) {
                                 character[i].innerHTML = '!';
                                 character[i].style.display = 'inline-block';
-                            }
-
-                            if (sub_val['notification'] === 'NO') {
+                            }else {
                                 character[i].innerHTML = '';
                                 character[i].style.display = 'none';
                             }
@@ -270,6 +310,12 @@ function translateState(state, id) {
                 'state': 'Открыто'
             }
         }
+        if (state != "ON" && state != "OFF") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
+            }
+        }
     } else {
         if (state == "ON") {
             return {
@@ -281,6 +327,12 @@ function translateState(state, id) {
             return {
                 'bg_Color': 'red',
                 'state': 'Выключен'
+            }
+        }
+        if (state != "ON" && state != "OFF") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
             }
         }
     }
@@ -302,3 +354,26 @@ function reverseState(state) {
         return 'ON';
     }
 }
+
+
+// tuvak openx
+function Tuvak(e) {
+
+
+
+    json = {
+
+    }
+
+    xhttp.open('POST', '', true);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify());
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // let resp = JSON.parse(this.responseText);
+            console.log(this.responseText);
+        }
+    }
+
+}
+// tuvak close

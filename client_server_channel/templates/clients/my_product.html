@@ -34,7 +34,46 @@
 <!--  Информация о товаре и Все время open -->
 <section class="information-all-time">
 
-<!--    configuration open-->
+    <!--    tuvak open-->
+    {% for i in range(my_product['data']['photo']|length)%}
+    {% if my_product['data']['product_id'][i] == 11 %}
+    <div class="flower-pot-time-div">
+        <span class="flower-pot-text"> Температура</span>
+        <div class="flower-pot-time" id="flower_pot_time0"
+             ser_num="" prefix="{{my_product['data']['prefix'][0]}}">
+            26.7°
+        </div>
+    </div>
+
+    <div class="flower-pot-time-div">
+        <span class="flower-pot-text">Влажность почвы</span>
+        <div class="flower-pot-time" id="flower_pot_time1"
+             ser_num="" prefix="{{my_product['data']['prefix'][0]}}">
+            77.1 %
+        </div>
+    </div>
+
+    <div class="flower-pot-time-div">
+        <span class="flower-pot-text">Влажность воздуха</span>
+        <div class="flower-pot-time" id="flower_pot_time2"
+             ser_num="" prefix="{{my_product['data']['prefix'][0]}}">
+            58.9 %
+        </div>
+    </div>
+    {%endif%}
+    {%endfor%}
+    <!--    tuvak close-->
+
+    <!--    Все время open-->
+    <div class="information-on-of">
+        <span class="esp-get-time">Время последного известия от устройства</span>
+        <div class="information-input" id="all_time_input"
+             ser_num="{{my_product['data']['serial_num'][0]}}" prefix="{{my_product['data']['prefix'][0]}}">
+        </div>
+    </div>
+    <!--    Все время close-->
+
+    <!--    configuration open-->
     <button class="show-modal">
         <p>Конфигурации</p>
     </button>
@@ -57,20 +96,12 @@
     <div id="overlay" class="overlay hidden"></div>
     <!--   configuration close-->
 
-<!--    Информация о товаре open-->
+    <!--    Информация о товаре open-->
         <a href="{{url_for('clients.my_products.setup_info')}}" style="text-decoration: none;" class='all_information'>
           <p>Инструкции по подключению</p>
         </a>
-<!--    Информация о товаре close-->
+    <!--    Информация о товаре close-->
 
-<!--    Все время open-->
-    <div class="information-on-of">
-        <span class="esp-get-time">Время последного известия от устройства</span>
-        <div class="information-input" id="all_time_input"
-                ser_num="{{my_product['data']['serial_num'][0]}}" prefix="{{my_product['data']['prefix'][0]}}">
-        </div>
-    </div>
-    <!--    Все время close-->
 </section>
 <!--  Информация о товаре и Все время close -->
 
@@ -120,7 +151,11 @@
                 <button type="button" action_right="" onclick="socket3Way(this)" class="off socket3"
                         ser_num="{{my_product['data']['serial_num'][i]}}"></button>
             </div>
-
+            {% elif my_product['data']['product_id'][i] == 11 %}
+            <div class="input-on-off">
+                <button type="button" style="width: 100%;" onclick="Tuvak(this)" class="on"
+                        ser_num="{{my_product['data']['serial_num'][i]}}">Tuvak</button>
+            </div>
             {%else%}
             <div class="input-on-off"></div>
             {% endif %}
@@ -166,11 +201,11 @@
             <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
             <div class="a">
                 <label for="start_date">Дата начала</label>
-                <input type="date" name="start_date" value="" id="start_date" required>
+                <input type="date" name="start_date" id="start_date" onchange="changeInput()" required>
             </div>
             <div class="a">
                 <label for="end_date">Дата окончания</label>
-                <input type="date" name="end_date" value="" id="end_date" required>
+                <input type="date" name="end_date" id="end_date" required>
             </div>
 
             <div class="a">

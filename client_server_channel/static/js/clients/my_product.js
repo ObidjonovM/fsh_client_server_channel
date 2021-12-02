@@ -201,6 +201,8 @@ window.addEventListener('load', function () {
 
 
 // Дата начала and Дата окончания open
+const socket_img = document.querySelectorAll('.socket-img');
+const id = socket_img[0].getAttribute('id');
 function sendData() {
 
     const data_form = document.getElementById('data_form');
@@ -237,6 +239,24 @@ function sendData() {
                 td1.innerHTML = resp['data']['state'][i];
                 td2.innerHTML = getFullTime(resp['data']['state_time'][i]);
 
+                if (id == 8 || id == 10){
+                    if (resp['data']['state'][i] == 'ON') {
+                        td1.innerHTML = "Открыто";
+                    }
+
+                    if (resp['data']['state'][i] == 'OFF') {
+                        td1.innerHTML = "Закрыто";
+                    }
+                }else {
+                    if (resp['data']['state'][i] == 'ON') {
+                        td1.innerHTML = "Включен";
+                    }
+
+                    if (resp['data']['state'][i] == 'OFF') {
+                        td1.innerHTML = "Выключен";
+                    }
+                }
+
                 tr.appendChild(td1);
                 tr.appendChild(td2);
 
@@ -245,6 +265,8 @@ function sendData() {
             }
         }
     }
+
+
 }
 
 const form = document.getElementById("data_form");
@@ -308,10 +330,8 @@ function socket3Way(e) {
 }
 
 //ON OF open
-const socket_img = document.querySelectorAll('.socket-img');
 // const req_action = document.getElementsByClassName('ONOF');
 const parent_curr_state = document.getElementsByClassName('parent-curr-state');
-let id = socket_img[0].getAttribute('id');
 let character = document.getElementById('character_id');
 let characters = document.getElementsByClassName('character12');
 const socket3way_buttons = document.querySelectorAll('.socket3');
@@ -356,15 +376,15 @@ window.addEventListener('load', function () {
         w.onmessage = function (ev) {
             for (let i = 0; i < parent_curr_state.length; i++) {
                 characters[i].setAttribute('state_time', ev.data['state_change_time']);
-                if (ev.data['notification'] === 'YES'){
+
+                if (getFullTime(ev.data['state_change_time']) > getFullTime(ev.data['prev_state_time']) ){
                     characters[i].innerHTML = 'x';
                     characters[i].style.display = 'inline-block';
-                }
-
-                if (ev.data['notification'] === 'NO'){
+                }else {
                     characters[i].innerHTML = '';
                     characters[i].style.display = 'none';
                 }
+
                 if (id == 10) {
                     let state_left = translateState(ev.data['state_left'], id);
                     let state_center = translateState(ev.data['state_center'], id);
@@ -464,5 +484,30 @@ function reverseState(state) {
 function myProducts() {
     window.open('/clients/my_products', '_self');
 }
-
 //get my products close
+
+// tuvak open
+function Tuvak(e) {
+
+    json = {
+
+    }
+
+    xhttp.open('POST', '', true);
+    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhttp.send(JSON.stringify());
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            // let resp = JSON.parse(this.responseText);
+            console.log(this.responseText);
+        }
+    }
+
+}
+// tuvak close
+
+
+function changeInput() {
+    var fistDate1 = document.getElementById('start_date').value;
+    document.getElementById('end_date').value = fistDate1;
+}
