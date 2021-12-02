@@ -1,6 +1,4 @@
-from sys import prefix
 from client_server_channel.models import ProductTable
-from .product_photo import ProductPhotoC
 from .. import control_utils as utls
 from datetime import datetime
 import requests as reqs
@@ -26,28 +24,7 @@ class ProductC:
             product_info['default_password'] = ProductTable.generate_password(8)
             if not product_info['mac_address']:
                 product_info['mac_address'] = None
-            if str(product_info['product_id']) == '1':
-                product_info['prefix'] = 'socket'
-            if str(product_info['product_id']) == '2':
-                product_info['prefix'] = 'socket_button'
-            if str(product_info['product_id']) == '3':
-                product_info['prefix'] = 'gas_sensor'
-            if str(product_info['product_id']) == '4':
-                product_info['prefix'] = 'gerkon'
-            if str(product_info['product_id']) == '5':
-                product_info['prefix'] = 'water_sensor'
-            if str(product_info['product_id']) == '6':
-                product_info['prefix'] = 'vibration_sensor'
-            if str(product_info['product_id']) == '7':
-                product_info['prefix'] = 'fire_sensor'
-            if str(product_info['product_id']) == '8':
-                product_info['prefix'] = 'wifi_lock'
-            if str(product_info['product_id']) == '9':
-                product_info['prefix'] = 'invertor'
-            if str(product_info['product_id']) == '10':
-                product_info['prefix'] = 'socket3x'
-            if str(product_info['product_id']) == '11':
-                product_info['prefix'] = 'tuvak'
+            
             product_info['date_added'] = now
             product_info['date_modified'] = now
             product_info['state_change_time'] = now
@@ -205,43 +182,25 @@ class ProductC:
         resp = {}
         serial_num['serial_num'] = ser_num
         params = json.dumps(serial_num)
-        get_result = ProductTable.get(ser_num)
-        prevState = get_result['data']['state_change_time']
 
         resp = reqs.post(
             HD_SERVER + f'/{str(prefix)}/get_current_state',
             data = params,
             headers = HEADERS
         ).json()
-        currState = utls.parse_time(resp['state_change_time'])
-
-        if prevState < currState:
-            resp['notification'] = 'YES'
-        else:
-            resp['notification'] = 'NO'
 
         return resp
 
 
     @staticmethod
-    def get_current_states(ser_nums, prefixs):
-        resp = {'data' : []}
+    def get_current_states(ser_num, prefix):
+        resp = {}
+        resp = reqs.post(
+            HD_SERVER + f'/{str(prefix)}/get_current_states',
+            data = json.dumps({'serial_nums' : [ser_num]}),
+            headers = HEADERS
+            ).json()
         
-        for i in range(len(prefixs)):
-            get_result = ProductTable.get(ser_nums[i])
-            prevState = get_result['data']['state_change_time']
-            resp['data'].append(reqs.post(
-                HD_SERVER + f'/{prefixs[i]}/get_current_states',
-                data = json.dumps({'serial_nums' : [ser_nums[i]]}),
-                headers = HEADERS
-                ).json())
-            currState = utls.parse_time(resp['data'][i][ser_nums[i]]['state_change_time'])
-
-            if prevState < currState:
-                resp['data'][i][ser_nums[i]]['notification'] = 'YES'
-            else:
-                resp['data'][i][ser_nums[i]]['notification'] = 'NO'
-
         return resp
 
 
@@ -310,11 +269,11 @@ class ProductC:
 
 
     @staticmethod
-    def last_requested_action(ser_num):
+    def last_requested_action(ser_num, prefix):
         resp = {}
         resp = reqs.post(
-            HD_SERVER + '/socket/last_requested_action',
-            data = json.dumps(ser_num),
+            HD_SERVER + f'/{str(prefix)}/last_requested_action',
+            data = json.dumps({'serial_num' : ser_num}),
             headers=HEADERS
         ).json()
 

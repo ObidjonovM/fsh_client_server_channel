@@ -38,10 +38,34 @@ def get_current_states():
 		return redirect(url_for('clients.login'))
 
 	if request.method == 'POST':
-		result = ProductC.get_current_states(
-			request.json['ser_nums'],
-			request.json['prefixs']
-		)
+		params = request.json
+		result = {'data' : []}
+		for i in range(len(params['device_type'])):
+			get_result = ProductC.get(params['ser_nums'][i])
+			ser_num = get_result['data']['serial_num']
+			prev_state = get_result['data']['state_change_time']
+			
+			if params['device_type'][i] == '5':
+				resp = ProductC.last_requested_action(
+					params['ser_nums'][i],
+					params['prefixs'][i]
+				)
+				del resp['action_requested']
+				del resp['action_taken']
+				del resp['requested_time']
+				resp['state_change_time'] = resp['action_time']
+
+				result['data'].append(
+					{params['ser_nums'][i] : resp}
+				)
+			else:
+				result['data'].append(
+					ProductC.get_current_states(
+						params['ser_nums'][i],
+						params['prefixs'][i]
+					)
+				)
+			result['data'][i][ser_num]['prev_state_time'] = prev_state
 
 		return result
 

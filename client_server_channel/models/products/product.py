@@ -124,26 +124,29 @@ class ProductTable:
     @staticmethod
     def get_my_products(client_id):
         sql = 'SELECT p.serial_num, p.product_id, pp.small_photo, '
-        sql += 'pp.photo_format, p.description, p.prefix FROM '
-        sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE '
-        sql += f'AND p.active = TRUE AND pp.active = TRUE AND p.client_id = {client_id} '
-        sql += 'AND p.product_id = pp.product_id ORDER BY p.serial_num'
+        sql += 'pp.photo_format, p.description, pi.prefix, pi.name, pi.device_type FROM '
+        sql += 'products p, product_photo pp, product_info pi WHERE pp.main_photo = TRUE '
+        sql += 'AND p.active = TRUE AND pp.active = TRUE AND pi.active = TRUE '
+        sql += f'AND p.client_id = {client_id} AND p.product_id = pp.product_id '
+        sql += 'AND p.product_id = pi.product_id ORDER BY p.product_id'
 
         return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo',
-                                'format', 'description', 'prefix'])
+                                'format', 'description', 'prefix',
+                                'name', 'device_type'])
 
 
     @staticmethod
     def get_my_product(client_id, ser_num):
         sql = 'SELECT p.serial_num, p.product_id, pp.small_photo, '
-        sql += 'pp.photo_format, p.description, p.prefix FROM '
-        sql += 'products p, product_photo pp WHERE pp.main_photo = TRUE AND '
-        sql += f"p.product_id = pp.product_id AND p.client_id = {client_id} AND "
-        sql += f"p.serial_num = '{ser_num}' AND p.active = TRUE "
-        sql += 'AND pp.active = TRUE ORDER BY p.serial_num'
+        sql += 'pp.photo_format, p.description, pi.prefix, pi.name, pi.device_type FROM '
+        sql += 'products p, product_photo pp, product_info pi WHERE pp.main_photo = TRUE '
+        sql += f"AND p.product_id = pp.product_id AND p.product_id = pi.product_id "
+        sql += f"AND p.client_id = {client_id} AND p.serial_num = '{ser_num}' AND p.active = TRUE "
+        sql += 'AND pp.active = TRUE AND pi.active = TRUE'
 
         return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo',
-                                'format', 'description', 'prefix'])
+                                'format', 'description', 'prefix',
+                                'name', 'device_type'])
 
 
     @staticmethod

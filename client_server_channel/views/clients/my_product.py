@@ -90,10 +90,12 @@ def get_current_state():
 		return redirect(url_for('clients.login'))
 
 	if request.method == 'POST':
+		get_result = ProductC.get(request.json['ser_num'])
 		result = ProductC.get_current_state(
 			request.json['ser_num'],
 			request.json['prefix']
 		)
+		result['prev_state_time'] = get_result['data']['state_change_time']
 
 		return result
 

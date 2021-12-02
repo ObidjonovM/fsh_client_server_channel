@@ -255,6 +255,7 @@ CREATE TABLE IF NOT EXISTS product_info (
 	date_modified TIMESTAMP NOT NULL,
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
 	active BOOLEAN NOT NULL,
+	prefix VARCHAR NOT NULL,
 
 	FOREIGN KEY(category_id)
 	REFERENCES categories(category_id),
@@ -438,7 +439,6 @@ CREATE TABLE IF NOT EXISTS products (
 	serial_num VARCHAR(12) PRIMARY KEY,
 	mac_address MACADDR UNIQUE,
 	product_id INT CHECK (product_id > 0) NOT NULL,
-	prefix VARCHAR NOT NULL,
 	default_login VARCHAR(30) UNIQUE NOT NULL,
 	default_password VARCHAR(30) UNIQUE NOT NULL,
 	ap_login VARCHAR(30) UNIQUE NOT NULL,
