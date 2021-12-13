@@ -103,14 +103,12 @@ const closeModal2 = function () {
     ser_num.value = "";
     desc.value = "";
 };
-// for (let i = 0; i < btnsOpenModal.length; i++)
-btnOpenModal.addEventListener('click', openModal);
 
+btnOpenModal.addEventListener('click', openModal);
 btnCloseModal.addEventListener('click', closeModal);
 btnCloseModalLocal2.addEventListener('click', closeModalLocal2);
 btnCloseModalLocal.addEventListener('click', closeModalLocal);
 btnCloseModal2.addEventListener('click', closeModal2);
-// overlay.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function (e) {
 
@@ -118,7 +116,6 @@ document.addEventListener('keydown', function (e) {
         closeModal();
     }
 });
-
 // modal close
 
 const my_products_img = document.querySelectorAll('.my-products-img');
@@ -169,14 +166,12 @@ function addZero(e) {
     }
     return result
 }
-
 const monthName = {
     'Jan': '01', 'Feb': '02', 'Mart': '03',
     'Apr': '04', 'May': '05', 'Jun': '06',
     'Jul': '07', 'Aug': '08', 'Sep': '09',
     'Oct': '10', 'Nov': '11', 'Dec': '12'
 };
-
 function getFullTime(fullTime) {
     let month = fullTime.substring(fullTime.indexOf(" ", 5) + 1, fullTime.indexOf(" ", 9));
     let day = fullTime.substring(fullTime.indexOf(" ") + 1, fullTime.indexOf(" ", 5));
@@ -190,7 +185,6 @@ function getFullTime(fullTime) {
 
 const parent_curr_state = document.getElementsByClassName('parent-curr-state');
 const character = document.getElementsByClassName('character');
-const input_on_off = document.getElementsByClassName('input-on-off');
 const socket3way_buttons = document.querySelectorAll('.socket3');
 
 window.addEventListener('load', function () {
@@ -253,19 +247,11 @@ window.addEventListener('load', function () {
                                     }
                                 }
 
-                                // input_on_off[i].innerHTML = "<input type=\"button\" action_left=\""+ sub_val['state_left'] +"\" value=\""+ left_value +"\" onclick=\"socket3Way(this)\" class=\"on\"\n" +
-                                //     "                               ser_num=\""+ ser_num +"\">\n" +
-                                //     "\n" +
-                                //     "                        <input type=\"button\" action_center=\""+ sub_val['state_center'] +"\" value=\"" +center_value+ "\" onclick=\"socket3Way(this)\" class=\"off\"\n" +
-                                //     "                               ser_num=\""+ser_num+"\">\n" +
-                                //     "\n" +
-                                //     "                        <input type=\"button\" action_right=\""+ sub_val['state_right'] +"\" value=\""+right_value+"\" onclick=\"socket3Way(this)\" class=\"off\"\n" +
-                                //     "                               ser_num=\""+ser_num+"\">";
                             } else if(id == 11){
                                 if (getFullTime(sub_val['action_time'])  == '-' || getFullTime(sub_val['action_time'])  == 'ISO.undefined.0 0' || getFullTime(sub_val['action_time'])  == '0.undefined.0 0') {
                                     parent_curr_state[i].innerHTML = "";
                                     parent_curr_state[i].style.backgroundColor = 'transparent';
-                                } else {
+                                } else if (sub_val['action_taken'] == "YES"){
                                     parent_curr_state[i].innerHTML = getFullTime(sub_val['action_time']);
                                     parent_curr_state[i].style.backgroundColor = 'green';
                                     parent_curr_state[i].style.color = 'white';
@@ -354,26 +340,3 @@ function reverseState(state) {
         return 'ON';
     }
 }
-
-
-// tuvak openx
-function Tuvak(e) {
-
-
-
-    json = {
-
-    }
-
-    xhttp.open('POST', '', true);
-    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhttp.send(JSON.stringify());
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            // let resp = JSON.parse(this.responseText);
-            console.log(this.responseText);
-        }
-    }
-
-}
-// tuvak close

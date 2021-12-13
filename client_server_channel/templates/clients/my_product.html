@@ -40,24 +40,21 @@
     <div class="flower-pot-time-div">
         <span class="flower-pot-text"> Температура</span>
         <div class="flower-pot-time" id="flower_pot_time0"
-             ser_num="" prefix="{{my_product['data']['prefix'][0]}}">
-            26.7°
+             ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][0]}}">
         </div>
     </div>
 
     <div class="flower-pot-time-div">
         <span class="flower-pot-text">Влажность почвы</span>
         <div class="flower-pot-time" id="flower_pot_time1"
-             ser_num="" prefix="{{my_product['data']['prefix'][0]}}">
-            77.1 %
+             ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][0]}}">
         </div>
     </div>
 
     <div class="flower-pot-time-div">
         <span class="flower-pot-text">Влажность воздуха</span>
         <div class="flower-pot-time" id="flower_pot_time2"
-             ser_num="" prefix="{{my_product['data']['prefix'][0]}}">
-            58.9 %
+             ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][0]}}">
         </div>
     </div>
     {%endif%}
@@ -107,9 +104,8 @@
 
 <!--Удалить мой продукт modal description img open -->
 <section class="description-img-section" style="position:relative;" >
-
     <!--    img open -->
-    <div class="onof-div">
+    <div class="onof-div sss">
         {% for i in range(my_product['data']['photo']|length)%}
         <div class="all-products">
             <div class="parent-curr-state"></div>
@@ -120,24 +116,24 @@
                 </span>
 
                 <img src="{{my_product['data']['photo'][i]}}" class="socket-img" id="{{my_product['data']['product_id'][i]}}"
-                     ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}"
+                     ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}" device_type="{{my_product['data']['device_type'][i]}}"
                      alt="img">
             </div>
 
             {% if my_product['data']['product_id'][i] == 1 or my_product['data']['product_id'][i] == 2 %}
             <div class="input-on-off">
-                <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" class="on"
+                <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="on"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
 
-                <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" class="off"
+                <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="off"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
             </div>
             {% elif my_product['data']['product_id'][i] == 8 %}
             <div class="input-on-off">
-                <input type="button" action="ON" value="Закрыть" onclick="actionCommand(this)" class="on"
+                <input type="button" action="ON" value="Закрыть" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="on"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
 
-                <input type="button" action="OFF" value="Открыть" onclick="actionCommand(this)" class="off"
+                <input type="button" action="OFF" value="Открыть" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="off"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
             </div>
             {% elif my_product['data']['product_id'][i] == 10 %}
@@ -153,8 +149,8 @@
             </div>
             {% elif my_product['data']['product_id'][i] == 11 %}
             <div class="input-on-off">
-                <button type="button" style="width: 100%;" onclick="Tuvak(this)" class="on"
-                        ser_num="{{my_product['data']['serial_num'][i]}}">Tuvak</button>
+                <button type="button" style="width: 100%; margin-left: 0" action="ON" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="on tuvak"
+                        ser_num="{{my_product['data']['serial_num'][i]}}">Налить воду</button>
             </div>
             {%else%}
             <div class="input-on-off"></div>
@@ -165,10 +161,10 @@
     <!--    img close -->
 
     <!--Удалить мой продукт modal open description-->
-    <div class="description-container">
+    <div class="description-container sss">
 
         <div class="description-header">
-            <h2>Изменить описание</h2>
+            <h3>Изменить описание</h3>
         </div>
 
         <form action="{{url_for('clients.my_products.my_product.get_my_product', ser_num=my_product['data']['serial_num'][0])}}"
@@ -190,52 +186,101 @@
     <!--Удалить мой продукт modal close description-->
 
     <!--Дата начала Дата окончания open-->
-    <div class="delete-product-div1" >
+    <div class="delete-product-div1 sss" >
         <form action="{{url_for('clients.my_products.my_product.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
               class="delete-product-form" id="data_form" method="post"
               ser_num="{{my_product['data']['serial_num'][0]}}">
             <div class="description-header">
-                <h2>Список логов</h2>
+                <h3>Список логов</h3>
             </div>
             <input type="hidden" value="{{my_product['data']['product_id'][0]}}">
             <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
             <div class="a">
-                <label for="start_date">Дата начала</label>
+                <label for="start_date">Дата начала</label><span class="star">*</span>
                 <input type="date" name="start_date" id="start_date" onchange="changeInput()" required>
             </div>
             <div class="a">
-                <label for="end_date">Дата окончания</label>
+                <label for="end_date">Дата окончания</label><span class="star">*</span>
                 <input type="date" name="end_date" id="end_date" required>
             </div>
-
             <div class="a">
                 <input type="submit" id="date_submit" class="add-type-submit4" value="Получить">
             </div>
         </form>
-
-        <div id="containerModal3" class="container3 modal3 hidden3">
-            <button class="close-modal4">&times;</button>
-
-            <div class="header header3">
-                <h2>Логи</h2>
-            </div>
-            <div class="start-end-date">
-                <table class="table-date">
-                    <thead id="thead_data">
-                    <tr id="thead_tr">
-                        <th>Действия</th>
-                        <th>Дата</th>
-                    </tr>
-                    </thead>
-
-                    <tbody id="tbody_date">
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div id="overlay3" class="overlay3 hidden3"></div>
     </div>
+    {% for i in range(my_product['data']['photo']|length)%}
+    {% if my_product['data']['product_id'][i] == 11 %}
+    <div class="delete-product-div1 sss" >
+        <form action="{{url_for('clients.my_products.my_product.get_measurements', ser_num=my_product['data']['serial_num'][0])}}"
+              class="delete-product-form" id="data_form1" method="post"
+              ser_num="{{my_product['data']['serial_num'][0]}}">
+            <div class="description-header">
+                <h3>Список измеряемых параметров</h3>
+            </div>
+            <div class="a">
+                <label for="start_date">Дата начала</label><span class="star">*</span>
+                <input type="date" name="start_date" id="start_date1" onchange="changeInput()" required>
+            </div>
+            <div class="a">
+                <label for="end_date">Дата окончания</label><span class="star">*</span>
+                <input type="date" name="end_date" id="end_date1" required>
+            </div>
+            <div class="a">
+                <input type="submit" id="water_measurement" value="Получить измеренные параметры" prefix="{{my_product['data']['prefix'][i]}}"
+                       class="add-type-submit4" ser_num="{{my_product['data']['serial_num'][i]}}">
+            </div>
+        </form>
+    </div>
+    {%endif%}
+    {%endfor%}
+
+    <div id="containerModal3" class="container3 modal3 hidden3">
+        <button class="close-modal4">&times;</button>
+
+        <div class="header header3">
+            <h2>Логи</h2>
+        </div>
+        <div class="start-end-date">
+            <table class="table-date">
+                <thead id="thead_data">
+                <tr id="thead_tr">
+                    <th>Действия</th>
+                    <th>Дата</th>
+                </tr>
+                </thead>
+
+                <tbody id="tbody_date">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="overlay3" class="overlay3 hidden3"></div>
+
+    <div id="containerModal4" class="container4 modal4 hidden4">
+        <button class="close-modal5">&times;</button>
+
+        <div class="header header3">
+            <h2>Список измеряемых параметров</h2>
+        </div>
+        <div class="start-end-date">
+            <table class="table-date">
+                <thead id="thead_data1">
+                <tr id="thead_tr1">
+                    <th>Температура</th>
+                    <th>Влажность почвы</th>
+                    <th>Влажность воздуха</th>
+                    <th>Измеренное время</th>
+                </tr>
+                </thead>
+
+                <tbody id="tbody_date1">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="overlay4" class="overlay4 hidden4"></div>
     <!--Дата начала Дата окончания close-->
 
 </section>

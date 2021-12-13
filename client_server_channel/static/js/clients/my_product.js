@@ -1,10 +1,11 @@
 var xhttp = new XMLHttpRequest();
 
 function actionCommand(e) {
+    let prefix = e.getAttribute('prefix');
     let action = {
         'serial_num': e.getAttribute('ser_num'),
         'action_requested': e.getAttribute('action'),
-        'prefix': 'socket'
+        'prefix': prefix
     }
     xhttp.open('POST', '/clients/my_products/my_product/action', true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -25,7 +26,6 @@ const modal1 = document.querySelector('.modal1');
 const btnCloseModal1 = document.querySelector('.close-modal1');
 const deleteProductButton = document.querySelector('.delete-product-button');
 const for_delete_input = document.getElementById('for_delete_input');
-const delete_form = document.getElementById('delete_form');
 
 const closeModal1 = function () {
     modal1.classList.add('hidden1');
@@ -36,12 +36,11 @@ const closeModal1 = function () {
 const deleteProduct = function () {
     modal1.classList.remove('hidden1');
     overlay1.classList.remove('hidden1');
-};
+}; 
 
 deleteProductButton.addEventListener('click', deleteProduct);
 btnCloseModal1.addEventListener('click', closeModal1);
 //Delete my product close!
-
 
 //information about my product open
 const modal = document.querySelector('.modal');
@@ -61,15 +60,10 @@ const closeModalInformation = function () {
     overlay.classList.add('hidden');
 };
 
-// for (let i = 0; i < btnsOpenModal.length; i++)
 btnOpenModal.addEventListener('click', openModal);
 btnCloseModalInformation.addEventListener('click', closeModalInformation);
-// btnCloseModal2.addEventListener('click', closeModal2);
-// overlay.addEventListener('click', closeModal);
 
 document.addEventListener('keydown', function (e) {
-    // console.log(e.key);
-
     if (e.key === 'Escape' && !modal.classList.contains('hidden1')) {
         closeModal1();
     }
@@ -191,7 +185,6 @@ window.addEventListener('load', function () {
                 all_time_input2.style.outline = 'none';
             } else {
                 all_time_input2.innerHTML = getFullTime(ev.data['request_time']);
-                // console.log(getFullTime(ev.data['request_time']));
             }
         };
     }
@@ -199,23 +192,25 @@ window.addEventListener('load', function () {
 })
 // All time close
 
-
 // Дата начала and Дата окончания open
 const socket_img = document.querySelectorAll('.socket-img');
+const device_type = socket_img[0].getAttribute('device_type');
 const id = socket_img[0].getAttribute('id');
-function sendData() {
+const tbody_date = document.getElementById('tbody_date');
+const tbody_date1 = document.getElementById('tbody_date1');
 
+function sendData() {
+    const start_date = document.getElementById('start_date').value;
+    const end_date = document.getElementById('end_date').value;
     const data_form = document.getElementById('data_form');
     const ser_number = data_form.getAttribute('ser_num');
     const prefix = document.getElementById('hidden_input2');
-    const start_date = document.getElementById('start_date').value;
-    const end_date = document.getElementById('end_date').value;
-    const tbody_date = document.getElementById('tbody_date');
 
     const json = {
         'prefix': prefix.getAttribute('value'),
         'start_date': start_date+'T00:00',
-        'end_date': end_date+'T23:59'
+        'end_date': end_date+'T23:59',
+        'device_type':device_type
     };
 
     xhttp.open("Post", "/clients/my_products/my_product/logs/" + ser_number);
@@ -225,7 +220,8 @@ function sendData() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let resp = JSON.parse(this.responseText);
-            for (let i = resp['data']['state'].length-1; i >= 0;  i--) {
+
+            for (let i = resp['data']['serial_num'].length-1; i >= 0;  i--) {
 
                 let tr = document.createElement('TR');
                 tr.setAttribute('id', 'tbody_tr');
@@ -233,11 +229,16 @@ function sendData() {
                 let td1 = document.createElement('TD');
                 let td2 = document.createElement('TD');
 
-                td1.setAttribute('id', 'state_time_on_of');
-                td2.setAttribute('id', 'state_time_on_of');
+                td1.setAttribute('class', 'state_time_on_of');
+                td2.setAttribute('class', 'state_time_on_of');
 
-                td1.innerHTML = resp['data']['state'][i];
-                td2.innerHTML = getFullTime(resp['data']['state_time'][i]);
+                if (id == 11){
+                    td1.innerHTML = resp['data']['action_requested'][i];
+                    td2.innerHTML = getFullTime(resp['data']['action_time'][i]);
+                }else {
+                    td1.innerHTML = resp['data']['state'][i];
+                    td2.innerHTML = getFullTime(resp['data']['state_time'][i]);
+                }
 
                 if (id == 8 || id == 10){
                     if (resp['data']['state'][i] == 'ON') {
@@ -247,7 +248,11 @@ function sendData() {
                     if (resp['data']['state'][i] == 'OFF') {
                         td1.innerHTML = "Закрыто";
                     }
-                }else {
+                }else if (id == 11){
+                    if(resp['data']['action_requested'][i] == 'ON'){
+                        td1.innerHTML = "Налил воду";
+                    }
+                } else {
                     if (resp['data']['state'][i] == 'ON') {
                         td1.innerHTML = "Включен";
                     }
@@ -284,6 +289,20 @@ const close_modal4 = document.querySelector('.close-modal4');
 const date_submit = document.getElementById('date_submit');
 const state_time_on_of = document.getElementById('state_time_on_of');
 const table_date = document.querySelector('.table-date');
+const modal_flower = document.querySelector('.modal4');
+const overlay_flower = document.querySelector('.overlay4');
+const close_modal_flower = document.querySelector('.close-modal5');
+
+const openFlower = function (){
+    modal_flower.classList.remove('hidden4');
+    overlay_flower.classList.remove('hidden4');
+}
+
+const closeModalFlower = function (){
+    modal_flower.classList.add('hidden4');
+    overlay_flower.classList.add('hidden4');
+    location.reload();
+}
 
 const open3 = function () {
     modal3.classList.remove('hidden3');
@@ -299,9 +318,11 @@ const closeModal5 = function () {
 
 date_submit.addEventListener('submit', open3);
 close_modal4.addEventListener('click', closeModal5);
+close_modal_flower.addEventListener('click', closeModalFlower);
 // Дата начала and Дата окончания close
 
 function socket3Way(e) {
+
     let action = {
         'serial_num': e.getAttribute('ser_num'),
         'prefix': 'socket3x'
@@ -317,10 +338,10 @@ function socket3Way(e) {
         action['action_requested_right'] = reverseState(e.getAttribute('action_right'));
     }
 
-
     xhttp.open('POST', '/clients/my_products/my_product/action', true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhttp.send(JSON.stringify(action));
+
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let resp = JSON.parse(this.responseText);
@@ -330,7 +351,6 @@ function socket3Way(e) {
 }
 
 //ON OF open
-// const req_action = document.getElementsByClassName('ONOF');
 const parent_curr_state = document.getElementsByClassName('parent-curr-state');
 let character = document.getElementById('character_id');
 let characters = document.getElementsByClassName('character12');
@@ -360,13 +380,16 @@ window.addEventListener('load', function () {
     let w;
     let serNum = '';
     let prefix = '';
+    let device_type = '';
     // for (let i=0; i < socket_img.length; i++) {
     serNum = socket_img[0].getAttribute('ser_num');
     prefix = socket_img[0].getAttribute('prefix');
+    device_type = socket_img[0].getAttribute('device_type');
     // }
     let json = {
         'ser_num': serNum,
-        'prefix': prefix
+        'prefix': prefix,
+        'device_type': device_type
     };
     if (typeof (Worker) !== "undefined") {
         if (typeof (w) == "undefined") {
@@ -412,14 +435,16 @@ window.addEventListener('load', function () {
                         }
                     }
 
-                    // input_on_off[i].innerHTML = "<input type=\"button\" action_left=\""+ sub_val['state_left'] +"\" value=\""+ left_value +"\" onclick=\"socket3Way(this)\" class=\"on\"\n" +
-                    //     "                               ser_num=\""+ ser_num +"\">\n" +
-                    //     "\n" +
-                    //     "                        <input type=\"button\" action_center=\""+ sub_val['state_center'] +"\" value=\"" +center_value+ "\" onclick=\"socket3Way(this)\" class=\"off\"\n" +
-                    //     "                               ser_num=\""+ser_num+"\">\n" +
-                    //     "\n" +
-                    //     "                        <input type=\"button\" action_right=\""+ sub_val['state_right'] +"\" value=\""+right_value+"\" onclick=\"socket3Way(this)\" class=\"off\"\n" +
-                    //     "                               ser_num=\""+ser_num+"\">";
+                } else if(id == 11){
+                    if (getFullTime(ev.data['action_time'])  == '-' || getFullTime(ev.data['action_time'])  == 'ISO.undefined.0 0' || getFullTime(ev.data['action_time'])  == '0.undefined.0 0') {
+                        parent_curr_state[i].innerHTML = "";
+                        parent_curr_state[i].style.backgroundColor = 'transparent';
+                    } else if (ev.data['action_taken'] == "YES") {
+                        parent_curr_state[i].innerHTML = getFullTime(ev.data['action_time']);
+                        parent_curr_state[i].style.backgroundColor = 'green';
+                        parent_curr_state[i].style.color = 'white';
+                    }
+
                 } else {
                     let state = translateState(ev.data['state'], id);
                     parent_curr_state[i].innerHTML = "<span class='curr-state' style='background-color: " + state['bg_Color'] + "'>" + state['state'] + "</span>";
@@ -486,28 +511,107 @@ function myProducts() {
 }
 //get my products close
 
-// tuvak open
-function Tuvak(e) {
+function changeInput() {
+    var fistDate1 = document.getElementById('start_date').value;
+    var secondDate = document.getElementById('start_date1').value;
 
-    json = {
+    document.getElementById('end_date').value = fistDate1;
+    document.getElementById('end_date1').value = secondDate;
+}
 
+//flower open
+let flower_pot_time0 = document.getElementById('flower_pot_time0');
+let flower_pot_time1 = document.getElementById('flower_pot_time1');
+let flower_pot_time2 = document.getElementById('flower_pot_time2');
+
+window.addEventListener('load', function () {
+    let ser_num_tuvak = socket_img[0].getAttribute('ser_num');
+    let prefix_tuvak = socket_img[0].getAttribute('prefix');
+    let w1;
+    let json = {
+        'ser_num': ser_num_tuvak,
+        'prefix': prefix_tuvak
+    };
+
+    if (typeof (Worker) !== "undefined") {
+        if (typeof (w1) == "undefined") {
+            w1 = new Worker("/static/js/clients/tuvak_worker.js");
+        }
+        w1.postMessage(json)
+
+        w1.onmessage = function (ev) {
+            flower_pot_time0.innerHTML = ev.data['temp']+"°C";
+            flower_pot_time1.innerHTML = ev.data['soil_moist']+"%";
+            flower_pot_time2.innerHTML = ev.data['air_humid']+"%";
+        };
     }
 
-    xhttp.open('POST', '', true);
+})
+//flower close
+
+
+//waterMeasurement function open
+function waterMeasurement(){
+    const water_measurement = document.getElementById('water_measurement');
+    const prefix = water_measurement.getAttribute('prefix');
+    const ser_num = water_measurement.getAttribute('ser_num');
+    const start_date1 = document.getElementById('start_date1').value;
+    const end_date1 = document.getElementById('end_date1').value;
+
+    const json = {
+        'prefix': prefix,
+        'start_date': start_date1+'T00:00',
+        'end_date': end_date1+'T23:59'
+    }
+
+    xhttp.open("Post", "/clients/my_products/my_product/get_measurements/" + ser_num);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhttp.send(JSON.stringify());
+    xhttp.send(JSON.stringify(json));
+
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            // let resp = JSON.parse(this.responseText);
-            console.log(this.responseText);
+            let resp = JSON.parse(this.responseText);
+
+            for (let i = resp['data']['serial_num'].length-1; i >= 0;  i--) {
+                let tr = document.createElement('TR');
+                tr.setAttribute('id', 'tbody_tr');
+
+                let td1 = document.createElement('TD');
+                let td2 = document.createElement('TD');
+                let td3 = document.createElement('TD');
+                let td4 = document.createElement('TD');
+
+                td1.setAttribute('class', 'state_time_on_of');
+                td2.setAttribute('class', 'state_time_on_of');
+                td3.setAttribute('class', 'state_time_on_of');
+                td4.setAttribute('class', 'state_time_on_of');
+
+                td1.innerHTML = resp['data']['temp'][i]+"°C";
+                td2.innerHTML = resp['data']['soil_moist'][i]+"%";
+                td3.innerHTML = resp['data']['air_humid'][i]+"%";
+                td4.innerHTML = getFullTime(resp['data']['measured_time'][i]);
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                tr.appendChild(td3);
+                tr.appendChild(td4);
+
+                tbody_date1.appendChild(tr);
+            }
         }
     }
 
 }
-// tuvak close
+
+const data_form1 = document.getElementById('data_form1');
+
+data_form1.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    waterMeasurement();
+    openFlower();
+})
 
 
-function changeInput() {
-    var fistDate1 = document.getElementById('start_date').value;
-    document.getElementById('end_date').value = fistDate1;
-}
+//waterMeasurement function close
+
