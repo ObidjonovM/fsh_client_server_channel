@@ -224,6 +224,59 @@ class ProductC:
 
 
     @staticmethod
+    def requested_actions_in_range(ser_num, prefix, start_date, end_date):
+        params = {}
+        resp = {}
+
+        params = json.dumps({'serial_num' : ser_num,
+                            'start_date' : start_date,
+                            'end_date' : end_date
+        })
+
+        resp = reqs.post(
+            HD_SERVER + f'/{str(prefix)}/requested_actions_in_range',
+            data = params,
+            headers = HEADERS
+            ).json()
+
+        return resp
+
+
+    @staticmethod
+    def get_all_measurements_date_range(ser_num, prefix, start_date, end_date):
+        params = {}
+        resp = {}
+
+        params = json.dumps({'serial_num' : ser_num,
+                            'start_date' : start_date,
+                            'end_date' : end_date
+        })
+
+        resp = reqs.post(
+            HD_SERVER + f'/{str(prefix)}/get_all_measurements_date_range',
+            data = params,
+            headers = HEADERS
+            ).json()
+
+        return resp
+
+
+    @staticmethod
+    def get_last_measurement(ser_num, prefix):
+        serial_num = {
+            'serial_num' : ser_num
+        }
+        resp = {}
+        resp = reqs.post(
+            HD_SERVER + f'/{prefix}/get_last_measurement',
+            data = json.dumps(serial_num),
+            headers=HEADERS
+        ).json()
+
+        return resp
+
+
+    @staticmethod
     def last_request_time(ser_num, prefix):
         serial_num = {
             'serial_num' : ser_num

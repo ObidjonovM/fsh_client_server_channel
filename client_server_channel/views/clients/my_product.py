@@ -34,13 +34,39 @@ def get_my_product(ser_num):
 
 @my_product.route('/logs/<ser_num>', methods=['POST'])
 def get_logs(ser_num):
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
 	if request.method == 'POST':
-		result = ProductC.get_all_states_in_range(
+		if request.json['device_type'] == '5':
+			result = ProductC.requested_actions_in_range(
 								ser_num,
 								request.json['prefix'],
 								request.json['start_date'],
 								request.json['end_date']
 							)
+		else:
+			result = ProductC.get_all_states_in_range(
+									ser_num,
+									request.json['prefix'],
+									request.json['start_date'],
+									request.json['end_date']
+								)
+		return result
+
+
+@my_product.route('/get_measurements/<ser_num>', methods=['POST'])
+def get_measurements(ser_num):
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ProductC.get_all_measurements_date_range(
+							ser_num,
+							request.json['prefix'],
+							request.json['start_date'],
+							request.json['end_date']
+						)
 		return result
 
 
@@ -91,11 +117,37 @@ def get_current_state():
 
 	if request.method == 'POST':
 		get_result = ProductC.get(request.json['ser_num'])
-		result = ProductC.get_current_state(
+		if request.json['device_type'] == '5':
+			result = ProductC.last_requested_action(
+				request.json['ser_num'],
+				request.json['prefix']
+			)
+			del result['action_requested']
+			del result['requested_time']
+			if result['action_taken'] == 'YES':
+				result['state_change_time'] = result['action_time']
+			else:
+				result['state_change_time'] = get_result['data']['state_change_time']
+		else:
+			result = ProductC.get_current_state(
+				request.json['ser_num'],
+				request.json['prefix']
+			)
+		result['prev_state_time'] = get_result['data']['state_change_time']
+
+		return result
+
+
+@my_product.route('/get_last_measurement', methods=['POST'])
+def get_last_measurement():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ProductC.get_last_measurement(
 			request.json['ser_num'],
 			request.json['prefix']
 		)
-		result['prev_state_time'] = get_result['data']['state_change_time']
 
 		return result
 

@@ -51,9 +51,11 @@ def get_current_states():
 					params['prefixs'][i]
 				)
 				del resp['action_requested']
-				del resp['action_taken']
 				del resp['requested_time']
-				resp['state_change_time'] = resp['action_time']
+				if resp['action_taken'] == 'YES':
+					resp['state_change_time'] = resp['action_time']
+				else:
+					resp['state_change_time'] = prev_state
 
 				result['data'].append(
 					{params['ser_nums'][i] : resp}
