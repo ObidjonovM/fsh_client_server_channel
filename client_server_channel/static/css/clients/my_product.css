@@ -334,6 +334,7 @@ section {
 /****** Modal close ******/
 .onof-div {
     width: 18%;
+    margin-top: 1%;
 }
 
 .all-products {
@@ -664,25 +665,34 @@ section {
     }
 
     .all-products {
-        width: 90%;
+        width: 80%;
         margin: 10% auto;
     }
 
-    .all-products .img-div {
-        height: 345px;
-    }
+    /*.all-products .img-div {*/
+    /*    height: 320px;*/
+    /*}*/
 
     .all-products img {
-        height: 280px;
+        height: 260px;
     }
 
     .delete-product-form .add-type-submit4 {
         margin-bottom: 10%;
+        font-size: 13px;
     }
 
     .description-container {
-        width: 98%;
-        margin: 9% 1%;
+        width: 80%;
+        margin: 9% auto;
+    }
+
+    .description-form {
+        padding: 30px 20px;
+    }
+
+    .delete-product-div1 {
+        height: 310px;
     }
 
     .flower-pot-text {
@@ -753,7 +763,7 @@ section {
     }
 
     .delete-product-div1 {
-        width: 98%;
+        width: 80%;
         margin: 12% auto;
         min-width: 0;
     }
