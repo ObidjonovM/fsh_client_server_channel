@@ -87,7 +87,6 @@ function OpenNewModal() {
     xhttp.open('POST', '/clients/my_products/my_product/info/' + url.substring(url.lastIndexOf('/') + 1), true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhttp.send(JSON.stringify({'password': forInfoPass.value}));
-    console.log(forInfoPass.value)
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let resp = JSON.parse(this.responseText);
@@ -112,6 +111,9 @@ function OpenNewModal() {
                     "\n" +
                     "            <label for=\"ap_password\">Пароль устройство</label>\n" +
                     "            <div id=\"ap_password\" class=\"information\">" + resp['data']['ap_password'] + "</div>\n" +
+                    "\n" +
+                    "            <label for=\"mac_address\">MAC-адрес</label>\n" +
+                    "            <div id=\"mac_address\" class=\"information\">" + resp['data']['mac_address'] + "</div>\n" +
                     "        </div>\n" +
                     "\n" +
                     "    </div>"
@@ -540,9 +542,15 @@ window.addEventListener('load', function () {
         w1.postMessage(json)
 
         w1.onmessage = function (ev) {
-            flower_pot_time0.innerHTML = ev.data['temp']+"°C";
-            flower_pot_time1.innerHTML = ev.data['soil_moist']+"%";
-            flower_pot_time2.innerHTML = ev.data['air_humid']+"%";
+            if (ev.data['temp'] == "-" && ev.data['soil_moist'] == "-" && ev.data['air_humid'] == "-") {
+                flower_pot_time0.innerHTML = "0°C";
+                flower_pot_time1.innerHTML = "0%";
+                flower_pot_time2.innerHTML = "0%";
+            }else {
+                flower_pot_time0.innerHTML = ev.data['temp']+"°C";
+                flower_pot_time1.innerHTML = ev.data['soil_moist']+"%";
+                flower_pot_time2.innerHTML = ev.data['air_humid']+"%";
+            }
         };
     }
 
