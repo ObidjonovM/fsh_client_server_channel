@@ -24,7 +24,7 @@ function loginChange() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
             const resp = JSON.parse(xhttp.responseText);
             if (resp['user_exists'] == true) {
-                let result = `<small style="color: red; font-size: 10px;">Bunday username mavjud!</small>`;
+                let result = `<small style="color: red; font-size: 10px;">Такое имя пользователя существует!</small>`;
                 login_error.innerHTML = result;
                 submit.style.pointerEvents = 'none';
             } else {
@@ -48,14 +48,14 @@ function validateForm() {
 
     if (clientname == "") {
 
-        document.getElementById('login_error').innerHTML = "**Fill the first name!";
+        document.getElementById('login_error').innerHTML = "**Введите имя!";
         document.getElementById('login_error').style.display = "block";
 
         return false;
     }
 
     if (!isNaN(clientname)) {
-        document.getElementById('login_error').innerHTML = "**Faqat . va harf qatnashish kerak!";
+        document.getElementById('login_error').innerHTML = "**Только . и письмо должно быть обработано!";
         document.getElementById('login_error').style.display = "block";
 
 
@@ -64,7 +64,7 @@ function validateForm() {
 
     if (password == "") {
 
-        document.getElementById('error_password').innerHTML = "**Fill the password please!";
+        document.getElementById('error_password').innerHTML = "**Введите пароль, пожалуйста!";
         document.getElementById('error_password').style.display = "block";
 
 
@@ -73,7 +73,7 @@ function validateForm() {
 
     if (confirm_password == "") {
 
-        document.getElementById('confirm_error_password').innerHTML = "**Fill the new password please!";
+        document.getElementById('confirm_error_password').innerHTML = "**Пожалуйста, введите новый пароль!";
         document.getElementById('confirm_error_password').style.display = "block";
 
 

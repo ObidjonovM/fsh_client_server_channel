@@ -13,7 +13,7 @@ function validateForm() {
 
     if (username == "") {
 
-        document.getElementById('error_username').innerHTML = "**Fill the first name!";
+        document.getElementById('error_username').innerHTML = "**Введите имя!";
         document.getElementById('error_username').style.display = "block";
 
         return false;
@@ -21,7 +21,7 @@ function validateForm() {
 
 
     if (!isNaN(username)) {
-        document.getElementById('error_username').innerHTML = "**Faqat . va harf qatnashish kerak!";
+        document.getElementById('error_username').innerHTML = "**Только . и письмо должно быть обработано!";
         document.getElementById('error_username').style.display = "block";
 
 
@@ -30,7 +30,7 @@ function validateForm() {
 
     if (password == "") {
 
-        document.getElementById('error_password').innerHTML = "**Fill the password please!";
+        document.getElementById('error_password').innerHTML = "**Введите пароль, пожалуйста!";
         document.getElementById('error_password').style.display = "block";
 
 
@@ -40,7 +40,7 @@ function validateForm() {
 
     if (new_password == "") {
 
-        document.getElementById('error_new_password').innerHTML = "**Fill the new password please!";
+        document.getElementById('error_new_password').innerHTML = "**Пожалуйста, введите новый пароль!";
         document.getElementById('error_new_password').style.display = "block";
 
 
@@ -50,7 +50,7 @@ function validateForm() {
 
     if (new_confirm_password == "") {
 
-        document.getElementById('error_new_confirm_password').innerHTML = "**Fill the new confirm password please!"
+        document.getElementById('error_new_confirm_password').innerHTML = "**Пожалуйста, введите новый пароль для подтверждения!"
         document.getElementById('error_new_confirm_password').style.display = "block";
         return false;
     }
@@ -63,11 +63,9 @@ function validateForm() {
             event.preventDefault();
 
         });
-        alert("Parol bir xil emas!");
+        alert("Пароль не тот!");
         return false;
 
-    } else {
-        alert("Tabriklaymiz parol o'zgardi!")
     }
 
 
