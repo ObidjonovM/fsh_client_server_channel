@@ -621,6 +621,10 @@ section {
         border:1px solid #c7c7c7!important;
     }
 
+    .description-header h3 {
+        font-size: 15px;
+    }
+
     .get-my-products {
         padding: 1% 2%;
         float: none;
@@ -869,16 +873,24 @@ section {
 
 @media only screen and (min-width: 411px) and (max-width: 731px) {
     .onof-div {
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
     }
     .all-products {
-        width: auto;
+        width: 80%;
         margin: 10% auto;
+    }
+
+    .delete-product-form .add-type-submit4 {
+        font-size: 15px;
     }
 
     .all-products .img-div {
         max-width: none;
+    }
+
+    .a {
+        margin: 4% auto;
     }
 
     .input-on-off {
