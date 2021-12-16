@@ -191,7 +191,7 @@
               class="delete-product-form" id="data_form" method="post"
               ser_num="{{my_product['data']['serial_num'][0]}}">
             <div class="description-header">
-                <h3>Список логов</h3>
+                <h3>Список поливов</h3>
             </div>
             <input type="hidden" value="{{my_product['data']['product_id'][0]}}">
             <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
@@ -226,7 +226,7 @@
                 <input type="date" name="end_date" id="end_date1" required>
             </div>
             <div class="a">
-                <input type="submit" id="water_measurement" value="Получить измеренные параметры" prefix="{{my_product['data']['prefix'][i]}}"
+                <input type="submit" id="water_measurement" value="Получить" prefix="{{my_product['data']['prefix'][i]}}"
                        class="add-type-submit4" ser_num="{{my_product['data']['serial_num'][i]}}">
             </div>
         </form>
@@ -238,7 +238,7 @@
         <button class="close-modal4">&times;</button>
 
         <div class="header header3">
-            <h2>Логи</h2>
+            <h2>Список поливов</h2>
         </div>
         <div class="start-end-date">
             <table class="table-date">
