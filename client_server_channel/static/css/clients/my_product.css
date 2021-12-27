@@ -980,7 +980,7 @@ section {
     }
 
     .description-container {
-        width: 60%;
+        width: 50%;
         margin: 5% auto;
     }
 
@@ -1008,7 +1008,7 @@ section {
     }
 
     .onof-div {
-        width: 46%;
+        width: 340px;
         margin: 0% auto;
         border:1px solid transparent;
     }
@@ -1018,7 +1018,7 @@ section {
     }
 
     .delete-product-div1 {
-        width: 60%;
+        width: 50%;
         margin: 7% auto;
         margin-bottom: 20%;
     }

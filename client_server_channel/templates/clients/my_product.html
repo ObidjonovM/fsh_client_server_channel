@@ -112,7 +112,7 @@
             <div class="img-div">
                 <span>
                     <p style="font-size: 13px">{{my_product['data']['description'][i]}}</p>
-                    <span class="character12" id="character_id" onclick="characterOtmen(this)" ser_num="{{my_product['data']['serial_num'][i]}}"></span>
+                    <span class="c  haracter12" id="character_id" onclick="characterOtmen(this)" ser_num="{{my_product['data']['serial_num'][i]}}"></span>
                 </span>
 
                 <img src="{{my_product['data']['photo'][i]}}" class="socket-img" id="{{my_product['data']['product_id'][i]}}"
@@ -197,7 +197,7 @@
             <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
             <div class="a">
                 <label for="start_date">Дата начала</label><span class="star">*</span>
-                <input type="date" name="start_date" id="start_date" onchange="changeInput()" required>
+                <input type="date" name="start_date" id="start_date" onchange="changeInput1()" required>
             </div>
             <div class="a">
                 <label for="end_date">Дата окончания</label><span class="star">*</span>
@@ -219,7 +219,7 @@
             </div>
             <div class="a">
                 <label for="start_date">Дата начала</label><span class="star">*</span>
-                <input type="date" name="start_date" id="start_date1" onchange="changeInput()" required>
+                <input type="date" name="start_date" id="start_date1" onchange="changeInput2()" required>
             </div>
             <div class="a">
                 <label for="end_date">Дата окончания</label><span class="star">*</span>

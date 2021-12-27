@@ -513,11 +513,16 @@ function myProducts() {
 }
 //get my products close
 
-function changeInput() {
+function changeInput1() {
     var fistDate1 = document.getElementById('start_date').value;
-    var secondDate = document.getElementById('start_date1').value;
 
     document.getElementById('end_date').value = fistDate1;
+}
+
+function changeInput2() {
+
+    var secondDate = document.getElementById('start_date1').value;
+
     document.getElementById('end_date1').value = secondDate;
 }
 
