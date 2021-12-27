@@ -35,6 +35,10 @@ a{
     background-color: #232F3E;
 }
 
+.add-type-submit, .add-type-submit1, .add-type-submit2, .add-type-submit3, .add-type-submit4 {
+    height: 45px!important;
+}
+
 .fixed {
     width: 100%;
     height: 50px;
