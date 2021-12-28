@@ -262,6 +262,25 @@ class ProductC:
 
 
     @staticmethod
+    def get_gas_values(ser_num, prefix, start_date, end_date):
+        params = {}
+        resp = {}
+
+        params = json.dumps({'serial_num' : ser_num,
+                            'start_date' : start_date,
+                            'end_date' : end_date
+        })
+
+        resp = reqs.post(
+            HD_SERVER + f'/{str(prefix)}/get_all_values_in_range',
+            data = params,
+            headers = HEADERS
+            ).json()
+
+        return resp
+
+
+    @staticmethod
     def get_last_measurement(ser_num, prefix):
         serial_num = {
             'serial_num' : ser_num
@@ -284,6 +303,21 @@ class ProductC:
         resp = {}
         resp = reqs.post(
             HD_SERVER + f'/{prefix}/last_request_time',
+            data = json.dumps(serial_num),
+            headers=HEADERS
+        ).json()
+
+        return resp
+
+
+    @staticmethod
+    def last_gas_value(ser_num, prefix):
+        serial_num = {
+            'serial_num' : ser_num
+        }
+        resp = {}
+        resp = reqs.post(
+            HD_SERVER + f'/{prefix}/get_gas_value',
             data = json.dumps(serial_num),
             headers=HEADERS
         ).json()

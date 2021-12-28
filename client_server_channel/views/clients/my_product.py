@@ -70,6 +70,22 @@ def get_measurements(ser_num):
 		return result
 
 
+@my_product.route('/get_gas_values/<ser_num>', methods=['POST'])
+def get_gas_values(ser_num):
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		print(request.json)
+		result = ProductC.get_gas_values(
+							ser_num,
+							request.json['prefix'],
+							request.json['start_date'],
+							request.json['end_date']
+						)
+		return result
+
+
 @my_product.route('/info/<ser_num>', methods=['POST'])
 def my_product_info(ser_num):
 	if not 'clientname' in session:
@@ -159,6 +175,20 @@ def last_request_time():
 
 	if request.method == 'POST':
 		result = ProductC.last_request_time(
+			request.json['ser_num'],
+			request.json['prefix']
+		)
+
+		return result
+
+
+@my_product.route('/last_gas_value', methods=['POST'])
+def last_gas_value():
+	if not 'clientname' in session:
+		return redirect(url_for('clients.login'))
+
+	if request.method == 'POST':
+		result = ProductC.last_gas_value(
 			request.json['ser_num'],
 			request.json['prefix']
 		)
