@@ -15,7 +15,7 @@ section {
     margin-top: 15px;
 }
 
-.container, .container1, .container3, .container4 {
+.container, .container1, .container3, .container4, .container5 {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -134,8 +134,8 @@ section {
     align-items: center
 }
 
-.add-type-submit:hover, .add-type-submit2:hover {
-    background-color: #232F3E;
+.add-type-submit:hover, .add-type-submit2:hover, .add-type-submit3:hover {
+    background-color: #232F3E!important;
     transition: all .3s;
 }
 
@@ -186,7 +186,7 @@ section {
     padding: 12px 3px;
 }
 
-.close-modal, .close-modal1, .close-modal3, .close-modal4, .close-modal5 {
+.close-modal, .close-modal1, .close-modal3, .close-modal4, .close-modal5, .close-modal-gaz {
     position: absolute;
     top: 1.2rem;
     right: 1rem;
@@ -199,7 +199,7 @@ section {
     height: 40px;
 }
 
-.close-modal:focus, .close-modal1:focus, .close-modal3:focus, .close-modal4:focus, .close-modal5:focus {
+.close-modal:focus, .close-modal1:focus, .close-modal3:focus, .close-modal4:focus, .close-modal5:focus, .close-modal-gaz:focus {
     border: 1px solid #9a9a6f;
     box-shadow: 0px 0px 1px 1px #e4e418;
 }
@@ -212,7 +212,7 @@ section {
     display: none;
 }
 
-.hidden3, .hidden4 {
+.hidden3, .hidden4, .hidden5{
     display: none;
 }
 
@@ -237,7 +237,7 @@ section {
     padding: 1rem;
 }
 
-.modal3, .modal4 {
+.modal3, .modal4, .modal5 {
     position: absolute;
     top: 35%;
     left: 50%;
@@ -303,7 +303,7 @@ section {
     z-index: 5;
 }
 
-.overlay3, .overlay4 {
+.overlay3, .overlay4, .overlay5 {
     position: fixed;
     top: 0%;
     left: 0;
@@ -323,7 +323,7 @@ section {
     overflow: scroll;
 }
 
-#thead_tr th, #thead_tr1 th, #tbody_tr .state_time_on_of {
+#thead_tr th, #thead_tr1 th, #thead_tr2 th, #tbody_tr .state_time_on_of {
     width: 30%;
     padding: 12px 15px;
     border: 1px solid #2a2a28;
@@ -458,6 +458,20 @@ section {
     width: 100%;
 }
 
+.add-type-submit3 {
+    background-color: #374a62;
+    border: 2px solid #374a62;
+    border-radius: 4px;
+    color: #d5e2ff;
+    display: block;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    cursor: pointer;
+}
+
 .description-form .add-type-submit, .add-type-submit2 {
     background-color: #374a62;
     border: 2px solid #374a62;
@@ -513,7 +527,7 @@ section {
 }
 
 /*delete-product-div open*/
-.delete-product-div1 {
+.delete-product-div1, .form-gaz {
     min-width: 250px;
     width: 23%;
     /*margin: 1%;*/
@@ -530,7 +544,7 @@ section {
     border-radius: 5px;
 }
 
-.delete-product-div1 input {
+.delete-product-div1 input, .form-gaz input {
     height: 43px;
     border: 1px solid #32334e;
     border-radius: 4px;
@@ -548,10 +562,10 @@ section {
 }
 
 .description-header h3 {
-    font-size: 18px;
+    font-size: 16px;
 }
 
-.delete-product-form {
+.delete-product-form, .form-gaz {
     width: 100%;
     border-radius: 5px;
 }
@@ -562,7 +576,7 @@ section {
     padding: 1%;
 }
 
-.delete-product-form input {
+.delete-product-form input, .form-gaz input {
     margin-top: 0;
     border: 2px solid #c3c3c3;
     background-color: white;
@@ -573,11 +587,16 @@ section {
     border-color: #777;
 }
 
-.delete-product-form label {
+.form-gaz input:focus {
+    outline: 0;
+    border-color: #777;
+}
+
+.delete-product-form label, .form-gaz label {
     margin-top: 2%;
 }
 
-.delete-product-form .add-type-submit4 {
+.delete-product-form .add-type-submit4, .form-gaz .add-type-submit3  {
     background-color: #374a62;
     border: 2px solid #374a62;
     color: #d5e2ff;
@@ -663,7 +682,7 @@ section {
         align-items: center;
     }
 
-    .close-modal4, .close-modal5 {
+    .close-modal4, .close-modal5, .close-modal-gaz {
         top: 0.2rem;
         right: 0rem;
     }
@@ -681,7 +700,7 @@ section {
         height: 260px;
     }
 
-    .delete-product-form .add-type-submit4 {
+    .delete-product-form .add-type-submit4, .form-gaz .add-type-submit3 {
         margin-bottom: 10%;
         font-size: 13px;
     }
@@ -787,7 +806,7 @@ section {
         transform: translate(-50%, -50%);
     }
 
-    .modal3, .modal4 {
+    .modal3, .modal4, .modal5 {
         width: 97%;
         position: fixed;
         top: 50%;
@@ -865,7 +884,7 @@ section {
         top: 50%;
         transform: translate(-50%, -50%);
     }
-    .overlay, .overlay1, .overlay3, .overlay4  {
+    .overlay, .overlay1, .overlay3, .overlay4, .overlay5  {
         position: fixed;
     }
 
@@ -881,7 +900,7 @@ section {
         margin: 10% auto;
     }
 
-    .delete-product-form .add-type-submit4 {
+    .delete-product-form .add-type-submit4, .form-gaz .add-type-submit3 {
         font-size: 15px;
     }
 
@@ -908,7 +927,7 @@ section {
         transform: translate(-50%, -50%);
     }
 
-    .overlay, .overlay1, .overlay3, .overlay4  {
+    .overlay, .overlay1, .overlay3, .overlay4, .overlay5  {
         position: fixed;
     }
 }
@@ -1065,7 +1084,7 @@ section {
         margin-bottom: 11%;
     }
 
-    .modal3, .modal4 {
+    .modal3, .modal4, .modal5 {
         position: fixed;
         top: 50%;
         transform: translate(-50%, 88%);
@@ -1079,7 +1098,7 @@ section {
         font-size: 22px;
     }
 
-    .close-modal4, .close-modal5 {
+    .close-modal4, .close-modal5, .close-modal-gaz {
         top: 0.2rem;
         right: 0.5rem;
     }
@@ -1238,11 +1257,11 @@ section {
        transform: translate(-50%, -50%);
    }
 
-    .delete-product-form .add-type-submit4 {
+    .delete-product-form .add-type-submit4, .form-gaz .add-type-submit3 {
         margin-top: 5%;
     }
 
-    .delete-product-form input {
+    .delete-product-form input, .form-gaz input {
         background-color: white;
     }
 

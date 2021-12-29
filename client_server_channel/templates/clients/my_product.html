@@ -58,6 +58,16 @@
         </div>
     </div>
     {%endif%}
+
+    {% if my_product['data']['product_id'][i] == 3 %}
+    <div class="flower-pot-time-div">
+        <span class="flower-pot-text"> Концентрация газа</span>
+        <div class="flower-pot-time" id="gaz_pot_time"
+             ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][0]}}">
+        </div>
+    </div>
+    {% endif %}
+
     {%endfor%}
     <!--    tuvak close-->
 
@@ -112,7 +122,7 @@
             <div class="img-div">
                 <span>
                     <p style="font-size: 13px">{{my_product['data']['description'][i]}}</p>
-                    <span class="c  haracter12" id="character_id" onclick="characterOtmen(this)" ser_num="{{my_product['data']['serial_num'][i]}}"></span>
+                    <span class="character12" id="character_id" onclick="characterOtmen(this)" ser_num="{{my_product['data']['serial_num'][i]}}"></span>
                 </span>
 
                 <img src="{{my_product['data']['photo'][i]}}" class="socket-img" id="{{my_product['data']['product_id'][i]}}"
@@ -190,9 +200,15 @@
         <form action="{{url_for('clients.my_products.my_product.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
               class="delete-product-form" id="data_form" method="post"
               ser_num="{{my_product['data']['serial_num'][0]}}">
+            {% if my_product['data']['product_id'][0] == 11 %}
             <div class="description-header">
-                <h3>Список поливов</h3>
+                <h3>Список времени полива</h3>
             </div>
+            {% else %}
+            <div class="description-header">
+                <h3>Список состояние устройство</h3>
+            </div>
+            {% endif %}
             <input type="hidden" value="{{my_product['data']['product_id'][0]}}">
             <input type="hidden" name="prefix" value="{{my_product['data']['prefix'][0]}}" id="hidden_input2">
             <div class="a">
@@ -208,22 +224,21 @@
             </div>
         </form>
     </div>
+
     {% for i in range(my_product['data']['photo']|length)%}
     {% if my_product['data']['product_id'][i] == 11 %}
-    <div class="delete-product-div1 sss" >
-        <form action="{{url_for('clients.my_products.my_product.get_measurements', ser_num=my_product['data']['serial_num'][0])}}"
-              class="delete-product-form" id="data_form1" method="post"
-              ser_num="{{my_product['data']['serial_num'][0]}}">
+    <div class="delete-product-div1 sss">
+        <form class="delete-product-form" id="data_form1" ser_num="{{my_product['data']['serial_num'][0]}}">
             <div class="description-header">
                 <h3>Список измеряемых параметров</h3>
             </div>
             <div class="a">
-                <label for="start_date">Дата начала</label><span class="star">*</span>
-                <input type="date" name="start_date" id="start_date1" onchange="changeInput2()" required>
+                <label>Дата начала</label><span class="star">*</span>
+                <input type="date" id="start_date1" onchange="changeInput2()" required>
             </div>
             <div class="a">
-                <label for="end_date">Дата окончания</label><span class="star">*</span>
-                <input type="date" name="end_date" id="end_date1" required>
+                <label>Дата окончания</label><span class="star">*</span>
+                <input type="date" id="end_date1" required>
             </div>
             <div class="a">
                 <input type="submit" id="water_measurement" value="Получить" prefix="{{my_product['data']['prefix'][i]}}"
@@ -231,15 +246,42 @@
             </div>
         </form>
     </div>
-    {%endif%}
-    {%endfor%}
+    {% endif %}
+
+    {% if my_product['data']['product_id'][i] == 3 %}
+    <div class="delete-product-div1 sss" >
+        <form class="delete-product-form" id="data_form_gaz" ser_num="{{my_product['data']['serial_num'][0]}}">
+            <div class="description-header">
+                <h3>Список измеряемых параметров</h3>
+            </div>
+            <div class="a">
+                <label>Дата начала</label><span class="star">*</span>
+                <input type="date" id="start_date_gaz" onchange="changeInputGaz()" required>
+            </div>
+            <div class="a">
+                <label>Дата окончания</label><span class="star">*</span>
+                <input type="date" id="end_date_gaz" required>
+            </div>
+            <div class="a">
+                <input type="submit" id="gaz_measurement" value="Получить" prefix="{{my_product['data']['prefix'][i]}}"
+                       class="add-type-submit4" ser_num="{{my_product['data']['serial_num'][i]}}">
+            </div>
+        </form>
+    </div>
+    {% endif %}
+    {% endfor %}
 
     <div id="containerModal3" class="container3 modal3 hidden3">
         <button class="close-modal4">&times;</button>
-
+        {% if my_product['data']['product_id'][0] == 11 %}
         <div class="header header3">
-            <h2>Список поливов</h2>
+            <h2>Список времени полива</h2>
         </div>
+        {%else%}
+        <div class="header header3">
+            <h3>Список состояние устройство</h3>
+        </div>
+        {%endif%}
         <div class="start-end-date">
             <table class="table-date">
                 <thead id="thead_data">
@@ -281,6 +323,30 @@
         </div>
     </div>
     <div id="overlay4" class="overlay4 hidden4"></div>
+
+    <div id="containerModal5" class="container5 modal5 hidden5">
+        <button class="close-modal-gaz">&times;</button>
+
+        <div class="header header3">
+            <h2>Список измеряемых параметров</h2>
+        </div>
+        <div class="start-end-date">
+            <table class="table-date">
+                <thead id="thead_data2">
+                <tr id="thead_tr2">
+                    <th>Концентрация газа</th>
+                    <th>Дата</th>
+                </tr>
+                </thead>
+
+                <tbody id="tbody_date2">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="overlay5" class="overlay5 hidden5"></div>
+
     <!--Дата начала Дата окончания close-->
 
 </section>

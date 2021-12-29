@@ -36,7 +36,7 @@ const closeModal1 = function () {
 const deleteProduct = function () {
     modal1.classList.remove('hidden1');
     overlay1.classList.remove('hidden1');
-}; 
+};
 
 deleteProductButton.addEventListener('click', deleteProduct);
 btnCloseModal1.addEventListener('click', closeModal1);
@@ -200,6 +200,7 @@ const device_type = socket_img[0].getAttribute('device_type');
 const id = socket_img[0].getAttribute('id');
 const tbody_date = document.getElementById('tbody_date');
 const tbody_date1 = document.getElementById('tbody_date1');
+const tbody_date2 = document.getElementById('tbody_date2');
 
 function sendData() {
     const start_date = document.getElementById('start_date').value;
@@ -210,9 +211,9 @@ function sendData() {
 
     const json = {
         'prefix': prefix.getAttribute('value'),
-        'start_date': start_date+'T00:00',
-        'end_date': end_date+'T23:59',
-        'device_type':device_type
+        'start_date': start_date + 'T00:00',
+        'end_date': end_date + 'T23:59',
+        'device_type': device_type
     };
 
     xhttp.open("Post", "/clients/my_products/my_product/logs/" + ser_number);
@@ -222,8 +223,8 @@ function sendData() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let resp = JSON.parse(this.responseText);
-
-            for (let i = resp['data']['serial_num'].length-1; i >= 0;  i--) {
+            console.log(resp);
+            for (let i=0; i < resp['data']['log_id'].length; i++) {
 
                 let tr = document.createElement('TR');
                 tr.setAttribute('id', 'tbody_tr');
@@ -234,15 +235,15 @@ function sendData() {
                 td1.setAttribute('class', 'state_time_on_of');
                 td2.setAttribute('class', 'state_time_on_of');
 
-                if (id == 11){
+                if (id == 11) {
                     td1.innerHTML = resp['data']['action_requested'][i];
                     td2.innerHTML = getFullTime(resp['data']['action_time'][i]);
-                }else {
+                } else {
                     td1.innerHTML = resp['data']['state'][i];
                     td2.innerHTML = getFullTime(resp['data']['state_time'][i]);
                 }
 
-                if (id == 8 || id == 10){
+                if (id == 8 || id == 10) {
                     if (resp['data']['state'][i] == 'ON') {
                         td1.innerHTML = "Открыто";
                     }
@@ -250,8 +251,8 @@ function sendData() {
                     if (resp['data']['state'][i] == 'OFF') {
                         td1.innerHTML = "Закрыто";
                     }
-                }else if (id == 11){
-                    if(resp['data']['action_requested'][i] == 'ON'){
+                } else if (id == 11) {
+                    if (resp['data']['action_requested'][i] == 'ON') {
                         td1.innerHTML = "Налил воду";
                     }
                 } else {
@@ -295,12 +296,12 @@ const modal_flower = document.querySelector('.modal4');
 const overlay_flower = document.querySelector('.overlay4');
 const close_modal_flower = document.querySelector('.close-modal5');
 
-const openFlower = function (){
+const openFlower = function () {
     modal_flower.classList.remove('hidden4');
     overlay_flower.classList.remove('hidden4');
 }
 
-const closeModalFlower = function (){
+const closeModalFlower = function () {
     modal_flower.classList.add('hidden4');
     overlay_flower.classList.add('hidden4');
     location.reload();
@@ -321,6 +322,7 @@ const closeModal5 = function () {
 date_submit.addEventListener('submit', open3);
 close_modal4.addEventListener('click', closeModal5);
 close_modal_flower.addEventListener('click', closeModalFlower);
+
 // Дата начала and Дата окончания close
 
 function socket3Way(e) {
@@ -359,10 +361,10 @@ let characters = document.getElementsByClassName('character12');
 const socket3way_buttons = document.querySelectorAll('.socket3');
 
 function characterOtmen(e) {
-    let  serNum = e.getAttribute('ser_num');
-    let  state_time = e.getAttribute('state_time');
+    let serNum = e.getAttribute('ser_num');
+    let state_time = e.getAttribute('state_time');
     let json = {
-        'ser_num':serNum,
+        'ser_num': serNum,
         'state_time': state_time
     }
 
@@ -402,10 +404,10 @@ window.addEventListener('load', function () {
             for (let i = 0; i < parent_curr_state.length; i++) {
                 characters[i].setAttribute('state_time', ev.data['state_change_time']);
 
-                if (getFullTime(ev.data['state_change_time']) > getFullTime(ev.data['prev_state_time']) ){
+                if (getFullTime(ev.data['state_change_time']) > getFullTime(ev.data['prev_state_time'])) {
                     characters[i].innerHTML = 'x';
                     characters[i].style.display = 'inline-block';
-                }else {
+                } else {
                     characters[i].innerHTML = '';
                     characters[i].style.display = 'none';
                 }
@@ -437,8 +439,8 @@ window.addEventListener('load', function () {
                         }
                     }
 
-                } else if(id == 11){
-                    if (getFullTime(ev.data['action_time'])  == '-' || getFullTime(ev.data['action_time'])  == 'ISO.undefined.0 0' || getFullTime(ev.data['action_time'])  == '0.undefined.0 0') {
+                } else if (id == 11) {
+                    if (getFullTime(ev.data['action_time']) == '-' || getFullTime(ev.data['action_time']) == 'ISO.undefined.0 0' || getFullTime(ev.data['action_time']) == '0.undefined.0 0') {
                         parent_curr_state[i].innerHTML = "";
                         parent_curr_state[i].style.backgroundColor = 'transparent';
                     } else if (ev.data['action_taken'] == "YES") {
@@ -457,6 +459,7 @@ window.addEventListener('load', function () {
     }
 
 });
+
 //ON OF close
 
 function translateState(state, id) {
@@ -511,6 +514,7 @@ function reverseState(state) {
 function myProducts() {
     window.open('/clients/my_products', '_self');
 }
+
 //get my products close
 
 function changeInput1() {
@@ -551,10 +555,10 @@ window.addEventListener('load', function () {
                 flower_pot_time0.innerHTML = "0°C";
                 flower_pot_time1.innerHTML = "0%";
                 flower_pot_time2.innerHTML = "0%";
-            }else {
-                flower_pot_time0.innerHTML = ev.data['temp']+"°C";
-                flower_pot_time1.innerHTML = ev.data['soil_moist']+"%";
-                flower_pot_time2.innerHTML = ev.data['air_humid']+"%";
+            } else {
+                flower_pot_time0.innerHTML = ev.data['temp'] + "°C";
+                flower_pot_time1.innerHTML = ev.data['soil_moist'] + "%";
+                flower_pot_time2.innerHTML = ev.data['air_humid'] + "%";
             }
         };
     }
@@ -562,69 +566,198 @@ window.addEventListener('load', function () {
 })
 //flower close
 
+// gaz open
+let gaz_pot_time = document.getElementById('gaz_pot_time');
+window.addEventListener('load', function () {
+    let ser_num_tuvak = socket_img[0].getAttribute('ser_num');
+    let prefix_tuvak = socket_img[0].getAttribute('prefix');
+
+    let w1;
+    let json = {
+        'ser_num': ser_num_tuvak,
+        'prefix': prefix_tuvak
+    };
+
+    if (typeof (Worker) !== "undefined") {
+        if (typeof (w1) == "undefined") {
+            w1 = new Worker("/static/js/clients/gaz_worker.js");
+        }
+        w1.postMessage(json)
+
+        w1.onmessage = function (ev) {
+            if (ev.data['gas_value'] == "-") {
+                gaz_pot_time.innerHTML = "0";
+            } else {
+                gaz_pot_time.innerHTML = ev.data['gas_value'];
+
+            }
+        };
+    }
+})
+// gaz close
+
 
 //waterMeasurement function open
-function waterMeasurement(){
-    const water_measurement = document.getElementById('water_measurement');
-    const prefix = water_measurement.getAttribute('prefix');
-    const ser_num = water_measurement.getAttribute('ser_num');
-    const start_date1 = document.getElementById('start_date1').value;
-    const end_date1 = document.getElementById('end_date1').value;
+if (id == 11) {
 
-    const json = {
-        'prefix': prefix,
-        'start_date': start_date1+'T00:00',
-        'end_date': end_date1+'T23:59'
-    }
+    function waterMeasurement() {
+        const water_measurement = document.getElementById('water_measurement');
+        const prefix = water_measurement.getAttribute('prefix');
+        const ser_num = water_measurement.getAttribute('ser_num');
+        const start_date1 = document.getElementById('start_date1').value;
+        const end_date1 = document.getElementById('end_date1').value;
 
-    xhttp.open("Post", "/clients/my_products/my_product/get_measurements/" + ser_num);
-    xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhttp.send(JSON.stringify(json));
+        const json = {
+            'prefix': prefix,
+            'start_date': start_date1 + 'T00:00',
+            'end_date': end_date1 + 'T23:59'
+        }
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let resp = JSON.parse(this.responseText);
+        xhttp.open("Post", "/clients/my_products/my_product/get_measurements/" + ser_num);
+        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        xhttp.send(JSON.stringify(json));
 
-            for (let i = resp['data']['serial_num'].length-1; i >= 0;  i--) {
-                let tr = document.createElement('TR');
-                tr.setAttribute('id', 'tbody_tr');
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let resp = JSON.parse(this.responseText);
 
-                let td1 = document.createElement('TD');
-                let td2 = document.createElement('TD');
-                let td3 = document.createElement('TD');
-                let td4 = document.createElement('TD');
+                if (!resp['data']['serial_num']) {
+                    tbody_date1.innerHTML = '';
+                } else {
+                    for (let i = resp['data']['serial_num'].length - 1; i >= 0; i--) {
+                        let tr = document.createElement('TR');
+                        tr.setAttribute('id', 'tbody_tr');
 
-                td1.setAttribute('class', 'state_time_on_of');
-                td2.setAttribute('class', 'state_time_on_of');
-                td3.setAttribute('class', 'state_time_on_of');
-                td4.setAttribute('class', 'state_time_on_of');
+                        let td1 = document.createElement('TD');
+                        let td2 = document.createElement('TD');
+                        let td3 = document.createElement('TD');
+                        let td4 = document.createElement('TD');
 
-                td1.innerHTML = resp['data']['temp'][i]+"°C";
-                td2.innerHTML = resp['data']['soil_moist'][i]+"%";
-                td3.innerHTML = resp['data']['air_humid'][i]+"%";
-                td4.innerHTML = getFullTime(resp['data']['measured_time'][i]);
+                        td1.setAttribute('class', 'state_time_on_of');
+                        td2.setAttribute('class', 'state_time_on_of');
+                        td3.setAttribute('class', 'state_time_on_of');
+                        td4.setAttribute('class', 'state_time_on_of');
 
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
-                tr.appendChild(td4);
+                        td1.innerHTML = resp['data']['temp'][i] + "°C";
+                        td2.innerHTML = resp['data']['soil_moist'][i] + "%";
+                        td3.innerHTML = resp['data']['air_humid'][i] + "%";
+                        td4.innerHTML = getFullTime(resp['data']['measured_time'][i]);
 
-                tbody_date1.appendChild(tr);
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+                        tr.appendChild(td4);
+
+                        tbody_date1.appendChild(tr);
+                    }
+                }
+
             }
         }
+
     }
+
+    document.getElementById('data_form1').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        waterMeasurement();
+        openFlower();
+    })
+}
+//waterMeasurement function close
+
+
+if (id == 3) {
+// gazMeasurement function open
+    const overlayGaz = document.querySelector('.overlay5');
+    const modalGaz = document.querySelector('.modal5');
+    const btnCloseModalGaz = document.querySelector('.close-modal-gaz');
+
+    function openModalGaz1() {
+        modalGaz.classList.remove('hidden5');
+        overlayGaz.classList.remove('hidden5');
+    };
+
+    const closeModalGaz = function () {
+        modalGaz.classList.add('hidden5');
+        overlayGaz.classList.add('hidden5');
+        location.reload();
+    };
+
+    btnCloseModalGaz.addEventListener('click', closeModalGaz);
+
+
+    function gazDec() {
+
+        let gaz_measurement = document.getElementById('gaz_measurement');
+        let prefix = gaz_measurement.getAttribute('prefix');
+        let ser_num = gaz_measurement.getAttribute('ser_num');
+        let start_date1 = document.getElementById('start_date_gaz').value;
+        let end_date1 = document.getElementById('end_date_gaz').value;
+
+        let json = {
+            'prefix': prefix,
+            'start_date': start_date1 + 'T00:00',
+            'end_date': end_date1 + 'T23:59'
+        }
+
+        xhttp.open("Post", "/clients/my_products/my_product/get_gas_values/" + ser_num);
+        xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+        xhttp.send(JSON.stringify(json));
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                let resp = JSON.parse(this.responseText);
+
+                if (!resp['data']['serial_num']) {
+                    tbody_date1.innerHTML = '';
+
+                } else {
+                    for (let i = resp['data']['log_id'].length - 1; i >= 0; i--) {
+                        let tr = document.createElement('TR');
+                        tr.setAttribute('id', 'tbody_tr');
+
+                        let td1 = document.createElement('TD');
+                        let td2 = document.createElement('TD');
+
+                        td1.setAttribute('class', 'state_time_on_of');
+                        td2.setAttribute('class', 'state_time_on_of');
+
+                        td1.innerHTML = resp['data']['gas_value'][i];
+                        td2.innerHTML = getFullTime(resp['data']['request_time'][i]);
+
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+
+                        tbody_date2.appendChild(tr);
+                    }
+                }
+
+            }
+        }
+
+
+    }
+
+
+    document.getElementById('data_form_gaz').addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        gazDec();
+        openModalGaz1();
+    })
+
+    function changeInputGaz() {
+
+        var secondDate = document.getElementById('start_date_gaz').value;
+
+        document.getElementById('end_date_gaz').value = secondDate;
+    }
+
+// gazMeasurement function close
 
 }
 
-const data_form1 = document.getElementById('data_form1');
-
-data_form1.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    waterMeasurement();
-    openFlower();
-})
 
 
-//waterMeasurement function close
 
