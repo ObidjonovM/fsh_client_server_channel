@@ -256,6 +256,7 @@ CREATE TABLE IF NOT EXISTS product_info (
 	modify_emp_id INT NOT NULL CHECK(modify_emp_id > 0),
 	active BOOLEAN NOT NULL,
 	prefix VARCHAR NOT NULL,
+	device_type VARCHAR NOT NULL,
 
 	FOREIGN KEY(category_id)
 	REFERENCES categories(category_id),
