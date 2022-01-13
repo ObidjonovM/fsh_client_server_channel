@@ -76,7 +76,7 @@ def get_gas_values(ser_num):
 		return redirect(url_for('clients.login'))
 
 	if request.method == 'POST':
-		print(request.json)
+
 		result = ProductC.get_gas_values(
 							ser_num,
 							request.json['prefix'],
