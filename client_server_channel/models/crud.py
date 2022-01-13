@@ -165,17 +165,21 @@ def get_columns_by_ids(table_name, cols, id_name, ids):
 
 
 def get_fullnames(table_name, cols, id_name, ids):
+    clients_ids = set()
     sql = 'SELECT '
     for col in cols:
         sql += str(col) + ', '
 
-    sql = sql[:-2] + f' FROM {str(table_name)} WHERE active = TRUE AND ('
+    sql = sql[:-2] + f' FROM {str(table_name)} WHERE active = TRUE'
 
     for id in ids:
         if id != None:
-            sql += f"{str(id_name)} = '{str(id)}' OR "
+            clients_ids.add(id)
 
-    sql = sql[:-4] + f') ORDER BY {id_name}'
+    if len(clients_ids) > 0:
+        sql += f" AND client_id in {tuple(clients_ids)}"
+
+    sql += f' ORDER BY {id_name}'
 
     result = utls.send_to_db(sql, None, True)
 
