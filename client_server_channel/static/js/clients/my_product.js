@@ -724,7 +724,7 @@ if (id == 3) {
                         td2.setAttribute('class', 'state_time_on_of');
 
                         td1.innerHTML = resp['data']['gas_value'][i];
-                        td2.innerHTML = getFullTime(resp['data']['request_time'][i]);
+                        td2.innerHTML = getFullTime(resp['data']['gas_value_time'][i]);
 
                         tr.appendChild(td1);
                         tr.appendChild(td2);
