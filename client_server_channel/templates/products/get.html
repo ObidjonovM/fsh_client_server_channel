@@ -4,6 +4,7 @@
 <title>Информация о продукте</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/products/products_base.css">
 <link rel="stylesheet" href="/static/css/products/get.css">
 
 {% endblock %}
@@ -92,19 +93,19 @@
 
             </div>
 
+            <div class="div-buttons">
+                <button onclick="updateProduct()" class="add-submit">
+                    Изменить
+                </button>
 
-            <button onclick="updateProduct()" class="add-submit">
-                Изменить
-            </button>
+                <button onclick="deleteProduct()" class="add-submit2">
+                    Удалить
+                </button>
 
-            <button onclick="deleteProduct()" class="add-submit2">
-                Удалить
-            </button>
-
-            <button onclick="otmenFunction()" class="add-submit3">
-                Назад
-            </button>
-
+                <button onclick="otmenFunction()" class="add-submit3">
+                    Назад
+                </button>
+            </div>
         </div>
 
 

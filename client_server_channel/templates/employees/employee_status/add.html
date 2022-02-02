@@ -4,6 +4,7 @@
 <title>Новый статус сотрудников</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/employees/employee_status/employee_status_base.css">
 <link rel="stylesheet" href="/static/css/employees/employee_status/add.css">
 
 {% endblock %}
@@ -11,28 +12,30 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
-    <div class="header">
-        <h2>Новый статус сотрудников</h2>
+<div class="container-crud">
+    <div class="container">
+        <div class="header">
+            <h2>Новый статус сотрудников</h2>
+        </div>
+
+        <form action="{{url_for('employees.employee_status.add')}}" id="myForm" class="form" method="POST">
+
+            <div class="form-control">
+                <label for="status_name">Названия статуса</label><span class="star">*</span>
+                <input type="text" name="status" id="status_name" required placeholder="Введите статус..."/>
+            </div>
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <textarea name="desc" id="desc" placeholder="Введите описание..."></textarea>
+            </div>
+
+            <input type="submit" value="Сохранить" class="add-type-submit"/>
+
+            <input type="button" onclick="otmenFunction()" class="add-type-submit2" value="Отмена"/>
+        </form>
+
     </div>
-
-    <form action="{{url_for('employees.employee_status.add')}}" id="myForm" class="form" method="POST">
-
-        <div class="form-control">
-            <label for="status_name">Названия статуса</label><span class="star">*</span>
-            <input type="text" name="status" id="status_name" required placeholder="Введите статус..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <textarea name="desc" id="desc" placeholder="Введите описание..."></textarea>
-        </div>
-
-        <input type="submit" value="Сохранить" class="add-type-submit"/>
-
-        <input type="button" onclick="otmenFunction()" class="add-type-submit2" value="Отмена"/>
-    </form>
-
 </div>
 
 <script src="/static/js/employees/employee_status/add.js"></script>

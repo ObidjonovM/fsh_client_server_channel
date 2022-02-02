@@ -8,6 +8,7 @@
 
 {% block body %}
 {{super()}}
+
 <div class="add-container">
 
     <div class="add-header">
@@ -16,17 +17,22 @@
 
     <div class="add-form">
         <div class="add-photo-div">
-            <input type="file" id="fileElem" multiple style="display: none" onchange="set_other_photos(this)" accept="image/*">
+            <input type="file" id="fileElem" multiple style="display: none" onchange="set_other_photos(this)"
+                   accept="image/*">
             <button type="button" id="fileSelect">Добавить фото</button>
             <button type="button" id="" onclick="addPhoto()">Сохранить фото</button>
-
+            <button type="button" class="add-submit" onclick="addForm()">Сохранить описание</button>
+            <button type="button" onclick="otmenFunction()" class="add-submit2">Отмена</button>
         </div>
-        <div class="main-photo-label">Главное фото</div>
+
         <div class="form-control">
             {%for i in range(product_photos['data']['main_photo']|length)%}
             {%if product_photos['data']['main_photo'][i] == True:%}
-            <div id="org_photo" class="org-photo">
-                <img id="main_photo" src="{{product_photos['data']['original_photo'][i]}}" alt="mainPhoto">
+            <div class="main-photo-div">
+                <div class="main-photo-label">Главное фото</div>
+                <div id="org_photo" class="org-photo">
+                    <img id="main_photo" src="{{product_photos['data']['original_photo'][i]}}" alt="mainPhoto">
+                </div>
             </div>
             {%endif%}
             {%endfor%}
@@ -34,7 +40,6 @@
             <div class="desc-div">
                 <label for="desc">Описание</label>
                 <textarea name="desc" id="desc">{{product_info['data']['description']}}</textarea>
-                <input type="button" class="add-submit" onclick="addForm()" value="Сохранить описание"/>
             </div>
 
         </div>
@@ -51,10 +56,6 @@
                 <button type="button" class="delete-photo" onclick="deletePhoto(this)">Удалить фото</button>
             </div>
             {%endfor%}
-        </div>
-
-        <div class="button-div">
-            <input type="button" onclick="otmenFunction()" class="add-submit2" value="Отмена"/>
         </div>
     </div>
 </div>

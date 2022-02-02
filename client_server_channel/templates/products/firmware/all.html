@@ -20,7 +20,7 @@
     <table>
         <thead>
         <tr>
-            <th class="hidden">ИД</th>
+            <th>ID</th>
 
             <th>Название</th>
 
@@ -38,7 +38,7 @@
         {% for i in range(firmwares['data']['fw_id']|length) %}
         <tr ondblclick="getType(this)">
 
-            <td class="hidden">{{firmwares['data']['fw_id'][i]}}</td>
+            <td>{{firmwares['data']['fw_id'][i]}}</td>
 
             <td>{{firmwares['data']['name'][i]}}</td>
 

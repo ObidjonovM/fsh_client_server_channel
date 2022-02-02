@@ -708,7 +708,6 @@ if (id == 3) {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let resp = JSON.parse(this.responseText);
-
                 if (!resp['data']['serial_num']) {
                     tbody_date1.innerHTML = '';
 

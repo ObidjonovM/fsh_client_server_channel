@@ -1,22 +1,5 @@
 .add-container {
-    position: absolute;
-    z-index: 999;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
     width: 400px;
-    max-width: 100%;
-}
-
-.add-header {
-    border-bottom: 1px solid #232F3E;
-    background-color:#374a62;
-    padding: 15px 40px;
-    color: white;
 }
 
 .add-header h2 {
@@ -38,27 +21,12 @@
 }
 
 .form-control input, textarea {
-    border: 2px solid #c3c3c3;
-    border-radius: 4px;
-    display: block;
-    font-family: inherit;
-    font-size: 14px;
-    padding: 10px;
     width: 100%;
 }
 
 .add-form .add-submit, .add-submit2 {
-    background-color: #374a62;
-    border: 2px solid #374a62;
-    border-radius: 4px;
-    color: #d5e2ff;
-    display: block;
-    font-family: inherit;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: 20px;
     width: 100%;
-    cursor: pointer;
+
 }
 
 .add-submit:hover, .add-submit2:hover, .add-submit3:hover {

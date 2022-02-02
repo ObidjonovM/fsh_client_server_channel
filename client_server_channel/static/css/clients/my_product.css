@@ -238,7 +238,7 @@ section {
 }
 
 .modal3, .modal4, .modal5 {
-    position: absolute;
+    position: fixed;
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -293,7 +293,7 @@ section {
 }
 
 .overlay, .overlay1 {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;

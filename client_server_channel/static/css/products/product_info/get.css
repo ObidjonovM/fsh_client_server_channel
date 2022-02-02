@@ -1,9 +1,4 @@
 .container {
-    /*position: relative;*/
-    /*z-index: 999;*/
-    /*top: 54%;*/
-    /*left: 50%;*/
-    /*transform: translate(-50%, -50%);*/
     width: 100%;
 }
 
@@ -39,7 +34,7 @@
     border-radius: 4px;
     display: block;
     font-family: inherit;
-    font-size: 14px;
+    font-size: var(--font-size);
     padding: 12px 10px;
     width: 100%;
 }
@@ -52,19 +47,21 @@
 }
 
 .full-product-photo {
-    width: 70%;
+    width: 85%;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
 
 .product-photo {
-    width: 20%;
-    border: 1px solid #888787;
+    border: 1px solid #fff;
     height: 300px;
     margin-left: 10px;
     overflow: hidden;
-
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, .2);
 }
 
 .product-photo img{
@@ -72,30 +69,24 @@
 }
 
 .buttons-div-get {
-    display: flex;
-    justify-content: center;
-    width: 70%;
+    width: 45%;
     margin: 1% auto;
-
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .form .add-type-submit, .add-type-submit2, .add-type-submit3 {
-    background-color: #374a62;
-    border: 2px solid #374a62;
+    width: 13rem;
+    background-color: var(--button-backColor);
+    border: 2px solid var(--button-backColor);
     border-radius: 4px;
     color: #d5e2ff;
     display: block;
     font-family: inherit;
-    font-size: 16px;
-    padding: 10px;
-    margin: 15px 2%;
-    width: 16%;
+    font-size: var(--font-size);
+    margin: 1rem 1rem;
     cursor: pointer;
-}
-
-.add-type-submit:hover, .add-type-submit2:hover, .add-type-submit3:hover {
-    background-color: #232F3E;
-    transition: all .3s;
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1516px) and (max-height: 820px){

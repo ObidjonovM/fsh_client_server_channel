@@ -1,20 +1,14 @@
-.add-submit {
-    left:23%;
+.container-crud {
+    position: relative;
 }
-
-.add-submit2 {
-    left:55%;
-}
-
 
 .add-container {
-    position: absolute;
-    top: 50%;
+    position: fixed;
     left: 50%;
-    transform: translate(-50%, 20%);
+    transform: translate(-50%, 25%);
     z-index: 999;
     width: 48%;
-    height: 511px;
+    height: 550px;
     min-height: 400px;
     background-color: #fff;
     border-radius: 5px;
@@ -23,7 +17,7 @@
 }
 
 .add-header {
-    border-bottom: 1px solid #232F3E;
+    border-bottom: 1px solid var(--button-backColor);
     background-color:#374a62;
     padding: 10px 40px;
     color: white;
@@ -37,8 +31,6 @@
     justify-content: start;
     align-items: start;
 }
-
-
 
 .form-control {
     margin-left: 0px;
@@ -55,12 +47,12 @@
     overflow: hidden;
     width: 250px;
     min-height: 100px;
-    height: 150px;
+    height: 117px;
     padding: 10px;
     border-radius: 4px;
     border: 2px solid #c3c3c3;
     font-family: inherit;
-    font-size: 14px;
+    font-size: var(--font-size);
     margin: 10px;
 }
 
@@ -71,7 +63,7 @@
     border-radius: 4px;
     border: 2px solid #c3c3c3;
     font-family: inherit;
-    font-size: 14px;
+    font-size: .9rem;
     margin: 10px;
 }
 
@@ -93,13 +85,13 @@
 }
 
 .add-submit, .add-submit2, .add-submit3 {
-    background-color: #374a62;
-    border: 2px solid #374a62;
+    background-color: var(--button-backColor);
+    border: 2px solid var(--button-backColor);
     border-radius: 4px;
     color: #d5e2ff;
     display: block;
     font-family: inherit;
-    font-size: 16px;
+    font-size: var(--font-size);
     padding: 10px;
     margin-top: 20px;
     width: 20%;
@@ -108,9 +100,12 @@
     bottom: 4px;
 }
 
-.add-submit:hover, .add-submit2:hover, .add-submit3:hover {
-    background-color: #232F3E;
-    transition: all .3s;
+.add-submit {
+    left:23%;
+}
+
+.add-submit2 {
+    left:55%;
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1516px) and (max-height: 820px){

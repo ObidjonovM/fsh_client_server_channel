@@ -4,6 +4,7 @@
 <title>Изменить данные категории</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/products/category/category_base.css">
 <link rel="stylesheet" href="/static/css/products/category/update.css">
 
 {% endblock %}
@@ -11,46 +12,47 @@
 {% block body %}
 {{super()}}
 
+<div class="container-crud">
+    <div class="container">
+        <div class="header">
+            <h2>Изменить данные категории</h2>
+        </div>
 
-<div class="container">
-    <div class="header">
-        <h2>Изменить данные категории</h2>
+        <form class="form"
+              action="{{ url_for('products.category.update', cat_id=cat_info['data']['category_id']) }}"
+              method="POST">
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <textarea name="desc" id="desc">{{cat_info['data']['description']}}</textarea>
+            </div>
+
+            <div class="form-control">
+                <label for="parent_id">Родительская категория</label>
+                <select name="parent_id" id="parent_id">
+                    {% for i in range(ids_names['data']['category_id']|length)%}
+                    {%if cat_info['data']['parent_cat_id'] == ids_names['data']['category_id'][i]%}
+                    <option selected value="{{ids_names['data']['category_id'][i]}}">
+                        {{ids_names['data']['name'][i]}}
+                    </option>
+                    {%else%}
+                    <option value="{{ids_names['data']['category_id'][i]}}">
+                        {{ids_names['data']['name'][i]}}
+                    </option>
+                    {%endif%}
+                    {%endfor%}
+                </select>
+            </div>
+
+            <input type="submit" class="add-type-submit" value="Сохранить"/>
+            <button type="button" onclick="otmenFunction()"
+                    class="add-type-submit2">
+                Отмена
+            </button>
+
+        </form>
+
     </div>
-
-    <form class="form"
-          action="{{ url_for('products.category.update', cat_id=cat_info['data']['category_id']) }}"
-          method="POST">
-
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <textarea name="desc" id="desc">{{cat_info['data']['description']}}</textarea>
-        </div>
-
-        <div class="form-control">
-            <label for="parent_id">Родительская категория</label>
-            <select name="parent_id" id="parent_id">
-                {% for i in range(ids_names['data']['category_id']|length)%}
-                {%if cat_info['data']['parent_cat_id'] == ids_names['data']['category_id'][i]%}
-                <option selected value="{{ids_names['data']['category_id'][i]}}">
-                    {{ids_names['data']['name'][i]}}
-                </option>
-                {%else%}
-                <option value="{{ids_names['data']['category_id'][i]}}">
-                    {{ids_names['data']['name'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-        <button type="button" onclick="otmenFunction()"
-                class="add-type-submit2">
-            Отмена
-        </button>
-
-    </form>
-
 </div>
 
 <script src="/static/js/products/category/update.js"></script>
