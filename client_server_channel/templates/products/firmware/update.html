@@ -4,6 +4,7 @@
 <title>Изменить данные прощивки</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/products/firmware/firmware_base.css">
 <link rel="stylesheet" href="/static/css/products/firmware/update.css">
 
 {% endblock %}
@@ -11,25 +12,27 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
 
-    <div class="add-header">
-        <h2>Изменить данные прощивки</h2>
-    </div>
-
-    <form action="{{url_for('products.firmware.update', fw_id=fw_info['fw_id'])}}" class="add-form" method="POST">
-
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <input type="text" id="desc" name="desc" value="{{fw_info['description']}}">
+        <div class="add-header">
+            <h2>Изменить данные прощивки</h2>
         </div>
+
+        <form action="{{url_for('products.firmware.update', fw_id=fw_info['fw_id'])}}" class="add-form" method="POST">
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <input type="text" id="desc" name="desc" value="{{fw_info['description']}}">
+            </div>
 
             <input type="submit" class="add-submit" value="Сохранить">
 
             <input type="button" class="add-submit2" onclick="otmenFunction()" value="Отмена">
 
-    </form>
+        </form>
 
+    </div>
 </div>
 
 <script src="/static/js/products/firmware/update.js"></script>

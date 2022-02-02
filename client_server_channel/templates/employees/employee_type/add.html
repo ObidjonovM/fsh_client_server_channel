@@ -4,6 +4,7 @@
 <title>Новый должность</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/employees/employee_type/employee_type_base.css">
 <link rel="stylesheet" href="/static/css/employees/employee_type/add.css">
 
 
@@ -12,28 +13,29 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
-    <div class="header">
-        <h2>Новый должность</h2>
+<div class="container-crud">
+    <div class="container">
+        <div class="header">
+            <h2>Новый должность</h2>
+        </div>
+
+        <form id="myForm" class="form">
+            <div class="form-control">
+                <label for="type_name">Название должности</label><span class="star">*</span>
+                <input type="text" name="type_name" placeholder="Введите название..." id="type_name" required/>
+            </div>
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <textarea type="text" name="desc" id="desc" placeholder="Введите описание..."></textarea>
+            </div>
+
+            <input type="submit" class="add-type-submit" value="Сохранить"/>
+
+            <input onclick="otmenFunction()" type="button" class="add-type-submit2" value="Отмена"/>
+        </form>
     </div>
-
-    <form id="myForm" class="form">
-        <div class="form-control">
-            <label for="type_name">Название должности</label><span class="star">*</span>
-            <input type="text" name="type_name" placeholder="Введите название..." id="type_name" required/>
-        </div>
-
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <textarea type="text" name="desc" id="desc" placeholder="Введите описание..."></textarea>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-
-        <input onclick="otmenFunction()" type="button" class="add-type-submit2" value="Отмена"/>
-    </form>
 </div>
-
 
 <script src="/static/js/employees/employee_type/add.js"></script>
 

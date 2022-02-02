@@ -4,6 +4,7 @@
 <title>Новая прощывка</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/products/firmware/firmware_base.css">
 <link rel="stylesheet" href="/static/css/products/firmware/add.css">
 
 {% endblock %}
@@ -11,52 +12,54 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
 
-    <div class="add-header">
-        <h2>Новая прощывка</h2>
+        <div class="add-header">
+            <h2>Новая прощывка</h2>
+        </div>
+
+        <form id="myForm" class="add-form">
+            <div class="form-control">
+
+                <label for="emp_id">Автор прощывки</label><span class="star">*</span><br/>
+                <select name="emp_id" id="emp_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {%for i in range(ids_fullname.data.emp_id|length)%}
+                    <option value="{{ids_fullname.data.emp_id[i]}}">
+                        {{ids_fullname.data.last_name[i]}} {{ids_fullname.data.first_name[i]}}
+                        {{ids_fullname.data.middle_name[i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+
+                <label for="name">Название</label><span class="star">*</span>
+                <input type="text" id="name" name="name" required placeholder="Введите название..."/>
+
+                <label for="model">Модель</label><span class="star">*</span>
+                <input type="text" id="model" name="model" required placeholder="Введите модель..."/>
+
+            </div>
+
+
+            <div class="form-control">
+
+                <label for="version">Версия</label><span class="star">*</span>
+                <input type="text" id="version" name="version" required placeholder="Введите версию..."/>
+
+                <label for="desc">Описание</label>
+                <textarea type="text" name="desc" id="desc" placeholder="Введите описание..."></textarea>
+
+            </div>
+
+
+            <input type="submit" class="add-submit" value="Сохранить">
+
+            <input type="button" class="add-submit2" onclick="otmenFunction()" value="Отмена">
+
+        </form>
+
     </div>
-
-    <form id="myForm" class="add-form">
-        <div class="form-control">
-
-            <label for="emp_id">Автор прощывки</label><span class="star">*</span><br/>
-            <select name="emp_id" id="emp_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {%for i in range(ids_fullname.data.emp_id|length)%}
-                <option value="{{ids_fullname.data.emp_id[i]}}">
-                    {{ids_fullname.data.last_name[i]}} {{ids_fullname.data.first_name[i]}}
-                    {{ids_fullname.data.middle_name[i]}}
-                </option>
-                {%endfor%}
-            </select>
-
-            <label for="name">Название</label><span class="star">*</span>
-            <input type="text" id="name" name="name" required placeholder="Введите название..." />
-
-            <label for="model">Модель</label><span class="star">*</span>
-            <input type="text" id="model" name="model" required placeholder="Введите модель..." />
-
-        </div>
-
-
-        <div class="form-control">
-
-            <label for="version">Версия</label><span class="star">*</span>
-            <input type="text" id="version" name="version" required placeholder="Введите версию..." />
-
-            <label for="desc">Описание</label>
-            <textarea type="text" name="desc" id="desc" placeholder="Введите описание..."></textarea>
-
-        </div>
-
-
-        <input type="submit" class="add-submit" value="Сохранить">
-
-        <input type="button" class="add-submit2" onclick="otmenFunction()" value="Отмена">
-
-    </form>
-
 </div>
 
 <script src="/static/js/products/firmware/add.js"></script>

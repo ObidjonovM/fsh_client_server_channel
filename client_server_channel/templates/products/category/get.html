@@ -4,6 +4,7 @@
 <title>Информация о категории</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/products/category/category_base.css">
 <link rel="stylesheet" href="/static/css/products/category/get.css">
 
 {% endblock %}
@@ -11,48 +12,49 @@
 {% block body %}
 {{super()}}
 
+<div class="container-crud">
+    <div class="container">
 
-<div class="container">
+        <div class="header">
+            <h2>Информация о категории</h2>
+        </div>
 
-    <div class="header">
-        <h2>Информация о категории</h2>
-    </div>
-
-    <div class="form">
+        <div class="form">
 
             <input id="cat_id" type="hidden" value="{{cat_info['data']['category_id']}}"/>
 
-        <div class="form-control">
-            <label for="name">Название</label>
-            <input type="text" name="name"
-                   value="{{cat_info['data']['name']}}" id="name" readonly/>
+            <div class="form-control">
+                <label for="name">Название</label>
+                <input type="text" name="name"
+                       value="{{cat_info['data']['name']}}" id="name" readonly/>
+            </div>
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <textarea name="desc" id="desc" readonly>{{cat_info['data']['description']}}</textarea>
+            </div>
+
+            <div class="form-control">
+                <label for="parent_id">Родительская категория</label>
+                <input type="text" name="parent_id"
+                       value="{{id_name['data']['name']}}" id="parent_id" readonly/>
+            </div>
+
+            <button onclick="updateType()" class="add-type-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteCat()" class="add-type-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-type-submit3">
+                Назад
+            </button>
+
         </div>
-
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <textarea name="desc" id="desc" readonly>{{cat_info['data']['description']}}</textarea>
-        </div>
-
-        <div class="form-control">
-            <label for="parent_id">Родительская категория</label>
-            <input type="text" name="parent_id"
-                   value="{{id_name['data']['name']}}" id="parent_id" readonly/>
-        </div>
-
-        <button onclick="updateType()" class="add-type-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteCat()" class="add-type-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-type-submit3">
-            Назад
-        </button>
 
     </div>
-
 </div>
 
 <script src="/static/js/products/category/get.js"></script>

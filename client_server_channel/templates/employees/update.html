@@ -4,6 +4,7 @@
 <title>Изменить данные сотрудника</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/employees/employees_base.css">
 <link rel="stylesheet" href="/static/css/employees/update.css">
 
 {% endblock %}
@@ -11,125 +12,129 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
 
-    <div class="add-header">
-        <h2>Изменить данные сотрудника</h2>
+    <div class="add-container">
+
+        <div class="add-header">
+            <h2>Изменить данные сотрудника</h2>
+        </div>
+
+        <form action="{{ url_for('employees.update', emp_id=emp_info['emp_id']) }}"
+              id="myForm" class="add-form" method="POST">
+
+            <div class="form-control">
+                <label for="first_name">Имя</label>
+                <input type="text" name="first_name" id="first_name" required
+                       value="{{emp_info['first_name']}}"/>
+
+                <label for="last_name">Фамилия</label>
+                <input type="text" name="last_name" id="last_name" required
+                       value="{{emp_info['last_name']}}"/>
+
+                <label for="middle_name">Отчество</label>
+                <input type="text" name="middle_name" id="middle_name" required
+                       value="{{emp_info['middle_name']}}"/>
+
+                <label for="birth_date">Дата рождения</label>
+                <input type="date" name="birth_date" id="birth_date" required
+                       value="{{emp_info['birth_date']}}"/>
+
+            </div>
+
+            <div class="form-control">
+                <label for="dept_id">Отдел</label>
+                <select name="dept_id" id="dept_id" required>
+                    {% for i in range(names_ids_departments['dept_id']|length)%}
+                    {%if emp_info['dept_id'] == names_ids_departments['dept_id'][i]%}
+                    <option selected value="{{names_ids_departments['dept_id'][i]}}">
+                        {{names_ids_departments['name'][i]}}
+                    </option>
+                    {%else%}
+                    <option value="{{names_ids_departments['dept_id'][i]}}">
+                        {{names_ids_departments['name'][i]}}
+                    </option>
+                    {%endif%}
+                    {%endfor%}
+                </select>
+
+                <label for="type_id">Должность</label>
+                <select name="type_id" id="type_id" required>
+                    {%for i in range(names_ids_type['emp_type_id']|length)%}
+                    {%if emp_info['emp_type_id'] == names_ids_type['emp_type_id'][i]%}
+                    <option selected value="{{names_ids_type['emp_type_id'][i]}}">
+                        {{names_ids_type['emp_type_name'][i]}}
+                    </option>
+                    {% else %}
+                    <option value="{{names_ids_type['emp_type_id'][i]}}">
+                        {{names_ids_type['emp_type_name'][i]}}
+                    </option>
+                    {%endif%}
+                    {%endfor%}
+                </select>
+
+                <label for="status_id">Статус</label>
+                <select name="status_id" id="status_id" required>
+                    {% for i in range(names_ids_status['status_id']|length)%}
+                    {%if emp_info['emp_status_id'] == names_ids_status['status_id'][i]%}
+                    <option selected value="{{names_ids_status['status_id'][i]}}">
+                        {{names_ids_status['status'][i]}}
+                    </option>
+                    {%else%}
+                    <option value="{{names_ids_status['status_id'][i]}}">
+                        {{names_ids_status['status'][i]}}
+                    </option>
+                    {%endif%}
+                    {%endfor%}
+                </select>
+
+                <label for="address_1">Адрес 1</label>
+                <input type="text" name="address_1" id="address_1" required
+                       value="{{emp_info['address_1']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="address_2">Адрес 2</label>
+                <input type="text" name="address_2" id="address_2"
+                       value="{{emp_info['address_2']}}"/>
+
+                <label for="city">Город</label>
+                <input type="text" name="city" id="city" required
+                       value="{{emp_info['city']}}"/>
+
+                <label for="country">Страна</label>
+                <input type="text" name="country" id="country" required
+                       value="{{emp_info['country']}}"/>
+
+                <label for="zipcode">Почтовый индекс</label>
+                <input type="text" name="zipcode" id="zipcode"
+                       value="{{emp_info['zipcode']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="phone">Телефон</label>
+                <input type="text" name="phone" id="phone" required
+                       value="{{emp_info['phone']}}"/>
+
+                <label for="home_phone">Домашний телефон</label>
+                <input type="text" name="home_phone" id="home_phone"
+                       value="{{emp_info['home_phone']}}"/>
+
+                <label for="email">Электронная почта</label>
+                <input type="email" name="email" id="email"
+                       value="{{emp_info['email']}}"/>
+            </div>
+
+
+            <input type="submit" class="add-submit" value="Сохранить"/>
+
+            <button type="button" onclick="otmenFunction()" class="add-submit2" value="Add">
+                Отмена
+            </button>
+
+        </form>
+
     </div>
-
-    <form action="{{ url_for('employees.update', emp_id=emp_info['emp_id']) }}"
-          id="myForm" class="add-form" method="POST">
-
-        <div class="form-control">
-            <label for="first_name">Имя</label>
-            <input type="text" name="first_name" id="first_name" required
-                   value="{{emp_info['first_name']}}"/>
-
-            <label for="last_name">Фамилия</label>
-            <input type="text" name="last_name" id="last_name" required
-                   value="{{emp_info['last_name']}}"/>
-
-            <label for="middle_name">Отчество</label>
-            <input type="text" name="middle_name" id="middle_name" required
-                   value="{{emp_info['middle_name']}}"/>
-
-            <label for="birth_date">Дата рождения</label>
-            <input type="date" name="birth_date" id="birth_date" required
-                   value="{{emp_info['birth_date']}}"/>
-
-        </div>
-
-        <div class="form-control">
-            <label for="dept_id">Отдел</label>
-            <select name="dept_id" id="dept_id" required>
-                {% for i in range(names_ids_departments['dept_id']|length)%}
-                {%if emp_info['dept_id'] == names_ids_departments['dept_id'][i]%}
-                <option selected value="{{names_ids_departments['dept_id'][i]}}">
-                    {{names_ids_departments['name'][i]}}
-                </option>
-                {%else%}
-                <option value="{{names_ids_departments['dept_id'][i]}}">
-                    {{names_ids_departments['name'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
-
-            <label for="type_id">Должность</label>
-            <select name="type_id" id="type_id" required>
-                {%for i in range(names_ids_type['emp_type_id']|length)%}
-                {%if emp_info['emp_type_id'] == names_ids_type['emp_type_id'][i]%}
-                <option selected value="{{names_ids_type['emp_type_id'][i]}}">
-                    {{names_ids_type['emp_type_name'][i]}}
-                </option>
-                {% else %}
-                <option value="{{names_ids_type['emp_type_id'][i]}}">
-                    {{names_ids_type['emp_type_name'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
-
-            <label for="status_id">Статус</label>
-            <select name="status_id" id="status_id" required>
-                {% for i in range(names_ids_status['status_id']|length)%}
-                {%if emp_info['emp_status_id'] == names_ids_status['status_id'][i]%}
-                <option selected value="{{names_ids_status['status_id'][i]}}">
-                    {{names_ids_status['status'][i]}}
-                </option>
-                {%else%}
-                <option value="{{names_ids_status['status_id'][i]}}">
-                    {{names_ids_status['status'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
-
-            <label for="address_1">Адрес 1</label>
-            <input type="text" name="address_1" id="address_1" required
-                   value="{{emp_info['address_1']}}"/>
-        </div>
-
-        <div class="form-control">
-            <label for="address_2">Адрес 2</label>
-            <input type="text" name="address_2" id="address_2"
-                   value="{{emp_info['address_2']}}"/>
-
-            <label for="city">Город</label>
-            <input type="text" name="city" id="city" required
-                   value="{{emp_info['city']}}"/>
-
-            <label for="country">Страна</label>
-            <input type="text" name="country" id="country" required
-                   value="{{emp_info['country']}}"/>
-
-            <label for="zipcode">Почтовый индекс</label>
-            <input type="text" name="zipcode" id="zipcode"
-                   value="{{emp_info['zipcode']}}"/>
-        </div>
-
-        <div class="form-control">
-            <label for="phone">Телефон</label>
-            <input type="text" name="phone" id="phone" required
-                   value="{{emp_info['phone']}}"/>
-
-            <label for="home_phone">Домашний телефон</label>
-            <input type="text" name="home_phone" id="home_phone"
-                   value="{{emp_info['home_phone']}}"/>
-
-            <label for="email">Электронная почта</label>
-            <input type="email" name="email" id="email"
-                   value="{{emp_info['email']}}"/>
-        </div>
-
-
-        <input type="submit" class="add-submit" value="Сохранить"/>
-
-        <button type="button" onclick="otmenFunction()" class="add-submit2" value="Add">
-            Отмена
-        </button>
-
-    </form>
 
 </div>
 

@@ -4,6 +4,7 @@
 <title>Информация о прощывке</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/products/firmware/firmware_base.css">
 <link rel="stylesheet" href="/static/css/products/firmware/get.css">
 
 {% endblock %}
@@ -11,62 +12,63 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
 
-    <div class="add-header">
-        <h2>Информация о прощывке</h2>
+        <div class="add-header">
+            <h2>Информация о прощывке</h2>
+        </div>
+
+        <form id="myForm" class="add-form">
+            <input id="fw_id" type="hidden"
+                   value="{{fw_info['data']['fw_id']}}"/>
+
+            <div class="form-control">
+
+                <label for="emp_id">Автор прощывки</label>
+                <input type="text" id="emp_id" name="emp_id"
+                       value="{{fullname}}"
+                       readonly>
+
+                <label for="name">Название</label><br/>
+                <input type="text" id="name" name="name"
+                       value="{{fw_info['data']['name']}}"
+                       readonly>
+
+                <label for="model">Модель</label>
+                <input type="text" id="model" name="model"
+                       value="{{fw_info['data']['model']}}"
+                       readonly>
+
+            </div>
+
+
+            <div class="form-control">
+                <label for="version">Версия</label>
+                <input type="text" id="version" name="version"
+                       value="{{fw_info['data']['version']}}"
+                       readonly>
+
+                <label for="desc">Описание</label>
+                <input type="text" id="desc" name="desc"
+                       value="{{fw_info['data']['description']}}"
+                       readonly>
+            </div>
+
+            <input type="button" class="add-submit" onclick="updateFirm()" value="Изменить">
+
+            <button type="button" class="add-submit2" onclick="deleteFirm()">
+                Удалить
+            </button>
+
+            <button type="button" class="add-submit3" onclick="otmenFunction()">
+                Назад
+            </button>
+
+        </form>
+
     </div>
-
-    <form id="myForm" class="add-form">
-        <input id="fw_id" type="hidden"
-               value="{{fw_info['data']['fw_id']}}"/>
-
-        <div class="form-control">
-
-            <label for="emp_id">Автор прощывки</label>
-            <input type="text" id="emp_id" name="emp_id"
-                   value="{{fullname}}"
-                   readonly>
-
-            <label for="name">Название</label><br/>
-            <input type="text" id="name" name="name"
-                   value="{{fw_info['data']['name']}}"
-                   readonly>
-
-            <label for="model">Модель</label>
-            <input type="text" id="model" name="model"
-                   value="{{fw_info['data']['model']}}"
-                   readonly>
-
-        </div>
-
-
-        <div class="form-control">
-            <label for="version">Версия</label>
-            <input type="text" id="version" name="version"
-                   value="{{fw_info['data']['version']}}"
-                   readonly>
-
-            <label for="desc">Описание</label>
-            <input type="text" id="desc" name="desc"
-                   value="{{fw_info['data']['description']}}"
-                   readonly>
-        </div>
-
-        <input type="button" class="add-submit" onclick="updateFirm()" value="Изменить">
-
-        <button type="button" class="add-submit2" onclick="deleteFirm()">
-            Удалить
-        </button>
-
-        <button type="button" class="add-submit3" onclick="otmenFunction()">
-            Назад
-        </button>
-
-    </form>
-
 </div>
-
 <script src="/static/js/products/firmware/get.js"></script>
 
 
