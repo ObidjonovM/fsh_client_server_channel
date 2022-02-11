@@ -4,6 +4,7 @@
 <title>Изменить данные доставщика</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/carrier/carrier_base.css">
 <link rel="stylesheet" href="/static/css/carrier/update.css">
 
 {% endblock %}
@@ -11,66 +12,68 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
-    <div class="add-header">
-        <h2>Изменить данные доставщика</h2>
+<div class="container-crud">
+    <div class="add-container">
+        <div class="add-header">
+            <h3>Изменить данные доставщика</h3>
+        </div>
+
+        <form class="add-form"
+              action="{{ url_for('carrier.update', carrier_id=carrier_info['data']['carrier_id']) }}"
+              method="POST">
+
+            <div class="form-control">
+                <label for="address_1">Адрес 1</label>
+                <input type="text" name="address_1" id="address_1"
+                       value="{{carrier_info['data']['address_1']}}"/>
+
+                <label for="address_2">Адрес 2</label>
+                <input type="text" name="address_2" id="address_2"
+                       value="{{carrier_info['data']['address_2']}}"/>
+
+                <label for="city">Город</label>
+                <input type="text" name="city" id="city"
+                       value="{{carrier_info['data']['city']}}"/>
+
+            </div>
+
+
+            <div class="form-control">
+                <label for="country">Страна</label>
+                <input type="text" name="country" id="country"
+                       value="{{carrier_info['data']['country']}}"/>
+
+                <label for="zipcode">Почтовый индекс</label>
+                <input type="text" name="zipcode" id="zipcode"
+                       value="{{carrier_info['data']['zipcode']}}"/>
+
+                <label for="phone">Телефон</label>
+                <input type="text" name="phone" id="phone"
+                       value="{{carrier_info['data']['phone']}}"/>
+
+            </div>
+
+            <div class="form-control">
+                <label for="email">Электронная почта</label>
+                <input type="text" name="email" id="email"
+                       value="{{carrier_info['data']['email']}}"/>
+
+                <label for="website">Сайт</label>
+                <input type="text" name="website" id="website"
+                       value="{{carrier_info['data']['website']}}"/>
+            </div>
+
+
+            <input type="submit" class="add-submit" value="Сохранить"/>
+
+            <button type="button" onclick="otmenFunction()"
+                    class="add-submit2" value="Отмена">
+                Отмена
+            </button>
+
+        </form>
+
     </div>
-
-    <form class="add-form"
-          action="{{ url_for('carrier.update', carrier_id=carrier_info['data']['carrier_id']) }}"
-          method="POST">
-
-        <div class="form-control">
-            <label for="address_1">Адрес 1</label>
-            <input type="text" name="address_1" id="address_1"
-                   value="{{carrier_info['data']['address_1']}}"/>
-
-            <label for="address_2">Адрес 2</label>
-            <input type="text" name="address_2" id="address_2"
-                   value="{{carrier_info['data']['address_2']}}"/>
-
-            <label for="city">Город</label>
-            <input type="text" name="city" id="city"
-                   value="{{carrier_info['data']['city']}}"/>
-
-        </div>
-
-
-        <div class="form-control">
-            <label for="country">Страна</label>
-            <input type="text" name="country" id="country"
-                   value="{{carrier_info['data']['country']}}"/>
-
-            <label for="zipcode">Почтовый индекс</label>
-            <input type="text" name="zipcode" id="zipcode"
-                   value="{{carrier_info['data']['zipcode']}}"/>
-
-            <label for="phone">Телефон</label>
-            <input type="text" name="phone" id="phone"
-                   value="{{carrier_info['data']['phone']}}"/>
-
-        </div>
-
-        <div class="form-control">
-            <label for="email">Электронная почта</label>
-            <input type="text" name="email" id="email"
-                   value="{{carrier_info['data']['email']}}"/>
-
-            <label for="website">Сайт</label>
-            <input type="text" name="website" id="website"
-                   value="{{carrier_info['data']['website']}}"/>
-        </div>
-
-
-        <input type="submit" class="add-submit" value="Сохранить"/>
-
-        <button type="button" onclick="otmenFunction()"
-                class="add-submit2" value="Отмена">
-            Отмена
-        </button>
-
-    </form>
-
 </div>
 
 <script src="/static/js/carrier/update.js"></script>

@@ -4,6 +4,7 @@
 <title>Изменить данные о виде доставки</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/shipping_type/shipping_type_base.css">
 <link rel="stylesheet" href="/static/css/shipping_type/update.css">
 
 {% endblock %}
@@ -11,87 +12,90 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
-    <div class="add-header">
-        <h2>Изменить данные о виде доставки</h2>
+<div class="container-crud">
+    <div class="add-container">
+        <div class="add-header">
+            <h3>Изменить данные о виде доставки</h3>
+        </div>
+        <form class="add-form"
+              action="{{ url_for('shipping_type.update', shipping_type_id=shipping_type_info['data']['shipping_type_id']) }}"
+              method="POST">
+
+            <div class="form-control">
+
+                <label for="carrier_id">Доставщик</label>
+                <select name="carrier_id" id="carrier_id" required>
+                    {% for i in range(carriers_ids['data']['carrier_id']|length)%}
+                    {%if shipping_type_info['data']['carrier_id'] == carriers_ids['data']['carrier_id'][i]%}
+                    <option selected value="{{carriers_ids['data']['carrier_id'][i]}}">
+                        {{carriers_ids['data']['name'][i]}}
+                    </option>
+                    {%else%}
+                    <option value="{{carriers_ids['data']['carrier_id'][i]}}">
+                        {{carriers_ids['data']['name'][i]}}
+                    </option>
+                    {%endif%}
+                    {%endfor%}
+                </select>
+
+                <label for="curr_id">Валюта</label>
+                <select name="curr_id" id="curr_id" required>
+                    {% for i in range(currencies_ids['data']['curr_id']|length)%}
+                    {%if shipping_type_info['data']['curr_id'] == currencies_ids['data']['curr_id'][i]%}
+                    <option selected value="{{currencies_ids['data']['curr_id'][i]}}">
+                        {{currencies_ids['data']['currency'][i]}}
+                    </option>
+                    {%else%}
+                    <option value="{{currencies_ids['data']['curr_id'][i]}}">
+                        {{currencies_ids['data']['currency'][i]}}
+                    </option>
+                    {%endif%}
+                    {%endfor%}
+                </select>
+
+                <label for="unit_id">Единица измерения</label>
+                <select name="unit_id" id="unit_id" required>
+                    {% for i in range(units_ids['data']['unit_id']|length)%}
+                    {%if shipping_type_info['data']['unit_id'] == units_ids['data']['unit_id'][i]%}
+                    <option selected value="{{units_ids['data']['unit_id'][i]}}">
+                        {{units_ids['data']['unit'][i]}}
+                    </option>
+                    {%else%}
+                    <option value="{{units_ids['data']['unit_id'][i]}}">
+                        {{units_ids['data']['unit'][i]}}
+                    </option>
+                    {%endif%}
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="form-control">
+                <label for="price">Цена</label>
+                <input type="text" name="price" id="price"
+                       value="{{shipping_type_info['data']['price']}}"/>
+
+                <label for="min_delivery_days">Минимальный день доставки</label>
+                <input type="text" name="min_delivery_days" id="min_delivery_days"
+                       value="{{shipping_type_info['data']['min_delivery_days']}}"/>
+
+                <label for="max_delivery_days">Максимальный день доставки</label>
+                <input type="text" name="max_delivery_days" id="max_delivery_days"
+                       value="{{shipping_type_info['data']['max_delivery_days']}}"/>
+            </div>
+
+
+            <input type="submit" class="add-submit" value="Сохранить"/>
+
+            <button type="button" onclick="otmenFunction()"
+                    class="add-submit2" value="Отмена">
+                Отмена
+            </button>
+
+        </form>
+
     </div>
-    <form class="add-form"
-          action="{{ url_for('shipping_type.update', shipping_type_id=shipping_type_info['data']['shipping_type_id']) }}"
-          method="POST">
-
-        <div class="form-control">
-
-            <label for="carrier_id">Доставщик</label>
-            <select name="carrier_id" id="carrier_id" required>
-                {% for i in range(carriers_ids['data']['carrier_id']|length)%}
-                {%if shipping_type_info['data']['carrier_id'] == carriers_ids['data']['carrier_id'][i]%}
-                <option selected value="{{carriers_ids['data']['carrier_id'][i]}}">
-                    {{carriers_ids['data']['name'][i]}}
-                </option>
-                {%else%}
-                <option value="{{carriers_ids['data']['carrier_id'][i]}}">
-                    {{carriers_ids['data']['name'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
-
-            <label for="curr_id">Валюта</label>
-            <select name="curr_id" id="curr_id" required>
-                {% for i in range(currencies_ids['data']['curr_id']|length)%}
-                {%if shipping_type_info['data']['curr_id'] == currencies_ids['data']['curr_id'][i]%}
-                <option selected value="{{currencies_ids['data']['curr_id'][i]}}">
-                    {{currencies_ids['data']['currency'][i]}}
-                </option>
-                {%else%}
-                <option value="{{currencies_ids['data']['curr_id'][i]}}">
-                    {{currencies_ids['data']['currency'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
-
-            <label for="unit_id">Единица измерения</label>
-            <select name="unit_id" id="unit_id" required>
-                {% for i in range(units_ids['data']['unit_id']|length)%}
-                {%if shipping_type_info['data']['unit_id'] == units_ids['data']['unit_id'][i]%}
-                <option selected value="{{units_ids['data']['unit_id'][i]}}">
-                    {{units_ids['data']['unit'][i]}}
-                </option>
-                {%else%}
-                <option value="{{units_ids['data']['unit_id'][i]}}">
-                    {{units_ids['data']['unit'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
-        </div>
-
-        <div class="form-control">
-            <label for="price">Цена</label>
-            <input type="text" name="price" id="price"
-                   value="{{shipping_type_info['data']['price']}}"/>
-
-            <label for="min_delivery_days">Минимальный день доставки</label>
-            <input type="text" name="min_delivery_days" id="min_delivery_days"
-                   value="{{shipping_type_info['data']['min_delivery_days']}}"/>
-
-            <label for="max_delivery_days">Максимальный день доставки</label>
-            <input type="text" name="max_delivery_days" id="max_delivery_days"
-                   value="{{shipping_type_info['data']['max_delivery_days']}}"/>
-        </div>
-
-
-        <input type="submit" class="add-submit" value="Сохранить"/>
-
-        <button type="button" onclick="otmenFunction()"
-                class="add-submit2" value="Отмена">
-            Отмена
-        </button>
-
-    </form>
-
 </div>
+
 
 <script src="/static/js/shipping_type/update.js"></script>
 

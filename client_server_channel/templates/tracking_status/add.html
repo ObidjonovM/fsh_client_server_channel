@@ -4,6 +4,7 @@
 <title>Новый статус отслеживания</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/tracking_status/tracking_status_base.css">
 <link rel="stylesheet" href="/static/css/tracking_status/add.css">
 
 
@@ -12,36 +13,38 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
+<div class="container-crud">
+    <div class="container">
 
-    <div class="header">
-        <h2>Новый статус отслеживания</h2>
+        <div class="header">
+            <h3>Новый статус отслеживания</h3>
+        </div>
+
+        <form id="myForm" class="form">
+
+            <div class="form-control">
+                <label for="status">Название</label><span class="star">*</span>
+                <input type="text" name="status" id="status" required placeholder="Введите название..."/>
+            </div>
+
+            <div class="form-control">
+                <label for="carrier_id">Доставщик</label><span class="star">*</span>
+                <select name="carrier_id" id="carrier_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(carriers_ids['data']['carrier_id']|length)%}
+                    <option value="{{carriers_ids['data']['carrier_id'][i]}}">{{carriers_ids['data']['name'][i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <input type="submit" class="add-type-submit" value="Сохранить"/>
+
+            <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+
+        </form>
     </div>
-
-    <form id="myForm" class="form">
-
-        <div class="form-control">
-            <label for="status">Название</label><span class="star">*</span>
-            <input type="text" name="status" id="status" required placeholder="Введите название..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="carrier_id">Доставщик</label><span class="star">*</span>
-            <select name="carrier_id" id="carrier_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(carriers_ids['data']['carrier_id']|length)%}
-                <option value="{{carriers_ids['data']['carrier_id'][i]}}">{{carriers_ids['data']['name'][i]}}</option>
-                {%endfor%}
-            </select>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-
-        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
-
-    </form>
 </div>
-
 
 <script src="/static/js/tracking_status/add.js"></script>
 

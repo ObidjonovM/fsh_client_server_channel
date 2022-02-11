@@ -1,0 +1,44 @@
+.container-crud {
+    position: relative;
+}
+
+.add-container {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    z-index: 999;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.add-header {
+    border-bottom: 1px solid var(--button-backColor);
+    background-color: var(--button-backColor);
+    padding: 10px 40px;
+    color: white;
+    border-radius: 5px;
+}
+
+.form-control input, textarea, select {
+    border: 2px solid #c3c3c3;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: var(--font-size);
+    padding: 10px;
+    width: 100%;
+}
+
+.add-form .add-submit, .add-submit2, .add-submit3 {
+    background-color: var(--button-backColor);
+    border: 2px solid var(--button-backColor);
+    border-radius: 4px;
+    color: #d5e2ff;
+    display: block;
+    font-family: inherit;
+    font-size: var(--font-size);
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}

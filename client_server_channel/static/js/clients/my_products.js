@@ -302,6 +302,45 @@ function translateState(state, id) {
                 'state': ''
             }
         }
+    } else if (id == 5){  // suv datchik
+        if (state == "ON") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Вода капала'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Сухой'
+            }
+        }
+    }else if (id == 9){  // invertor
+        if (state == "ON") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Внутренний питания'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Внешнее питание'
+            }
+        }
+    } else if (id == 7){  // invertor
+        if (state == "ON") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Обнаружен дым'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Дым не обнаружен'
+            }
+        }
     } else {
         if (state == "ON") {
             return {
