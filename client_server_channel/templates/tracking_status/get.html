@@ -4,6 +4,7 @@
 <title>Информация о статусе отслеживания</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/tracking_status/tracking_status_base.css">
 <link rel="stylesheet" href="/static/css/tracking_status/get.css">
 
 {% endblock %}
@@ -11,45 +12,45 @@
 {% block body %}
 {{super()}}
 
+<div class="container-crud">
+    <div class="container">
 
-<div class="container">
-
-    <div class="header">
-        <h2>Информация о статусе отслеживания</h2>
-    </div>
-
-    <div id="myForm" class="form">
-
-        <input type="hidden" id="status_id" value="{{tracking_status_info['data']['status_id']}}">
-
-        <div class="form-control">
-            <label for="status">Название</label>
-            <input type="text" id="status" readonly
-                   value="{{tracking_status_info['data']['status']}}"/>
+        <div class="header">
+            <h3>Информация о статусе отслеживания</h3>
         </div>
 
-        <div class="form-control">
-            <label for="carrier_id">Доставщик</label>
-            <input type="text" id="carrier_id" readonly
-                   value="{{carrier_name['data']['name']}}"/>
+        <div id="myForm" class="form">
+
+            <input type="hidden" id="status_id" value="{{tracking_status_info['data']['status_id']}}">
+
+            <div class="form-control">
+                <label for="status">Название</label>
+                <input type="text" id="status" readonly
+                       value="{{tracking_status_info['data']['status']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="carrier_id">Доставщик</label>
+                <input type="text" id="carrier_id" readonly
+                       value="{{carrier_name['data']['name']}}"/>
+            </div>
+
+
+            <button onclick="updateTrackStatus()" class="add-type-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteTrackStatus()" class="add-type-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-type-submit3">
+                Назад
+            </button>
+
         </div>
-
-
-        <button onclick="updateTrackStatus()" class="add-type-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteTrackStatus()" class="add-type-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-type-submit3">
-            Назад
-        </button>
-
     </div>
 </div>
-
 
 <script src="/static/js/tracking_status/get.js"></script>
 

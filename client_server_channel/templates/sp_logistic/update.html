@@ -4,6 +4,7 @@
 <title>Изменить данные доставки заказа</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/sp_logistic/sp_logistic_base.css">
 <link rel="stylesheet" href="/static/css/sp_logistic/update.css">
 
 {% endblock %}
@@ -11,57 +12,59 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
-    <div class="add-header">
-        <h2>Изменить данные доставки заказа</h2>
+<div class="container-crud">
+    <div class="add-container">
+        <div class="add-header">
+            <h3>Изменить данные доставки заказа</h3>
+        </div>
+
+        <form class="add-form"
+              action="{{ url_for('sp_logistic.update', shipment_id=sp_logistic_info['data']['shipment_id']) }}"
+              method="POST">
+
+            <div class="form-control">
+
+                <label for="tr_status_id">Статус отслеживания</label>
+                <select name="tr_status_id" id="tr_status_id">
+                    {% for i in range(tracking_statuses_ids['data']['status_id']|length)%}
+                    {%if sp_logistic_info['data']['tr_status_id'] == tracking_statuses_ids['data']['status_id'][i]%}
+                    <option selected value="{{tracking_statuses_ids['data']['status_id'][i]}}">
+                        {{tracking_statuses_ids['data']['status'][i]}}
+                    </option>
+                    {%else%}
+                    {%if tracking_statuses_ids['data']['carrier_id'][i] == carrier_name['data']['carrier_id'] %}
+                    <option value="{{tracking_statuses_ids['data']['status_id'][i]}}">
+                        {{tracking_statuses_ids['data']['status'][i]}}
+                    </option>
+                    {%endif%}
+                    {%endif%}
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="form-control">
+                <label for="delivered_date">Дата доставки</label>
+                <input type="date" name="delivered_date" id="delivered_date"
+                       value="{{sp_logistic_info['data']['delivered_date']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="comment">Комментарий</label>
+                <input type="text" name="comment" id="comment"
+                       value="{{sp_logistic_info['data']['comment']}}"/>
+            </div>
+
+
+            <input type="submit" class="add-submit" value="Сохранить"/>
+
+            <button type="button" onclick="otmenFunction()"
+                    class="add-submit2" value="Отмена">
+                Отмена
+            </button>
+
+        </form>
+
     </div>
-
-    <form class="add-form"
-          action="{{ url_for('sp_logistic.update', shipment_id=sp_logistic_info['data']['shipment_id']) }}"
-          method="POST">
-
-        <div class="form-control">
-
-            <label for="tr_status_id">Статус отслеживания</label>
-            <select name="tr_status_id" id="tr_status_id">
-                {% for i in range(tracking_statuses_ids['data']['status_id']|length)%}
-                {%if sp_logistic_info['data']['tr_status_id'] == tracking_statuses_ids['data']['status_id'][i]%}
-                <option selected value="{{tracking_statuses_ids['data']['status_id'][i]}}">
-                    {{tracking_statuses_ids['data']['status'][i]}}
-                </option>
-                {%else%}
-                {%if tracking_statuses_ids['data']['carrier_id'][i] == carrier_name['data']['carrier_id'] %}
-                <option value="{{tracking_statuses_ids['data']['status_id'][i]}}">
-                    {{tracking_statuses_ids['data']['status'][i]}}
-                </option>
-                {%endif%}
-                {%endif%}
-                {%endfor%}
-            </select>
-        </div>
-
-        <div class="form-control">
-        <label for="delivered_date">Дата доставки</label>
-            <input type="date" name="delivered_date" id="delivered_date"
-                   value="{{sp_logistic_info['data']['delivered_date']}}"/>
-        </div>
-
-        <div class="form-control">
-        <label for="comment">Комментарий</label>
-            <input type="text" name="comment" id="comment"
-                   value="{{sp_logistic_info['data']['comment']}}"/>
-        </div>
-
-
-        <input type="submit" class="add-submit" value="Сохранить"/>
-
-        <button type="button" onclick="otmenFunction()"
-                class="add-submit2" value="Отмена">
-            Отмена
-        </button>
-
-    </form>
-
 </div>
 
 <script src="/static/js/sp_logistic/update.js"></script>

@@ -5,8 +5,8 @@
 {{super()}}
 
 
- <link rel="stylesheet" href="/static/css/carrier/add.css">
-
+<link rel="stylesheet" href="/static/css/carrier/carrier_base.css">
+<link rel="stylesheet" href="/static/css/carrier/add.css">
 
 
 {% endblock %}
@@ -14,66 +14,66 @@
 {% block body %}
 {{super()}}
 
+<div class="container-crud">
+    <div class="add-container">
 
-<div class="add-container">
+        <div class="add-header">
+            <h3>Новый доставщик</h3>
+        </div>
 
-    <div class="add-header">
-        <h2>Новый доставщик</h2>
+        <form id="myForm" class="add-form" action="{{url_for('carrier.add')}}" method="POST">
+
+            <div class="form-control">
+
+                <label for="name">Название</label>
+                <input type="text" name="name" placeholder="Введите название..." id="name" required/>
+
+                <label for="address_1">Адрес</label>
+                <input type="text" name="address_1" id="address_1" placeholder="Введите адрес 1..." required/>
+
+                <label for="address_2">Адрес (необезательно)</label>
+                <input type="text" name="address_2" id="address_2" placeholder="Введите адрес 2..."/>
+
+            </div>
+
+            <div class="form-control">
+
+                <label for="city">Город</label>
+                <input type="text" name="city" id="city" placeholder="Введите город..."/>
+
+                <label for="country">Страна</label>
+                <input type="text" name="country" id="country" placeholder="Введите страну..."/>
+
+                <label for="zipcode">Почтовый индекс</label>
+                <input type="text" name="zipcode" id="zipcode" placeholder="Введите индекс..."/>
+
+            </div>
+
+            <div class="form-control">
+
+                <label for="phone">Телефон</label>
+                <input type="text" name="phone" id="phone" placeholder="Введите телефон..."/>
+
+                <label for="email">Электронная почта</label>
+                <input type="text" name="email" id="email" placeholder="Введите электронную почту..."/>
+
+                <label for="website">Сайт</label>
+                <input type="text" name="website" id="website" placeholder="Введите сайт..."/>
+
+            </div>
+
+
+            <input type="submit" class="add-submit" value="Сохранить"/>
+
+            <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
+
+        </form>
+
     </div>
-
-    <form id="myForm" class="add-form" action="{{url_for('carrier.add')}}" method="POST">
-
-        <div class="form-control">
-
-            <label for="name">Название</label>
-            <input type="text" name="name" placeholder="Введите название..." id="name" required/>
-
-            <label for="address_1">Адрес</label>
-            <input type="text" name="address_1" id="address_1" placeholder="Введите адрес 1..." required/>
-
-            <label for="address_2">Адрес (необезательно)</label>
-            <input type="text" name="address_2" id="address_2" placeholder="Введите адрес 2..."/>
-
-        </div>
-
-        <div class="form-control">
-
-            <label for="city">Город</label>
-            <input type="text" name="city" id="city" placeholder="Введите город..."/>
-
-            <label for="country">Страна</label>
-            <input type="text" name="country" id="country" placeholder="Введите страну..."/>
-
-            <label for="zipcode">Почтовый индекс</label>
-            <input type="text" name="zipcode" id="zipcode" placeholder="Введите индекс..."/>
-
-        </div>
-
-        <div class="form-control">
-
-            <label for="phone">Телефон</label>
-            <input type="text" name="phone" id="phone" placeholder="Введите телефон..."/>
-
-            <label for="email">Электронная почта</label>
-            <input type="text" name="email" id="email" placeholder="Введите электронную почту..."/>
-
-            <label for="website">Сайт</label>
-            <input type="text" name="website" id="website" placeholder="Введите сайт..."/>
-
-        </div>
-
-
-        <input type="submit" class="add-submit" value="Сохранить"/>
-
-        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
-
-    </form>
-
 </div>
 
 
-
- <script src="/static/js/carrier/add.js"></script>
+<script src="/static/js/carrier/add.js"></script>
 
 {% endblock %}
 
