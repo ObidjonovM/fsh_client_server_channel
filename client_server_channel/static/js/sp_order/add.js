@@ -8,6 +8,8 @@ window.addEventListener( "load", function () {
 
             if(event.target.responseURL == window.location.href){
                 const resp = JSON.parse(event.target.responseText);
+                console.log(resp);
+                console.log("1")
                 if(resp.log_code == -1){
                     alert('Данная должность уже сушествует');
                 }

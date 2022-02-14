@@ -1,5 +1,8 @@
+.container-crud {
+    position: relative;
+}
+
 .container {
-    width: 400px;
     position: fixed;
     z-index: 999;
     left: 50%;
@@ -7,13 +10,13 @@
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
+    width: 400px;
 }
 
 .header {
     border-bottom: 1px solid var(--button-backColor);
     background-color: var(--button-backColor);
-    padding: 10px 40px;
+    padding: 15px 40px;
     color: white;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -34,16 +37,15 @@
 }
 
 .form-control label {
-    display: inline-block;
-    margin-bottom: 5px;
+    margin-bottom: 0;
 }
 
-.form-control input, textarea, select {
+.form-control input, textarea {
     border: 2px solid #c3c3c3;
     border-radius: 4px;
     display: block;
     font-family: inherit;
-    font-size: 14px;
+    font-size: var(--font-size);
     padding: 10px;
     width: 100%;
 }
@@ -55,14 +57,9 @@
     color: #d5e2ff;
     display: block;
     font-family: inherit;
-    font-size: 16px;
+    font-size: var(--font-size);
     padding: 10px;
-    margin-top: 20px;
+    margin: var(--font-size) 0;
     width: 100%;
     cursor: pointer;
-}
-
-.add-type-submit:hover, .add-type-submit2:hover, .add-type-submit3:hover {
-    background-color: var(--button-hover-bacColor);
-    transition: all .3s;
 }
