@@ -4,35 +4,38 @@
 <title>Изменить данные статуса заказа запчастей</title>
 {{super()}}
 
- <link rel="stylesheet" href="/static/css/sp_order_status/update.css">
+<link rel="stylesheet" href="/static/css/sp_order_status/sp_order_status_base.css">
+<link rel="stylesheet" href="/static/css/sp_order_status/update.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
-<div class="container">
+<div class="container-crud">
+    <div class="container">
         <div class="header">
-                <h2>Изменить данные статуса заказа запчастей</h2>
+            <h3>Изменить данные статуса заказа запчастей</h3>
         </div>
-<form class="form"
-      action="{{ url_for('sp_order_status.update', status_id=sp_order_status_info['data']['status_id']) }}"
-      method="POST">
+        <form class="form"
+              action="{{ url_for('sp_order_status.update', status_id=sp_order_status_info['data']['status_id']) }}"
+              method="POST">
 
-        <div class="form-control">
+            <div class="form-control">
                 <label for="desc">Описание</label>
                 <input type="text" name="desc" id="desc"
-                        value="{{sp_order_status_info['data']['description']}}"/>
-        </div>
+                       value="{{sp_order_status_info['data']['description']}}"/>
+            </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить" />
-        <button type="button" onclick="otmenFunction()"
-                class="add-type-submit" value="Отмена" >
+            <input type="submit" class="add-type-submit" value="Сохранить"/>
+            <button type="button" onclick="otmenFunction()"
+                    class="add-type-submit" value="Отмена">
                 Отмена
-        </button>
+            </button>
 
-</form>
+        </form>
 
+    </div>
 </div>
 
 <script src="/static/js/sp_order_status/update.js"></script>

@@ -4,6 +4,7 @@
 <title>Новая валюта</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/currency/currency_base.css">
 <link rel="stylesheet" href="/static/css/currency/add.css">
 
 
@@ -12,28 +13,28 @@
 {% block body %}
 {{super()}}
 
+<div class="container-crud">
+    <div class="container">
 
-<div class="container">
-
-    <div class="header">
-        <h2>Новая валюта</h2>
-    </div>
-
-    <form id="myForm" class="form" action="{{url_for('currency.add')}}" method="POST">
-
-        <div class="form-control">
-            <label for="currency">Название валюты</label>
-            <input type="text" name="currency" placeholder="Введите название..." id="currency" required/>
+        <div class="header">
+            <h3>Новая валюта</h3>
         </div>
 
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
+        <form id="myForm" class="form" action="{{url_for('currency.add')}}" method="POST">
 
-        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+            <div class="form-control">
+                <label for="currency">Название валюты</label>
+                <input type="text" name="currency" placeholder="Введите название..." id="currency" required/>
+            </div>
 
-    </form>
+            <input type="submit" class="add-type-submit" value="Сохранить"/>
 
+            <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+
+        </form>
+
+    </div>
 </div>
-
 
 <script src="/static/js/currency/add.js"></script>
 

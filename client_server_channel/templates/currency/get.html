@@ -4,6 +4,7 @@
 <title>Информация о валюте</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/currency/currency_base.css">
 <link rel="stylesheet" href="/static/css/currency/get.css">
 
 {% endblock %}
@@ -11,31 +12,33 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
+<div class="container-crud">
+    <div class="container">
 
-    <div class="header">
-        <h2>Информация о валюте</h2>
-    </div>
-
-    <div class="form">
-
-        <input id="curr_id" type="hidden" value="{{curr_info['data']['curr_id']}}"/>
-
-        <div class="form-control">
-            <label for="currency">Название валюты</label>
-            <input type="text"
-                   value="{{curr_info['data']['currency']}}" id="currency" readonly/>
+        <div class="header">
+            <h3>Информация о валюте</h3>
         </div>
 
-        <button onclick="deleteCurr()" class="add-type-submit">
-            Удалить
-        </button>
+        <div class="form">
 
-        <button onclick="otmenFunction()" class="add-type-submit2">
-            Назад
-        </button>
+            <input id="curr_id" type="hidden" value="{{curr_info['data']['curr_id']}}"/>
+
+            <div class="form-control">
+                <label for="currency">Название валюты</label>
+                <input type="text"
+                       value="{{curr_info['data']['currency']}}" id="currency" readonly/>
+            </div>
+
+            <button onclick="deleteCurr()" class="add-type-submit">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-type-submit2">
+                Назад
+            </button>
+        </div>
+
     </div>
-
 </div>
 
 <script src="/static/js/currency/get.js"></script>

@@ -17,8 +17,9 @@
     border-bottom: 1px solid var(--button-backColor);
     background-color: var(--button-backColor);
     padding: 10px 40px;
-    border-radius: 5px;
     color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .header h2 {

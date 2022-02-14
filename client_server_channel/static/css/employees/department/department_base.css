@@ -18,6 +18,8 @@
     background-color: #374a62;
     padding: 20px 40px;
     color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .header h2 {
