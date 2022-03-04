@@ -4,6 +4,7 @@
 <title>Изменить данные продукта</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/products/products_base.css">
 <link rel="stylesheet" href="/static/css/products/update.css">
 
 {% endblock %}
@@ -14,7 +15,7 @@
 <div class="add-container">
 
     <div class="add-header">
-        <h2>Изменить данные продукта</h2>
+        <h3>Изменить данные продукта</h3>
     </div>
 
     <form action="{{ url_for('products.update', serial_num=product_info['data']['serial_num']) }}"

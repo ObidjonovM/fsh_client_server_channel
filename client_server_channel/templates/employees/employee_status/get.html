@@ -4,6 +4,7 @@
 <title>Информация о статусе</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/employees/employee_status/employee_status_base.css">
 <link rel="stylesheet" href="/static/css/employees/employee_status/get.css">
 
 {% endblock %}
@@ -11,39 +12,41 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
-    <div class="header">
-        <h2>Информация о статусе</h2>
-    </div>
+<div class="container-crud">
+    <div class="container">
+        <div class="header">
+            <h3>Информация о статусе</h3>
+        </div>
 
-    <div class="form">
+        <div class="form">
 
             <input id="status_id" type="hidden" value="{{status_info.data.status_id}}"/>
 
-        <div class="form-control">
-            <label for="status_name">Статус</label>
-            <input type="text" name="status_name" id="status_name"
-                   value="{{status_info.data.status}}"  readonly/>
+            <div class="form-control">
+                <label for="status_name">Статус</label>
+                <input type="text" name="status_name" id="status_name"
+                       value="{{status_info.data.status}}" readonly/>
+            </div>
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <textarea name="desc" id="desc" readonly>{{status_info.data.description}}</textarea>
+            </div>
+
+            <button onclick="updateStatus()" class="add-type-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteStatus()" class="add-type-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-type-submit3">
+                Назад
+            </button>
         </div>
 
-        <div class="form-control">
-            <label for="desc">Описание</label>
-              <textarea name="desc" id="desc" readonly>{{status_info.data.description}}</textarea>
-        </div>
-
-        <button onclick="updateStatus()" class="add-type-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteStatus()" class="add-type-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-type-submit3">
-            Назад
-        </button>
     </div>
-
 </div>
 
 <script src="/static/js/employees/employee_status/get.js"></script>

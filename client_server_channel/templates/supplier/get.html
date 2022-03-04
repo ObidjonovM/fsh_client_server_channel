@@ -4,6 +4,7 @@
 <title>Информация о поставщике</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/supplier/supplier_base.css">
 <link rel="stylesheet" href="/static/css/supplier/get.css">
 
 {% endblock %}
@@ -11,75 +12,76 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
-    <div class="add-header">
-        <h2>Информация о поставщике</h2>
-    </div>
-    <div id="myForm" class="add-form">
-
-        <input type="hidden" id="supplier_id" value="{{supplier_info['data']['supplier_id']}}">
-
-
-        <div class="form-control">
-            <label for="name">Название</label>
-            <input type="text" id="name" readonly
-                   value="{{supplier_info['data']['name']}}"/>
-
-            <label for="address_1">Адрес 1</label>
-            <input type="text" id="address_1" readonly
-                   value="{{supplier_info['data']['address_1']}}"/>
-
-            <label for="address_2">Адрес 2</label>
-            <input type="text" id="address_2" readonly
-                   value="{{supplier_info['data']['address_2']}}"/>
-
-            <label for="city">Город</label>
-            <input type="text" id="city" readonly
-                   value="{{supplier_info['data']['city']}}"/>
-
-            <label for="country">Страна</label>
-            <input type="text" id="country" readonly
-                   value="{{supplier_info['data']['country']}}"/>
+<div class="container-crud">
+    <div class="add-container">
+        <div class="add-header">
+            <h3>Информация о поставщике</h3>
         </div>
+        <div id="myForm" class="add-form">
+
+            <input type="hidden" id="supplier_id" value="{{supplier_info['data']['supplier_id']}}">
 
 
-        <div class="form-control">
-            <label for="zipcode">Почтовый индекс</label>
-            <input type="text" id="zipcode" readonly
-                   value="{{supplier_info['data']['zipcode']}}"/>
+            <div class="form-control">
+                <label for="name">Название</label>
+                <input type="text" id="name" readonly
+                       value="{{supplier_info['data']['name']}}"/>
 
-            <label for="phone">Телефон</label>
-            <input type="text" id="phone" readonly
-                   value="{{supplier_info['data']['phone']}}"/>
+                <label for="address_1">Адрес 1</label>
+                <input type="text" id="address_1" readonly
+                       value="{{supplier_info['data']['address_1']}}"/>
 
-            <label for="email">Электронная почта</label>
-            <input type="text" id="email" readonly
-                   value="{{supplier_info['data']['email']}}"/>
+                <label for="address_2">Адрес 2</label>
+                <input type="text" id="address_2" readonly
+                       value="{{supplier_info['data']['address_2']}}"/>
 
-            <label for="website">Веб сайт</label>
-            <input type="text" id="website" readonly
-                   value="{{supplier_info['data']['website']}}"/>
+                <label for="city">Город</label>
+                <input type="text" id="city" readonly
+                       value="{{supplier_info['data']['city']}}"/>
 
-            <label for="geo_location">Гео локация</label>
-            <input type="text" id="geo_location" readonly
-                   value="{{supplier_info['data']['geo_location']}}"/>
+                <label for="country">Страна</label>
+                <input type="text" id="country" readonly
+                       value="{{supplier_info['data']['country']}}"/>
+            </div>
+
+
+            <div class="form-control">
+                <label for="zipcode">Почтовый индекс</label>
+                <input type="text" id="zipcode" readonly
+                       value="{{supplier_info['data']['zipcode']}}"/>
+
+                <label for="phone">Телефон</label>
+                <input type="text" id="phone" readonly
+                       value="{{supplier_info['data']['phone']}}"/>
+
+                <label for="email">Электронная почта</label>
+                <input type="text" id="email" readonly
+                       value="{{supplier_info['data']['email']}}"/>
+
+                <label for="website">Веб сайт</label>
+                <input type="text" id="website" readonly
+                       value="{{supplier_info['data']['website']}}"/>
+
+                <label for="geo_location">Гео локация</label>
+                <input type="text" id="geo_location" readonly
+                       value="{{supplier_info['data']['geo_location']}}"/>
+            </div>
+
+
+            <button onclick="updateSupp()" class="add-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteSupp()" class="add-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-submit3">
+                Назад
+            </button>
         </div>
-
-
-        <button onclick="updateSupp()" class="add-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteSupp()" class="add-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-submit3">
-            Назад
-        </button>
     </div>
 </div>
-
 
 <script src="/static/js/supplier/get.js"></script>
 

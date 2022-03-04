@@ -476,6 +476,45 @@ function translateState(state, id) {
                 'state': 'Открыто'
             }
         }
+    }else if (id == 5){  // suv datchik
+        if (state == "ON") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Вода капала'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Сухой'
+            }
+        }
+    }else if (id == 9){  // invertor
+        if (state == "ON") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Внутренний питания'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Внешнее питание'
+            }
+        }
+    }  else if (id == 7){  // invertor
+        if (state == "ON") {
+            return {
+                'bg_Color': 'red',
+                'state': 'Обнаружен дым'
+            }
+        }
+        if (state == "OFF") {
+            return {
+                'bg_Color': 'green',
+                'state': 'Дым не обнаружен'
+            }
+        }
     } else {
         if (state == "ON") {
             return {
@@ -708,7 +747,6 @@ if (id == 3) {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let resp = JSON.parse(this.responseText);
-
                 if (!resp['data']['serial_num']) {
                     tbody_date1.innerHTML = '';
 

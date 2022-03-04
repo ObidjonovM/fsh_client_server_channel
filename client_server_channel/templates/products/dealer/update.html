@@ -4,6 +4,7 @@
 <title>Изменить данные дилера</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/products/dealer/dealer_base.css">
 <link rel="stylesheet" href="/static/css/products/dealer/update.css">
 
 {% endblock %}
@@ -11,24 +12,25 @@
 {% block body %}
 {{super()}}
 
-
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
         <div class="add-header">
-                <h2>Изменить данные дилера</h2>
+            <h3>Изменить данные дилера</h3>
         </div>
 
-<form class="add-form"
-      action="{{ url_for('products.dealer.update', dealer_id=dealer_info['data']['dealer_id']) }}"
-      method="POST">
+        <form class="add-form"
+              action="{{ url_for('products.dealer.update', dealer_id=dealer_info['data']['dealer_id']) }}"
+              method="POST">
 
-        <div class="form-control">
+            <div class="form-control">
 
                 <label for="name">Название</label>
                 <input type="text" id="name" name="name"
-                        value="{{dealer_info['data']['name']}}"/>
+                       value="{{dealer_info['data']['name']}}"/>
 
                 <label for="address_1">Адрес</label>
-                <input type="text" name="address_1" value="{{dealer_info['data']['address_1']}}" id="address_1" required/>
+                <input type="text" name="address_1" value="{{dealer_info['data']['address_1']}}" id="address_1"
+                       required/>
 
                 <label for="address_2">Адрес 2</label>
                 <input type="text" name="address_2" value="{{dealer_info['data']['address_2']}}" id="address_2"/>
@@ -38,12 +40,10 @@
 
                 <label for="country">Страна</label>
                 <input type="text" name="country" value="{{dealer_info['data']['country']}}" id="country" required/>
-        </div>
+            </div>
 
 
-
-
-        <div class="form-control">
+            <div class="form-control">
                 <label for="zipcode">Почтовый индекс</label>
                 <input type="text" name="zipcode"
                        value="{{dealer_info['data']['zipcode']}}" id="zipcode" required/>
@@ -63,19 +63,19 @@
                 <label for="geo_location">Гео локация</label>
                 <input type="text" name="geo_location"
                        value="{{dealer_info['data']['geo_location']}}" id="geo_location"/>
-        </div>
+            </div>
 
 
+            <input type="submit" class="add-submit" value="Сохранить"/>
 
-        <input type="submit" class="add-submit" value="Сохранить" />
-
-        <button type="button" onclick="otmenFunction()"
-                class="add-submit2" value="Отмена" >
+            <button type="button" onclick="otmenFunction()"
+                    class="add-submit2" value="Отмена">
                 Отмена
-        </button>
+            </button>
 
-</form>
+        </form>
 
+    </div>
 </div>
 
 <script src="/static/js/products/dealer/update.js"></script>

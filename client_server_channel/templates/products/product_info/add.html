@@ -11,10 +11,11 @@
 
 {% block body %}
 {{super()}}
-<div style="position:relative;">
+
+<div class="container-crud">
     <div class="add-container">
         <div class="add-header">
-            <h2>Информация о продукте</h2>
+            <h3>Информация о продукте</h3>
         </div>
 
         <form id="myForm" class="add-form">
@@ -26,6 +27,19 @@
                 <label for="model">Модель</label><span class="star">*</span>
                 <input type="text" id="model" placeholder="Введите модель..." required/>
 
+                <label for="prefix">Префикс</label><span class="star">*</span>
+                <input type="text" id="prefix" placeholder="Введите префикс..." required/>
+
+                <label for="device_type">Тип Устройства</label><span class="star">*</span>
+                <select id="device_type" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
                 <label for="cat_id">Категория</label><span class="star">*</span>
                 <select id="cat_id" required>
                     <option hidden value="" selected disabled>--Выбрать--</option>
@@ -33,16 +47,15 @@
                     <option value="{{ids_names['data']['category_id'][i]}}">{{ids_names['data']['name'][i]}}</option>
                     {%endfor%}
                 </select>
+            </div>
+
+
+            <div class="form-control">
 
                 <label for="other_photos">Фото</label>
                 <input type="file" id="other_photos" onchange="set_other_photos(this)" multiple accept="image/*"
                        style="display: none"/>
                 <button type="button" id="addPhoto">Добавить фото</button>
-
-            </div>
-
-
-            <div class="form-control">
 
                 <label for="div_main_photo">Главное фото</label>
                 <div id="div_main_photo">

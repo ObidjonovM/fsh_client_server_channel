@@ -4,6 +4,7 @@
 <title>Изменить данные статуса</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/employees/employee_status/employee_status_base.css">
 <link rel="stylesheet" href="/static/css/employees/employee_status/update.css">
 
 {% endblock %}
@@ -11,33 +12,37 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
+<div class="container-crud">
+    <div class="container">
 
-    <div class="header">
-        <h2>Изменить данные статуса</h2>
+        <div class="header">
+            <h3>Изменить данные статуса</h3>
+        </div>
+
+        <form action="{{ url_for('employees.employee_status.update', status_id=status_info['status_id']) }}"
+              class="form"
+              method="POST">
+
+            <div class="form-control">
+                <label for="status_name">Название статуса</label>
+                <input type="text" name="status_name" id="status_name" value="{{status_info['status']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <textarea name="desc" id="desc">{{status_info['description']}}</textarea>
+            </div>
+
+            <input type="submit" class="add-type-submit" value="Сохранить"/>
+
+            <button type="button" onclick="otmenFunction()"
+                    class="add-type-submit2" value="Отмена">
+                Отмена
+            </button>
+        </form>
     </div>
-
-    <form action="{{ url_for('employees.employee_status.update', status_id=status_info['status_id']) }}" class="form"
-          method="POST">
-
-        <div class="form-control">
-            <label for="status_name">Название статуса</label>
-            <input type="text" name="status_name" id="status_name" value="{{status_info['status']}}"/>
-        </div>
-
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <textarea name="desc" id="desc">{{status_info['description']}}</textarea>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-
-        <button type="button" onclick="otmenFunction()"
-                class="add-type-submit2" value="Отмена">
-            Отмена
-        </button>
-    </form>
 </div>
+
 <script src="/static/js/employees/employee_status/update.js"></script>
 
 {% endblock %}

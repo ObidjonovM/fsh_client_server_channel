@@ -4,65 +4,66 @@
 <title>Новый поставщик</title>
 {{super()}}
 
- <link rel="stylesheet" href="/static/css/supplier/add.css">
+<link rel="stylesheet" href="/static/css/supplier/supplier_base.css">
+<link rel="stylesheet" href="/static/css/supplier/add.css">
 
 {% endblock %}
 
 {% block body %}
 {{super()}}
 
+<div class="container-crud">
+    <div class="add-container">
+        <div class="add-header">
+            <h3>Новый поставщик</h3>
+        </div>
+        <form id="myForm" class="add-form">
+            <div class="form-control">
+                <label for="name">Название</label><span class="star">*</span>
+                <input type="text" name="name" placeholder="Введите название..." id="name" required/>
 
-<div class="add-container">
-    <div class="add-header">
-        <h2>Новый поставщик</h2>
+                <label for="address_1">Адрес 1</label><span class="star">*</span>
+                <input type="text" name="address_1" id="address_1" placeholder="Введите адрес 1..." required/>
+
+                <label for="address_2">Адрес 2</label>
+                <input type="text" name="address_2" id="address_2" placeholder="Введите адрес 2..."/>
+
+                <label for="city">Город</label><span class="star">*</span>
+                <input type="text" name="city" id="city" placeholder="Введите город..." required/>
+
+                <label for="country">Страна</label><span class="star">*</span>
+                <input type="text" name="country" id="country" placeholder="Введите страну..." required/>
+            </div>
+
+
+            <div class="form-control">
+                <label for="zipcode">Почтовый индекс</label>
+                <input type="text" name="zipcode" id="zipcode" placeholder="Введите индекс..."/>
+
+                <label for="phone">Телефон</label><span class="star">*</span>
+                <input type="text" name="phone" id="phone" placeholder="Введите телефон..." required/>
+
+                <label for="email">Электронная почта</label>
+                <input type="email" name="email" id="email" placeholder="Введите электронную почту..."/>
+
+                <label for="website">Веб сайт</label>
+                <input type="text" name="website" id="website" placeholder="Введите веб сайт..."/>
+
+                <label for="geo_location">Гео локация</label>
+                <input type="text" name="geo_location" id="geo_location" placeholder="Введите местоположение..."/>
+            </div>
+
+
+            <input type="submit" class="add-submit" value="Сохранить"/>
+
+            <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
+
+        </form>
     </div>
-    <form id="myForm" class="add-form">
-        <div class="form-control">
-            <label for="name">Название</label><span class="star">*</span>
-            <input type="text" name="name" placeholder="Введите название..." id="name" required/>
-
-            <label for="address_1">Адрес 1</label><span class="star">*</span>
-            <input type="text" name="address_1" id="address_1" placeholder="Введите адрес 1..." required/>
-
-            <label for="address_2">Адрес 2</label>
-            <input type="text" name="address_2" id="address_2" placeholder="Введите адрес 2..." />
-
-            <label for="city">Город</label><span class="star">*</span>
-            <input type="text" name="city" id="city" placeholder="Введите город..." required/>
-
-            <label for="country">Страна</label><span class="star">*</span>
-            <input type="text" name="country" id="country" placeholder="Введите страну..." required/>
-        </div>
-
-
-        <div class="form-control">
-            <label for="zipcode">Почтовый индекс</label>
-            <input type="text" name="zipcode" id="zipcode" placeholder="Введите индекс..."/>
-
-            <label for="phone">Телефон</label><span class="star">*</span>
-            <input type="text" name="phone" id="phone" placeholder="Введите телефон..." required/>
-
-            <label for="email">Электронная почта</label>
-            <input type="email" name="email" id="email" placeholder="Введите электронную почту..."/>
-
-            <label for="website">Веб сайт</label>
-            <input type="text" name="website" id="website" placeholder="Введите веб сайт..." />
-
-            <label for="geo_location">Гео локация</label>
-            <input type="text" name="geo_location" id="geo_location" placeholder="Введите местоположение..." />
-        </div>
-
-
-        <input type="submit" class="add-submit" value="Сохранить"/>
-
-        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
-
-    </form>
 </div>
 
 
-
- <script src="/static/js/supplier/add.js"></script>
+<script src="/static/js/supplier/add.js"></script>
 
 {% endblock %}
 

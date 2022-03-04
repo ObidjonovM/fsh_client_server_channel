@@ -4,6 +4,7 @@
 <title>Новый сотрудник</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/employees/employees_base.css">
 <link rel="stylesheet" href="/static/css/employees/add.css">
 
 {% endblock %}
@@ -11,89 +12,92 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
 
-    <div class="add-header">
-        <h2>Новый сотрудник</h2>
+        <div class="add-header">
+            <h3>Новый сотрудник</h3>
+        </div>
+
+        <form id="myForm" class="add-form">
+
+            <div class="form-control">
+                <label for="dept_id">Отдел</label><span class="star">*</span>
+                <select name="dept_id" id="dept_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(names_ids_departments['dept_id']|length)%}
+                    <option value="{{names_ids_departments['dept_id'][i]}}">{{names_ids_departments['name'][i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+
+                <label for="type_id">Должность</label><span class="star">*</span>
+                <select name="type_id" id="type_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(names_ids_type['emp_type_id']|length)%}
+                    <option value="{{names_ids_type['emp_type_id'][i]}}">{{names_ids_type['emp_type_name'][i]}}</option>
+                    {%endfor%}
+                </select>
+
+                <label for="status_id">Статус</label><span class="star">*</span>
+                <select name="status_id" id="status_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(names_ids_status['status_id']|length)%}
+                    <option value="{{names_ids_status['status_id'][i]}}">{{names_ids_status['status'][i]}}</option>
+                    {%endfor%}
+                </select>
+
+                <label for="last_name">Фамилия</label><span class="star">*</span>
+                <input type="text" name="last_name" id="last_name" required/>
+            </div>
+
+            <div class="form-control">
+                <label for="first_name">Имя</label><span class="star">*</span>
+                <input type="text" name="first_name" id="first_name" required/>
+
+                <label for="middle_name">Отчество</label><span class="star">*</span>
+                <input type="text" name="middle_name" id="middle_name" required/>
+
+                <label for="birth_date">Дата рождения</label><span class="star">*</span>
+                <input type="date" name="birth_date" id="birth_date" required/>
+
+                <label for="address_1">Адрес 1</label><span class="star">*</span>
+                <input type="text" name="address_1" id="address_1" required/>
+            </div>
+
+            <div class="form-control">
+                <label for="address_2">Адрес 2</label>
+                <input type="text" name="address_2" id="address_2"/>
+
+                <label for="city">Город</label><span class="star">*</span>
+                <input type="text" name="city" id="city" required/>
+
+                <label for="country">Страна</label><span class="star">*</span>
+                <input type="text" name="country" id="country" required/>
+
+                <label for="zipcode">Почтовый индекс</label>
+                <input type="text" name="zipcode" id="zipcode"/>
+            </div>
+
+            <div class="form-control">
+                <label for="phone">Телефон</label><span class="star">*</span>
+                <input type="text" name="phone" id="phone" required/>
+
+                <label for="home_phone">Домашний телефон</label>
+                <input type="text" name="home_phone" id="home_phone"/>
+
+                <label for="email">Электронная почта</label>
+                <input type="email" name="email" id="email"/>
+            </div>
+
+
+            <input type="submit" class="add-submit" value="Сохранить"/>
+
+            <input type="button" class="add-submit2" onclick="otmenFunction()" value="Отмена"/>
+
+        </form>
+
     </div>
-
-    <form id="myForm" class="add-form">
-
-        <div class="form-control">
-            <label for="dept_id">Отдел</label><span class="star">*</span>
-            <select name="dept_id" id="dept_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(names_ids_departments['dept_id']|length)%}
-                <option value="{{names_ids_departments['dept_id'][i]}}">{{names_ids_departments['name'][i]}}</option>
-                {%endfor%}
-            </select>
-
-            <label for="type_id">Должность</label><span class="star">*</span>
-            <select name="type_id" id="type_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(names_ids_type['emp_type_id']|length)%}
-                <option value="{{names_ids_type['emp_type_id'][i]}}">{{names_ids_type['emp_type_name'][i]}}</option>
-                {%endfor%}
-            </select>
-
-            <label for="status_id">Статус</label><span class="star">*</span>
-            <select name="status_id" id="status_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(names_ids_status['status_id']|length)%}
-                <option value="{{names_ids_status['status_id'][i]}}">{{names_ids_status['status'][i]}}</option>
-                {%endfor%}
-            </select>
-
-            <label for="last_name">Фамилия</label><span class="star">*</span>
-            <input type="text" name="last_name" id="last_name" required/>
-        </div>
-
-        <div class="form-control">
-            <label for="first_name">Имя</label><span class="star">*</span>
-            <input type="text" name="first_name" id="first_name" required/>
-
-            <label for="middle_name">Отчество</label><span class="star">*</span>
-            <input type="text" name="middle_name" id="middle_name" required/>
-
-            <label for="birth_date">Дата рождения</label><span class="star">*</span>
-            <input type="date" name="birth_date" id="birth_date" required/>
-
-            <label for="address_1">Адрес 1</label><span class="star">*</span>
-            <input type="text" name="address_1" id="address_1" required/>
-        </div>
-
-        <div class="form-control">
-            <label for="address_2">Адрес 2</label>
-            <input type="text" name="address_2" id="address_2"/>
-
-            <label for="city">Город</label><span class="star">*</span>
-            <input type="text" name="city" id="city" required/>
-
-            <label for="country">Страна</label><span class="star">*</span>
-            <input type="text" name="country" id="country" required/>
-
-            <label for="zipcode">Почтовый индекс</label>
-            <input type="text" name="zipcode" id="zipcode"/>
-        </div>
-
-        <div class="form-control">
-            <label for="phone">Телефон</label><span class="star">*</span>
-            <input type="text" name="phone" id="phone" required/>
-
-            <label for="home_phone">Домашний телефон</label>
-            <input type="text" name="home_phone" id="home_phone"/>
-
-            <label for="email">Электронная почта</label>
-            <input type="email" name="email" id="email"/>
-        </div>
-
-
-        <input type="submit" class="add-submit" value="Сохранить"/>
-
-        <input type="button" class="add-submit2" onclick="otmenFunction()" value="Отмена"/>
-
-    </form>
-
 </div>
 
 <script src="/static/js/employees/add.js"></script>

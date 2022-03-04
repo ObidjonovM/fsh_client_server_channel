@@ -4,6 +4,7 @@
 <title>Информация о дилере</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/products/dealer/dealer_base.css">
 <link rel="stylesheet" href="/static/css/products/dealer/get.css">
 
 {% endblock %}
@@ -11,87 +12,79 @@
 {% block body %}
 {{super()}}
 
+<div class="container-crud">
+    <div class="add-container">
 
+        <div class="add-header">
+            <h3>Информация о дилере</h3>
+        </div>
 
-
-<div class="add-container">
-
-    <div class="add-header">
-        <h2>Информация о дилере</h2>
-    </div>
-
-    <div class="add-form">
+        <div class="add-form">
 
             <input id="dealer_id" type="hidden" value="{{dealer_info['data']['dealer_id']}}">
 
-        <div class="form-control">
-            <label for="name">Название</label>
-            <input type="text" name="name" id="name" value="{{dealer_info['data']['name']}}" readonly/>
+            <div class="form-control">
+                <label for="name">Название</label>
+                <input type="text" name="name" id="name" value="{{dealer_info['data']['name']}}" readonly/>
 
 
-
-            <label for="address_1">Адрес</label>
-            <input type="text" name="address_1" id="address_1" value="{{dealer_info['data']['address_1']}}" readonly/>
-
-
-
-            <label for="address_2">Адрес 2</label>
-            <input type="text" name="address_2" id="address_2" value="{{dealer_info['data']['address_2']}}" readonly/>
+                <label for="address_1">Адрес</label>
+                <input type="text" name="address_1" id="address_1" value="{{dealer_info['data']['address_1']}}"
+                       readonly/>
 
 
+                <label for="address_2">Адрес 2</label>
+                <input type="text" name="address_2" id="address_2" value="{{dealer_info['data']['address_2']}}"
+                       readonly/>
 
-            <label for="city">Город</label>
-            <input type="text" name="city" id="city" value="{{dealer_info['data']['city']}}" readonly/>
+
+                <label for="city">Город</label>
+                <input type="text" name="city" id="city" value="{{dealer_info['data']['city']}}" readonly/>
 
 
+                <label for="country">Страна</label>
+                <input type="text" name="country" id="country" value="{{dealer_info['data']['country']}}" readonly/>
+            </div>
 
-            <label for="country">Страна</label>
-            <input type="text" name="country" id="country" value="{{dealer_info['data']['country']}}" readonly/>
+            <div class="form-control">
+                <label for="zipcode">Почтовый индекс</label>
+                <input type="text" name="zipcode" id="zipcode" value="{{dealer_info['data']['zipcode']}}" readonly/>
+
+
+                <label for="phone">Телефон</label>
+                <input type="text" name="phone" id="phone" value="{{dealer_info['data']['phone']}}" readonly/>
+
+
+                <label for="email">Электронная почта</label>
+                <input type="email" name="email" id="email" value="{{dealer_info['data']['email']}}" readonly/>
+
+
+                <label for="website">Веб сайт</label>
+                <input type="text" name="website" id="website" value="{{dealer_info['data']['website']}}" readonly/>
+
+
+                <label for="geo_location">Гео локация</label>
+                <input type="text" name="geo_location" id="geo_location" value="{{dealer_info['data']['geo_location']}}"
+                       readonly/>
+            </div>
+
+
+            <button onclick="updateType()" class="add-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteDealer()" class="add-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-submit3">
+                Назад
+            </button>
+
         </div>
-
-        <div class="form-control">
-            <label for="zipcode">Почтовый индекс</label>
-            <input type="text" name="zipcode" id="zipcode" value="{{dealer_info['data']['zipcode']}}" readonly/>
-
-
-
-            <label for="phone">Телефон</label>
-            <input type="text" name="phone" id="phone" value="{{dealer_info['data']['phone']}}" readonly/>
-
-
-
-            <label for="email">Электронная почта</label>
-            <input type="email" name="email" id="email" value="{{dealer_info['data']['email']}}" readonly/>
-
-
-
-            <label for="website">Веб сайт</label>
-            <input type="text" name="website" id="website" value="{{dealer_info['data']['website']}}" readonly/>
-
-
-
-            <label for="geo_location">Гео локация</label>
-            <input type="text" name="geo_location" id="geo_location" value="{{dealer_info['data']['geo_location']}}" readonly/>
-        </div>
-
-
-        <button onclick="updateType()" class="add-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteDealer()" class="add-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-submit3">
-            Назад
-        </button>
 
     </div>
-
 </div>
-
-
 
 <script src="/static/js/products/dealer/get.js"></script>
 

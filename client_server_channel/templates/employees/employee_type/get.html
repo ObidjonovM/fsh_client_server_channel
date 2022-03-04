@@ -4,6 +4,7 @@
 <title>Информация о должности</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/employees/employee_type/employee_type_base.css">
 <link rel="stylesheet" href="/static/css/employees/employee_type/get.css">
 
 {% endblock %}
@@ -11,39 +12,41 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
-    <div class="header">
-        <h2>Информация о должности</h2>
-    </div>
-
-    <div class="form">
-
-        <input id="emp_id" type="hidden" value="{{type_info['data']['emp_type_id']}}"/>
-
-        <div class="form-control">
-            <label for="type_name">Название</label>
-            <input type="text" name="type_name"
-                   value="{{type_info['data']['emp_type_name']}}" id="type_name" readonly/>
+<div class="container-crud">
+    <div class="container">
+        <div class="header">
+            <h3>Информация о должности</h3>
         </div>
 
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <textarea name="desc" readonly id="desc">{{type_info['data']['description']}}</textarea>
+        <div class="form">
+
+            <input id="emp_id" type="hidden" value="{{type_info['data']['emp_type_id']}}"/>
+
+            <div class="form-control">
+                <label for="type_name">Название</label>
+                <input type="text" name="type_name"
+                       value="{{type_info['data']['emp_type_name']}}" id="type_name" readonly/>
+            </div>
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <textarea name="desc" readonly id="desc">{{type_info['data']['description']}}</textarea>
+            </div>
+
+            <button onclick="updateType()" class="add-type-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteType()" class="add-type-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-type-submit3">
+                Назад
+            </button>
         </div>
 
-        <button onclick="updateType()" class="add-type-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteType()" class="add-type-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-type-submit3">
-            Назад
-        </button>
     </div>
-
 </div>
 
 <script src="/static/js/employees/employee_type/get.js"></script>

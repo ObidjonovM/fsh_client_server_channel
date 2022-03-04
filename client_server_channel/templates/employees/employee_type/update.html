@@ -4,6 +4,7 @@
 <title>Изменить данные должности</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/employees/employee_type/employee_type_base.css">
 <link rel="stylesheet" href="/static/css/employees/employee_type/update.css">
 
 {% endblock %}
@@ -11,35 +12,37 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
-    <div class="header">
-        <h2>Изменить данные должности</h2>
+<div class="container-crud">
+    <div class="container">
+        <div class="header">
+            <h3>Изменить данные должности</h3>
+        </div>
+
+        <form class="form"
+              action="{{ url_for('employees.employee_type.update', type_id=type_info['emp_type_id']) }}"
+              method="POST">
+
+            <div class="form-control">
+                <label for="type_name">Название должности</label>
+                <input type="text" name="type_name" id="type_name"
+                       value="{{type_info['emp_type_name']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <textarea name="desc" id="desc">{{type_info['description']}}</textarea>
+            </div>
+
+            <input type="submit" class="add-type-submit" value="Сохранить"/>
+
+            <button type="button" onclick="otmenFunction()"
+                    class="add-type-submit2" value="Отмена">
+                Отмена
+            </button>
+
+        </form>
+
     </div>
-
-    <form class="form"
-          action="{{ url_for('employees.employee_type.update', type_id=type_info['emp_type_id']) }}"
-          method="POST">
-
-        <div class="form-control">
-            <label for="type_name">Название должности</label>
-            <input type="text" name="type_name" id="type_name"
-                    value="{{type_info['emp_type_name']}}"/>
-        </div>
-
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <textarea name="desc" id="desc">{{type_info['description']}}</textarea>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-
-        <button type="button" onclick="otmenFunction()"
-                class="add-type-submit2" value="Отмена">
-            Отмена
-        </button>
-
-    </form>
-
 </div>
 
 <script src="/static/js/employees/employee_type/update.js"></script>

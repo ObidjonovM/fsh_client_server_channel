@@ -3,6 +3,7 @@
 {% block head %}
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/employees/employees_base.css">
 <link rel="stylesheet" href="/static/css/employees/get.css">
 
 {% endblock %}
@@ -10,85 +11,89 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
 
-    <div class="add-header">
-        <h2>Информация о сотруднике</h2>
+        <div class="add-header">
+            <h3>Информация о сотруднике</h3>
+        </div>
+
+        <form id="myForm" class="add-form">
+            <input id="emp_id" type="hidden" value="{{emp_info['data']['emp_id']}}"/>
+
+            <div class="form-control">
+                <label for="dept_id">Отдел</label>
+                <input type="text" name="dept_id" id="dept_id" value="{{name_id_departments['data']['name']}}" readonly>
+
+                <label for="name">Должность</label>
+                <input type="text" name="name" id="name" value="{{name_id_type['data']['emp_type_name']}}" readonly>
+
+                <label for="status">Статус</label>
+                <input type="text" name="status" id="status" readonly
+                       value="{{name_id_status['data']['status']}}"/>
+
+                <label for="last_name">Фамилия</label>
+                <input type="text" name="last_name" id="last_name" value="{{emp_info['data']['last_name']}}" readonly>
+            </div>
+
+            <div class="form-control">
+                <label for="first_name">Имя</label>
+                <input type="text" name="first_name" id="first_name" value="{{emp_info['data']['first_name']}}"
+                       readonly>
+
+                <label for="middle_name">Отчество</label>
+                <input type="text" name="middle_name" id="middle_name" value="{{emp_info['data']['middle_name']}}"
+                       readonly>
+
+                <label for="birth_date">Дата рождения</label>
+                <input type="date" name="birth_date" id="birth_date" readonly
+                       value="{{emp_info['data']['birth_date']}}"/>
+
+                <label for="address_1">Адрес 1</label>
+                <input type="text" name="address_1" id="address_1" readonly
+                       value="{{emp_info['data']['address_1']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="address_2">Адрес 2</label>
+                <input type="text" name="address_2" id="address_2" readonly
+                       value="{{emp_info['data']['address_2']}}"/>
+
+                <label for="city">Город</label>
+                <input type="text" name="city" id="city" readonly value="{{emp_info['data']['city']}}"/>
+
+                <label for="country">Страна</label>
+                <input type="text" name="country" id="country" readonly value="{{emp_info['data']['country']}}"/>
+
+                <label for="zipcode">Почтовый индекс</label>
+                <input type="text" name="zipcode" id="zipcode" readonly value="{{emp_info['data']['zipcode']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="phone">Телефон</label>
+                <input type="text" name="phone" id="phone" readonly value="{{emp_info['data']['phone']}}"/>
+
+                <label for="home_phone">Домашний телефон</label>
+                <input type="text" name="home_phone" id="home_phone" readonly
+                       value="{{emp_info['data']['home_phone']}}"/>
+
+                <label for="email">Электронная почта</label>
+                <input type="email" name="email" id="email" readonly value="{{emp_info['data']['email']}}"/>
+            </div>
+
+
+            <button type="button" onclick="updateType()" class="add-submit">
+                Изменить
+            </button>
+            <button type="button" onclick="deleteType()" class="add-submit2">
+                Удалить
+            </button>
+            <button type="button" onclick="otmenFunction()" class="add-submit3">
+                Назад
+            </button>
+        </form>
+
     </div>
-
-    <form id="myForm" class="add-form">
-        <input id="emp_id" type="hidden" value="{{emp_info['data']['emp_id']}}"/>
-
-        <div class="form-control">
-            <label for="dept_id">Отдел</label>
-            <input type="text" name="dept_id" id="dept_id" value="{{name_id_departments['data']['name']}}" readonly>
-
-            <label for="name">Должность</label>
-            <input type="text" name="name" id="name" value="{{name_id_type['data']['emp_type_name']}}" readonly>
-
-            <label for="status">Статус</label>
-            <input type="text" name="status" id="status" readonly
-                   value="{{name_id_status['data']['status']}}"/>
-
-            <label for="last_name">Фамилия</label>
-            <input type="text" name="last_name" id="last_name" value="{{emp_info['data']['last_name']}}" readonly>
-        </div>
-
-        <div class="form-control">
-            <label for="first_name">Имя</label>
-            <input type="text" name="first_name" id="first_name" value="{{emp_info['data']['first_name']}}" readonly>
-
-            <label for="middle_name">Отчество</label>
-            <input type="text" name="middle_name" id="middle_name" value="{{emp_info['data']['middle_name']}}" readonly>
-
-            <label for="birth_date">Дата рождения</label>
-            <input type="date" name="birth_date" id="birth_date" readonly
-                   value="{{emp_info['data']['birth_date']}}"/>
-
-            <label for="address_1">Адрес 1</label>
-            <input type="text" name="address_1" id="address_1" readonly
-                   value="{{emp_info['data']['address_1']}}"/>
-        </div>
-
-        <div class="form-control">
-            <label for="address_2">Адрес 2</label>
-            <input type="text" name="address_2" id="address_2" readonly
-                   value="{{emp_info['data']['address_2']}}"/>
-
-            <label for="city">Город</label>
-            <input type="text" name="city" id="city" readonly value="{{emp_info['data']['city']}}"/>
-
-            <label for="country">Страна</label>
-            <input type="text" name="country" id="country" readonly value="{{emp_info['data']['country']}}"/>
-
-            <label for="zipcode">Почтовый индекс</label>
-            <input type="text" name="zipcode" id="zipcode" readonly value="{{emp_info['data']['zipcode']}}"/>
-        </div>
-
-        <div class="form-control">
-            <label for="phone">Телефон</label>
-            <input type="text" name="phone" id="phone" readonly value="{{emp_info['data']['phone']}}"/>
-
-            <label for="home_phone">Домашний телефон</label>
-            <input type="text" name="home_phone" id="home_phone" readonly
-                   value="{{emp_info['data']['home_phone']}}"/>
-
-            <label for="email">Электронная почта</label>
-            <input type="email" name="email" id="email" readonly value="{{emp_info['data']['email']}}"/>
-        </div>
-
-
-        <button type="button" onclick="updateType()" class="add-submit">
-            Изменить
-        </button>
-        <button type="button" onclick="deleteType()" class="add-submit2">
-            Удалить
-        </button>
-        <button type="button" onclick="otmenFunction()" class="add-submit3">
-            Назад
-        </button>
-    </form>
-
 </div>
 
 <script src="/static/js/employees/get.js"></script>

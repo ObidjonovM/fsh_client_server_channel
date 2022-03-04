@@ -7,18 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Fido Electronics</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="stylesheet" href="/static/css/core/index.css">
     <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <link rel="stylesheet" href="/static/css/core/index.css">
 
 </head>
 
 <body class="background-color" id="src">
 
 <header class="fixed">
-    <a href="#">
-    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-    </a>
+    <div class="glavni-stranisa">
+        <a href="#">
+            <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+        </a>
+    </div>
     <div class="hi-person-div">
         {%if first_name%}
         <button type="button" class="hi-person" id="hi-person">
@@ -37,33 +38,36 @@
         </button>
         {%if first_name %}
         <a href="#" onclick="Logout(this)">
-        <button type="button" class="glavni-stranisa logout">Выйти</button>
+            <button type="button" class="glavni-stranisa logout">Выйти</button>
         </a>
         {%else%}
         <a href="#" onclick="SignIn()">
-        <button class="sign-in" id="sign-in">Войти</button>
+            <button class="sign-in" id="sign-in">Войти</button>
         </a>
         {%endif%}
     </div>
 </header>
-<main>
+
 <section>
 
     <div class="all-products">
         {% for i in range(get_products['data']['name']|length)%}
         <div class="img-div" onclick="openProductInfo(this)">
-            <span>
+            <div class="description-div">
                 <p class="description">{{get_products['data']['name'][i]}}</p>
-            </span>
+            </div>
+            <div class="index-img">
             <img src="{{get_products['data']['photo'][i]}}" alt="image" id="{{get_products['data']['product_id'][i]}}"
                  onclick="getInfo(this)">
-            <a href="#" onclick="getInfoTwo(this)">Подробно</a >
+            </div>
+            <div class="href-detail">
+                <a href="#" onclick="getInfoTwo(this)">Подробно</a>
+            </div>
         </div>
         {%endfor%}
     </div>
 
 </section>
-</main>
 
 <script src="/static/js/core/index.js"></script>
 <script src="/static/js/base.js"></script>
