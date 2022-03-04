@@ -144,17 +144,17 @@ class ProductTable:
         sql += f"AND p.client_id = {client_id} AND p.serial_num = '{ser_num}' AND p.active = TRUE "
         sql += 'AND pp.active = TRUE AND pi.active = TRUE'
 
-        return crud.run_SQL(sql, ['serial_num', 'product_id', 'photo',
-                                'format', 'description', 'prefix',
-                                'name', 'device_type'])
+        return crud.run_SQL(sql, ['serial_num', 'product_id',
+                                'photo', 'format', 'description',
+                                'prefix', 'name', 'device_type'])
 
 
     @staticmethod
     def my_product_info(client_id, ser_num):
-        sql = 'SELECT mac_address, default_login, default_password, '
+        sql = 'SELECT product_id, mac_address, default_login, default_password, '
         sql += 'ap_login, ap_password, manufactured_date FROM products '
         sql += f"WHERE client_id = {client_id} AND serial_num = '{ser_num}' "
         sql += 'AND active = TRUE'
 
-        return crud.run_SQL(sql, ['mac_address', 'def_login', 'def_password',
+        return crud.run_SQL(sql, ['product_id', 'mac_address', 'def_login', 'def_password',
                             'ap_login', 'ap_password', 'manufactured_date'], True)
