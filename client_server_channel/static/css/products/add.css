@@ -1,44 +1,38 @@
 .add-container {
     width: 45rem;
-    height: 500px;
+    height: 450px;
 }
 
 .add-form {
-    width: 80%;
-    height: 83%;
+    width: 97%;
+    height: 89%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .form-control {
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-top: -60px;
-}
-
-.form-control label {
-    padding-left: 14px;
-    margin-bottom: 0;
+    width: 40%;
+    margin: 3rem 1rem;
 }
 
 .form-control input, select {
-    width: 250px;
+    width: 100%;
     height: 40px;
-    margin: 10px;
+    margin: 10px 0;
 }
 
 .add-submit, .add-submit2, .add-submit3 {
-    width: 20%;
+    width: 12rem;
     position: absolute;
     bottom: 4px;
 }
 
 .add-submit {
-    left:23%;
+    left: 8rem;
 }
 
 .add-submit2 {
-    left:55%;
+    left: 25rem;
 }

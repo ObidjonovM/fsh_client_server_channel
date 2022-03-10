@@ -11,47 +11,48 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
 
-    <div class="add-header">
-        <h2>Изменить данные заказа запчастей</h2>
-    </div>
-
-    <form class="add-form"
-          action="{{ url_for('sp_order.update', sp_order_id=sp_order_info['data']['sp_order_id']) }}"
-          method="POST">
-
-        <div class="form-control">
-
-            <label for="order_status_id">Статус заказа</label>
-            <select name="order_status_id" id="order_status_id">
-                {% for i in range(order_statuses_ids['data']['status_id']|length)%}
-                {%if sp_order_info['data']['order_status_id'] == order_statuses_ids['data']['status_id'][i]%}
-                <option selected value="{{order_statuses_ids['data']['status_id'][i]}}">
-                    {{order_statuses_ids['data']['name'][i]}}
-                </option>
-                {%else%}
-                <option value="{{order_statuses_ids['data']['status_id'][i]}}">
-                    {{order_statuses_ids['data']['name'][i]}}
-                </option>
-                {%endif%}
-                {%endfor%}
-            </select>
-
+        <div class="add-header">
+            <h3>Изменить данные заказа запчастей</h3>
         </div>
 
+        <form class="add-form"
+              action="{{ url_for('sp_order.update', sp_order_id=sp_order_info['data']['sp_order_id']) }}"
+              method="POST">
 
-        <input type="submit" class="add-submit" value="Сохранить"/>
+            <div class="form-control">
 
-        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
+                <label for="order_status_id">Статус заказа</label>
+                <select name="order_status_id" id="order_status_id">
+                    {% for i in range(order_statuses_ids['data']['status_id']|length)%}
+                    {%if sp_order_info['data']['order_status_id'] == order_statuses_ids['data']['status_id'][i]%}
+                    <option selected value="{{order_statuses_ids['data']['status_id'][i]}}">
+                        {{order_statuses_ids['data']['name'][i]}}
+                    </option>
+                    {%else%}
+                    <option value="{{order_statuses_ids['data']['status_id'][i]}}">
+                        {{order_statuses_ids['data']['name'][i]}}
+                    </option>
+                    {%endif%}
+                    {%endfor%}
+                </select>
+
+            </div>
 
 
-    </form>
+            <input type="submit" class="add-submit" value="Сохранить"/>
 
+            <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
+
+
+        </form>
+
+    </div>
 </div>
+
 
 <script src="/static/js/sp_order/update.js"></script>
 
 {% endblock %}
-
-

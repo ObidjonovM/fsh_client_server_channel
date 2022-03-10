@@ -4,6 +4,7 @@
 <title>Новый детал заказа запчастей</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/sp_order_detail/sp_order_detail_base.css">
 <link rel="stylesheet" href="/static/css/sp_order_detail/add.css">
 
 
@@ -12,67 +13,68 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
 
-    <div class="add-header">
-        <h2>Новый детал заказа запчастей</h2>
-    </div>
-
-    <form id="myForm" class="add-form">
-
-        <div class="form-control">
-            <label for="type_id">Тип запчасти</label><span class="star">*</span>
-            <select name="type_id" id="type_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(types_ids['data']['sp_type_id']|length)%}
-                <option value="{{types_ids['data']['sp_type_id'][i]}}">
-                    {{types_ids['data']['name'][i]}}
-                </option>
-                {%endfor%}
-            </select>
-
-            <label for="curr_id">Валюта</label><span class="star">*</span>
-            <select name="curr_id" id="curr_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(currencies_ids['data']['curr_id']|length)%}
-                <option value="{{currencies_ids['data']['curr_id'][i]}}">
-                    {{currencies_ids['data']['currency'][i]}}
-                </option>
-                {%endfor%}
-            </select>
-
-            <label for="unit_id">Единица измерения</label><span class="star">*</span>
-            <select name="unit_id" id="unit_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(units_ids['data']['unit_id']|length)%}
-                <option value="{{units_ids['data']['unit_id'][i]}}">
-                    {{units_ids['data']['unit'][i]}}
-                </option>
-                {%endfor%}
-            </select>
+        <div class="add-header">
+            <h3>Новый детал заказа запчастей</h3>
         </div>
 
-        <div class="form-control">
-            <label for="order_id">Номер заказа</label><span class="star">*</span>
+        <form id="myForm" class="add-form">
+
+            <div class="form-control">
+                <label for="type_id">Тип запчасти</label><span class="star">*</span>
+                <select name="type_id" id="type_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(types_ids['data']['sp_type_id']|length)%}
+                    <option value="{{types_ids['data']['sp_type_id'][i]}}">
+                        {{types_ids['data']['name'][i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+
+                <label for="curr_id">Валюта</label><span class="star">*</span>
+                <select name="curr_id" id="curr_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(currencies_ids['data']['curr_id']|length)%}
+                    <option value="{{currencies_ids['data']['curr_id'][i]}}">
+                        {{currencies_ids['data']['currency'][i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+
+                <label for="unit_id">Единица измерения</label><span class="star">*</span>
+                <select name="unit_id" id="unit_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(units_ids['data']['unit_id']|length)%}
+                    <option value="{{units_ids['data']['unit_id'][i]}}">
+                        {{units_ids['data']['unit'][i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="form-control">
+                <label for="order_id">Номер заказа</label><span class="star">*</span>
                 <input type="text" name="order_id" id="order_id" required placeholder="Введите номер заказа...">
 
-            <label for="price_per_unit">Цена за единицу</label><span class="star">*</span>
-            <input type="number" name="price_per_unit" required
-                   id="price_per_unit" placeholder="Введите цену за единицу..."/>
+                <label for="price_per_unit">Цена за единицу</label><span class="star">*</span>
+                <input type="number" name="price_per_unit" required
+                       id="price_per_unit" placeholder="Введите цену за единицу..."/>
 
-            <label for="amount">Количество</label><span class="star">*</span>
-            <input type="number" name="amount" required
-                   id="amount" placeholder="Введите количество..."/>
-        </div>
+                <label for="amount">Количество</label><span class="star">*</span>
+                <input type="number" name="amount" required
+                       id="amount" placeholder="Введите количество..."/>
+            </div>
 
 
-        <input type="submit" class="add-submit" value="Сохранить"/>
+            <input type="submit" class="add-submit" value="Сохранить"/>
 
-        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
+            <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
 
-    </form>
+        </form>
+    </div>
 </div>
-
 
 <script src="/static/js/sp_order_detail/add.js"></script>
 

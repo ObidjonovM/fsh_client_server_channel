@@ -4,6 +4,7 @@
 <title>Информация о заказе запчастей</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/sp_order/sp_order_base.css">
 <link rel="stylesheet" href="/static/css/sp_order/get.css">
 
 {% endblock %}
@@ -12,69 +13,70 @@
 {{super()}}
 
 
+<div class="container-crud">
+    <div class="add-container">
+        <div class="add-header">
+            <h3>Информация о заказе запчастей</h3>
+        </div>
+        <div id="myForm" class="add-form">
 
-<div class="add-container">
-    <div class="add-header">
-        <h2>Информация о заказе запчастей</h2>
-    </div>
-    <div id="myForm" class="add-form">
+            <input type="hidden" id="sp_order_id" value="{{sp_order_info['data']['sp_order_id']}}">
 
-        <input type="hidden" id="sp_order_id" value="{{sp_order_info['data']['sp_order_id']}}">
+            <div class="form-control">
+                <label for="issued_order_id">Выданный ID заказа</label>
+                <input type="text" id="issued_order_id" readonly value="{{sp_order_info['data']['issued_order_id']}}"/>
 
-        <div class="form-control">
-            <label for="issued_order_id">Выданный ID заказа</label>
-            <input type="text" id="issued_order_id" readonly value="{{sp_order_info['data']['issued_order_id']}}" />
+                <label for="total_cost">Общая стоимость</label>
+                <input type="number" id="total_cost" readonly value="{{sp_order_info['data']['total_cost']}}"/>
 
-            <label for="total_cost">Общая стоимость</label>
-            <input type="number" id="total_cost" readonly value="{{sp_order_info['data']['total_cost']}}" />
+                <label for="curr_id">Валюта</label>
+                <input type="text" id="curr_id" readonly value="{{currency_name['data']['currency']}}">
 
-            <label for="curr_id">Валюта</label>
-            <input type="text" id="curr_id" readonly value="{{currency_name['data']['currency']}}">
+            </div>
+
+            <div class="form-control">
+                <label for="supplier_id">Поставщик</label>
+                <input type="text" id="supplier_id" readonly value="{{supplier_name['data']['name']}}">
+
+
+                <label for="exp_dispatch_date">Ожидаемая дата отправки</label>
+                <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" readonly
+                       value="{{sp_order_info['data']['exp_dispatch_date']}}"/>
+
+                <label for="order_status_id">Статус заказа</label>
+                <input type="text" id="order_status_id" readonly value="{{order_status['data']['name']}}">
+
+            </div>
+
+            <div class="form-control">
+                <label for="shipment_id">ID доставки заказа</label>
+                <input type="text" id="shipment_id" readonly value="{{sp_order_info['data']['shipment_id']}}">
+
+
+                <label for="order_date">Дата заказа</label>
+                <input type="date" name="order_date" id="order_date" readonly
+                       value="{{sp_order_info['data']['order_date']}}"/>
+
+                <label for="ord_emp_id">Ответственный сотрудник</label>
+                <input type="text" id="ord_emp_id" readonly
+                       value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}}">
+
+            </div>
+
+
+            <button onclick="updateSpOrder()" class="add-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteSpOrder()" class="add-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-submit3">
+                Назад
+            </button>
 
         </div>
-
-        <div class="form-control">
-            <label for="supplier_id">Поставщик</label>
-            <input type="text" id="supplier_id" readonly value="{{supplier_name['data']['name']}}">
-
-
-            <label for="exp_dispatch_date">Ожидаемая дата отправки</label>
-            <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" readonly
-                value="{{sp_order_info['data']['exp_dispatch_date']}}" />
-
-            <label for="order_status_id">Статус заказа</label>
-            <input type="text" id="order_status_id" readonly value="{{order_status['data']['name']}}">
-
-        </div>
-
-        <div class="form-control">
-            <label for="shipment_id">ID доставки заказа</label>
-            <input type="text" id="shipment_id" readonly value="{{sp_order_info['data']['shipment_id']}}">
-
-
-            <label for="order_date">Дата заказа</label>
-            <input type="date" name="order_date" id="order_date" readonly
-                value="{{sp_order_info['data']['order_date']}}" />
-
-            <label for="ord_emp_id">Ответственный сотрудник</label>
-            <input type="text" id="ord_emp_id" readonly
-                value="{{employee_name['data']['last_name']}} {{employee_name['data']['first_name']}} {{employee_name['data']['middle_name']}}">
-
-        </div>
-
-
-        <button onclick="updateSpOrder()" class="add-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteSpOrder()" class="add-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-submit3">
-            Назад
-        </button>
-
     </div>
 </div>
 

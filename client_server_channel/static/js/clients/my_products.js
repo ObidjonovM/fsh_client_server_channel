@@ -70,6 +70,8 @@ const desc = document.getElementById('desc');
 
 
 const openModal = function () {
+    let input_id = document.getElementById('ser_num');
+    input_id.focus();
     modal.classList.remove('hidden');
     overlay.classList.remove('hidden');
 };

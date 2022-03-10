@@ -4,6 +4,7 @@
 <title>Информация о типе состоянии запчасти</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/sp_status/sp_status_base.css">
 <link rel="stylesheet" href="/static/css/sp_status/get.css">
 
 {% endblock %}
@@ -11,42 +12,43 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
-    <div class="header">
-        <h2>Информация о типе состоянии запчасти</h2>
-    </div>
-
-    <div id="myForm" class="form">
-
-        <input type="hidden" id="status_id" value="{{sp_status_info['data']['status_id']}}">
-
-        <div class="form-control">
-            <label for="status">Название</label>
-            <input type="text" id="status" readonly
-                   value="{{sp_status_info['data']['status']}}"/>
+<div class="container-crud">
+    <div class="container">
+        <div class="header">
+            <h3>Информация о типе состоянии запчасти</h3>
         </div>
 
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <input type="text" id="desc" readonly
-                   value="{{sp_status_info['data']['description']}}"/>
+        <div id="myForm" class="form">
+
+            <input type="hidden" id="status_id" value="{{sp_status_info['data']['status_id']}}">
+
+            <div class="form-control">
+                <label for="status">Название</label>
+                <input type="text" id="status" readonly
+                       value="{{sp_status_info['data']['status']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <input type="text" id="desc" readonly
+                       value="{{sp_status_info['data']['description']}}"/>
+            </div>
+
+            <button onclick="updateSpStatus()" class="add-type-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteSpStatus()" class="add-type-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-type-submit3">
+                Назад
+            </button>
+
         </div>
-
-        <button onclick="updateSpStatus()" class="add-type-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteSpStatus()" class="add-type-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-type-submit3">
-            Назад
-        </button>
-
     </div>
 </div>
-
 
 
 <script src="/static/js/sp_status/get.js"></script>

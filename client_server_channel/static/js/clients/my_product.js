@@ -18,7 +18,6 @@ function actionCommand(e) {
     }
 }
 
-
 // modal open
 //Delete my product open!
 const overlay1 = document.querySelector('.overlay1');
@@ -45,8 +44,6 @@ btnCloseModal1.addEventListener('click', closeModal1);
 //information about my product open
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
-const forInfoPass = document.getElementById('forInfoPass');
-const btnCloseModalInformation = document.querySelector('.close-modal');
 const btnOpenModal = document.querySelector('.show-modal');
 
 const openModal = function () {
@@ -54,14 +51,8 @@ const openModal = function () {
     overlay.classList.remove('hidden');
 };
 
-const closeModalInformation = function () {
-    forInfoPass.value = "";
-    modal.classList.add('hidden');
-    overlay.classList.add('hidden');
-};
-
 btnOpenModal.addEventListener('click', openModal);
-btnCloseModalInformation.addEventListener('click', closeModalInformation);
+// btnCloseModalInformation.addEventListener('click', closeModalInformation);
 
 document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !modal.classList.contains('hidden1')) {
@@ -71,68 +62,196 @@ document.addEventListener('keydown', function (e) {
 //information about my product close
 // modal close
 
+function locationReload() {
+    window.location.reload();
+}
 
 let overlay10 = document.getElementById('overlay');
 
 function closeModal3() {
     containerModal.classList.add('hidden');
     overlay10.classList.add('hidden');
-    location.reload()
+    locationReload();
 }
+
+// Подключите устройство к Интернету open
 
 const containerModal = document.getElementById('containerModal');
 let url = window.location.href;
+let product_id;
 
-function OpenNewModal() {
-    xhttp.open('POST', '/clients/my_products/my_product/info/' + url.substring(url.lastIndexOf('/') + 1), true);
+window.addEventListener('load', function () {
+
+// media and kom uchun alohida js open
+
+    xhttp.open('POST', "/clients/my_products/my_product/info/" + url.substring(url.lastIndexOf('/') + 1), true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    xhttp.send(JSON.stringify({'password': forInfoPass.value}));
+    xhttp.send();
+
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let resp = JSON.parse(this.responseText);
-            if (resp['data']['ap_password']) {
-                containerModal.innerHTML = "<button class=\"close-modal3" +
-                    "\" onclick=\"closeModal3()\">&times;</button>\n" +
-                    "\n" +
-                    "    <div class=\"header\">\n" +
-                    "        <h2>Информация о товаре</h2>\n" +
-                    "    </div>\n" +
-                    "\n" +
-                    "    <div class=\"form2\">\n" +
-                    "        <div class=\"form-control\">\n" +
-                    "            <label for=\"default_login\">Логин по умолчанию</label>\n" +
-                    "            <div id=\"default_login\" class=\"information\">" + resp['data']['def_login'] + "</div>\n" +
-                    "\n" +
-                    "            <label for=\"default_password\">Пароль по умолчанию</label>\n" +
-                    "            <div id=\"default_password\" class=\"information\">" + resp['data']['def_password'] + "</div>\n" +
-                    "\n" +
-                    "            <label for=\"ap_login\">Логин устройство</label>\n" +
-                    "            <div id=\"ap_login\" class=\"information\">" + resp['data']['ap_login'] + "</div>\n" +
-                    "\n" +
-                    "            <label for=\"ap_password\">Пароль устройство</label>\n" +
-                    "            <div id=\"ap_password\" class=\"information\">" + resp['data']['ap_password'] + "</div>\n" +
-                    "\n" +
-                    "            <label for=\"mac_address\">MAC-адрес</label>\n" +
-                    "            <div id=\"mac_address\" class=\"information\">" + resp['data']['mac_address'] + "</div>\n" +
-                    "        </div>\n" +
-                    "\n" +
-                    "    </div>"
+            product_id = resp['data']['product_id'];
+
+            function configurationFunction(x) {
+                if (x.matches) {
+                    containerModal.innerHTML = " <button class=\"close-modal" +
+                        "\" onclick=\"closeModal3()\">&times;</button>\n" +
+                        "        <div class=\"slidercontainer\">\n" +
+
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/3/gaz1.png\"/>\n" +
+                        "                <div class=\"content\">1.1 - Gaz Datchikni to'kka ulang.</div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/3/gaz2.jpg\"/>\n" +
+                        "                <div class=\"content\"><b>1.2 - Gaz Datchikni ko'rsatilganidek bir marta bosing.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/3/gaz3.jpg\"/>\n" +
+                        "                <div class=\"content\"><b>1.3 - Gaz Datchik o'zidan wifi tarqatish uchun bosiladigan joy.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/3/gaz4.jpg\"/>\n" +
+                        "                <div class=\"content\"><b>1.4 - Gaz Datchikda ko'rsatilgan joyni 10 sekund mobaynida bosib turing.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/wifi_connect_img/tel1.jpg\" class=\"tel\"/>\n" +
+                        "                <div class=\"content\"><b>2.1 - Productingizni wifiyiga telfon orqali ulanish.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/wifi_connect_img/tel2.jpg\" class=\"tel\"/>\n" +
+                        "                <div class=\"content\"><b>2.2 - Wifi tugmani bosib turish orqali wifiyingiz sozlamalariga kirasiz.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/wifi_connect_img/tel3.jpg\" class=\"tel\"/>\n" +
+                        "                <div class=\"content\"><b>2.3 - Bu yerdan wifiyingizni actual xolatga o'tkazasiz, ya'ni wifiyingizni\n" +
+                        "                    yoqasiz.</b>\n" +
+                        "                </div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/wifi_connect_img/tel4.jpg\" class=\"tel\"/>\n" +
+                        "                <div class=\"content\"><b>2.4 - Wifiyingizni yoqganingizdan so'ng bir qator wifi nomlari chiqadi.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/wifi_connect_img/tel5.jpg\" class=\"tel\"/>\n" +
+                        "                <div class=\"content\"><b>2.5 - Wifi nomlari orasidan "+ resp['data']['ap_login'] +"  nomli wifiga ulanasiz.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            \n" +
+                        "            <a class=\"left\" onclick=\"nextSlide(-1)\">Prev</a>\n" +
+                        "            <a class=\"right\" onclick=\"nextSlide(1)\">Next</a>\n" +
+                        "        </div>";
+                } else {
+                    containerModal.innerHTML = " <button class=\"close-modal" +
+                        "\" onclick=\"closeModal3()\">&times;</button>\n" +
+                        "        <div class=\"slidercontainer\">\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/3/gaz1.png\"/>\n" +
+                        "                <div class=\"content\"><b>1.1 - Gaz Datchikni to'kka ulang.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/3/gaz2.jpg\"/>\n" +
+                        "                <div class=\"content\"><b>1.2 - Gaz Datchikni ko'rsatilganidek bir marta bosing.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/3/gaz3.jpg\"/>\n" +
+                        "                <div class=\"content\"><b>1.3 - Gaz Datchik o'zidan wifi tarqatish uchun bosiladigan joy.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/3/gaz4.jpg\"/>\n" +
+                        "                <div class=\"content\"><b>1.4 - Gaz Datchikda ko'rsatilgan joyni <span style='color: purple; border:1px solid purple; padding: 3px; font-weight: bold'>10</span> sekund mobaynida bosib turing.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/wifi_connect_img/kom1.jpg\" class=\"kom\"/>\n" +
+                        "                <div class=\"content kom\"><b>2.1 - Productingizni wifiyiga kompyuter orqali ulanish.</b></div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/wifi_connect_img/kom2.jpg\" class=\"kom\"/>\n" +
+                        "                <div class=\"content kom\"><b>2.2 - Kompyuteringizni wifi tugmasini bir marta bosish orqali, wifi nomlarini\n" +
+                        "                    ko'rishingiz mumkin.</b>\n" +
+                        "                </div>\n" +
+                        "            </div>\n" +
+                        "\n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/wifi_connect_img/kom3.jpg\" class=\"kom\"/>\n" +
+                        "                <div class=\"content kom\"><b>2.3 - Bu yerdan <span style='color: #0c5460'>"+ resp['data']['ap_login'] +"</span> nomli wifiga ulanasiz.</b></div>\n" +
+                        "            </div>\n" +
+                        "            \n" +
+                        "            <div class=\"showSlide fade\">\n" +
+                        "                <img src=\"/static/img/wifi_connect_img/kom4.jpg\" class=\"kom\"/>\n" +
+                        "                <div class=\"content kom\"><b>2.3 - FidoElectronics... nomli wifiga ulangandan so'ng, kompyuteringizga Set (inetrnet) ulangan bo'lsa uzib qo'ying va 'Next' tugmasini bosing.</b></div>\n" +
+                        "            </div>\n" +
+                        "            <a class=\"left\" onclick=\"nextSlide(-1)\">Prev</a>\n" +
+                        "            <a class=\"right\" onclick=\"nextSlide(1)\">Next</a>\n" +
+                        "        </div>";
+                }
+
             }
+
+            const mmObj = window.matchMedia("(max-width: 1000px)");
+
+            configurationFunction(mmObj);
+
+            mmObj.addListener(configurationFunction);
+
         }
     }
+// media and kom uchun alohida js close
+
+})
+
+var slide_index = 1;
+
+function nextSlide(n) {
+    displaySlides(slide_index += n);
 }
 
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-        closeModalInformation();
-    }
-});
+function currentSlide(n) {
+    displaySlides(slide_index = n);
+}
 
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        OpenNewModal();
+function displaySlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("showSlide");
+    var aleft = document.querySelector('.left');
+
+    if (n >= slides.length) {
+        window.open("http://192.168.4.1", '_blank',
+            'toolbar=yes,scrollbars=yes,resizable=yes,top=center,left=center');
+        closeModal3();
     }
-})
+
+    if (n < 1) {
+        slide_index = slides.length;
+        aleft.style.pointerEvents = 'none';
+        aleft.style.color = 'red';
+        aleft.style.opacity = '.7';
+        aleft.style.border = '1px solid red';
+    }
+
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+        slides[slide_index - 1].style.display = "block";
+    }
+
+}
+
+// Подключите устройство к Интернету close
 
 
 // All time open
@@ -147,7 +266,7 @@ function addZero(e) {
 }
 
 const monthName = {
-    'Jan': '01', 'Feb': '02', 'Mart': '03',
+    'Jan': '01', 'Feb': '02', 'Mar': '03',
     'Apr': '04', 'May': '05', 'Jun': '06',
     'Jul': '07', 'Aug': '08', 'Sep': '09',
     'Oct': '10', 'Nov': '11', 'Dec': '12'
@@ -223,8 +342,8 @@ function sendData() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             let resp = JSON.parse(this.responseText);
-            console.log(resp);
-            for (let i=0; i < resp['data']['log_id'].length; i++) {
+
+            for (let i = 0; i < resp['data']['log_id'].length; i++) {
 
                 let tr = document.createElement('TR');
                 tr.setAttribute('id', 'tbody_tr');
@@ -476,7 +595,7 @@ function translateState(state, id) {
                 'state': 'Открыто'
             }
         }
-    }else if (id == 5){  // suv datchik
+    } else if (id == 5) {  // suv datchik
         if (state == "ON") {
             return {
                 'bg_Color': 'red',
@@ -489,7 +608,7 @@ function translateState(state, id) {
                 'state': 'Сухой'
             }
         }
-    }else if (id == 9){  // invertor
+    } else if (id == 9) {  // invertor
         if (state == "ON") {
             return {
                 'bg_Color': 'red',
@@ -502,7 +621,7 @@ function translateState(state, id) {
                 'state': 'Внешнее питание'
             }
         }
-    }  else if (id == 7){  // invertor
+    } else if (id == 7) {  // invertor
         if (state == "ON") {
             return {
                 'bg_Color': 'red',
@@ -795,7 +914,3 @@ if (id == 3) {
 // gazMeasurement function close
 
 }
-
-
-
-

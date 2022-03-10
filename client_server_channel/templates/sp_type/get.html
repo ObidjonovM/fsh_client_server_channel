@@ -4,6 +4,7 @@
 <title>Информация о виде запчасти</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/sp_type/sp_type_base.css">
 <link rel="stylesheet" href="/static/css/sp_type/get.css">
 
 {% endblock %}
@@ -11,54 +12,56 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
 
-    <div class="add-header">
-        <h2>Информация о виде запчасти</h2>
-    </div>
-
-    <div id="myForm" class="add-form">
-
-        <input type="hidden" id="sp_type_id" value="{{sp_type_info['data']['sp_type_id']}}">
-
-        <div class="form-control">
-            <label for="name">Название</label>
-            <input type="text" id="name" readonly
-                   value="{{sp_type_info['data']['name']}}"/>
-
-            <label for="brand">Марка</label>
-            <input type="text" id="brand" readonly
-                   value="{{sp_type_info['data']['brand']}}"/>
-
-            <label for="model">Модель</label>
-            <input type="text" id="model" readonly
-                   value="{{sp_type_info['data']['model']}}"/>
+        <div class="add-header">
+            <h3>Информация о виде запчасти</h3>
         </div>
 
-        <div class="form-control">
-            <label for="version">Версия</label>
-            <input type="text" id="version" readonly
-                   value="{{sp_type_info['data']['version']}}"/>
+        <div id="myForm" class="add-form">
 
-            <label for="desc">Описание</label>
-            <input type="text" id="desc" readonly
-                   value="{{sp_type_info['data']['description']}}"/>
+            <input type="hidden" id="sp_type_id" value="{{sp_type_info['data']['sp_type_id']}}">
+
+            <div class="form-control">
+                <label for="name">Название</label>
+                <input type="text" id="name" readonly
+                       value="{{sp_type_info['data']['name']}}"/>
+
+                <label for="brand">Марка</label>
+                <input type="text" id="brand" readonly
+                       value="{{sp_type_info['data']['brand']}}"/>
+
+                <label for="model">Модель</label>
+                <input type="text" id="model" readonly
+                       value="{{sp_type_info['data']['model']}}"/>
+            </div>
+
+            <div class="form-control">
+                <label for="version">Версия</label>
+                <input type="text" id="version" readonly
+                       value="{{sp_type_info['data']['version']}}"/>
+
+                <label for="desc">Описание</label>
+                <input type="text" id="desc" readonly
+                       value="{{sp_type_info['data']['description']}}"/>
+            </div>
+
+            <button onclick="updateSpType()" class="add-submit">
+                Изменить
+            </button>
+
+            <button onclick="deleteSpType()" class="add-submit2">
+                Удалить
+            </button>
+
+            <button onclick="otmenFunction()" class="add-submit3">
+                Назад
+            </button>
+
         </div>
 
-        <button onclick="updateSpType()" class="add-submit">
-            Изменить
-        </button>
-
-        <button onclick="deleteSpType()" class="add-submit2">
-            Удалить
-        </button>
-
-        <button onclick="otmenFunction()" class="add-submit3">
-            Назад
-        </button>
-
     </div>
-
 </div>
 
 <script src="/static/js/sp_type/get.js"></script>

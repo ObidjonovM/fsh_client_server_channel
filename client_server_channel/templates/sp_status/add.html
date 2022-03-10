@@ -4,6 +4,7 @@
 <title>Новая состояние запчасти</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/sp_status/sp_status_base.css">
 <link rel="stylesheet" href="/static/css/sp_status/add.css">
 
 
@@ -12,29 +13,30 @@
 {% block body %}
 {{super()}}
 
-<div class="container">
-    <div class="header">
-        <h2>Новая состояние запчасти</h2>
+<div class="container-crud">
+    <div class="container">
+        <div class="header">
+            <h3>Новая состояние запчасти</h3>
+        </div>
+        <form id="myForm" class="form">
+
+            <div class="form-control">
+                <label for="status">Название</label><span class="star">*</span>
+                <input type="text" name="status" id="status" required placeholder="Введите название..."/>
+            </div>
+
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <textarea type="text" name="desc" id="desc" placeholder="Введите описание..."></textarea>
+            </div>
+
+            <input type="submit" class="add-type-submit" value="Сохранить"/>
+
+            <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
+
+        </form>
     </div>
-    <form id="myForm" class="form">
-
-        <div class="form-control">
-            <label for="status">Название</label><span class="star">*</span>
-            <input type="text" name="status" id="status" required placeholder="Введите название..."/>
-        </div>
-
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <textarea type="text" name="desc" id="desc" placeholder="Введите описание..."></textarea>
-        </div>
-
-        <input type="submit" class="add-type-submit" value="Сохранить"/>
-
-        <input onclick="otmenFunction()" type="button" class="add-type-submit" value="Отмена"/>
-
-    </form>
 </div>
-
 
 <script src="/static/js/sp_status/add.js"></script>
 

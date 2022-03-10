@@ -19,7 +19,7 @@
 
 <div class="fixed">
     <a href="#">
-    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+        <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
     </a>
     <div class="viyti-get-my-products">
         <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
@@ -82,38 +82,26 @@
 
     <!--    configuration open-->
     <button class="show-modal">
-        <p>Конфигурации</p>
+        <p>Подключите устройство к Интернету</p>
     </button>
 
     <div id="containerModal" class="container modal hidden">
-        <button class="close-modal">&times;</button>
 
-        <div class="header">
-            <h2>Введите пароль</h2>
-        </div>
-
-        <div class="form">
-            <div class="form-control1">
-                <label for="forInfoPass">Пароль</label>
-                <input type="password" id="forInfoPass" class="password" placeholder="Введите пароль" required>
-                <input type="button" value="Подтвердить" onclick="OpenNewModal()" class="delete-product">
-            </div>
-        </div>
     </div>
     <div id="overlay" class="overlay hidden"></div>
     <!--   configuration close-->
 
     <!--    Информация о товаре open-->
-        <a href="{{url_for('clients.my_products.setup_info')}}" style="text-decoration: none;" class='all_information'>
-          <p>Инструкции по подключению</p>
-        </a>
+    <a href="{{url_for('clients.my_products.setup_info')}}" style="text-decoration: none; display: flex; justify-content: center; align-items: center;" class='all_information'>
+        <p>Инструкции по подключению</p>
+    </a>
     <!--    Информация о товаре close-->
 
 </section>
 <!--  Информация о товаре и Все время close -->
 
 <!--Удалить мой продукт modal description img open -->
-<section class="description-img-section" style="position:relative;" >
+<section class="description-img-section" style="position:relative;">
     <!--    img open -->
     <div class="onof-div sss">
         {% for i in range(my_product['data']['photo']|length)%}
@@ -122,28 +110,35 @@
             <div class="img-div">
                 <span>
                     <p style="font-size: 13px">{{my_product['data']['description'][i]}}</p>
-                    <span class="character12" id="character_id" onclick="characterOtmen(this)" ser_num="{{my_product['data']['serial_num'][i]}}"></span>
+                    <span class="character12" id="character_id" onclick="characterOtmen(this)"
+                          ser_num="{{my_product['data']['serial_num'][i]}}"></span>
                 </span>
 
-                <img src="{{my_product['data']['photo'][i]}}" class="socket-img" id="{{my_product['data']['product_id'][i]}}"
-                     ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}" device_type="{{my_product['data']['device_type'][i]}}"
+                <img src="{{my_product['data']['photo'][i]}}" class="socket-img"
+                     id="{{my_product['data']['product_id'][i]}}"
+                     ser_num="{{my_product['data']['serial_num'][i]}}" prefix="{{my_product['data']['prefix'][i]}}"
+                     device_type="{{my_product['data']['device_type'][i]}}"
                      alt="img">
             </div>
 
             {% if my_product['data']['product_id'][i] == 1 or my_product['data']['product_id'][i] == 2 %}
             <div class="input-on-off">
-                <input type="button" action="ON" value="Включить" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="on"
+                <input type="button" action="ON" value="Включить" onclick="actionCommand(this)"
+                       prefix="{{my_product['data']['prefix'][i]}}" class="on"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
 
-                <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="off"
+                <input type="button" action="OFF" value="Выключить" onclick="actionCommand(this)"
+                       prefix="{{my_product['data']['prefix'][i]}}" class="off"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
             </div>
             {% elif my_product['data']['product_id'][i] == 8 %}
             <div class="input-on-off">
-                <input type="button" action="ON" value="Закрыть" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="on"
+                <input type="button" action="ON" value="Закрыть" onclick="actionCommand(this)"
+                       prefix="{{my_product['data']['prefix'][i]}}" class="on"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
 
-                <input type="button" action="OFF" value="Открыть" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="off"
+                <input type="button" action="OFF" value="Открыть" onclick="actionCommand(this)"
+                       prefix="{{my_product['data']['prefix'][i]}}" class="off"
                        ser_num="{{my_product['data']['serial_num'][i]}}">
             </div>
             {% elif my_product['data']['product_id'][i] == 10 %}
@@ -159,8 +154,10 @@
             </div>
             {% elif my_product['data']['product_id'][i] == 11 %}
             <div class="input-on-off">
-                <button type="button" style="width: 100%; margin-left: 0" action="ON" onclick="actionCommand(this)" prefix="{{my_product['data']['prefix'][i]}}" class="on tuvak"
-                        ser_num="{{my_product['data']['serial_num'][i]}}">Налить воду</button>
+                <button type="button" style="width: 100%; margin-left: 0" action="ON" onclick="actionCommand(this)"
+                        prefix="{{my_product['data']['prefix'][i]}}" class="on tuvak"
+                        ser_num="{{my_product['data']['serial_num'][i]}}">Налить воду
+                </button>
             </div>
             {%else%}
             <div class="input-on-off"></div>
@@ -196,7 +193,7 @@
     <!--Удалить мой продукт modal close description-->
 
     <!--Дата начала Дата окончания open-->
-    <div class="delete-product-div1 sss" >
+    <div class="delete-product-div1 sss">
         <form action="{{url_for('clients.my_products.my_product.get_logs', ser_num=my_product['data']['serial_num'][0])}}"
               class="delete-product-form" id="data_form" method="post"
               ser_num="{{my_product['data']['serial_num'][0]}}">
@@ -241,7 +238,8 @@
                 <input type="date" id="end_date1" required>
             </div>
             <div class="a">
-                <input type="submit" id="water_measurement" value="Получить" prefix="{{my_product['data']['prefix'][i]}}"
+                <input type="submit" id="water_measurement" value="Получить"
+                       prefix="{{my_product['data']['prefix'][i]}}"
                        class="add-type-submit4" ser_num="{{my_product['data']['serial_num'][i]}}">
             </div>
         </form>
@@ -249,7 +247,7 @@
     {% endif %}
 
     {% if my_product['data']['product_id'][i] == 3 %}
-    <div class="delete-product-div1 sss" >
+    <div class="delete-product-div1 sss">
         <form class="delete-product-form" id="data_form_gaz" ser_num="{{my_product['data']['serial_num'][0]}}">
             <div class="description-header">
                 <h3>Список измеряемых параметров</h3>
@@ -377,10 +375,6 @@
     <div class="overlay1 hidden1"></div>
 </section>
 <!--Удалить мой продукт modal close-->
-
-
-
-
 
 
 {% endblock %}

@@ -4,6 +4,7 @@
 <title>Новый заказ запчастей</title>
 {{super()}}
 
+<link rel="stylesheet" href="/static/css/sp_order/sp_order_base.css">
 <link rel="stylesheet" href="/static/css/sp_order/add.css">
 
 
@@ -13,83 +14,88 @@
 {{super()}}
 
 
-<div class="add-container">
-    <div class="add-header">
-        <h2>Новый заказ запчастей</h2>
+<div class="container-crud">
+    <div class="add-container">
+        <div class="add-header">
+            <h3>Новый заказ запчастей</h3>
+        </div>
+
+        <form id="myForm" class="add-form">
+
+            <div class="form-control">
+                <label for="issued_order_id">Выданный ID заказа</label><span class="star">*</span>
+                <input type="text" name="issued_order_id" id="issued_order_id" required
+                       placeholder="Введите переданный ID заказа..."/>
+
+                <label for="total_cost">Общая стоимость</label><span class="star">*</span>
+                <input type="number" name="total_cost" id="total_cost" required
+                       placeholder="Введите Общая стоимость..."/>
+
+                <label for="curr_id">Валюта</label><span class="star">*</span>
+                <select name="curr_id" id="curr_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(currencies_ids['data']['curr_id']|length)%}
+                    <option value="{{currencies_ids['data']['curr_id'][i]}}">
+                        {{currencies_ids['data']['currency'][i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="form-control">
+                <label for="supplier_id">Поставщик</label><span class="star">*</span>
+                <select name="supplier_id" id="supplier_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(suppliers_ids['data']['supplier_id']|length)%}
+                    <option value="{{suppliers_ids['data']['supplier_id'][i]}}">
+                        {{suppliers_ids['data']['name'][i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+
+                <label for="exp_dispatch_date">Ожидаемая дата отправки</label><span class="star">*</span>
+                <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" required
+                       placeholder="Введите описание..."/>
+
+                <label for="order_status_id">Статус заказа</label><span class="star">*</span>
+                <select name="order_status_id" id="order_status_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(order_statuses_ids['data']['status_id']|length)%}
+                    <option value="{{order_statuses_ids['data']['status_id'][i]}}">
+                        {{order_statuses_ids['data']['name'][i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+            </div>
+
+            <div class="form-control">
+                <label for="shipment_id">ID доставки заказа</label><span class="star">*</span>
+                <input type="text" id="shipment_id" name="shipment_id" required
+                       placeholder="Введите ID доставки заказа...">
+
+                <label for="order_date">Дата заказа</label><span class="star">*</span>
+                <input type="date" name="order_date" id="order_date" required placeholder="Введите описание..."/>
+
+                <label for="ord_emp_id">Ответственный сотрудник</label><span class="star">*</span>
+                <select name="ord_emp_id" id="ord_emp_id" required>
+                    <option hidden value="" selected disabled>--Выбрать--</option>
+                    {% for i in range(ord_emp_id['data']['emp_id']|length)%}
+                    <option value="{{ord_emp_id['data']['emp_id'][i]}}">
+                        {{ord_emp_id['data']['last_name'][i]}}
+                        {{ord_emp_id['data']['first_name'][i]}}
+                        {{ord_emp_id['data']['middle_name'][i]}}
+                    </option>
+                    {%endfor%}
+                </select>
+            </div>
+
+
+            <input type="submit" class="add-submit" value="Сохранить"/>
+
+            <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена"/>
+
+        </form>
     </div>
-
-    <form id="myForm" class="add-form">
-
-        <div class="form-control">
-            <label for="issued_order_id">Выданный ID заказа</label><span class="star">*</span>
-            <input type="text" name="issued_order_id" id="issued_order_id" required placeholder="Введите переданный ID заказа..." />
-
-            <label for="total_cost">Общая стоимость</label><span class="star">*</span>
-            <input type="number" name="total_cost" id="total_cost" required placeholder="Введите Общая стоимость..." />
-
-            <label for="curr_id">Валюта</label><span class="star">*</span>
-            <select name="curr_id" id="curr_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(currencies_ids['data']['curr_id']|length)%}
-                <option value="{{currencies_ids['data']['curr_id'][i]}}">
-                    {{currencies_ids['data']['currency'][i]}}
-                </option>
-                {%endfor%}
-            </select>
-        </div>
-
-        <div class="form-control">
-            <label for="supplier_id">Поставщик</label><span class="star">*</span>
-            <select name="supplier_id" id="supplier_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(suppliers_ids['data']['supplier_id']|length)%}
-                <option value="{{suppliers_ids['data']['supplier_id'][i]}}">
-                    {{suppliers_ids['data']['name'][i]}}
-                </option>
-                {%endfor%}
-            </select>
-
-            <label for="exp_dispatch_date">Ожидаемая дата отправки</label><span class="star">*</span>
-            <input type="date" name="exp_dispatch_date" id="exp_dispatch_date" required
-                placeholder="Введите описание..." />
-
-            <label for="order_status_id">Статус заказа</label><span class="star">*</span>
-            <select name="order_status_id" id="order_status_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(order_statuses_ids['data']['status_id']|length)%}
-                <option value="{{order_statuses_ids['data']['status_id'][i]}}">
-                    {{order_statuses_ids['data']['name'][i]}}
-                </option>
-                {%endfor%}
-            </select>
-        </div>
-
-        <div class="form-control">
-            <label for="shipment_id">ID доставки заказа</label><span class="star">*</span>
-            <input type="text" id="shipment_id" name="shipment_id" required placeholder="Введите ID доставки заказа...">
-
-            <label for="order_date">Дата заказа</label><span class="star">*</span>
-            <input type="date" name="order_date" id="order_date" required placeholder="Введите описание..." />
-
-            <label for="ord_emp_id">Ответственный сотрудник</label><span class="star">*</span>
-            <select name="ord_emp_id" id="ord_emp_id" required>
-                <option hidden value="" selected disabled>--Выбрать--</option>
-                {% for i in range(ord_emp_id['data']['emp_id']|length)%}
-                <option value="{{ord_emp_id['data']['emp_id'][i]}}">
-                    {{ord_emp_id['data']['last_name'][i]}}
-                    {{ord_emp_id['data']['first_name'][i]}}
-                    {{ord_emp_id['data']['middle_name'][i]}}
-                </option>
-                {%endfor%}
-            </select>
-        </div>
-
-
-        <input type="submit" class="add-submit" value="Сохранить" />
-
-        <input onclick="otmenFunction()" type="button" class="add-submit2" value="Отмена" />
-
-    </form>
 </div>
 
 

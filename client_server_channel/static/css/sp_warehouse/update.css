@@ -1,22 +1,25 @@
+.container-crud {
+    position: relative;
+}
+
 .add-container {
-    position: absolute;
+    position: fixed;
     z-index: 999;
-    top: 54%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 20%);
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
     width: 400px;
-    max-width: 100%;
 }
 
 .add-header {
-    border-bottom: 1px solid #232F3E;
-    background-color:#374a62;
+    border-bottom: 1px solid var(--button-backColor);
+    background-color: var(--button-backColor);
     padding: 15px 40px;
     color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .add-header h2 {
@@ -47,21 +50,16 @@
 }
 
 .add-form .add-submit, .add-submit2 {
-    background-color: #374a62;
-    border: 2px solid #374a62;
+    background-color: var(--button-backColor);
+    border: 2px solid var(--button-backColor);
     border-radius: 4px;
     color: #d5e2ff;
     display: block;
     font-family: inherit;
-    font-size: 16px;
+    font-size: var(--font-size);
     padding: 10px;
     margin-top: 20px;
     width: 100%;
     cursor: pointer;
-}
-
-.add-submit:hover, .add-submit2:hover, .add-submit3:hover {
-    background-color: #232F3E;
-    transition: all .3s;
 }
 

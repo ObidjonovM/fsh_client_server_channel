@@ -11,36 +11,40 @@
 {% block body %}
 {{super()}}
 
-<div class="add-container">
+<div class="container-crud">
+    <div class="add-container">
 
-    <div class="add-header">
-        <h2>Изменить данные вида запчасти</h2>
-    </div>
-
-    <form class="add-form"
-          action="{{ url_for('sp_type.update', sp_type_id=sp_type_info['data']['sp_type_id']) }}"
-          method="POST">
-
-        <div class="form-control">
-            <label for="desc">Описание</label>
-            <input type="text" name="desc" id="desc"
-                   value="{{sp_type_info['data']['description']}}"/>
+        <div class="add-header">
+            <h3>Изменить данные вида запчасти</h3>
         </div>
 
+        <form class="add-form"
+              action="{{ url_for('sp_type.update', sp_type_id=sp_type_info['data']['sp_type_id']) }}"
+              method="POST">
 
-        <input type="submit" class="add-submit" value="Сохранить"/>
+            <div class="form-control">
+                <label for="desc">Описание</label>
+                <input type="text" name="desc" id="desc"
+                       value="{{sp_type_info['data']['description']}}"/>
+            </div>
 
-        <button type="button" onclick="otmenFunction()"
-                class="add-submit2" value="Отмена">
-            Отмена
-        </button>
 
-    </form>
+            <input type="submit" class="add-submit" value="Сохранить"/>
 
+            <button type="button" onclick="otmenFunction()"
+                    class="add-submit2" value="Отмена">
+                Отмена
+            </button>
+
+        </form>
+
+    </div>
 </div>
+
 
 <script src="/static/js/sp_type/update.js"></script>
 
 {% endblock %}
+
 
 
