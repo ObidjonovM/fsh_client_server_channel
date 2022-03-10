@@ -92,20 +92,10 @@ def my_product_info(ser_num):
 		return redirect(url_for('clients.login'))
 
 	if request.method == 'POST':
-		result = ClientC.check_password(
-					session['client']['id'],
-					request.json['password']
-		)
-	if (result):
 		return ProductC.my_product_info(
             		session['client']['id'],
                     ser_num
             	)
-
-	return {
-        'success' : False,
-        'data' : {}
-    }
 
 
 @my_product.route('/action', methods=['POST'])
