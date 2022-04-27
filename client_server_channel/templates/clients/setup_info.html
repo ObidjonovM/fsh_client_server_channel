@@ -18,9 +18,16 @@
 {% block body %}
 
 <div class="fixed">
-    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+    <div>
+        <a href="{{url_for('core.index')}}">
+            <button type="button" class="glavni-stranisa"><span style="color: #FF7F27;">Fido</span><p><span style="color: #6771ff;">Electronics</span></p></button>
+        </a>
+    </div>
+
     <div class="viyti-get-my-products">
-        <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
+        <a href="{{url_for('clients.logout')}}">
+            <button type="button" class="glavni-stranisa viyti">Выйти</button>
+        </a>
         <button type="button" onclick="myProducts()" class="get-my-products">Мои продукты</button>
     </div>
 </div>

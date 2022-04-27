@@ -144,7 +144,7 @@ window.addEventListener('load', function () {
                         "\n" +
                         "            <div class=\"showSlide fade\">\n" +
                         "                <img src=\"/static/img/wifi_connect_img/tel5.jpg\" class=\"tel\"/>\n" +
-                        "                <div class=\"content\"><b>2.5 - Wifi nomlari orasidan "+ resp['data']['ap_login'] +"  nomli wifiga ulanasiz.</b></div>\n" +
+                        "                <div class=\"content\"><b>2.5 - Wifi nomlari orasidan " + resp['data']['ap_login'] + "  nomli wifiga ulanasiz.</b></div>\n" +
                         "            </div>\n" +
                         "\n" +
                         "            \n" +
@@ -189,7 +189,7 @@ window.addEventListener('load', function () {
                         "\n" +
                         "            <div class=\"showSlide fade\">\n" +
                         "                <img src=\"/static/img/wifi_connect_img/kom3.jpg\" class=\"kom\"/>\n" +
-                        "                <div class=\"content kom\"><b>2.3 - Bu yerdan <span style='color: #0c5460'>"+ resp['data']['ap_login'] +"</span> nomli wifiga ulanasiz.</b></div>\n" +
+                        "                <div class=\"content kom\"><b>2.3 - Bu yerdan <span style='color: #0c5460'>" + resp['data']['ap_login'] + "</span> nomli wifiga ulanasiz.</b></div>\n" +
                         "            </div>\n" +
                         "            \n" +
                         "            <div class=\"showSlide fade\">\n" +
@@ -213,7 +213,7 @@ window.addEventListener('load', function () {
     }
 // media and kom uchun alohida js close
 
-})
+});
 
 var slide_index = 1;
 
@@ -393,7 +393,6 @@ function sendData() {
         }
     }
 
-
 }
 
 const form = document.getElementById("data_form");
@@ -418,13 +417,13 @@ const close_modal_flower = document.querySelector('.close-modal5');
 const openFlower = function () {
     modal_flower.classList.remove('hidden4');
     overlay_flower.classList.remove('hidden4');
-}
+};
 
 const closeModalFlower = function () {
     modal_flower.classList.add('hidden4');
     overlay_flower.classList.add('hidden4');
     location.reload();
-}
+};
 
 const open3 = function () {
     modal3.classList.remove('hidden3');
@@ -485,7 +484,7 @@ function characterOtmen(e) {
     let json = {
         'ser_num': serNum,
         'state_time': state_time
-    }
+    };
 
     xhttp.open('POST', '/clients/my_products/update_prev_state', true);
     xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -518,7 +517,7 @@ window.addEventListener('load', function () {
         if (typeof (w) == "undefined") {
             w = new Worker("/static/js/clients/s_worker.js");
         }
-        w.postMessage(json)
+        w.postMessage(json);
         w.onmessage = function (ev) {
             for (let i = 0; i < parent_curr_state.length; i++) {
                 characters[i].setAttribute('state_time', ev.data['state_change_time']);
@@ -532,6 +531,7 @@ window.addEventListener('load', function () {
                 }
 
                 if (id == 10) {
+
                     let state_left = translateState(ev.data['state_left'], id);
                     let state_center = translateState(ev.data['state_center'], id);
                     let state_right = translateState(ev.data['state_right'], id);
@@ -564,7 +564,7 @@ window.addEventListener('load', function () {
                         parent_curr_state[i].style.backgroundColor = 'transparent';
                     } else if (ev.data['action_taken'] == "YES") {
                         parent_curr_state[i].innerHTML = getFullTime(ev.data['action_time']);
-                        parent_curr_state[i].style.backgroundColor = 'green';
+                        parent_curr_state[i].style.backgroundColor = '#002aaa';
                         parent_curr_state[i].style.color = 'white';
                     }
 
@@ -585,7 +585,7 @@ function translateState(state, id) {
     if (id == 4 || id == 8) {
         if (state == "ON") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Закрыто'
             }
         }
@@ -595,7 +595,13 @@ function translateState(state, id) {
                 'state': 'Открыто'
             }
         }
-    } else if (id == 5) {  // suv datchik
+        if (state == "-") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
+            }
+        }
+    }else if (id == 5){  // suv datchik
         if (state == "ON") {
             return {
                 'bg_Color': 'red',
@@ -604,11 +610,17 @@ function translateState(state, id) {
         }
         if (state == "OFF") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Сухой'
             }
         }
-    } else if (id == 9) {  // invertor
+        if (state == "-") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
+            }
+        }
+    }else if (id == 9){  // invertor
         if (state == "ON") {
             return {
                 'bg_Color': 'red',
@@ -617,11 +629,17 @@ function translateState(state, id) {
         }
         if (state == "OFF") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Внешнее питание'
             }
         }
-    } else if (id == 7) {  // invertor
+        if (state == "-") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
+            }
+        }
+    }  else if (id == 7){  // pajarni datchik
         if (state == "ON") {
             return {
                 'bg_Color': 'red',
@@ -630,14 +648,20 @@ function translateState(state, id) {
         }
         if (state == "OFF") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Дым не обнаружен'
             }
         }
-    } else {
+        if (state == "-") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
+            }
+        }
+    } else  {
         if (state == "ON") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Включен'
             }
         }
@@ -645,6 +669,12 @@ function translateState(state, id) {
             return {
                 'bg_Color': 'red',
                 'state': 'Выключен'
+            }
+        }
+        if (state == "-") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
             }
         }
     }
@@ -667,12 +697,10 @@ function reverseState(state) {
     }
 }
 
-
 //get my products open
 function myProducts() {
     window.open('/clients/my_products', '_self');
 }
-
 //get my products close
 
 function changeInput1() {
@@ -721,7 +749,7 @@ window.addEventListener('load', function () {
         };
     }
 
-})
+});
 //flower close
 
 // gaz open
@@ -751,9 +779,8 @@ window.addEventListener('load', function () {
             }
         };
     }
-})
+});
 // gaz close
-
 
 //waterMeasurement function open
 if (id == 11) {
@@ -769,7 +796,7 @@ if (id == 11) {
             'prefix': prefix,
             'start_date': start_date1 + 'T00:00',
             'end_date': end_date1 + 'T23:59'
-        }
+        };
 
         xhttp.open("Post", "/clients/my_products/my_product/get_measurements/" + ser_num);
         xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -823,7 +850,6 @@ if (id == 11) {
     })
 }
 //waterMeasurement function close
-
 
 if (id == 3) {
 // gazMeasurement function open

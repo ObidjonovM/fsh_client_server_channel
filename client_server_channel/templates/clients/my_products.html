@@ -19,10 +19,17 @@
 
 {% block body %}
 <div class="fixed">
-    <a href="#">
-        <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
-    </a>
-    <button type="button" onclick="Logout()" class="glavni-stranisa viyti">Выйти</button>
+    <div>
+        <a href="{{url_for('core.index')}}">
+            <button type="button" class="glavni-stranisa"><span style="color: #FF7F27;">Fido</span>
+                <p><span style="color: #6771ff;">Electronics</span></p></button>
+        </a>
+    </div>
+    <div>
+        <a href="{{url_for('clients.logout')}}">
+            <button type="button" class="glavni-stranisa viyti">Выйти</button>
+        </a>
+    </div>
 </div>
 <div class="full-container">
     <div class="container">
@@ -84,7 +91,8 @@
                         <img src="{{my_products['data']['photo'][i]}}" class="my-products-img"
                              ser_num="{{my_products['data']['serial_num'][i]}}"
                              id="{{my_products['data']['product_id'][i]}}"
-                             prefix="{{my_products['data']['prefix'][i]}}" device_type="{{my_products['data']['device_type'][i]}}" onclick="productImg(this)" >
+                             prefix="{{my_products['data']['prefix'][i]}}"
+                             device_type="{{my_products['data']['device_type'][i]}}" onclick="productImg(this)">
                         <a onclick="goSocket(this)">Подробно</a>
                     </div>
 
@@ -118,7 +126,8 @@
                     {% elif my_products['data']['product_id'][i] == 11 %}
                     <div class="input-on-off">
                         <button type="button" style="width: 100%;" onclick="actionCommand(this)" class="on"
-                                ser_num="{{my_products['data']['serial_num'][i]}}" action="ON">Налить воду</button>
+                                ser_num="{{my_products['data']['serial_num'][i]}}" action="ON">Налить воду
+                        </button>
                     </div>
                     {%else%}
                     <div class="input-on-off"></div>

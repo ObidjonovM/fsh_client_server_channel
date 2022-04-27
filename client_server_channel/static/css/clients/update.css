@@ -63,9 +63,8 @@
 
 .add-container {
     position: absolute;
-    top: 52%;
     left: 50%;
-    transform: translate(-50%, 30%);
+    transform: translate(-50%, 10%);
     width: 900px;
     height: 550px;
     background-color: #fff;

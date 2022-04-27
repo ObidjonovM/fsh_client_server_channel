@@ -14,13 +14,19 @@
 
 <body class="background-color" id="src">
 
-<header class="fixed">
+<div class="fixed">
     <div>
-        <a href="#">
-            <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+        <a href="{{url_for('core.index')}}">
+            <button type="button" class="glavni-stranisa"><span style="color: #FF7F27;">Fido</span>
+                <p><span style="color: #6771ff;">Electronics</span></p></button>
         </a>
     </div>
+
     <div class="hi-person-div">
+        <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">
+            Добавить продукт
+        </button>
+
         {%if first_name%}
         <button type="button" class="hi-person" id="hi-person">
             <span>Привет, {{first_name}}</span>
@@ -28,50 +34,57 @@
 
             <div class="account-products" id="account-products">
                 <ul>
-                    <li><a onclick="Account()">Аккаунт</a></li>
-                    <li><a onclick="Products()">Мои Продукты</a></li>
+                    <li><a href="{{url_for('clients.account')}}">Аккаунт</a></li>
+                    <li><a href="{{url_for('clients.my_products.get_my_products')}}">Мои Продукты</a></li>
+                    <li><a href="{{url_for('clients.logout')}}" class="for-media-logout">Выйти</a></li>
                 </ul>
             </div>
         </button>
         {%endif%}
-        <button type="button" id="add_product" onclick="addProduct()" class="show-modal add-product">Добавить продукт
-        </button>
+
         {%if first_name %}
-        <a href="#" onclick="Logout(this)">
+        <a href="{{url_for('clients.logout')}}">
             <button type="button" class="glavni-stranisa logout">Выйти</button>
         </a>
         {%else%}
-        <a href="#" onclick="SignIn()">
+        <a href="{{url_for('clients.login')}}">
             <button class="sign-in" id="sign-in">Войти</button>
         </a>
         {%endif%}
     </div>
-</header>
+</div>
 
-<section>
+<div class="our-products">
+    <h1><span>Наши</span> Продукты</h1>
+</div>
 
+<section class="main-page">
     <div class="all-products">
         {% for i in range(get_products['data']['name']|length)%}
-        <div class="img-div" onclick="openProductInfo(this)">
+        <div class="img-div">
             <div class="description-div">
                 <p class="description">{{get_products['data']['name'][i]}}</p>
             </div>
-            <div class="index-img">
-            <img src="{{get_products['data']['photo'][i]}}" alt="image" id="{{get_products['data']['product_id'][i]}}"
-                 onclick="getInfo(this)">
-            </div>
+
+            <a href="{{url_for('products.product_info.product_cat', cat_id=get_products['data']['product_id'][i])}}">
+                <div class="index-img">
+                    <img src="{{get_products['data']['photo'][i]}}" alt="image"
+                         id="{{get_products['data']['product_id'][i]}}" onclick="getInfo(this)">
+                </div>
+            </a>
+
             <div class="href-detail">
-                <a href="#" onclick="getInfoTwo(this)">Подробно</a>
+                <a href="{{url_for('products.product_info.product_cat', cat_id=get_products['data']['product_id'][i])}}">
+                    Подробно
+                </a>
             </div>
         </div>
         {%endfor%}
     </div>
-
 </section>
 
 <script src="/static/js/core/index.js"></script>
 <script src="/static/js/base.js"></script>
-
 </body>
 
 </html>

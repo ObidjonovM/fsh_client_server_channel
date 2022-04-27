@@ -1,21 +1,42 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block head %}
-<title>Изменить данные клиента</title>
-{{super()}}
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Изменить данные клиента</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/clients/update.css">
 
-<link rel="stylesheet" href="/static/css/clients/update.css">
+    {% endblock %}
+</head>
 
-{% endblock %}
-
+<body class="background-color">
 {% block body %}
-{{super()}}
+
+<div class="fixed">
+    <div>
+        <a href="{{url_for('core.index')}}">
+            <button type="button" class="glavni-stranisa"><span style="color: #FF7F27;">Fido</span>
+                <p><span style="color: #6771ff;">Electronics</span></p></button>
+        </a>
+    </div>
+    <div>
+        <a href="{{url_for('clients.logout')}}">
+            <button type="button" class="glavni-stranisa viyti">Выйти</button>
+        </a>
+    </div>
+</div>
+<br>
 
 <div style="position:relative;">
     <div class="add-container">
 
         <div class="add-header">
-            <h2>Изменить данные клиента</h2>
+            <h3>Изменить данные клиента</h3>
         </div>
 
         <form action="{{ url_for('clients.update', client_id=client_info['data']['client_id']) }}" method="POST"
@@ -84,7 +105,11 @@
     </div>
 </div>
 
-
-<script src="/static/js/clients/update.js"></script>
-
 {% endblock %}
+
+<script src="/static/js/base.js"></script>
+<script src="/static/js/clients/update.js"></script>
+</body>
+
+</html>
+

@@ -169,7 +169,7 @@ function addZero(e) {
     return result
 }
 const monthName = {
-    'Jan': '01', 'Feb': '02', 'Mart': '03',
+    'Jan': '01', 'Feb': '02', 'Mar': '03',
     'Apr': '04', 'May': '05', 'Jun': '06',
     'Jul': '07', 'Aug': '08', 'Sep': '09',
     'Oct': '10', 'Nov': '11', 'Dec': '12'
@@ -255,7 +255,7 @@ window.addEventListener('load', function () {
                                     parent_curr_state[i].style.backgroundColor = 'transparent';
                                 } else if (sub_val['action_taken'] == "YES"){
                                     parent_curr_state[i].innerHTML = getFullTime(sub_val['action_time']);
-                                    parent_curr_state[i].style.backgroundColor = 'green';
+                                    parent_curr_state[i].style.backgroundColor = '#002aaa';
                                     parent_curr_state[i].style.color = 'white';
                                 }
 
@@ -288,7 +288,7 @@ function translateState(state, id) {
     if (id == 4 || id == 8) {
         if (state == "ON") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Закрыто'
             }
         }
@@ -298,13 +298,13 @@ function translateState(state, id) {
                 'state': 'Открыто'
             }
         }
-        if (state != "ON" && state != "OFF") {
+        if (state == "-") {
             return {
                 'bg_Color': 'transparent',
                 'state': ''
             }
         }
-    } else if (id == 5){  // suv datchik
+    }else if (id == 5){  // suv datchik
         if (state == "ON") {
             return {
                 'bg_Color': 'red',
@@ -313,8 +313,14 @@ function translateState(state, id) {
         }
         if (state == "OFF") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Сухой'
+            }
+        }
+        if (state == "-") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
             }
         }
     }else if (id == 9){  // invertor
@@ -326,11 +332,17 @@ function translateState(state, id) {
         }
         if (state == "OFF") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Внешнее питание'
             }
         }
-    } else if (id == 7){  // invertor
+        if (state == "-") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
+            }
+        }
+    }  else if (id == 7){  // pajarni datchik
         if (state == "ON") {
             return {
                 'bg_Color': 'red',
@@ -339,14 +351,20 @@ function translateState(state, id) {
         }
         if (state == "OFF") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Дым не обнаружен'
             }
         }
-    } else {
+        if (state == "-") {
+            return {
+                'bg_Color': 'transparent',
+                'state': ''
+            }
+        }
+    } else  {
         if (state == "ON") {
             return {
-                'bg_Color': 'green',
+                'bg_Color': '#002aaa',
                 'state': 'Включен'
             }
         }
@@ -356,7 +374,7 @@ function translateState(state, id) {
                 'state': 'Выключен'
             }
         }
-        if (state != "ON" && state != "OFF") {
+        if (state == "-") {
             return {
                 'bg_Color': 'transparent',
                 'state': ''

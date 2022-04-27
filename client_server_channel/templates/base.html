@@ -19,8 +19,14 @@
 
 
 <div class="fixed">
-    <button type="button" onclick="glavniyStranisa(this)" class="glavni-stranisa">Fido<p>Electronics</p></button>
-    <button type="button" onclick="Viyti()" class="glavni-stranisa viyti">Выйти</button>
+    <div>
+        <a href="{{url_for('core.index')}}">
+            <button type="button" class="glavni-stranisa"><span style="color: #FF7F27;">Fido</span><p><span style="color: #6771ff;">Electronics</span></p></button>
+        </a>
+    </div>
+    <a href="{{url_for('employees.logout')}}">
+        <button type="button" class="glavni-stranisa viyti">Выйти</button>
+    </a>
 </div>
 
 {% endblock %}

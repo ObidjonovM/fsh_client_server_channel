@@ -335,6 +335,10 @@ section {
     overflow: scroll;
 }
 
+.table-date thead {
+    top: 0;
+}
+
 #thead_tr th, #thead_tr1 th, #thead_tr2 th, #tbody_tr .state_time_on_of {
     width: 30%;
     padding: 12px 15px;

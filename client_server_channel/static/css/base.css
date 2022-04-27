@@ -16,18 +16,42 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+.our-products {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.our-products h1 {
+    text-align: center;
+    color: #3F48CC;
+}
+
+.our-products span {
+    color: #FF7F27;
+}
+
 .fixed {
     width: 100%;
     height: 50px;
     background-color: var(--button-hover-bacColor);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: .1s ease-in-out;
+}
+
+.fixed a {
+    padding: 0;
 }
 
 .glavni-stranisa, .viyti, .sign-in, .add-product, .get-my-products {
     width: 120px;
     height: 43px;
-    margin:3px;
+    margin:3px 3px;
     background-color: var(--button-hover-bacColor);
     color: white;
     border: none;
@@ -35,6 +59,7 @@
     cursor: pointer;
     font-weight: bolder;
     font-size: .9rem;
+    display: block;
 }
 
 .glavni-stranisa:hover, .viyti:hover, .sign-in:hover, .add-product:hover, .get-my-products:hover {
@@ -68,11 +93,13 @@ a{
     margin-top: 1rem;
 }
 
+.add-button a, button {
+    margin: .3rem;
+}
+
 .back-button, .add-button button {
-    display: inline-block;
-    width: 200px;
-    height: 45px;
-    line-height: 45px;
+    width: 170px;
+    height: 40px;
     background-color: var(--button-backColor);
     text-decoration: none;
     border-radius: 5px;
@@ -82,11 +109,14 @@ a{
     font-size: var(--font-size);
     transition: all 0.3s ease-out;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-all {
     text-align: center;
-    margin-top: 2%;
+    margin-top: 0.5rem;
 }
 
 .back-li {
@@ -123,21 +153,68 @@ a{
     width: 160px;
 }
 
-@media screen and (max-width: 640px){
+.for-media-logout {
+    display: none!important;
+}
+
+@media only screen and (max-width: 500px) {
+
+    .glavni-stranisa, .viyti, .sign-in, .add-product, .get-my-products {
+        font-size: .8rem;
+        width: auto;
+    }
+
+    .main-page .all-products {
+        margin: 2rem 3rem!important;
+    }
+
+    .account-products {
+        right: 0.02rem!important;
+    }
+
+    .add-product {
+        margin-right: 5px;
+        padding: 0 0.4rem;
+    }
+
+    .account-products ul {
+        width: 160px;
+    }
+}
+
+@media only screen and (max-width: 640px){
     .sign-in {
         font-size: var(--font-size);
         width: 88px;
-        margin-right: -6%;
     }
     .glavni-stranisa, .viyti{
         width: 88px;
         font-size: .8rem;
         border: 1px solid white;
     }
+
+    .logout {
+        display: none;
+    }
+
+    .for-media-logout {
+        display: block!important;
+    }
+
     .fixed {
         width: 100%;
     }
+
+    .glavni-stranisa, .viyti, .sign-in, .add-product, .get-my-products {
+        border: 1px solid #c7c7c7;
+    }
+
+    .account-products {
+        right: 0.02rem!important;
+    }
 }
+
+
 
 .hidden {
     display: none;
@@ -145,6 +222,41 @@ a{
 
 textarea {
     resize: none;
+}
+
+.add-button {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    margin-top: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.add-button div {
+    margin: 5px;
+}
+
+.add-button.sticky {
+    width: 60%;
+    margin: 0 auto;
+    color: white;
+    padding: 0 0;
+}
+
+.add-button.sticky #addClick {
+    background: transparent;
+    border: 1px solid white;
+}
+
+.add-button.sticky .back-button {
+    background: transparent;
+    border: 1px solid white;
 }
 
 
@@ -160,6 +272,17 @@ textarea {
     width: 100%;
     border-collapse: collapse;
     background-color: #FFFFFF;
+}
+
+thead {
+    transition: .3s ease-in;
+    position: sticky;
+    top: 3.13rem;
+    z-index: 1100;
+}
+
+thead.sticky {
+    height: 50px;
 }
 
 .table td, .table th {
@@ -203,3 +326,5 @@ tbody td button:hover {
     box-shadow: 0px 0px 4px 2px #4e4e4e;
     border: 1px solid #c7c7c7 ;
 }
+
+/****** Base.css da table stylel lari ******/

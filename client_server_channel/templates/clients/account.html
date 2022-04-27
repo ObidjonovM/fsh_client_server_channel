@@ -19,9 +19,17 @@
 {% block body %}
 
 <div class="fixed">
-    <button type="button" onclick="glavniyStranisa()" class="glavni-stranisa">Fido<p>Electronics</p></button>
+    <div>
+        <a href="{{url_for('core.index')}}">
+            <button type="button" class="glavni-stranisa"><span style="color: #FF7F27;">Fido</span>
+                <p><span style="color: #6771ff;">Electronics</span></p></button>
+        </a>
+    </div>
     <div class="logout-hi-person">
-        <button type="button" onclick="Logout()" class="glavni-stranisa logout">Выйти</button>
+        <a href="{{url_for('clients.logout')}}">
+            <button type="button" class="glavni-stranisa logout">Выйти</button>
+        </a>
+
         <button type="button" class="hi-person" id="hi-person">
             <span>Привет, {{first_name}}</span>
             <p> Аккаунт и Продукты</p>
@@ -31,6 +39,7 @@
                 <ul>
                     <li><a onclick="Account()">Аккаунт</a></li>
                     <li><a onclick="Products()">Мои Продукты</a></li>
+                    <li><a href="{{url_for('clients.logout')}}" class="for-media-logout">Выйти</a></li>
                 </ul>
             </div>
         </button>
@@ -38,21 +47,24 @@
 </div>
 
 <div style="position:relative;">
-<section>
-    <div>
-    <p class="your-account">Ваш Счет</p>
-    </div>
+    <section>
+        <div>
+            <p class="your-account">Ваш Счет</p>
+        </div>
 
-    <a class="account-link1" onclick="accountLink1()">
-    <div class="update-account">
-        <div class="account_1">Изменить личние данные</div>
-<!--        <div class="description-account_1">Если вы хотите обновить регистрацию!</div>-->
-    </div>
-    </a>
+        <div class="account-full">
+            <a class="account-link1" onclick="accountLink1()">
+                <div class="update-account">
+                    <div class="account_1">Изменить личние данные</div>
+                    <!--        <div class="description-account_1">Если вы хотите обновить регистрацию!</div>-->
+                </div>
+            </a>
+        </div>
 
-</section>
+
+    </section>
 </div>
-    {% endblock %}
+{% endblock %}
 
 
 <script src="/static/js/clients/account.js"></script>
