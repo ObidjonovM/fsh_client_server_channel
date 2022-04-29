@@ -20,17 +20,22 @@ for (let i=0; i<inputss.length; i++){
     }
 }
 
-// window.addEventListener("scroll", function(){
-//     var header = document.querySelector(".add-button");
-//     header.classList.toggle("sticky", window.scrollY > 0);
-// });
-//
-// window.addEventListener("scroll", function(){
-//     var fixed = document.querySelector(".fixed");
-//     fixed.classList.toggle("sticky", window.scrollY > 0);
-// });
-//
-// window.addEventListener("scroll", function(){
-//     var thead = document.querySelector("thead");
-//     thead.classList.toggle("sticky", window.scrollY > 0);
-// });
+window.addEventListener("scroll", function(){
+    var header = document.querySelector(".add-button");
+    header.classList.toggle("sticky", window.scrollY > 0);
+});
+
+window.addEventListener("scroll", function(){
+    var fixed = document.querySelector(".fixed");
+    fixed.classList.toggle("sticky", window.scrollY > 0);
+});
+
+window.addEventListener("scroll", function(){
+    var thead = document.querySelector("thead");
+    thead.classList.toggle("sticky", window.scrollY > 0);
+});
+
+window.addEventListener("scroll", function(){
+    var h2 = document.querySelector(".header-all");
+    h2.classList.toggle("sticky", window.scrollY > 0);
+});

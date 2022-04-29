@@ -87,12 +87,6 @@ a{
     text-decoration: none;
 }
 
-.add-button {
-    width: 100%;
-    text-align: center;
-    margin-top: 1rem;
-}
-
 .add-button a, button {
     margin: .3rem;
 }
@@ -226,7 +220,7 @@ textarea {
 
 .add-button {
     width: 100%;
-    padding: 0.5rem 1rem;
+    /*padding: 0.5rem 1rem;*/
     text-align: center;
     margin-top: 0;
     position: sticky;
@@ -243,10 +237,12 @@ textarea {
 }
 
 .add-button.sticky {
-    width: 60%;
+    width: 75%;
     margin: 0 auto;
     color: white;
     padding: 0 0;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .add-button.sticky #addClick {
@@ -259,6 +255,20 @@ textarea {
     border: 1px solid white;
 }
 
+.header-all.sticky {
+    position: sticky;
+    top: 0.3rem;
+    z-index: 1100;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    color: white;
+    width: 22rem;
+    text-align: center;
+    margin: 0px auto;
+}
 
 
 /****** Base.css da table stylel lari ******/
@@ -277,7 +287,7 @@ textarea {
 thead {
     transition: .3s ease-in;
     position: sticky;
-    top: 3.13rem;
+    top: 3.09rem;
     z-index: 1100;
 }
 
