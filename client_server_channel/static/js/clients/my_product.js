@@ -343,7 +343,7 @@ function sendData() {
         if (this.readyState == 4 && this.status == 200) {
             let resp = JSON.parse(this.responseText);
 
-            for (let i = 0; i < resp['data']['log_id'].length; i++) {
+            for (let i = 0; i < resp['data'].length; i++) {
 
                 let tr = document.createElement('TR');
                 tr.setAttribute('id', 'tbody_tr');
@@ -355,19 +355,19 @@ function sendData() {
                 td2.setAttribute('class', 'state_time_on_of');
 
                 if (id == 11) {
-                    td1.innerHTML = resp['data']['action_requested'][i];
-                    td2.innerHTML = getFullTime(resp['data']['action_time'][i]);
+                    td1.innerHTML = resp['data'][i]['action_requested'];
+                    td2.innerHTML = getFullTime(resp['data'][i]['action_time']);
                 } else {
-                    td1.innerHTML = resp['data']['state'][i];
-                    td2.innerHTML = getFullTime(resp['data']['state_time'][i]);
+                    td1.innerHTML = resp['data'][i]['state'];
+                    td2.innerHTML = getFullTime(resp['data'][i]['state_time']);
                 }
 
                 if (id == 8 || id == 10) {
-                    if (resp['data']['state'][i] == 'ON') {
+                    if (resp['data'][i]['state'] == 'ON') {
                         td1.innerHTML = "Открыто";
                     }
 
-                    if (resp['data']['state'][i] == 'OFF') {
+                    if (resp['data'][i]['state'] == 'OFF') {
                         td1.innerHTML = "Закрыто";
                     }
                 } else if (id == 11) {
@@ -375,11 +375,11 @@ function sendData() {
                         td1.innerHTML = "Налил воду";
                     }
                 } else {
-                    if (resp['data']['state'][i] == 'ON') {
+                    if (resp['data'][i]['state'] == 'ON') {
                         td1.innerHTML = "Включен";
                     }
 
-                    if (resp['data']['state'][i] == 'OFF') {
+                    if (resp['data'][i]['state'] == 'OFF') {
                         td1.innerHTML = "Выключен";
                     }
                 }
@@ -883,7 +883,7 @@ if (id == 3) {
             'prefix': prefix,
             'start_date': start_date1 + 'T00:00',
             'end_date': end_date1 + 'T23:59'
-        }
+        };
 
         xhttp.open("Post", "/clients/my_products/my_product/get_gas_values/" + ser_num);
         xhttp.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -896,7 +896,7 @@ if (id == 3) {
                     tbody_date1.innerHTML = '';
 
                 } else {
-                    for (let i = resp['data']['log_id'].length - 1; i >= 0; i--) {
+                    for (let i = 0; i < resp['data'].length;  i++) {
                         let tr = document.createElement('TR');
                         tr.setAttribute('id', 'tbody_tr');
 
@@ -906,8 +906,8 @@ if (id == 3) {
                         td1.setAttribute('class', 'state_time_on_of');
                         td2.setAttribute('class', 'state_time_on_of');
 
-                        td1.innerHTML = resp['data']['gas_value'][i];
-                        td2.innerHTML = getFullTime(resp['data']['gas_value_time'][i]);
+                        td1.innerHTML = resp['data'][i]['gas_value'];
+                        td2.innerHTML = getFullTime(resp['data'][i]['gas_value_time']);
 
                         tr.appendChild(td1);
                         tr.appendChild(td2);
